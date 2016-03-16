@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DF2AAD25-996A-4077-A105-A5DF9E71FF4F}"
 	ProjectSection(SolutionItems) = preProject
@@ -70,5 +70,27 @@ Global
 		{382008F6-2245-421A-AC84-DF5D1EE553F6} = {DF2AAD25-996A-4077-A105-A5DF9E71FF4F}
 		{C09C10A9-1390-4DE7-BC43-C434A275BD9D} = {8E1170E1-61C1-46A3-8D16-F9EB67327D47}
 		{E5DB45BB-62FF-47EB-B40B-239EA07CD164} = {8E1170E1-61C1-46A3-8D16-F9EB67327D47}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://karulis.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = src\\FCWeb\\FCWeb.xproj
+		SccProjectTopLevelParentUniqueName1 = FCWebSite.sln
+		SccProjectName1 = src/FCWeb
+		SccLocalPath1 = src\\FCWeb
+		SccProjectUniqueName2 = src\\FCBLL\\FCBLL.xproj
+		SccProjectTopLevelParentUniqueName2 = FCWebSite.sln
+		SccProjectName2 = src/FCBLL
+		SccLocalPath2 = src\\FCBLL
+		SccProjectUniqueName3 = src\\FCDAL\\FCDAL.xproj
+		SccProjectTopLevelParentUniqueName3 = FCWebSite.sln
+		SccProjectName3 = src/FCDAL
+		SccLocalPath3 = src\\FCDAL
+		SccProjectUniqueName4 = src\\FCCore\\FCCore.xproj
+		SccProjectTopLevelParentUniqueName4 = FCWebSite.sln
+		SccProjectName4 = src/FCCore
+		SccLocalPath4 = src\\FCCore
 	EndGlobalSection
 EndGlobal
