@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DF2AAD25-996A-4077-A105-A5DF9E71FF4F}"
+	ProjectSection(SolutionItems) = preProject
+		src\FCWeb\wwwroot\lib\fc\home\index.html = src\FCWeb\wwwroot\lib\fc\home\index.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8E1170E1-61C1-46A3-8D16-F9EB67327D47}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FCWeb", "src\FCWeb\FCWeb.xproj", "{23B62D20-492A-46B6-9A58-0FD287E727AD}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FCBLL", "src\FCBLL\FCBLL.xproj", "{8155B964-5EB7-472D-A67F-211CCC3252BB}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FCDAL", "src\FCDAL\FCDAL.xproj", "{3AEC98E3-0D37-4DD9-8967-A15C1DFD7B0D}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FCCore", "src\FCCore\FCCore.xproj", "{382008F6-2245-421A-AC84-DF5D1EE553F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Info", "Info", "{C09C10A9-1390-4DE7-BC43-C434A275BD9D}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionItems\Info\EntityFrameworkCommands.txt = SolutionItems\Info\EntityFrameworkCommands.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{E5DB45BB-62FF-47EB-B40B-239EA07CD164}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionItems\SQL\ConvertArticle.sql = SolutionItems\SQL\ConvertArticle.sql
+		SolutionItems\SQL\ConvertContent.sql = SolutionItems\SQL\ConvertContent.sql
+		SolutionItems\SQL\ConvertPhoto.sql = SolutionItems\SQL\ConvertPhoto.sql
+		SolutionItems\SQL\ConvertTableRecord.sql = SolutionItems\SQL\ConvertTableRecord.sql
+		SolutionItems\SQL\ConvertTeam.sql = SolutionItems\SQL\ConvertTeam.sql
+		SolutionItems\SQL\ConvertTourney.sql = SolutionItems\SQL\ConvertTourney.sql
+		SolutionItems\SQL\ConvertVideo.sql = SolutionItems\SQL\ConvertVideo.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23B62D20-492A-46B6-9A58-0FD287E727AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23B62D20-492A-46B6-9A58-0FD287E727AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23B62D20-492A-46B6-9A58-0FD287E727AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23B62D20-492A-46B6-9A58-0FD287E727AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8155B964-5EB7-472D-A67F-211CCC3252BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8155B964-5EB7-472D-A67F-211CCC3252BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8155B964-5EB7-472D-A67F-211CCC3252BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8155B964-5EB7-472D-A67F-211CCC3252BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AEC98E3-0D37-4DD9-8967-A15C1DFD7B0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AEC98E3-0D37-4DD9-8967-A15C1DFD7B0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AEC98E3-0D37-4DD9-8967-A15C1DFD7B0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AEC98E3-0D37-4DD9-8967-A15C1DFD7B0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{382008F6-2245-421A-AC84-DF5D1EE553F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{382008F6-2245-421A-AC84-DF5D1EE553F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{382008F6-2245-421A-AC84-DF5D1EE553F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{382008F6-2245-421A-AC84-DF5D1EE553F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{23B62D20-492A-46B6-9A58-0FD287E727AD} = {DF2AAD25-996A-4077-A105-A5DF9E71FF4F}
+		{8155B964-5EB7-472D-A67F-211CCC3252BB} = {DF2AAD25-996A-4077-A105-A5DF9E71FF4F}
+		{3AEC98E3-0D37-4DD9-8967-A15C1DFD7B0D} = {DF2AAD25-996A-4077-A105-A5DF9E71FF4F}
+		{382008F6-2245-421A-AC84-DF5D1EE553F6} = {DF2AAD25-996A-4077-A105-A5DF9E71FF4F}
+		{C09C10A9-1390-4DE7-BC43-C434A275BD9D} = {8E1170E1-61C1-46A3-8D16-F9EB67327D47}
+		{E5DB45BB-62FF-47EB-B40B-239EA07CD164} = {8E1170E1-61C1-46A3-8D16-F9EB67327D47}
+	EndGlobalSection
+EndGlobal
