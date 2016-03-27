@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FCCore.Common
+﻿namespace FCCore.Common
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     public static class Guard
     {
-        //public static IEnumerable<T> ToEmptyArrayIfNull<T>(T obj)
-        //{
-        //    if(obj == null)
-        //    {
-        //        return new T[0];
-        //    }
-        //}
+        public static bool IsEmptyIEnumerable<T>(IEnumerable<T> obj)
+        {
+            if (obj == null)
+            {
+                obj = new T[0];
+            }
+
+            return !obj.Any();
+        }
     }
 }

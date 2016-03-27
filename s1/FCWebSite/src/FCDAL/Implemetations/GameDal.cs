@@ -6,7 +6,7 @@
     using System.Linq;
     using FCCore.Model;
     using FCDAL.Exceptions;
-
+    using FCCore.Common;
     public class GameDal : DalBase, IGameDal
     {
         private const int LimitEntitiesSelections = 100;
@@ -15,30 +15,30 @@
 
         public bool FillRounds { get; set; } = false;
 
-        public IEnumerable<Game> GetTeamNearestRoundGames(int teamId, IEnumerable<int> roundIds, DateTime date)
+        public Game GetTeamNearestGame(int teamId, IEnumerable<int> roundIds, DateTime date)
         {
-            if (roundIds == null) { return new Game[0]; }
+            if (Guard.IsEmptyIEnumerable(roundIds)) { return null; }
 
-            IEnumerable<Game> games = Context.Game.Where(g => roundIds.Contains(g.roundId)
+            IEnumerable<Game> teamGames = Context.Game.Where(g => roundIds.Contains(g.roundId)
                                                             && (g.homeId == teamId || g.awayId == teamId)
                                                             && date >= g.GameDate)
                                                   .OrderByDescending(g => g.GameDate)
                                                   .Take(LimitEntitiesSelections)
                                                   .ToList();
 
-            if(games.Any())
+            Game game = teamGames.FirstOrDefault();
+
+            if(game != null)
             {
-                games = games.Where(o => o.roundId == games.First().roundId);
-            }
+                FillRelations(new[] { game });
+            }            
 
-            FillRelations(games);
-
-            return games;
+            return game;
         }
 
         public IEnumerable<Game> GetRoundsGames(IEnumerable<int> roundIds)
         {
-            if (roundIds == null) { return new Game[0]; }
+            if (Guard.IsEmptyIEnumerable(roundIds)) { return new Game[0]; }
 
             IEnumerable<Game> games = Context.Game.Where(g => roundIds.Contains(g.roundId))
                                                   .ToList();
@@ -59,7 +59,7 @@
 
         private void FillRelations(IEnumerable<Game> games)
         {
-            if (games == null) { return; }
+            if (Guard.IsEmptyIEnumerable(games)) { return; }
 
             IEnumerable<Team> teams = new Team[0];
             IEnumerable<Round> rounds = new Round[0];
@@ -73,7 +73,7 @@
                 teamIds.AddRange(games.Select(g => g.homeId));
                 teamIds.AddRange(games.Select(g => g.awayId));
 
-                teams = teamDal.GetTeams(teamIds.Distinct());
+                teams = teamDal.GetTeams(teamIds.Distinct()).ToList();
 
                 if (!teams.Any())
                 {
@@ -90,7 +90,7 @@
                 var roundIds = new List<int>();
                 roundIds.AddRange(games.Select(g => (int)g.roundId));
 
-                rounds = roundDal.GetRounds(roundIds.Distinct());
+                rounds = roundDal.GetRounds(roundIds.Distinct()).ToList();
 
                 if (!rounds.Any())
                 {

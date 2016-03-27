@@ -57,12 +57,10 @@
     function RoundResultsManager(apiSrv) {
         var current = null;
         var me = this;
+        var loaded = false;
+        var teamId = 0;
 
-        var data = [
-            { roundId: 2, roundData: null, current: true },
-            { roundId: 3, roundData: null, current: false },
-            { roundId: 5, roundData: null, current: false }
-        ];
+        var data = [];
 
         this.getCurrent = function () {
             if (!current && angular.isArray(data)) {
@@ -74,6 +72,30 @@
             }
 
             return current;
+        }
+
+        this.init = function (team, tourneyIds, success) {
+            teamId = team;
+
+            if (!angular.isNumber(teamId) || !angular.isArray(tourneyIds)) { return; }
+
+            var result = null;
+            var url = "/api/games/" + team + "/slider?";
+
+            tourneyIds.forEach(function (element, index, array) {
+                url = url + "tourneyIds=" + element + (index < array.length - 1 ? "&" : "")
+            });
+
+            apiSrv.get(url,
+                null,
+                function (response) {
+                    data = response.data;
+                    loaded = true;
+                    loadSelectedRoundGames(success);
+                },
+                function (response) {
+                    alert(response);
+                });
         }
 
         function getSelectedIndex() {
@@ -99,67 +121,55 @@
             }
         }
 
-        function getRoundData(roundId, success) {
-            var result = null;
-
-            apiSrv.get('/api/round/' + roundId,
+        function getRoundGames(roundId, success) {
+            apiSrv.get('/api/games/round/short/' + roundId,
                 null,
                 function (response) {
-                    result = response.data;
+                    success(response.data);
                 },
                 function (response) {
                     alert(response);
                 });
+        }
 
-            return result;
+        function loadSelectedRoundGames(success) {
+
+            var result = data[selectedIndex];
+
+            if (!angular.isObject(result.roundGames)) {
+                    
+                getRoundGames(result.roundId, function (roundGames) {
+                    result.roundGames = roundGames;
+                    success(result.roundGames);
+                });
+            }
+            else {
+                success(result.roundGames)
+            }
         }
 
         var selectedIndex = getSelectedIndex();
 
         this.next = function (success) {
+            if (!angular.isArray(data) || !loaded) { return; }
 
-            console.log("RoundResultsManager.next();")
-            success();
-
-            if (angular.isArray(data)) {
-                selectedIndex++;
-                if (selectedIndex > data.length - 1) {
-                    selectedIndex = data.length - 1;
-                }
-
-                var nextData = data[selectedIndex];
-
-                if (!angular.isObject(nextData.roundData)) {
-                    nextData.roundData = getRoundData(nextData.roundId);
-                }
-
-                return nextData;
+            selectedIndex++;
+            if (selectedIndex >= data.length ) {
+                selectedIndex = data.length - 1;
             }
 
-            return null;
+            loadSelectedRoundGames(success);
         }
 
         this.previous = function (success) {
+            if (!angular.isArray(data) || !loaded) { return; }
 
-            console.log("RoundResultsManager.previous();")
-            success();
-
-            if (angular.isArray(data)) {
                 selectedIndex--;
                 if (selectedIndex < 0) {
                     selectedIndex = 0;
                 }
 
-                var prevData = data[selectedIndex];
-
-                if (!angular.isObject(prevData.roundData)) {
-                    prevData.roundData = getRoundData(prevData.roundId);
-                }
-
-                return prevData;
-            }
-
-            return null;
+            loadSelectedRoundGames(success);
         }
 
         this.reset = function () {

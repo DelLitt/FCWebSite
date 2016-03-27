@@ -11,7 +11,7 @@ namespace FCCore.Abstractions.DAL
     {
         bool FillTeams { get; set; }
         bool FillRounds { get; set; }
-        IEnumerable<Game> GetTeamNearestRoundGames(int teamId, IEnumerable<int> roundIds, DateTime date);
+        Game GetTeamNearestGame(int teamId, IEnumerable<int> roundIds, DateTime date);
         IEnumerable<Game> GetRoundsGames(IEnumerable<int> roundIds);
         IEnumerable<Game> GetRoundGames(int roundId);
     }

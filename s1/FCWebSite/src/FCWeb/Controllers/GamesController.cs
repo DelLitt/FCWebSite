@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using FCCore.Abstractions.Bll;
-using FCCore.Model;
-
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+﻿// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FCWeb.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.AspNet.Mvc;
+    using FCCore.Abstractions.Bll;
+    using FCCore.Model;
+    using FCCore.Common;
+    using ViewModels;
+    using Core.Extensions;
+
     [Route("api/[controller]")]
     public class GamesController : Controller
     {
@@ -33,23 +35,50 @@ namespace FCWeb.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("round/short/{id:int}")]
+        public RoundViewModel Get(int id)
         {
-            return "value";
+            gameBll.FillRounds = true;
+            gameBll.FillTeams = true;
+
+            IEnumerable<RoundViewModel> roundViews = gameBll.GetRoundGames(id).ToRoundViewModel();
+
+            return roundViews.FirstOrDefault();
         }
 
         // GET api/values/5
+        // /api/games/3/slider?tourneyIds=8&tourneyIds=10
         [HttpGet("{teamId}/slider")]
-        public IEnumerable<int> Get(int teamId, [FromQuery] int[] roundId)
+        public IEnumerable<TourneyRoundViewModel> Get(int teamId, [FromQuery] int[] tourneyIds)
         {
-            IEnumerable<int> roundIds = roundBll.GetRoundIdsOfTourneys(roundId, teamId);
+            var actualDate = new DateTime(2015, 9, 10);
 
-            return roundIds;
+            roundBll.FillTourneys = true;
+            IEnumerable<int> roundIds = roundBll.GetRoundIdsOfTourneys(tourneyIds, teamId);
 
-            //var actualDate = new DateTime(2015, 11, 8);
+            if (Guard.IsEmptyIEnumerable(roundIds)) { return new TourneyRoundViewModel[0]; }
 
-            //IEnumerable<Game> roundGames = gameBll.GetTeamActualRoundGames(teamId, roundIds, actualDate);
+            gameBll.FillRounds = true;
+            gameBll.FillTeams = true;
+            IEnumerable<Game> roundGames = gameBll.GetTeamActualRoundGames(teamId, roundIds, actualDate);
+
+            if(Guard.IsEmptyIEnumerable(roundGames)) { return new TourneyRoundViewModel[0]; }
+
+            var roundsSlider = new List<TourneyRoundViewModel>();
+
+            RoundViewModel roundView = roundGames.ToRoundViewModel().FirstOrDefault();
+            
+            foreach(int roundId in roundIds)
+            {
+                roundsSlider.Add(new TourneyRoundViewModel()
+                {
+                    roundId = roundId,
+                    current = roundView?.roundId == roundId,
+                    roundGames = roundView?.roundId == roundId ? roundView : null
+                });
+            }                
+
+            return roundsSlider;
         }
 
         // POST api/values

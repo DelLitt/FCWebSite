@@ -4,7 +4,7 @@ using Microsoft.Data.Entity.Metadata;
 
 namespace FCDAL.Model
 {
-    public partial class FCWebContext : DbContext
+    public partial class FCWebContext : ApplicationDbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

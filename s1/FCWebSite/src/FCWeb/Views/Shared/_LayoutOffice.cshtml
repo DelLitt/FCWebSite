@@ -44,42 +44,14 @@
                     <ul class="nav navbar-nav">
                         <li><a asp-controller="Home" asp-action="Index"><span class="glyphicon glyphicon-home"></span></a></li>
                         <li class="dropdown">
-                            <a asp-controller="Home" asp-action="About" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th-large"></span> <span translate="CLUB">Клуб</span><span class="caret"></span></a>
+                            <a asp-controller="Office" asp-action="Index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th-large"></span> <span>Публикации</span><span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#" translate="MAIN_STAFF">Основной состав</a></li>
-                                <li><a href="#">Дублирующий состав</a></li>
-                                <li><a href="#">Молодежный сектор</a></li>
+                                <li><a href="#">Статьи</a></li>
+                                <li><a href="#">Фото</a></li>
+                                <li><a href="#">Видео</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Руководящий состав</a></li>
-                                <li><a href="#">Тренерский состав</a></li>
-                                <li><a href="#">Медицинский состав</a></li>
-                                <li><a href="#">Специалисты</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a asp-controller="Home" asp-action="Contact" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-eye-open"></span> <span translate="RESULTS">Результаты</span><span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Основной состав</a></li>
-                                <li><a href="#">Дублирующий состав</a></li>
-                                <li><a href="#">Молодежный сектор</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a asp-controller="Home" asp-action="Contact" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-info-sign"></span> <span translate="INFORMATION">Информация</span><span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Покупка билетов и абонементов</a></li>
-                                <li><a href="#">Правила поведения на стадионе</a></li>
-                                <li><a href="#">Закон О ФК и С-2014</a></li>
-                                <li><a href="#">СФК "Слуцк" против расизма</a></li>
-                                <li><a href="#">Контакты</a></li>
-                            </ul>
-                        </li>
-                        <li><a asp-controller="Home" asp-action="Contact"><span translate="ATTRIBUTES">Атрибутика</span></a></li>
-                        <li><a asp-controller="Home" asp-action="Contact"><span translate="HISTORY">История</span></a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="javascript:void(0);" ng-click="changeLanguage('ru')" translate="SHORT_LANG_RU">рус</a></li>
-                        <li><a href="javascript:void(0);" ng-click="changeLanguage('en')" translate="SHORT_LANG_EN">en</a></li>
                     </ul>
                     @*@await Html.PartialAsync("_LoginPartial")*@
                 </div>
@@ -100,10 +72,6 @@
                     <em>Футбол -<br />этот не всё,<br />но все без футбола -<br />ничто!</em>
                 </div>
             </div>
-            @*@foreach(var item in (IEnumerable<Publication>)ViewBag.Mix)
-            {
-                <p>@item.Title</p>
-            }*@
             @RenderBody()
             <hr />
             <footer>
@@ -121,21 +89,6 @@
             <script src="~/lib/angular-translate/angular-translate.js"></script>
             <script src="~/lib/angular-translate-storage-local/angular-translate-storage-local.js"></script>
             <script src="~/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-            @*<script src="~/lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>*@
-            <script src="~/lib/fc/modules/fc.core.js"></script>
-            <script src="~/lib/fc/modules/core/helper.js"></script>
-            <script src="~/lib/fc/modules/core/notificationmanager.js"></script>
-            <script src="~/lib/fc/modules/core/apisrv.js"></script>
-            <script src="~/lib/fc/modules/core/publicationsSrv.js"></script>
-            <script src="~/lib/fc/modules/core/rankingsSrv.js"></script>
-            <script src="~/lib/fc/modules/core/gamessrv.js"></script>
-            <script src="~/lib/fc/modules/fc.ui.js"></script>
-            <script src="~/lib/fc/layout/publicationItem.directive.js"></script>
-            <script src="~/lib/fc/layout/maintable.directive.js"></script>
-            <script src="~/lib/fc/layout/roundresults.directive.js"></script>
-            <script src="~/lib/fc/app.js"></script>
-            <script src="~/lib/fc/home/rootctrl.js"></script>
-            <script src="~/lib/fc/home/indexctrl.js"></script>
         </environment>
         <environment names="Staging,Production">
             <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"

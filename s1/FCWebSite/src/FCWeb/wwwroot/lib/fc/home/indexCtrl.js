@@ -17,41 +17,17 @@
             loading: true
         };
 
-        loadData();
-
-        var roundResults = gamesSrv.getRoundGames(11, 22) || {};
-
-        function roundLoaded(data) {
-            if (angular.isObject(data)) {
-                $scope.roundResults.roundName = data.roundName,
-                $scope.roundResults.roundLogo = data.roundLogo,
-                $scope.roundResults.roundGames = data.roundGames
-            }
-
-            console.log("roundLoaded();")
-        }
-
-        function previousRound() {
-            console.log("previousRound();")
-            gamesSrv.roundResultsManager.next(roundLoaded);            
-        }
-
-        function nextRound() {
-            console.log("nextRound();")
-            gamesSrv.roundResultsManager.next(roundLoaded);            
-        }
-
         $scope.roundResults = {
-            roundName: roundResults.roundName,
-            roundLogo: roundResults.roundLogo,
-            roundGames: roundResults.roundGames,
             previous: previousRound,
             next: nextRound
         };
 
+        loadData();
+
         function loadData() {
             publicationsSrv.loadLatestPublications(helper.getRandom(0, 20), latestPublicationsLoaded);
             rankingsSrv.loadRankingTable(10, rankingLoaded);
+            gamesSrv.roundResultsManager.init(3, [10, 11], roundLoaded);
         }
 
         function latestPublicationsLoaded(response) {
@@ -66,6 +42,22 @@
 
             $scope.ranking.name = ranking.name;
             $scope.ranking.rows = ranking.rows;
+        }
+
+        function roundLoaded(data) {
+            if (angular.isObject(data)) {
+                $scope.roundResults.name = data.name,
+                $scope.roundResults.logo = data.logo,
+                $scope.roundResults.dateGames = data.dateGames
+            }
+        }
+
+        function previousRound() {
+            gamesSrv.roundResultsManager.previous(roundLoaded);
+        }
+
+        function nextRound() {
+            gamesSrv.roundResultsManager.next(roundLoaded);
         }
     }
 })();

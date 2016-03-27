@@ -1,14 +1,15 @@
 ﻿<div>
+    {{model.tourney}}
     <a href="javascript:void(0);" ng-click="model.previous()">Prev</a> - <a href="javascript:void(0);" ng-click="model.next()">Next</a>
     <div style="display: table;">
-        <img style="max-height: 50px; display:table-cell;" ng-src="{{model.roundLogo}}" />
-        <div class="text-info" style="padding: 4px 0; vertical-align: middle; display: table-cell;">{{model.roundName}}</div>
+        <img style="max-height: 50px; display:table-cell;" ng-src="{{model.logo}}" />
+        <div class="text-info" style="padding: 4px 0; vertical-align: middle; display: table-cell;">{{model.name}}. {{model.tourney}}</div>
     </div>
     <div class="row">
-        <div class="col-sm-4" ng-repeat="roundDay in model.roundGames">
-            <div class="text-muted">{{roundDay.date}}.&nbsp;{{roundDay.day}}</div>
+        <div class="col-sm-4" ng-repeat="roundDay in model.dateGames">
+            <div class="text-muted">{{roundDay.date.dateString}}.&nbsp;{{roundDay.date.dayString}}</div>
             <ul class="list-unstyled">
-                <li ng-repeat="game in roundDay.games">{{game.time}}.&nbsp;{{game.homeTeam}}&nbsp;{{game.homeScore}}:{{game.awayScore}}&nbsp;{{game.awayTeam}}</li>
+                <li ng-repeat="game in roundDay.games">{{ game.time }}.&nbsp;{{game.home}}&nbsp;{{game.homeScore}}:{{game.awayScore}}&nbsp;{{game.away}}</li>
             </ul>
         </div>
     </div>

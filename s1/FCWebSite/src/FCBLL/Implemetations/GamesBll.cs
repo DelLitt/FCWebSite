@@ -6,7 +6,7 @@
     using System.Linq;
     using FCCore.Model;
     using FCCore.Abstractions.DAL;
-
+    using FCCore.Common;
     public class GamesBll : IGamesBll
     {
         public bool FillTeams
@@ -72,22 +72,18 @@
 
         public IEnumerable<Game> GetTeamActualRoundGames(int teamId, IEnumerable<int> roundIds, DateTime date)
         {
-            if(!roundIds.Any()) { return new Game[0]; }
+            if(Guard.IsEmptyIEnumerable(roundIds)) { return new Game[0]; }
 
-            IEnumerable<Game> games = DalGames.GetTeamNearestRoundGames(teamId, roundIds, date);
+            Game nearestGame = DalGames.GetTeamNearestGame(teamId, roundIds, date);
 
-            if(!games.Any())
+            IEnumerable<Game> roundGames = null;
+
+            if (nearestGame != null)
             {
-                games = DalGames.GetRoundsGames(roundIds)
-                                .OrderBy(g => g.GameDate);
-
-                if (games.Any())
-                {
-                    games = games.Where(o => o.roundId == games.First().roundId);
-                }
+                roundGames = DalGames.GetRoundGames(nearestGame.roundId).OrderBy(g => g.GameDate);
             }
 
-            return games;
+            return roundGames ?? new Game[0];
         }
 
         public IEnumerable<Game> GetRoundGames(int roundId)

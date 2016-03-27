@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Data.Entity;
-using FCCore.Configuration;
-
-namespace FCDAL.Model
+﻿namespace FCDAL.Model
 {
+    using Microsoft.Data.Entity;
+    using FCCore.Configuration;
+
     /// <summary>
     /// Using to save connection string from generation
     /// </summary>

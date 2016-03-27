@@ -67,7 +67,7 @@
                 var tourneyIds = new List<int>();
                 tourneyIds.AddRange(rounds.Select(r => (int)r.tourneyId));
 
-                tourneys = tourneyDal.GetTourneys(tourneyIds.Distinct());
+                tourneys = tourneyDal.GetTourneys(tourneyIds.Distinct()).ToList();
 
                 if (!tourneys.Any())
                 {
