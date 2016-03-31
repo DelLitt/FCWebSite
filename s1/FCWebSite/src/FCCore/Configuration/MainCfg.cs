@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -60,6 +61,62 @@ namespace FCCore.Configuration
                 }
 
                 return settingsVisibility;
+            }
+        }
+
+        public static IEnumerable<string> UploadRoots
+        {
+            get
+            {
+                bool emptyResult = false;
+                int i = 0;
+                var roots = new List<string>();
+
+                while(!emptyResult)
+                {
+                    string root = CoreConfig.Current["Settings:UploadRoots:" + i];
+
+                    if(!string.IsNullOrWhiteSpace(root))
+                    {
+                        roots.Add(root);
+                    }
+                    else
+                    {
+                        emptyResult = true;
+                    }
+
+                    i++;
+                }
+
+                return roots;
+            }
+        }
+
+        public static string[] AllowedImageExtensions
+        {
+            get
+            {
+                bool emptyResult = false;
+                int i = 0;
+                var roots = new List<string>();
+
+                while (!emptyResult)
+                {
+                    string root = CoreConfig.Current["Settings:AllowedImageExtensions:" + i];
+
+                    if (!string.IsNullOrWhiteSpace(root))
+                    {
+                        roots.Add(root);
+                    }
+                    else
+                    {
+                        emptyResult = true;
+                    }
+
+                    i++;
+                }
+
+                return roots.ToArray();
             }
         }
     }

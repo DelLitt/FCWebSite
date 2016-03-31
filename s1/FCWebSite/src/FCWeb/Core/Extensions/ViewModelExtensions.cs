@@ -1,24 +1,56 @@
-﻿using FCCore.Common;
-using FCCore.Model;
-using FCWeb.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FCWeb.Core.Extensions
+﻿namespace FCWeb.Core.Extensions
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using FCCore.Common;
+    using FCCore.Model;
+    using FCWeb.ViewModels;
+
     public static class ViewModelExtensions
     {
-        public static IEnumerable<PublicationViewModel> ToViewModel(this IEnumerable<Publication> publications)
+        public static IEnumerable<PublicationShortViewModel> ToShortViewModel(this IEnumerable<Publication> publications)
         {
-            if(Guard.IsEmptyIEnumerable(publications)) { return new PublicationViewModel[0]; }
+            if(Guard.IsEmptyIEnumerable(publications)) { return new PublicationShortViewModel[0]; }
 
-            return publications.Select(p => new PublicationViewModel()
+            return publications.Select(p => new PublicationShortViewModel()
             {
+                id = p.Id,
                 title = p.Title,
                 img = "http://sfc-slutsk.by/" + p.Image
             });
+        }
+
+        public static PublicationViewModel ToViewModel(this Publication publication)
+        {
+            if (publication == null) { return null; }
+
+            return new PublicationViewModel()
+            {
+                id = publication.Id,
+                articleId = publication.articleId,
+                contentHTML = publication.ContentHTML,
+                dateChanged = publication.DateChanged,
+                dateCreated = publication.DateCreated,
+                dateDisplayed = publication.DateDisplayed,
+                enable = publication.Enable,
+                header = publication.Header,
+                image = "http://sfc-slutsk.by/" + publication.Image,
+                imageGalleryId = publication.imageGalleryId,
+                priority = publication.Priority,
+                showImageInContet = publication.ShowImageInContet,
+                title = publication.Title,
+                urlKey = publication.URLKey,
+                videoId = publication.videoId,
+                visibility = publication.Visibility,
+                lead = publication.Lead
+            };
+        }
+
+        public static IEnumerable<PublicationViewModel> ToViewModel(this IEnumerable<Publication> publications)
+        {
+            if (Guard.IsEmptyIEnumerable(publications)) { return new PublicationViewModel[0]; }
+
+            return publications.Select(p => p.ToViewModel());
         }
 
         public static RankingTableViewModel ToViewModel(this IEnumerable<TableRecord> tableRecords, string tourneyName)

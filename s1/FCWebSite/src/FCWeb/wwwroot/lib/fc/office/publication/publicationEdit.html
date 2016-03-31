@@ -1,0 +1,71 @@
+﻿<form class="form-horizontal" role="form" novalidate angular-validator name="editMovieForm" angular-validator-submit="UpdateMovie()">
+    <div class="form-group">
+        <div class="row">
+            <label>{{publication.id}}</label>
+        </div>
+        <div class="row">
+            <div><img ng-src="{{publication.image}}" /></div>
+            <div><a href="javascript:void(0);" ng-click="openFileBrowser();">Изображение: {{publication.image}}</a></div>
+        </div>
+        <div class="row">
+            <label class="control-label">Заголовок публикации</label>
+            <input class="form-control" name="title" type="text" ng-model="publication.title"
+                   validate-on="blur" required required-message="'Введите заголовок публикации'">
+        </div>
+        <div class="row">
+            <label class="control-label">Заголовок статьи</label>
+            <input class="form-control" name="title" type="text" ng-model="publication.header"
+                   validate-on="blur" required required-message="'Введите заголовок статьи'">
+        </div>
+        <div class="row">
+            <label class="control-label">Идентификатор публикации в URL</label>
+            <input class="form-control" name="title" type="text" ng-model="publication.urlKey"
+                   validate-on="blur" required required-message="'Введите идентификатор публикации в URL'">
+        </div>
+    </div>
+    <div class="row">
+        <label class="control-label">Лид</label>
+        <textarea class="ck-editor" ng-model="publication.lead"></textarea>
+    </div>
+    <div class="row">
+        <label class="control-label">Содержимое</label>
+        <textarea class="ck-editor" ng-model="publication.contentHTML"></textarea>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-4">
+                <label class="control-label">Приоритет</label>
+                <div numeric="{min:0,max:10}" step="1" ng-model="publication.priority"></div>
+            </div>
+            <div class="col-xs-4">
+                <label class="control-label"><input type="checkbox" ng-model="publication.enable">Включена</label>
+            </div>
+            <div class="col-xs-4">
+                <label class="control-label"><input type="checkbox" ng-model="publication.ShowImageInContet">Показывать изображение в публикации</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <label class="control-label">Отображаемая дата</label>
+                <datetimepicker ng-model="publication.dateDisplayed"
+                                name="dateDisplayed"
+                                date-format="dd-MMM-yyyy"
+                                date-options="dateOptions"
+                                date-disabled="isDisabledDate(date, mode)"
+                                show-spinners="true">
+                </datetimepicker>
+            </div>
+            <div class="col-xs-4">
+                <label class="control-label">Дата редактирования</label>
+                <input class="form-control" name="dateChanged" type="text" disabled ng-model="publication.dateChanged"
+                       validate-on="blur" required required-message="'Введите заголовок публикации'">
+            </div>
+            <div class="col-xs-4">
+                <label class="control-label">Дата редактирования</label>
+                <input class="form-control" name="dateDisplayed" type="text" disabled ng-model="publication.dateDisplayed"
+                       validate-on="blur" required required-message="'Введите заголовок публикации'">
+            </div>
+        </div>
+    </div>    
+
+</form>

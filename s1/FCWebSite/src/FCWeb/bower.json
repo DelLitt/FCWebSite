@@ -11,7 +11,11 @@
     "angular-route": "1.4.6",
     "angular-translate": "2.8.0",
     "angular-translate-loader-static-files": "2.8.0",
-    "angular-translate-storage-local": "~2.10.0"
+    "angular-translate-storage-local": "~2.10.0",
+    "angular-ui-bootstrap-datetimepicker": "~1.2.4",
+    "angular-ui-bootstrap": "0.13.4",
+    "jquery-ui": "1.11.4",
+    "ng-file-upload": "7.3.8"
   },
   "resolutions": {
     "angular": "^1.2.9",

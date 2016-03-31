@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace FCWeb.ViewModels
+﻿namespace FCWeb.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+
     public class TourneyRoundViewModel
     {
         public int roundId { get; set; }

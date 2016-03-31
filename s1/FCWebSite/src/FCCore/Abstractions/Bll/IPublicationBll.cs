@@ -1,13 +1,11 @@
-﻿using FCCore.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FCCore.Abstractions.Bll
+﻿namespace FCCore.Abstractions.Bll
 {
+    using FCCore.Model;
+    using System.Collections.Generic;
+
     public interface IPublicationBll
     {
+        Publication GetPublication(int id);
         IEnumerable<Publication> GetMainPublications(int count, int offset);
     }
 }

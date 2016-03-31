@@ -4,9 +4,9 @@
     angular.module('fc', ['fc.core', 'fc.ui', 'pascalprecht.translate'])
         .config(config);
 
-    config.$inject = ['$routeProvider', '$translateProvider'];
+    config.$inject = ['$routeProvider', '$locationProvider', '$translateProvider'];
 
-    function config($routeProvider, $translateProvider) {
+    function config($routeProvider, $locationProvider, $translateProvider) {
 
         $routeProvider
             .when("/", {
@@ -38,6 +38,8 @@
             //    controller: "movieEditCtrl"
             //})
             .otherwise({ redirectTo: "/" });
+
+        $locationProvider.html5Mode(true);
 
         $translateProvider.useStaticFilesLoader({
             prefix: '/static/lang/',

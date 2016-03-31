@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace FCCore.Model
 {
@@ -23,6 +22,7 @@ namespace FCCore.Model
         public Guid userCreated { get; set; }
         public int? videoId { get; set; }
         public int Visibility { get; set; }
+        public string Lead { get; set; }
 
         public virtual Article article { get; set; }
         public virtual ImageGallery imageGallery { get; set; }

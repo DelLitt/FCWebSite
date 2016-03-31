@@ -26,6 +26,11 @@ namespace FCBLL.Implemetations
             }
         }
 
+        public Publication GetPublication(int id)
+        {
+            return DALPublication.GetPublication(id);
+        }
+
         public IEnumerable<Publication> GetMainPublications(int count, int offset)
         {
             short visibility = (short)(MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News);

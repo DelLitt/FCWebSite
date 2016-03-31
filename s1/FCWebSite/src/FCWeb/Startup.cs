@@ -97,9 +97,14 @@ namespace FCWeb
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
+                routes
+                .MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}")
+                .MapRoute(
+                    name: "office",
+                    template: "office/{*.}",
+                    defaults: new { controller = "office", action = "Index" });
             });
         }
 

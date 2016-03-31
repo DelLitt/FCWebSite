@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FCDAL.Model;
-using FCCore.Model;
-using FCCore.Abstractions;
-using FCCore.Abstractions.DAL;
-using FCCore.Configuration;
-using FCCore.Common;
-
-namespace FCDAL.Implemetations
+﻿namespace FCDAL.Implemetations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using FCCore.Model;
+    using FCCore.Abstractions.DAL;
+
     public class PublicationDal : DalBase, IPublicationDal
     {
         public IEnumerable<Publication> GetLatestPublications(int count, int offset, short visibility)
@@ -25,6 +20,11 @@ namespace FCDAL.Implemetations
                 .Skip(offset)
                 .Take(count)
                 .Where(p => p.Visibility == visibility);
+        }
+
+        public Publication GetPublication(int id)
+        {
+            return Context.Publication.FirstOrDefault(p => p.Id == id);
         }
     }
 }

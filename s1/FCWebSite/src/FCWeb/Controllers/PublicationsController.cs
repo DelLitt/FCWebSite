@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using FCCore.Abstractions.Bll;
-using FCCore.Model;
-using FCWeb.Core.Extensions;
-using FCWeb.ViewModels;
-
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+﻿// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FCWeb.Controllers
 {
+    using System.Collections.Generic;
+    using Microsoft.AspNet.Mvc;
+    using FCCore.Abstractions.Bll;
+    using FCWeb.Core.Extensions;
+    using FCWeb.ViewModels;
+
     [Route("api/[controller]")]
     public class PublicationsController : Controller
     {
@@ -25,13 +21,10 @@ namespace FCWeb.Controllers
 
         // GET: api/values/latest
         [HttpGet("latest/{count:range(0,20)}/{offset:int?}")]
-        public IEnumerable<PublicationViewModel> Get(int count, int offset)
+        public IEnumerable<PublicationShortViewModel> Get(int count, int offset)
         {
-            return publicationBll.GetMainPublications(count, offset).ToViewModel();
+            return publicationBll.GetMainPublications(count, offset).ToShortViewModel();
         }
-
-
-
 
         //// GET: api/values/latest
         //[HttpGet]
@@ -40,12 +33,12 @@ namespace FCWeb.Controllers
         //    return publicationBLL.GetMainPublications(10, 0).ToViewModel();
         //}
 
-        //// GET api/values/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        // GET api/values/5
+        [HttpGet("{id}")]
+        public PublicationViewModel Get(int id)
+        {
+            return publicationBll.GetPublication(id).ToViewModel();
+        }
 
         //// POST api/values
         //[HttpPost]

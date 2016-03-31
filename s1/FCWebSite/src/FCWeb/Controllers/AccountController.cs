@@ -126,10 +126,10 @@ namespace FCWeb.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        ////
+        //// POST: /Account/LogOff
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()
         {
             await _signInManager.SignOutAsync();

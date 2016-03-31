@@ -1,5 +1,6 @@
 ﻿namespace FCCore.Common
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -13,6 +14,14 @@
             }
 
             return !obj.Any();
+        }
+
+        public static void CheckNull(object argument, string name)
+        {
+            if(argument == null)
+            {
+                throw new ArgumentNullException(name);
+            }
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿@using FCCore.Model
 <!DOCTYPE html>
-<html ng-app="fc">
+<html ng-app="fc.admin">
     <head>
+        <base href="/">
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title translate="OFFICIAL_SITE">Официальный сайт</title>
@@ -82,6 +83,7 @@
         <environment names="Development">
             <script src="~/lib/jquery/dist/jquery.js"></script>
             <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/lib/jquery-ui/jquery-ui.js"></script>
             <script src="~/js/site.js" asp-append-version="true"></script>
 
             <script src="~/lib/angular/angular.js"></script>
@@ -89,6 +91,31 @@
             <script src="~/lib/angular-translate/angular-translate.js"></script>
             <script src="~/lib/angular-translate-storage-local/angular-translate-storage-local.js"></script>
             <script src="~/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+            <script src="~/lib/angular-ui-bootstrap/ui-bootstrap-tpls-1.2.4.js"></script>
+            <script src="~/lib/angular-ui-bootstrap-datetimepicker/datetimepicker.js"></script>
+            <script src="~/lib/angular-ui-numeric-master/src/angular-ui-numeric.js"></script>
+            <script src="~/lib/ng-file-upload/ng-file-upload.js"></script>
+            <script src="~/lib/ng-file-upload/ng-file-upload-shim.js"></script>
+
+            <script src="~/lib/ckeditor/ckeditor.js"></script>
+
+            <script src="~/lib/fc/modules/fc.core.js"></script>
+            <script src="~/lib/fc/modules/core/helper.js"></script>
+            <script src="~/lib/fc/modules/core/notificationmanager.js"></script>
+            <script src="~/lib/fc/modules/core/apisrv.js"></script>
+            <script src="~/lib/fc/modules/core/publicationsSrv.js"></script>
+            <script src="~/lib/fc/modules/fc.ui.js"></script>
+            <script src="~/lib/fc/layout/office/publicationitem.directive.js"></script>
+            <script src="~/lib/fc/layout/office/ckeditor.directive.js"></script>
+            <script src="~/lib/fc/layout/office/fileupload.directive.js"></script>
+            <script src="~/lib/fc/layout/customonchange.directive.js"></script>
+            <script src="~/lib/fc/appAdmin.js"></script>
+            <script src="~/lib/fc/office/indexCtrl.js"></script>
+            <script src="~/lib/fc/office/rootctrl.js"></script>
+            <script src="~/lib/fc/office/publication/publicationeditctrl.js"></script>
+            <script src="~/lib/fc/office/utils/filebrowserctrl.js"></script>
+            <script src="~/lib/fc/office/utils/filebrowseradapterctrl.js"></script>
+
         </environment>
         <environment names="Staging,Production">
             <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
