@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DF2AAD25-996A-4077-A105-A5DF9E71FF4F}"
 	ProjectSection(SolutionItems) = preProject
@@ -23,6 +23,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FCCore", "src\FCCore\FCCore
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Info", "Info", "{C09C10A9-1390-4DE7-BC43-C434A275BD9D}"
 	ProjectSection(SolutionItems) = preProject
+		SolutionItems\Info\DNU Restore.txt = SolutionItems\Info\DNU Restore.txt
 		SolutionItems\Info\EntityFrameworkCommands.txt = SolutionItems\Info\EntityFrameworkCommands.txt
 	EndProjectSection
 EndProject
@@ -30,11 +31,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{E5DB45BB-62F
 	ProjectSection(SolutionItems) = preProject
 		SolutionItems\SQL\ConvertArticle.sql = SolutionItems\SQL\ConvertArticle.sql
 		SolutionItems\SQL\ConvertContent.sql = SolutionItems\SQL\ConvertContent.sql
+		SolutionItems\SQL\ConvertGames.sql = SolutionItems\SQL\ConvertGames.sql
+		SolutionItems\SQL\ConvertPerson.sql = SolutionItems\SQL\ConvertPerson.sql
+		SolutionItems\SQL\ConvertPersonRole.sql = SolutionItems\SQL\ConvertPersonRole.sql
+		SolutionItems\SQL\ConvertPersonStatistics.sql = SolutionItems\SQL\ConvertPersonStatistics.sql
+		SolutionItems\SQL\ConvertPersonStatus.sql = SolutionItems\SQL\ConvertPersonStatus.sql
 		SolutionItems\SQL\ConvertPhoto.sql = SolutionItems\SQL\ConvertPhoto.sql
+		SolutionItems\SQL\ConvertRoleGroup.sql = SolutionItems\SQL\ConvertRoleGroup.sql
+		SolutionItems\SQL\ConvertRound.sql = SolutionItems\SQL\ConvertRound.sql
 		SolutionItems\SQL\ConvertTableRecord.sql = SolutionItems\SQL\ConvertTableRecord.sql
 		SolutionItems\SQL\ConvertTeam.sql = SolutionItems\SQL\ConvertTeam.sql
 		SolutionItems\SQL\ConvertTourney.sql = SolutionItems\SQL\ConvertTourney.sql
 		SolutionItems\SQL\ConvertVideo.sql = SolutionItems\SQL\ConvertVideo.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{E41EB634-CEBF-4534-A0FF-68F43271A570}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionItems\Tools\angular-ui-numeric-master.zip = SolutionItems\Tools\angular-ui-numeric-master.zip
+		SolutionItems\Tools\ckeditor_4.5.7_standard.zip = SolutionItems\Tools\ckeditor_4.5.7_standard.zip
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Design", "Design", "{BBE730D4-6AA4-4B3D-8C1F-2033350A85A3}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionItems\Design\color_from_sugar.txt = SolutionItems\Design\color_from_sugar.txt
+		SolutionItems\Design\jssor.carousel.slider.for.bootstrap.example.zip = SolutionItems\Design\jssor.carousel.slider.for.bootstrap.example.zip
+		SolutionItems\Design\Главная 1.psd = SolutionItems\Design\Главная 1.psd
+		SolutionItems\Design\Главная 2.psd = SolutionItems\Design\Главная 2.psd
+		SolutionItems\Design\Главная планш.psd = SolutionItems\Design\Главная планш.psd
+		SolutionItems\Design\Главная.psd = SolutionItems\Design\Главная.psd
+		SolutionItems\Design\Меню мобилка 1.psd = SolutionItems\Design\Меню мобилка 1.psd
+		SolutionItems\Design\Меню мобилка.psd = SolutionItems\Design\Меню мобилка.psd
+		SolutionItems\Design\Меню планш.psd = SolutionItems\Design\Меню планш.psd
 	EndProjectSection
 EndProject
 Global
@@ -70,6 +97,8 @@ Global
 		{382008F6-2245-421A-AC84-DF5D1EE553F6} = {DF2AAD25-996A-4077-A105-A5DF9E71FF4F}
 		{C09C10A9-1390-4DE7-BC43-C434A275BD9D} = {8E1170E1-61C1-46A3-8D16-F9EB67327D47}
 		{E5DB45BB-62FF-47EB-B40B-239EA07CD164} = {8E1170E1-61C1-46A3-8D16-F9EB67327D47}
+		{E41EB634-CEBF-4534-A0FF-68F43271A570} = {8E1170E1-61C1-46A3-8D16-F9EB67327D47}
+		{BBE730D4-6AA4-4B3D-8C1F-2033350A85A3} = {8E1170E1-61C1-46A3-8D16-F9EB67327D47}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 5

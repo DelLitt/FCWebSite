@@ -5,7 +5,7 @@
     using FCCore.Common;
     using FCCore.Model;
     using FCWeb.ViewModels;
-
+    using FCCore.Configuration;
     public static class ViewModelExtensions
     {
         public static IEnumerable<PublicationShortViewModel> ToShortViewModel(this IEnumerable<Publication> publications)
@@ -27,7 +27,6 @@
             return new PublicationViewModel()
             {
                 id = publication.Id,
-                articleId = publication.articleId,
                 contentHTML = publication.ContentHTML,
                 dateChanged = publication.DateChanged,
                 dateCreated = publication.DateCreated,
@@ -136,6 +135,31 @@
                 start = g.GameDate,
                 time = g.GameDate.ToString("HH:mm")
             });
+        }
+
+        public static PersonViewModel ToViewModel(this Person person)
+        {
+            if (person == null) { return null; }
+
+            return new PersonViewModel()
+            {
+                id = person.Id,
+                active = person.Active,
+                birthDate = person.BirthDate,
+                cityId = person.cityId,
+                height = person.Height,
+                image = person.Image,
+                info = person.Info,
+                nameFirst = person.NameFirst,
+                nameLast = person.NameLast,
+                nameMiddle = person.NameMiddle,
+                nameNick = person.NameNick,
+                number = person.Number,
+                personStatusId = person.personStatusId,
+                roleId = person.roleId,
+                teamId = person.teamId,
+                weight = person.Weight
+            };
         }
     }
 }

@@ -7,7 +7,7 @@
     using System.IO;
     using System.Linq;
     using System.Security;
-
+    using ViewModels;
     public class FormUpload
     {
         private string uploadDestination { get; set; }
@@ -47,21 +47,21 @@
         }
 
 
-        public string SaveFile(IFormFile file)
+        public FileViewModel SaveFile(IFormFile file)
         {
             if (string.IsNullOrWhiteSpace(uploadDestination))
             {
                 throw new ArgumentNullException(uploadDestination, string.Format("{0} can not be null!", nameof(uploadDestination)));
             }
 
-            string fileName = string.Empty;
+            var savingFile = new FileViewModel();
 
             if (file.ContentDisposition != null)
             {
                 //parse uploaded file
                 var parsedContentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
-                fileName = parsedContentDisposition.FileName.Trim('"');
-                string uploadPath = Path.Combine(uploadDestination, fileName);
+                savingFile.name = parsedContentDisposition.FileName.Trim('"');
+                string uploadPath = Path.Combine(uploadDestination, savingFile.name);
 
                 //check extension
                 if(!this.VerifyFileExtension(uploadPath))
@@ -69,12 +69,14 @@
                     throw new SecurityException(string.Format("'{0}' is not allowed extenssion!", Path.GetExtension(uploadPath)));
                 }
 
+                savingFile.path = uploadPath;
+
                 //check file size
-                if(!this.VerifyFileSize(file))
+                if (!this.VerifyFileSize(file))
                 {
                     throw new SecurityException(
-                        string.Format("File {0} size is too large ({1})!", 
-                            fileName, 
+                        string.Format("File {0} size is too large ({1})!",
+                            savingFile.name, 
                             GetFileSize(file)));
                 }
 
@@ -84,7 +86,7 @@
                 file.SaveAs(phPath);
             }
 
-            return fileName;
+            return savingFile;
         }
     }
 }

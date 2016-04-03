@@ -1,10 +1,9 @@
 ﻿namespace FCDAL.Implemetations
 {
-    using FCCore.Abstractions.DAL;
     using System.Linq;
     using FCCore.Model;
     using System.Collections.Generic;
-
+    using FCCore.Abstractions.Dal;
     public class TourneyDal : DalBase, ITourneyDal
     {
         public Tourney GetTourney(int tourneyId)

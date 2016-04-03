@@ -2,7 +2,7 @@
 {
     using FCCore.Abstractions.Bll;
     using FCCore.Model;
-    using FCCore.Abstractions.DAL;
+    using FCCore.Abstractions.Dal;
 
     public sealed class TourneyBll : ITourneyBll
     {

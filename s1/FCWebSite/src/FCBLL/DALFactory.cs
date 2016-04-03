@@ -1,4 +1,4 @@
-﻿using FCCore.Abstractions.DAL;
+﻿using FCCore.Abstractions.Dal;
 using FCCore.Configuration;
 using FCCore.Exceptions;
 using Microsoft.Extensions.DependencyInjection;

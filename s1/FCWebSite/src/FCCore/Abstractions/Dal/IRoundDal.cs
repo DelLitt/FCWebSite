@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FCCore.Abstractions.Bll
+namespace FCCore.Abstractions.Dal
 {
-    public interface IRoundBlll
+    public interface IRoundDal : IDalBase
     {
         bool FillTourneys { get; set; }
         IEnumerable<Round> GetRounds(IEnumerable<int> ids);

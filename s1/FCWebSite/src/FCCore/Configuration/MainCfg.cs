@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using FCCore.Model;
-using FCCore.Abstractions.DAL;
+using FCCore.Abstractions.Dal;
 using FCCore.Exceptions;
 
 namespace FCCore.Configuration
@@ -117,6 +117,31 @@ namespace FCCore.Configuration
                 }
 
                 return roots.ToArray();
+            }
+        }
+
+        private static ImagesCfg images;
+        public static ImagesCfg Images
+        {
+            get
+            {
+                if(images == null)
+                {
+                    images = new ImagesCfg();
+                }
+
+                return images;
+            }
+        }
+
+        public class ImagesCfg
+        {
+            public string Persons
+            {
+                get
+                {
+                    return CoreConfig.Current["Settings:Images:Persons"];
+                }
             }
         }
     }

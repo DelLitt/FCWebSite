@@ -1,12 +1,13 @@
 ﻿namespace FCDAL.Implemetations
 {
-    using FCCore.Abstractions.DAL;
+    using FCCore.Abstractions.Dal;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using FCCore.Model;
     using FCDAL.Exceptions;
     using FCCore.Common;
+
     public class GameDal : DalBase, IGameDal
     {
         private const int LimitEntitiesSelections = 100;

@@ -16,7 +16,6 @@
 
                 var ck = CKEDITOR.replace(elm[0], {
                     filebrowserBrowseUrl: '/office/filebrowseradapter',
-                    //filebrowserUploadUrl: '/office/UploadFilesAjax',
                     filebrowserWindowWidth: '1000',
                     filebrowserWindowHeight: '700'
                 });

@@ -1,4 +1,4 @@
-﻿using FCCore.Abstractions.DAL;
+﻿using FCCore.Abstractions.Dal;
 using FCDAL.Model;
 using System;
 using System.Collections.Generic;

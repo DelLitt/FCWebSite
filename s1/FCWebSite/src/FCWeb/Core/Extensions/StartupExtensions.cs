@@ -2,7 +2,7 @@
 {
     using FCBLL.Implemetations;
     using FCCore.Abstractions.Bll;
-    using FCCore.Abstractions.DAL;
+    using FCCore.Abstractions.Dal;
     using FCDAL.Implemetations;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -14,7 +14,8 @@
             serviceCollection.AddTransient<ITableRecordBll, TableRecordBll>();
             serviceCollection.AddTransient<ITourneyBll, TourneyBll>();
             serviceCollection.AddTransient<IGamesBll, GamesBll>();
-            serviceCollection.AddTransient<IRoundBlll, RoundBlll>();
+            serviceCollection.AddTransient<IRoundBll, RoundBll>();
+            serviceCollection.AddTransient<IPersonBll, PersonBll>();
         }
 
         public static void AddDALServices(this IServiceCollection serviceCollection)
@@ -26,6 +27,7 @@
             serviceCollection.AddTransient<IGameDal, GameDal>();
             serviceCollection.AddTransient<IRoundDal, RoundDal>();
             serviceCollection.AddTransient<ITeamDal, TeamDal>();
+            serviceCollection.AddTransient<IPersonDal, PersonDal>();
         }
     }
 }

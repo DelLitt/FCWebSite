@@ -1,0 +1,53 @@
+﻿<form class="form office" role="form" novalidate angular-validator name="editPublication" angular-validator-submit="UpdatePublication()">
+    <h2>Редактирование персоны #{{person.id}}</h2>    
+    <div class="form-group">
+        <label for="image" class="control-label">Изображение:</label>&nbsp;<button class="btn btn-default btn-xs pull-right" type="button" ng-click="openFileBrowser();">Изменить</button>
+        <img class="image-edit .img-thumbnail" id="image" ng-src="{{image}}" />
+        <content-upload ng-model="contentUpload"></content-upload>
+        <file-browser ng-model="fileBrowser"></file-browser>
+    </div>
+    <div class="form-group">
+        <label for="nameFirst" class="control-label">Имя:</label>
+        <input class="form-control" id="nameFirst" name="nameFirst" type="text" ng-model="person.nameFirst" validate-on="blur" required required-message="Введите имя">
+    </div>
+    <div class="form-group">
+        <label for="nameMiddle" class="control-label">Отчество:</label>
+        <input class="form-control" id="nameMiddle" name="nameMiddle" type="text" ng-model="person.nameMiddle" validate-on="blur">
+    </div>
+    <div class="form-group">
+        <label for="nameLast" class="control-label">Фамилия:</label>
+        <input class="form-control" id="nameLast" name="nameLast" type="text" ng-model="person.nameLast" validate-on="blur" required required-message="Введите фамилию">
+    </div>
+    <div class="form-group">
+        <label for="birthDate" class="control-label">Отображаемая дата:</label>
+        <datetimepicker ng-model="person.birthDate"
+                        id="birthDate"
+                        name="birthDate"
+                        date-format="dd-MMM-yyyy"
+                        date-options="dateOptions"
+                        date-disabled="isDisabledDate(date, mode)"
+                        show-spinners="true">
+        </datetimepicker>
+    </div>
+    <div class="form-group">
+        <label for="number" class="control-label">Номер:</label>
+        <input class="form-control" id="number" name="number" type="text" ng-model="person.number" validate-on="blur">
+    </div>
+    <div class="form-group">
+        <label for="height" class="control-label">Рост:</label>
+        <input class="form-control" id="height" name="height" type="text" ng-model="person.height" validate-on="blur">
+    </div>
+    <div class="form-group">
+        <label for="weight" class="control-label">Вес:</label>
+        <input class="form-control" id="weight" name="weight" type="text" ng-model="person.weight" validate-on="blur">
+    </div>
+    <div class="form-group">
+        <label for="info" class="control-label">Информация:</label>
+        <textarea class="ck-editor" id="info" name="info" ng-model="publication.info"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="showImageInContet" class="checkbox-inline">
+            <input type="checkbox" name="active" id="active" ng-model="publication.active" value="option1">Активный
+        </label>
+    </div>
+</form>

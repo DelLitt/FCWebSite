@@ -35,11 +35,11 @@
             if (Array.isArray(error)) {
                 error.forEach(function (err) {
                     //toastr.error(err);
-                    alert(message);
+                    alert(err);
                 });
             } else {
                 //toastr.error(error);
-                alert(message);
+                alert(error);
             }
         }
 

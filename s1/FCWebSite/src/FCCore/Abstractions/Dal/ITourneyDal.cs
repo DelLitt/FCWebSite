@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FCCore.Abstractions.DAL
+namespace FCCore.Abstractions.Dal
 {
     public interface ITourneyDal : IDalBase
     {

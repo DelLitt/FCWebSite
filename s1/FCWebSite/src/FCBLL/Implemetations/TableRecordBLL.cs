@@ -1,5 +1,5 @@
 ﻿using FCCore.Abstractions.Bll;
-using FCCore.Abstractions.DAL;
+using FCCore.Abstractions.Dal;
 using System.Collections.Generic;
 using FCCore.Model;
 using System;

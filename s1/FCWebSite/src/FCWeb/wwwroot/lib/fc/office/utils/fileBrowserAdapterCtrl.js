@@ -5,36 +5,38 @@
         .module('fc.admin')
         .controller('fileBrowserAdapterCtrl', fileBrowserAdapterCtrl);
 
-    fileBrowserAdapterCtrl.$inject = ['$scope', '$routeParams', '$uibModal', 'apiSrv', 'notificationManager'];
+    fileBrowserAdapterCtrl.$inject = ['$scope'];
 
-    function fileBrowserAdapterCtrl($scope, $routeParams, $uibModal, $uibModalInstance, apiSrv, notificationManager) {      
+    function fileBrowserAdapterCtrl($scope) {
 
-        $scope.openFileBrowser = function () {
 
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: 'lib/fc/office/utils/filebrowser.html',
-                controller: 'fileBrowserCtrl',
-                resolve: {
-                    selFile: function () {
-                        return "dsdsd";
-                    }
+        $scope.fileBrowser = {
+            path: 'images/store',
+            onOk: function (selectedFile) {
+
+                if (angular.isDefined(window)
+                    && angular.isDefined(window.opener)
+                    && angular.isDefined(window.opener.CKEDITOR)) {
+
+                    var fnNum = $scope.getUrlParam('CKEditorFuncNum');
+                    window.opener.CKEDITOR.tools.callFunction(fnNum, '/' + selectedFile.path);
+                    window.close();
                 }
-            });
+            },
+            onCancel: function () {
 
-            modalInstance.result.then(function (selectedImage) {
-                $scope.selectedImage = selectedImage;
+                if (angular.isDefined(window)) {
+                    window.close();
+                }
+            }
+        };
 
-                //var fnNum = getUrlParam('CKEditorFuncNum');
-                //var fileUrl = selectedImage.path;
-                //window.opener.CKEDITOR.tools.callFunction(fnNum, fileUrl);
-                //window.close();
+        // Helper function to get parameters from the query string.
+        $scope.getUrlParam = function (paramName) {
+            var reParam = new RegExp('(?:[\?&]|&)' + paramName + '=([^&]+)', 'i');
+            var match = window.location.search.match(reParam);
 
-            }, function () {
-                // $log.info('Modal dismissed at: ' + new Date());
-            });
+            return (match && match.length > 1) ? match[1] : null;
         }
-
-        $scope.openFileBrowser();
     }
 })();

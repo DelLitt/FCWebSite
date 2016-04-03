@@ -1,10 +1,10 @@
-﻿using FCCore.Abstractions.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FCDAL.Model;
 using FCCore.Model;
+using FCCore.Abstractions.Dal;
 
 namespace FCDAL.Implemetations
 {

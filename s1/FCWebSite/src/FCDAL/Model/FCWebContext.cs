@@ -15,33 +15,6 @@ namespace FCDAL.Model
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Article>(entity =>
-            {
-                entity.Property(e => e.Author).HasMaxLength(256);
-
-                entity.Property(e => e.ContentHTML).IsRequired();
-
-                entity.Property(e => e.DateChanged).HasColumnType("datetime");
-
-                entity.Property(e => e.DateCreated).HasColumnType("datetime");
-
-                entity.Property(e => e.DateDisplayed).HasColumnType("datetime");
-
-                entity.Property(e => e.Header)
-                    .IsRequired()
-                    .HasMaxLength(256);
-
-                entity.Property(e => e.Lead).HasMaxLength(1024);
-
-                entity.Property(e => e.Title)
-                    .IsRequired()
-                    .HasMaxLength(256);
-
-                entity.Property(e => e.URLKey)
-                    .IsRequired()
-                    .HasMaxLength(256);
-            });
-
             modelBuilder.Entity<Game>(entity =>
             {
                 entity.Property(e => e.GameDate).HasColumnType("datetime");
@@ -82,6 +55,101 @@ namespace FCDAL.Model
                     .HasMaxLength(256);
             });
 
+            modelBuilder.Entity<Person>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.BirthDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Image).HasMaxLength(1000);
+
+                entity.Property(e => e.NameFirst)
+                    .IsRequired()
+                    .HasMaxLength(64);
+
+                entity.Property(e => e.NameLast)
+                    .IsRequired()
+                    .HasMaxLength(64);
+
+                entity.Property(e => e.NameMiddle).HasMaxLength(64);
+
+                entity.Property(e => e.NameNick).HasMaxLength(64);
+
+                entity.HasOne(d => d.PersonNavigation).WithOne(p => p.InversePersonNavigation).HasForeignKey<Person>(d => d.Id).OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(d => d.personStatus).WithMany(p => p.Person).HasForeignKey(d => d.personStatusId);
+
+                entity.HasOne(d => d.role).WithMany(p => p.Person).HasForeignKey(d => d.roleId);
+
+                entity.HasOne(d => d.team).WithMany(p => p.Person).HasForeignKey(d => d.teamId);
+            });
+
+            modelBuilder.Entity<PersonCareer>(entity =>
+            {
+                entity.Property(e => e.DateFinish).HasColumnType("datetime");
+
+                entity.Property(e => e.DateStart).HasColumnType("datetime");
+
+                entity.HasOne(d => d.person).WithMany(p => p.PersonCareer).HasForeignKey(d => d.personId).OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(d => d.team).WithMany(p => p.PersonCareer).HasForeignKey(d => d.teamId).OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<PersonCareerTourney>(entity =>
+            {
+                entity.HasOne(d => d.personCareer).WithMany(p => p.PersonCareerTourney).HasForeignKey(d => d.personCareerId).OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(d => d.tourney).WithMany(p => p.PersonCareerTourney).HasForeignKey(d => d.tourneyId).OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<PersonRole>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(64);
+
+                entity.Property(e => e.NameFull)
+                    .IsRequired()
+                    .HasMaxLength(256);
+
+                entity.HasOne(d => d.personRoleGroup).WithMany(p => p.PersonRole).HasForeignKey(d => d.personRoleGroupId).OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<PersonRoleGroup>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(64);
+
+                entity.Property(e => e.NameFull)
+                    .IsRequired()
+                    .HasMaxLength(256);
+            });
+
+            modelBuilder.Entity<PersonStatistics>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
+                entity.HasOne(d => d.PersonStatisticsNavigation).WithOne(p => p.InversePersonStatisticsNavigation).HasForeignKey<PersonStatistics>(d => d.Id).OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(d => d.person).WithMany(p => p.PersonStatistics).HasForeignKey(d => d.personId).OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(d => d.team).WithMany(p => p.PersonStatistics).HasForeignKey(d => d.teamId).OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(d => d.tourney).WithMany(p => p.PersonStatistics).HasForeignKey(d => d.tourneyId).OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<PersonStatus>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(64);
+
+                entity.Property(e => e.NameFull)
+                    .IsRequired()
+                    .HasMaxLength(256);
+            });
+
             modelBuilder.Entity<Publication>(entity =>
             {
                 entity.Property(e => e.DateChanged).HasColumnType("datetime");
@@ -96,6 +164,8 @@ namespace FCDAL.Model
 
                 entity.Property(e => e.Image).HasMaxLength(512);
 
+                entity.Property(e => e.Lead).HasMaxLength(1024);
+
                 entity.Property(e => e.Title)
                     .IsRequired()
                     .HasMaxLength(256);
@@ -103,8 +173,6 @@ namespace FCDAL.Model
                 entity.Property(e => e.URLKey)
                     .IsRequired()
                     .HasMaxLength(256);
-
-                entity.HasOne(d => d.article).WithMany(p => p.Publication).HasForeignKey(d => d.articleId);
 
                 entity.HasOne(d => d.imageGallery).WithMany(p => p.Publication).HasForeignKey(d => d.imageGalleryId);
 
@@ -223,9 +291,15 @@ namespace FCDAL.Model
             });
         }
 
-        public virtual DbSet<Article> Article { get; set; }
         public virtual DbSet<Game> Game { get; set; }
         public virtual DbSet<ImageGallery> ImageGallery { get; set; }
+        public virtual DbSet<Person> Person { get; set; }
+        public virtual DbSet<PersonCareer> PersonCareer { get; set; }
+        public virtual DbSet<PersonCareerTourney> PersonCareerTourney { get; set; }
+        public virtual DbSet<PersonRole> PersonRole { get; set; }
+        public virtual DbSet<PersonRoleGroup> PersonRoleGroup { get; set; }
+        public virtual DbSet<PersonStatistics> PersonStatistics { get; set; }
+        public virtual DbSet<PersonStatus> PersonStatus { get; set; }
         public virtual DbSet<Publication> Publication { get; set; }
         public virtual DbSet<Round> Round { get; set; }
         public virtual DbSet<RoundFormat> RoundFormat { get; set; }

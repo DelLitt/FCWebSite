@@ -1,15 +1,11 @@
-﻿using FCCore.Abstractions.Bll;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FCCore.Model;
-using FCCore.Abstractions.DAL;
-using FCCore.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace FCBLL.Implemetations
+﻿namespace FCBLL.Implemetations
 {
+    using FCCore.Abstractions.Bll;
+    using System.Collections.Generic;
+    using FCCore.Model;
+    using FCCore.Abstractions.Dal;
+    using FCCore.Configuration;
+
     public sealed class PublicationBll : IPublicationBll
     {
         private IPublicationDal dalPublication;

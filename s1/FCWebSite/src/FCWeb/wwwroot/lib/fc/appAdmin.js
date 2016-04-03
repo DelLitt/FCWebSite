@@ -17,6 +17,10 @@
                 templateUrl: "lib/fc/office/publication/publicationEdit.html",
                 controller: "publicationEditCtrl"
             })
+            .when("/office/person/edit/:id", {
+                templateUrl: "lib/fc/office/persons/personEdit.html",
+                controller: "personEditCtrl"
+            })
             .when("/office/filebrowser/", {
                 templateUrl: "lib/fc/office/utils/fileBrowser.html",
                 controller: "fileBrowserCtrl"

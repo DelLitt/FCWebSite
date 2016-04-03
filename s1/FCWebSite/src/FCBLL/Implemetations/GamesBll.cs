@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using FCCore.Model;
-    using FCCore.Abstractions.DAL;
+    using FCCore.Abstractions.Dal;
     using FCCore.Common;
     public class GamesBll : IGamesBll
     {

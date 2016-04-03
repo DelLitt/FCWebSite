@@ -7,6 +7,8 @@ namespace FCCore.Model
     {
         public Tourney()
         {
+            PersonCareerTourney = new HashSet<PersonCareerTourney>();
+            PersonStatistics = new HashSet<PersonStatistics>();
             Round = new HashSet<Round>();
             TableRecord = new HashSet<TableRecord>();
         }
@@ -20,6 +22,8 @@ namespace FCCore.Model
         public string NameFull { get; set; }
         public short? tourneyTypeId { get; set; }
 
+        public virtual ICollection<PersonCareerTourney> PersonCareerTourney { get; set; }
+        public virtual ICollection<PersonStatistics> PersonStatistics { get; set; }
         public virtual ICollection<Round> Round { get; set; }
         public virtual ICollection<TableRecord> TableRecord { get; set; }
     }

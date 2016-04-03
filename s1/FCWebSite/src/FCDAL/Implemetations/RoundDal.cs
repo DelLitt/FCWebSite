@@ -2,11 +2,10 @@
 {
     using System.Linq;
     using System.Collections.Generic;
-    using FCCore.Abstractions.DAL;
     using FCCore.Model;
     using Exceptions;
     using System;
-
+    using FCCore.Abstractions.Dal;
     public class RoundDal : DalBase, IRoundDal
     {
         public bool FillTourneys { get; set; } = false;

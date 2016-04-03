@@ -9,6 +9,9 @@ namespace FCCore.Model
         {
             Game = new HashSet<Game>();
             GameNavigation = new HashSet<Game>();
+            Person = new HashSet<Person>();
+            PersonCareer = new HashSet<PersonCareer>();
+            PersonStatistics = new HashSet<PersonStatistics>();
         }
 
         public int Id { get; set; }
@@ -28,6 +31,9 @@ namespace FCCore.Model
 
         public virtual ICollection<Game> Game { get; set; }
         public virtual ICollection<Game> GameNavigation { get; set; }
+        public virtual ICollection<Person> Person { get; set; }
+        public virtual ICollection<PersonCareer> PersonCareer { get; set; }
+        public virtual ICollection<PersonStatistics> PersonStatistics { get; set; }
         public virtual TableRecord TableRecord { get; set; }
     }
 }

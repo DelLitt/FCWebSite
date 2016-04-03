@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FCCore.Model;
 using FCDAL.Model;
-using FCCore.Abstractions.DAL;
+using FCCore.Abstractions.Dal;
 
 namespace FCDAL.Implemetations
 {

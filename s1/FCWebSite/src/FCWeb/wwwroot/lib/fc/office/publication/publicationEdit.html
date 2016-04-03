@@ -1,71 +1,82 @@
-﻿<form class="form-horizontal" role="form" novalidate angular-validator name="editMovieForm" angular-validator-submit="UpdateMovie()">
+﻿<form class="form office" role="form" novalidate angular-validator name="editPublication" angular-validator-submit="UpdatePublication()">
+    <h2>Редактирование публикации #{{publication.id}}</h2>
     <div class="form-group">
-        <div class="row">
-            <label>{{publication.id}}</label>
-        </div>
-        <div class="row">
-            <div><img ng-src="{{publication.image}}" /></div>
-            <div><a href="javascript:void(0);" ng-click="openFileBrowser();">Изображение: {{publication.image}}</a></div>
-        </div>
-        <div class="row">
-            <label class="control-label">Заголовок публикации</label>
-            <input class="form-control" name="title" type="text" ng-model="publication.title"
-                   validate-on="blur" required required-message="'Введите заголовок публикации'">
-        </div>
-        <div class="row">
-            <label class="control-label">Заголовок статьи</label>
-            <input class="form-control" name="title" type="text" ng-model="publication.header"
-                   validate-on="blur" required required-message="'Введите заголовок статьи'">
-        </div>
-        <div class="row">
-            <label class="control-label">Идентификатор публикации в URL</label>
-            <input class="form-control" name="title" type="text" ng-model="publication.urlKey"
-                   validate-on="blur" required required-message="'Введите идентификатор публикации в URL'">
-        </div>
-    </div>
-    <div class="row">
-        <label class="control-label">Лид</label>
-        <textarea class="ck-editor" ng-model="publication.lead"></textarea>
-    </div>
-    <div class="row">
-        <label class="control-label">Содержимое</label>
-        <textarea class="ck-editor" ng-model="publication.contentHTML"></textarea>
+        <label for="title" class="control-label">Основной заголовок:</label>
+        <input class="form-control" id="title" name="title" type="text" ng-model="publication.title" validate-on="blur" required required-message="Введите основной заголовок">
     </div>
     <div class="form-group">
-        <div class="row">
-            <div class="col-xs-4">
-                <label class="control-label">Приоритет</label>
-                <div numeric="{min:0,max:10}" step="1" ng-model="publication.priority"></div>
-            </div>
-            <div class="col-xs-4">
-                <label class="control-label"><input type="checkbox" ng-model="publication.enable">Включена</label>
-            </div>
-            <div class="col-xs-4">
-                <label class="control-label"><input type="checkbox" ng-model="publication.ShowImageInContet">Показывать изображение в публикации</label>
-            </div>
+        <label for="image" class="control-label">Изображение:</label>&nbsp;<button class="btn btn-default btn-xs pull-right" type="button" ng-click="openFileBrowser();">Изменить</button>
+        <img class="image-edit .img-thumbnail" id="image" ng-src="{{publication.image}}" />
+    </div>
+    <div class="form-group">
+        <label for="header" class="control-label">Дополнительный заголовок:</label>
+        <input class="form-control" id="header" name="header" type="text" ng-model="publication.header" validate-on="blur" required required-message="Введите дополнительный заголовок">
+    </div>
+    <div class="form-group">
+        <label for="urlKey" class="control-label">Идентификатор в адресной строке:</label>
+        <input class="form-control" id="urlKey" name="urlKey" type="text" ng-model="publication.urlKey" validate-on="blur" required required-message="Введите заголовок публикации">
+    </div>
+    <div class="form-group">
+        <label for="lead" class="control-label">Лид:</label>
+        <textarea class="ck-editor" id="lead" name="lead" ng-model="publication.lead"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="contentHTML" class="control-label">Содержимое:</label>
+        <textarea class="ck-editor" id="contentHTML" name="contentHTML" ng-model="publication.contentHTML"></textarea>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-4">
+            <label for="dateDisplayed" class="control-label">Отображаемая дата:</label>
+            <datetimepicker ng-model="publication.dateDisplayed"
+                            id="dateDisplayed"
+                            name="dateDisplayed"
+                            date-format="dd-MMM-yyyy"
+                            date-options="dateOptions"
+                            date-disabled="isDisabledDate(date, mode)"
+                            show-spinners="true">
+            </datetimepicker>
         </div>
-        <div class="row">
-            <div class="col-xs-4">
-                <label class="control-label">Отображаемая дата</label>
-                <datetimepicker ng-model="publication.dateDisplayed"
-                                name="dateDisplayed"
-                                date-format="dd-MMM-yyyy"
-                                date-options="dateOptions"
-                                date-disabled="isDisabledDate(date, mode)"
-                                show-spinners="true">
-                </datetimepicker>
-            </div>
-            <div class="col-xs-4">
-                <label class="control-label">Дата редактирования</label>
-                <input class="form-control" name="dateChanged" type="text" disabled ng-model="publication.dateChanged"
-                       validate-on="blur" required required-message="'Введите заголовок публикации'">
-            </div>
-            <div class="col-xs-4">
-                <label class="control-label">Дата редактирования</label>
-                <input class="form-control" name="dateDisplayed" type="text" disabled ng-model="publication.dateDisplayed"
-                       validate-on="blur" required required-message="'Введите заголовок публикации'">
-            </div>
+        <div class="col-sm-4">
+            <label for="dateChanged" class="control-label">Дата редактирования:</label>
+            <input class="form-control" id="dateChanged" name="dateChanged" type="text" disabled ng-model="publication.dateChanged">
         </div>
-    </div>    
-
+        <div class="col-sm-4">
+            <label for="dateCreated" class="control-label">Дата создания:</label>
+            <input class="form-control" id="dateCreated" name="dateCreated" type="text" disabled ng-model="publication.dateCreated">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Приоритет:</label>
+        <div numeric="{min:0,max:10}" step="1" ng-model="publication.priority"></div>
+    </div>
+    <div class="form-group">
+        <label for="enable" class="checkbox-inline">
+            <input type="checkbox" name="enable" id="enable" ng-model="publication.enable" value="option1">Включена
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="showImageInContet" class="checkbox-inline">
+            <input type="checkbox" name="showImageInContet" id="showImageInContet" ng-model="publication.showImageInContet" value="option1">Показывать изображение в публикации
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="visibility" class="control-label">Доступность:</label>
+        <div id="visibility">
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">Главная страница
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">Список новостей
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">Новости дубля
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">Новости молодежного отделения
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">Только зарегистрированным пользователям
+            </label>
+        </div>
+    </div>
 </form>

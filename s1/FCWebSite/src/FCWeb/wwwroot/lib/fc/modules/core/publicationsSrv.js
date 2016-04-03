@@ -32,18 +32,6 @@
             });
         }
 
-        this.testAuth = function () {
-            apiSrv.get('/api/publications/151', null, 
-                function (response) {
-                    console.log('Success');
-                    console.log(response);
-                },
-                function (response) {
-                    console.log('Failure');
-                    console.log(response);
-            });
-        }
-
         function publicationsLoadFailed(response) {
             notificationManager.displayError(response.data);
         }

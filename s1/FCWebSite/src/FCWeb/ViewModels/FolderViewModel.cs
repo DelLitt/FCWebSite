@@ -2,12 +2,6 @@
 {
     using System.Collections.Generic;
 
-    public class FileViewModel
-    {
-        public string name { get; set; }
-        public string path { get; set; }
-    }
-
     public class FolderViewModel
     {
         public string name { get; set; }

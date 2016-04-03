@@ -1,10 +1,10 @@
 ﻿namespace FCDAL.Implemetations
 {
-    using FCCore.Abstractions.DAL;
     using System.Collections.Generic;
     using System.Linq;
     using FCCore.Model;
     using Exceptions;
+    using FCCore.Abstractions.Dal;
 
     public class TableRecordDal : DalBase, ITableRecordDal
     {

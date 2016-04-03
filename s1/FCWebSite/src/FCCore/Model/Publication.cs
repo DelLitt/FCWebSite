@@ -24,7 +24,6 @@ namespace FCCore.Model
         public int Visibility { get; set; }
         public string Lead { get; set; }
 
-        public virtual Article article { get; set; }
         public virtual ImageGallery imageGallery { get; set; }
         public virtual Video video { get; set; }
     }

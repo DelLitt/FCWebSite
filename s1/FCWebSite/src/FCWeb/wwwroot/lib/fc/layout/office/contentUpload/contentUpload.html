@@ -1,0 +1,35 @@
+﻿<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-3">
+                <img ngf-thumbnail="file || '/images/skin/thumb.png'">
+            </div>
+            <div class="col-xs-9">
+                <form name="form">
+                    <a href="javascript:void(0);" class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+                       ngf-accept="'image/*'" ngf-max-size="20MB">Выбрать файл для загрузки</a>
+                    <br />
+                    <!--<div class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+                    ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+                    ngf-resize="{width: 100, height: 100}">Select</div>-->
+                    <!--Multiple files
+                    <div class="button" ngf-select ng-model="files" ngf-multiple="true">Select</div>
+                    Drop files: <div ngf-drop ng-model="files" class="drop-box">Drop</div>-->
+                    <button type="submit" ng-click="submit()">Загрузить</button>
+                </form>
+            </div>
+            <!--Upload right away after file selection:
+                <div class="button" ngf-select="upload($file)">Upload on file select</div>
+                <div class="button" ngf-select="uploadFiles($files)" multiple="multiple">Upload on file select</div>
+                  Drop File:
+                <div ngf-drop="uploadFiles($files)" class="drop-box"
+                  ngf-drag-over-class="'dragover'" ngf-multiple="true"
+                  ngf-pattern="'image/*,application/pdf'">Drop Images or PDFs files here</div>
+                <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>-->
+                        <!--Image thumbnail: <img ngf-thumbnail="file || '/images/skin/thumb.jpg'">-->
+                        <!--Audio preview: <audio controls ngf-src="file"></audio>
+                Video preview: <video controls ngf-src="file"></video>-->
+
+        </div>
+    </div>
+</div>
