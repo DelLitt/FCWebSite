@@ -1,0 +1,35 @@
+﻿<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <content-upload ng-model="contentUpload"></content-upload>
+        </div>
+        <div class="row">
+            <div ng-if="directoryView.parent" class="col-sm-3 io-item" ng-dblclick="openFolder(directoryView.parent)">
+                <span class="glyphicon glyphicon-level-up"></span>
+            </div>
+            <div class="io-item">
+                <span class="glyphicon glyphicon-folder-open"></span><br />
+                {{directoryView.name}}
+            </div>
+            <div class="io-item" ng-repeat="folder in directoryView.folders" ng-dblclick="openFolder(folder.path)">
+                <span class="glyphicon glyphicon-folder-close"></span><br />
+                {{folder.name}}
+            </div>
+            <div class="io-item" ng-repeat="file in directoryView.files" ng-click="selectFile(file)">
+                <img ng-src="{{file.path}}" /><br />
+                {{file.name}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="io-item" ng-if="selectedFile">
+                <img ng-src="{{selectedFile.path}}" /><br />
+                {{selectedFile.name}}
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </div>
+</div>
