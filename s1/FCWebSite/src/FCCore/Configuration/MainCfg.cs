@@ -1,16 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using FCCore.Model;
-using FCCore.Abstractions.Dal;
-using FCCore.Exceptions;
-
-namespace FCCore.Configuration
+﻿namespace FCCore.Configuration
 {
+    using Microsoft.Extensions.Configuration;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.Extensions.DependencyInjection;
+    using FCCore.Model;
+    using FCCore.Abstractions.Dal;
+    using FCCore.Exceptions;
+
     public static class MainCfg
     {
         private static IServiceCollection serviceCollection;
@@ -64,6 +62,22 @@ namespace FCCore.Configuration
             }
         }
 
+        public static int TimeShift
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:TimeShift"]);
+            }
+        }
+
+        public static string DefaultAuthor
+        {
+            get
+            {
+                return CoreConfig.Current["Settings:DefaultAuthor"];
+            }
+        }
+
         public static IEnumerable<string> UploadRoots
         {
             get
@@ -78,7 +92,7 @@ namespace FCCore.Configuration
 
                     if(!string.IsNullOrWhiteSpace(root))
                     {
-                        roots.Add(root);
+                        roots.Add(root.ToLower());
                     }
                     else
                     {
@@ -141,6 +155,14 @@ namespace FCCore.Configuration
                 get
                 {
                     return CoreConfig.Current["Settings:Images:Persons"];
+                }
+            }
+
+            public string Store
+            {
+                get
+                {
+                    return CoreConfig.Current["Settings:Images:Store"];
                 }
             }
         }

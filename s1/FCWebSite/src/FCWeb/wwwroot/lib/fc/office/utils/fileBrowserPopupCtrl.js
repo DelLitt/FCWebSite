@@ -11,6 +11,7 @@
 
         $scope.fileBrowser = {
             path: fileBrowser.path,
+            root: fileBrowser.root,
             onOk: function (selectedFile) {
                 $uibModalInstance.close(selectedFile);
             },

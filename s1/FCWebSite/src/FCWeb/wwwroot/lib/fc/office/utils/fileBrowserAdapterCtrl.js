@@ -5,13 +5,19 @@
         .module('fc.admin')
         .controller('fileBrowserAdapterCtrl', fileBrowserAdapterCtrl);
 
-    fileBrowserAdapterCtrl.$inject = ['$scope'];
+    fileBrowserAdapterCtrl.$inject = ['$scope', 'configSrv'];
 
-    function fileBrowserAdapterCtrl($scope) {
+    function fileBrowserAdapterCtrl($scope, configSrv) {
 
+        configSrv.loadConfigOffice(configLoaded);
+
+        function configLoaded() {
+            
+        }
 
         $scope.fileBrowser = {
             path: 'images/store',
+            root: 'images/store',
             onOk: function (selectedFile) {
 
                 if (angular.isDefined(window)

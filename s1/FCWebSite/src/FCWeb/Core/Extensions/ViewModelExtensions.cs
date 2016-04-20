@@ -5,7 +5,8 @@
     using FCCore.Common;
     using FCCore.Model;
     using FCWeb.ViewModels;
-    using FCCore.Configuration;
+    using System;
+
     public static class ViewModelExtensions
     {
         public static IEnumerable<PublicationShortViewModel> ToShortViewModel(this IEnumerable<Publication> publications)
@@ -27,6 +28,7 @@
             return new PublicationViewModel()
             {
                 id = publication.Id,
+                author = publication.Author,
                 contentHTML = publication.ContentHTML,
                 dateChanged = publication.DateChanged,
                 dateCreated = publication.DateCreated,
@@ -141,6 +143,13 @@
         {
             if (person == null) { return null; }
 
+            Guid? tempData = null;
+
+            if (person.Id > 0)
+            {
+                tempData = Guid.NewGuid();
+            }
+
             return new PersonViewModel()
             {
                 id = person.Id,
@@ -158,8 +167,78 @@
                 personStatusId = person.personStatusId,
                 roleId = person.roleId,
                 teamId = person.teamId,
-                weight = person.Weight
+                weight = person.Weight,
+                tempData = tempData
             };
+        }
+
+        public static VisibilityViewModel ToViewModel(this SettingsVisibility visibility)
+        {
+            if (visibility == null) { return null; }
+
+            return new VisibilityViewModel()
+            {
+                authorized = visibility.Authorized,
+                main = visibility.Main,
+                news = visibility.News,
+                reserve = visibility.Reserve,
+                youth = visibility.Youth
+            };
+        }
+
+        public static VideoViewModel ToViewModel(this Video video)
+        {
+            if (video == null) { return null; }
+
+            return new VideoViewModel()
+            {
+                id = video.Id,
+                author = video.Author,
+                codeHTML = video.CodeHTML,
+                description = video.Description,
+                externalId = video.ExternalId,
+                dateChanged = video.DateChanged,
+                dateCreated = video.DateCreated,
+                dateDisplayed = video.DateDisplayed,
+                enable = video.Enable,
+                header = video.Header,
+                priority = video.Priority,
+                title = video.Title,
+                urlKey = video.URLKey,
+                visibility = video.Visibility
+            };
+        }
+
+        public static Video ToViewModel(this VideoViewModel videoModel)
+        {
+            if (videoModel == null) { return null; }
+
+            return new Video()
+            {
+                Id = videoModel.id,
+                Author = videoModel.author,
+                CodeHTML = videoModel.codeHTML,
+                Description = videoModel.description,
+                DateChanged = videoModel.dateChanged,
+                DateCreated = videoModel.dateCreated,
+                DateDisplayed = videoModel.dateDisplayed,
+                Enable = videoModel.enable,
+                ExternalId = videoModel.externalId,
+                Header = videoModel.header,
+                Priority = videoModel.priority,
+                Title = videoModel.title,
+                URLKey = videoModel.urlKey,
+                Visibility = videoModel.visibility,
+                userChanged = videoModel.userChanged,
+                userCreated = videoModel.userCreated
+            };
+        }
+
+        public static IEnumerable<VideoViewModel> ToViewModel(this IEnumerable<Video> videos)
+        {
+            if (Guard.IsEmptyIEnumerable(videos)) { return new VideoViewModel[0]; }
+
+            return videos.Select(v => v.ToViewModel()).ToList();
         }
     }
 }

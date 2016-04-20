@@ -1,8 +1,10 @@
+TRUNCATE TABLE [dbo].[Publication];
+
 SET IDENTITY_INSERT FCWeb.dbo.Publication ON;
 
 INSERT INTO FCWeb.dbo.Publication
 (Id, Title, Header, URLKey, [Image], [ContentHTML], ShowImageInContet, [Priority], [Visibility], [Enable], articleId, 
-imageGalleryId, videoId, userCreated, userChanged, DateCreated, DateChanged, DateDisplayed, [Lead])
+imageGalleryId, videoId, userCreated, userChanged, DateCreated, DateChanged, DateDisplayed, [Lead], [Author])
 SELECT	ci.contentId AS Id, 
 		at.title AS Title,
 		at.theHeader AS Header,
@@ -21,7 +23,8 @@ SELECT	ci.contentId AS Id,
 		ci.dateCreating AS DateCreated,
 		ci.dateLastChanging AS DateChanged,
 		ci.dateToShow AS DateDisplaye,
-		at.announce AS Lead			
+		at.announce AS Lead,
+		at.author as Author
 FROM SSDBLive.dbo.content_Items AS ci
 INNER JOIN SSDBLive.dbo.article_Text AS at ON ci.articleId = at.articleId;
 

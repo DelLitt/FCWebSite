@@ -9,14 +9,15 @@
 
     function fileBrowserSrv($rootScope, $uibModal) {
 
-        this.open = function (path, onSelect, onCancel) {
+        this.open = function (path, root, onSelect, onCancel) {
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'lib/fc/office/utils/fileBrowserPopup.html',
                 controller: 'fileBrowserPopupCtrl',
                 resolve: {
                     fileBrowser : {
-                        path: path
+                        path: path,
+                        root: root
                     }
                 }
             });

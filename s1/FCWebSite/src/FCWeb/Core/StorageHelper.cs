@@ -11,9 +11,9 @@
 
     public static class StorageHelper
     {
-        public static FolderViewModel GetFolderView(string root, bool recursive = false)
+        public static FolderViewModel GetFolderView(string path, string root, bool recursive = false)
         {
-            string physicalPath = CheckRoot(root);
+            string physicalPath = CheckPath(path, root);
             string parent = string.Empty;
 
             DirectoryInfo parentDir = Directory.GetParent(physicalPath);
@@ -21,7 +21,7 @@
             if(parentDir.Exists)
             {
                 string parentVirtual = WebHelper.ToVirtualPath(parentDir.FullName);
-                if(CheckRootIsAllowed(parentVirtual))
+                if(CheckPathIsAllowed(parentVirtual, root))
                 {
                     parent = parentVirtual;
                 }
@@ -29,8 +29,8 @@
 
             var folderView = new FolderViewModel()
             {
-                path = root,
-                name = Path.GetFileNameWithoutExtension(root) ?? string.Empty,
+                path = path,
+                name = Path.GetFileNameWithoutExtension(path) ?? string.Empty,
                 parent = parent
             };
 
@@ -59,39 +59,41 @@
             return folderView;
         }
 
-        // TODO: Fix checking. Check physical pathes (vice versa)
-        private static string CheckRoot(string root)
+        private static string CheckPath(string path, string root)
         {
+            Guard.CheckNull(path, "path");
             Guard.CheckNull(root, "root");
 
-            if (!CheckRootIsAllowed(root))
+            if (!CheckPathIsAllowed(path, root))
             {
-                throw new SecurityException(string.Format("Path '{0}' is not allowed!", root));
+                throw new SecurityException(string.Format("Path '{0}' is not allowed!", path));
             }
 
-            string physicalPath = WebHelper.ToPhysicalPath(root);
+            string physicalPath = WebHelper.ToPhysicalPath(path);
 
             if(!Directory.Exists(physicalPath))
             {
-                throw new DirectoryNotFoundException(string.Format("Directory {0} is not found!", root));
+                throw new DirectoryNotFoundException(string.Format("Directory {0} is not found!", path));
             }
 
             return physicalPath;
         }
 
-        private static bool CheckRootIsAllowed(string root)
+        private static bool CheckPathIsAllowed(string path, string root)
         {
             IEnumerable<string> availableRoots = MainCfg.UploadRoots;
 
-            foreach (string availableRoot in availableRoots)
+            if(!availableRoots.Any())
             {
-                if (root.StartsWith(availableRoot, StringComparison.OrdinalIgnoreCase))
-                {
-                    return true;
-                }
+                throw new KeyNotFoundException("UploadRoots doesn't set!");
             }
 
-            return false;
+            if(!availableRoots.Contains(root.ToLower()))
+            {
+                return false;
+            }
+
+            return path.StartsWith(root, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

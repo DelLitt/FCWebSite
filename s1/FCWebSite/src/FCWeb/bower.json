@@ -15,7 +15,8 @@
     "angular-ui-bootstrap-datetimepicker": "~1.2.4",
     "angular-ui-bootstrap": "0.13.4",
     "jquery-ui": "1.11.4",
-    "ng-file-upload": "7.3.8"
+    "ng-file-upload": "7.3.8",
+    "ngAutocomplete": "~1.0.0"
   },
   "resolutions": {
     "angular": "^1.2.9",

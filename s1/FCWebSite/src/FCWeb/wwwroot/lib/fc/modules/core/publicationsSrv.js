@@ -5,9 +5,9 @@
         .module('fc.core')
         .service('publicationsSrv', publicationsSrv);
 
-    publicationsSrv.$inject = ['helper', 'apiSrv', 'notificationManager'];
+    publicationsSrv.$inject = ['helper', 'apiSrv', 'notificationManager', 'configSrv'];
 
-    function publicationsSrv(helper, apiSrv, notificationManager) {
+    function publicationsSrv(helper, apiSrv, notificationManager, configSrv) {
 
         this.loadLatestPublications = function (count, success, failure) {
             apiSrv.get('/api/publications/latest/' + count, null, success, function (response) {
@@ -34,6 +34,10 @@
 
         function publicationsLoadFailed(response) {
             notificationManager.displayError(response.data);
+        }
+
+        this.getImagesPath = function () {
+            return configSrv.getImageStorePath();
         }
     }
 })();

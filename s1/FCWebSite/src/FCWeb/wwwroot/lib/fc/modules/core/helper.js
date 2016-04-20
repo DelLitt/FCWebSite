@@ -1,4 +1,32 @@
-﻿(function (module) {
+﻿String.prototype.translit = (function () {
+    var L = {
+        'А': 'A', 'а': 'a', 'Б': 'B', 'б': 'b', 'В': 'V', 'в': 'v', 'Г': 'G', 'г': 'g',
+        'Д': 'D', 'д': 'd', 'Е': 'E', 'е': 'e', 'Ё': 'Yo', 'ё': 'yo', 'Ж': 'Zh', 'ж': 'zh',
+        'З': 'Z', 'з': 'z', 'И': 'I', 'и': 'i', 'Й': 'Y', 'й': 'y', 'К': 'K', 'к': 'k',
+        'Л': 'L', 'л': 'l', 'М': 'M', 'м': 'm', 'Н': 'N', 'н': 'n', 'О': 'O', 'о': 'o',
+        'П': 'P', 'п': 'p', 'Р': 'R', 'р': 'r', 'С': 'S', 'с': 's', 'Т': 'T', 'т': 't',
+        'У': 'U', 'у': 'u', 'Ф': 'F', 'ф': 'f', 'Х': 'Kh', 'х': 'kh', 'Ц': 'Ts', 'ц': 'ts',
+        'Ч': 'Ch', 'ч': 'ch', 'Ш': 'Sh', 'ш': 'sh', 'Щ': 'Sch', 'щ': 'sch', 'Ъ': '"', 'ъ': '"',
+        'Ы': 'Y', 'ы': 'y', 'Ь': "'", 'ь': "'", 'Э': 'E', 'э': 'e', 'Ю': 'Yu', 'ю': 'yu',
+        'Я': 'Ya', 'я': 'ya'
+    },
+        r = '',
+        k;
+    for (k in L) r += k;
+    r = new RegExp('[' + r + ']', 'g');
+    k = function (a) {
+        return a in L ? L[a] : '';
+    };
+    return function () {
+        return this.replace(r, k);
+    };
+})();
+
+String.prototype.endsWith = function (suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+};
+
+(function (module) {
     'use strict';
 
     module.factory('helper', function () {
@@ -32,7 +60,26 @@
                 }
 
             return rows;
-        },
+            },
+
+            createUrlKey: function (value) {
+
+                if (!angular.isString(value)) {
+                    return "";
+                }
+
+                var d = new Date();
+                var curr_date = ("0" + d.getDate()).slice(-2);
+                var curr_month = ("0" + (d.getMonth() + 1)).slice(-2);
+                var curr_year = d.getFullYear();
+
+                var strDate = curr_year + "-" + curr_month + "-" + curr_date;
+
+
+                var result = value.translit() + "-" + strDate;
+
+                return result.replace(/\s/g, "-");
+            },
 
             getPrivate: thisIsPrivate
         };

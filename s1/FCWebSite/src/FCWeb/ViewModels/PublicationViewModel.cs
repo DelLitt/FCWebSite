@@ -5,6 +5,7 @@
     public class PublicationViewModel
     {
         public int id { get; set; }
+        public string author { get; set; }
         public string contentHTML { get; set; }
         public DateTime dateChanged { get; set; }
         public DateTime dateCreated { get; set; }

@@ -5,9 +5,9 @@
         .module('fc.admin')
         .controller('personEditCtrl', personEditCtrl);
 
-    personEditCtrl.$inject = ['$scope', '$routeParams', '$uibModal', 'personsSrv', 'notificationManager'];
+    personEditCtrl.$inject = ['$scope', '$routeParams', 'personsSrv', 'notificationManager'];
 
-    function personEditCtrl($scope, $routeParams, $uibModal, personsSrv, notificationManager) {
+    function personEditCtrl($scope, $routeParams, personsSrv, notificationManager) {
 
         $scope.dateOptions = {
             showWeeks: false
@@ -17,25 +17,17 @@
             loading: true,
         };
 
-        $scope.contentUpload = {
-            onUploadSuccess: function (uploadData) {
-                if (angular.isArray(uploadData)) {
-                    setPersonImage(uploadData[0].name);
-                }
-            }
-        };
+        $scope.fileBrowser = {
+            path: '',
+            root: ''
+        }
 
         $scope.openFileBrowser = function () {
-            var modalInstance = $uibModal.open({
-                animation: true,
-                templateUrl: 'lib/fc/office/utils/filebrowser.html',
-                controller: 'fileBrowserCtrl'
-            });
-
-            modalInstance.result.then(function (selectedImage) {
-                $scope.person.image = selectedImage;
-            }, function () {
-                // $log.info('Modal dismissed at: ' + new Date());
+            fileBrowserSrv.open(
+                $scope.fileBrowser.path,
+                $scope.fileBrowser.root,
+                function (selectedFile) {
+                    setPersonImage(selectedFile.name);
             });
         }
 
@@ -51,20 +43,22 @@
             $scope.person = person;
             $scope.person.birthDate = new Date(person.birthDate);
 
-            $scope.contentUpload.path = personsSrv.getImageUploadPath(person.id);
+            $scope.fileBrowser.path = personsSrv.getImageUploadPath(person);
+            $scope.fileBrowser.root = personsSrv.getImageUploadPath(person);
+
             setPersonImage(person.image);
         }
 
         function setPersonImage(image) {
-            if (angular.isDefined($scope.contentUpload)
-                && angular.isString($scope.contentUpload.path)) {
+            if (angular.isDefined($scope.fileBrowser)
+                && angular.isString($scope.fileBrowser.path)) {
 
                 if (angular.isObject($scope.person) 
                     && $scope.person.image != image) {
                     $scope.person.image = image;
                 }
 
-                $scope.image = $scope.contentUpload.path + '/' + image;
+                $scope.image = $scope.fileBrowser.path + '/' + image;
             }
         }
 

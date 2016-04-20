@@ -24,6 +24,7 @@
         public short? roleId { get; set; }
         public int? teamId { get; set; }
         public byte? weight { get; set; }
+        public Guid? tempData { get; set; }
 
         //public virtual ICollection<PersonCareer> PersonCareer { get; set; }
         //public virtual ICollection<PersonStatistics> PersonStatistics { get; set; }

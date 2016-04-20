@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using FCWeb.ViewModels;
 using FCCore.Configuration;
+using FCWeb.Core.Extensions;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,9 +16,15 @@ namespace FCWeb.Controllers.Api
     {
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public AppConfigurationViewModel Get()
         {
-            return new string[] { "value1", "value2" };
+            var appConfig = new AppConfigurationViewModel();
+
+            appConfig.images = new ImagesConfigurationViewModel();
+            appConfig.images.persons = MainCfg.Images.Persons;
+            appConfig.settingsVisibility = MainCfg.SettingsVisibility.ToViewModel();
+
+            return appConfig;
         }
 
         // GET api/values/5
@@ -26,8 +33,10 @@ namespace FCWeb.Controllers.Api
         {
             var appConfig = new AppConfigurationOfficeViewModel();
 
-            appConfig.images = new ImagesConfigurationViewModel();
+            appConfig.images = new ImagesConfigurationOfficeViewModel();
             appConfig.images.persons = MainCfg.Images.Persons;
+            appConfig.images.store = MainCfg.Images.Store;
+            appConfig.settingsVisibility = MainCfg.SettingsVisibility.ToViewModel();
 
             return appConfig;
         }

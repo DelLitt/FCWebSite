@@ -7,7 +7,8 @@ namespace FCWeb.Controllers.Api
     using FCCore.Abstractions.Bll;
     using FCWeb.Core.Extensions;
     using FCWeb.ViewModels;
-
+    using System;
+    using FCCore.Configuration;
     [Route("api/[controller]")]
     public class PublicationsController : Controller
     {
@@ -37,6 +38,23 @@ namespace FCWeb.Controllers.Api
         [HttpGet("{id}")]
         public PublicationViewModel Get(int id)
         {
+            if (User.Identity.IsAuthenticated 
+                && User.IsInRole("admin")
+                && id == 0)
+            {
+                DateTime utcNow = DateTime.UtcNow;
+
+                return new PublicationViewModel()
+                {
+                    dateDisplayed = utcNow,
+                    dateChanged = utcNow,
+                    dateCreated = utcNow,
+                    author = MainCfg.DefaultAuthor,
+                    enable = true,
+                    visibility = MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News
+                };
+            }
+
             return publicationBll.GetPublication(id).ToViewModel();
         }
 

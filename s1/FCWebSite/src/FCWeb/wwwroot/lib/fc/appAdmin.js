@@ -21,6 +21,10 @@
                 templateUrl: "lib/fc/office/persons/personEdit.html",
                 controller: "personEditCtrl"
             })
+            .when("/office/video/edit/:id", {
+                templateUrl: "lib/fc/office/videos/videoEdit.html",
+                controller: "videoEditCtrl"
+            })
             .when("/office/filebrowser/", {
                 templateUrl: "lib/fc/office/utils/fileBrowser.html",
                 controller: "fileBrowserCtrl"

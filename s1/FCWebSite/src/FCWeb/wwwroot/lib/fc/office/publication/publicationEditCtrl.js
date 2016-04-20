@@ -5,28 +5,61 @@
         .module('fc.admin')
         .controller('publicationEditCtrl', publicationEditCtrl);
 
-    publicationEditCtrl.$inject = ['$scope', '$routeParams', 'publicationsSrv', 'fileBrowserSrv'];
+    publicationEditCtrl.$inject = ['$scope', '$routeParams', 'publicationsSrv', 'fileBrowserSrv', 'configSrv'];
 
-    function publicationEditCtrl($scope, $routeParams, publicationsSrv, fileBrowserSrv) {
+    function publicationEditCtrl($scope, $routeParams, publicationsSrv, fileBrowserSrv, configSrv) {
 
+        if (!angular.isDefined($scope.forms)) {
+            $scope.forms = {};
+        }
+
+        $scope.tes = $scope;
+
+        var saveCallbackName = "saveCallback";
+
+        var videoId = -1;
+
+        $scope.video = { 
+            id: videoId,
+            callbackData: {
+                saveCallbackName: saveCallbackName
+            }
+        }
+
+        $scope.loading = true;
+        $scope.videoId = videoId;
+        $scope.openFileBrowser = openFileBrowser;
+        $scope.saveEdit = saveEdit;
+        $scope.publication = {};
         $scope.dateOptions = {
             showWeeks: false
         };
 
-        $scope.publication = {
-            loading : true
-        };
-
-        $scope.openFileBrowser = function () {
-            fileBrowserSrv.open('images/store', function (selectedFile) {
-                $scope.publication.image = selectedFile.path;
-            });
+        function openFileBrowser() {
+            fileBrowserSrv.open(
+                publicationsSrv.getImagesPath(),
+                publicationsSrv.getImagesPath(),
+                function (selectedFile) {
+                    $scope.publication.image = selectedFile.path;
+                });
         }
 
-        loadData();
+        // handle video autocomplete
+        $scope.$watch(function (scope) {
+            return scope.videoId;
+        },
+        function (newValue, oldValue) {
+            $scope.video.id = newValue;
+        });
 
-        function loadData() {
-            publicationsSrv.loadPublication($routeParams.id, publicationLoaded);
+        loadData($routeParams.id);
+
+        function loadData(publicationId) {
+            if (publicationId < 0) {
+                return;
+            }
+
+            publicationsSrv.loadPublication(publicationId, publicationLoaded);
         }
 
         function publicationLoaded(response) {
@@ -36,7 +69,42 @@
             $scope.publication.dateDisplayed = new Date(publication.dateDisplayed);
             $scope.publication.dateChanged = new Date(publication.dateChanged);
             $scope.publication.dateCreated = new Date(publication.dateCreated);
+            $scope.settingsVisibility = configSrv.settingsVisibility;
+            $scope.currentVisibility = {
+                main: (publication.visibility & configSrv.settingsVisibility.main) == configSrv.settingsVisibility.main,
+                news: (publication.visibility & configSrv.settingsVisibility.news) == configSrv.settingsVisibility.news,
+                reserve: (publication.visibility & configSrv.settingsVisibility.reserve) == configSrv.settingsVisibility.reserve,
+                youth: (publication.visibility & configSrv.settingsVisibility.youth) == configSrv.settingsVisibility.youth,
+                authorized: (publication.visibility & configSrv.settingsVisibility.authorized) == configSrv.settingsVisibility.authorized
+            }
 
+            $scope.videoId = angular.isNumber(publication.videoId) ? publication.videoId : -1;
+        }
+
+        function saveEdit() {
+
+            if (angular.isDefined($scope.video.callbackData)
+                && angular.isFunction($scope.video.callbackData[saveCallbackName])) {
+                    $scope.video.callbackData[saveCallbackName]();
+            }
+
+            return;
+
+            $scope.submitted = true;
+
+            if (!form.$valid) {
+                return;
+            }
+
+            var visibility = {
+                main: $scope.currentVisibility.main ? configSrv.settingsVisibility.main : 0,
+                news: $scope.currentVisibility.news ? configSrv.settingsVisibility.news : 0,
+                reserve: $scope.currentVisibility.reserve ? configSrv.settingsVisibility.reserve : 0,
+                youth: $scope.currentVisibility.youth ? configSrv.settingsVisibility.youth : 0,
+                authorized: $scope.currentVisibility.authorized ? configSrv.settingsVisibility.authorized : 0,
+            }
+
+            $scope.publication.visibility = visibility.main | visibility.news | visibility.reserve | visibility.youth | visibility.authorized;
         }
     }
 })();

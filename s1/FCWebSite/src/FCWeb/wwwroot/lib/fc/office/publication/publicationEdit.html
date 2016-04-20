@@ -1,8 +1,11 @@
-﻿<form class="form office" role="form" novalidate angular-validator name="editPublication" angular-validator-submit="UpdatePublication()">
+﻿<form class="form office" role="form" novalidate angular-validator name="forms.editPublication" ng-submit="saveEdit(forms.editPublication);">
     <h2>Редактирование публикации #{{publication.id}}</h2>
     <div class="form-group">
         <label for="title" class="control-label">Основной заголовок:</label>
-        <input class="form-control" id="title" name="title" type="text" ng-model="publication.title" validate-on="blur" required required-message="Введите основной заголовок">
+        <input class="form-control" id="title" name="title" type="text" ng-model="publication.title"required>
+        <div class="alert alert-danger fade in" ng-show="(forms.editPublication.title.$dirty || submitted) && forms.editPublication.title.$error.required">
+            <strong>Ошибка!</strong> Введите основной заголовок!
+        </div>
     </div>
     <div class="form-group">
         <label for="image" class="control-label">Изображение:</label>&nbsp;<button class="btn btn-default btn-xs pull-right" type="button" ng-click="openFileBrowser();">Изменить</button>
@@ -10,11 +13,20 @@
     </div>
     <div class="form-group">
         <label for="header" class="control-label">Дополнительный заголовок:</label>
-        <input class="form-control" id="header" name="header" type="text" ng-model="publication.header" validate-on="blur" required required-message="Введите дополнительный заголовок">
+        <input class="form-control" id="header" name="header" type="text" ng-model="publication.header" required>
+        <div class="alert alert-danger fade in" ng-show="(forms.editPublication.header.$dirty || submitted) && forms.editPublication.header.$error.required">
+            <strong>Ошибка!</strong> Введите дополнительный заголовок!
+        </div>
     </div>
     <div class="form-group">
         <label for="urlKey" class="control-label">Идентификатор в адресной строке:</label>
-        <input class="form-control" id="urlKey" name="urlKey" type="text" ng-model="publication.urlKey" validate-on="blur" required required-message="Введите заголовок публикации">
+        <input class="form-control" id="urlKey" name="urlKey" type="text" ng-model="publication.urlKey" ng-pattern="urlKeyRegexPattern" required>
+        <div class="alert alert-danger fade in" ng-show="(forms.editPublication.urlKey.$dirty || submitted) && forms.editPublication.urlKey.$error.required">
+            <strong>Ошибка!</strong> Введите идентификатор в адресной строке!
+        </div>
+        <div class="alert alert-danger fade in" ng-show="(forms.editPublication.urlKey.$dirty || submitted) && forms.editPublication.urlKey.$error.pattern">
+            <strong>Ошибка!</strong> Допустимы только латинские символы, дефисы и нижние подчеркивания!
+        </div>
     </div>
     <div class="form-group">
         <label for="lead" class="control-label">Лид:</label>
@@ -23,6 +35,13 @@
     <div class="form-group">
         <label for="contentHTML" class="control-label">Содержимое:</label>
         <textarea class="ck-editor" id="contentHTML" name="contentHTML" ng-model="publication.contentHTML"></textarea>
+        <div class="alert alert-danger fade in" ng-show="(forms.editPublication.contentHTML.$dirty || submitted) && forms.editPublication.contentHTML.$error.required">
+            <strong>Ошибка!</strong> Введите содержимое публикации!
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="author" class="control-label">Автор:</label>
+        <input class="form-control" id="author" name="author" type="text" ng-model="publication.author" required>
     </div>
     <div class="form-group row">
         <div class="col-sm-4">
@@ -51,32 +70,47 @@
     </div>
     <div class="form-group">
         <label for="enable" class="checkbox-inline">
-            <input type="checkbox" name="enable" id="enable" ng-model="publication.enable" value="option1">Включена
+            <input type="checkbox" name="enable" id="enable" ng-model="publication.enable">Включена
         </label>
     </div>
     <div class="form-group">
         <label for="showImageInContet" class="checkbox-inline">
-            <input type="checkbox" name="showImageInContet" id="showImageInContet" ng-model="publication.showImageInContet" value="option1">Показывать изображение в публикации
+            <input type="checkbox" name="showImageInContet" id="showImageInContet" ng-model="publication.showImageInContet">Показывать изображение в публикации
         </label>
     </div>
     <div class="form-group">
         <label for="visibility" class="control-label">Доступность:</label>
         <div id="visibility">
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">Главная страница
+            <label class="checkbox-inline">
+                <input type="checkbox" name="visibilityMain" id="visibilityMain" ng-model="currentVisibility.main">Главная страница
             </label>
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">Список новостей
+            <label class="checkbox-inline">
+                <input type="checkbox" name="visibilityNews" id="visibilityNews" ng-model="currentVisibility.news" value="{{settingsVisibility.news}}">Список новостей
             </label>
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">Новости дубля
+            <label class="checkbox-inline">
+                <input type="checkbox" name="visibilityReserve" id="visibilityReserve" ng-model="currentVisibility.reserve" value="{{settingsVisibility.reserve}}">Новости дубля
             </label>
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">Новости молодежного отделения
+            <label class="checkbox-inline">
+                <input type="checkbox" name="visibilityYouth" id="visibilityYouth" ng-model="currentVisibility.youth" value="{{settingsVisibility.youth}}">Новости молодежного отделения
             </label>
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">Только зарегистрированным пользователям
+            <label class="checkbox-inline">
+                <input type="checkbox" name="visibilityAuthorized" id="visibilityAuthorized" ng-model="currentVisibility.authorized" value="{{settingsVisibility.authorized}}">Только зарегистрированным пользователям
             </label>
         </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Видео публикации
+            <autocomplete-custom url="/api/videos/" minsymbols="3" 
+                                 title="title" subtitle="id" 
+                                 displaykey="title" retkey="id" 
+                                 modelret="videoId" modeldisplay="videoTitle"></autocomplete-custom>
+        </div>
+        <div class="panel-body">
+            <video-edit videoid="video.id" forms="forms" callbackdata="video.callbackData"></video-edit>
+        </div>
+    </div>
+    <div>
+        <input type="submit" class="btn btn-primary" value="Сохранить" />
+        <a class="btn btn-default" ng-href="office">Отмена</a>
     </div>
 </form>

@@ -5,9 +5,11 @@
         .module('fc')
         .controller('rootCtrl', rootCtrl);
 
-    rootCtrl.$inject = ['$scope', '$translate'];
+    rootCtrl.$inject = ['$scope', '$translate', 'configSrv'];
 
-    function rootCtrl($scope, $translate) {       
+    function rootCtrl($scope, $translate, configSrv) {
+
+        configSrv.loadConfig();
 
         $scope.changeLanguage = function (langKey) {
             $translate.use(langKey);

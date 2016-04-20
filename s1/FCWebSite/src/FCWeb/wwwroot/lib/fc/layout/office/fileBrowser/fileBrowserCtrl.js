@@ -21,7 +21,7 @@
                 //    setPersonImage(uploadData[0].name);
                 //}
 
-                loadData($scope.fileBrowser.path);
+                loadData($scope.directoryView.path, $scope.fileBrowser.root);
             }
         };
 
@@ -32,7 +32,7 @@
         }
 
         $scope.openFolder = function openFolder(path) {
-            loadData(path);
+            loadData(path, $scope.fileBrowser.root);
         }
 
         // upload later on form submit or something similar
@@ -54,8 +54,8 @@
             }
         };
 
-        function loadData(path) {
-            apiSrv.get('/api/filebrowser?path=' + path, null, success, failure);            
+        function loadData(path, root) {
+            apiSrv.get('/api/filebrowser?path=' + path + '&root=' + root, null, success, failure);            
         }
 
         function success(response) {
@@ -67,6 +67,6 @@
             notificationManager.displayError(response.data);
         }
 
-        loadData($scope.fileBrowser.path);
+        loadData($scope.fileBrowser.path, $scope.fileBrowser.root);
     }
 })();

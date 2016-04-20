@@ -20,9 +20,9 @@ namespace FCWeb.Controllers.Api
     {
         // GET: api/values
         [HttpGet]
-        public FolderViewModel Get([FromQuery] string path)
+        public FolderViewModel Get([FromQuery] string path, [FromQuery] string root)
         {
-            var folderView = StorageHelper.GetFolderView(path);
+            var folderView = StorageHelper.GetFolderView(path, root);
 
             return folderView;
         }

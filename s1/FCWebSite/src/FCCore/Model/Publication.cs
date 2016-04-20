@@ -23,6 +23,7 @@ namespace FCCore.Model
         public int? videoId { get; set; }
         public int Visibility { get; set; }
         public string Lead { get; set; }
+        public string Author { get; set; }
 
         public virtual ImageGallery imageGallery { get; set; }
         public virtual Video video { get; set; }

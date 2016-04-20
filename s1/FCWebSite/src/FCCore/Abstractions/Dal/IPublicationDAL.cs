@@ -10,6 +10,6 @@ namespace FCCore.Abstractions.Dal
     public interface IPublicationDal : IDalBase
     {
         Publication GetPublication(int id);
-        IEnumerable<Publication> GetLatestPublications(int count, int offset, short visibility);        
+        IEnumerable<Publication> GetLatestPublications(int count, int offset, short visibility);
     }
 }

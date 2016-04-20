@@ -174,6 +174,8 @@ namespace FCDAL.Model
                     .IsRequired()
                     .HasMaxLength(256);
 
+                entity.Property(e => e.Author).HasMaxLength(256);
+
                 entity.HasOne(d => d.imageGallery).WithMany(p => p.Publication).HasForeignKey(d => d.imageGalleryId);
 
                 entity.HasOne(d => d.video).WithMany(p => p.Publication).HasForeignKey(d => d.videoId);
@@ -261,6 +263,8 @@ namespace FCDAL.Model
 
             modelBuilder.Entity<Video>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
                 entity.Property(e => e.Author).HasMaxLength(256);
 
                 entity.Property(e => e.CodeHTML)
@@ -288,6 +292,8 @@ namespace FCDAL.Model
                 entity.Property(e => e.URLKey)
                     .IsRequired()
                     .HasMaxLength(256);
+
+                entity.HasOne(d => d.VideoNavigation).WithOne(p => p.InverseVideoNavigation).HasForeignKey<Video>(d => d.Id).OnDelete(DeleteBehavior.Restrict);
             });
         }
 

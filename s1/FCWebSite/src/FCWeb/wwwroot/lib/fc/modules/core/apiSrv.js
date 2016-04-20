@@ -41,5 +41,20 @@
                     });
         }
 
+        this.put = function (url, id, data, success, failure) {
+            return $http.put(url + id, data)
+                    .then(function (result) {
+                        success(result);
+                    }, function (error) {
+                        if (error.status == '401') {
+                            notificationManager.displayError('Authentication required.');
+                            $rootScope.previousState = $location.path();
+                            $location.path('/login');
+                        }
+                        else if (failure != null) {
+                            failure(error);
+                        }
+                    });
+        }
     }
 })();

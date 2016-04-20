@@ -16,6 +16,7 @@
             serviceCollection.AddTransient<IGamesBll, GamesBll>();
             serviceCollection.AddTransient<IRoundBll, RoundBll>();
             serviceCollection.AddTransient<IPersonBll, PersonBll>();
+            serviceCollection.AddTransient<IVideoBll, VideoBll>();
         }
 
         public static void AddDALServices(this IServiceCollection serviceCollection)
@@ -28,6 +29,7 @@
             serviceCollection.AddTransient<IRoundDal, RoundDal>();
             serviceCollection.AddTransient<ITeamDal, TeamDal>();
             serviceCollection.AddTransient<IPersonDal, PersonDal>();
+            serviceCollection.AddTransient<IVideoDal, VideoDal>();
         }
     }
 }

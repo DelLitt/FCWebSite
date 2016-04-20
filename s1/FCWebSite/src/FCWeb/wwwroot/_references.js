@@ -16,4 +16,5 @@
 /// <reference path="lib/jquery-ui/jquery-ui.js" />
 /// <reference path="lib/jquery-validation/dist/jquery.validate.js" />
 /// <reference path="lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" />
+/// <reference path="lib/ngautocomplete/src/ngautocomplete.js" />
 /// <reference path="lib/ng-file-upload/ng-file-upload.js" />
