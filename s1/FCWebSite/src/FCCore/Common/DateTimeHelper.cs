@@ -5,7 +5,7 @@
 
     public static class DateTimeHelper
     {
-        public static DateTime CurrentCountryTime
+        public static DateTime CurrentCfgTime
         {
             get
             {

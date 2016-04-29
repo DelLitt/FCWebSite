@@ -17,10 +17,6 @@
 
         $scope.contentUpload = {
             onUploadSuccess: function (uploadData) {
-                //if (angular.isArray(uploadData)) {
-                //    setPersonImage(uploadData[0].name);
-                //}
-
                 loadData($scope.directoryView.path, $scope.fileBrowser.root);
             }
         };
@@ -54,8 +50,12 @@
             }
         };
 
-        function loadData(path, root) {
-            apiSrv.get('/api/filebrowser?path=' + path + '&root=' + root, null, success, failure);            
+        function loadData(path, root, options) {
+            var createNewParam = angular.isObject(options) && options.createNew === true
+                ? '&createNew=true'
+                : '';
+            
+            apiSrv.get('/api/filebrowser?path=' + path + '&root=' + root + createNewParam, null, success, failure);
         }
 
         function success(response) {
@@ -67,6 +67,6 @@
             notificationManager.displayError(response.data);
         }
 
-        loadData($scope.fileBrowser.path, $scope.fileBrowser.root);
+        loadData($scope.fileBrowser.path, $scope.fileBrowser.root, $scope.fileBrowser.options);
     }
 })();

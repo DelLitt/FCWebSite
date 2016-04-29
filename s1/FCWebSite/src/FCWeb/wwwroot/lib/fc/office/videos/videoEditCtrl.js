@@ -9,6 +9,8 @@
 
     function videoEditCtrl($scope, $routeParams, videosSrv, configSrv, helper) {
 
+        var formName = 'videoEdit';
+
         $scope.dateOptions = {
             showWeeks: false
         };
@@ -21,6 +23,7 @@
         if (isDirective()) {
             $scope.videoId = $scope.videoid;
             $scope.callbackdata[$scope.callbackdata.saveCallbackName] = saveCallback;
+            $scope.callbackdata.formName = formName;
 
             // handle related videoId changes
             $scope.$watch(function (scope) {
@@ -34,7 +37,7 @@
                 $scope.forms = {};
             }
 
-            $scope.videoId = $routeParams.id;
+            $scope.videoId = parseInt($routeParams.id);
         }
 
         function isDirective() {
@@ -81,19 +84,19 @@
         }
 
         function saveCallback() {
-            console.log("Related on save!");
-
-            return;
-
-            saveEdit($scope.forms.videoEdit);
+            return saveEdit($scope.forms[formName]);
         }
 
         function saveEdit(form) {
 
             $scope.submitted = true;
 
+            if (!(angular.isNumber($scope.video.id) && $scope.video.id >= 0)) {
+                return true;
+            }
+
             if (!form.$valid) {
-                return;
+                return false;
             }
 
             var visibility = {
@@ -106,7 +109,9 @@
 
             $scope.video.visibility = visibility.main | visibility.news | visibility.reserve | visibility.youth | visibility.authorized;
 
-            //videosSrv.saveVideo($scope.videoId || 0, $scope.video, videoSaved);
+            videosSrv.saveVideo($scope.video.id || 0, $scope.video, videoSaved);
+
+            return true;
         }
 
         function videoSaved(response) {

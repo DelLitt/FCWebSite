@@ -34,7 +34,7 @@
     </div>
     <div class="form-group">
         <label for="contentHTML" class="control-label">Содержимое:</label>
-        <textarea class="ck-editor" id="contentHTML" name="contentHTML" ng-model="publication.contentHTML"></textarea>
+        <textarea class="ck-editor" id="contentHTML" name="contentHTML" ng-model="publication.contentHTML" required></textarea>
         <div class="alert alert-danger fade in" ng-show="(forms.editPublication.contentHTML.$dirty || submitted) && forms.editPublication.contentHTML.$error.required">
             <strong>Ошибка!</strong> Введите содержимое публикации!
         </div>
@@ -42,6 +42,9 @@
     <div class="form-group">
         <label for="author" class="control-label">Автор:</label>
         <input class="form-control" id="author" name="author" type="text" ng-model="publication.author" required>
+        <div class="alert alert-danger fade in" ng-show="(forms.editPublication.author.$dirty || submitted) && forms.editPublication.author.$error.required">
+            <strong>Ошибка!</strong> Введите содержимое публикации!
+        </div>
     </div>
     <div class="form-group row">
         <div class="col-sm-4">
@@ -107,7 +110,7 @@
         </div>
         <div class="panel-body">
             <video-edit videoid="video.id" forms="forms" callbackdata="video.callbackData"></video-edit>
-        </div>
+        </div>        
     </div>
     <div>
         <input type="submit" class="btn btn-primary" value="Сохранить" />

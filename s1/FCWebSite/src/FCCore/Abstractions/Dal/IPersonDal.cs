@@ -7,5 +7,6 @@
     {
         Person GetPerson(int id);
         IEnumerable<Person> GetTeamPersons(int teamId);
+        int SavePerson(Person entity);
     }
 }

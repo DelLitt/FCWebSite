@@ -7,5 +7,6 @@
     {
         Publication GetPublication(int id);
         IEnumerable<Publication> GetMainPublications(int count, int offset);
+        int SavePublication(Publication entity);
     }
 }

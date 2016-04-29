@@ -2,13 +2,19 @@
 
 namespace FCWeb.Controllers.Api
 {
+    using System;
     using System.Collections.Generic;
-    using Microsoft.AspNet.Mvc;
+    using System.Net;
+    using System.Security.Claims;
     using FCCore.Abstractions.Bll;
+    using FCCore.Common;
+    using FCCore.Configuration;
+    using FCCore.Model;
     using FCWeb.Core.Extensions;
     using FCWeb.ViewModels;
-    using System;
-    using FCCore.Configuration;
+    using Microsoft.AspNet.Authorization;
+    using Microsoft.AspNet.Mvc;
+
     [Route("api/[controller]")]
     public class PublicationsController : Controller
     {
@@ -39,7 +45,7 @@ namespace FCWeb.Controllers.Api
         public PublicationViewModel Get(int id)
         {
             if (User.Identity.IsAuthenticated 
-                && User.IsInRole("admin")
+                && (User.IsInRole("admin") || User.IsInRole("press"))
                 && id == 0)
             {
                 DateTime utcNow = DateTime.UtcNow;
@@ -58,22 +64,55 @@ namespace FCWeb.Controllers.Api
             return publicationBll.GetPublication(id).ToViewModel();
         }
 
-        //// POST api/values
-        //[HttpPost]
-        //public void Post([FromBody]string value)
-        //{
-        //}
+        // POST api/values
+        [HttpPost]
+        [Authorize(Roles = "admin,press")]
+        public void Post([FromBody]PublicationViewModel publicationView)
+        {
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return;
+            }
 
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
+            Publication publication = publicationView.ToBaseModel();
 
-        //// DELETE api/values/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+            // TODO: Convert user Id from Guid to String in DB
+            Guid userCreated = new Guid(User.GetUserId());
+            publication.userCreated = userCreated;
+            publication.userChanged = userCreated;
+
+            DateTime utcNow = DateTime.UtcNow;
+            publication.DateCreated = utcNow;
+            publication.DateChanged = utcNow;
+
+            publicationBll.SavePublication(publication);
+        }
+
+        // PUT api/values/5
+        [HttpPut("{id}")]
+        [Authorize(Roles = "admin,press")]
+        public void Put(int id, [FromBody]PublicationViewModel publicationView)
+        {
+            if (id != publicationView.id)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return;
+            }
+
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return;
+            }
+
+            Publication publication = publicationView.ToBaseModel();
+
+            // TODO: Convert user Id from Guid to String in DB
+            publication.userChanged = new Guid(User.GetUserId());
+            publication.DateChanged = DateTime.UtcNow;
+
+            publicationBll.SavePublication(publication);
+        }
     }
 }

@@ -13,8 +13,6 @@
             $scope.forms = {};
         }
 
-        $scope.tes = $scope;
-
         var saveCallbackName = "saveCallback";
 
         var videoId = -1;
@@ -81,19 +79,37 @@
             $scope.videoId = angular.isNumber(publication.videoId) ? publication.videoId : -1;
         }
 
-        function saveEdit() {
-
-            if (angular.isDefined($scope.video.callbackData)
-                && angular.isFunction($scope.video.callbackData[saveCallbackName])) {
-                    $scope.video.callbackData[saveCallbackName]();
-            }
-
-            return;
+        function saveEdit(form) {
 
             $scope.submitted = true;
 
             if (!form.$valid) {
-                return;
+
+                $scope.customValidity = true;
+
+                // child forms aren't being checked, they will be checked in callback below
+                if (angular.isDefined($scope.video.callbackData)
+                    && angular.isDefined($scope.video.callbackData.formName)) {
+                        angular.forEach(form.$error.required, function (field) {
+                            if (field.$invalid 
+                                && field.$name.endsWith('.' + this.video.callbackData.formName)) {
+                                this.customValidity = this.customValidity && true;
+                            } else {
+                                this.customValidity = false;
+                            }
+                        }, $scope);
+                }
+
+                if (!$scope.customValidity) {
+                    return;
+                }                
+            }
+
+            if (angular.isDefined($scope.video.callbackData)
+                && angular.isFunction($scope.video.callbackData[saveCallbackName])) {
+                if (!$scope.video.callbackData[saveCallbackName]()) {
+                    return;
+                }
             }
 
             var visibility = {
@@ -105,6 +121,12 @@
             }
 
             $scope.publication.visibility = visibility.main | visibility.news | visibility.reserve | visibility.youth | visibility.authorized;
+
+            publicationsSrv.savePublication($scope.publication.id || 0, $scope.publication, publicationSaved);
+        }
+
+        function publicationSaved(response) {
+            alert(response.data);
         }
     }
 })();

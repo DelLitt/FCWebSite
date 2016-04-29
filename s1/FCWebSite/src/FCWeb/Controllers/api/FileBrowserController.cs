@@ -20,9 +20,13 @@ namespace FCWeb.Controllers.Api
     {
         // GET: api/values
         [HttpGet]
-        public FolderViewModel Get([FromQuery] string path, [FromQuery] string root)
+        public FolderViewModel Get([FromQuery] string path, [FromQuery] string root, [FromQuery] bool createNew)
         {
-            var folderView = StorageHelper.GetFolderView(path, root);
+            bool allowCreate = createNew
+                && User.Identity.IsAuthenticated
+                && (User.IsInRole("admin") || User.IsInRole("press"));
+
+            var folderView = StorageHelper.GetFolderView(path, root, allowCreate);
 
             return folderView;
         }

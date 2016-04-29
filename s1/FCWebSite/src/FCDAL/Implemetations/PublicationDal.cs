@@ -4,6 +4,7 @@
     using System.Linq;
     using FCCore.Model;
     using FCCore.Abstractions.Dal;
+    using System;
 
     public class PublicationDal : DalBase, IPublicationDal
     {
@@ -24,6 +25,22 @@
         public Publication GetPublication(int id)
         {
             return Context.Publication.FirstOrDefault(p => p.Id == id);
+        }
+
+        public int SavPublication(Publication entity)
+        {
+            if (entity.Id > 0)
+            {
+                Context.Publication.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+            }
+            else
+            {
+                Context.Publication.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+            }
+
+            Context.SaveChanges();
+
+            return entity.Id;
         }
     }
 }

@@ -10,6 +10,10 @@ namespace FCWeb.Controllers.Api
     using System.Net;
     using System;
     using FCCore.Configuration;
+    using Microsoft.AspNet.Authorization;
+    using FCCore.Model;
+    using System.Security.Claims;
+    using FCCore.Common;
 
     [Route("api/[controller]")]
     public class VideosController : Controller
@@ -23,26 +27,26 @@ namespace FCWeb.Controllers.Api
         }
 
         // GET: api/values/latest
-        [HttpGet("search/{text}")]
-        public IEnumerable<VideoViewModel> Get(string text)
+        [HttpGet("search")]
+        public IEnumerable<VideoViewModel> Get([FromQuery] string txt)
         {
             var videoModels = new List<VideoViewModel>();
 
-            videoModels.Add(new VideoViewModel()
-            {
-                id = -1,
-                title = "Не установлено"
-            });
+            //videoModels.Add(new VideoViewModel()
+            //{
+            //    id = -1,
+            //    title = "Не установлено"
+            //});
 
-            videoModels.Add(new VideoViewModel()
-            {
-                id = 0,
-                title = "Новое видео"
-            });
+            //videoModels.Add(new VideoViewModel()
+            //{
+            //    id = 0,
+            //    title = "Новое видео"
+            //});
 
-            if (text.Length < 3) { return videoModels; }
+            //if (txt.Length < 3) { return videoModels; }
 
-            IEnumerable<VideoViewModel> searchedData = videoBll.SearchVideosByTitle(text).ToViewModel();
+            IEnumerable<VideoViewModel> searchedData = videoBll.SearchVideosByTitle(txt).ToViewModel();
 
             videoModels.AddRange(searchedData);
 
@@ -68,7 +72,7 @@ namespace FCWeb.Controllers.Api
         public VideoViewModel Get(int id)
         {
             if (User.Identity.IsAuthenticated
-                && User.IsInRole("admin")
+                && (User.IsInRole("admin") || User.IsInRole("press"))
                 && id == 0)
             {
                 DateTime utcNow = DateTime.UtcNow;
@@ -89,34 +93,53 @@ namespace FCWeb.Controllers.Api
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]VideoViewModel video)
+        [Authorize(Roles = "admin,press")]
+        public void Post([FromBody]VideoViewModel videoVideo)
         {
             if (!ModelState.IsValid)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                // return null;
+                return;
             }
 
-            videoBll.SaveVideo(video.ToViewModel());
+            Video video = videoVideo.ToBaseModel();
+
+            // TODO: Convert user Id from Guid to String in DB
+            Guid userCreated = new Guid(User.GetUserId());            
+            video.userCreated = userCreated;
+            video.userChanged = userCreated;
+
+            DateTime utcNow = DateTime.UtcNow;
+            video.DateCreated = utcNow;
+            video.DateChanged = utcNow;
+
+            videoBll.SaveVideo(video);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]VideoViewModel video)
+        [Authorize(Roles = "admin,press")]
+        public void Put(int id, [FromBody]VideoViewModel videoView)
         {
-            if (id != video.id)
+            if (id != videoView.id)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                // return null;
+                return;
             }
 
             if (!ModelState.IsValid)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                // return null;
+                return;
             }
 
-            videoBll.SaveVideo(video.ToViewModel());
+            Video video = videoView.ToBaseModel();
+
+            // TODO: Convert user Id from Guid to String in DB
+            video.userChanged = new Guid(User.GetUserId());
+            video.DateChanged = DateTime.UtcNow;
+
+            videoBll.SaveVideo(video);
         }
 
         //// DELETE api/values/5

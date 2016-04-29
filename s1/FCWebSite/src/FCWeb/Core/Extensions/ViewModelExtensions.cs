@@ -6,7 +6,7 @@
     using FCCore.Model;
     using FCWeb.ViewModels;
     using System;
-
+    using Newtonsoft.Json;
     public static class ViewModelExtensions
     {
         public static IEnumerable<PublicationShortViewModel> ToShortViewModel(this IEnumerable<Publication> publications)
@@ -17,7 +17,7 @@
             {
                 id = p.Id,
                 title = p.Title,
-                img = "http://sfc-slutsk.by/" + p.Image
+                img = p.Image
             });
         }
 
@@ -35,10 +35,10 @@
                 dateDisplayed = publication.DateDisplayed,
                 enable = publication.Enable,
                 header = publication.Header,
-                image = "http://sfc-slutsk.by/" + publication.Image,
+                image = publication.Image,
                 imageGalleryId = publication.imageGalleryId,
                 priority = publication.Priority,
-                showImageInContet = publication.ShowImageInContet,
+                showImageInContent = publication.ShowImageInContet,
                 title = publication.Title,
                 urlKey = publication.URLKey,
                 videoId = publication.videoId,
@@ -143,12 +143,16 @@
         {
             if (person == null) { return null; }
 
-            Guid? tempData = null;
+            Guid? tempGuid = null;
 
-            if (person.Id > 0)
+            if (person.Id == 0)
             {
-                tempData = Guid.NewGuid();
+                tempGuid = Guid.NewGuid();
             }
+
+            var infoView = !string.IsNullOrWhiteSpace(person.Info)
+                ? JsonConvert.DeserializeObject<PersonInfoView>(person.Info)
+                : new PersonInfoView();
 
             return new PersonViewModel()
             {
@@ -158,7 +162,7 @@
                 cityId = person.cityId,
                 height = person.Height,
                 image = person.Image,
-                info = person.Info,
+                info = infoView,
                 nameFirst = person.NameFirst,
                 nameLast = person.NameLast,
                 nameMiddle = person.NameMiddle,
@@ -168,7 +172,7 @@
                 roleId = person.roleId,
                 teamId = person.teamId,
                 weight = person.Weight,
-                tempData = tempData
+                tempGuid = tempGuid
             };
         }
 
@@ -209,7 +213,7 @@
             };
         }
 
-        public static Video ToViewModel(this VideoViewModel videoModel)
+        public static Video ToBaseModel(this VideoViewModel videoModel)
         {
             if (videoModel == null) { return null; }
 
@@ -228,9 +232,7 @@
                 Priority = videoModel.priority,
                 Title = videoModel.title,
                 URLKey = videoModel.urlKey,
-                Visibility = videoModel.visibility,
-                userChanged = videoModel.userChanged,
-                userCreated = videoModel.userCreated
+                Visibility = videoModel.visibility
             };
         }
 
@@ -239,6 +241,62 @@
             if (Guard.IsEmptyIEnumerable(videos)) { return new VideoViewModel[0]; }
 
             return videos.Select(v => v.ToViewModel()).ToList();
+        }
+
+        public static Publication ToBaseModel(this PublicationViewModel publicationModel)
+        {
+            if (publicationModel == null) { return null; }
+
+            return new Publication()
+            {
+                Id = publicationModel.id,
+                articleId = null,
+                Author = publicationModel.author,
+                ContentHTML = publicationModel.contentHTML,               
+                DateChanged = publicationModel.dateChanged,
+                DateCreated = publicationModel.dateCreated,
+                DateDisplayed = publicationModel.dateDisplayed,
+                Enable = publicationModel.enable,
+                Header = publicationModel.header,
+                Image = publicationModel.image,
+                imageGalleryId = null,
+                Lead = publicationModel.lead,
+                Priority = publicationModel.priority,
+                ShowImageInContet = publicationModel.showImageInContent,                
+                Title = publicationModel.title,
+                URLKey = publicationModel.urlKey,
+                videoId = publicationModel.videoId,
+                Visibility = publicationModel.visibility
+            };
+        }
+
+        public static Person ToBaseModel(this PersonViewModel personView)
+        {
+            if (personView == null) { return null; }
+
+            string info = personView.info != null
+                ? JsonConvert.SerializeObject(personView.info)
+                : string.Empty;
+
+            return new Person()
+            {
+                Id = personView.id,
+                Active = personView.active,
+                BirthDate = personView.birthDate,
+                cityId = personView.cityId,
+                Height = personView.height,
+                Image = personView.image,
+                Info = info,
+                NameFirst = personView.nameFirst,
+                NameLast = personView.nameLast,
+                NameMiddle = personView.nameMiddle,
+                NameNick = personView.nameNick,
+                Number = personView.number,
+                personStatusId = personView.personStatusId,
+                roleId = personView.roleId,
+                teamId = personView.teamId,
+                Weight = personView.weight
+            };
         }
     }
 }

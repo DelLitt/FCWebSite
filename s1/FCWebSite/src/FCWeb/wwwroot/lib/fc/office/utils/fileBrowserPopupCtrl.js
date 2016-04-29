@@ -17,7 +17,8 @@
             },
             onCancel: function () {
                 $uibModalInstance.dismiss('cancel');
-            }
+            },
+            options: fileBrowser.options
         };
     }
 })();

@@ -21,8 +21,53 @@
             notificationManager.displayError(response.data);
         }
 
-        this.getImageUploadPath = function (person) {
-            return configSrv.getImageStorePath();
+        this.savePerson = function (id, person, success, failure) {
+            if (angular.isDefined(id) && parseInt(id) > 0) {
+                apiSrv.put('/api/persons/', id, person,
+                                success,
+                                function (response) {
+                                    if (failure != null) {
+                                        failure(response);
+                                    }
+
+                                    personSaveFailed(response);
+                                });
+            } else {
+                apiSrv.post('/api/persons/', person,
+                                success,
+                                function (response) {
+                                    if (failure != null) {
+                                        failure(response);
+                                    }
+
+                                    personSaveFailed(response);
+                                });
+
+            }
+        }
+
+        function personSaveFailed(response) {
+            notificationManager.displayError(response.data);
+        }
+
+        this.getImageUploadData = function (person) {
+            var uniqueKey = 0;
+            var createNew = false;
+            
+            if (angular.isNumber(person.id) && person.id > 0) {
+                uniqueKey = person.id;
+                createNew = true;
+            } else if (angular.isDefined(person.tempGuid)) {
+                uniqueKey = person.tempGuid;
+                createNew = true;
+            }
+
+            var personPath = configSrv.getPersonImageUploadPath();            
+
+            return {
+                path: personPath.replace('{id}', uniqueKey),
+                createNew: createNew
+            };
         }
     }
 })();

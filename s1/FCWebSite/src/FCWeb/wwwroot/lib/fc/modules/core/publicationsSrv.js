@@ -36,6 +36,35 @@
             notificationManager.displayError(response.data);
         }
 
+        this.savePublication = function (id, publication, success, failure) {
+            if (angular.isDefined(id) && parseInt(id) > 0) {
+                apiSrv.put('/api/publications/', id, publication,
+                                success,
+                                function (response) {
+                                    if (failure != null) {
+                                        failure(response);
+                                    }
+
+                                    videoSaveFailed(response);
+                                });
+            } else {
+                apiSrv.post('/api/publications/', publication,
+                                success,
+                                function (response) {
+                                    if (failure != null) {
+                                        failure(response);
+                                    }
+
+                                    publicationSaveFailed(response);
+                                });
+
+            }
+        }
+
+        function publicationSaveFailed(response) {
+            notificationManager.displayError(response.data);
+        }
+
         this.getImagesPath = function () {
             return configSrv.getImageStorePath();
         }

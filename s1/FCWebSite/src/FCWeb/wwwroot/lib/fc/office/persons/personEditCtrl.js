@@ -5,16 +5,26 @@
         .module('fc.admin')
         .controller('personEditCtrl', personEditCtrl);
 
-    personEditCtrl.$inject = ['$scope', '$routeParams', 'personsSrv', 'notificationManager'];
+    personEditCtrl.$inject = ['$scope', '$routeParams', 'personsSrv', 'fileBrowserSrv', 'notificationManager'];
 
-    function personEditCtrl($scope, $routeParams, personsSrv, notificationManager) {
+    function personEditCtrl($scope, $routeParams, personsSrv, fileBrowserSrv, notificationManager) {
 
+        if (!angular.isDefined($scope.forms)) {
+            $scope.forms = {};
+        }
+
+        $scope.loading = true;
+        $scope.openFileBrowser = openFileBrowser;
+        $scope.saveEdit = saveEdit;
+        $scope.person = {
+            info: {
+                description: '',
+                career: [],
+                achievements: []
+            }
+        };
         $scope.dateOptions = {
             showWeeks: false
-        };
-
-        $scope.person = {
-            loading: true,
         };
 
         $scope.fileBrowser = {
@@ -22,19 +32,62 @@
             root: ''
         }
 
-        $scope.openFileBrowser = function () {
+        $scope.testdata = [
+            { "theKey": "1", "theVal": "baaar" },
+            { "theKey": "2", "theVal": "baar ara" },
+            { "theKey": "3", "theVal": "baaaar" }]
+
+        var currentYear = new Date().getFullYear();
+
+        $scope.info = {
+            career: {
+                removeItem: function (index) {
+                    $scope.person.info.career.splice(index, 1);
+                },
+                addItem: function () {
+                    $scope.person.info.career.push({
+                        yearStart: currentYear,
+                        yearEnd: currentYear,
+                        team: ''
+                    });
+                }
+            },
+            achievements: {
+                removeItem: function (index) {
+                    $scope.person.info.achievements.splice(index, 1);
+                },
+                addItem: function () {
+                    $scope.person.info.achievements.push({
+                        season: '',
+                        team: '',
+                        achievement: ''
+                    });
+            }
+        }
+        }
+
+        function openFileBrowser() {
             fileBrowserSrv.open(
                 $scope.fileBrowser.path,
                 $scope.fileBrowser.root,
                 function (selectedFile) {
                     setPersonImage(selectedFile.name);
-            });
+                },
+                null,
+                {
+                    createNew: $scope.fileBrowser.createNew
+                }
+            );
         }
 
-        loadData();
+        loadData($routeParams.id);
 
-        function loadData() {
-            personsSrv.loadPerson($routeParams.id, personLoaded);
+        function loadData(personId) {
+            if (personId < 0) {
+                return;
+            }
+
+            personsSrv.loadPerson(personId, personLoaded);
         }
 
         function personLoaded(response) {
@@ -43,17 +96,20 @@
             $scope.person = person;
             $scope.person.birthDate = new Date(person.birthDate);
 
-            $scope.fileBrowser.path = personsSrv.getImageUploadPath(person);
-            $scope.fileBrowser.root = personsSrv.getImageUploadPath(person);
+            var imageUploadData = personsSrv.getImageUploadData(person);
+            $scope.fileBrowser.path = imageUploadData.path;
+            $scope.fileBrowser.createNew = imageUploadData.createNew;
+            $scope.fileBrowser.root = imageUploadData.path;
 
             setPersonImage(person.image);
         }
 
         function setPersonImage(image) {
-            if (angular.isDefined($scope.fileBrowser)
-                && angular.isString($scope.fileBrowser.path)) {
+            if (angular.isObject($scope.fileBrowser)
+                && angular.isString($scope.fileBrowser.path)
+                && angular.isString(image)) {
 
-                if (angular.isObject($scope.person) 
+                if (angular.isObject($scope.person)
                     && $scope.person.image != image) {
                     $scope.person.image = image;
                 }
@@ -62,16 +118,19 @@
             }
         }
 
-        //function loadImage(path) {
-        //    apiSrv.get('/api/filebrowser?path=' + path, null, success, failure);
-        //}
+        function saveEdit(form) {
 
-        //function success(response) {
-        //    $scope.directoryView = response.data;
-        //}
+            $scope.submitted = true;
 
-        //function failure(response) {
-        //    notificationManager.displayError(response.data);
-        //}
+            if (!form.$valid) {
+                    return;
+            }
+
+            personsSrv.savePerson($scope.person.id || 0, $scope.person, personSaved);
+        }
+
+        function personSaved(response) {
+            alert(response.data);
+        }
     }
 })();

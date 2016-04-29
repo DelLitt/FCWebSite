@@ -50,16 +50,7 @@
         }
 
         this.getPersonImageUploadPath = function (person) {
-            var personPath = getImagesValue('persons');
-            var uniqueKey = 0;
-
-            if (angular.isDefined(person.tempData)) {
-                uniqueKey = person.tempData;
-            } else if (angular.isDefined(person.id > 0)) {
-                uniqueKey = person.id;
-            }
-
-            return personPath.replace('{id}', uniqueKey);
+            return getImagesValue('persons');
         }
 
         this.getImageStorePath = function () {

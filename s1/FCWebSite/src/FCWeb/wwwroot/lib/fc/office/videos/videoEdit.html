@@ -1,9 +1,9 @@
-﻿<form ng-show="expanded" class="form office" role="form" novalidate angular-validator name="forms.editVideo" ng-submit="saveEdit(forms.editVideo)">
+﻿<form ng-show="expanded" class="form office" role="form" novalidate angular-validator name="forms.videoEdit" ng-submit="saveEdit(forms.videoEdit)">
     <h2>Редактирование видео #{{video.id}}</h2>
     <div class="form-group">
         <label for="title" class="control-label">Основной заголовок:</label>
         <input class="form-control" id="title" name="title" type="text" ng-model="video.title" ng-change="titleChanged(video.title)" required>
-        <div class="alert alert-danger fade in" ng-show="(forms.editVideo.title.$dirty || submitted) && forms.editVideo.title.$error.required">
+        <div class="alert alert-danger fade in" ng-show="(forms.videoEdit.title.$dirty || submitted) && forms.videoEdit.title.$error.required">
             <!--<a href="#" class="close" data-dismiss="alert">&times;</a>-->
             <strong>Ошибка!</strong> Введите основной заголовок!
         </div>
@@ -11,17 +11,17 @@
     <div class="form-group">
         <label for="header" class="control-label">Дополнительный заголовок:</label>
         <input class="form-control" id="header" name="header" type="text" ng-model="video.header" required>
-        <div class="alert alert-danger fade in" ng-show="(forms.editVideo.header.$dirty || submitted) && forms.editVideo.header.$error.required">
+        <div class="alert alert-danger fade in" ng-show="(forms.videoEdit.header.$dirty || submitted) && forms.videoEdit.header.$error.required">
             <strong>Ошибка!</strong> Введите дополнительный заголовок!
         </div>
     </div>
     <div class="form-group">
         <label for="urlKey" class="control-label">Идентификатор в адресной строке:</label>
         <input class="form-control" id="urlKey" name="urlKey" type="text" ng-model="video.urlKey" ng-pattern="urlKeyRegexPattern" required>
-        <div class="alert alert-danger fade in" ng-show="(forms.editVideo.urlKey.$dirty || submitted) && forms.editVideo.urlKey.$error.required">
+        <div class="alert alert-danger fade in" ng-show="(forms.videoEdit.urlKey.$dirty || submitted) && forms.videoEdit.urlKey.$error.required">
             <strong>Ошибка!</strong> Введите идентификатор в адресной строке!
         </div>
-        <div class="alert alert-danger fade in" ng-show="(forms.editVideo.urlKey.$dirty || submitted) && forms.editVideo.urlKey.$error.pattern">
+        <div class="alert alert-danger fade in" ng-show="(forms.videoEdit.urlKey.$dirty || submitted) && forms.videoEdit.urlKey.$error.pattern">
             <strong>Ошибка!</strong> Допустимы только латинские символы, дефисы и нижние подчеркивания!
         </div>
     </div>
@@ -32,7 +32,7 @@
     <div class="form-group">
         <label for="codeHTML" class="control-label">Код плеера:</label>
         <textarea id="codeHTML" name="codeHTML" class="form-control" rows="5" ng-model="video.codeHTML" required></textarea>
-        <div class="alert alert-danger fade in" ng-show="(forms.editVideo.codeHTML.$dirty || submitted) && forms.editVideo.codeHTML.$error.required">
+        <div class="alert alert-danger fade in" ng-show="(forms.videoEdit.codeHTML.$dirty || submitted) && forms.videoEdit.codeHTML.$error.required">
             <strong>Ошибка!</strong> Введите код плеера!
         </div>
     </div>

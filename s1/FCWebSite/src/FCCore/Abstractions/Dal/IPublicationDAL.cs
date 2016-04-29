@@ -11,5 +11,6 @@ namespace FCCore.Abstractions.Dal
     {
         Publication GetPublication(int id);
         IEnumerable<Publication> GetLatestPublications(int count, int offset, short visibility);
+        int SavPublication(Publication entity);
     }
 }

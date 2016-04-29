@@ -5,6 +5,7 @@
     using FCCore.Model;
     using FCCore.Abstractions.Dal;
     using FCCore.Configuration;
+    using System;
 
     public sealed class PublicationBll : IPublicationBll
     {
@@ -31,6 +32,11 @@
         {
             short visibility = (short)(MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News);
             return DALPublication.GetLatestPublications(count, offset, visibility);
+        }
+
+        public int SavePublication(Publication entity)
+        {
+            return DALPublication.SavPublication(entity);
         }
     }
 }

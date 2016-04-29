@@ -15,7 +15,7 @@
         public string image { get; set; }
         public int? imageGalleryId { get; set; }
         public byte priority { get; set; }
-        public bool showImageInContet { get; set; }
+        public bool showImageInContent { get; set; }
         public string title { get; set; }
         public string urlKey { get; set; }
         public int? videoId { get; set; }

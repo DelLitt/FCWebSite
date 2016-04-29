@@ -1,23 +1,31 @@
-﻿<form class="form office" role="form" novalidate angular-validator name="editPublication" angular-validator-submit="UpdatePublication()">
-    <h2>Редактирование персоны #{{person.id}}</h2>    
+﻿<form class="form office" role="form" novalidate angular-validator name="forms.editPerson" ng-submit="saveEdit(forms.editPerson);">
+    <h2>Редактирование персоны #{{person.id}}</h2>
+    <fc-autocomplete key="id" val="title" removeselected="true" 
+                     urlsearch="/api/videos/search" />
     <div class="form-group">
         <label for="image" class="control-label">Изображение:</label>&nbsp;<button class="btn btn-default btn-xs pull-right" type="button" ng-click="openFileBrowser();">Изменить</button>
         <img class="image-edit .img-thumbnail" id="image" ng-src="{{image}}" />
     </div>
     <div class="form-group">
-        <label for="nameFirst" class="control-label">Имя:</label>
-        <input class="form-control" id="nameFirst" name="nameFirst" type="text" ng-model="person.nameFirst" validate-on="blur" required required-message="Введите имя">
+        <label for="nameFirst" class="control-label">Имя*:</label>
+        <input class="form-control" id="nameFirst" name="nameFirst" type="text" ng-model="person.nameFirst" required>
+        <div class="alert alert-danger fade in" ng-show="(forms.editPerson.nameFirst.$dirty || submitted) && forms.editPerson.nameFirst.$error.required">
+            <strong>Ошибка!</strong> Введите имя!
+        </div>
     </div>
     <div class="form-group">
         <label for="nameMiddle" class="control-label">Отчество:</label>
-        <input class="form-control" id="nameMiddle" name="nameMiddle" type="text" ng-model="person.nameMiddle" validate-on="blur">
+        <input class="form-control" id="nameMiddle" name="nameMiddle" type="text" ng-model="person.nameMiddle">
     </div>
     <div class="form-group">
-        <label for="nameLast" class="control-label">Фамилия:</label>
-        <input class="form-control" id="nameLast" name="nameLast" type="text" ng-model="person.nameLast" validate-on="blur" required required-message="Введите фамилию">
+        <label for="nameLast" class="control-label">Фамилия*:</label>
+        <input class="form-control" id="nameLast" name="nameLast" type="text" ng-model="person.nameLast" required>
+        <div class="alert alert-danger fade in" ng-show="(forms.editPerson.nameLast.$dirty || submitted) && forms.editPerson.nameLast.$error.required">
+            <strong>Ошибка!</strong> Введите имя!
+        </div>
     </div>
     <div class="form-group">
-        <label for="birthDate" class="control-label">Отображаемая дата:</label>
+        <label for="birthDate" class="control-label">Дата рождения:</label>
         <datetimepicker ng-model="person.birthDate"
                         id="birthDate"
                         name="birthDate"
@@ -29,23 +37,95 @@
     </div>
     <div class="form-group">
         <label for="number" class="control-label">Номер:</label>
-        <input class="form-control" id="number" name="number" type="text" ng-model="person.number" validate-on="blur">
+        <input class="form-control" id="number" name="number" type="text" ng-model="person.number">
     </div>
     <div class="form-group">
         <label for="height" class="control-label">Рост:</label>
-        <input class="form-control" id="height" name="height" type="text" ng-model="person.height" validate-on="blur">
+        <input class="form-control" id="height" name="height" type="text" ng-model="person.height">
     </div>
     <div class="form-group">
         <label for="weight" class="control-label">Вес:</label>
-        <input class="form-control" id="weight" name="weight" type="text" ng-model="person.weight" validate-on="blur">
+        <input class="form-control" id="weight" name="weight" type="text" ng-model="person.weight">
     </div>
     <div class="form-group">
-        <label for="info" class="control-label">Информация:</label>
-        <textarea class="ck-editor" id="info" name="info" ng-model="publication.info"></textarea>
+        <div class="panel panel-default">
+            <div class="panel-heading">Информация</div>
+            <div class="panel-body">
+                <textarea class="ck-editor" id="info" name="info" ng-model="person.info.description"></textarea>
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Карьера&nbsp;<a href="javascript:void(0);" ng-click="info.career.addItem()"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="car in person.info.career">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <input class="form-control" type="number" min="1900" max="2200" step="1" placeholder="Год начала" ng-model="car.yearStart">
+                            </div>
+                            <div class="col-xs-3">
+                                <input class="form-control" type="number" min="1900" max="2200" step="1" placeholder="Год окночания" ng-model="car.yearEnd">
+                            </div>
+                            <div class="col-xs-5">
+                                <input class="form-control" type="text" placeholder="Команда" ng-model="car.team">
+                            </div>
+                            <div class="col-xs-1">
+                                <a class="badge pull-right" href="javascript:void(0);" ng-click="info.career.removeItem($index)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Достижения&nbsp;<a href="javascript:void(0);" ng-click="info.achievements.addItem()"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="ach in person.info.achievements">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <input class="form-control" type="text" placeholder="Сезон" ng-model="ach.season">
+                            </div>
+                            <div class="col-xs-3">
+                                <input class="form-control" type="text" placeholder="Команда" ng-model="ach.team">
+                            </div>
+                            <div class="col-xs-5">
+                                <input class="form-control" type="text" placeholder="Достижение" ng-model="ach.achievement">
+                            </div>
+                            <div class="col-xs-1">
+                                <a class="badge pull-right" href="javascript:void(0);" ng-click="info.achievements.removeItem($index)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <label for="showImageInContet" class="checkbox-inline">
-            <input type="checkbox" name="active" id="active" ng-model="publication.active" value="option1">Активный
+            <input type="checkbox" name="active" id="active" ng-model="person.active" value="option1">Активный
         </label>
+    </div>
+    <div>
+        <input type="submit" class="btn btn-primary" value="Сохранить" />
+        <a class="btn btn-default" ng-href="office">Отмена</a>
     </div>
 </form>
