@@ -74,7 +74,6 @@
                         null,
                         function (response) {
                             scope.suggestedData = response.data;
-                            scope.selItem = null;
                             scope.aclass = 'form-group';
                         },
                         function (response) {

@@ -46,6 +46,14 @@
         <input class="form-control" id="weight" name="weight" type="text" ng-model="person.weight">
     </div>
     <div class="form-group">
+        <label for="weight" class="control-label">Город:</label>
+        <fc-autocomplete key="id" val="nameFull" min="3" id="person.cityId"
+                         addglobalescapeevent="addRootClickListener"
+                         urlsearch="/api/cities/search"
+                         urlinit="cityInitUrl">
+        </fc-autocomplete>
+    </div>
+    <div class="form-group">
         <label for="weight" class="control-label">Команда:</label>
         <fc-autocomplete key="id" val="name" min="3" id="person.teamId"
                          addglobalescapeevent="addRootClickListener"
@@ -55,7 +63,7 @@
     </div>
     <div class="form-group">
         <label for="weight" class="control-label">Роль:</label>
-        <fc-autocomplete key="id" val="nameFull" min="3" id="person.roleId"
+        <fc-autocomplete key="id" val="nameFull" min="1" id="person.roleId"
                          addglobalescapeevent="addRootClickListener"
                          urlsearch="/api/personroles/search"
                          urlshowall="/api/personroles"
@@ -63,13 +71,25 @@
         </fc-autocomplete>
     </div>
     <div class="form-group">
-        <label for="weight" class="control-label">Статус:</label>
-        <fc-autocomplete key="id" val="nameFull" min="3" id="person.personStatusId"
-                         addglobalescapeevent="addRootClickListener"
-                         urlsearch="/api/personstatuses/search"
-                         urlshowall="/api/personstatuses"
-                         urlinit="personStatusInitUrl">
-        </fc-autocomplete>
+        <div class="panel panel-default">
+            <div class="panel-heading">Статус</div>
+            <div class="panel-body">
+                <fc-autocomplete key="id" val="nameFull" min="1" id="person.personStatusId"
+                                 addglobalescapeevent="addRootClickListener"
+                                 urlsearch="/api/personstatuses/search"
+                                 urlshowall="/api/personstatuses"
+                                 urlinit="personStatusInitUrl">
+                </fc-autocomplete>
+            </div>
+            <div class="panel-footer" ng-show="person.personStatusId == 5 || person.personStatusId == 6">
+                <label for="weight" class="control-label">Команда</label>
+                <fc-autocomplete key="id" val="name" min="3" id="person.customIntValue"
+                                 addglobalescapeevent="addRootClickListener"
+                                 urlsearch="/api/teams/search"
+                                 urlinit="customIntValueInitUrl">
+                </fc-autocomplete>
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <div class="panel panel-default">

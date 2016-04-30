@@ -12,7 +12,7 @@
             return Context.PersonRole.FirstOrDefault(p => p.Id == id);
         }
 
-        IEnumerable<PersonRole> IPersonRoleDal.GetAll()
+        public IEnumerable<PersonRole> GetAll()
         {
             return Context.PersonRole;
         }

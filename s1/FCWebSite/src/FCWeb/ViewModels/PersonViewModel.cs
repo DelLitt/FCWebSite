@@ -8,6 +8,7 @@
         public bool active { get; set; }
         public DateTime? birthDate { get; set; }
         public short? cityId { get; set; }
+        public int? customIntValue { get; set; }
         public byte? height { get; set; }
         public string image { get; set; }
         public string nameFirst { get; set; }

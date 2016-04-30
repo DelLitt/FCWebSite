@@ -31,7 +31,7 @@
             return DALPersonStatus.GetAll();
         }
 
-        IEnumerable<PersonStatus> IPersonStatusBll.SearchByNameFull(string text)
+        public IEnumerable<PersonStatus> SearchByNameFull(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) { return new PersonStatus[0]; }
 

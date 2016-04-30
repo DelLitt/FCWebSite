@@ -90,15 +90,23 @@
 
             $scope.person = person;
             $scope.person.birthDate = new Date(person.birthDate);
+            $scope.cityInitUrl = angular.isNumber($scope.person.cityId)
+                ? "/api/cities/" + $scope.person.cityId
+                : null;
             $scope.teamInitUrl = angular.isNumber($scope.person.teamId)
                 ? "/api/teams/" + $scope.person.teamId
-                : null;
-            $scope.personStatusInitUrl = angular.isNumber($scope.person.personStatusId)
-                ? "/api/personstatuses/" + $scope.person.personStatusId
                 : null;
             $scope.personRoleInitUrl = angular.isNumber($scope.person.roleId)
                 ? "/api/personroles/" + $scope.person.roleId
                 : null;
+            $scope.personStatusInitUrl = angular.isNumber($scope.person.personStatusId)
+                ? "/api/personstatuses/" + $scope.person.personStatusId
+                : null;
+            $scope.customIntValueInitUrl = angular.isNumber($scope.person.customIntValue)
+                ? "/api/teams/" + $scope.person.customIntValue
+                : null;
+
+            
 
             var imageUploadData = personsSrv.getImageUploadData(person);
             $scope.fileBrowser.path = imageUploadData.path;
