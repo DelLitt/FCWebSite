@@ -15,6 +15,26 @@ namespace FCDAL.Model
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<City>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(64);
+
+                entity.Property(e => e.NameFull).HasMaxLength(256);
+
+                entity.HasOne(d => d.country).WithMany(p => p.City).HasForeignKey(d => d.countryId).OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<Country>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.NameFull).HasMaxLength(100);
+            });
+
             modelBuilder.Entity<Game>(entity =>
             {
                 entity.Property(e => e.GameDate).HasColumnType("datetime");
@@ -152,6 +172,8 @@ namespace FCDAL.Model
 
             modelBuilder.Entity<Publication>(entity =>
             {
+                entity.Property(e => e.Author).HasMaxLength(256);
+
                 entity.Property(e => e.DateChanged).HasColumnType("datetime");
 
                 entity.Property(e => e.DateCreated).HasColumnType("datetime");
@@ -173,8 +195,6 @@ namespace FCDAL.Model
                 entity.Property(e => e.URLKey)
                     .IsRequired()
                     .HasMaxLength(256);
-
-                entity.Property(e => e.Author).HasMaxLength(256);
 
                 entity.HasOne(d => d.imageGallery).WithMany(p => p.Publication).HasForeignKey(d => d.imageGalleryId);
 
@@ -212,6 +232,23 @@ namespace FCDAL.Model
             modelBuilder.Entity<SettingsVisibility>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<Stadium>(entity =>
+            {
+                entity.Property(e => e.Address).HasMaxLength(100);
+
+                entity.Property(e => e.Image).HasMaxLength(1000);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(64);
+
+                entity.Property(e => e.NameFull)
+                    .IsRequired()
+                    .HasMaxLength(256);
+
+                entity.HasOne(d => d.city).WithMany(p => p.Stadium).HasForeignKey(d => d.cityId);
             });
 
             modelBuilder.Entity<TableRecord>(entity =>
@@ -297,6 +334,8 @@ namespace FCDAL.Model
             });
         }
 
+        public virtual DbSet<City> City { get; set; }
+        public virtual DbSet<Country> Country { get; set; }
         public virtual DbSet<Game> Game { get; set; }
         public virtual DbSet<ImageGallery> ImageGallery { get; set; }
         public virtual DbSet<Person> Person { get; set; }
@@ -310,6 +349,7 @@ namespace FCDAL.Model
         public virtual DbSet<Round> Round { get; set; }
         public virtual DbSet<RoundFormat> RoundFormat { get; set; }
         public virtual DbSet<SettingsVisibility> SettingsVisibility { get; set; }
+        public virtual DbSet<Stadium> Stadium { get; set; }
         public virtual DbSet<TableRecord> TableRecord { get; set; }
         public virtual DbSet<Team> Team { get; set; }
         public virtual DbSet<Tourney> Tourney { get; set; }

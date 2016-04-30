@@ -2,16 +2,16 @@
 
 namespace FCWeb.Controllers.Api
 {
-    using System.Collections.Generic;
-    using Microsoft.AspNet.Mvc;
-    using FCCore.Abstractions.Bll;
-    using FCWeb.Core.Extensions;
-    using FCWeb.ViewModels;
-    using Microsoft.AspNet.Authorization;
     using System.Net;
-    using FCCore.Model;
     using Core;
+    using Core.Extensions;
+    using FCCore.Abstractions.Bll;
     using FCCore.Configuration;
+    using FCCore.Model;
+    using Microsoft.AspNet.Authorization;
+    using Microsoft.AspNet.Mvc;
+    using ViewModels;
+
     [Route("api/[controller]")]
     public class PersonsController : Controller
     {

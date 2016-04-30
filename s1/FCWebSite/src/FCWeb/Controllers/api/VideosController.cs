@@ -5,15 +5,14 @@ namespace FCWeb.Controllers.Api
     using System.Collections.Generic;
     using Microsoft.AspNet.Mvc;
     using FCCore.Abstractions.Bll;
-    using FCWeb.Core.Extensions;
-    using FCWeb.ViewModels;
+    using Core.Extensions;
+    using ViewModels;
     using System.Net;
     using System;
     using FCCore.Configuration;
     using Microsoft.AspNet.Authorization;
     using FCCore.Model;
     using System.Security.Claims;
-    using FCCore.Common;
 
     [Route("api/[controller]")]
     public class VideosController : Controller
@@ -32,21 +31,7 @@ namespace FCWeb.Controllers.Api
         {
             var videoModels = new List<VideoViewModel>();
 
-            //videoModels.Add(new VideoViewModel()
-            //{
-            //    id = -1,
-            //    title = "Не установлено"
-            //});
-
-            //videoModels.Add(new VideoViewModel()
-            //{
-            //    id = 0,
-            //    title = "Новое видео"
-            //});
-
-            //if (txt.Length < 3) { return videoModels; }
-
-            IEnumerable<VideoViewModel> searchedData = videoBll.SearchVideosByTitle(txt).ToViewModel();
+            IEnumerable<VideoViewModel> searchedData = videoBll.SearchByTitle(txt).ToViewModel();
 
             videoModels.AddRange(searchedData);
 
@@ -141,11 +126,5 @@ namespace FCWeb.Controllers.Api
 
             videoBll.SaveVideo(video);
         }
-
-        //// DELETE api/values/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

@@ -32,11 +32,6 @@
             root: ''
         }
 
-        $scope.testdata = [
-            { "theKey": "1", "theVal": "baaar" },
-            { "theKey": "2", "theVal": "baar ara" },
-            { "theKey": "3", "theVal": "baaaar" }]
-
         var currentYear = new Date().getFullYear();
 
         $scope.info = {
@@ -95,6 +90,15 @@
 
             $scope.person = person;
             $scope.person.birthDate = new Date(person.birthDate);
+            $scope.teamInitUrl = angular.isNumber($scope.person.teamId)
+                ? "/api/teams/" + $scope.person.teamId
+                : null;
+            $scope.personStatusInitUrl = angular.isNumber($scope.person.personStatusId)
+                ? "/api/personstatuses/" + $scope.person.personStatusId
+                : null;
+            $scope.personRoleInitUrl = angular.isNumber($scope.person.roleId)
+                ? "/api/personroles/" + $scope.person.roleId
+                : null;
 
             var imageUploadData = personsSrv.getImageUploadData(person);
             $scope.fileBrowser.path = imageUploadData.path;

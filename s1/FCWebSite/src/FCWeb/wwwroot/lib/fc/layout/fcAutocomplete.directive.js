@@ -12,16 +12,18 @@
         return {
             restrict: 'E',
             scope: {
-                urlsearch: '@',
-                urlinit: '@',
+                urlsearch: '@',                
                 key: '@',
                 val: '@',
                 min: '@',
+                removeselected: '@',
+                urlshowall: '@',
+                urlinit: '=',
                 inputdata: '=',
                 id: '=',
                 text: '=',
-                onselect: '&',
-                removeselected: '@'
+                addglobalescapeevent: '='
+                //onselect: '&'
             },
 
             link: function link(scope, element, attrs) {
@@ -34,26 +36,56 @@
                 scope.current = 0;
                 scope.selected = false;
 
-                scope.removeselected = angular.isString(scope.removeselected)
+                // watch initialId
+                scope.$watch(function (scope) {
+                    return scope.urlinit;
+                },
+                function (newValue, oldValue) {
+                    if (angular.isString(newValue) && oldValue != newValue && newValue.length > 0) {
+                        init(newValue);
+                    }
+                });
+
+                scope.onRootClick = function () {
+                    cancel();
+                }
+
+                if (angular.isFunction(scope.addglobalescapeevent)) {
+                    scope.addglobalescapeevent(scope.onRootClick);
+                }
+
+                var isRemoveSelected = angular.isString(scope.removeselected)
                     ? scope.removeselected.toLowerCase() === "true"
                     : false;
 
-                if (!angular.isArray(scope.inputdata)) {
+                scope.isuseshowall = angular.isString(scope.urlshowall) && scope.urlshowall.length > 0; 
+
+                if (!angular.isArray(scope.isuseshowall)) {
                     scope.inputdata = [];
                 }
 
-                //scope.inputdata = [{ "theKey": "The key 1", "theVal": "The val 1" }, { "theKey": "The key 2", "theVal": "The val 2" }]
+                scope.showAll = function () {
+
+                    if (!scope.isuseshowall) {
+                        return;
+                    }
+
+                    apiSrv.get(scope.urlshowall,
+                        null,
+                        function (response) {
+                            scope.suggestedData = response.data;
+                            scope.selItem = null;
+                            scope.aclass = 'form-group';
+                        },
+                        function (response) {
+                            console.log('Error autocomplete show all!');
+                        });
+                }
 
                 scope.search = function (event) {
 
                     if (event.keyCode == 27) {
-                        scope.suggestedData = [];
-
-                        if (!angular.isObject(scope.selItem)) {
-                            scope.text = '';
-                            scope.aclass = 'form-group';
-                        }
-
+                        cancel();
                         return;
                     }
 
@@ -64,32 +96,53 @@
                         return;
                     }
 
+                    scope.suggestedData = [];
 
-                        scope.suggestedData = [];
+                    if (angular.isString(scope.urlsearch)) {
+                        //var url = scope.urlsearch.endsWith('/') ? scope.urlsearch : scope.urlsearch + '/';
+                        var url = scope.urlsearch + '?txt=' + encodeURIComponent(scope.text)
 
-                        if (angular.isString(scope.urlsearch)) {
-                            //var url = scope.urlsearch.endsWith('/') ? scope.urlsearch : scope.urlsearch + '/';
-                            var url = scope.urlsearch + '?txt=' + encodeURIComponent(scope.text)
-
-                            apiSrv.get(url,
-                                null,
-                                function (response) {
-                                    scope.suggestedData = response.data;
-                                    scope.selItem = null;
-                                    scope.aclass = 'form-group';
-                                },
-                                function (response) {
-                                    alert('error');
-                                });
-                        } else {
-                            if (angular.isArray(scope.inputdata)) {
-                                angular.forEach(scope.inputdata, function (value, key) {
-                                    if (value[this.val].indexOf(this.text) !== -1) {
-                                        this.suggestedData.push(value);
-                                    }
-                                }, scope);
-                            }
+                        apiSrv.get(url,
+                            null,
+                            function (response) {
+                                scope.suggestedData = response.data;
+                                scope.selItem = null;
+                                scope.aclass = 'form-group';
+                            },
+                            function (response) {
+                                console.log('Error autocomplete search!');
+                            });
+                    } else {
+                        if (angular.isArray(scope.inputdata)) {
+                            angular.forEach(scope.inputdata, function (value, key) {
+                                if (value[this.val].indexOf(this.text) !== -1) {
+                                    this.suggestedData.push(value);
+                                }
+                            }, scope);
                         }
+                    }
+                }
+
+                var init = function (urlinit) {
+                    if (angular.isString(urlinit)) {
+                        apiSrv.get(urlinit,
+                            null,
+                            function (response) {
+                                scope.select(response.data);
+                            },
+                            function (response) {
+                                console.log('Error init autocomlete!');
+                            });
+                    }
+                }
+
+                var cancel = function () {
+                    scope.suggestedData = [];
+
+                    if (!angular.isObject(scope.selItem)) {
+                        scope.text = '';
+                        scope.aclass = 'form-group';
+                    }
                 }
 
                 scope.select = function (item) {
@@ -99,7 +152,7 @@
                     scope.selected = true;
                     scope.selItem = item;
 
-                    if (scope.removeselected) {
+                    if (isRemoveSelected) {
                         var index = scope.inputdata.indexOf(item);
                         if (index >= 0) {
                             scope.inputdata.splice(index, 1);
@@ -125,10 +178,16 @@
                 }
             },
 
-            template: '<div ng-class="aclass"> <input type="text" ng-model="text" ng-keyup="search($event);" ng-click="click();"' +
-                        'ng-keydown="selected=false;" style="width:100%;" class="form-control">' +
-                      '</input>' +
-                      '<span class="glyphicon glyphicon-ok form-control-feedback"></span>' +
+            template: '<div ng-class="aclass">' +
+                        '<div class="input-group" style="width:100%;">' +
+                            '<span class="input-group-addon" ng-show="isuseshowall">' +
+                                '<span style="cursor: pointer;" class="glyphicon glyphicon-menu-hamburger" title="Показать все" ng-click="showAll();"></span>' +
+                             '</span>' +
+                            '<input type="text" ng-model="text" ng-keyup="search($event);" ng-click="click();"' +
+                                'ng-keydown="selected=false;" style="width:100%;" class="form-control">' +
+                            '</input>' +
+                            '<span class="glyphicon glyphicon-ok form-control-feedback"></span>' +
+                        '</div>' +
                         '<div class="list-group table-condensed overlap" ng-hide="!suggestedData.length" style="width:100%">' +
                             '<a href="javascript:void();" class="list-group-item noTopBottomPad" ng-repeat="item in suggestedData|filter:model track by $index" ' +
                                'ng-click="select(item)" style="cursor:pointer" ' +
@@ -137,7 +196,8 @@
                                  ' {{item[val]}}<br />' +
                                  '<i>{{item[key]}} </i>' +
                             '</a> ' +
-                        '</div> </div>'
+                        '</div>' +
+                      '</div>'
         };
     }
 

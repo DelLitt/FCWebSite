@@ -7,7 +7,7 @@
     {
         Video GetVideo(int id);
         IEnumerable<Video> GetLatestVideos(int count, int offset, short visibility);
-        IEnumerable<Video> SearchVideosByTitle(string titlePart);
+        IEnumerable<Video> SearchByTitle(string text);
         int SaveVideo(Video entity);
     }
 }

@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
-
 namespace FCCore.Model
 {
+    using System;
+    using System.Collections.Generic;
+
     public partial class ImageGallery
     {
         public ImageGallery()

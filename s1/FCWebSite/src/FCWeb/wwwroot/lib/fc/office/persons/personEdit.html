@@ -1,7 +1,5 @@
 ﻿<form class="form office" role="form" novalidate angular-validator name="forms.editPerson" ng-submit="saveEdit(forms.editPerson);">
     <h2>Редактирование персоны #{{person.id}}</h2>
-    <fc-autocomplete key="id" val="title" removeselected="true" 
-                     urlsearch="/api/videos/search" />
     <div class="form-group">
         <label for="image" class="control-label">Изображение:</label>&nbsp;<button class="btn btn-default btn-xs pull-right" type="button" ng-click="openFileBrowser();">Изменить</button>
         <img class="image-edit .img-thumbnail" id="image" ng-src="{{image}}" />
@@ -46,6 +44,32 @@
     <div class="form-group">
         <label for="weight" class="control-label">Вес:</label>
         <input class="form-control" id="weight" name="weight" type="text" ng-model="person.weight">
+    </div>
+    <div class="form-group">
+        <label for="weight" class="control-label">Команда:</label>
+        <fc-autocomplete key="id" val="name" min="3" id="person.teamId"
+                         addglobalescapeevent="addRootClickListener"
+                         urlsearch="/api/teams/search"
+                         urlinit="teamInitUrl">
+        </fc-autocomplete>
+    </div>
+    <div class="form-group">
+        <label for="weight" class="control-label">Роль:</label>
+        <fc-autocomplete key="id" val="nameFull" min="3" id="person.roleId"
+                         addglobalescapeevent="addRootClickListener"
+                         urlsearch="/api/personroles/search"
+                         urlshowall="/api/personroles"
+                         urlinit="personRoleInitUrl">
+        </fc-autocomplete>
+    </div>
+    <div class="form-group">
+        <label for="weight" class="control-label">Статус:</label>
+        <fc-autocomplete key="id" val="nameFull" min="3" id="person.personStatusId"
+                         addglobalescapeevent="addRootClickListener"
+                         urlsearch="/api/personstatuses/search"
+                         urlshowall="/api/personstatuses"
+                         urlinit="personStatusInitUrl">
+        </fc-autocomplete>
     </div>
     <div class="form-group">
         <div class="panel panel-default">

@@ -1,9 +1,9 @@
 ﻿namespace FCDAL.Implemetations
 {
-    using FCCore.Abstractions.Dal;
     using System.Collections.Generic;
-    using FCCore.Model;
     using System.Linq;
+    using FCCore.Abstractions.Dal;
+    using FCCore.Model;
 
     public class VideoDal : DalBase, IVideoDal
     {
@@ -42,9 +42,9 @@
             return entity.Id;
         }
 
-        public IEnumerable<Video> SearchVideosByTitle(string titlePart)
+        public IEnumerable<Video> SearchByTitle(string text)
         {
-            return Context.Video.Where(v => v.Title.Contains(titlePart));
+            return Context.Video.Where(v => v.Title.Contains(text));
         }
     }
 }

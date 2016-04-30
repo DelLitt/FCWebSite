@@ -1,13 +1,13 @@
 ﻿namespace FCCore.Abstractions.Bll
 {
-    using FCCore.Model;
+    using Model;
     using System.Collections.Generic;
 
     public interface IVideoBll
     {
         Video GetVideo(int id);
         IEnumerable<Video> GetLatestVideos(int count, int offset);
-        IEnumerable<Video> SearchVideosByTitle(string titlePart);
+        IEnumerable<Video> SearchByTitle(string text);
         int SaveVideo(Video entity);
     }
 }

@@ -38,10 +38,11 @@
             return DALVideo.SaveVideo(entity);
         }
 
-        public IEnumerable<Video> SearchVideosByTitle(string titlePart)
+        public IEnumerable<Video> SearchByTitle(string text)
         {
-            if(string.IsNullOrWhiteSpace(titlePart)) { return new Video[0]; }
-            return DALVideo.SearchVideosByTitle(titlePart);
+            if(string.IsNullOrWhiteSpace(text)) { return new Video[0]; }
+
+            return DALVideo.SearchByTitle(text);
         }
     }
 }

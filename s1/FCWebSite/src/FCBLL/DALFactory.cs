@@ -1,14 +1,10 @@
-﻿using FCCore.Abstractions.Dal;
-using FCCore.Configuration;
-using FCCore.Exceptions;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FCBLL
+﻿namespace FCBLL
 {
+    using FCCore.Abstractions.Dal;
+    using FCCore.Configuration;
+    using FCCore.Exceptions;
+    using Microsoft.Extensions.DependencyInjection;
+
     public sealed class DALFactory
     {
         public static T Create<T>(IDalBase dalBase = null) where T : IDalBase
