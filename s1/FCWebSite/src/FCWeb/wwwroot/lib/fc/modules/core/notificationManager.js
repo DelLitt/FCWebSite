@@ -28,29 +28,29 @@
 
         function displaySuccess(message) {
             //toastr.success(message);
-            alert(message);
+            console.log(err);
         }
 
         function displayError(error) {
             if (Array.isArray(error)) {
                 error.forEach(function (err) {
                     //toastr.error(err);
-                    alert(err);
+                    console.log(err);
                 });
             } else {
                 //toastr.error(error);
-                alert(error);
+                console.log(err);
             }
         }
 
         function displayWarning(message) {
             //toastr.warning(message);
-            alert(message);
+            console.log(err);
         }
 
         function displayInfo(message) {
             //toastr.info(message);
-            alert(message);
+            console.log(err);
         }
     }
 })();

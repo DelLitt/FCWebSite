@@ -1,5 +1,6 @@
 ﻿namespace FCDAL.Implemetations
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using FCCore.Abstractions.Dal;
@@ -10,6 +11,11 @@
         public Tourney GetTourney(int tourneyId)
         {
             return Context.Tourney.FirstOrDefault(t => t.Id == tourneyId);
+        }
+
+        public Tourney GetTourneyByRoundId(int roundId)
+        {
+            return Context.Tourney.FirstOrDefault(t => t.Round.Any(r => r.Id == roundId));
         }
 
         public IEnumerable<Tourney> GetAll()

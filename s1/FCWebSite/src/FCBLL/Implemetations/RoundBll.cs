@@ -34,14 +34,19 @@
             }
         }
 
-        public IEnumerable<int> GetRoundIdsOfTourneys(IEnumerable<int> tourneyIds, int? sortByTeamId = default(int?))
-        {
-            return DalRound.GetRoundIdsOfTourneys(tourneyIds, sortByTeamId);
-        }
-
         public IEnumerable<Round> GetRounds(IEnumerable<int> ids)
         {
             return DalRound.GetRounds(ids);
+        }
+
+        public IEnumerable<Round> GetRoundsByTourney(int tourneyId)
+        {
+            return DalRound.GetRoundsByTourney(tourneyId);
+        }
+
+        public IEnumerable<int> GetRoundIdsOfTourneys(IEnumerable<int> tourneyIds, int? sortByTeamId = default(int?))
+        {
+            return DalRound.GetRoundIdsOfTourneys(tourneyIds, sortByTeamId);
         }
     }
 }

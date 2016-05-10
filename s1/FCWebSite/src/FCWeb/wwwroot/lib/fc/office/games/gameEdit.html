@@ -1,0 +1,30 @@
+﻿<form class="form office" role="form" novalidate angular-validator name="forms.editGame" ng-submit="saveEdit(forms.editGame);">
+    <h2>Редактирование игры #{{game.id}}</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">Информация о турнире</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="weight" class="control-label">Турнир:</label>
+                <fc-autocomplete key="id" val="nameFull" min="3" id="tourneyId"
+                                 addglobalescapeevent="addRootClickListener"
+                                 urlsearch="/api/tourneys/search"
+                                 urlinit="tourneyInitUrl"
+                                 urlshowall="/api/tourneys">
+                </fc-autocomplete>
+            </div>
+            <div class="form-group">
+                <label for="weight" class="control-label">Раунд:</label>
+                <fc-autocomplete key="id" val="nameFull" min="3" id="game.roundId"
+                                 addglobalescapeevent="addRootClickListener"
+                                 urlsearch="/api/tourneys/search"
+                                 urlinit="tourneyInitUrl"
+                                 urlshowall="/api/tourneys">
+                </fc-autocomplete>
+            </div>
+        </div>
+    </div>
+    <div>
+        <input type="submit" class="btn btn-primary" value="Сохранить" />
+        <a class="btn btn-default" ng-href="office">Отмена</a>
+    </div>
+</form>

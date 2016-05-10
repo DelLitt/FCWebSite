@@ -9,6 +9,51 @@
 
     function gamesSrv(helper, apiSrv, notificationManager) {
 
+        this.loadGame = function (id, success, failure) {
+            apiSrv.get('/api/games/' + id, null,
+                success,
+                function (response) {
+                    if (angular.isFunction(failure)) {
+                        failure(response);
+                    }
+
+                    gamesLoadFail(response);
+                });
+        }
+
+        function gamesLoadFail(response) {
+            notificationManager.displayError(response.data);
+        }
+
+        this.saveGame = function (id, game, success, failure) {
+            if (angular.isDefined(id) && parseInt(id) > 0) {
+                apiSrv.put('/api/games/', id, game,
+                                success,
+                                function (response) {
+                                    if (angular.isFunction(failure)) {
+                                        failure(response);
+                                    }
+
+                                    gameSaveFailed(response);
+                                });
+            } else {
+                apiSrv.post('/api/games/', game,
+                                success,
+                                function (response) {
+                                    if (angular.isFunction(failure)) {
+                                        failure(response);
+                                    }
+
+                                    gameSaveFailed(response);
+                                });
+
+            }
+        }
+
+        function gameSaveFailed(response) {
+            notificationManager.displayError(response.data);
+        }
+
         this.getRoundGames = function (tourneyId, roundId) {
 
             var rowsCount = helper.getRandom(0, 10);

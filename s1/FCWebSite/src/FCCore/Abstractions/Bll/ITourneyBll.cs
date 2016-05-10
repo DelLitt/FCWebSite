@@ -6,6 +6,7 @@
     public interface ITourneyBll
     {
         Tourney GetTourney(int tourneyId);
+        Tourney GetTourneyByRoundId(int roundId);
         IEnumerable<Tourney> GetAll();
         IEnumerable<Tourney> SearchByNameFull(string text);
     }

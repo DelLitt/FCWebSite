@@ -29,6 +29,10 @@
                 templateUrl: "lib/fc/office/teams/teamEdit.html",
                 controller: "teamEditCtrl"
             })
+            .when("/office/game/edit/:id", {
+                templateUrl: "lib/fc/office/games/gameEdit.html",
+                controller: "gameEditCtrl"
+            })
             .when("/office/filebrowser/", {
                 templateUrl: "lib/fc/office/utils/fileBrowser.html",
                 controller: "fileBrowserCtrl"

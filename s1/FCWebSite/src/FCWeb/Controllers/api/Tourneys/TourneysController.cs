@@ -1,4 +1,4 @@
-﻿namespace FCWeb.Controllers.Api
+﻿namespace FCWeb.Controllers.Api.Tourneys
 {
     using System.Collections.Generic;
     using Core.Extensions;

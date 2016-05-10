@@ -6,11 +6,15 @@
     using Exceptions;
     using FCCore.Abstractions.Dal;
     using FCCore.Model;
-    using Microsoft.Data.Entity.Storage;
 
     public class RoundDal : DalBase, IRoundDal
     {
         public bool FillTourneys { get; set; } = false;
+
+        public Round GetRound(int id)
+        {
+            return Context.Round.FirstOrDefault(p => p.Id == id);
+        }
 
         public IEnumerable<Round> GetRounds(IEnumerable<int> ids)
         {
@@ -21,6 +25,12 @@
             FillRelations(rounds);
 
             return rounds;
+        }
+
+
+        public IEnumerable<Round> GetRoundsByTourney(int tourneyId)
+        {
+            return Context.Round.Where(r => r.tourneyId == tourneyId);
         }
 
         public IEnumerable<int> GetRoundIdsOfTourneys(IEnumerable<int> tourneyIds, int? sortByTeamId = null)

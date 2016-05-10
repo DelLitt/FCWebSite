@@ -1,5 +1,6 @@
 ﻿namespace FCBLL.Implemetations
 {
+    using System;
     using System.Collections.Generic;
     using FCCore.Abstractions.Bll;
     using FCCore.Abstractions.Dal;
@@ -24,6 +25,11 @@
         public Tourney GetTourney(int tourneyId)
         {
             return DalTourney.GetTourney(tourneyId);
+        }
+
+        public Tourney GetTourneyByRoundId(int roundId)
+        {
+            return DalTourney.GetTourneyByRoundId(roundId);
         }
 
         public IEnumerable<Tourney> GetAll()
