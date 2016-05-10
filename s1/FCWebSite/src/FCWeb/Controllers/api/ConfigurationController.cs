@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using FCWeb.ViewModels;
-using FCCore.Configuration;
-using FCWeb.Core.Extensions;
-
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace FCWeb.Controllers.Api
+﻿namespace FCWeb.Controllers.Api
 {
+    using Core.Extensions;
+    using FCCore.Configuration;
+    using Microsoft.AspNet.Mvc;
+    using ViewModels;
+
     [Route("api/[controller]")]
     public class ConfigurationController : Controller
     {
@@ -22,6 +16,7 @@ namespace FCWeb.Controllers.Api
 
             appConfig.images = new ImagesConfigurationViewModel();
             appConfig.images.persons = MainCfg.Images.Persons;
+            appConfig.images.teams = MainCfg.Images.Teams;
             appConfig.settingsVisibility = MainCfg.SettingsVisibility.ToViewModel();
 
             return appConfig;
@@ -35,6 +30,7 @@ namespace FCWeb.Controllers.Api
 
             appConfig.images = new ImagesConfigurationOfficeViewModel();
             appConfig.images.persons = MainCfg.Images.Persons;
+            appConfig.images.teams = MainCfg.Images.Teams;
             appConfig.images.store = MainCfg.Images.Store;
             appConfig.settingsVisibility = MainCfg.SettingsVisibility.ToViewModel();
 

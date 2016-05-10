@@ -1,10 +1,7 @@
 ﻿namespace FCBLL.Implemetations
 {
     using FCCore.Abstractions.Bll;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using FCCore.Model;
     using FCCore.Abstractions.Dal;
 

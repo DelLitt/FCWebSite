@@ -49,8 +49,12 @@
             notificationManager.displayError(response);
         }
 
-        this.getPersonImageUploadPath = function (person) {
+        this.getPersonImageUploadPath = function () {
             return getImagesValue('persons');
+        }
+
+        this.getTeamImageUploadPath = function () {
+            return getImagesValue('teams');
         }
 
         this.getImageStorePath = function () {

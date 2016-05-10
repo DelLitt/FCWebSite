@@ -1,13 +1,13 @@
 ﻿namespace FCWeb.Core
 {
-    using FCCore.Common;
-    using FCCore.Configuration;
-    using FCWeb.ViewModels;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Security;
+    using FCCore.Common;
+    using FCCore.Configuration;
+    using ViewModels;
 
     public static class StorageHelper
     {

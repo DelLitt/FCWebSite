@@ -104,7 +104,7 @@
     <div class="form-group">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Карьера&nbsp;<a href="javascript:void(0);" ng-click="info.career.addItem()"><span class="glyphicon glyphicon-plus"></span></a>
+                Карьера (отображаемая)&nbsp;<a href="javascript:void(0);" ng-click="info.career.addItem()"><span class="glyphicon glyphicon-plus"></span></a>
             </div>
             <div class="panel-body">
                 <ul class="list-group">
@@ -158,6 +158,56 @@
                         </div>
                     </li>
                 </ul>
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Карьера (расчетная)</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <input class="form-control" type="date" placeholder="Дата начала" ng-model="carItem.dateStart">
+                    </div>
+                    <div class="col-xs-3">
+                        <input class="form-control" type="date" placeholder="Дата окночания" ng-model="carItem.dateFinish">
+                    </div>
+                    <div class="col-xs-5">
+                        <fc-autocomplete key="id" val="name" min="3" id="carItem.teamId" text="carItem.teamName"
+                                         addglobalescapeevent="addRootClickListener"
+                                         urlsearch="/api/teams/search"
+                                         urlinit="carItem.urlinit">
+                        </fc-autocomplete>
+                    </div>
+                    <div class="col-xs-1">
+                        <a href="javascript:void(0);" ng-click="careerTools.addItem(carItem)"><span class="glyphicon glyphicon-plus"></span></a>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Дата начала</th>
+                            <th>Дата окночания</th>
+                            <th>Команда</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="car in person.career">
+                            <td>{{car.dateStart.getDate() + '/' + (car.dateStart.getMonth() + 1) + '/' + car.dateStart.getFullYear()}}</td>
+                            <td>{{car.dateFinish.getDate() + '/' + (car.dateFinish.getMonth() + 1) + '/' + car.dateFinish.getFullYear()}}</td>
+                            <td>{{car.teamName}}</td>
+                            <td>
+                                <a class="badge pull-right" href="javascript:void(0);" ng-click="careerTools.removeItem($index)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="panel-footer">
             </div>

@@ -12,6 +12,7 @@ namespace FCCore.Model
             Person = new HashSet<Person>();
             PersonCareer = new HashSet<PersonCareer>();
             PersonStatistics = new HashSet<PersonStatistics>();
+            ProtocolRecord = new HashSet<ProtocolRecord>();
         }
 
         public int Id { get; set; }
@@ -26,7 +27,7 @@ namespace FCCore.Model
         public string NameFull { get; set; }
         public string NamePre { get; set; }
         public short? stadiumId { get; set; }
-        public byte teamTypeId { get; set; }
+        public short teamTypeId { get; set; }
         public string WebSite { get; set; }
 
         public virtual ICollection<Game> Game { get; set; }
@@ -34,6 +35,8 @@ namespace FCCore.Model
         public virtual ICollection<Person> Person { get; set; }
         public virtual ICollection<PersonCareer> PersonCareer { get; set; }
         public virtual ICollection<PersonStatistics> PersonStatistics { get; set; }
+        public virtual ICollection<ProtocolRecord> ProtocolRecord { get; set; }
         public virtual TableRecord TableRecord { get; set; }
+        public virtual TeamType teamType { get; set; }
     }
 }

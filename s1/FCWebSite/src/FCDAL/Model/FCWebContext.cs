@@ -21,7 +21,9 @@ namespace FCDAL.Model
                     .IsRequired()
                     .HasMaxLength(64);
 
-                entity.Property(e => e.NameFull).HasMaxLength(256);
+                entity.Property(e => e.NameFull)
+                    .IsRequired()
+                    .HasMaxLength(256);
 
                 entity.HasOne(d => d.country).WithMany(p => p.City).HasForeignKey(d => d.countryId).OnDelete(DeleteBehavior.Restrict);
             });
@@ -32,7 +34,33 @@ namespace FCDAL.Model
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.NameFull).HasMaxLength(100);
+                entity.Property(e => e.NameFull)
+                    .IsRequired()
+                    .HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<Event>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(64);
+
+                entity.Property(e => e.NameFull)
+                    .IsRequired()
+                    .HasMaxLength(256);
+
+                entity.HasOne(d => d.eventGroup).WithMany(p => p.Event).HasForeignKey(d => d.eventGroupId).OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<EventGroup>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(64);
+
+                entity.Property(e => e.NameFull)
+                    .IsRequired()
+                    .HasMaxLength(256);
             });
 
             modelBuilder.Entity<Game>(entity =>
@@ -47,7 +75,24 @@ namespace FCDAL.Model
 
                 entity.HasOne(d => d.home).WithMany(p => p.GameNavigation).HasForeignKey(d => d.homeId).OnDelete(DeleteBehavior.Restrict);
 
+                entity.HasOne(d => d.imageGallery).WithMany(p => p.Game).HasForeignKey(d => d.imageGalleryId);
+
                 entity.HasOne(d => d.round).WithMany(p => p.Game).HasForeignKey(d => d.roundId).OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(d => d.stadium).WithMany(p => p.Game).HasForeignKey(d => d.stadiumId);
+
+                entity.HasOne(d => d.video).WithMany(p => p.Game).HasForeignKey(d => d.videoId);
+            });
+
+            modelBuilder.Entity<GameFormat>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(64);
+
+                entity.Property(e => e.NameFull)
+                    .IsRequired()
+                    .HasMaxLength(256);
             });
 
             modelBuilder.Entity<ImageGallery>(entity =>
@@ -96,6 +141,8 @@ namespace FCDAL.Model
                 entity.Property(e => e.NameNick).HasMaxLength(64);
 
                 entity.HasOne(d => d.PersonNavigation).WithOne(p => p.InversePersonNavigation).HasForeignKey<Person>(d => d.Id).OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(d => d.city).WithMany(p => p.Person).HasForeignKey(d => d.cityId);
 
                 entity.HasOne(d => d.personStatus).WithMany(p => p.Person).HasForeignKey(d => d.personStatusId);
 
@@ -168,6 +215,17 @@ namespace FCDAL.Model
                 entity.Property(e => e.NameFull)
                     .IsRequired()
                     .HasMaxLength(256);
+            });
+
+            modelBuilder.Entity<ProtocolRecord>(entity =>
+            {
+                entity.HasOne(d => d._event).WithMany(p => p.ProtocolRecord).HasForeignKey(d => d.eventId).OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(d => d.game).WithMany(p => p.ProtocolRecord).HasForeignKey(d => d.gameId).OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(d => d.person).WithMany(p => p.ProtocolRecord).HasForeignKey(d => d.personId);
+
+                entity.HasOne(d => d.team).WithMany(p => p.ProtocolRecord).HasForeignKey(d => d.teamId).OnDelete(DeleteBehavior.Restrict);
             });
 
             modelBuilder.Entity<Publication>(entity =>
@@ -281,6 +339,19 @@ namespace FCDAL.Model
                     .HasMaxLength(16);
 
                 entity.Property(e => e.WebSite).HasMaxLength(128);
+
+                entity.HasOne(d => d.teamType).WithMany(p => p.Team).HasForeignKey(d => d.teamTypeId).OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<TeamType>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(64);
+
+                entity.Property(e => e.NameFull)
+                    .IsRequired()
+                    .HasMaxLength(256);
             });
 
             modelBuilder.Entity<Tourney>(entity =>
@@ -296,6 +367,21 @@ namespace FCDAL.Model
                 entity.Property(e => e.NameFull)
                     .IsRequired()
                     .HasMaxLength(1024);
+
+                entity.HasOne(d => d.city).WithMany(p => p.Tourney).HasForeignKey(d => d.cityId);
+
+                entity.HasOne(d => d.tourneyType).WithMany(p => p.Tourney).HasForeignKey(d => d.tourneyTypeId);
+            });
+
+            modelBuilder.Entity<TourneyType>(entity =>
+            {
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(64);
+
+                entity.Property(e => e.NameFull)
+                    .IsRequired()
+                    .HasMaxLength(256);
             });
 
             modelBuilder.Entity<Video>(entity =>
@@ -336,8 +422,12 @@ namespace FCDAL.Model
 
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Country> Country { get; set; }
+        public virtual DbSet<Event> Event { get; set; }
+        public virtual DbSet<EventGroup> EventGroup { get; set; }
         public virtual DbSet<Game> Game { get; set; }
+        public virtual DbSet<GameFormat> GameFormat { get; set; }
         public virtual DbSet<ImageGallery> ImageGallery { get; set; }
+        public virtual DbSet<Period> Period { get; set; }
         public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<PersonCareer> PersonCareer { get; set; }
         public virtual DbSet<PersonCareerTourney> PersonCareerTourney { get; set; }
@@ -345,6 +435,7 @@ namespace FCDAL.Model
         public virtual DbSet<PersonRoleGroup> PersonRoleGroup { get; set; }
         public virtual DbSet<PersonStatistics> PersonStatistics { get; set; }
         public virtual DbSet<PersonStatus> PersonStatus { get; set; }
+        public virtual DbSet<ProtocolRecord> ProtocolRecord { get; set; }
         public virtual DbSet<Publication> Publication { get; set; }
         public virtual DbSet<Round> Round { get; set; }
         public virtual DbSet<RoundFormat> RoundFormat { get; set; }
@@ -352,7 +443,9 @@ namespace FCDAL.Model
         public virtual DbSet<Stadium> Stadium { get; set; }
         public virtual DbSet<TableRecord> TableRecord { get; set; }
         public virtual DbSet<Team> Team { get; set; }
+        public virtual DbSet<TeamType> TeamType { get; set; }
         public virtual DbSet<Tourney> Tourney { get; set; }
+        public virtual DbSet<TourneyType> TourneyType { get; set; }
         public virtual DbSet<Video> Video { get; set; }
     }
 }

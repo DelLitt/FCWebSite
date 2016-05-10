@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 
 namespace FCCore.Model
 {
     public partial class Publication
     {
         public int Id { get; set; }
-        public int? articleId { get; set; }
+        public string Author { get; set; }
         public string ContentHTML { get; set; }
         public DateTime DateChanged { get; set; }
         public DateTime DateCreated { get; set; }
@@ -14,6 +15,7 @@ namespace FCCore.Model
         public string Header { get; set; }
         public string Image { get; set; }
         public int? imageGalleryId { get; set; }
+        public string Lead { get; set; }
         public byte Priority { get; set; }
         public bool ShowImageInContet { get; set; }
         public string Title { get; set; }
@@ -22,8 +24,6 @@ namespace FCCore.Model
         public Guid userCreated { get; set; }
         public int? videoId { get; set; }
         public int Visibility { get; set; }
-        public string Lead { get; set; }
-        public string Author { get; set; }
 
         public virtual ImageGallery imageGallery { get; set; }
         public virtual Video video { get; set; }

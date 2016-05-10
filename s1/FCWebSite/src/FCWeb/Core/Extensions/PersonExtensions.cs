@@ -1,22 +1,29 @@
 ﻿namespace FCWeb.Core.Extensions
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using FCCore.Model;
-    using ViewModels;
     using Newtonsoft.Json;
+    using ViewModels;
 
     public static class PersonExtensions
     {
         public static PersonViewModel ToViewModel(this Person person)
         {
+            return PersonToViewModel(person, null);
+        }
+
+        public static PersonViewModel ToViewModel(this Person person, IEnumerable<PersonCareerViewModel> personCareers)
+        {
+            return PersonToViewModel(person, personCareers);
+        }
+
+        private static PersonViewModel PersonToViewModel(Person person, IEnumerable<PersonCareerViewModel> personCareers)
+        {
             if (person == null) { return null; }
 
-            Guid? tempGuid = null;
-
-            if (person.Id == 0)
-            {
-                tempGuid = Guid.NewGuid();
-            }
+            Guid? tempGuid = person.Id == 0 ? Guid.NewGuid() : (Guid?)null;
 
             var infoView = !string.IsNullOrWhiteSpace(person.Info)
                 ? JsonConvert.DeserializeObject<PersonInfoView>(person.Info)
@@ -27,6 +34,7 @@
                 id = person.Id,
                 active = person.Active,
                 birthDate = person.BirthDate,
+                career = personCareers ?? new PersonCareerViewModel[0],
                 cityId = person.cityId,
                 customIntValue = person.CustomIntValue,
                 height = person.Height,

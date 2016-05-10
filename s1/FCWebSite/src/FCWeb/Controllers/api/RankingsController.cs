@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using FCCore.Abstractions.Bll;
-using FCWeb.ViewModels;
-using FCWeb.Core.Extensions;
-using FCCore.Model;
-
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace FCWeb.Controllers.Api
+﻿namespace FCWeb.Controllers.Api
 {
+    using Core.Extensions;
+    using FCCore.Abstractions.Bll;
+    using FCCore.Model;
+    using Microsoft.AspNet.Mvc;
+    using ViewModels;
+
     [Route("api/[controller]")]
     public class RankingsController : Controller
     {

@@ -26,6 +26,11 @@
             return DALCity.GetCity(id);
         }
 
+        public IEnumerable<City> GetCities(IEnumerable<int> ids)
+        {
+            return DALCity.GetCities(ids);
+        }
+
         public IEnumerable<City> GetAll()
         {
             return DALCity.GetAll();

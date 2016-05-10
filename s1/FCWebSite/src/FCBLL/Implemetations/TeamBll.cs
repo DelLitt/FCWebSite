@@ -32,5 +32,10 @@
 
             return DALTeam.SearchByName(text);
         }
+
+        public int SaveTeam(Team entity)
+        {
+            return DALTeam.SaveTeam(entity);
+        }
     }
 }

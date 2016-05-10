@@ -12,6 +12,13 @@
             return Context.City.FirstOrDefault(p => p.Id == id);
         }
 
+        public IEnumerable<City> GetCities(IEnumerable<int> ids)
+        {
+            if (ids == null) { return new City[0]; }
+
+            return Context.City.Where(r => ids.Contains(r.Id));
+        }
+
         public IEnumerable<City> GetAll()
         {
             return Context.City;

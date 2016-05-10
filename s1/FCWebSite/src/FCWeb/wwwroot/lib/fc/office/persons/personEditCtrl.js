@@ -30,9 +30,10 @@
         $scope.fileBrowser = {
             path: '',
             root: ''
-        }
+        };
 
-        var currentYear = new Date().getFullYear();
+        var curDate = new Date();
+        var currentYear = curDate.getFullYear();
 
         $scope.info = {
             career: {
@@ -57,8 +58,28 @@
                         team: '',
                         achievement: ''
                     });
+                }
             }
+        };
+
+        $scope.carItem = {
+                dateStart: curDate,
+                dateFinish: curDate,
+                personId: angular.isNumber($scope.person.id) && $scope.person.id > 0 ? $scope.person.id : $routeParams.id,
+                // TODO: Hardcoded teams slutsk
+                urlinit: "/api/teams/3"
         }
+
+        $scope.careerTools = {
+            removeItem: function (index) {
+                $scope.person.career.splice(index, 1);
+            },
+            addItem: function (item) {
+                $scope.person.career.push(angular.copy(item));
+            },
+            teamInitUrl: function (id) {
+                return angular.isNumber(id) ? "/api/teams/" + id : null;
+            }
         }
 
         function openFileBrowser() {
@@ -90,6 +111,19 @@
 
             $scope.person = person;
             $scope.person.birthDate = new Date(person.birthDate);
+
+            angular.forEach($scope.person.career, function (value) {
+                if(angular.isString(value.dateStart)) {
+                    value.dateStart = new Date(value.dateStart);
+                }
+                
+                if (angular.isString(value.dateFinish)) {
+                    value.dateFinish = new Date(value.dateFinish);
+                }
+
+                value.urlinit = angular.isNumber(value.teamId) ? "/api/teams/" + value.teamId : null;
+            });
+
             $scope.cityInitUrl = angular.isNumber($scope.person.cityId)
                 ? "/api/cities/" + $scope.person.cityId
                 : null;
@@ -104,9 +138,7 @@
                 : null;
             $scope.customIntValueInitUrl = angular.isNumber($scope.person.customIntValue)
                 ? "/api/teams/" + $scope.person.customIntValue
-                : null;
-
-            
+                : null;            
 
             var imageUploadData = personsSrv.getImageUploadData(person);
             $scope.fileBrowser.path = imageUploadData.path;
@@ -114,6 +146,28 @@
             $scope.fileBrowser.root = imageUploadData.path;
 
             setPersonImage(person.image);
+        }
+
+        $scope.hadledCareerItems = [];
+
+        function handleCareerTourneys() {
+            if (!angular.isArray($scope.person.career)) { return; }
+
+            angular.forEach($scope.person.career, function (value) {
+                var index = this.hadledCareerItems.indexOf(value);
+                if (index == -1) {
+                    hadledCareerItems.push(value);
+                }
+
+                angular.forEach(hadledCareerItems, function(val) {
+                    var i = this.person.career.indexOf(val);
+                    if (i == -1) {
+                        var j = this.hadledCareerItems.indexOf(val);
+                        this.hadledCareerItems.splice(j, 1);
+                    }
+                }, this)
+
+            }, $scope);
         }
 
         function setPersonImage(image) {

@@ -20,11 +20,13 @@ namespace FCWeb.ViewModels
     public class ImagesConfigurationViewModel
     {
         public string persons { get; set; }
+        public string teams { get; set; }
     }
 
     public class ImagesConfigurationOfficeViewModel
     {
         public string persons { get; set; }
+        public string teams { get; set; }
         public string store { get; set; }
     }
 

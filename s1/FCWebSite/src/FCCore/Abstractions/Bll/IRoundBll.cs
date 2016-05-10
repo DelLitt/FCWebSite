@@ -1,11 +1,8 @@
-﻿using FCCore.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FCCore.Abstractions.Bll
+﻿namespace FCCore.Abstractions.Bll
 {
+    using System.Collections.Generic;
+    using Model;
+
     public interface IRoundBll
     {
         bool FillTourneys { get; set; }

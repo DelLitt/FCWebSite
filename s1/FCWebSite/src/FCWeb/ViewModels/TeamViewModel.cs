@@ -1,5 +1,7 @@
 ﻿namespace FCWeb.ViewModels
 {
+    using System;
+
     public class TeamViewModel
     {
         public int id { get; set; }
@@ -14,7 +16,8 @@
         public string nameFull { get; set; }
         public string namePre { get; set; }
         public short? stadiumId { get; set; }
-        public byte teamTypeId { get; set; }
+        public short teamTypeId { get; set; }
         public string webSite { get; set; }
+        public Guid? tempGuid { get; set; }
     }
 }

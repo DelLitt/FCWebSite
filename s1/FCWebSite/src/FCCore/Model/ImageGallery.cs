@@ -1,12 +1,13 @@
+using System;
+using System.Collections.Generic;
+
 namespace FCCore.Model
 {
-    using System;
-    using System.Collections.Generic;
-
     public partial class ImageGallery
     {
         public ImageGallery()
         {
+            Game = new HashSet<Game>();
             Publication = new HashSet<Publication>();
         }
 
@@ -25,6 +26,7 @@ namespace FCCore.Model
         public Guid userCreated { get; set; }
         public bool Visible { get; set; }
 
+        public virtual ICollection<Game> Game { get; set; }
         public virtual ICollection<Publication> Publication { get; set; }
     }
 }

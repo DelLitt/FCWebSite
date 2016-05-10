@@ -7,6 +7,7 @@
     using FCCore.Model;
     using FCCore.Abstractions.Dal;
     using FCCore.Common;
+
     public class GamesBll : IGamesBll
     {
         public bool FillTeams
@@ -89,6 +90,16 @@
         public IEnumerable<Game> GetRoundGames(int roundId)
         {
             return DalGames.GetRoundGames(roundId);
+        }
+
+        public Game GetGame(int id)
+        {
+            return DalGames.GetGame(id);
+        }
+
+        public int SaveGame(Game entity)
+        {
+            return DalGames.SaveGame(entity);
         }
     }
 }

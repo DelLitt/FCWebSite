@@ -7,6 +7,7 @@ namespace FCCore.Model
     {
         public Video()
         {
+            Game = new HashSet<Game>();
             Publication = new HashSet<Publication>();
         }
 
@@ -27,6 +28,7 @@ namespace FCCore.Model
         public Guid userCreated { get; set; }
         public int Visibility { get; set; }
 
+        public virtual ICollection<Game> Game { get; set; }
         public virtual ICollection<Publication> Publication { get; set; }
         public virtual Video VideoNavigation { get; set; }
         public virtual Video InverseVideoNavigation { get; set; }

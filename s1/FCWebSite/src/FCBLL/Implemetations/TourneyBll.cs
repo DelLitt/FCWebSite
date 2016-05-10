@@ -1,8 +1,9 @@
 ﻿namespace FCBLL.Implemetations
 {
+    using System.Collections.Generic;
     using FCCore.Abstractions.Bll;
-    using FCCore.Model;
     using FCCore.Abstractions.Dal;
+    using FCCore.Model;
 
     public sealed class TourneyBll : ITourneyBll
     {
@@ -23,6 +24,18 @@
         public Tourney GetTourney(int tourneyId)
         {
             return DalTourney.GetTourney(tourneyId);
+        }
+
+        public IEnumerable<Tourney> GetAll()
+        {
+            return DalTourney.GetAll();
+        }
+
+        public IEnumerable<Tourney> SearchByNameFull(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text)) { return new Tourney[0]; }
+
+            return DalTourney.SearchByNameFull(text);
         }
     }
 }

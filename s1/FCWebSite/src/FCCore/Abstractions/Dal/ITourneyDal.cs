@@ -1,15 +1,13 @@
-﻿using FCCore.Common;
-using FCCore.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FCCore.Abstractions.Dal
+﻿namespace FCCore.Abstractions.Dal
 {
+    using Model;
+    using System.Collections.Generic;
+
     public interface ITourneyDal : IDalBase
     {
         Tourney GetTourney(int tourneyId);
+        IEnumerable<Tourney> GetAll();
         IEnumerable<Tourney> GetTourneys(IEnumerable<int> ids);
+        IEnumerable<Tourney> SearchByNameFull(string text);
     }
 }

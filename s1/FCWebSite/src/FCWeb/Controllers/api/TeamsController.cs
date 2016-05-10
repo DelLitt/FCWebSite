@@ -1,11 +1,13 @@
-﻿// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace FCWeb.Controllers.Api
+﻿namespace FCWeb.Controllers.Api
 {
     using System.Collections.Generic;
-    using Microsoft.AspNet.Mvc;
-    using FCCore.Abstractions.Bll;
+    using System.Net;
+    using Core;
     using Core.Extensions;
+    using FCCore.Abstractions.Bll;
+    using FCCore.Configuration;
+    using Microsoft.AspNet.Authorization;
+    using Microsoft.AspNet.Mvc;
     using ViewModels;
 
     [Route("api/[controller]")]
@@ -41,6 +43,52 @@ namespace FCWeb.Controllers.Api
             }
 
             return teamBll.GetTeam(id).ToViewModel();
+        }
+
+        // POST api/values
+        [HttpPost]
+        [Authorize(Roles = "admin,press")]
+        public void Post([FromBody]TeamViewModel teamView)
+        {
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return;
+            }
+
+            int teamId = teamBll.SaveTeam(teamView.ToBaseModel());
+
+            // move images from temp folder
+            if (teamId > 0
+                && !string.IsNullOrWhiteSpace(teamView.image)
+                && teamView.tempGuid.HasValue)
+            {
+                string tempGuid = teamView.tempGuid.ToString();
+                string storagePath = MainCfg.Images.Teams.Replace("{id}", teamId.ToString());
+                string tempPath = MainCfg.Images.Teams.Replace("{id}", tempGuid);
+
+                StorageHelper.MoveFromTempToStorage(storagePath, tempPath, tempGuid);
+            }
+        }
+
+        // PUT api/values/5
+        [HttpPut("{id}")]
+        [Authorize(Roles = "admin,press")]
+        public void Put(int id, [FromBody]TeamViewModel teamView)
+        {
+            if (id != teamView.id)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return;
+            }
+
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return;
+            }
+
+            teamBll.SaveTeam(teamView.ToBaseModel());
         }
     }
 }

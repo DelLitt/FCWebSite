@@ -20,7 +20,9 @@
             serviceCollection.AddTransient<IVideoBll, VideoBll>();
             serviceCollection.AddTransient<IPersonStatusBll, PersonStatusBll>();
             serviceCollection.AddTransient<IPersonRoleBll, PersonRoleBll>();
+            serviceCollection.AddTransient<IPersonCareerBll, PersonCareerBll>();
             serviceCollection.AddTransient<ICityBll, CityBll>();
+            serviceCollection.AddTransient<IStadiumBll, StadiumBll>();
         }
 
         public static void AddDALServices(this IServiceCollection serviceCollection)
@@ -36,7 +38,9 @@
             serviceCollection.AddTransient<IVideoDal, VideoDal>();
             serviceCollection.AddTransient<IPersonStatusDal, PersonStatusDal>();
             serviceCollection.AddTransient<IPersonRoleDal, PersonRoleDal>();
+            serviceCollection.AddTransient<IPersonCareerDal , PersonCareerDal>();
             serviceCollection.AddTransient<ICityDal, CityDal>();
+            serviceCollection.AddTransient<IStadiumDal, StadiumDal>();
         }
     }
 }

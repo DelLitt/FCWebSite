@@ -14,7 +14,7 @@ namespace FCCore.Model
         }
 
         public short Id { get; set; }
-        public short? cityId { get; set; }
+        public int? cityId { get; set; }
         public DateTime? DateEnd { get; set; }
         public DateTime? DateStart { get; set; }
         public string Description { get; set; }
@@ -26,5 +26,7 @@ namespace FCCore.Model
         public virtual ICollection<PersonStatistics> PersonStatistics { get; set; }
         public virtual ICollection<Round> Round { get; set; }
         public virtual ICollection<TableRecord> TableRecord { get; set; }
+        public virtual City city { get; set; }
+        public virtual TourneyType tourneyType { get; set; }
     }
 }

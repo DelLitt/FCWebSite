@@ -1,7 +1,8 @@
+using System;
+using System.Collections.Generic;
+
 namespace FCCore.Model
 {
-    using System.Collections.Generic;
-
     public partial class Country
     {
         public Country()

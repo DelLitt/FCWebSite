@@ -17,13 +17,17 @@
                 templateUrl: "lib/fc/office/publication/publicationEdit.html",
                 controller: "publicationEditCtrl"
             })
+            .when("/office/video/edit/:id", {
+                templateUrl: "lib/fc/office/videos/videoEdit.html",
+                controller: "videoEditCtrl"
+            })
             .when("/office/person/edit/:id", {
                 templateUrl: "lib/fc/office/persons/personEdit.html",
                 controller: "personEditCtrl"
             })
-            .when("/office/video/edit/:id", {
-                templateUrl: "lib/fc/office/videos/videoEdit.html",
-                controller: "videoEditCtrl"
+            .when("/office/team/edit/:id", {
+                templateUrl: "lib/fc/office/teams/teamEdit.html",
+                controller: "teamEditCtrl"
             })
             .when("/office/filebrowser/", {
                 templateUrl: "lib/fc/office/utils/fileBrowser.html",

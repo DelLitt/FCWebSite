@@ -7,5 +7,6 @@
     {
         Team GetTeam(int id);
         IEnumerable<Team> SearchByName(string text);
+        int SaveTeam(Team entity);
     }
 }

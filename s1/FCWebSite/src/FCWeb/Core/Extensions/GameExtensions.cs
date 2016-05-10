@@ -8,6 +8,41 @@
 
     public static class GameExtensions
     {
+        public static GameViewModel ToViewModel(this Game game)
+        {
+            if (game == null) { return null; }
+
+            return new GameViewModel()
+            {
+                audience = game.Audience,
+                awayAddScore = game.AwayAddScore,
+                awayId = game.awayId,
+                awayPenalties = game.AwayPenalties,
+                awayScore = game.awayScore,
+                gameDate = game.GameDate,
+                homeAddScore = game.HomeAddScore,
+                homeId = game.homeId,
+                homePenalties = game.HomePenalties,
+                homeScore = game.homeScore,
+                id = game.Id,
+                imageGalleryId = game.imageGalleryId,
+                note = game.Note,
+                played = game.Played,
+                referees = game.Referees,
+                roundId = game.roundId,
+                showTime = game.ShowTime,
+                stadiumId = game.stadiumId,
+                videoId = game.videoId
+            };
+        }
+
+        public static IEnumerable<GameViewModel> ToViewModel(this IEnumerable<Game> games)
+        {
+            if (Guard.IsEmptyIEnumerable(games)) { return new GameViewModel[0]; }
+
+            return games.Select(v => v.ToViewModel()).ToList();
+        }
+
         public static IEnumerable<RoundViewModel> ToRoundViewModel(this IEnumerable<Game> games)
         {
             if (Guard.IsEmptyIEnumerable(games)) { return new RoundViewModel[0]; }

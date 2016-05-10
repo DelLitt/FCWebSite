@@ -9,12 +9,13 @@ namespace FCCore.Model
         {
             PersonCareer = new HashSet<PersonCareer>();
             PersonStatistics = new HashSet<PersonStatistics>();
+            ProtocolRecord = new HashSet<ProtocolRecord>();
         }
 
         public int Id { get; set; }
         public bool Active { get; set; }
         public DateTime? BirthDate { get; set; }
-        public short? cityId { get; set; }
+        public int? cityId { get; set; }
         public int? CustomIntValue { get; set; }
         public byte? Height { get; set; }
         public string Image { get; set; }
@@ -31,8 +32,10 @@ namespace FCCore.Model
 
         public virtual ICollection<PersonCareer> PersonCareer { get; set; }
         public virtual ICollection<PersonStatistics> PersonStatistics { get; set; }
+        public virtual ICollection<ProtocolRecord> ProtocolRecord { get; set; }
         public virtual Person PersonNavigation { get; set; }
         public virtual Person InversePersonNavigation { get; set; }
+        public virtual City city { get; set; }
         public virtual PersonStatus personStatus { get; set; }
         public virtual PersonRole role { get; set; }
         public virtual Team team { get; set; }

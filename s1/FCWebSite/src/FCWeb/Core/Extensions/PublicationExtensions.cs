@@ -27,7 +27,6 @@
             return new Publication()
             {
                 Id = publicationModel.id,
-                articleId = null,
                 Author = publicationModel.author,
                 ContentHTML = publicationModel.contentHTML,
                 DateChanged = publicationModel.dateChanged,

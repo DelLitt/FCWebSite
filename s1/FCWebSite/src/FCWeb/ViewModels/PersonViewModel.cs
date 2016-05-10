@@ -1,13 +1,14 @@
 ﻿namespace FCWeb.ViewModels
 {
     using System;
+    using System.Collections.Generic;
 
     public class PersonViewModel
     {
         public int id { get; set; }
         public bool active { get; set; }
         public DateTime? birthDate { get; set; }
-        public short? cityId { get; set; }
+        public int? cityId { get; set; }
         public int? customIntValue { get; set; }
         public byte? height { get; set; }
         public string image { get; set; }
@@ -22,6 +23,7 @@
         public byte? weight { get; set; }
         public Guid? tempGuid { get; set; }
         public PersonInfoView info { get; set; }
+        public IEnumerable<PersonCareerViewModel> career { get; set; } = new PersonCareerViewModel[0];
 
         //public virtual ICollection<PersonCareer> PersonCareer { get; set; }
         //public virtual ICollection<PersonStatistics> PersonStatistics { get; set; }

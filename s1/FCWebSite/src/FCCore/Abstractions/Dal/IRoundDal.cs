@@ -1,11 +1,8 @@
-﻿using FCCore.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FCCore.Abstractions.Dal
+﻿namespace FCCore.Abstractions.Dal
 {
+    using Model;
+    using System.Collections.Generic;
+
     public interface IRoundDal : IDalBase
     {
         bool FillTourneys { get; set; }

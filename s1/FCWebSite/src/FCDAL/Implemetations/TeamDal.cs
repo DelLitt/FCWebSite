@@ -23,5 +23,21 @@
         {
             return Context.Team.Where(v => v.Name.Contains(text));
         }
+
+        public int SaveTeam(Team entity)
+        {
+            if (entity.Id > 0)
+            {
+                Context.Team.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+            }
+            else
+            {
+                Context.Team.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+            }
+
+            Context.SaveChanges();
+
+            return entity.Id;
+        }
     }
 }

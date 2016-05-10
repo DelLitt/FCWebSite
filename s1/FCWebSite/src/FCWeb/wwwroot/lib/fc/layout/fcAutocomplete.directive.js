@@ -41,7 +41,7 @@
                     return scope.urlinit;
                 },
                 function (newValue, oldValue) {
-                    if (angular.isString(newValue) && oldValue != newValue && newValue.length > 0) {
+                    if (angular.isString(newValue) && newValue.length > 0) {
                         init(newValue);
                     }
                 });
@@ -185,7 +185,7 @@
                             '<input type="text" ng-model="text" ng-keyup="search($event);" ng-click="click();"' +
                                 'ng-keydown="selected=false;" style="width:100%;" class="form-control">' +
                             '</input>' +
-                            '<span class="glyphicon glyphicon-ok form-control-feedback"></span>' +
+                            '<span ng-show="selItem" class="glyphicon glyphicon-ok form-control-feedback"></span>' +
                         '</div>' +
                         '<div class="list-group table-condensed overlap" ng-hide="!suggestedData.length" style="width:100%">' +
                             '<a href="javascript:void();" class="list-group-item noTopBottomPad" ng-repeat="item in suggestedData|filter:model track by $index" ' +

@@ -129,5 +129,26 @@
                 }
             }
         }
+
+        public Game GetGame(int id)
+        {
+            return Context.Game.FirstOrDefault(p => p.Id == id);
+        }
+
+        public int SaveGame(Game entity)
+        {
+            if (entity.Id > 0)
+            {
+                Context.Game.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+            }
+            else
+            {
+                Context.Game.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+            }
+
+            Context.SaveChanges();
+
+            return entity.Id;
+        }
     }
 }

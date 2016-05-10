@@ -158,6 +158,14 @@
                 }
             }
 
+            public string Teams
+            {
+                get
+                {
+                    return CoreConfig.Current["Settings:Images:Teams"];
+                }
+            }
+
             public string Store
             {
                 get
