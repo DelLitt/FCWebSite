@@ -6,7 +6,7 @@ using FCCore.Model;
 using FCDAL.Model;
 using FCCore.Abstractions.Dal;
 
-namespace FCDAL.Implemetations
+namespace FCDAL.Implementations
 {
     public sealed class SettingsVisibilityDal : ISettingsVisibilityDal
     {

@@ -12,6 +12,7 @@ namespace FCCore.Model
         public byte? Minute { get; set; }
         public int? personId { get; set; }
         public int teamId { get; set; }
+        public bool ExtraTime { get; set; }
 
         public virtual Event _event { get; set; }
         public virtual Game game { get; set; }

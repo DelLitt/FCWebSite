@@ -1,12 +1,8 @@
-﻿using FCCore.Abstractions.Dal;
-using FCDAL.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FCDAL.Implemetations
+﻿namespace FCDAL.Implementations
 {
+    using FCCore.Abstractions.Dal;
+    using Model;
+
     public class DalBase : IDalBase
     {
         private FCDBContext context;

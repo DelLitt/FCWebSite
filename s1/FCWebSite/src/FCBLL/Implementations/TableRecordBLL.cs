@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using FCCore.Model;
 using System;
 
-namespace FCBLL.Implemetations
+namespace FCBLL.Implementations
 {
     public class TableRecordBll : ITableRecordBll
     {

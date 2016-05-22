@@ -11,5 +11,6 @@
         IEnumerable<Round> GetRounds(IEnumerable<int> ids);
         IEnumerable<Round> GetRoundsByTourney(int tourneyId);
         IEnumerable<int> GetRoundIdsOfTourneys(IEnumerable<int> tourneyIds, int? sortByTeamId = null);
+        IEnumerable<Round> SearchByNameFull(int tourneyId, string text);
     }
 }

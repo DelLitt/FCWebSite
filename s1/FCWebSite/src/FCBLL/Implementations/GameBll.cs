@@ -1,4 +1,4 @@
-﻿namespace FCBLL.Implemetations
+﻿namespace FCBLL.Implementations
 {
     using FCCore.Abstractions.Bll;
     using System;
@@ -8,7 +8,7 @@
     using FCCore.Abstractions.Dal;
     using FCCore.Common;
 
-    public class GamesBll : IGamesBll
+    public class GameBll : IGameBll
     {
         public bool FillTeams
         {

@@ -1,4 +1,4 @@
-﻿namespace FCDAL.Implemetations
+﻿namespace FCDAL.Implementations
 {
     using FCCore.Abstractions.Dal;
     using System.Collections.Generic;
@@ -16,6 +16,12 @@
         public IEnumerable<Person> GetTeamPersons(int teamId)
         {
             return Context.Person.Where(p => p.teamId == teamId);
+        }
+
+        public IEnumerable<Person> GetTeamPersons(int teamId, DateTime date)
+        {
+            return Context.Person.Where(p => p.PersonCareer.Any(
+                pc => pc.teamId == teamId && pc.DateStart <= date && pc.DateFinish >= date));
         }
 
         public int SavePerson(Person entity)

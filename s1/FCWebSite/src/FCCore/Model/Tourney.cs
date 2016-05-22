@@ -11,6 +11,7 @@ namespace FCCore.Model
             PersonStatistics = new HashSet<PersonStatistics>();
             Round = new HashSet<Round>();
             TableRecord = new HashSet<TableRecord>();
+            Team = new HashSet<Team>();
         }
 
         public short Id { get; set; }
@@ -26,6 +27,7 @@ namespace FCCore.Model
         public virtual ICollection<PersonStatistics> PersonStatistics { get; set; }
         public virtual ICollection<Round> Round { get; set; }
         public virtual ICollection<TableRecord> TableRecord { get; set; }
+        public virtual ICollection<Team> Team { get; set; }
         public virtual City city { get; set; }
         public virtual TourneyType tourneyType { get; set; }
     }

@@ -9,6 +9,7 @@ namespace FCCore.Model
         {
             Person = new HashSet<Person>();
             Stadium = new HashSet<Stadium>();
+            Team = new HashSet<Team>();
             Tourney = new HashSet<Tourney>();
         }
 
@@ -19,6 +20,7 @@ namespace FCCore.Model
 
         public virtual ICollection<Person> Person { get; set; }
         public virtual ICollection<Stadium> Stadium { get; set; }
+        public virtual ICollection<Team> Team { get; set; }
         public virtual ICollection<Tourney> Tourney { get; set; }
         public virtual Country country { get; set; }
     }

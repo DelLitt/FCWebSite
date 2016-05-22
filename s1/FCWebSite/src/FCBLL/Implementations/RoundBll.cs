@@ -1,4 +1,4 @@
-﻿namespace FCBLL.Implemetations
+﻿namespace FCBLL.Implementations
 {
     using FCCore.Abstractions.Bll;
     using System.Collections.Generic;
@@ -34,6 +34,11 @@
             }
         }
 
+        public Round GetRound(int id)
+        {
+            return DalRound.GetRound(id);
+        }
+
         public IEnumerable<Round> GetRounds(IEnumerable<int> ids)
         {
             return DalRound.GetRounds(ids);
@@ -47,6 +52,11 @@
         public IEnumerable<int> GetRoundIdsOfTourneys(IEnumerable<int> tourneyIds, int? sortByTeamId = default(int?))
         {
             return DalRound.GetRoundIdsOfTourneys(tourneyIds, sortByTeamId);
+        }
+
+        public IEnumerable<Round> SearchByNameFull(int tourneyId, string text)
+        {
+            return DalRound.SearchByNameFull(tourneyId, text);
         }
     }
 }

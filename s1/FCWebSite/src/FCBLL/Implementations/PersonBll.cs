@@ -1,4 +1,4 @@
-﻿namespace FCBLL.Implemetations
+﻿namespace FCBLL.Implementations
 {
     using System;
     using System.Collections.Generic;
@@ -30,6 +30,11 @@
         public IEnumerable<Person> GetTeamPersons(int teamId)
         {
             return DALPerson.GetTeamPersons(teamId);
+        }
+
+        public IEnumerable<Person> GetTeamPersons(int teamId, DateTime date)
+        {
+            return DALPerson.GetTeamPersons(teamId, date);
         }
 
         public int SavePerson(Person entity)

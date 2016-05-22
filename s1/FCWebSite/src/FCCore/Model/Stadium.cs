@@ -8,6 +8,7 @@ namespace FCCore.Model
         public Stadium()
         {
             Game = new HashSet<Game>();
+            Team = new HashSet<Team>();
         }
 
         public int Id { get; set; }
@@ -20,6 +21,7 @@ namespace FCCore.Model
         public string NameFull { get; set; }
 
         public virtual ICollection<Game> Game { get; set; }
+        public virtual ICollection<Team> Team { get; set; }
         public virtual City city { get; set; }
     }
 }

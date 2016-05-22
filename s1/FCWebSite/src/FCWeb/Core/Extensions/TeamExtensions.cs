@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using FCCore.Common;
     using FCCore.Model;
@@ -31,7 +32,10 @@
                 stadiumId = team.stadiumId,
                 teamTypeId = team.teamTypeId,
                 webSite = team.WebSite,
-                tempGuid = tempGuid
+                tempGuid = tempGuid,
+                searchDefault = team.city != null
+                    ? string.Format(CultureInfo.CurrentCulture, "{0} ({1})", team.Name, team.city.NameFull)
+                    : team.NameFull
             };
         }
 

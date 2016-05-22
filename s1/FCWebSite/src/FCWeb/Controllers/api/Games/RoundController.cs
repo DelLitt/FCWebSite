@@ -14,12 +14,11 @@
     public class RoundController : Controller
     {
         //[FromServices]
-        private IGamesBll gameBll { get; set; }
-
+        private IGameBll gameBll { get; set; }
         //[FromServices]
         private IRoundBll roundBll { get; set; }
 
-        public RoundController(IGamesBll gameBll, IRoundBll roundBll)
+        public RoundController(IGameBll gameBll, IRoundBll roundBll)
         {
             this.gameBll = gameBll;
             this.roundBll = roundBll;
@@ -28,14 +27,14 @@
         // GET api/values/5
         // /api/games/round/32/mode/1
         [HttpGet("{id:int}/mode/{mode:int}")]
-        public RoundViewModel Get(int id, int mode)
+        public RoundInfoViewModel Get(int id, int mode)
         {
             if (mode == 1)
             {
                 gameBll.FillRounds = true;
                 gameBll.FillTeams = true;
 
-                IEnumerable<RoundViewModel> roundViews = gameBll.GetRoundGames(id).ToRoundViewModel();
+                IEnumerable<RoundInfoViewModel> roundViews = gameBll.GetRoundGames(id).ToRoundInfoViewModel();
 
                 return roundViews.FirstOrDefault();
             }
@@ -46,28 +45,28 @@
         // GET api/values/5
         // /api/games/round/team/3/slider?tourneyIds=8&tourneyIds=10
         [HttpGet("team/{teamId}/slider")]
-        public IEnumerable<TourneyRoundViewModel> Get(int teamId, [FromQuery] int[] tourneyIds)
+        public IEnumerable<RoundSliderViewModel> Get(int teamId, [FromQuery] int[] tourneyIds)
         {
             var actualDate = new DateTime(2015, 9, 10);
 
             roundBll.FillTourneys = true;
             IEnumerable<int> roundIds = roundBll.GetRoundIdsOfTourneys(tourneyIds, teamId);
 
-            if (Guard.IsEmptyIEnumerable(roundIds)) { return new TourneyRoundViewModel[0]; }
+            if (Guard.IsEmptyIEnumerable(roundIds)) { return new RoundSliderViewModel[0]; }
 
             gameBll.FillRounds = true;
             gameBll.FillTeams = true;
             IEnumerable<Game> roundGames = gameBll.GetTeamActualRoundGames(teamId, roundIds, actualDate);
 
-            if (Guard.IsEmptyIEnumerable(roundGames)) { return new TourneyRoundViewModel[0]; }
+            if (Guard.IsEmptyIEnumerable(roundGames)) { return new RoundSliderViewModel[0]; }
 
-            var roundsSlider = new List<TourneyRoundViewModel>();
+            var roundsSlider = new List<RoundSliderViewModel>();
 
-            RoundViewModel roundView = roundGames.ToRoundViewModel().FirstOrDefault();
+            RoundInfoViewModel roundView = roundGames.ToRoundInfoViewModel().FirstOrDefault();
 
             foreach (int roundId in roundIds)
             {
-                roundsSlider.Add(new TourneyRoundViewModel()
+                roundsSlider.Add(new RoundSliderViewModel()
                 {
                     roundId = roundId,
                     current = roundView?.roundId == roundId,

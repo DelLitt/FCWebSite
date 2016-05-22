@@ -32,7 +32,8 @@
                 roundId = game.roundId,
                 showTime = game.ShowTime,
                 stadiumId = game.stadiumId,
-                videoId = game.videoId
+                videoId = game.videoId,
+                round = game.round.ToViewModel()
             };
         }
 
@@ -43,17 +44,45 @@
             return games.Select(v => v.ToViewModel()).ToList();
         }
 
-        public static IEnumerable<RoundViewModel> ToRoundViewModel(this IEnumerable<Game> games)
+        public static Game ToBaseModel(this GameViewModel gameView)
         {
-            if (Guard.IsEmptyIEnumerable(games)) { return new RoundViewModel[0]; }
+            if (gameView == null) { return null; }
+
+            return new Game()
+            {
+                Audience = gameView.audience,
+                AwayAddScore = gameView.awayAddScore,
+                awayId = gameView.awayId,
+                AwayPenalties = gameView.awayPenalties,
+                awayScore = gameView.awayScore,
+                GameDate = gameView.gameDate,
+                HomeAddScore = gameView.homeAddScore,
+                homeId = gameView.homeId,
+                HomePenalties = gameView.homePenalties,
+                Id = gameView.id,
+                homeScore = gameView.homeScore,
+                imageGalleryId = gameView.imageGalleryId,
+                Note = gameView.note,
+                Played = gameView.played,
+                roundId = gameView.roundId,
+                Referees = gameView.referees,
+                ShowTime = gameView.showTime,
+                stadiumId = gameView.stadiumId,
+                videoId = gameView.videoId
+            };
+        }
+
+        public static IEnumerable<RoundInfoViewModel> ToRoundInfoViewModel(this IEnumerable<Game> games)
+        {
+            if (Guard.IsEmptyIEnumerable(games)) { return new RoundInfoViewModel[0]; }
 
             IEnumerable<IGrouping<short, Game>> grouppedGamesByRound = games.GroupBy(g => g.roundId);
-            var roundViews = new List<RoundViewModel>();
+            var roundViews = new List<RoundInfoViewModel>();
 
             foreach (IGrouping<short, Game> roundGames in grouppedGamesByRound)
             {
                 var firstGame = roundGames.First();
-                var roundView = new RoundViewModel()
+                var roundView = new RoundInfoViewModel()
                 {
                     //tourney = firstGame?.round?.tourney?.Name ?? string.Empty,
                     tourney = "Турнир",

@@ -1,13 +1,9 @@
-﻿using FCCore.Configuration;
-using Microsoft.AspNet.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FCCore.Common
+﻿namespace FCCore.Common
 {
+    using Configuration;
+    using Microsoft.AspNet.Hosting;
+    using Microsoft.Extensions.DependencyInjection;
+
     public static class WebHelper
     {
         public static string ToVirtualPath(string physicalPath)

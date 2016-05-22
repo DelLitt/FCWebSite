@@ -340,6 +340,12 @@ namespace FCDAL.Model
 
                 entity.Property(e => e.WebSite).HasMaxLength(128);
 
+                entity.HasOne(d => d.city).WithMany(p => p.Team).HasForeignKey(d => d.cityId);
+
+                entity.HasOne(d => d.mainTourney).WithMany(p => p.Team).HasForeignKey(d => d.mainTourneyId);
+
+                entity.HasOne(d => d.stadium).WithMany(p => p.Team).HasForeignKey(d => d.stadiumId);
+
                 entity.HasOne(d => d.teamType).WithMany(p => p.Team).HasForeignKey(d => d.teamTypeId).OnDelete(DeleteBehavior.Restrict);
             });
 

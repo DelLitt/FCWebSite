@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using FCCore.Common;
     using FCCore.Model;
     using Newtonsoft.Json;
     using ViewModels;
@@ -25,9 +26,23 @@
 
             Guid? tempGuid = person.Id == 0 ? Guid.NewGuid() : (Guid?)null;
 
-            var infoView = !string.IsNullOrWhiteSpace(person.Info)
-                ? JsonConvert.DeserializeObject<PersonInfoView>(person.Info)
-                : new PersonInfoView();
+            PersonInfoView infoView;
+            if (!string.IsNullOrWhiteSpace(person.Info))
+            {
+                try
+                {
+                    infoView = JsonConvert.DeserializeObject<PersonInfoView>(person.Info);
+                }
+                catch (JsonReaderException)
+                {
+                    // TODO: Add item to event log
+                    infoView = new PersonInfoView();
+                }
+            }
+            else
+            {
+                infoView = new PersonInfoView();
+            }
 
             return new PersonViewModel()
             {
@@ -44,6 +59,7 @@
                 nameLast = person.NameLast,
                 nameMiddle = person.NameMiddle,
                 nameNick = person.NameNick,
+                nameDefault = person.NameFirst + " " + person.NameLast,
                 number = person.Number,
                 personStatusId = person.personStatusId,
                 roleId = person.roleId,
@@ -51,6 +67,13 @@
                 weight = person.Weight,
                 tempGuid = tempGuid
             };
+        }
+
+        public static IEnumerable<PersonViewModel> ToViewModel(this IEnumerable<Person> persons)
+        {
+            if (Guard.IsEmptyIEnumerable(persons)) { return new PersonViewModel[0]; }
+
+            return persons.Select(v => v.ToViewModel()).ToList();
         }
 
         public static Person ToBaseModel(this PersonViewModel personView)

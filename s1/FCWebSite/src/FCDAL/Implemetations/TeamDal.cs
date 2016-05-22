@@ -1,27 +1,67 @@
-﻿namespace FCDAL.Implemetations
+﻿namespace FCDAL.Implementations
 {
     using System.Collections.Generic;
     using System.Linq;
     using FCCore.Model;
     using FCCore.Abstractions.Dal;
+    using FCCore.Common;
+    using Exceptions;
 
     public class TeamDal : DalBase, ITeamDal
     {
+        public bool FillCities { get; set; } = false;
+
         public Team GetTeam(int id)
         {
-            return Context.Team.FirstOrDefault(p => p.Id == id);
+            Team team = Context.Team.FirstOrDefault(p => p.Id == id);
+
+            if (team != null)
+            {
+                FillRelations(new Team[] { team });
+            }
+
+            return team;
         }
 
         public IEnumerable<Team> GetTeams(IEnumerable<int> ids)
         {
             if(ids == null) { return new Team[0]; }
 
-            return Context.Team.Where(t => ids.Contains(t.Id));
+            IEnumerable<Team> teams = Context.Team.Where(t => ids.Contains(t.Id));
+
+            FillRelations(teams);
+
+            return teams;
         }
 
-        public IEnumerable<Team> SearchByName(string text)
+        public IEnumerable<Team> GetAll()
         {
-            return Context.Team.Where(v => v.Name.Contains(text));
+            IEnumerable<Team> teams = Context.Team.ToList();
+
+            FillRelations(teams);
+
+            return teams;
+        }
+
+        public IEnumerable<Team> SearchByDefault(string text)
+        {
+            IEnumerable<Team> teams = Context.Team.Where(t => t.Name.Contains(text) || t.city.NameFull.Contains(text));
+
+            FillRelations(teams);
+
+            return teams;
+        }
+
+        public IEnumerable<Team> SearchByDefault(string text, IEnumerable<int> teamIds)
+        {
+            if(Guard.IsEmptyIEnumerable(teamIds)) { return new Team[0]; }
+
+            IEnumerable<Team> teams = Context.Team.Where(t => teamIds.Contains(t.Id) 
+                                        && (t.Name.Contains(text) || (t.city != null && t.city.NameFull.Contains(text))));
+
+            FillRelations(teams);
+
+            return teams;
         }
 
         public int SaveTeam(Team entity)
@@ -38,6 +78,45 @@
             Context.SaveChanges();
 
             return entity.Id;
+        }
+
+        private void FillRelations(IEnumerable<Team> teams)
+        {
+            if (Guard.IsEmptyIEnumerable(teams)) { return; }
+
+            IEnumerable<City> cities = new City[0];
+
+            if (FillCities)
+            {
+                var citiesDal = new CityDal();
+                citiesDal.SetContext(Context);
+
+                var citiesIds = new List<int>();
+                citiesIds.AddRange(teams.Select(r => (int)r.cityId));
+
+                cities = citiesDal.GetCities(citiesIds.Distinct()).ToList();
+
+                if (!cities.Any())
+                {
+                    throw new DalMappingException(nameof(cities), typeof(Round));
+                }
+            }
+
+            if (cities.Any())
+            {
+                foreach (Team team in teams)
+                {
+                    if (FillCities)
+                    {
+                        team.city = cities.FirstOrDefault(t => t.Id == team.cityId);
+
+                        if (team.city == null)
+                        {
+                            throw new DalMappingException(nameof(team.city), typeof(Stadium));
+                        }
+                    }
+                }
+            }
         }
     }
 }

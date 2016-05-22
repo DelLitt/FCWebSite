@@ -1,11 +1,11 @@
-﻿namespace FCDAL.Implemetations
+﻿namespace FCDAL.Implementations
 {
     using System.Collections.Generic;
     using System.Linq;
     using FCCore.Model;
     using Exceptions;
     using FCCore.Abstractions.Dal;
-
+    using FCCore.Common;
     public class TableRecordDal : DalBase, ITableRecordDal
     {
         public bool FillTeams { get; set; } = false;
@@ -16,7 +16,7 @@
         {
             IEnumerable<TableRecord> records = Context.TableRecord.Where(tr => tr.tourneyId == tourneyId).ToList();
 
-            if(records.Any())
+            if(!Guard.IsEmptyIEnumerable(records))
             {
                 Tourney tourney = null;
                 IEnumerable<Team> teams = new Team[0];

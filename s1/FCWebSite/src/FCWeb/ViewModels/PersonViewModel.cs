@@ -16,6 +16,7 @@
         public string nameLast { get; set; }
         public string nameMiddle { get; set; }
         public string nameNick { get; set; }
+        public string nameDefault { get; set; }
         public byte? number { get; set; }
         public short? personStatusId { get; set; }
         public short? roleId { get; set; }

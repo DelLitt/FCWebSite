@@ -1,9 +1,10 @@
-﻿namespace FCDAL.Implemetations
+﻿namespace FCDAL.Implementations
 {
     using System.Collections.Generic;
     using System.Linq;
     using Exceptions;
     using FCCore.Abstractions.Dal;
+    using FCCore.Common;
     using FCCore.Model;
 
     public class StadiumDal : DalBase, IStadiumDal
@@ -24,7 +25,7 @@
 
         public IEnumerable<Stadium> GetAll()
         {
-            IEnumerable<Stadium> stadiums = Context.Stadium.Where(s => !string.IsNullOrWhiteSpace(s.city.NameFull));
+            IEnumerable<Stadium> stadiums = Context.Stadium.ToList();
 
             FillRelations(stadiums);
 
@@ -58,7 +59,7 @@
 
         private void FillRelations(IEnumerable<Stadium> stadiums)
         {
-            if (stadiums == null) { return; }
+            if (Guard.IsEmptyIEnumerable(stadiums)) { return; }
 
             IEnumerable<City> cities = new City[0];
 

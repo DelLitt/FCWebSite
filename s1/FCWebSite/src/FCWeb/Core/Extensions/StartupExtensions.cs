@@ -1,9 +1,11 @@
 ﻿namespace FCWeb.Core.Extensions
 {
-    using FCBLL.Implemetations;
+    using FCBLL.Implementations;
+    using FCBLL.Implementations.Protocol;
     using FCCore.Abstractions.Bll;
+    using FCCore.Abstractions.Bll.Protocol;
     using FCCore.Abstractions.Dal;
-    using FCDAL.Implemetations;
+    using FCDAL.Implementations;
     using Microsoft.Extensions.DependencyInjection;
 
     public static class StartupExtensions
@@ -13,7 +15,7 @@
             serviceCollection.AddTransient<IPublicationBll, PublicationBll>();
             serviceCollection.AddTransient<ITableRecordBll, TableRecordBll>();
             serviceCollection.AddTransient<ITourneyBll, TourneyBll>();
-            serviceCollection.AddTransient<IGamesBll, GamesBll>();
+            serviceCollection.AddTransient<IGameBll, GameBll>();
             serviceCollection.AddTransient<IRoundBll, RoundBll>();
             serviceCollection.AddTransient<ITeamBll, TeamBll>();
             serviceCollection.AddTransient<IPersonBll, PersonBll>();
@@ -23,6 +25,8 @@
             serviceCollection.AddTransient<IPersonCareerBll, PersonCareerBll>();
             serviceCollection.AddTransient<ICityBll, CityBll>();
             serviceCollection.AddTransient<IStadiumBll, StadiumBll>();
+            serviceCollection.AddTransient<IProtocolRecordBll, ProtocolRecordBll>();
+            serviceCollection.AddTransient<IEventBll, EventBll>();
         }
 
         public static void AddDALServices(this IServiceCollection serviceCollection)
@@ -41,6 +45,8 @@
             serviceCollection.AddTransient<IPersonCareerDal , PersonCareerDal>();
             serviceCollection.AddTransient<ICityDal, CityDal>();
             serviceCollection.AddTransient<IStadiumDal, StadiumDal>();
+            serviceCollection.AddTransient<IProtocolRecordDal, ProtocolRecordDal>();
+            serviceCollection.AddTransient<IEventDal, EventDal>();
         }
     }
 }

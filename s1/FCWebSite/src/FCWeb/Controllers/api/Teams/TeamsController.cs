@@ -1,4 +1,4 @@
-﻿namespace FCWeb.Controllers.Api
+﻿namespace FCWeb.Controllers.Api.Teams
 {
     using System.Collections.Generic;
     using System.Net;
@@ -25,7 +25,9 @@
         [HttpGet("search")]
         public IEnumerable<TeamViewModel> Get([FromQuery] string txt)
         {
-            return teamBll.SearchByName(txt).ToViewModel();
+            teamBll.FillCities = true;
+
+            return teamBll.SearchByDefault(txt).ToViewModel();
         }
 
         // GET api/values/5
@@ -41,6 +43,8 @@
                     teamTypeId = 1
                 };
             }
+
+            teamBll.FillCities = true;
 
             return teamBll.GetTeam(id).ToViewModel();
         }

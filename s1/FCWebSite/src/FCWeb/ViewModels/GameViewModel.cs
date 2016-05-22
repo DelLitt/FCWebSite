@@ -23,5 +23,7 @@
         public bool showTime { get; set; }
         public int? stadiumId { get; set; }
         public int? videoId { get; set; }
+
+        public RoundViewModel round { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace FCDAL.Implemetations
+﻿namespace FCDAL.Implementations
 {
     using FCCore.Abstractions.Dal;
     using System;
@@ -56,6 +56,34 @@
             FillRelations(games);
 
             return games;
+        }
+
+        public Game GetGame(int id)
+        {
+            Game game = Context.Game.FirstOrDefault(p => p.Id == id);
+
+            if(game != null)
+            {
+                FillRelations(new[] { game });
+            }
+
+            return game;
+        }
+
+        public int SaveGame(Game entity)
+        {
+            if (entity.Id > 0)
+            {
+                Context.Game.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+            }
+            else
+            {
+                Context.Game.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+            }
+
+            Context.SaveChanges();
+
+            return entity.Id;
         }
 
         private void FillRelations(IEnumerable<Game> games)
@@ -121,34 +149,13 @@
                     if(FillRounds)
                     {
                         game.round = rounds.FirstOrDefault(r => r.Id == game.roundId);
-                        if (game.home == null)
+                        if (game.round == null)
                         {
                             throw new DalMappingException(nameof(game.round), typeof(Game));
                         }
                     }
                 }
             }
-        }
-
-        public Game GetGame(int id)
-        {
-            return Context.Game.FirstOrDefault(p => p.Id == id);
-        }
-
-        public int SaveGame(Game entity)
-        {
-            if (entity.Id > 0)
-            {
-                Context.Game.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
-            }
-            else
-            {
-                Context.Game.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
-            }
-
-            Context.SaveChanges();
-
-            return entity.Id;
         }
     }
 }

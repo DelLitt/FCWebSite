@@ -33,6 +33,10 @@
                 templateUrl: "lib/fc/office/games/gameEdit.html",
                 controller: "gameEditCtrl"
             })
+            .when("/office/protocol/edit/:id", {
+                templateUrl: "lib/fc/office/games/protocolEdit.html",
+                controller: "protocolEditCtrl"
+            })
             .when("/office/filebrowser/", {
                 templateUrl: "lib/fc/office/utils/fileBrowser.html",
                 controller: "fileBrowserCtrl"
@@ -48,22 +52,6 @@
             //.when("/register", {
             //    templateUrl: "scripts/spa/account/register.html",
             //    controller: "registerCtrl"
-            //})
-            //.when("/movies", {
-            //    templateUrl: "scripts/spa/movies/movies.html",
-            //    controller: "moviesCtrl"
-            //})
-            //.when("/movies/add", {
-            //    templateUrl: "scripts/spa/movies/add.html",
-            //    controller: "movieAddCtrl"
-            //})
-            //.when("/movies/:id", {
-            //    templateUrl: "scripts/spa/movies/details.html",
-            //    controller: "movieDetailsCtrl"
-            //})
-            //.when("/movies/edit/:id", {
-            //    templateUrl: "scripts/spa/movies/edit.html",
-            //    controller: "movieEditCtrl"
             //})
             .otherwise({ redirectTo: "/office" });
 

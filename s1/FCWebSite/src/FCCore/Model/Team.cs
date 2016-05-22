@@ -18,7 +18,7 @@ namespace FCCore.Model
         public int Id { get; set; }
         public bool Active { get; set; }
         public string Address { get; set; }
-        public short? cityId { get; set; }
+        public int? cityId { get; set; }
         public string Description { get; set; }
         public string Email { get; set; }
         public string Image { get; set; }
@@ -26,7 +26,7 @@ namespace FCCore.Model
         public string Name { get; set; }
         public string NameFull { get; set; }
         public string NamePre { get; set; }
-        public short? stadiumId { get; set; }
+        public int? stadiumId { get; set; }
         public short teamTypeId { get; set; }
         public string WebSite { get; set; }
 
@@ -37,6 +37,9 @@ namespace FCCore.Model
         public virtual ICollection<PersonStatistics> PersonStatistics { get; set; }
         public virtual ICollection<ProtocolRecord> ProtocolRecord { get; set; }
         public virtual TableRecord TableRecord { get; set; }
+        public virtual City city { get; set; }
+        public virtual Tourney mainTourney { get; set; }
+        public virtual Stadium stadium { get; set; }
         public virtual TeamType teamType { get; set; }
     }
 }

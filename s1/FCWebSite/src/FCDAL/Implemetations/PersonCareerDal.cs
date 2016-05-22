@@ -1,4 +1,4 @@
-﻿namespace FCDAL.Implemetations
+﻿namespace FCDAL.Implementations
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -47,7 +47,7 @@
 
         private void FillRelations(IEnumerable<PersonCareer> personCareers)
         {
-            if (personCareers == null) { return; }
+            if (Guard.IsEmptyIEnumerable(personCareers)) { return; }
 
             IEnumerable<Team> teams = new Team[0];
 

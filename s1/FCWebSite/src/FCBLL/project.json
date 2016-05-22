@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "FCCore": "1.0.0-*",
-    "FCDAL": "1.0.0-*"
+    "FCDAL": "1.0.0-*",
+    "Newtonsoft.Json": "8.0.3"
   }
 }

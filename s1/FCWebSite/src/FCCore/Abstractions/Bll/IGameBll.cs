@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
 
-    public interface IGamesBll
+    public interface IGameBll
     {
         bool FillTeams { get; set; }
         bool FillRounds { get; set; }

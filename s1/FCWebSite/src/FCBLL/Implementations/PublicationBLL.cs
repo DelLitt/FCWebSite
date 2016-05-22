@@ -1,4 +1,4 @@
-﻿namespace FCBLL.Implemetations
+﻿namespace FCBLL.Implementations
 {
     using FCCore.Abstractions.Bll;
     using System.Collections.Generic;

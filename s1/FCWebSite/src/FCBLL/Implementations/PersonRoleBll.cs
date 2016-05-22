@@ -1,4 +1,4 @@
-﻿namespace FCBLL.Implemetations
+﻿namespace FCBLL.Implementations
 {
     using System;
     using System.Collections.Generic;

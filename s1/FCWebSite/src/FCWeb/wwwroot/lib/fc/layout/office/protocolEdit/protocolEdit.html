@@ -1,0 +1,91 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">Основной состав</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <label class="control-label">Хозяева:</label>
+                <div ng-repeat="record in protocol.home.main">
+                    <fc-autocomplete key="id" val="nameDefault" min="3" id="record.personId"
+                                     selid="{{record.personId}}" showall="true"
+                                     addglobalescapeevent="addRootClickListener"
+                                     inputdata="protocol.home.allPlayersUnique"
+                                     removeselected="true">
+                    </fc-autocomplete>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="control-label">Гости:</label>
+                <div ng-repeat="record in protocol.away.main">
+                    <fc-autocomplete key="id" val="nameDefault" min="3" id="record.personId"
+                                     selid="{{record.personId}}" showall="true"
+                                     addglobalescapeevent="addRootClickListener"
+                                     inputdata="protocol.away.allPlayersUnique"
+                                     removeselected="true">
+                    </fc-autocomplete>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Запасные игроки</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <label class="control-label">Хозяева:</label>
+                <div ng-repeat="record in protocol.home.reserve">
+                    <fc-autocomplete key="id" val="nameDefault" min="3" id="record.personId"
+                                     selid="{{record.personId}}" showall="true"
+                                     addglobalescapeevent="addRootClickListener"
+                                     inputdata="protocol.home.allPlayersUnique"
+                                     removeselected="true">
+                    </fc-autocomplete>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="control-label">Гости:</label>
+                <div ng-repeat="record in protocol.away.reserve">
+                    <fc-autocomplete key="id" val="nameDefault" min="3" id="record.personId"
+                                     selid="{{record.personId}}" showall="true"
+                                     addglobalescapeevent="addRootClickListener"
+                                     inputdata="protocol.away.allPlayersUnique"
+                                     removeselected="true">
+                    </fc-autocomplete>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Голы</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <label class="control-label h2">Хозяева</label>
+            </div>
+        </div>
+        <div class="row" ng-repeat="goal in protocol.home.goals">
+            <div class="col-md-1">
+                <a class="badge pull-left" href="javascript:void(0);" ng-click="goals.removeItem($index, 'home')">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </div>
+            <goal-record record="goal" players="protocol.home.allPlayers"/>
+        </div>
+        <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="goals.addItem('home');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить гол</a></div></div>
+        <div class="row">
+            <div class="col-md-12">
+                <label class="control-label h2">Гости</label>
+            </div>
+        </div>
+        <div class="row" ng-repeat="goal in protocol.away.goals">
+            <div class="col-md-1">
+                <a class="badge pull-left" href="javascript:void(0);" ng-click="goals.removeItem($index, 'away')">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </div>
+            <goal-record record="goal" players="protocol.away.allPlayers"/>
+        </div>
+        <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="goals.addItem('away');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить гол</a></div></div>
+    </div>
+</div>

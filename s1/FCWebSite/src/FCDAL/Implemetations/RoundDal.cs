@@ -1,10 +1,11 @@
-﻿namespace FCDAL.Implemetations
+﻿namespace FCDAL.Implementations
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using Exceptions;
     using FCCore.Abstractions.Dal;
+    using FCCore.Common;
     using FCCore.Model;
 
     public class RoundDal : DalBase, IRoundDal
@@ -64,9 +65,14 @@
             return roundIds;
         }
 
+        public IEnumerable<Round> SearchByNameFull(int tourneyId, string text)
+        {
+            return Context.Round.Where(v => v.tourneyId == tourneyId && v.NameFull.Contains(text));
+        }
+
         private void FillRelations(IEnumerable<Round> rounds)
         {
-            if (rounds == null) { return; }
+            if (Guard.IsEmptyIEnumerable(rounds)) { return; }
 
             IEnumerable<Tourney> tourneys = new Tourney[0];
 

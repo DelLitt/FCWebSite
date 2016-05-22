@@ -6,6 +6,7 @@
     public interface IStadiumBll
     {
         bool FillCities { get; set; }
+
         Stadium GetStadium(int id);
         IEnumerable<Stadium> GetAll();
         IEnumerable<Stadium> SearchByNameFull(string text);
