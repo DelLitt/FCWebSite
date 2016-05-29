@@ -1,20 +1,20 @@
 ﻿namespace FCWeb
 {
+    using System.Collections.Generic;
+    using System.Globalization;
+    using Core;
+    using Core.Extensions;
+    using FCCore.Configuration;
+    using FCDAL.Model;
     using Microsoft.AspNet.Builder;
     using Microsoft.AspNet.Hosting;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.AspNet.Localization;
     using Microsoft.Data.Entity;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using FCWeb.Services;
-    using FCWeb.Core.Extensions;
-    using FCCore.Configuration;
-    using FCDAL.Model;
-    using FCWeb.Core;
-    using Microsoft.AspNet.Localization;
-    using System.Globalization;
-    using System.Collections.Generic;
+    using Services;
 
     public class Startup
     {
@@ -122,12 +122,13 @@
             {
                 routes
                 .MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}")
-                .MapRoute(
                     name: "office",
                     template: "office/{*.}",
-                    defaults: new { controller = "office", action = "Index" });
+                    defaults: new { controller = "Office", action = "Index" })
+                .MapRoute(
+                    name: "default",
+                    template: "{*.}",
+                    defaults: new { controller = "Home", action = "Index" });
             });
         }
 

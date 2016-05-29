@@ -5,9 +5,9 @@
         .module('fc.admin')
         .controller('publicationEditCtrl', publicationEditCtrl);
 
-    publicationEditCtrl.$inject = ['$scope', '$routeParams', 'publicationsSrv', 'fileBrowserSrv', 'configSrv'];
+    publicationEditCtrl.$inject = ['$scope', '$routeParams', 'publicationsSrv', 'fileBrowserSrv', 'configSrv', 'helper'];
 
-    function publicationEditCtrl($scope, $routeParams, publicationsSrv, fileBrowserSrv, configSrv) {
+    function publicationEditCtrl($scope, $routeParams, publicationsSrv, fileBrowserSrv, configSrv, helper) {
 
         if (!angular.isDefined($scope.forms)) {
             $scope.forms = {};
@@ -28,10 +28,17 @@
         $scope.videoId = videoId;
         $scope.openFileBrowser = openFileBrowser;
         $scope.saveEdit = saveEdit;
+        $scope.videoMode = "0";
+        $scope.titleChanged = titleChanged;
+        $scope.urlKeyRegexPattern = configSrv.urlKeyRegexPattern;
         $scope.publication = {};
         $scope.dateOptions = {
             showWeeks: false
         };
+
+        function titleChanged(value) {
+            $scope.publication.urlKey = helper.createUrlKey(value);
+        }
 
         function openFileBrowser() {
             fileBrowserSrv.open(
@@ -48,6 +55,26 @@
         },
         function (newValue, oldValue) {
             $scope.video.id = newValue;
+        });
+
+        var tmpVideoId = $scope.videoId;
+
+        // handle related videoId changes
+        $scope.$watch(function (scope) {
+            return $scope.videoMode;
+        },
+        function (newValue, oldValue) {
+            if(oldValue === "2") {
+                tmpVideoId = $scope.videoId
+            }
+
+            if ($scope.videoMode === "0") {
+                $scope.videoId = -1;
+            } else if ($scope.videoMode === "1") {
+                $scope.videoId = 0;
+            } else {
+                $scope.videoId = tmpVideoId;
+            }
         });
 
         loadData($routeParams.id);
@@ -77,6 +104,8 @@
             }
 
             $scope.videoId = angular.isNumber(publication.videoId) ? publication.videoId : -1;
+            $scope.videoInitUrl = '/api/videos/' + $scope.videoId;
+            $scope.videoMode = $scope.videoId > 0 ? "2" : "0";
         }
 
         function saveEdit(form) {
@@ -121,6 +150,7 @@
             }
 
             $scope.publication.visibility = visibility.main | visibility.news | visibility.reserve | visibility.youth | visibility.authorized;
+            $scope.publication.videoId = $scope.videoId;
 
             publicationsSrv.savePublication($scope.publication.id || 0, $scope.publication, publicationSaved);
         }

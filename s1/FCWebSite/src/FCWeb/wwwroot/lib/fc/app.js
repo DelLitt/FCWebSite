@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('fc', ['fc.core', 'fc.ui', 'pascalprecht.translate'])
+    angular.module('fc', ['fc.core', 'fc.ui', 'pascalprecht.translate', 'ngSanitize'])
         .config(config);
 
     config.$inject = ['$routeProvider', '$locationProvider', '$translateProvider'];
@@ -13,30 +13,10 @@
                 templateUrl: "lib/fc/home/index.html",
                 controller: "indexCtrl"
             })
-            //.when("/login", {
-            //    templateUrl: "scripts/spa/account/login.html",
-            //    controller: "loginCtrl"
-            //})
-            //.when("/register", {
-            //    templateUrl: "scripts/spa/account/register.html",
-            //    controller: "registerCtrl"
-            //})
-            //.when("/movies", {
-            //    templateUrl: "scripts/spa/movies/movies.html",
-            //    controller: "moviesCtrl"
-            //})
-            //.when("/movies/add", {
-            //    templateUrl: "scripts/spa/movies/add.html",
-            //    controller: "movieAddCtrl"
-            //})
-            //.when("/movies/:id", {
-            //    templateUrl: "scripts/spa/movies/details.html",
-            //    controller: "movieDetailsCtrl"
-            //})
-            //.when("/movies/edit/:id", {
-            //    templateUrl: "scripts/spa/movies/edit.html",
-            //    controller: "movieEditCtrl"
-            //})
+            .when("/publication/:id", {
+                templateUrl: "lib/fc/publication/publication.html",
+                controller: "publicationCtrl"
+            })
             .otherwise({ redirectTo: "/" });
 
         $locationProvider.html5Mode(true);

@@ -15,9 +15,12 @@
             return publications.Select(p => new PublicationShortViewModel()
             {
                 id = p.Id,
+                urlKey = p.URLKey,
                 title = p.Title,
                 header = p.Header,
-                img = p.Image
+                img = p.Image,
+                hasPhoto = p.imageGalleryId.HasValue,
+                hasVideo = p.videoId.HasValue
             });
         }
 

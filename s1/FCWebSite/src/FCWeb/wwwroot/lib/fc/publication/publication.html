@@ -1,0 +1,17 @@
+﻿<div class="fc-container row publication">
+    <h1 class="text-primary">
+        {{publication.title}}<br />
+        <small>{{publication.header}}</small>
+    </h1>
+    <div class="clearfix">
+        <img class="img-responsive img-rounded pull-left img-publication-left" ng-show="publication.showImageInContent" src="{{publication.image}}" title="{{publication.title}}" alt="{{publication.title}}" />
+        <p ng-show="publication.lead.length" ng-bind-html="publication.lead"></p>
+        <p ng-bind-html="publication.contentHTML"></p>
+        <div ng-show="showVideo">
+            <h3 class="text-primary"><span class="glyphicon glyphicon-facetime-video" style="top: 4px;">&nbsp;</span>Видео. {{publication.title}}</h3>
+            <hr />
+            <p class="text-center" ng-bind-html="video.codeHTML"></p>
+        </div>
+        <p><span class="text-info pull-left">{{publication.dateDisplayed | date:'medium'}}</span><span class="text-info pull-right">{{publication.author}}</span></p>
+    </div>
+</div>

@@ -28,6 +28,11 @@
             return DALPublication.GetPublication(id);
         }
 
+        public Publication GetPublication(string urlKey)
+        {
+            return DALPublication.GetPublication(urlKey);
+        }
+
         public IEnumerable<Publication> GetMainPublications(int count, int offset)
         {
             short visibility = (short)(MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News);

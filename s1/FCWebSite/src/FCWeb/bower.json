@@ -16,7 +16,8 @@
     "angular-ui-bootstrap": "0.13.4",
     "jquery-ui": "1.11.4",
     "ng-file-upload": "7.3.8",
-    "ngAutocomplete": "~1.0.0"
+    "ngAutocomplete": "~1.0.0",
+    "angular-sanitize": "1.4.6"
   },
   "resolutions": {
     "angular": "^1.2.9",

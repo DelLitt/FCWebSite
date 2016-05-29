@@ -27,6 +27,13 @@
             return Context.Publication.FirstOrDefault(p => p.Id == id);
         }
 
+        public Publication GetPublication(string urlKey)
+        {
+            if(string.IsNullOrWhiteSpace(urlKey)) { return null; }
+
+            return Context.Publication.FirstOrDefault(p => p.URLKey.Equals(urlKey, StringComparison.OrdinalIgnoreCase));
+        }
+
         public int SavPublication(Publication entity)
         {
             if (entity.Id > 0)

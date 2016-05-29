@@ -2,6 +2,12 @@
     <img class="img-responsive img-rounded" ng-src={{model.img}} />
     <!--<span class="glyphicon glyphicon-facetime-video text-primary" style="border: 1px solid #fff; font-size: 2em; padding: 10px;"></span>-->
     <div class="caption">
-        <a ng-href="office/publication/edit/{{model.id}}"><h5><span class="glyphicon glyphicon-facetime-video"></span><span class="glyphicon glyphicon-camera"></span>{{model.title}}</h5></a>
+        <a ng-href="publication/{{model.urlKey}}">
+            <h5>
+                <span class="glyphicon glyphicon-facetime-video" ng-show="model.hasVideo"></span>
+                <span class="glyphicon glyphicon-camera" ng-show="model.hasPhoto"></span>
+                {{model.title}}
+            </h5>
+        </a>
     </div>
 </div>

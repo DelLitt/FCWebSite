@@ -69,7 +69,24 @@ textarea {
     margin-bottom: 15px;
 }
 
-.panel-heading a {
+.fc-pad {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.publication {
+    font-size: 16px;
+}
+
+.img-publication-left {
+    margin: 0 10px 10px 0;
+}
+
+.white {
+    color: #fff;
+}
+
+.panel-heading a.white {
     color: #fff;
 }
 

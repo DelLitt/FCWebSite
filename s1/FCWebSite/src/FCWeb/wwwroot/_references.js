@@ -6,6 +6,7 @@
 /// <reference path="lib/angular-cookies/angular-cookies.js" />
 /// <reference path="lib/angular-loading-bar/build/loading-bar.js" />
 /// <reference path="lib/angular-route/angular-route.js" />
+/// <reference path="lib/angular-sanitize/angular-sanitize.js" />
 /// <reference path="lib/angular-translate/angular-translate.js" />
 /// <reference path="lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js" />
 /// <reference path="lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js" />

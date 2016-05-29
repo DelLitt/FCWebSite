@@ -6,14 +6,13 @@ namespace FCWeb.Controllers.Api
     using System.Collections.Generic;
     using System.Net;
     using System.Security.Claims;
+    using Core.Extensions;
     using FCCore.Abstractions.Bll;
-    using FCCore.Common;
     using FCCore.Configuration;
     using FCCore.Model;
-    using FCWeb.Core.Extensions;
-    using FCWeb.ViewModels;
     using Microsoft.AspNet.Authorization;
     using Microsoft.AspNet.Mvc;
+    using ViewModels;
 
     [Route("api/[controller]")]
     public class PublicationsController : Controller
@@ -41,7 +40,7 @@ namespace FCWeb.Controllers.Api
         //}
 
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public PublicationViewModel Get(int id)
         {
             if (User.Identity.IsAuthenticated 
@@ -62,6 +61,12 @@ namespace FCWeb.Controllers.Api
             }
 
             return publicationBll.GetPublication(id).ToViewModel();
+        }
+
+        [HttpGet("{urlKey}")]
+        public PublicationViewModel Get(string urlKey)
+        {
+            return publicationBll.GetPublication(urlKey).ToViewModel();
         }
 
         // POST api/values

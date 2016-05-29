@@ -32,6 +32,19 @@
             });
         }
 
+        this.loadPublicationByUrlKey = function (urlKey, success, failure) {
+            apiSrv.get('/api/publications/' + urlKey,
+                null,
+                success,
+                function (response) {
+                    if (failure != null) {
+                        failure(response);
+                    }
+
+                    publicationsLoadFailed(response);
+                });
+        }
+
         function publicationsLoadFailed(response) {
             notificationManager.displayError(response.data);
         }

@@ -1,8 +1,8 @@
-﻿<form class="form office" role="form" novalidate angular-validator name="forms.editPublication" ng-submit="saveEdit(forms.editPublication);">
+﻿<form class="form office fc-container row" role="form" novalidate angular-validator name="forms.editPublication" ng-submit="saveEdit(forms.editPublication);">
     <h2>Редактирование публикации #{{publication.id}}</h2>
     <div class="form-group">
         <label for="title" class="control-label">Основной заголовок:</label>
-        <input class="form-control" id="title" name="title" type="text" ng-model="publication.title"required>
+        <input class="form-control" id="title" name="title" type="text" ng-model="publication.title" ng-change="titleChanged(publication.title)" required>
         <div class="alert alert-danger fade in" ng-show="(forms.editPublication.title.$dirty || submitted) && forms.editPublication.title.$error.required">
             <strong>Ошибка!</strong> Введите основной заголовок!
         </div>
@@ -103,10 +103,21 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">Видео публикации
-            <autocomplete-custom url="/api/videos/" minsymbols="3" 
-                                 title="title" subtitle="id" 
-                                 displaykey="title" retkey="id" 
-                                 modelret="videoId" modeldisplay="videoTitle"></autocomplete-custom>
+            <div class="radio-inline">
+                <label><input type="radio" ng-model="videoMode" value="0">Нет видео</label>
+            </div>
+            <div class="radio-inline">
+                <label><input type="radio" ng-model="videoMode" value="1">Новое видео</label>
+            </div>
+            <div class="radio-inline">
+                <label><input type="radio" ng-model="videoMode" value="2">Прикрепить видео</label>
+            </div>
+            <fc-autocomplete key="id" val="title" min="3" id="videoId"
+                             addglobalescapeevent="addRootClickListener"
+                             urlsearch="/api/videos/search"
+                             urlinit="videoInitUrl"
+                             ng-show="videoMode === '2'">
+            </fc-autocomplete>
         </div>
         <div class="panel-body">
             <video-edit videoid="video.id" forms="forms" callbackdata="video.callbackData"></video-edit>
