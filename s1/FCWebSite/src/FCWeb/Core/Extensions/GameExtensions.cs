@@ -84,8 +84,7 @@
                 var firstGame = roundGames.First();
                 var roundView = new RoundInfoViewModel()
                 {
-                    //tourney = firstGame?.round?.tourney?.Name ?? string.Empty,
-                    tourney = "Турнир",
+                    tourney = firstGame?.round?.tourney?.Name ?? "Турнир",
                     logo = string.Empty,
                     roundId = firstGame.roundId,
                     name = firstGame?.round?.Name ?? string.Empty,

@@ -1,18 +1,26 @@
-﻿<div class="row">
-    <div class="col-sm-8 main-event">
-        <publication-item model="publications.main"></publication-item>
+﻿<div class="row fc-container">
+    <div class="col-sm-7 main-event">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h5>{{publications.main.title}}<br />
+                <small>{{publications.main.header}}</small></h5></div>
+            <div class="panel-body">
+                <publication-item model="publications.main"></publication-item>
+            </div>
+        </div>
     </div>
-    <div class="col-sm-4" ng-if="ranking">
-        <h3 class="text-primary" style="margin-top: 0;" translate="TABLE">Таблица</h3>
+    <div class="col-sm-5 main-table" ng-if="ranking">
         <main-table model="ranking"></main-table>
     </div>
     <div class="col-sm-12 main-results">
-        <h3 class="text-primary" style="margin-top: 0;" translate="RESULTS">Результаты</h3>
         <round-results model="roundResults"></round-results>
     </div>
 </div>
-<div class="row" ng-repeat="row in publications.rows">
-    <div class="col-sm-4" ng-repeat="publication in row.items">
-        <publication-item model="publication"></publication-item>
+<div class="row fc-container" style="padding-left: 30px; padding-right: 30px;">
+    <h3 style="margin-top:-10px;" class="text-primary"><span class="glyphicon glyphicon glyphicon-globe">&nbsp;</span>Новости</h3>
+    <hr />
+    <div class="row" ng-repeat="row in publications.rows">
+        <div class="col-sm-4" ng-repeat="publication in row.items">
+            <publication-item model="publication"></publication-item>
+        </div>
     </div>
 </div>

@@ -91,7 +91,21 @@
                 return;
             }
 
-            return appConfig.settingsVisibility;
+            return $rootScope.appConfig.settingsVisibility;
+        }
+
+        this.getEventGroupFriendlyNames = function () {
+            if (!angular.isDefined($rootScope.appConfig)) {
+                notificationManager.displayError('Object appConfig is not defined!');
+                return;
+            }
+
+            if (!angular.isObject($rootScope.appConfig.eventGroupFriendlyNames)) {
+                notificationManager.displayError('Wrong configuraion appConfig.eventGroupFriendlyNames!');
+                return;
+            }
+
+            return $rootScope.appConfig.eventGroupFriendlyNames;
         }
 
         this.urlKeyRegexPattern = '^[a-zA-Z0-9_-]+$';

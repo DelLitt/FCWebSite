@@ -16,6 +16,7 @@
             {
                 id = p.Id,
                 title = p.Title,
+                header = p.Header,
                 img = p.Image
             });
         }

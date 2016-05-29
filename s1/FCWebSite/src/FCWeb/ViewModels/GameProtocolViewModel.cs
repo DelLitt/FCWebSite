@@ -1,9 +1,6 @@
 ﻿namespace FCWeb.ViewModels.Protocol
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public class GameProtocolViewModel
     {
@@ -13,11 +10,15 @@
 
     public class ProtocolTeamViewModel
     {
-        public IEnumerable<PersonViewModel> allPlayersUnique { get; set; } = new List<PersonViewModel>();
-        public IEnumerable<PersonViewModel> allPlayers { get; set; } = new List<PersonViewModel>();
+        public IEnumerable<PersonViewModel> playersSquad { get; set; } = new List<PersonViewModel>();
+        public IEnumerable<PersonViewModel> playersSubs { get; set; } = new List<PersonViewModel>();
+        public IEnumerable<PersonViewModel> playersAll { get; set; } = new List<PersonViewModel>();
         public IEnumerable<ProtocolRecordViewModel> main { get; set; } = new List<ProtocolRecordViewModel>();
         public IEnumerable<ProtocolRecordViewModel> reserve { get; set; } = new List<ProtocolRecordViewModel>();
         public IEnumerable<ProtocolRecordViewModel> goals { get; set; } = new List<ProtocolRecordViewModel>();
+        public IEnumerable<ProtocolRecordViewModel> subs { get; set; } = new List<ProtocolRecordViewModel>();
+        public IEnumerable<ProtocolRecordViewModel> cards { get; set; } = new List<ProtocolRecordViewModel>();
+        public IEnumerable<ProtocolRecordViewModel> others { get; set; } = new List<ProtocolRecordViewModel>();
     }
 
     public class ProtocolRecordViewModel
@@ -30,6 +31,8 @@
         public int? personId { get; set; }
         public int teamId { get; set; }
         public bool extraTime { get; set; }
+
+        public EventViewModel eventModel { get; set; }
         public PersonViewModel mainPerson { get; set; }
         public PersonViewModel extraPerson { get; set; }
     }

@@ -15,6 +15,7 @@ namespace FCWeb.ViewModels
     {
         public ImagesConfigurationOfficeViewModel images = new ImagesConfigurationOfficeViewModel();
         public VisibilityViewModel settingsVisibility = new VisibilityViewModel();
+        public Dictionary<int, string> eventGroupFriendlyNames = new Dictionary<int, string>();
     }
 
     public class ImagesConfigurationViewModel

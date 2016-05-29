@@ -27,6 +27,11 @@
             return DalEvent.GetEvent(id);
         }
 
+        public IEnumerable<Event> GetEvents(IEnumerable<int> ids)
+        {
+            return DalEvent.GetEvents(ids);
+        }
+
         public IEnumerable<Event> GetAll()
         {
             return DalEvent.GetAll();

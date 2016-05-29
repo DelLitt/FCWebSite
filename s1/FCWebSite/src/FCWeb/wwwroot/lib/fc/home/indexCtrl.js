@@ -25,7 +25,7 @@
         loadData();
 
         function loadData() {
-            publicationsSrv.loadLatestPublications(helper.getRandom(0, 20), latestPublicationsLoaded);
+            publicationsSrv.loadLatestPublications(7, latestPublicationsLoaded);
             rankingsSrv.loadRankingTable(10, rankingLoaded);
             gamesSrv.roundResultsManager.init(3, [10, 11], roundLoaded);
         }
@@ -47,6 +47,7 @@
         function roundLoaded(data) {
             if (angular.isObject(data)) {
                 $scope.roundResults.name = data.name,
+                $scope.roundResults.tourney = data.tourney,
                 $scope.roundResults.logo = data.logo,
                 $scope.roundResults.dateGames = data.dateGames
             }

@@ -1,4 +1,5 @@
-﻿<div class="panel panel-default">
+﻿<h2>Редактирование протокола игры #{{gameId}}</h2>
+<div class="panel panel-default">
     <div class="panel-heading">Основной состав</div>
     <div class="panel-body">
         <div class="row">
@@ -6,10 +7,10 @@
                 <label class="control-label">Хозяева:</label>
                 <div ng-repeat="record in protocol.home.main">
                     <fc-autocomplete key="id" val="nameDefault" min="3" id="record.personId"
-                                     selid="{{record.personId}}" showall="true"
-                                     addglobalescapeevent="addRootClickListener"
-                                     inputdata="protocol.home.allPlayersUnique"
-                                     removeselected="true">
+                                        selid="{{record.personId}}" showall="true"
+                                        addglobalescapeevent="addRootClickListener"
+                                        inputdata="protocol.home.playersSquad"
+                                        removeselected="true">
                     </fc-autocomplete>
                 </div>
             </div>
@@ -17,10 +18,10 @@
                 <label class="control-label">Гости:</label>
                 <div ng-repeat="record in protocol.away.main">
                     <fc-autocomplete key="id" val="nameDefault" min="3" id="record.personId"
-                                     selid="{{record.personId}}" showall="true"
-                                     addglobalescapeevent="addRootClickListener"
-                                     inputdata="protocol.away.allPlayersUnique"
-                                     removeselected="true">
+                                        selid="{{record.personId}}" showall="true"
+                                        addglobalescapeevent="addRootClickListener"
+                                        inputdata="protocol.away.playersSquad"
+                                        removeselected="true">
                     </fc-autocomplete>
                 </div>
             </div>
@@ -35,10 +36,10 @@
                 <label class="control-label">Хозяева:</label>
                 <div ng-repeat="record in protocol.home.reserve">
                     <fc-autocomplete key="id" val="nameDefault" min="3" id="record.personId"
-                                     selid="{{record.personId}}" showall="true"
-                                     addglobalescapeevent="addRootClickListener"
-                                     inputdata="protocol.home.allPlayersUnique"
-                                     removeselected="true">
+                                        selid="{{record.personId}}" showall="true"
+                                        addglobalescapeevent="addRootClickListener"
+                                        inputdata="protocol.home.playersSquad"
+                                        removeselected="true">
                     </fc-autocomplete>
                 </div>
             </div>
@@ -46,10 +47,10 @@
                 <label class="control-label">Гости:</label>
                 <div ng-repeat="record in protocol.away.reserve">
                     <fc-autocomplete key="id" val="nameDefault" min="3" id="record.personId"
-                                     selid="{{record.personId}}" showall="true"
-                                     addglobalescapeevent="addRootClickListener"
-                                     inputdata="protocol.away.allPlayersUnique"
-                                     removeselected="true">
+                                        selid="{{record.personId}}" showall="true"
+                                        addglobalescapeevent="addRootClickListener"
+                                        inputdata="protocol.away.playersSquad"
+                                        removeselected="true">
                     </fc-autocomplete>
                 </div>
             </div>
@@ -70,7 +71,7 @@
                     <span class="glyphicon glyphicon-remove"></span>
                 </a>
             </div>
-            <goal-record record="goal" players="protocol.home.allPlayers"/>
+            <goal-record record="goal" players="protocol.home.playersAll" />
         </div>
         <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="goals.addItem('home');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить гол</a></div></div>
         <div class="row">
@@ -84,8 +85,123 @@
                     <span class="glyphicon glyphicon-remove"></span>
                 </a>
             </div>
-            <goal-record record="goal" players="protocol.away.allPlayers"/>
+            <goal-record record="goal" players="protocol.away.playersAll" />
         </div>
         <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="goals.addItem('away');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить гол</a></div></div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Замены</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <label class="control-label h2">Хозяева</label>
+            </div>
+        </div>
+        <div class="row" ng-repeat="sub in protocol.home.subs">
+            <div class="col-md-1">
+                <a class="badge pull-left" href="javascript:void(0);" ng-click="subs.removeItem($index, 'home')">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </div>
+            <sub-record record="sub" players="protocol.home.playersAll" />
+        </div>
+        <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="subs.addItem('home');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить замену</a></div></div>
+        <div class="row">
+            <div class="col-md-12">
+                <label class="control-label h2">Гости</label>
+            </div>
+        </div>
+        <div class="row" ng-repeat="sub in protocol.away.subs">
+            <div class="col-md-1">
+                <a class="badge pull-left" href="javascript:void(0);" ng-click="subs.removeItem($index, 'away')">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </div>
+            <sub-record record="sub" players="protocol.away.playersAll" />
+        </div>
+        <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="subs.addItem('away');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить замену</a></div></div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Карточки</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <label class="control-label h2">Хозяева</label>
+            </div>
+        </div>
+        <div class="row" ng-repeat="card in protocol.home.cards">
+            <div class="col-md-1">
+                <a class="badge pull-left" href="javascript:void(0);" ng-click="cards.removeItem($index, 'home')">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </div>
+            <event-group-record record="card" players="protocol.home.playersAll"
+                                eventgrouptitle="Тип карточки"
+                                eventtitle="Вид нарушения"
+                                persontitle="Игрок"
+                                eventgroupsfilter="2,3" />
+        </div>
+        <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="cards.addItem('home');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить карточку</a></div></div>
+        <div class="row">
+            <div class="col-md-12">
+                <label class="control-label h2">Гости</label>
+            </div>
+        </div>
+        <div class="row" ng-repeat="card in protocol.away.cards">
+            <div class="col-md-1">
+                <a class="badge pull-left" href="javascript:void(0);" ng-click="subs.removeItem($index, 'away')">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </div>
+            <event-group-record record="card" players="protocol.away.playersAll"
+                                eventgrouptitle="Тип карточки"
+                                eventtitle="Вид нарушения"
+                                persontitle="Игрок"
+                                eventgroupsfilter="2,3" />
+        </div>
+        <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="cards.addItem('away');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить карточку</a></div></div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Другие события матча</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <label class="control-label h2">Хозяева</label>
+            </div>
+        </div>
+        <div class="row" ng-repeat="other in protocol.home.others">
+            <div class="col-md-1">
+                <a class="badge pull-left" href="javascript:void(0);" ng-click="other.removeItem($index, 'home')">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </div>
+            <event-group-record record="other" players="protocol.home.playersAll"
+                                eventgrouptitle="Тип события"
+                                eventtitle="Вид события"
+                                persontitle="Игрок"
+                                eventgroupsfilter="5,6,7" />
+        </div>
+        <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="others.addItem('home');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить событие</a></div></div>
+        <div class="row">
+            <div class="col-md-12">
+                <label class="control-label h2">Гости</label>
+            </div>
+        </div>
+        <div class="row" ng-repeat="other in protocol.away.others">
+            <div class="col-md-1">
+                <a class="badge pull-left" href="javascript:void(0);" ng-click="others.removeItem($index, 'away')">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </div>
+            <event-group-record record="other" players="protocol.away.playersAll"
+                                eventgrouptitle="Тип события"
+                                eventtitle="Вид события"
+                                persontitle="Игрок"
+                                eventgroupsfilter="5,6,7" />
+        </div>
+        <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="others.addItem('away');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить событие</a></div></div>
     </div>
 </div>

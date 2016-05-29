@@ -1,5 +1,6 @@
 ﻿namespace FCWeb.Controllers.Api
 {
+    using Core;
     using Core.Extensions;
     using FCCore.Configuration;
     using Microsoft.AspNet.Mvc;
@@ -33,6 +34,7 @@
             appConfig.images.teams = MainCfg.Images.Teams;
             appConfig.images.store = MainCfg.Images.Store;
             appConfig.settingsVisibility = MainCfg.SettingsVisibility.ToViewModel();
+            appConfig.eventGroupFriendlyNames = EventHelper.FriendlyNames;
 
             return appConfig;
         }

@@ -1,5 +1,7 @@
 ﻿{
   "TABLE": "Таблица",
+  "OFFICIAL_NAME": "Спортивный футбольный клуб «Слуцк»",
+  "OFFICIAL_SLOGAN": "Футбол - этот не всё, но все без футбола - ничто!",
   "OFFICIAL_SITE": "Официальный сайт",
   "SHORT_LANG_RU": "рус",
   "SHORT_LANG_EN": "en",
@@ -10,5 +12,10 @@
   "HISTORY": "История",
   "STAFF": "Основной состав",
   "TEAM": "Команда",
-  "GAMES_SH": "И"
+  "GAMES_SH": "И",
+  "WINS_SH": "В",
+  "DRAWS_SH": "Н",
+  "LOSES_SH": "П",
+  "GOALS_SH": "М",
+  "POINTS_SH": "О"
 }

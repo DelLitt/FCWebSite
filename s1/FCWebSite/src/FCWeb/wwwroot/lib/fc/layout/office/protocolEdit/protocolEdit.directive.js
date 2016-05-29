@@ -12,7 +12,8 @@
         return {
             restrict: 'E',
             scope: {
-                gameId: '='
+                gameId: '=',
+                protocol: '='
             },
 
             link: function link(scope, element, attrs) {
@@ -20,7 +21,7 @@
                 loadData(scope.gameId);
 
                 function loadData(gameId) {
-                    if (gameId < 0) {
+                    if (gameId <= 0) {
                         return;
                     }
 
@@ -42,7 +43,7 @@
                             "id": 0,
                             "customIntValue": null,
                             "eventId": 0,
-                            "gameId": 0,
+                            "gameId": scope.gameId,
                             "minute": null,
                             "personId": null,
                             "teamId": 0,
@@ -52,7 +53,68 @@
                         });
                     }
                 }
-                
+
+                scope.subs = {
+                    removeItem: function (index, side) {
+                        scope.protocol[side].subs.splice(index, 1);
+                    },
+                    addItem: function (side) {
+                        scope.protocol[side].subs.push({
+                            "id": 0,
+                            "customIntValue": null,
+                            "eventId": 32,
+                            "gameId": scope.gameId,
+                            "minute": 1,
+                            "personId": null,
+                            "teamId": 0,
+                            "extraTime": false,
+                            "mainPerson": null,
+                            "extraPerson": null
+                        });
+                    }
+                }
+
+                scope.cards = {
+                    removeItem: function (index, side) {
+                        scope.protocol[side].cards.splice(index, 1);
+                    },
+                    addItem: function (side) {
+                        scope.protocol[side].cards.push({
+                            "id": 0,
+                            "customIntValue": null,
+                            "eventId": 0,
+                            "gameId": scope.gameId,
+                            "minute": 1,
+                            "personId": null,
+                            "teamId": 0,
+                            "extraTime": false,
+                            "eventModel": null,
+                            "mainPerson": null,
+                            "extraPerson": null
+                        });
+                    }
+                }
+
+                scope.others = {
+                    removeItem: function (index, side) {
+                        scope.protocol[side].others.splice(index, 1);
+                    },
+                    addItem: function (side) {
+                        scope.protocol[side].others.push({
+                            "id": 0,
+                            "customIntValue": null,
+                            "eventId": 0,
+                            "gameId": scope.gameId,
+                            "minute": 1,
+                            "personId": null,
+                            "teamId": 0,
+                            "extraTime": false,
+                            "eventModel": null,
+                            "mainPerson": null,
+                            "extraPerson": null
+                        });
+                    }
+                }                
             },
 
             templateUrl: '/lib/fc/layout/office/protocolEdit/protocolEdit.html'

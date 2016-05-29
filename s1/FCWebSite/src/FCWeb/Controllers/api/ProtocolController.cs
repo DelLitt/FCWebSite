@@ -1,10 +1,13 @@
 ﻿namespace FCWeb.Controllers.Api.Games
 {
     using System.Collections.Generic;
+    using System.Net;
     using Core;
+    using Core.Extensions;
     using FCCore.Abstractions.Bll;
     using FCCore.Abstractions.Bll.Protocol;
     using FCCore.Model;
+    using Microsoft.AspNet.Authorization;
     using Microsoft.AspNet.Mvc;
     using ViewModels.Protocol;
 
@@ -49,38 +52,19 @@
             return modelBuilder.ViewModel;
         }
 
-        //// POST api/values
-        //[HttpPost]
-        //[Authorize(Roles = "admin,press")]
-        //public void Post([FromBody]GameViewModel gameView)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        Response.StatusCode = (int)HttpStatusCode.BadRequest;
-        //        return;
-        //    }
+        [HttpPost]
+        [Authorize(Roles = "admin,press")]
+        public void Post([FromBody]GameProtocolViewModel protocolView)
+        {
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return;
+            }
 
-        //    //int gameId = protocolBll.SaveGame(gameView.ToBaseModel());
-        //}
+            var records = protocolView.ToRecordsList();
 
-        //// PUT api/values/5
-        //[HttpPut]
-        //[Authorize(Roles = "admin,press")]
-        //public void Put(int id, [FromBody]GameViewModel gameView)
-        //{
-        //    if (id != gameView.id)
-        //    {
-        //        Response.StatusCode = (int)HttpStatusCode.BadRequest;
-        //        return;
-        //    }
-
-        //    if (!ModelState.IsValid)
-        //    {
-        //        Response.StatusCode = (int)HttpStatusCode.BadRequest;
-        //        return;
-        //    }
-
-        //    //gameBll.SaveGame(gameView.ToBaseModel());
-        //}
+            int count = protocolBll.SaveProtocol(records);
+        }
     }
 }

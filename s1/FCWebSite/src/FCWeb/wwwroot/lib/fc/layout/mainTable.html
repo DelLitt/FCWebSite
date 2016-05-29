@@ -1,23 +1,30 @@
-﻿<table class="table-standings table table-striped">
-    <caption>{{model.name}}</caption>
-    <tr>
-        <th>#</th>
-        <th translate="TEAM">Команда</th>
-        <th translate="GAMES_SH">И</th>
-        <th>В</th>
-        <th>Н</th>
-        <th>П</th>
-        <th>М</th>
-        <th>О</th>
-    </tr>
-    <tr ng-repeat="row in model.rows">
-        <td>{{row.position}}</td>
-        <td>{{row.team}}</td>
-        <td>{{row.games}}</td>
-        <td>{{row.wins}}</td>
-        <td>{{row.draws}}</td>
-        <td>{{row.loses}}</td>
-        <td>{{row.goalsFor}}-{{row.goalsAgainst}}</td>
-        <td>{{row.points}}</td>
-    </tr>
-</table>
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        Таблица. {{model.name}}
+    </div>
+    <div class="panel-body">        
+        <table class="table-standings table table-borderless table-striped">
+            <!--<caption>Таблица. {{model.name}}</caption>-->
+            <tr>
+                <th>#</th>
+                <th translate="TEAM">Команда</th>
+                <th translate="GAMES_SH">И</th>
+                <th translate="WINS_SH">В</th>
+                <th translate="DRAWS_SH">Н</th>
+                <th translate="LOSES_SH">П</th>
+                <th translate="GOALS_SH">М</th>
+                <th translate="POINTS_SH">О</th>
+            </tr>
+            <tr ng-repeat="row in model.rows">
+                <td>{{row.position}}</td>
+                <td><a href="javascript:void(0);">{{row.team}}</a></td>
+                <td>{{row.games}}</td>
+                <td>{{row.wins}}</td>
+                <td>{{row.draws}}</td>
+                <td>{{row.loses}}</td>
+                <td>{{row.goalsFor}}-{{row.goalsAgainst}}</td>
+                <td>{{row.points}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

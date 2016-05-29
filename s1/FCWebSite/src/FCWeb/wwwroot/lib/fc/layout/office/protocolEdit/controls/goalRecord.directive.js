@@ -5,9 +5,9 @@
         .module('fc.ui')
         .directive('goalRecord', goalRecord);
 
-    goalRecord.$inject = ['apiSrv', 'protocolSrv'];
+    goalRecord.$inject = [];
     
-    function goalRecord(apiSrv, protocolSrv) {
+    function goalRecord() {
 
         return {
             restrict: 'E',
@@ -22,7 +22,6 @@
 
                 scope.eventInitUrl = '/api/events/' + scope.record.eventId;
 
-                // watch initialId
                 scope.$watch(function (scope) {
                     return scope.record.eventId;
                 },
@@ -33,27 +32,10 @@
                 function hasAssist(eventId) {
                     return assistIds.indexOf(eventId) > -1;
                 }
-
-                //loadData(scope.gameId);
-
-                //function loadData(gameId) {
-                //    if (gameId < 0) {
-                //        return;
-                //    }
-
-                //    protocolSrv.loadProtocol(gameId, protocolLoaded);
-                //}
-
-                //function protocolLoaded(response) {
-                //    var protocol = response.data;
-
-                //    scope.protocol = protocol;
-                //}
                 
             },
 
             templateUrl: '/lib/fc/layout/office/protocolEdit/controls/goalRecord.html'
-
         };
     }
 

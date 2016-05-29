@@ -13,6 +13,13 @@
             return Context.Event.FirstOrDefault(p => p.Id == id);
         }
 
+        public IEnumerable<Event> GetEvents(IEnumerable<int> ids)
+        {
+            if (ids == null) { return new Event[0]; }
+
+            return Context.Event.Where(e => ids.Contains(e.Id));
+        }
+
         public IEnumerable<Event> GetAll()
         {
             return Context.Event;

@@ -65,6 +65,24 @@
             return records.Where(r => r.ProtocolRecord.teamId == teamId && r.IsGoal).Select(r => r.ProtocolRecord);
         }
 
+        public IEnumerable<ProtocolRecord> GetSubstitutions(int teamId)
+        {
+            return records.Where(r => r.ProtocolRecord.teamId == teamId && r.IsSubstitution).Select(r => r.ProtocolRecord);
+        }
+
+        public IEnumerable<ProtocolRecord> GetCards(int teamId)
+        {
+            return records.Where(r => r.ProtocolRecord.teamId == teamId 
+                                  && (r.IsYellowCard || r.IsRedCard)).Select(r => r.ProtocolRecord);
+        }
+
+
+        public IEnumerable<ProtocolRecord> GetOthers(int teamId)
+        {
+            return records.Where(r => r.ProtocolRecord.teamId == teamId
+                                  && (r.IsOut || r.IsMiss || r.IsAfterGamePenalty)).Select(r => r.ProtocolRecord);
+        }
+
         private void CompleteWithEmpty<T>(IList<T> items, int totalCount) where T: new()
         {
             if(items == null)

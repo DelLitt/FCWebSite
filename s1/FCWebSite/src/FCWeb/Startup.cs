@@ -1,17 +1,21 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Data.Entity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using FCWeb.Services;
-using FCWeb.Core.Extensions;
-using FCCore.Configuration;
-using FCDAL.Model;
-
-namespace FCWeb
+﻿namespace FCWeb
 {
+    using Microsoft.AspNet.Builder;
+    using Microsoft.AspNet.Hosting;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.Data.Entity;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+    using FCWeb.Services;
+    using FCWeb.Core.Extensions;
+    using FCCore.Configuration;
+    using FCDAL.Model;
+    using FCWeb.Core;
+    using Microsoft.AspNet.Localization;
+    using System.Globalization;
+    using System.Collections.Generic;
+
     public class Startup
     {
         public Startup(IHostingEnvironment env)
@@ -46,6 +50,8 @@ namespace FCWeb
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<FCDBContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<LanguageActionFilter>();
 
             services.AddMvc();
             services.AddCoreConfiguration(Configuration);
@@ -94,6 +100,23 @@ namespace FCWeb
             app.UseIdentity();
 
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
+
+            var requestLocalizationOptions = new RequestLocalizationOptions
+            {
+                // Set options here to change middleware behavior
+                SupportedCultures = new List<CultureInfo>
+                {
+                    new CultureInfo("en-US"),
+                    new CultureInfo("ru-RU")
+                },
+                SupportedUICultures = new List<CultureInfo>
+                {
+                    new CultureInfo("en-US"),
+                   new CultureInfo("ru-RU")
+                }
+            };
+
+            app.UseRequestLocalization(requestLocalizationOptions, defaultRequestCulture: new RequestCulture("ru-RU"));
 
             app.UseMvc(routes =>
             {

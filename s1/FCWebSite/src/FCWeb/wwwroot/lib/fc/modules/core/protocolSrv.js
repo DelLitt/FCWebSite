@@ -25,29 +25,17 @@
             notificationManager.displayError(response.data);
         }
 
-        this.saveProtocol = function (id, protocol, success, failure) {
-            if (angular.isDefined(id) && parseInt(id) > 0) {
-                apiSrv.put('/api/protocols/', id, protocol,
-                                success,
-                                function (response) {
-                                    if (angular.isFunction(failure)) {
-                                        failure(response);
-                                    }
+        this.saveProtocol = function (gameId, protocol, success, failure) {
+            apiSrv.post('/api/game/' + gameId + '/protocol/', protocol,
+                            success,
+                            function (response) {
+                                if (angular.isFunction(failure)) {
+                                    failure(response);
+                                }
 
-                                    protocolSaveFailed(response);
-                                });
-            } else {
-                apiSrv.post('/api/protocols/', protocol,
-                                success,
-                                function (response) {
-                                    if (angular.isFunction(failure)) {
-                                        failure(response);
-                                    }
+                                protocolSaveFailed(response);
+                            });
 
-                                    protocolSaveFailed(response);
-                                });
-
-            }
         }
 
         function protocolSaveFailed(response) {

@@ -6,6 +6,7 @@
     public interface IEventBll
     {
         Event GetEvent(int id);
+        IEnumerable<Event> GetEvents(IEnumerable<int> ids);
         IEnumerable<Event> GetAll();
         IEnumerable<Event> GetAllByGroup(int eventGroupId);
         IEnumerable<Event> SearchByDefault(string text);

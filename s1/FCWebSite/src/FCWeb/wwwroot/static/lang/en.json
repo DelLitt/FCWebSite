@@ -1,6 +1,8 @@
 ﻿{
   "TABLE": "Table",
   "OFFICIAL_SITE": "Official site",
+  "OFFICIAL_NAME": "Sport football club «Slutsk»",
+  "OFFICIAL_SLOGAN": "Football - it's not everything, but everything without football - nothing!",
   "SHORT_LANG_RU": "ru",
   "SHORT_LANG_EN": "en",
   "CLUB": "Club",
@@ -10,5 +12,10 @@
   "HISTORY": "History",
   "MAIN_STAFF": "Main staff",
   "TEAM": "Team",
-  "GAMES_SH": "G"
+  "GAMES_SH": "G",
+  "WINS_SH": "W",
+  "DRAWS_SH": "D",
+  "LOSES_SH": "L",
+  "GOALS_SH": "G",
+  "POINTS_SH": "P"
 }
