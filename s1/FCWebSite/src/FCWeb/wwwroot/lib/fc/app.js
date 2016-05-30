@@ -17,6 +17,10 @@
                 templateUrl: "lib/fc/publication/publication.html",
                 controller: "publicationCtrl"
             })
+            .when("/club/mainteam", {
+                templateUrl: "lib/fc/club/mainteam.html",
+                controller: "mainTeamCtrl"
+            })
             .otherwise({ redirectTo: "/" });
 
         $locationProvider.html5Mode(true);

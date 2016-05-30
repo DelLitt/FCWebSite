@@ -1,13 +1,13 @@
 ﻿namespace FCCore.Configuration
 {
-    using Microsoft.Extensions.Configuration;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Abstractions.Dal;
+    using Exceptions;
+    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using FCCore.Model;
-    using FCCore.Abstractions.Dal;
-    using FCCore.Exceptions;
+    using Model;
 
     public static class MainCfg
     {
@@ -67,6 +67,14 @@
             get
             {
                 return Convert.ToInt32(CoreConfig.Current["Settings:TimeShift"]);
+            }
+        }
+
+        public static int MainTeamId
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MainTeamId"]);
             }
         }
 

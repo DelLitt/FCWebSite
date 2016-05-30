@@ -13,6 +13,10 @@
             apiSrv.get('/api/persons/' + id, null, success, personsLoadFail);
         }
 
+        this.loadTeamMainPlayers = function (id, success, failure) {
+            apiSrv.get('/api/teams/' + id + '/persons/mainteam', null, success, personsLoadFail);
+        }        
+
         function personsLoadFail(response, customLoadFail) {
             if (angular.isFunction(customLoadFail)) {
                 customLoadFail(response);

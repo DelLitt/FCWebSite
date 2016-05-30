@@ -1,0 +1,30 @@
+﻿<div class="fc-container row publication">
+    <h3 class="text-primary"><span class="glyphicon glyphicon-stats">&nbsp;</span>Вратари</h3>
+    <hr />
+    <div class="row" ng-repeat="row in goalkeepers.rows">
+        <div class="col-sm-4" ng-repeat="item in row.items">
+            <person-item person="item"></person-item>
+        </div>
+    </div>
+    <h3 class="text-primary"><span class="glyphicon glyphicon-stats">&nbsp;</span>Защитники</h3>
+    <hr />
+    <div class="row" ng-repeat="row in defenders.rows">
+        <div class="col-sm-4" ng-repeat="item in row.items">
+            <person-item person="item"></person-item>
+        </div>
+    </div>
+    <h3 class="text-primary"><span class="glyphicon glyphicon-stats">&nbsp;</span>Полузащитники</h3>
+    <hr />
+    <div class="row" ng-repeat="row in midfielders.rows">
+        <div class="col-sm-4" ng-repeat="item in row.items">
+            <person-item person="item"></person-item>
+        </div>
+    </div>
+    <h3 class="text-primary"><span class="glyphicon glyphicon-stats">&nbsp;</span>Нападающие</h3>
+    <hr />
+    <div class="row" ng-repeat="row in forwards.rows">
+        <div class="col-sm-4" ng-repeat="item in row.items">
+            <person-item person="item"></person-item>
+        </div>
+    </div>
+</div>

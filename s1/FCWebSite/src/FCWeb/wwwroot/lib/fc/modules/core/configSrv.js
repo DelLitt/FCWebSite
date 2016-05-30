@@ -63,7 +63,7 @@
 
 
         function getImagesValue(key) {
-            if (!angular.isDefined($rootScope.appConfig)) {
+            if (!angular.isObject($rootScope.appConfig)) {
                 notificationManager.displayError('Object appConfig is not defined!');
                 return;
             }
@@ -81,7 +81,7 @@
         }
 
         this.getSettingsVisibility = function () {
-            if (!angular.isDefined($rootScope.appConfig)) {
+            if (!angular.isObject($rootScope.appConfig)) {
                 notificationManager.displayError('Object appConfig is not defined!');
                 return;
             }
@@ -95,7 +95,7 @@
         }
 
         this.getEventGroupFriendlyNames = function () {
-            if (!angular.isDefined($rootScope.appConfig)) {
+            if (!angular.isObject($rootScope.appConfig)) {
                 notificationManager.displayError('Object appConfig is not defined!');
                 return;
             }
@@ -106,6 +106,23 @@
             }
 
             return $rootScope.appConfig.eventGroupFriendlyNames;
+        }
+
+        this.getMainTeamId = function () {
+            if (angular.isObject($rootScope.appConfig) && angular.isNumber($rootScope.appConfig.MainTeamId)) {
+                return $rootScope.appConfig.MainTeamId;
+            }
+
+            // TODO: Clear hardcode
+            return 3;
+        }
+
+        this.positions = {
+            rrGoalkeeper : 2,
+            rrDefender : 3,
+            rrMidfielder : 4,
+            rrForward : 5,
+            rrPositionUnknown : 6
         }
 
         this.urlKeyRegexPattern = '^[a-zA-Z0-9_-]+$';

@@ -47,7 +47,7 @@
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th-large"></span> <span translate="CLUB">Клуб</span><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" translate="MAIN_STAFF">Основной состав</a></li>
+                            <li><a href="/club/mainteam" translate="MAIN_STAFF">Основной состав</a></li>
                             <li><a href="#">Дублирующий состав</a></li>
                             <li><a href="#">Молодежный сектор</a></li>
                             <li role="separator" class="divider"></li>
@@ -189,14 +189,17 @@
         <script src="~/lib/fc/modules/core/rankingsSrv.js"></script>
         <script src="~/lib/fc/modules/core/gamessrv.js"></script>
         <script src="~/lib/fc/modules/core/videossrv.js"></script>
+        <script src="~/lib/fc/modules/core/personssrv.js"></script>
         <script src="~/lib/fc/modules/fc.ui.js"></script>
         <script src="~/lib/fc/layout/publicationItem.directive.js"></script>
         <script src="~/lib/fc/layout/maintable.directive.js"></script>
         <script src="~/lib/fc/layout/roundresults.directive.js"></script>
+        <script src="~/lib/fc/layout/persons/personitem.directive.js"></script>
         <script src="~/lib/fc/app.js"></script>
         <script src="~/lib/fc/home/rootctrl.js"></script>
         <script src="~/lib/fc/home/indexctrl.js"></script>
         <script src="~/lib/fc/publication/publicationctrl.js"></script>
+        <script src="~/lib/fc/club/mainteamctrl.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"

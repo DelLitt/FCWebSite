@@ -1,10 +1,11 @@
 ﻿namespace FCDAL.Implementations
 {
-    using FCCore.Abstractions.Dal;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using FCCore.Abstractions.Dal;
+    using FCCore.Common;
     using FCCore.Model;
-    using System;
 
     public class PersonDal : DalBase, IPersonDal
     {
@@ -16,6 +17,13 @@
         public IEnumerable<Person> GetTeamPersons(int teamId)
         {
             return Context.Person.Where(p => p.teamId == teamId);
+        }
+
+        public IEnumerable<Person> GetTeamPersons(int teamId, IEnumerable<int> personRoleIds)
+        {
+            if (Guard.IsEmptyIEnumerable(personRoleIds)) { return new Person[0]; }
+
+            return Context.Person.Where(p => p.teamId == teamId && personRoleIds.Contains((int)p.roleId));
         }
 
         public IEnumerable<Person> GetTeamPersons(int teamId, DateTime date)

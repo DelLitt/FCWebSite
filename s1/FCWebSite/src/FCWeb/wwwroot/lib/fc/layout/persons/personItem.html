@@ -1,0 +1,20 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{person.nameFirst}}
+    </div>
+    <div class="panel-body">
+        <img class="img-responsive img-rounded" ng-src={{image}} />       
+        <div class="caption">
+            <a ng-href="person/{{person.id}}">
+                <h5>
+                    <!--<span class="glyphicon glyphicon-facetime-video" ng-show="model.hasVideo"></span>
+                    <span class="glyphicon glyphicon-camera" ng-show="model.hasPhoto"></span>-->
+                    {{person.nameDefault}}
+                </h5>
+            </a>
+        </div>
+    </div>
+    <div class="panel-footer">
+        {{person.nameLast}}
+    </div>
+</div>
