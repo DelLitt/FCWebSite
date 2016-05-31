@@ -5,9 +5,9 @@
         .module('fc')
         .controller('mainTeamCtrl', mainTeamCtrl);
 
-    mainTeamCtrl.$inject = ['$scope', 'personsSrv', 'configSrv', 'helper', 'filterFilter'];
+    mainTeamCtrl.$inject = ['$scope', 'personsSrv', 'configSrv', 'helper', 'filterFilter', 'publicationsSrv'];
 
-    function mainTeamCtrl($scope, personsSrv, configSrv, helper, filterFilter) {
+    function mainTeamCtrl($scope, personsSrv, configSrv, helper, filterFilter, publicationsSrv) {
 
         // TODO: Change config to promise
          var mainTeamId = configSrv.getMainTeamId();
@@ -18,12 +18,23 @@
         $scope.defenders = {};
         $scope.midfielders = {};
         $scope.forwards = {};
+
+        function loadData() {
+            publicationsSrv.loadLatestPublications(7, latestPublicationsLoaded);
+            rankingsSrv.loadRankingTable(10, rankingLoaded);
+            gamesSrv.roundResultsManager.init(3, [10, 11], roundLoaded);
+        }
         
         loadData();
 
         function loadData() {
-
             personsSrv.loadTeamMainPlayers(mainTeamId, mainTeamLoaded);
+            publicationsSrv.loadLatestPublications(7, publicationsLoaded);
+        }
+
+        function publicationsLoaded(response) {
+            var publications = response.data;
+            $scope.publications = publications;
         }
 
         function mainTeamLoaded(response) {
