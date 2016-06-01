@@ -125,6 +125,8 @@
             rrPositionUnknown : 6
         }
 
+        this.mainTeamTourneyIds = [8, 10];
+
         this.urlKeyRegexPattern = '^[a-zA-Z0-9_-]+$';
     }
 })();

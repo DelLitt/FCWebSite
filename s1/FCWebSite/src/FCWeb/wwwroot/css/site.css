@@ -61,6 +61,17 @@ textarea {
     box-shadow: 5px 5px 5px;
 }
 
+.clickable {
+    cursor: pointer;
+}
+
+.sortorder:after {
+  content: '\25b2';
+}
+.sortorder.reverse:after {
+  content: '\25bc';
+}
+
 .fc-container {
     background-color:#fff; 
     border-radius: 5px; 
@@ -206,7 +217,7 @@ textarea {
 
 .person-item .caption {
     width: 96%;
-    bottom: 2.5rem;
+    bottom: .7rem;
     left: 4px;
 }
 

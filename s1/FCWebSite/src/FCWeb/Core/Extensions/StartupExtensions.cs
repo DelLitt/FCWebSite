@@ -28,6 +28,7 @@
             serviceCollection.AddTransient<IProtocolRecordBll, ProtocolRecordBll>();
             serviceCollection.AddTransient<IEventBll, EventBll>();
             serviceCollection.AddTransient<IEventGroupBll, EventGroupBll>();
+            serviceCollection.AddTransient<IPersonStatisticsBll, PersonStatisticsBll>();
         }
 
         public static void AddDALServices(this IServiceCollection serviceCollection)
@@ -49,6 +50,7 @@
             serviceCollection.AddTransient<IProtocolRecordDal, ProtocolRecordDal>();
             serviceCollection.AddTransient<IEventDal, EventDal>();
             serviceCollection.AddTransient<IEventGroupDal, EventGroupDal>();
+            serviceCollection.AddTransient<IPersonStatisticsDal, PersonStatisticsDal>();
         }
     }
 }

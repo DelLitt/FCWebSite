@@ -8,6 +8,7 @@
         public int id { get; set; }
         public bool active { get; set; }
         public DateTime? birthDate { get; set; }
+        public int age { get; set; }
         public int? cityId { get; set; }
         public int? customIntValue { get; set; }
         public byte? height { get; set; }

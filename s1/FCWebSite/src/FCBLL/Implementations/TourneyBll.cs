@@ -32,6 +32,11 @@
             return DalTourney.GetTourneyByRoundId(roundId);
         }
 
+        public IEnumerable<Tourney> GetTourneys(IEnumerable<int> ids)
+        {
+            return DalTourney.GetTourneys(ids);
+        }
+
         public IEnumerable<Tourney> GetAll()
         {
             return DalTourney.GetAll();

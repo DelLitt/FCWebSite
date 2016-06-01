@@ -24,6 +24,13 @@
             return tourneyBll.GetTourney(id).ToViewModel();
         }
 
+        // GET api/values/5
+        [HttpGet("list")]
+        public IEnumerable<TourneyViewModel> Get([FromQuery] int[] tourneyIds)
+        {
+            return tourneyBll.GetTourneys(tourneyIds).ToViewModel();
+        }
+
         // GET: api/values
         [HttpGet]
         public IEnumerable<TourneyViewModel> Get()

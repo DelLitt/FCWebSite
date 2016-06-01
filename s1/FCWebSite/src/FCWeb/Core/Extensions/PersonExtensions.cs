@@ -48,6 +48,7 @@
             {
                 id = person.Id,
                 active = person.Active,
+                age = person.BirthDate.HasValue ? DateTimeHelper.GetAge(person.BirthDate.Value) : 0,
                 birthDate = person.BirthDate,
                 career = personCareers ?? new PersonCareerViewModel[0],
                 cityId = person.cityId,
