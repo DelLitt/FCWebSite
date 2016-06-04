@@ -95,22 +95,17 @@
                 citiesIds.AddRange(teams.Select(r => (int)r.cityId));
 
                 cities = citiesDal.GetCities(citiesIds.Distinct()).ToList();
-
-                if (!cities.Any())
-                {
-                    throw new DalMappingException(nameof(cities), typeof(Round));
-                }
             }
 
             if (cities.Any())
             {
                 foreach (Team team in teams)
                 {
-                    if (FillCities)
+                    if (FillCities && cities.Any())
                     {
                         team.city = cities.FirstOrDefault(t => t.Id == team.cityId);
 
-                        if (team.city == null)
+                        if (team.cityId.HasValue && team.city == null)
                         {
                             throw new DalMappingException(nameof(team.city), typeof(Stadium));
                         }

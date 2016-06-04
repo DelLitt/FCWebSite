@@ -17,7 +17,8 @@
                 id = city.Id,
                 name = city.Name,
                 nameFull = city.NameFull,
-                countryId = city.countryId
+                countryId = city.countryId,
+                country = city.country.ToViewModel()
             };
         }
 

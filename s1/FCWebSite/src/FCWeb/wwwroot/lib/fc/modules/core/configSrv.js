@@ -5,9 +5,9 @@
         .module('fc.core')
         .service('configSrv', configSrv);
 
-    configSrv.$inject = ['$rootScope', 'helper', 'apiSrv', 'notificationManager'];
+    configSrv.$inject = ['$rootScope', 'apiSrv', 'notificationManager'];
 
-    function configSrv($rootScope, helper, apiSrv, notificationManager) {
+    function configSrv($rootScope, apiSrv, notificationManager) {
 
         this.loadConfig = function (loaded) {
             apiSrv.get(
@@ -123,6 +123,12 @@
             rrMidfielder : 4,
             rrForward : 5,
             rrPositionUnknown : 6
+        }
+
+        this.personGroups = {
+            unknown: [1],
+            player: [2],
+            staff: [3, 4, 5, 6]
         }
 
         this.mainTeamTourneyIds = [8, 10];

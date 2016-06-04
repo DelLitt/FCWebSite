@@ -2,12 +2,11 @@
     <!--<div class="panel-heading">
     </div>-->
     <div class="panel-body no-padding text-center">
-        <img class="img-responsive img-rounded" ng-src={{image}} />       
+        <img class="img-responsive img-rounded" ng-src={{image}} />
         <div class="caption">
             <a ng-href="person/{{person.id}}">
-                <h5>{{person.number}}.&nbsp;{{person.nameDefault}}
-                </h5>
-            </a>
+                <h5>{{person.number}}.&nbsp;{{person.nameDefault}}.&nbsp;<img style="max-height: 12px;" ng-src="{{person.flagSrc}}" /></h5>                
+            </a>            
         </div>
     </div>
     <!--<div class="panel-footer">

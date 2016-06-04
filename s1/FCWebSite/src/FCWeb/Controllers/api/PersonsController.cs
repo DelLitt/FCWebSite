@@ -27,12 +27,12 @@ namespace FCWeb.Controllers.Api
             this.personCareerBll = personCareerBll;
         }
 
-        //// GET: api/values/latest
-        //[HttpGet]
-        //public IEnumerable<PublicationViewModel> Get()
-        //{
-        //    return personBll.GetTeamPersons(3).ToViewModel();
-        //}
+        [HttpGet("all")]
+        [Authorize(Roles = "admin,press")]
+        public IEnumerable<PersonViewModel> Get()
+        {
+            return personBll.GetPersons().ToViewModel();
+        }
 
         // GET api/values/5
         [HttpGet("{id}")]
@@ -44,6 +44,10 @@ namespace FCWeb.Controllers.Api
             {
                 return new Person().ToViewModel();
             }
+
+            personBll.FillTeams = true;
+            personBll.FillCities = true;
+            personBll.FillPersonRoles = true;
 
             Person person = personBll.GetPerson(id);
             IEnumerable<PersonCareer> personCareers = null;

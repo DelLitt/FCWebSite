@@ -24,6 +24,10 @@
         {
             PersonGroup personGroup = PersonGroupHelper.FromString(group);
 
+            personBll.FillTeams = true;
+            personBll.FillCities = true;
+            personBll.FillPersonRoles = true;
+
             IEnumerable<PersonViewModel> personsView = personBll.GetTeamPersons(teamId, personGroup).ToViewModel();
 
             return personsView;

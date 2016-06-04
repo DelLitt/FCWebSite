@@ -155,7 +155,7 @@
 
         function gameSaved(response) {
             notificationManager.displayInfo("Saved: " + response);
-            $location.path('/office')
+            $location.path('/office/games');
         }
     }
 })();

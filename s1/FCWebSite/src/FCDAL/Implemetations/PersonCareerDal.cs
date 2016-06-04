@@ -47,8 +47,6 @@
 
         private void FillRelations(IEnumerable<PersonCareer> personCareers)
         {
-            if (Guard.IsEmptyIEnumerable(personCareers)) { return; }
-
             IEnumerable<Team> teams = new Team[0];
 
             if (FillTeams)
@@ -57,21 +55,16 @@
                 teamDal.SetContext(Context);
 
                 var teamIds = new List<int>();
-                teamIds.AddRange(personCareers.Select(r => r.teamId));
+                teamIds.AddRange(personCareers.Select(r => r.teamId).Distinct());
 
-                teams = teamDal.GetTeams(teamIds.Distinct()).ToList();
-
-                if (!teams.Any())
-                {
-                    throw new DalMappingException(nameof(teams), typeof(Round));
-                }
+                teams = teamDal.GetTeams(teamIds).ToList();
             }
 
             if (teams.Any())
             {
                 foreach (PersonCareer pc in personCareers)
                 {
-                    if (FillTeams)
+                    if (FillTeams && teams.Any())
                     {
                         pc.team = teams.FirstOrDefault(t => t.Id == pc.teamId);
 

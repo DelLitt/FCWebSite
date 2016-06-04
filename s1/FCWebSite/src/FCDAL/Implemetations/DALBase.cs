@@ -5,6 +5,8 @@
 
     public class DalBase : IDalBase
     {
+        protected const int LimitEntitiesSelections = 200;
+
         private FCDBContext context;
         protected FCDBContext Context
         {

@@ -1,0 +1,76 @@
+﻿<div class="fc-container row publication" ng-hide="loading">
+    <div class="col-sm-3">
+        <img class="img-responsive img-circle center-block" ng-src={{image}} title="person.nameDefault" alt="person.nameDefault" />
+    </div>
+    <div class="col-sm-9">
+        <div class="bg-primary img-rounded"><h3 class="caption-pad-1">{{person.nameDefault}}</h3></div>
+        <ul class="nav nav-tabs">
+            <li ng-class="{active: tab === 0}"><a data-toggle="tab" href="javascript:void(0);" ng-click="setTab(0)">Профиль</a></li>
+            <li ng-class="{active: tab === 1}" ng-show="showInfo"><a data-toggle="tab" href="javascript:void(0);" ng-click="setTab(1)">Информация</a></li>
+            <li ng-class="{active: tab === 2}" ng-show="showCareer"><a data-toggle="tab" href="javascript:void(0);" ng-click="setTab(2)">Карьера</a></li>
+            <li ng-class="{active: tab === 3}" ng-show="showAchievements"><a data-toggle="tab" href="javascript:void(0);" ng-click="setTab(3)">Достижения</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade" ng-class="{'in active' : tab === 0}">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <dl class="text-primary dl-horizontal dl-pad-bot-1">
+                            <dt ng-show="showBirthPlace" translate="COUNTRY"></dt>
+                            <dd ng-show="showBirthPlace">{{person.city.country.nameFull}}&nbsp;<img style="max-height: 14px;" ng-src="{{flagSrc}}" alt="{{person.city.country.nameFull}}" title="{{person.city.country.nameFull}}" /></dd>
+                            <dt ng-show="showBirthPlace" translate="CITY"></dt>
+                            <dd ng-show="showBirthPlace">{{person.city.nameFull}}</dd>
+                            <dt ng-show="showBirthDate" translate="BIRTHDATE"></dt>
+                            <dd ng-show="showBirthDate">{{person.birthDate | date:'longDate'}}&nbsp;<span class="label label-info">{{person.age}}</span></dd>
+                            <dt ng-show="showTeam" translate="TEAM"></dt>
+                            <dd ng-show="showTeam"><span ng-show="person.team.namePre.length">{{person.team.namePre}}&nbsp;</span>{{person.team.name}}</dd>
+                            <dt ng-show="showRole" translate="{{labels.position}}"></dt>
+                            <dd ng-show="showRole" translate="{{person.role.name}}"></dd>
+                            <dt ng-show="showNumber" translate="NUMBER"></dt>
+                            <dd ng-show="showNumber">{{person.number}}</dd>
+                        </dl>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <dl class="text-primary dl-horizontal dl-pad-bot-1">
+                            <dt ng-show="showHeight" translate="HEIGHT"></dt>
+                            <dd ng-show="showHeight">{{person.height}}&nbsp;<span translate="CM"></span></dd>
+                            <dt ng-show="showWeight" translate="WEIGHT"></dt>
+                            <dd ng-show="showWeight">{{person.weight}}&nbsp;<span translate="KG"></span></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" ng-class="{'in active' : tab === 1}" ng-show="showInfo">
+                <p ng-bind-html="info"></p>
+            </div>
+            <div class="tab-pane fade" ng-class="{'in active' : tab === 2}" ng-show="showCareer">
+                <table class="table table-striped table-hover table-borderless">
+                    <tr>
+                        <th>Год начала</th>
+                        <th>Год окончания</th>
+                        <th>Команда</th>
+                    </tr>
+                    <tr ng-repeat="car in career">
+                        <td>{{car.yearStart}}</td>
+                        <td>{{car.yearEnd}}</td>
+                        <td>{{car.team}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="tab-pane fade" ng-class="{'in active' : tab === 3}" ng-show="showAchievements">
+                <table class="table table-striped table-hover table-borderless">
+                    <tr>
+                        <th>Сезон</th>
+                        <th>Команда</th>
+                        <th>Достижение</th>
+                    </tr>
+                    <tr ng-repeat="ach in achievements">
+                        <td>{{ach.season}}</td>
+                        <td>{{ach.team}}</td>
+                        <td>{{ach.achievement}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>       
+    </div>
+</div>

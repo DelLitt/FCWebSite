@@ -29,7 +29,7 @@ String.prototype.endsWith = function (suffix) {
 (function (module) {
     'use strict';
 
-    module.factory('helper', function () {
+    module.factory('helper', ['configSrv', function (configSrv) {
         var thisIsPrivate = "Private";
 
         return {
@@ -81,8 +81,26 @@ String.prototype.endsWith = function (suffix) {
                 return result.replace(/\s/g, "-");
             },
 
+            locLabels : {
+                position: function (roleId) {
+                    return configSrv.personGroups.player.indexOf(roleId) >= 0 ? "POSITION" : "POST";
+                }
+            },
+
+            getFlagSrc: function(countryId) {
+                return 'images/skin/flags/' + countryId + '.png';
+            },
+
+            getPersonEmptyImage: function() {
+                return 'images/skin/empty/EmptyPersonImage.png';
+            },
+
+            getLoadingImg: function () {
+                return 'images/skin/loading.gif';
+            },
+
             getPrivate: thisIsPrivate
         };
-    });
+    }]);
 
 })(angular.module('fc.core'));

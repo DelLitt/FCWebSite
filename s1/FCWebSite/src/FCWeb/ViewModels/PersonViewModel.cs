@@ -26,14 +26,12 @@
         public Guid? tempGuid { get; set; }
         public PersonInfoView info { get; set; }
         public IEnumerable<PersonCareerViewModel> career { get; set; } = new PersonCareerViewModel[0];
+        public PersonRoleViewModel role { get; set; }
+        public CityViewModel city { get; set; }
+        public TeamViewModel team { get; set; }
 
-        //public virtual ICollection<PersonCareer> PersonCareer { get; set; }
         //public virtual ICollection<PersonStatistics> PersonStatistics { get; set; }
-        //public virtual Person PersonNavigation { get; set; }
-        //public virtual Person InversePersonNavigation { get; set; }
         //public virtual PersonStatus personStatus { get; set; }
-        //public virtual PersonRole role { get; set; }
-        //public virtual Team team { get; set; }
     }
 
     public class PersonInfoView
@@ -46,7 +44,7 @@
     public class PersonCareerView
     {
         public int yearStart { get; set; }
-        public int yearEnd { get; set; }
+        public int? yearEnd { get; set; }
         public string team { get; set; } = string.Empty;
 
         public PersonCareerView()

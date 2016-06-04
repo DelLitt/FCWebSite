@@ -5,9 +5,9 @@
         .module('fc.admin')
         .controller('teamEditCtrl', teamEditCtrl);
 
-    teamEditCtrl.$inject = ['$scope', '$routeParams', 'teamsSrv', 'fileBrowserSrv', 'notificationManager'];
+    teamEditCtrl.$inject = ['$scope', '$routeParams', '$location', 'teamsSrv', 'fileBrowserSrv', 'notificationManager'];
 
-    function teamEditCtrl($scope, $routeParams, teamsSrv, fileBrowserSrv, notificationManager) {
+    function teamEditCtrl($scope, $routeParams, $location, teamsSrv, fileBrowserSrv, notificationManager) {
 
         if (!angular.isDefined($scope.forms)) {
             $scope.forms = {};
@@ -105,7 +105,7 @@
         }
 
         function teamSaved(response) {
-            alert(response.data);
+            $location.path('/office/teams');
         }
     }
 })();

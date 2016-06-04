@@ -5,9 +5,9 @@
         .module('fc.admin')
         .controller('personEditCtrl', personEditCtrl);
 
-    personEditCtrl.$inject = ['$scope', '$routeParams', 'personsSrv', 'fileBrowserSrv', 'notificationManager'];
+    personEditCtrl.$inject = ['$scope', '$routeParams', '$location', 'personsSrv', 'fileBrowserSrv', 'notificationManager'];
 
-    function personEditCtrl($scope, $routeParams, personsSrv, fileBrowserSrv, notificationManager) {
+    function personEditCtrl($scope, $routeParams, $location, personsSrv, fileBrowserSrv, notificationManager) {
 
         if (!angular.isDefined($scope.forms)) {
             $scope.forms = {};
@@ -196,7 +196,7 @@
         }
 
         function personSaved(response) {
-            alert(response.data);
+            $location.path('/office/persons');
         }
     }
 })();

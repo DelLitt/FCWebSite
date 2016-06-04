@@ -10,8 +10,6 @@
 
     public class GameDal : DalBase, IGameDal
     {
-        private const int LimitEntitiesSelections = 100;
-
         public bool FillTeams { get; set; } = false;
 
         public bool FillRounds { get; set; } = false;
@@ -88,8 +86,6 @@
 
         private void FillRelations(IEnumerable<Game> games)
         {
-            if (Guard.IsEmptyIEnumerable(games)) { return; }
-
             IEnumerable<Team> teams = new Team[0];
             IEnumerable<Round> rounds = new Round[0];
 
@@ -131,7 +127,7 @@
             {
                 foreach (Game game in games)
                 {
-                    if (FillTeams)
+                    if (FillTeams && teams.Any())
                     {
                         game.home = teams.FirstOrDefault(t => t.Id == game.homeId);
                         if (game.home == null)
@@ -146,7 +142,7 @@
                         }
                     }
 
-                    if(FillRounds)
+                    if(FillRounds && rounds.Any())
                     {
                         game.round = rounds.FirstOrDefault(r => r.Id == game.roundId);
                         if (game.round == null)

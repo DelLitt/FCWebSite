@@ -66,7 +66,10 @@
                 roleId = person.roleId,
                 teamId = person.teamId,
                 weight = person.Weight,
-                tempGuid = tempGuid
+                tempGuid = tempGuid,
+                team = person.team.ToViewModel(),
+                city = person.city.ToViewModel(),
+                role = person.role.ToViewModel()
             };
         }
 

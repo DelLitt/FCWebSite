@@ -72,8 +72,6 @@
 
         private void FillRelations(IEnumerable<Round> rounds)
         {
-            if (Guard.IsEmptyIEnumerable(rounds)) { return; }
-
             IEnumerable<Tourney> tourneys = new Tourney[0];
 
             if(FillTourneys)
@@ -96,7 +94,7 @@
             {
                 foreach (Round round in rounds)
                 {
-                    if (FillTourneys)
+                    if (FillTourneys && tourneys.Any())
                     {
                         round.tourney = tourneys.FirstOrDefault(t => t.Id == round.tourneyId);
 

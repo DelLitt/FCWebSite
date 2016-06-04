@@ -25,6 +25,10 @@
                 templateUrl: "lib/fc/office/persons/personEdit.html",
                 controller: "personEditCtrl"
             })
+            .when("/office/persons/", {
+                templateUrl: "lib/fc/office/persons/personsList.html",
+                controller: "personsListCtrl"
+            })
             .when("/office/team/edit/:id", {
                 templateUrl: "lib/fc/office/teams/teamEdit.html",
                 controller: "teamEditCtrl"

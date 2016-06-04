@@ -45,6 +45,10 @@
 
             $scope.persons = persons;
 
+            angular.forEach($scope.persons, function (item) {
+                item.flagSrc = helper.getFlagSrc(item.city.countryId);
+            });
+
             var goalkeepers = filterFilter(persons, { roleId: configSrv.positions.rrGoalkeeper });
             var defenders = filterFilter(persons, { roleId: configSrv.positions.rrDefender });
             var midfielders = filterFilter(persons, { roleId: configSrv.positions.rrMidfielder });

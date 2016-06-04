@@ -42,6 +42,10 @@ textarea {
 
 /* Customazing boostrap layout */
 
+.tab-pane {
+    padding-top: 15px;
+}
+
 .wrap {
    border: 1px solid #888;
    border-radius:3px;
@@ -63,6 +67,18 @@ textarea {
 
 .clickable {
     cursor: pointer;
+}
+
+.caption-pad-1{
+    padding: 10px 15px;
+}
+
+dl.dd-pad-1 dd {
+    padding: 7px 0 10px 15px;
+}
+
+dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
+    padding-bottom: 5px;
 }
 
 .sortorder:after {
@@ -143,7 +159,7 @@ textarea {
 }
 
 .table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
-    padding: 2px 8px;
+    /*padding: 2px 8px;*/
 }
 
 .table-borderless h5 {

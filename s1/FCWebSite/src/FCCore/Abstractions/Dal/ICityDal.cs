@@ -5,6 +5,8 @@
 
     public interface ICityDal : IDalBase
     {
+        bool FillCountries { get; set; }
+
         City GetCity(int id);
         IEnumerable<City> GetCities(IEnumerable<int> ids);
         IEnumerable<City> GetAll();

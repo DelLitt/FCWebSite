@@ -122,6 +122,10 @@
             {
                 routes
                 .MapRoute(
+                    name: "account",
+                    template: "account/{*.}",
+                    defaults: new { controller = "account", action = "login" })
+                .MapRoute(
                     name: "office",
                     template: "office/{*.}",
                     defaults: new { controller = "Office", action = "Index" })

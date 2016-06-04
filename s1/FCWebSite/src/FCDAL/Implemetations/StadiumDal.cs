@@ -4,7 +4,6 @@
     using System.Linq;
     using Exceptions;
     using FCCore.Abstractions.Dal;
-    using FCCore.Common;
     using FCCore.Model;
 
     public class StadiumDal : DalBase, IStadiumDal
@@ -59,8 +58,6 @@
 
         private void FillRelations(IEnumerable<Stadium> stadiums)
         {
-            if (Guard.IsEmptyIEnumerable(stadiums)) { return; }
-
             IEnumerable<City> cities = new City[0];
 
             if (FillCities)
@@ -69,25 +66,20 @@
                 citiesDal.SetContext(Context);
 
                 var citiesIds = new List<int>();
-                citiesIds.AddRange(stadiums.Select(r => (int)r.cityId));
+                citiesIds.AddRange(stadiums.Select(r => (int)r.cityId).Distinct());
 
-                cities = citiesDal.GetCities(citiesIds.Distinct()).ToList();
-
-                if (!cities.Any())
-                {
-                    throw new DalMappingException(nameof(cities), typeof(Round));
-                }
+                cities = citiesDal.GetCities(citiesIds).ToList();
             }
 
             if (cities.Any())
             {
                 foreach (Stadium stadium in stadiums)
                 {
-                    if (FillCities)
+                    if (FillCities && cities.Any())
                     {
                         stadium.city = cities.FirstOrDefault(t => t.Id == stadium.cityId);
 
-                        if (stadium.city == null)
+                        if (stadium.cityId.HasValue && stadium.city == null)
                         {
                             throw new DalMappingException(nameof(stadium.city), typeof(Stadium));
                         }

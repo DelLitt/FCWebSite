@@ -21,6 +21,10 @@
                 templateUrl: "lib/fc/club/mainteam.html",
                 controller: "mainTeamCtrl"
             })
+            .when("/person/:id", {
+                templateUrl: "lib/fc/person/person.html",
+                controller: "personCtrl"
+            })
             .otherwise({ redirectTo: "/" });
 
         $locationProvider.html5Mode(true);

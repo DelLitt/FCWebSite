@@ -29,6 +29,7 @@
             serviceCollection.AddTransient<IEventBll, EventBll>();
             serviceCollection.AddTransient<IEventGroupBll, EventGroupBll>();
             serviceCollection.AddTransient<IPersonStatisticsBll, PersonStatisticsBll>();
+            serviceCollection.AddTransient<ICountryBll, CountryBll>();
         }
 
         public static void AddDALServices(this IServiceCollection serviceCollection)
@@ -51,6 +52,7 @@
             serviceCollection.AddTransient<IEventDal, EventDal>();
             serviceCollection.AddTransient<IEventGroupDal, EventGroupDal>();
             serviceCollection.AddTransient<IPersonStatisticsDal, PersonStatisticsDal>();
+            serviceCollection.AddTransient<ICountryDal, CountryDal>();
         }
     }
 }

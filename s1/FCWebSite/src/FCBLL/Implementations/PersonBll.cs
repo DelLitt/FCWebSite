@@ -11,6 +11,45 @@
 
     public class PersonBll : IPersonBll
     {
+        public bool FillTeams
+        {
+            get
+            {
+                return DalPerson.FillTeams;
+            }
+
+            set
+            {
+                DalPerson.FillTeams = value;
+            }
+        }
+
+        public bool FillCities
+        {
+            get
+            {
+                return DalPerson.FillCities;
+            }
+
+            set
+            {
+                DalPerson.FillCities = value;
+            }
+        }
+
+        public bool FillPersonRoles
+        {
+            get
+            {
+                return DalPerson.FillPersonRoles;
+            }
+
+            set
+            {
+                DalPerson.FillPersonRoles = value;
+            }
+        }
+
         private IPersonDal dalPerson;
         private IPersonDal DalPerson
         {
@@ -80,6 +119,11 @@
         public IEnumerable<Person> GetTeamPersons(int teamId, DateTime date)
         {
             return DalPerson.GetTeamPersons(teamId, date);
+        }
+
+        public IEnumerable<Person> GetPersons()
+        {
+            return DalPerson.GetPersons();
         }
 
         public int SavePerson(Person entity)
