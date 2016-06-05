@@ -38,6 +38,9 @@
   "rrCoach": "Coach (youth sector)",
   "rrCoachPhysical": "Senior coach",
   "rrCoachGoalkeeper": "Сoach of the scientific and methodical work",
+  "rrClubAdministrator": "Coach administrator",
+  "rrVideographer": "Coach video  operator",
   "POSITION": "Position",
-  "POST": "Position"
+  "POST": "Position",
+  "NEWS": "News"
 }
