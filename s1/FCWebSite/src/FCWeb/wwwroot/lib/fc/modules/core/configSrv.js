@@ -117,6 +117,15 @@
             return 3;
         }
 
+        this.getReserveTeamId = function () {
+            if (angular.isObject($rootScope.appConfig) && angular.isNumber($rootScope.appConfig.ReserveTeamId)) {
+                return $rootScope.appConfig.ReserveTeamId;
+            }
+
+            // TODO: Clear hardcode
+            return 67;
+        }
+
         this.positions = {
             rrGoalkeeper : 2,
             rrDefender : 3,
@@ -132,6 +141,9 @@
         }
 
         this.mainTeamTourneyIds = [8, 10];
+        this.reserveTeamTourneyIds = [6, 8, 10];
+
+        this.teamPublicationsCount = 7;
 
         this.urlKeyRegexPattern = '^[a-zA-Z0-9_-]+$';
     }

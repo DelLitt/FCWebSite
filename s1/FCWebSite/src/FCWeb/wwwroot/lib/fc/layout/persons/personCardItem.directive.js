@@ -5,9 +5,9 @@
         .module('fc.ui')
         .directive('personCardItem', personCardItem);
 
-    personCardItem.$inject = ['personsSrv'];
+    personCardItem.$inject = ['personsSrv', 'helper'];
 
-    function personCardItem(personsSrv) {
+    function personCardItem(personsSrv, helper) {
         return {
             restrict: 'E',
             replace: true,
@@ -16,7 +16,7 @@
             },
             link: function link(scope, element, attrs) {
                 var imageUploadData = personsSrv.getImageUploadData(scope.person);
-                scope.image = imageUploadData.path + '/' + scope.person.image;
+                scope.image = helper.getPersonImage(scope.person.image, imageUploadData);
             },
             templateUrl: '/lib/fc/layout/persons/personCardItem.html'
         }

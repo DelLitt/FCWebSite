@@ -21,6 +21,10 @@
                 templateUrl: "lib/fc/club/mainteam.html",
                 controller: "mainTeamCtrl"
             })
+            .when("/club/reserveteam", {
+                templateUrl: "lib/fc/club/reserveteam.html",
+                controller: "reserveTeamCtrl"
+            })
             .when("/person/:id", {
                 templateUrl: "lib/fc/person/person.html",
                 controller: "personCtrl"

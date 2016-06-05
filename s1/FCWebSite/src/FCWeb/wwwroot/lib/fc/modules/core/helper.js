@@ -99,6 +99,12 @@ String.prototype.endsWith = function (suffix) {
                 return 'images/skin/loading.gif';
             },
 
+            getPersonImage: function (image, imageUploadData) {
+                return angular.isString(image) && image.length > 0
+                    ? imageUploadData.path + '/' + image
+                    : this.getPersonEmptyImage();
+            },
+
             getPrivate: thisIsPrivate
         };
     }]);

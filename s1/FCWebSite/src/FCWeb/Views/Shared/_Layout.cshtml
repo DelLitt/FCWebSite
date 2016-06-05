@@ -47,9 +47,9 @@
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th-large"></span> <span translate="CLUB">Клуб</span><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/club/mainteam" translate="MAIN_STAFF">Основной состав</a></li>
-                            <li><a href="#">Дублирующий состав</a></li>
-                            <li><a href="#">Молодежный сектор</a></li>
+                            <li><a href="/club/mainteam" translate="MAIN_STAFF">Главная команда</a></li>
+                            <li><a href="/club/reserveteam" translate="RESERVE_STAFF">Резервная команда</a></li>
+                            @*<li><a href="#">Молодежный сектор</a></li>*@
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Руководящий состав</a></li>
                             <li><a href="#">Тренерский состав</a></li>
@@ -199,11 +199,13 @@
         <script src="~/lib/fc/layout/persons/personcarditem.directive.js"></script>
         <script src="~/lib/fc/layout/persons/persontableitem.directive.js"></script>
         <script src="~/lib/fc/layout/persons/person.directive.js"></script>
+        <script src="~/lib/fc/layout/teams/team.directive.js"></script>
         <script src="~/lib/fc/app.js"></script>
         <script src="~/lib/fc/home/rootctrl.js"></script>
         <script src="~/lib/fc/home/indexctrl.js"></script>
         <script src="~/lib/fc/publication/publicationctrl.js"></script>
         <script src="~/lib/fc/club/mainteamctrl.js"></script>
+        <script src="~/lib/fc/club/reserveteamctrl.js"></script>
         <script src="~/lib/fc/person/personctrl.js"></script>
     </environment>
     <environment names="Staging,Production">

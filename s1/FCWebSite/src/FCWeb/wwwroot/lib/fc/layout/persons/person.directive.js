@@ -63,10 +63,7 @@
                     scope.achievements = scope.showAchievements ? scope.person.info.achievements : [];
 
                     var imageUploadData = personsSrv.getImageUploadData(scope.person);
-
-                    scope.image = angular.isString(scope.person.image) && scope.person.image.length > 0
-                        ? imageUploadData.path + '/' + scope.person.image
-                        : helper.getPersonEmptyImage();
+                    scope.image = helper.getPersonImage(scope.person.image, imageUploadData);
 
                     scope.flagSrc = helper.getFlagSrc(scope.person.city.countryId);
 
