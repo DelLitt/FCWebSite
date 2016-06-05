@@ -77,6 +77,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBBackups", "DBBackups", "{
 		SolutionItems\SQL\DBBackups\FCWebDB2.bak = SolutionItems\SQL\DBBackups\FCWebDB2.bak
 		SolutionItems\SQL\DBBackups\FCWebDB3.bak = SolutionItems\SQL\DBBackups\FCWebDB3.bak
 		SolutionItems\SQL\DBBackups\FCWebDB4.bak = SolutionItems\SQL\DBBackups\FCWebDB4.bak
+		SolutionItems\SQL\DBBackups\FCWebDB5.bak = SolutionItems\SQL\DBBackups\FCWebDB5.bak
+		SolutionItems\SQL\DBBackups\FCWebDB6.bak = SolutionItems\SQL\DBBackups\FCWebDB6.bak
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Constraints", "Constraints", "{8332FD6E-D36F-43A7-B46A-CFB154E35B5B}"

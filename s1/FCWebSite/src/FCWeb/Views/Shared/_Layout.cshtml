@@ -9,6 +9,7 @@
 
         <environment names="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+            @*<link rel="stylesheet" href="~/css/equal-height-columns.css" />*@
             @*<link rel="stylesheet" href="~/css/bootstrap.css" />*@
             <link rel="stylesheet" href="~/css/site.css" />
         </environment>
@@ -17,6 +18,7 @@
                   asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
                   asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
             <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+            @*<link rel="stylesheet" href="http://getbootstrap.com.vn/examples/equal-height-columns/equal-height-columns.css" />*@
         </environment>
     </head>
 <body ng-controller="rootCtrl">
@@ -43,7 +45,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-controller="Home" asp-action="Index"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-th-large"></span> <span translate="CLUB">Клуб</span><span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -52,7 +54,7 @@
                             @*<li><a href="#">Молодежный сектор</a></li>*@
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Руководящий состав</a></li>
-                            <li><a href="#">Тренерский состав</a></li>
+                            <li><a href="/club/coaches" translate="COACHES_STAFF">Тренерский состав</a></li>
                             <li><a href="#">Медицинский состав</a></li>
                             <li><a href="#">Специалисты</a></li>
                         </ul>
@@ -200,12 +202,14 @@
         <script src="~/lib/fc/layout/persons/persontableitem.directive.js"></script>
         <script src="~/lib/fc/layout/persons/person.directive.js"></script>
         <script src="~/lib/fc/layout/teams/team.directive.js"></script>
+        <script src="~/lib/fc/layout/teams/staff.directive.js"></script>
         <script src="~/lib/fc/app.js"></script>
         <script src="~/lib/fc/home/rootctrl.js"></script>
         <script src="~/lib/fc/home/indexctrl.js"></script>
         <script src="~/lib/fc/publication/publicationctrl.js"></script>
         <script src="~/lib/fc/club/mainteamctrl.js"></script>
         <script src="~/lib/fc/club/reserveteamctrl.js"></script>
+        <script src="~/lib/fc/club/coachesstaffctrl.js"></script>
         <script src="~/lib/fc/person/personctrl.js"></script>
     </environment>
     <environment names="Staging,Production">
