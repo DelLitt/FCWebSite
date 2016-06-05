@@ -19,7 +19,7 @@
             this.personBll = personBll;
         }
 
-        [HttpGet("{gruop}")]
+        [HttpGet("{group}")]
         public IEnumerable<PersonViewModel> Get(int teamId, string group)
         {
             PersonGroup personGroup = PersonGroupHelper.FromString(group);

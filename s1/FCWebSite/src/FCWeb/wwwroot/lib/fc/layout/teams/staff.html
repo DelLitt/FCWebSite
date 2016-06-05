@@ -1,55 +1,29 @@
 ﻿<div class="fc-container row publication">
     <div class="col-sm-9">
-        <div class="text-center" ng-show="loadingTeam">
+        <div class="text-center" ng-show="loadingStaff">
             <img ng-src="{{loadingImage}}" />
         </div>
-        <div class="panel panel-primary" ng-show="!loadingTeam">
+        <div class="panel panel-primary no-padding" ng-show="!loadingStaff">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-6"><span class="glyphicon glyphicon-stats">&nbsp;</span>{{teamTitle}}</div>
-                    <div class="col-xs-6 text-right">
-                        Вид:&nbsp;
-                        <span class="glyphicon glyphicon-th-large" ng-class="{clickable: listview, 'text-muted': !listview}" ng-click="listview = false;" title="Изображения"></span>&nbsp;
-                        <span class="glyphicon glyphicon-th-list" ng-class="{clickable: !listview, 'text-muted': listview}" ng-click="listview = true;" title="Таблица"></span>
-                    </div>
+                    <div class="col-xs-12"><span class="glyphicon glyphicon-stats">&nbsp;</span><span translate="{{title}}"></span></div>
                 </div>
             </div>
             <div class="panel-body">
-                <div ng-hide="listview">
-                    <h4 class="text-primary">Вратари</h4>
-                    <hr />
-                    <div class="row" ng-repeat="row in goalkeepers.rows">
-                        <div class="col-sm-4 col-xs-12" ng-repeat="item in row.items">
-                            <person-card-item person="item"></person-card-item>
+                <div class="row row-eq-height" ng-repeat="row in rows">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3" ng-repeat="person in row.items">
+                        <div class="panel panel-primary no-padding">
+                            <div class="panel-body">
+                                <img class="img-responsive img-rounded" ng-src="{{person.src}}" />
+                            </div>
+                            <div class="panel-heading">
+                                <h5>{{person.nameDefault}}</h5>
+                            </div>
+                            <div class="panel-footer">
+                                <span ng-show="person.showRole" translate="{{person.role.name}}">{{person.role.name}}</span>
+                            </div>
                         </div>
                     </div>
-                    <h4 class="text-primary">Защитники</h4>
-                    <hr />
-                    <div class="row" ng-repeat="row in defenders.rows">
-                        <div class="col-sm-4 col-xs-12" ng-repeat="item in row.items">
-                            <person-card-item person="item"></person-card-item>
-                        </div>
-                    </div>
-                    <h4 class="text-primary">Полузащитники</h4>
-                    <hr />
-                    <div class="row" ng-repeat="row in midfielders.rows">
-                        <div class="col-sm-4 col-xs-12" ng-repeat="item in row.items">
-                            <person-card-item person="item"></person-card-item>
-                        </div>
-                    </div>
-                    <h4 class="text-primary">Нападающие</h4>
-                    <hr />
-                    <div class="row" ng-repeat="row in forwards.rows">
-                        <div class="col-sm-4" ng-repeat="item in row.items">
-                            <person-card-item person="item"></person-card-item>
-                        </div>
-                    </div>
-                </div>
-                <div ng-hide="!listview">
-                    <person-table-item persons="persons"
-                                       loaded="statsLoaded"
-                                       tourneys="tourneys"
-                                       teamid="teamId" />
                 </div>
             </div>
         </div>

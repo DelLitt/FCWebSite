@@ -21,6 +21,7 @@
   "HISTORY": "История",
   "MAIN_STAFF": "Главная команда",
   "RESERVE_STAFF": "Резервная команда",
+  "COACHES_STAFF": "Тренерский состав",
   "GAMES_SH": "И",
   "WINS_SH": "В",
   "DRAWS_SH": "Н",
@@ -32,6 +33,11 @@
   "rrDefender": "Защитник",
   "rrMidfielder": "Полузащитник",
   "rrForward": "Нападающий",
+  "rrCoachHead": "Главный тренер",
+  "rrCoachAssistant": "Пом. гл. тренера",
+  "rrCoach": "Тренер (молодежное отделение)",
+  "rrCoachPhysical": "Старший тренер",
+  "rrCoachGoalkeeper": "Тренер по научно-методической работе",
   "POSITION": "Позиция",
   "POST": "Должность"
 }

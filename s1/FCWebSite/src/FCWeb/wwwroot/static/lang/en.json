@@ -21,6 +21,7 @@
   "HISTORY": "History",
   "MAIN_STAFF": "Main team",
   "RESERVE_STAFF": "Reserve team",
+  "COACHES_STAFF": "Coaching staff",
   "GAMES_SH": "G",
   "WINS_SH": "W",
   "DRAWS_SH": "D",
@@ -32,6 +33,11 @@
   "rrDefender": "Defender",
   "rrMidfielder": "Midfielder",
   "rrForward": "Forward",
+  "rrCoachHead": "Head coach",
+  "rrCoachAssistant": "Coach assistant",
+  "rrCoach": "Coach (youth sector)",
+  "rrCoachPhysical": "Senior coach",
+  "rrCoachGoalkeeper": "Сoach of the scientific and methodical work",
   "POSITION": "Position",
   "POST": "Position"
 }

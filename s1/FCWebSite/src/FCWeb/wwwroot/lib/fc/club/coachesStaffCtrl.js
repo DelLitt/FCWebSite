@@ -11,7 +11,7 @@
 
         $scope.teamId = configSrv.getMainTeamId();
         $scope.publicationsCount = configSrv.teamPublicationsCount;
-        $scope.teamTitle = 'Тренерский штаб';
+        $scope.title = 'COACHES_STAFF';
 
         // TODO: Change config to promise
         //scope.mainTeamId = 

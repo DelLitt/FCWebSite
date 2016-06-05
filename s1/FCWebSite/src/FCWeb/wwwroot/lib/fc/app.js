@@ -25,6 +25,10 @@
                 templateUrl: "lib/fc/club/reserveteam.html",
                 controller: "reserveTeamCtrl"
             })
+            .when("/club/coaches", {
+                templateUrl: "lib/fc/club/coachesstaff.html",
+                controller: "coachesStaffCtrl"
+            })
             .when("/person/:id", {
                 templateUrl: "lib/fc/person/person.html",
                 controller: "personCtrl"

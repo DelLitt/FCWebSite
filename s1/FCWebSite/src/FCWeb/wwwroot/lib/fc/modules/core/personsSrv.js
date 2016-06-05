@@ -15,6 +15,10 @@
 
         this.loadTeamMainPlayers = function (id, success, failure) {
             apiSrv.get('/api/teams/' + id + '/persons/mainteam', null, success, personsLoadFail);
+        }        
+
+        this.loadCoachesStaff = function (id, success, failure) {
+            apiSrv.get('/api/teams/' + id + '/persons/coaches', null, success, personsLoadFail);
         }
 
         this.loadAllPersons = function (success, failure) {
