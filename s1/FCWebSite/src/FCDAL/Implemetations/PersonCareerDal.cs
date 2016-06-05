@@ -70,7 +70,7 @@
 
                         if (pc.team == null)
                         {
-                            throw new DalMappingException(nameof(pc.team), typeof(Round));
+                            throw new DalMappingException(nameof(pc.team), typeof(PersonCareer));
                         }
                     }
                 }

@@ -1,6 +1,5 @@
 ﻿namespace FCBLL.Implementations
 {
-    using System;
     using System.Collections.Generic;
     using FCCore.Abstractions.Bll;
     using FCCore.Abstractions.Dal;
@@ -8,33 +7,59 @@
 
     public class PersonStatisticsBll : IPersonStatisticsBll
     {
-        private IPersonStatisticsDal personStatisticsDal;
-        private IPersonStatisticsDal PersonStatisticsDal
+        public bool FillTeams
         {
             get
             {
-                if (personStatisticsDal == null)
-                {
-                    personStatisticsDal = DALFactory.Create<IPersonStatisticsDal>();
-                }
+                return DalPersonStatistics.FillTeams;
+            }
 
-                return personStatisticsDal;
+            set
+            {
+                DalPersonStatistics.FillTeams = value;
             }
         }
 
-        public PersonStatistics GetPersonStatistics(int personId)
+        public bool FillTourneys
         {
-            return PersonStatisticsDal.GetPersonStatistics(personId);
+            get
+            {
+                return DalPersonStatistics.FillTourneys;
+            }
+
+            set
+            {
+                DalPersonStatistics.FillTourneys = value;
+            }
+        }
+
+        private IPersonStatisticsDal dalPersonStatistics;
+        private IPersonStatisticsDal DalPersonStatistics
+        {
+            get
+            {
+                if (dalPersonStatistics == null)
+                {
+                    dalPersonStatistics = DALFactory.Create<IPersonStatisticsDal>();
+                }
+
+                return dalPersonStatistics;
+            }
+        }
+
+        public IEnumerable<PersonStatistics> GetPersonStatistics(int personId)
+        {
+            return DalPersonStatistics.GetPersonStatistics(personId);
         }
 
         public IEnumerable<PersonStatistics> GetPersonsStatistics(int temaId, int tourneyId)
         {
-            return PersonStatisticsDal.GetPersonsStatistics(temaId, tourneyId);
+            return DalPersonStatistics.GetPersonsStatistics(temaId, tourneyId);
         }
 
         public int SavePersonStatistics(PersonStatistics entity)
         {
-            return PersonStatisticsDal.SavePersonStatistics(entity);
+            return DalPersonStatistics.SavePersonStatistics(entity);
         }
     }
 }

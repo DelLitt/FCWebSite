@@ -13,5 +13,7 @@
         public int teamId { get; set; }
         public short tourneyId { get; set; }
         public short yellows { get; set; }
+        public TeamViewModel team { get; set; }
+        public TourneyViewModel tourney { get; set; }
     }
 }

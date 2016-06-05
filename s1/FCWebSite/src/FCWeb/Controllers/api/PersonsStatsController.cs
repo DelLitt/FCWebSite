@@ -17,6 +17,15 @@
             this.personStatisticsBll = personStatisticsBll;
         }
 
+        [HttpGet("{personId}")]
+        public IEnumerable<PersonStatisticsViewModel> Get(int personId)
+        {
+            personStatisticsBll.FillTeams = true;
+            personStatisticsBll.FillTourneys = true;
+
+            return personStatisticsBll.GetPersonStatistics(personId).ToViewModel();
+        }
+
         [HttpGet("team/{teamId}/tourney/{tourneyId}")]
         public IEnumerable<PersonStatisticsViewModel> Get(int teamId, int tourneyId)
         {

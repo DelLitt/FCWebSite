@@ -24,7 +24,9 @@
                  substitutes = personStatistics.Substitutes,
                  teamId = personStatistics.teamId,
                  tourneyId = personStatistics.tourneyId,
-                 yellows = personStatistics.Yellows
+                 yellows = personStatistics.Yellows,
+                 team = personStatistics.team.ToViewModel(),
+                 tourney = personStatistics.tourney.ToViewModel()
             };
         }
 

@@ -12,11 +12,13 @@
         // TODO: Change config to promise
         $scope.mainTeamId = configSrv.getMainTeamId();
 
-        $scope.loading = true;
+        $scope.loadingTeam = true;
+        $scope.loadingNews = true;
+        $scope.loadingImage = helper.getLoadingImg();
         $scope.listview = false;
         $scope.personsLoaded = false;
         $scope.tourneysLoaded = false;
-        $scope.statsLoaded = false;        
+        $scope.statsLoaded = false;
 
         $scope.persons = {};
         $scope.goalkeepers = {};
@@ -61,12 +63,14 @@
 
             $scope.personsLoaded = true;
             $scope.statsLoaded = $scope.personsLoaded && $scope.tourneysLoaded;
-            //$scope.person.BirthDate = new Date(person.BirthDate);
+
+            $scope.loadingTeam = false;
         }
 
         function publicationsLoaded(response) {
             var publications = response.data;
             $scope.publications = publications;
+            $scope.loadingNews = false;
         }
     }
 })();

@@ -9,6 +9,19 @@
 
     function statsSrv(apiSrv, notificationManager, configSrv) {
 
+        this.loadPersonStats = function (personId, success, failure) {
+            apiSrv.get('/api/personsstats/' + personId,
+                       null,
+                       success,
+                       function (response) {
+                           if (failure != null) {
+                               failure(response);
+                           }
+
+                           teamStatsFailed(response);
+                       });
+        }
+
         this.loadTeamTourneyStats = function (teamId, tourneyId, success, failure) {
             apiSrv.get('/api/personsstats/team/' + teamId + '/tourney/' + tourneyId,
                        null,
@@ -18,11 +31,11 @@
                                failure(response);
                            }
 
-                           teamTourneyStatsFailed(response);
+                           teamStatsFailed(response);
                        });
         }
 
-        function teamTourneyStatsFailed(response) {
+        function teamStatsFailed(response) {
             notificationManager.displayError(response.data);
         }
     }

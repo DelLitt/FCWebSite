@@ -1,6 +1,9 @@
 ﻿<div class="fc-container row publication">
     <div class="col-sm-9">
-        <div class="panel panel-primary">
+        <div class="text-center" ng-show="loadingTeam">
+            <img ng-src="{{loadingImage}}" />
+        </div>
+        <div class="panel panel-primary" ng-show="!loadingTeam">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6"><span class="glyphicon glyphicon-stats">&nbsp;</span>Основной состав</div>
@@ -51,7 +54,10 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-3 panel panel-primary no-padding">
+    <div class="col-sm-3 text-center" ng-show="loadingNews">
+        <img ng-src="{{loadingImage}}" />
+    </div>
+    <div class="col-sm-3 panel panel-primary no-padding" ng-show="!loadingNews">
         <div class="panel-heading"><span class="glyphicon glyphicon-globe">&nbsp;</span>Последние новости</div>
         <div class="panel-body">
             <div class="row" ng-repeat="publication in publications">
