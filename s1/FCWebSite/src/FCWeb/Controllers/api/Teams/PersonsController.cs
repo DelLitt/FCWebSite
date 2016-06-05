@@ -1,6 +1,7 @@
 ﻿namespace FCWeb.Controllers.Api.Teams
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Core;
     using Core.Extensions;
     using FCCore.Abstractions.Bll;
@@ -30,7 +31,7 @@
 
             IEnumerable<PersonViewModel> personsView = personBll.GetTeamPersons(teamId, personGroup).ToViewModel();
 
-            return personsView;
+            return personsView.OrderBy(p => p.number);
         }
     }
 }

@@ -25,10 +25,22 @@
                 templateUrl: "lib/fc/club/reserveteam.html",
                 controller: "reserveTeamCtrl"
             })
-            .when("/club/coaches", {
-                templateUrl: "lib/fc/club/coachesstaff.html",
-                controller: "coachesStaffCtrl"
+            .when("/club/direction", {
+                templateUrl: "lib/fc/club/seniorstaff.html",
+                controller: "seniorStaffCtrl"
             })
+           .when("/club/coaches", {
+               templateUrl: "lib/fc/club/coachesstaff.html",
+               controller: "coachesStaffCtrl"
+           })
+           .when("/club/medics", {
+               templateUrl: "lib/fc/club/medicalstaff.html",
+               controller: "medicalStaffCtrl"
+           })
+           .when("/club/specialists", {
+               templateUrl: "lib/fc/club/specialistsstaff.html",
+               controller: "specialistsStaffCtrl"
+           })
             .when("/person/:id", {
                 templateUrl: "lib/fc/person/person.html",
                 controller: "personCtrl"

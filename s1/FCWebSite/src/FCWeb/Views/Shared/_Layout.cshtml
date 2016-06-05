@@ -53,18 +53,17 @@
                             <li><a href="/club/reserveteam" translate="RESERVE_STAFF">Резервная команда</a></li>
                             @*<li><a href="#">Молодежный сектор</a></li>*@
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Руководящий состав</a></li>
+                            <li><a href="/club/direction" translate="SENIOR_STAFF">Руководящий состав</a></li>
                             <li><a href="/club/coaches" translate="COACHES_STAFF">Тренерский состав</a></li>
-                            <li><a href="#">Медицинский состав</a></li>
-                            <li><a href="#">Специалисты</a></li>
+                            <li><a href="/club/medics" translate="MEDICAL_STAFF">Медицинский состав</a></li>
+                            <li><a href="/club/specialists" translate="SPECIALISTS_STAFF">Специалисты</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-eye-open"></span> <span translate="RESULTS">Результаты</span><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Основной состав</a></li>
-                            <li><a href="#">Дублирующий состав</a></li>
-                            <li><a href="#">Молодежный сектор</a></li>
+                            <li><a href="#" translate="MAIN_STAFF">Главная команда</a></li>
+                            <li><a href="#" translate="RESERVE_STAFF">Резервная команда</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -77,7 +76,7 @@
                             <li><a href="#">Контакты</a></li>
                         </ul>
                     </li>
-                    <li><a asp-controller="Home" asp-action="Contact"><span translate="ATTRIBUTES">Атрибутика</span></a></li>
+                    @*<li><a asp-controller="Home" asp-action="Contact"><span translate="ATTRIBUTES">Атрибутика</span></a></li>*@
                     <li><a asp-controller="Home" asp-action="Contact"><span translate="HISTORY">История</span></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -91,11 +90,24 @@
     <div class="container body-content">
         <div class="main-brand row fc-container">
             <div class="main-brand-left-block hidden-sm hidden-xs col-md-5">
-                <h3>
-                    <strong translate="OFFICIAL_NAME">Спортивный футбольный клуб «Слуцк»</strong><br />
-                    <small><em translate="OFFICIAL_SLOGAN">Футбол - этот не всё, но все без футбола - ничто!</em></small>
-                </h3>
-                <span class="text-uppercase" translate="OFFICIAL_SITE">ОФИЦИАЛЬНЫЙ САЙТ</span>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4>
+                            <strong translate="OFFICIAL_NAME">Спортивный футбольный клуб «Слуцк»</strong><br />
+                            <small><em translate="OFFICIAL_SLOGAN">Футбол - этот не всё, но все без футбола - ничто!</em></small>
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <social-buttons />
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <span class="text-uppercase" translate="OFFICIAL_SITE">ОФИЦИАЛЬНЫЙ САЙТ</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="main-brand-logo col-md-2 col-sm-2 hidden-xs">
                 <a href="/">
@@ -103,12 +115,12 @@
                 </a>
             </div>
             <div class="main-brand-right-block col-md-5 col-sm-10 col-xs-12">
-                <div class="visible-sm">
-                    <h5>
-                        <strong translate="OFFICIAL_NAME">Спортивный футбольный клуб «Слуцк»</strong>
-                    </h5>
-                </div>
-                <table class="table table-borderless table-striped">
+                <div class="row visible-sm" style="margin-bottom: 8px;">
+                    <div class="col-xs-7"><h5 class="text-uppercase"><strong translate="OFFICIAL_NAME">Спортивный футбольный клуб «Слуцк»</strong></h5></div>
+                    <div class="col-xs-5"><social-buttons /></div>
+
+                    </div>
+                <table class="table table-borderless table-striped" style="margin-bottom: 0;">
                     <tr>
                         <td class="text-right"><h5>18:00. 17 апреля.<br /><small>11 тур. Высшая лига</small></h5></td>
                         <td class="text-left"><h5>Слуцк - Динамо-Минск. 4:2<br /><small class="text-center">Стадион: Городской (Слуцк)</small></h5></td>
@@ -127,7 +139,6 @@
                     <ul class="list-unstyled">
                         <li><a asp-controller="Home" asp-action="Index">Главная</a></li>
                         <li><a asp-controller="Home" asp-action="Contact"><span translate="INFORMATION">Информация</span></a></li>
-                        <li><a asp-controller="Home" asp-action="Contact"><span translate="ATTRIBUTES">Атрибутика</span></a></li>
                         <li><a asp-controller="Home" asp-action="Contact"><span translate="HISTORY">История</span></a></li>
                     </ul>
                 </div>
@@ -203,13 +214,17 @@
         <script src="~/lib/fc/layout/persons/person.directive.js"></script>
         <script src="~/lib/fc/layout/teams/team.directive.js"></script>
         <script src="~/lib/fc/layout/teams/staff.directive.js"></script>
+        <script src="~/lib/fc/layout/socialbuttons.directive.js"></script>
         <script src="~/lib/fc/app.js"></script>
         <script src="~/lib/fc/home/rootctrl.js"></script>
         <script src="~/lib/fc/home/indexctrl.js"></script>
         <script src="~/lib/fc/publication/publicationctrl.js"></script>
         <script src="~/lib/fc/club/mainteamctrl.js"></script>
         <script src="~/lib/fc/club/reserveteamctrl.js"></script>
+        <script src="~/lib/fc/club/seniorstaffctrl.js"></script>
         <script src="~/lib/fc/club/coachesstaffctrl.js"></script>
+        <script src="~/lib/fc/club/medicalstaffctrl.js"></script>
+        <script src="~/lib/fc/club/specialistsstaffctrl.js"></script>
         <script src="~/lib/fc/person/personctrl.js"></script>
     </environment>
     <environment names="Staging,Production">

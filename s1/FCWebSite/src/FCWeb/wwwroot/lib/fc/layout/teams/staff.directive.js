@@ -14,7 +14,8 @@
             scope: {
                 teamId: '=',
                 publicationsCount: '=',
-                title: '='
+                title: '=',
+                persons: '='
             },
             link: function link(scope, element, attrs) {
 
@@ -23,21 +24,24 @@
                 scope.loadingImage = helper.getLoadingImg();
                 scope.personsLoaded = false;
 
-                scope.persons = {};
                 scope.rows = {};
+
+                scope.$watch(function (scope) {
+                    return scope.persons;
+                },
+                function (newValue, oldValue) {
+                    if (angular.isObject(scope.persons)) {
+                        staffLoaded();
+                    }
+                });
 
                 loadData();
 
                 function loadData() {                    
-                    personsSrv.loadCoachesStaff(scope.teamId, staffLoaded);
                     publicationsSrv.loadLatestPublications(scope.publicationsCount, publicationsLoaded);
                 }
 
-                function staffLoaded(response) {
-                    var persons = response.data;
-
-                    scope.persons = persons;
-
+                function staffLoaded() {
                     angular.forEach(scope.persons, function (item) {
                         item.flagSrc = helper.getFlagSrc(item.city.countryId);
 
@@ -47,7 +51,7 @@
                         item.showRole = angular.isObject(item.role);
                     });
 
-                    scope.rows = persons.length > 0 ? helper.formRows(persons, 4, 0) : [];
+                    scope.rows = scope.persons.length > 0 ? helper.formRows(scope.persons, 4, 0) : [];
                     scope.loadingStaff = false;
                 }
 

@@ -15,10 +15,22 @@
 
         this.loadTeamMainPlayers = function (id, success, failure) {
             apiSrv.get('/api/teams/' + id + '/persons/mainteam', null, success, personsLoadFail);
-        }        
+        }
 
         this.loadCoachesStaff = function (id, success, failure) {
             apiSrv.get('/api/teams/' + id + '/persons/coaches', null, success, personsLoadFail);
+        }
+
+        this.loadDirectionStaff = function (id, success, failure) {
+            apiSrv.get('/api/teams/' + id + '/persons/direction', null, success, personsLoadFail);
+        }
+
+        this.loadMedicalStaff = function (id, success, failure) {
+            apiSrv.get('/api/teams/' + id + '/persons/medics', null, success, personsLoadFail);
+        }
+
+        this.loadSpecialistsStaff = function (id, success, failure) {
+            apiSrv.get('/api/teams/' + id + '/persons/specialists', null, success, personsLoadFail);
         }
 
         this.loadAllPersons = function (success, failure) {

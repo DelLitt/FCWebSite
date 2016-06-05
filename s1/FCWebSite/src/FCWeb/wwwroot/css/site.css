@@ -93,6 +93,10 @@ dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
   content: '\25bc';
 }
 
+.social-btns img {
+    max-height: 35px;
+}
+
 .fc-container {
     background-color:#fff; 
     border-radius: 5px; 
@@ -134,7 +138,7 @@ dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
     margin-bottom: 10px;
 }
 
-.main-brand div{
+.main-brand > div{
     vertical-align: top;
     display: table-cell;
 }
@@ -224,8 +228,8 @@ dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
 
 .news-default-item .caption, 
 .person-item .caption {
-    width: 91%;
-    bottom: 2.1rem;
+    width: 98%;
+    bottom: 0rem;
     position: absolute;
     background: #003366;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#003366+0,003366+50,003366+100&0+0,0.5+20,0.8+51,0.5+80,0+100 */
@@ -251,6 +255,7 @@ dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
     box-shadow: none;
     margin: 0 0 20px 0;
     padding:0;
+    position: relative;
 }
 
 .news-default-item .caption h4,
@@ -295,8 +300,8 @@ dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
 }
 
 .main-event .news-default-item .caption {
-    width: 95%;
-    bottom: 2.3rem;
+    width: 99%;
+    bottom: 0.5rem;
 }
 
 .main-event .panel-heading h5 {

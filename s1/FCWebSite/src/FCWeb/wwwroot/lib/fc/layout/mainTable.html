@@ -12,7 +12,7 @@
                 <th translate="WINS_SH">В</th>
                 <th translate="DRAWS_SH">Н</th>
                 <th translate="LOSES_SH">П</th>
-                <th translate="GOALS_SH">М</th>
+                <th class="hidden-sm hidden-md" translate="GOALS_SH">М</th>
                 <th translate="POINTS_SH">О</th>
             </tr>
             <tr ng-repeat="row in model.rows">
@@ -22,7 +22,7 @@
                 <td>{{row.wins}}</td>
                 <td>{{row.draws}}</td>
                 <td>{{row.loses}}</td>
-                <td>{{row.goalsFor}}-{{row.goalsAgainst}}</td>
+                <td class="hidden-sm hidden-md">{{row.goalsFor}}-{{row.goalsAgainst}}</td>
                 <td>{{row.points}}</td>
             </tr>
         </table>

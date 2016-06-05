@@ -5,16 +5,19 @@
         .module('fc')
         .controller('coachesStaffCtrl', coachesStaffCtrl);
 
-    coachesStaffCtrl.$inject = ['$scope', 'configSrv'];
+    coachesStaffCtrl.$inject = ['$scope', 'configSrv', 'personsSrv'];
 
-    function coachesStaffCtrl($scope, configSrv) {
+    function coachesStaffCtrl($scope, configSrv, personsSrv) {
 
         $scope.teamId = configSrv.getMainTeamId();
         $scope.publicationsCount = configSrv.teamPublicationsCount;
         $scope.title = 'COACHES_STAFF';
+        $scope.persons = [];
 
-        // TODO: Change config to promise
-        //scope.mainTeamId = 
-        //configSrv.mainTeamTourneyIds
+        personsSrv.loadCoachesStaff($scope.teamId, staffLoaded);
+
+        function staffLoaded(response) {
+            $scope.persons = response.data;
+        }
     }
 })();

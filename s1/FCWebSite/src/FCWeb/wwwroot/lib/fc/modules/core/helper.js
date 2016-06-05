@@ -45,7 +45,7 @@ String.prototype.endsWith = function (suffix) {
                 }
 
                 var rows = [],
-                    rowsCount = Math.ceil((array.length - 1) / elementsPerRow),
+                    rowsCount = Math.ceil((array.length) / elementsPerRow),
                     offset = angular.isNumber(skip) ? skip : 0;
 
                 for (var i = 0; i < rowsCount; i++) {

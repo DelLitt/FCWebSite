@@ -82,11 +82,12 @@
             {
                 case PersonGroup.Coaches:
                     personRoleIds = new List<int>(PersonRoleGroupId.rgCoachingStaff)
-                                    .Union(new[] { PersonRoleId.rrVideographer, PersonRoleId.rrClubAdministrator });
+                                    .Union(new[] { PersonRoleId.rrVideographer, PersonRoleId.rrClubAdministrator, PersonRoleId.rrTeamManager });
                     break;
 
                 case PersonGroup.Direction:
                     personRoleIds = new List<int>(PersonRoleGroupId.rgSeniorStaff)
+                                    .Where(l => l != PersonRoleId.rrClubAdministrator && l != PersonRoleId.rrTeamManager)
                                     .Union(new[] { PersonRoleId.rrAccountantChief });
                     break;
 
@@ -103,7 +104,8 @@
                     break;
 
                 case PersonGroup.Specialists:
-                    personRoleIds = PersonRoleGroupId.rgSpecialistsStuff;
+                    personRoleIds = PersonRoleGroupId.rgSpecialistsStuff
+                                    .Where(l => l != PersonRoleId.rrVideographer && l != PersonRoleId.rrAccountantChief);
                     break;
 
                 case PersonGroup.Youth:
