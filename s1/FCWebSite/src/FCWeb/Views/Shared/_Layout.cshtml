@@ -62,8 +62,8 @@
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-eye-open"></span> <span translate="RESULTS">Результаты</span><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" translate="MAIN_STAFF">Главная команда</a></li>
-                            <li><a href="#" translate="RESERVE_STAFF">Резервная команда</a></li>
+                            <li><a href="/results/mainteam" translate="MAIN_STAFF">Главная команда</a></li>
+                            <li><a href="/results/reserveteam" translate="RESERVE_STAFF">Резервная команда</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -215,6 +215,7 @@
         <script src="~/lib/fc/layout/teams/team.directive.js"></script>
         <script src="~/lib/fc/layout/teams/staff.directive.js"></script>
         <script src="~/lib/fc/layout/socialbuttons.directive.js"></script>
+        <script src="~/lib/fc/layout/results/results.directive.js"></script>
         <script src="~/lib/fc/app.js"></script>
         <script src="~/lib/fc/home/rootctrl.js"></script>
         <script src="~/lib/fc/home/indexctrl.js"></script>
@@ -226,6 +227,7 @@
         <script src="~/lib/fc/club/medicalstaffctrl.js"></script>
         <script src="~/lib/fc/club/specialistsstaffctrl.js"></script>
         <script src="~/lib/fc/person/personctrl.js"></script>
+        <script src="~/lib/fc/results/resultsmainteamctrl.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"

@@ -349,3 +349,20 @@ dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
     }
 
 /* Customazing boostrap layout end */
+
+/* Boostrap overrides */
+
+@media (min-width: 768px) {
+  .dl-horizontal dt {
+    float: left;
+    width: 200px;
+    clear: left;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .dl-horizontal dd {
+    margin-left: 220px;
+  }
+}

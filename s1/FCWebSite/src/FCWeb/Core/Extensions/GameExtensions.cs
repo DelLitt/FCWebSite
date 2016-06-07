@@ -33,7 +33,9 @@
                 showTime = game.ShowTime,
                 stadiumId = game.stadiumId,
                 videoId = game.videoId,
-                round = game.round.ToViewModel()
+                round = game.round.ToViewModel(),
+                home = game.home.ToViewModel(),
+                away = game.away.ToViewModel()
             };
         }
 

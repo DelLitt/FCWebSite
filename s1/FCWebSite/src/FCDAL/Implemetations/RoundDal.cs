@@ -19,9 +19,9 @@
 
         public IEnumerable<Round> GetRounds(IEnumerable<int> ids)
         {
-            if (ids == null) { return new Round[0]; }
+            if (Guard.IsEmptyIEnumerable(ids)) { return new Round[0]; }
 
-            IEnumerable<Round> rounds = Context.Round.Where(r => ids.Contains(r.Id));
+            IEnumerable<Round> rounds = Context.Round.Where(r => ids.Contains(r.Id)).ToList();
 
             FillRelations(rounds);
 
@@ -31,11 +31,13 @@
 
         public IEnumerable<Round> GetRoundsByTourney(int tourneyId)
         {
-            return Context.Round.Where(r => r.tourneyId == tourneyId);
+            return Context.Round.Where(r => r.tourneyId == tourneyId).ToList();
         }
 
         public IEnumerable<int> GetRoundIdsOfTourneys(IEnumerable<int> tourneyIds, int? sortByTeamId = null)
         {
+            if(Guard.IsEmptyIEnumerable(tourneyIds)) { return new int[0]; }
+
             IEnumerable<int> roundIds;
 
             if (sortByTeamId.HasValue)
@@ -58,11 +60,19 @@
             else
             {
                 roundIds = Context.Round.Where(r => tourneyIds.Contains(r.tourneyId))
-                                        .Select(r => (int)r.Id)
-                                        .Distinct();
+                                        .Select(r => Convert.ToInt32(r.Id))
+                                        .Distinct()
+                                        .ToList();
             }
 
             return roundIds;
+        }
+
+        public IEnumerable<Round> GetRoundsOfTourneys(IEnumerable<int> tourneyIds)
+        {
+            if (Guard.IsEmptyIEnumerable(tourneyIds)) { return new Round[0]; }
+
+            return Context.Round.Where(r => tourneyIds.Contains(r.tourneyId)).ToList();
         }
 
         public IEnumerable<Round> SearchByNameFull(int tourneyId, string text)

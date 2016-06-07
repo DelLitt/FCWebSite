@@ -25,7 +25,7 @@
 
         public IEnumerable<Team> GetTeams(IEnumerable<int> ids)
         {
-            if(ids == null) { return new Team[0]; }
+            if(Guard.IsEmptyIEnumerable(ids)) { return new Team[0]; }
 
             IEnumerable<Team> teams = Context.Team.Where(t => ids.Contains(t.Id));
 

@@ -84,6 +84,11 @@
             return DalTeam.GetTeams(teamIds);
         }
 
+        public IEnumerable<Team> GetTeams(IEnumerable<int> ids)
+        {
+            return DalTeam.GetTeams(ids);
+        }
+
         public IEnumerable<Team> SearchByDefault(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) { return new Team[0]; }

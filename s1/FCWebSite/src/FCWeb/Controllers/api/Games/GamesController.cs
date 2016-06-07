@@ -43,6 +43,12 @@
             return gameBll.GetGame(id).ToViewModel();
         }
 
+        [HttpGet]
+        public IEnumerable<GameViewModel> Get([FromQuery] int[] tourneyIds)
+        {
+            return gameBll.GetGamesByTourneys(tourneyIds).ToViewModel();
+        }
+
         // POST api/values
         [HttpPost]
         [Authorize(Roles = "admin,press")]

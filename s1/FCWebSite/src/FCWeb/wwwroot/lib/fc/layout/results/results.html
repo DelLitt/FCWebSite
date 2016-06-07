@@ -1,0 +1,40 @@
+﻿<div class="fc-container row">
+    <div class="col-sm-9">
+        <div class="text-center" ng-show="loadingGames">
+            <img ng-src="{{loadingImage}}" />
+        </div>
+        <div class="panel panel-primary no-padding" ng-show="!loadingGames">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-12"><span class="glyphicon glyphicon-stats">&nbsp;</span><span translate="{{title}}"></span></div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="roundPart in schedule">
+                    <div class="label label-primary" style="display:block; margin-bottom: 10px;">
+                        {{roundPart.round.text}}. {{roundPart.tourney.text}}
+                    </div>
+                    <dl class="dl-horizontal" ng-repeat="gamesDay in roundPart.daysGames">
+                        <dt class="label label-info">{{gamesDay.games[0].date | date : 'fullDate'}}</dt>
+                        <dd ng-repeat="game in gamesDay.games">
+                            <a href="javascript:void(0);">{{game.home.text}}</a> - <a href="javascript:void(0);">{{game.away.text}}</a>. <a href="javascript:void(0);">{{game.homeScore}}:{{game.awayScore}}</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 text-center" ng-show="loadingNews">
+        <img ng-src="{{loadingImage}}" />
+    </div>
+    <div class="col-sm-3 panel panel-primary no-padding" ng-show="!loadingNews">
+        <div class="panel-heading"><span class="glyphicon glyphicon-globe">&nbsp;</span>Последние новости</div>
+        <div class="panel-body">
+            <div class="row" ng-repeat="publication in publications">
+                <div class="col-sm-12">
+                    <publication-item model="publication"></publication-item>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

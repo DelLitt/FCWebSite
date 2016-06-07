@@ -1,12 +1,12 @@
 ﻿namespace FCDAL.Implementations
 {
-    using FCCore.Abstractions.Dal;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using FCCore.Model;
-    using FCDAL.Exceptions;
+    using Exceptions;
+    using FCCore.Abstractions.Dal;
     using FCCore.Common;
+    using FCCore.Model;
 
     public class GameDal : DalBase, IGameDal
     {
@@ -35,12 +35,11 @@
             return game;
         }
 
-        public IEnumerable<Game> GetRoundsGames(IEnumerable<int> roundIds)
+        public IEnumerable<Game> GetGamesByRounds(IEnumerable<int> roundIds)
         {
             if (Guard.IsEmptyIEnumerable(roundIds)) { return new Game[0]; }
 
-            IEnumerable<Game> games = Context.Game.Where(g => roundIds.Contains(g.roundId))
-                                                  .ToList();
+            IEnumerable<Game> games = Context.Game.Where(g => roundIds.Contains(g.roundId)).ToList();
 
             FillRelations(games);
 
@@ -50,6 +49,17 @@
         public IEnumerable<Game> GetRoundGames(int roundId)
         {
             IEnumerable<Game> games = Context.Game.Where(g => g.roundId == roundId);
+
+            FillRelations(games);
+
+            return games;
+        }
+
+        public IEnumerable<Game> GetGamesByTourneys(IEnumerable<int> tourneyIds)
+        {
+            if(Guard.IsEmptyIEnumerable(tourneyIds)) { return new Game[0]; }
+
+            IEnumerable<Game> games = Context.Game.Where(g => tourneyIds.Contains(g.round.tourneyId));
 
             FillRelations(games);
 

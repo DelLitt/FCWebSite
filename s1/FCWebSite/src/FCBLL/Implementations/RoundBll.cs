@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using FCCore.Model;
     using FCCore.Abstractions.Dal;
+    using System;
 
     public class RoundBll : IRoundBll
     {
@@ -52,6 +53,11 @@
         public IEnumerable<int> GetRoundIdsOfTourneys(IEnumerable<int> tourneyIds, int? sortByTeamId = default(int?))
         {
             return DalRound.GetRoundIdsOfTourneys(tourneyIds, sortByTeamId);
+        }
+
+        public IEnumerable<Round> GetRoundsOfTourneys(IEnumerable<int> tourneyIds)
+        {
+            return DalRound.GetRoundsOfTourneys(tourneyIds);
         }
 
         public IEnumerable<Round> SearchByNameFull(int tourneyId, string text)

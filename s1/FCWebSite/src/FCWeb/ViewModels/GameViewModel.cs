@@ -25,5 +25,7 @@
         public int? videoId { get; set; }
 
         public RoundViewModel round { get; set; }
+        public TeamViewModel home { get; set; }
+        public TeamViewModel away { get; set; }
     }
 }

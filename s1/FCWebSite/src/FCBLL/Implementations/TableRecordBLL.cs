@@ -3,6 +3,7 @@ using FCCore.Abstractions.Dal;
 using System.Collections.Generic;
 using FCCore.Model;
 using System;
+using System.Linq;
 
 namespace FCBLL.Implementations
 {
@@ -50,7 +51,7 @@ namespace FCBLL.Implementations
 
         public IEnumerable<TableRecord> GetTourneyTable(int tourneyId)
         {
-            return DalTableRecord.GetTourneyTable(tourneyId);
+            return DalTableRecord.GetTourneyTable(tourneyId).OrderBy(tr => tr.Position);
         }
     }
 }

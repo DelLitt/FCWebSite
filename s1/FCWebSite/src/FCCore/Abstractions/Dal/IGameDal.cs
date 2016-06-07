@@ -8,11 +8,12 @@
     {
         bool FillTeams { get; set; }
         bool FillRounds { get; set; }
-        
-        Game GetTeamNearestGame(int teamId, IEnumerable<int> roundIds, DateTime date);
-        IEnumerable<Game> GetRoundsGames(IEnumerable<int> roundIds);
-        IEnumerable<Game> GetRoundGames(int roundId);
+
         Game GetGame(int id);
+        IEnumerable<Game> GetRoundGames(int roundId);
+        IEnumerable<Game> GetGamesByRounds(IEnumerable<int> roundIds);
+        IEnumerable<Game> GetGamesByTourneys(IEnumerable<int> tourneyIds);
+        Game GetTeamNearestGame(int teamId, IEnumerable<int> roundIds, DateTime date);                        
         int SaveGame(Game entity);
     }
 }

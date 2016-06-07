@@ -54,5 +54,12 @@
   "rrPressOfficer": "Press secretary",
   "POSITION": "Position",
   "POST": "Position",
-  "NEWS": "News"
+  "NEWS": "News",
+  "MONDAY": "Monday",
+  "TUESDAY": "Tuesday",
+  "WEDNESDAY": "Wednesday",
+  "THURSDAY": "Thursday",
+  "FRIDAY": "Friday",
+  "SATURDAY": "Saturday",
+  "SUNDAY": "Sunday"
 }

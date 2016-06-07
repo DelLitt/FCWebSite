@@ -9,6 +9,7 @@
 
         Team GetTeam(int id);
         IEnumerable<Team> GetTeamsByRound(int roundId);
+        IEnumerable<Team> GetTeams(IEnumerable<int> ids);
         IEnumerable<Team> SearchByDefault(string text);
         IEnumerable<Team> SearchByDefault(string text, int roundId);
         int SaveTeam(Team entity);
