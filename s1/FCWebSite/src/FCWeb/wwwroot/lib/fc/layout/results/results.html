@@ -17,7 +17,7 @@
                     <dl class="dl-horizontal" ng-repeat="gamesDay in roundPart.daysGames">
                         <dt class="label label-info">{{gamesDay.games[0].date | date : 'fullDate'}}</dt>
                         <dd ng-repeat="game in gamesDay.games">
-                            <a href="javascript:void(0);">{{game.home.text}}</a> - <a href="javascript:void(0);">{{game.away.text}}</a>. <a href="javascript:void(0);">{{game.homeScore}}:{{game.awayScore}}</a>
+                            <a href="javascript:void(0);">{{game.home.text}}</a> - <a href="javascript:void(0);">{{game.away.text}}</a>. <a ng-href="game/{{game.id}}">{{game.homeScore}}:{{game.awayScore}}</a>
                         </dd>
                     </dl>
                 </div>

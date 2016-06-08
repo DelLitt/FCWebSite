@@ -4,6 +4,7 @@
 
     public class ScheduleGameViewModel
     {
+        public int id { get; set; }
         public short roundId { get; set; }
         public DateTime date { get; set; }
         public EntityLinkViewModel home { get; set; }

@@ -360,6 +360,17 @@ namespace FCDAL.Model
                     .HasMaxLength(256);
             });
 
+            modelBuilder.Entity<Totalizator>(entity =>
+            {
+                entity.HasOne(d => d.game).WithMany(p => p.Totalizator).HasForeignKey(d => d.gameId).OnDelete(DeleteBehavior.Restrict);
+
+                entity.Property(e => e.voteType).IsRequired();
+
+                entity.Property(e => e.UserIP)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
             modelBuilder.Entity<Tourney>(entity =>
             {
                 entity.Property(e => e.DateEnd).HasColumnType("datetime");
@@ -450,6 +461,7 @@ namespace FCDAL.Model
         public virtual DbSet<TableRecord> TableRecord { get; set; }
         public virtual DbSet<Team> Team { get; set; }
         public virtual DbSet<TeamType> TeamType { get; set; }
+        public virtual DbSet<Totalizator> Totalizator { get; set; }
         public virtual DbSet<Tourney> Tourney { get; set; }
         public virtual DbSet<TourneyType> TourneyType { get; set; }
         public virtual DbSet<Video> Video { get; set; }

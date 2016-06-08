@@ -109,6 +109,7 @@
 
                 gameGroups.Add(new ScheduleGameViewModel()
                 {
+                    id = game.Id,
                     away = new EntityLinkViewModel()
                         {
                             id = game.awayId.ToString(),

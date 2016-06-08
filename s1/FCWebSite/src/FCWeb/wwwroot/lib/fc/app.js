@@ -49,6 +49,10 @@
                 templateUrl: "lib/fc/person/person.html",
                 controller: "personCtrl"
             })
+            .when("/game/:id", {
+                templateUrl: "lib/fc/game/game.html",
+                controller: "gameCtrl"
+            })
             .otherwise({ redirectTo: "/" });
 
         $locationProvider.html5Mode(true);

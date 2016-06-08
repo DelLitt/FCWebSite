@@ -31,6 +31,7 @@ namespace FCCore.Model
         public int? videoId { get; set; }
 
         public virtual ICollection<ProtocolRecord> ProtocolRecord { get; set; }
+        public virtual ICollection<Totalizator> Totalizator { get; set; }
         public virtual Team away { get; set; }
         public virtual Team home { get; set; }
         public virtual ImageGallery imageGallery { get; set; }
