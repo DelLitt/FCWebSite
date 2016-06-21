@@ -7,7 +7,6 @@
     public interface IProtocolRecordBll
     {
         IEnumerable<ProtocolRecord> GetProtocolRecords(int gameId);
-        int SaveProtocol(IEnumerable<ProtocolRecord> protocolRecords);
-        IGameProtocolManager GetGameProtocolManager(int gameId);
+        int SaveProtocol(int gameId, IEnumerable<ProtocolRecord> protocolRecords);
     }
 }

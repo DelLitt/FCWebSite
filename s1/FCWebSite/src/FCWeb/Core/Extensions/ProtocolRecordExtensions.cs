@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using FCBLL.Core.Protocol;
     using FCCore.Common;
     using FCCore.Model;
     using ViewModels.Protocol;
@@ -56,7 +57,7 @@
             return protocolViewRecords.Select(v => v.ToBaseModel()).ToList();
         }
 
-        public static IEnumerable<ProtocolRecord> ToRecordsList(this GameProtocolViewModel protocolViewModel)
+        public static IEnumerable<ProtocolRecord> ToRecordsList(this ProtocolGameViewModel protocolViewModel)
         {
             if(protocolViewModel == null) { return new ProtocolRecord[0]; }
 
@@ -81,32 +82,50 @@
 
             if (protocolTeamViewModel.main != null)
             {
-                protocolRecords.AddRange(protocolTeamViewModel.main.Where(p => p.gameId > 0).ToBaseModel());
+                protocolRecords.AddRange(protocolTeamViewModel.main
+                    .Select(pr => new ProtocolRecordInfo(pr.ToBaseModel()))
+                    .Where(pr => pr.IsStartMain)
+                    .Select(pr => pr.ProtocolRecord));
             }
 
             if (protocolTeamViewModel.reserve != null)
             {
-                protocolRecords.AddRange(protocolTeamViewModel.reserve.Where(p => p.gameId > 0).ToBaseModel());
+                protocolRecords.AddRange(protocolTeamViewModel.reserve
+                    .Select(pr => new ProtocolRecordInfo(pr.ToBaseModel()))
+                    .Where(pr => pr.IsStartReserve)
+                    .Select(pr => pr.ProtocolRecord));
             }
 
             if (protocolTeamViewModel.goals != null)
-            {
-                protocolRecords.AddRange(protocolTeamViewModel.goals.Where(p => p.gameId > 0).ToBaseModel());
+            {                
+                protocolRecords.AddRange(protocolTeamViewModel.goals
+                    .Select(pr => new ProtocolRecordInfo(pr.ToBaseModel()))
+                    .Where(pr => pr.IsGoal)
+                    .Select(pr => pr.ProtocolRecord));
             }
 
             if (protocolTeamViewModel.subs != null)
             {
-                protocolRecords.AddRange(protocolTeamViewModel.subs.Where(p => p.gameId > 0).ToBaseModel());
+                protocolRecords.AddRange(protocolTeamViewModel.subs
+                    .Select(pr => new ProtocolRecordInfo(pr.ToBaseModel()))
+                    .Where(pr => pr.IsSubstitution)
+                    .Select(pr => pr.ProtocolRecord));
             }
 
             if (protocolTeamViewModel.cards != null)
             {
-                protocolRecords.AddRange(protocolTeamViewModel.cards.Where(p => p.gameId > 0).ToBaseModel());
+                protocolRecords.AddRange(protocolTeamViewModel.cards
+                    .Select(pr => new ProtocolRecordInfo(pr.ToBaseModel()))
+                    .Where(pr => pr.IsYellowCard || pr.IsRedCard)
+                    .Select(pr => pr.ProtocolRecord));
             }
 
-            if (protocolTeamViewModel.cards != null)
+            if (protocolTeamViewModel.others != null)
             {
-                protocolRecords.AddRange(protocolTeamViewModel.cards.Where(p => p.gameId > 0).ToBaseModel());
+                protocolRecords.AddRange(protocolTeamViewModel.others
+                    .Select(pr => new ProtocolRecordInfo(pr.ToBaseModel()))
+                    .Where(pr => pr.IsOut || pr.IsMiss || pr.IsAfterGamePenalty)
+                    .Select(pr => pr.ProtocolRecord));
             }
 
             return protocolRecords;

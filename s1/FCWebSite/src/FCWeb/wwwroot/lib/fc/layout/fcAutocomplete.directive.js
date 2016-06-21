@@ -116,6 +116,7 @@
                         scope.suggestedData = [];
                         scope.backRemoved();
                         scope.selItem = null;
+                        scope.id = -1;
                         scope.aclass = 'form-group';
                         return;
                     }

@@ -10,7 +10,7 @@
     using FCCore.Exceptions;
     using FCCore.Model;
 
-    public class GameProtocolManager : IGameProtocolManager
+    internal class GameProtocolManager : IGameProtocolManager
     {
         private const int PlayersMainCount = 11;
         private const int PlayersReserveCount = 7;
@@ -21,15 +21,39 @@
 
         public Game Game { get; private set; }
 
+        public bool IsAvailable
+        {
+            get
+            {
+                return records.Any();
+            }
+        }
+
+        public bool IsAvailableHome
+        {
+            get
+            {
+                return records.Any(r => r.ProtocolRecord.teamId == Game.homeId);
+            }
+        }
+
+        public bool IsAvailableAway
+        {
+            get
+            {
+                return records.Any(r => r.ProtocolRecord.teamId == Game.awayId);
+            }
+        }
+
         public GameProtocolManager(int gameId)
         {
             Game = gameBll.GetGame(gameId);
 
-            if(Game == null)
+            if (Game == null)
             {
                 throw new EntityNotFoundException(typeof(Game));
             }
-            
+
             IEnumerable<ProtocolRecord> protocolRecords = protocolRecordBll.GetProtocolRecords(Game.Id);
 
             records = !Guard.IsEmptyIEnumerable(protocolRecords)
@@ -41,21 +65,28 @@
         {
             var mainRecords = new List<ProtocolRecord>();
 
-            mainRecords.AddRange(records.Where(r => r.ProtocolRecord.teamId == teamId && r.IsStartMain).Select(r => r.ProtocolRecord));
+            mainRecords.AddRange(records
+                .Where(r => r.ProtocolRecord.teamId == teamId && r.IsStartMain)
+                .Select(r => r.ProtocolRecord));
 
-            CompleteWithEmpty(mainRecords, PlayersMainCount);
+            ProtocolRecord defaultStartMain = ProtocolRecordInfo.CreateDefaultStartMain(Game.Id, teamId);
+
+            CompleteWithEmpty(mainRecords, defaultStartMain, PlayersMainCount);
 
             return mainRecords;
-
         }
 
         public IEnumerable<ProtocolRecord> GetReservePlayers(int teamId)
         {
             var reserveRecords = new List<ProtocolRecord>();
 
-            reserveRecords.AddRange(records.Where(r => r.ProtocolRecord.teamId == teamId && r.IsStartReserve).Select(r => r.ProtocolRecord));
+            reserveRecords.AddRange(records
+                .Where(r => r.ProtocolRecord.teamId == teamId && r.IsStartReserve)
+                .Select(r => r.ProtocolRecord));
 
-            CompleteWithEmpty(reserveRecords, PlayersReserveCount);
+            ProtocolRecord defaultStartReserve = ProtocolRecordInfo.CreateDefaultStartReserve(Game.Id, teamId);
+
+            CompleteWithEmpty(reserveRecords, defaultStartReserve, PlayersReserveCount);
 
             return reserveRecords;
         }
@@ -83,7 +114,7 @@
                                   && (r.IsOut || r.IsMiss || r.IsAfterGamePenalty)).Select(r => r.ProtocolRecord);
         }
 
-        private void CompleteWithEmpty<T>(IList<T> items, int totalCount) where T: new()
+        private void CompleteWithEmpty<T>(IList<T> items, T template, int totalCount) where T: new()
         {
             if(items == null)
             {
@@ -94,9 +125,9 @@
 
             if(emptyCount > 0)
             {
-                for(int i = 0; i < totalCount; i++)
+                for(int i = 0; i < emptyCount; i++)
                 {
-                    items.Add(new T());
+                    items.Add(template);
                 }
             }
         }

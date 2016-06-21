@@ -67,8 +67,6 @@ namespace FCDAL.Model
             {
                 entity.Property(e => e.GameDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Note).HasMaxLength(264);
-
                 entity.Property(e => e.Referees).HasMaxLength(512);
 
                 entity.HasOne(d => d.away).WithMany(p => p.Game).HasForeignKey(d => d.awayId).OnDelete(DeleteBehavior.Restrict);

@@ -8,6 +8,7 @@
     using FCCore.Common;
     using FCCore.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Newtonsoft.Json;
     using ViewModels;
     using ViewModels.Protocol;
 
@@ -19,6 +20,7 @@
         private IEnumerable<PersonViewModel> homePersons { get; set; }
         private IEnumerable<PersonViewModel> awayPersons { get; set; }
         private IEnumerable<EventViewModel> events { get; set; }
+        private GameNoteBuilder gameNoteBuilder { get; set; }
 
         public ProtocolViewModelBuilder(IGameProtocolManager protocolManager)
         {
@@ -26,13 +28,14 @@
             Guard.CheckNull(protocolManager.Game, "protocolManager.Game");
 
             this.protocolManager = protocolManager;
+            gameNoteBuilder = new GameNoteBuilder(this.protocolManager.Game);
 
             homePersons = personBll.GetTeamPersons(GetTeamId(Side.Home), protocolManager.Game.GameDate).ToViewModel();
             awayPersons = personBll.GetTeamPersons(GetTeamId(Side.Away), protocolManager.Game.GameDate).ToViewModel();
         }
 
-        public GameProtocolViewModel viewModel;
-        public GameProtocolViewModel ViewModel
+        public ProtocolGameViewModel viewModel;
+        public ProtocolGameViewModel ViewModel
         {
             get
             {
@@ -45,10 +48,11 @@
             }
         }
 
-        private GameProtocolViewModel BuildViewModel()
+        private ProtocolGameViewModel BuildViewModel()
         {
-            var protocolViewModel = new GameProtocolViewModel();
+            var protocolViewModel = new ProtocolGameViewModel();
 
+            protocolViewModel.home.teamId = GetTeamId(Side.Home);
             protocolViewModel.home.playersAll = GetPersons(Side.Home);
             protocolViewModel.home.playersSquad = protocolViewModel.home.playersAll;
             protocolViewModel.home.playersSubs = protocolViewModel.home.playersAll;
@@ -59,6 +63,7 @@
             protocolViewModel.home.cards = GetCards(Side.Home);
             protocolViewModel.home.others = GetOthers(Side.Home);
 
+            protocolViewModel.away.teamId = GetTeamId(Side.Away);
             protocolViewModel.away.playersAll = GetPersons(Side.Away);
             protocolViewModel.away.playersSquad = protocolViewModel.away.playersAll;
             protocolViewModel.away.playersSubs = protocolViewModel.away.playersAll;
@@ -68,6 +73,8 @@
             protocolViewModel.away.subs = GetSubstitutions(Side.Away);
             protocolViewModel.away.cards = GetCards(Side.Away);
             protocolViewModel.away.others = GetOthers(Side.Away);
+
+            protocolViewModel.fake = gameNoteBuilder.FakeProtocol;
 
             return protocolViewModel;
         }

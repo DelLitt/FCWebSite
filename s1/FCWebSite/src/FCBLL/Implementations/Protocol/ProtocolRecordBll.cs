@@ -27,14 +27,9 @@
             return DalProtocolRecord.GetProtocol(gameId);
         }
 
-        public int SaveProtocol(IEnumerable<ProtocolRecord> protocolRecords)
+        public int SaveProtocol(int gameId, IEnumerable<ProtocolRecord> protocolRecords)
         {
-            return DalProtocolRecord.SaveProtocol(protocolRecords);
-        }
-
-        public IGameProtocolManager GetGameProtocolManager(int gameId)
-        {
-            return new GameProtocolManager(gameId);
+            return DalProtocolRecord.SaveProtocol(gameId, protocolRecords);
         }
     }
 }

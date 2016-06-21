@@ -18,6 +18,12 @@
 
             link: function link(scope, element, attrs) {
 
+                scope.tab = 0;
+
+                scope.setTab = function (val) {
+                    scope.tab = val;
+                }
+
                 loadData(scope.gameId);
 
                 function loadData(gameId) {
@@ -46,7 +52,7 @@
                             "gameId": scope.gameId,
                             "minute": null,
                             "personId": null,
-                            "teamId": 0,
+                            "teamId": scope.protocol[side].teamId,
                             "extraTime": false,
                             "mainPerson": null,
                             "extraPerson": null
@@ -66,7 +72,7 @@
                             "gameId": scope.gameId,
                             "minute": 1,
                             "personId": null,
-                            "teamId": 0,
+                            "teamId": scope.protocol[side].teamId,
                             "extraTime": false,
                             "mainPerson": null,
                             "extraPerson": null
@@ -86,7 +92,7 @@
                             "gameId": scope.gameId,
                             "minute": 1,
                             "personId": null,
-                            "teamId": 0,
+                            "teamId": scope.protocol[side].teamId,
                             "extraTime": false,
                             "eventModel": null,
                             "mainPerson": null,
@@ -107,7 +113,7 @@
                             "gameId": scope.gameId,
                             "minute": 1,
                             "personId": null,
-                            "teamId": 0,
+                            "teamId": scope.protocol[side].teamId,
                             "extraTime": false,
                             "eventModel": null,
                             "mainPerson": null,

@@ -7,6 +7,6 @@
     public interface IProtocolRecordDal : IDalBase
     {      
         IEnumerable<ProtocolRecord> GetProtocol(int gameId);
-        int SaveProtocol(IEnumerable<ProtocolRecord> protocolRecords);
+        int SaveProtocol(int gameId, IEnumerable<ProtocolRecord> protocolRecords);
     }
 }

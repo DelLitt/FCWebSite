@@ -10,7 +10,7 @@
     function protocolSrv(helper, apiSrv, notificationManager) {
 
         this.loadProtocol = function (id, success, failure) {
-            apiSrv.get('/api/game/' + id + '/protocol', null,
+            apiSrv.get('/api/games/' + id + '/protocol', null,
                 success,
                 function (response) {
                     if (angular.isFunction(failure)) {
@@ -26,7 +26,7 @@
         }
 
         this.saveProtocol = function (gameId, protocol, success, failure) {
-            apiSrv.post('/api/game/' + gameId + '/protocol/', protocol,
+            apiSrv.post('/api/games/' + gameId + '/protocol/', protocol,
                             success,
                             function (response) {
                                 if (angular.isFunction(failure)) {

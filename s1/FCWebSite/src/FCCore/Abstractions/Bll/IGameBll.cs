@@ -16,5 +16,6 @@
         IEnumerable<Game> GetTeamActualRoundGamesOfTourneys(int teamId, IEnumerable<int> tourneyIds, DateTime date);
         IEnumerable<Game> GetTeamActualRoundGames(int teamId, IEnumerable<int> roundIds, DateTime date);    
         int SaveGame(Game entity);
+        bool SaveGameNote(int gameId, string note);
     }
 }

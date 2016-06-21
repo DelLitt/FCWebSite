@@ -17,13 +17,32 @@
             Guard.CheckNull(protocolRecord, nameof(protocolRecord));
 
             ProtocolRecord = protocolRecord;
+
+            if(ProtocolRecord.personId <= 0)
+            {
+                ProtocolRecord.personId = null;
+            }
+
+            if (ProtocolRecord.Minute < 0)
+            {
+                ProtocolRecord.Minute = null;
+            }
+
+            if (ProtocolRecord.CustomIntValue <= 0)
+            {
+                ProtocolRecord.CustomIntValue = null;
+            }
         }
 
         public bool IsStartMain
         {
             get
             {
-                return ProtocolRecord.eventId == EventId.eInStartGame && ProtocolRecord.Minute == 0;
+                return ProtocolRecord.eventId == EventId.eInStartGame
+                    && ProtocolRecord.Minute == 0
+                    && ProtocolRecord.gameId > 0
+                    && ProtocolRecord.teamId > 0
+                    && ProtocolRecord.personId > 0;
             }
         }
 
@@ -31,7 +50,11 @@
         {
             get
             {
-                return ProtocolRecord.eventId == EventId.eInSubstitution && ProtocolRecord.Minute == 0;
+                return ProtocolRecord.eventId == EventId.eInSubstitution
+                    && ProtocolRecord.Minute == 0
+                    && ProtocolRecord.gameId > 0
+                    && ProtocolRecord.teamId > 0
+                    && ProtocolRecord.personId > 0;
             }
         }
 
@@ -39,7 +62,12 @@
         {
             get
             {
-                return ProtocolRecord.eventId == EventId.eInSubstitution && ProtocolRecord.Minute > 0;
+                return ProtocolRecord.eventId == EventId.eInSubstitution 
+                    && ProtocolRecord.Minute > 0
+                    && ProtocolRecord.gameId > 0
+                    && ProtocolRecord.teamId > 0
+                    && ProtocolRecord.personId > 0
+                    && ProtocolRecord.CustomIntValue > 0;
             }
         }
 
@@ -47,7 +75,11 @@
         {
             get
             {
-                return EventGroupId.egGoals.Contains(ProtocolRecord.eventId);
+                // Filling minute is mandatory to calculate which goalkeeper is missed goal
+                return EventGroupId.egGoals.Contains(ProtocolRecord.eventId)
+                    && ProtocolRecord.Minute > 0
+                    && ProtocolRecord.gameId > 0
+                    && ProtocolRecord.teamId > 0;
             }
         }
 
@@ -55,7 +87,11 @@
         {
             get
             {
-                return EventGroupId.egYellows.Contains(ProtocolRecord.eventId);
+                return EventGroupId.egYellows.Contains(ProtocolRecord.eventId)
+                    && ProtocolRecord.Minute > 0
+                    && ProtocolRecord.gameId > 0
+                    && ProtocolRecord.teamId > 0
+                    && ProtocolRecord.personId > 0;
             }
         }
 
@@ -63,7 +99,11 @@
         {
             get
             {
-                return EventGroupId.egReds.Contains(ProtocolRecord.eventId);
+                return EventGroupId.egReds.Contains(ProtocolRecord.eventId)
+                    && ProtocolRecord.Minute > 0
+                    && ProtocolRecord.gameId > 0
+                    && ProtocolRecord.teamId > 0
+                    && ProtocolRecord.personId > 0;
             }
         }
 
@@ -71,7 +111,10 @@
         {
             get
             {
-                return EventGroupId.egMisses.Contains(ProtocolRecord.eventId);
+                return EventGroupId.egMisses.Contains(ProtocolRecord.eventId)
+                    && ProtocolRecord.Minute > 0
+                    && ProtocolRecord.gameId > 0
+                    && ProtocolRecord.teamId > 0;
             }
         }
 
@@ -79,7 +122,11 @@
         {
             get
             {
-                return EventGroupId.egOuts.Contains(ProtocolRecord.eventId);
+                return EventGroupId.egOuts.Contains(ProtocolRecord.eventId)
+                    && ProtocolRecord.Minute > 0
+                    && ProtocolRecord.gameId > 0
+                    && ProtocolRecord.teamId > 0
+                    && ProtocolRecord.personId > 0;
             }
         }
 
@@ -87,8 +134,33 @@
         {
             get
             {
-                return EventGroupId.egAfterGamePenalties.Contains(ProtocolRecord.eventId);
+                return EventGroupId.egAfterGamePenalties.Contains(ProtocolRecord.eventId)
+                    && ProtocolRecord.Minute > 0
+                    && ProtocolRecord.gameId > 0
+                    && ProtocolRecord.teamId > 0;
             }
         }
+
+        public static ProtocolRecord CreateDefaultStartMain(int gameId, int teamId)
+        {
+            return new ProtocolRecord()
+            {
+                gameId = gameId,
+                teamId = teamId,
+                eventId = EventId.eInStartGame,
+                Minute = 0
+            };
+        }
+
+        public static ProtocolRecord CreateDefaultStartReserve(int gameId, int teamId)
+        {
+            return new ProtocolRecord()
+            {
+                gameId = gameId,
+                teamId = teamId,
+                eventId = EventId.eInSubstitution,
+                Minute = 0
+            };
+        }        
     }
 }

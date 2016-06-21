@@ -1,9 +1,9 @@
-﻿<form class="form office" role="form" novalidate angular-validator name="forms.editProtocol" ng-submit="saveEdit(forms.editProtocol);">
-
-    <protocol-edit game-id="gameId" protocol="protocol"></protocol-edit>
-
-    <div>
-        <input type="submit" class="btn btn-primary" value="Сохранить" />
-        <a class="btn btn-default" ng-href="office">Отмена</a>
+﻿<form class="form office fc-container row" role="form" novalidate angular-validator name="forms.editProtocol" ng-submit="saveEdit(forms.editProtocol);">
+    <div class="col-md-12">
+        <protocol-edit game-id="gameId" protocol="protocol"></protocol-edit>
+        <div>
+            <input type="submit" class="btn btn-primary" value="Сохранить" />
+            <a class="btn btn-default" ng-href="office">Отмена</a>
+        </div>
     </div>
 </form>

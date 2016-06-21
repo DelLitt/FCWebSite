@@ -6,6 +6,9 @@
     public interface IGameProtocolManager
     {
         Game Game { get; }
+        bool IsAvailable { get; }
+        bool IsAvailableHome { get; }
+        bool IsAvailableAway { get; }
         IEnumerable<ProtocolRecord> GetMainPlayers(int teamId);
         IEnumerable<ProtocolRecord> GetReservePlayers(int teamId);
         IEnumerable<ProtocolRecord> GetGoals(int teamId);

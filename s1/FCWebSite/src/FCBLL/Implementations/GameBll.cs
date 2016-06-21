@@ -113,5 +113,16 @@
         {
             return DalGames.GetGamesByRounds(roundIds);
         }
+
+        public bool SaveGameNote(int gameId, string note)
+        {
+            Game game = DalGames.GetGame(gameId);
+
+            if(game == null) { return false; }
+
+            game.Note = note;
+
+            return DalGames.SaveGame(game) > 0;
+        }
     }
 }

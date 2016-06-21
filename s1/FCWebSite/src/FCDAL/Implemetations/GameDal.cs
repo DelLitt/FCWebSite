@@ -89,7 +89,14 @@
                 Context.Game.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
             }
 
-            Context.SaveChanges();
+            try
+            {
+                Context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
 
             return entity.Id;
         }

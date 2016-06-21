@@ -31,6 +31,7 @@
             serviceCollection.AddTransient<IPersonStatisticsBll, PersonStatisticsBll>();
             serviceCollection.AddTransient<ICountryBll, CountryBll>();
             serviceCollection.AddTransient<ITotalizatorBll, TotalizatorBll>();
+            serviceCollection.AddTransient<IGameProtocolManagerFactory, GameProtocolManagerFactory>();
         }
 
         public static void AddDALServices(this IServiceCollection serviceCollection)

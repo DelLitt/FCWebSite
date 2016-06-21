@@ -53,6 +53,14 @@
                 templateUrl: "lib/fc/game/game.html",
                 controller: "gameCtrl"
             })
+           .when("/info/tickets", {
+               templateUrl: "lib/fc/info/tickets/tickets.html",
+               controller: "ticketsCtrl"
+           })
+           .when("/info/stadium-rules", {
+               templateUrl: "lib/fc/info/stadiumRules/stadiumRules.html",
+               controller: "stadiumRulesCtrl"
+           })
             .otherwise({ redirectTo: "/" });
 
         $locationProvider.html5Mode(true);
