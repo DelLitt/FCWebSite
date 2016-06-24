@@ -109,5 +109,24 @@
                 Weight = personView.weight
             };
         }
+
+        public static string NameDefault(this Person person)
+        {
+            return person.NameFirst + " " + person.NameLast;
+        }
+
+        public static string NameDefaultWithNumber(this Person person)
+        {
+            if(person == null)
+            {
+                return string.Empty;
+            }
+
+            string number = person.Number.HasValue && person.Number > 0
+                ? person.Number + ". "
+                : string.Empty;
+
+            return number + person.NameFirst + " " + person.NameLast;
+        }
     }
 }

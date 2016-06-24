@@ -29,6 +29,53 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-6">
+                    <!--<b class="text-primary">Состав<span ng-show="teamName.length"> {{teamNamePrefix.length > 0 ? teamNamePrefix + ' ' : ''}} "{{teamName}}"</span></b>:-->
+                    <b class="text-primary">Состав</b>: 
+                    <text-main-protocol data="protocol.home.main" />
+                </div>
+                <div class="col-md-6">
+                    <b class="text-primary">Состав</b>: 
+                    <text-main-protocol data="protocol.away.main" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <b class="text-primary">Запасные</b>:
+                    <text-reserve-protocol data="protocol.home.reserve" />
+                </div>
+                <div class="col-md-6">
+                    <b class="text-primary">Запасные</b>:
+                    <text-reserve-protocol data="protocol.away.reserve" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <b class="text-primary">Голы</b>:
+                    <text-goal-protocol data="protocol.allGoals" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <b class="text-primary">Предупреждения</b>:
+                    <text-event-protocol data="protocol.home.yellows" />
+                </div>
+                <div class="col-md-6">
+                    <b class="text-primary">Предупреждения</b>:
+                    <text-event-protocol data="protocol.away.yellows" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <b class="text-primary">Удаления</b>:
+                    <text-event-protocol data="protocol.home.reds" />
+                </div>
+                <div class="col-md-6">
+                    <b class="text-primary">Удаления</b>:
+                    <text-event-protocol data="protocol.away.reds" />
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-12">
                     <div class="panel panel-primary no-padding">
                         <div class="panel-heading text-center">Результаты тотолизатора</div>

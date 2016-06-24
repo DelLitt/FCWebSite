@@ -15,6 +15,7 @@
         IEnumerable<Person> GetTeamPersons(int teamId, IEnumerable<int> personRoleIds);
         IEnumerable<Person> GetTeamPersons(int teamId, DateTime date);
         IEnumerable<Person> GetPersons();
+        IEnumerable<Person> GetPersons(IEnumerable<int> personsIds);
         int SavePerson(Person entity);
     }
 }

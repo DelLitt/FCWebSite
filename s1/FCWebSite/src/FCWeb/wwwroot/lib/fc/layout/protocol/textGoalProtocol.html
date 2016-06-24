@@ -1,0 +1,23 @@
+﻿<div style="display: inline;">
+    <span ng-repeat="item in data | orderBy : 'minute'">
+        <span ng-show="item.main.id.length">
+            <entity-link path="person"
+                         entity-id="{{item.main.id}}"
+                         text="{{item.main.text}}"
+                         title="{{item.main.title}}">
+            </entity-link>
+            {{item.info}}
+            <span ng-show="hasAssistant(item);">
+                (<entity-link path="person"
+                              entity-id="{{item.extra.id}}"
+                              text="{{item.extra.text}}"
+                              title="{{item.extra.title}}">
+                </entity-link>, {{item.minute}})
+            </span>
+        </span>
+        <span ng-show="!item.main.id.length">
+            {{item.main.text}}<span ng-show="hasAssistant(item);"> ({{item.info}}, {{item.minute}})</span>
+        </span>
+        {{$last ? '' : ', '}}
+    </span>
+</div>

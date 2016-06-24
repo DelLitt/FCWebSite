@@ -58,7 +58,7 @@
                controller: "ticketsCtrl"
            })
            .when("/info/stadium-rules", {
-               templateUrl: "lib/fc/info/stadiumRules/stadiumRules.html",
+               templateUrl: "lib/fc/info/stadiumrules/stadiumrules.html",
                controller: "stadiumRulesCtrl"
            })
             .otherwise({ redirectTo: "/" });

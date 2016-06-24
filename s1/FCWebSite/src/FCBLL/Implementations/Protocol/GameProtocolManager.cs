@@ -41,7 +41,21 @@
         {
             get
             {
-                return records.Any(r => r.ProtocolRecord.teamId == Game.awayId);
+                return records.Any(r => r.ProtocolRecord.teamId == Game.awayId && !r.IsGoal);
+            }
+        }
+
+        public IEnumerable<int> PersonIds
+        {
+            get
+            {
+                return records
+                    .Where(r => r.ProtocolRecord.personId > 0)
+                    .Select(r => r.ProtocolRecord.personId.Value)
+                    .Union(records
+                        .Where(r => r.ProtocolRecord.CustomIntValue > 0)
+                        .Select(r => r.ProtocolRecord.CustomIntValue.Value))
+                    .Distinct();
             }
         }
 
@@ -103,15 +117,27 @@
 
         public IEnumerable<ProtocolRecord> GetCards(int teamId)
         {
-            return records.Where(r => r.ProtocolRecord.teamId == teamId 
+            return records.Where(r => r.ProtocolRecord.teamId == teamId
                                   && (r.IsYellowCard || r.IsRedCard)).Select(r => r.ProtocolRecord);
         }
 
+        public IEnumerable<ProtocolRecord> GetReds(int teamId)
+        {
+            return records.Where(r => r.ProtocolRecord.teamId == teamId && r.IsRedCard)
+                          .Select(r => r.ProtocolRecord);
+        }
+
+        public IEnumerable<ProtocolRecord> GetYellows(int teamId)
+        {
+            return records.Where(r => r.ProtocolRecord.teamId == teamId && r.IsYellowCard)
+                          .Select(r => r.ProtocolRecord);
+        }
 
         public IEnumerable<ProtocolRecord> GetOthers(int teamId)
         {
             return records.Where(r => r.ProtocolRecord.teamId == teamId
-                                  && (r.IsOut || r.IsMiss || r.IsAfterGamePenalty)).Select(r => r.ProtocolRecord);
+                                  && (r.IsOut || r.IsMiss || r.IsAfterGamePenalty))
+                          .Select(r => r.ProtocolRecord);
         }
 
         private void CompleteWithEmpty<T>(IList<T> items, T template, int totalCount) where T: new()

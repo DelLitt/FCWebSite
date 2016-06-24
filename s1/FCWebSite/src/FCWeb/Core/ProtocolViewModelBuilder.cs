@@ -8,7 +8,6 @@
     using FCCore.Common;
     using FCCore.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Newtonsoft.Json;
     using ViewModels;
     using ViewModels.Protocol;
 

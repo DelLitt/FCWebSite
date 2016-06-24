@@ -128,6 +128,11 @@
             return DalPerson.GetPersons();
         }
 
+        public IEnumerable<Person> GetPersons(IEnumerable<int> personsIds)
+        {
+            return DalPerson.GetPersons(personsIds);
+        }
+
         public int SavePerson(Person entity)
         {
             return DalPerson.SavePerson(entity);

@@ -58,12 +58,12 @@
 
         public static IEnumerable<int> egYellows = new int[]
         {
-            EventId.eYellowUnknown, EventId.eRedDoubleYellow, EventId.eYellowDangerous, EventId.eYellowHanding, EventId.eYellowUnsport
+            EventId.eYellowUnknown, EventId.eYellowRoughing, EventId.eYellowDangerous, EventId.eYellowHanding, EventId.eYellowUnsport
         };
 
         public static IEnumerable<int> egReds = new int[]
         {
-            EventId.eRedUnknown, EventId.eYellowRoughing, EventId.eRedRoughing, EventId.eRedLastResort, EventId.eRedUnsport, EventId.eRedKeeperHandOfSquad
+            EventId.eRedUnknown, EventId.eRedDoubleYellow, EventId.eRedRoughing, EventId.eRedLastResort, EventId.eRedUnsport, EventId.eRedKeeperHandOfSquad
         };
 
         public static IEnumerable<int> egIns = new int[]

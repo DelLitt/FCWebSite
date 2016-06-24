@@ -27,7 +27,7 @@
 
         public IEnumerable<Person> GetTeamPersons(int teamId)
         {
-            IEnumerable<Person> persons = Context.Person.Where(p => p.teamId == teamId);
+            IEnumerable<Person> persons = Context.Person.Where(p => p.teamId == teamId).ToList();
 
             FillRelations(persons);
 
@@ -39,7 +39,8 @@
             if (Guard.IsEmptyIEnumerable(personRoleIds)) { return new Person[0]; }
 
             IEnumerable<Person> persons = 
-                Context.Person.Where(p => p.teamId == teamId && personRoleIds.Contains((int)p.roleId));
+                Context.Person.Where(p => p.teamId == teamId && personRoleIds.Contains((int)p.roleId))
+                .ToList();
 
             FillRelations(persons);
 
@@ -61,6 +62,17 @@
         public IEnumerable<Person> GetPersons()
         {
             return Context.Person.Take(LimitEntitiesSelections);
+        }
+
+        public IEnumerable<Person> GetPersons(IEnumerable<int> personsIds)
+        {
+            if (personsIds == null) { return new Person[0]; }
+
+            IEnumerable<Person> persons = Context.Person.Where(r => personsIds.Contains(r.Id)).ToList();
+
+            FillRelations(persons);
+
+            return persons;
         }
 
         public int SavePerson(Person entity)

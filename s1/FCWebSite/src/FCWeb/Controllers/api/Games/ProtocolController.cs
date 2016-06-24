@@ -21,14 +21,11 @@
         private IProtocolRecordBll protocolBll { get; set; }
         //[FromServices]
         private IGameBll gameBll { get; set; }
-        //[FromServices]
-        private IGameProtocolManager protocolManager { get; set; }
 
-        public ProtocolController(IProtocolRecordBll protocolBll, IGameBll gameBll, IGameProtocolManager protocolManager)
+        public ProtocolController(IProtocolRecordBll protocolBll, IGameBll gameBll)
         {
             this.protocolBll = protocolBll;
             this.gameBll = gameBll;
-            this.protocolManager = protocolManager;
         }
 
         [HttpGet]
@@ -89,12 +86,12 @@
                 textProtocol.home.reds = textProtocolBuilderHome.GetReds(Side.Home);
                 textProtocol.home.others = textProtocolBuilderHome.GetOthers(Side.Home);
 
-                textProtocol.away.main = textProtocolBuilderHome.GetMainSquad(Side.Away);
-                textProtocol.away.reserve = textProtocolBuilderHome.GetReserve(Side.Away);
-                textProtocol.away.goals = textProtocolBuilderHome.GetGoals(Side.Away);
-                textProtocol.away.yellows = textProtocolBuilderHome.GetYellows(Side.Away);
-                textProtocol.away.reds = textProtocolBuilderHome.GetReds(Side.Away);
-                textProtocol.away.others = textProtocolBuilderHome.GetOthers(Side.Away);
+                textProtocol.away.main = textProtocolBuilderAway.GetMainSquad(Side.Away);
+                textProtocol.away.reserve = textProtocolBuilderAway.GetReserve(Side.Away);
+                textProtocol.away.goals = textProtocolBuilderAway.GetGoals(Side.Away);
+                textProtocol.away.yellows = textProtocolBuilderAway.GetYellows(Side.Away);
+                textProtocol.away.reds = textProtocolBuilderAway.GetReds(Side.Away);
+                textProtocol.away.others = textProtocolBuilderAway.GetOthers(Side.Away);
 
                 result = textProtocol;
             }

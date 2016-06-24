@@ -21,6 +21,18 @@
                 });
         }
 
+        this.loadProtocolText = function (id, success, failure) {
+            apiSrv.get('/api/games/' + id + '/protocol/text', null,
+                success,
+                function (response) {
+                    if (angular.isFunction(failure)) {
+                        failure(response);
+                    }
+
+                    protocolsLoadFail(response);
+                });
+        }
+
         function protocolsLoadFail(response) {
             notificationManager.displayError(response.data);
         }

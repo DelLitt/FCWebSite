@@ -23,10 +23,10 @@
                     },
                     addItem: function (side) {
                         scope.fake[side].main.push({
-                            "nameMain": "",
+                            "name": "",
                             "minute": 0,
                             "extraTime": false,
-                            "nameSub": ""
+                            "info": ""
                         });
                     }
                 }

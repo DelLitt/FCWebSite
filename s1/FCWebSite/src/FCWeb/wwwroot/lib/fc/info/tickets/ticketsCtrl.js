@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('fc.ui')
         .controller('ticketsCtrl', ticketsCtrl);
 
     ticketsCtrl.$inject = ['$scope']; 
