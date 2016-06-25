@@ -554,7 +554,7 @@
 
 .navbar-inverse {
   background-color: @navbar-inverse-bg;
-  border-color: @navbar-inverse-border;
+  /*border-color: @navbar-inverse-border;*/
 
   .navbar-brand {
     color: @navbar-inverse-brand-color;
@@ -626,7 +626,42 @@
       }
     }
 
-    @media (max-width: @grid-float-breakpoint-max) {
+      // Dropdowns get custom display
+      .open .dropdown-menu {
+        background-color: @navbar-inverse-link-active-bg;
+        > .dropdown-header {
+          border-color: @navbar-inverse-border;          
+        }
+        .divider {
+          background-color: @navbar-inverse-border;
+        }
+        > li > a {
+          color: @brand-primary5;          
+          &:hover,
+          &:focus {
+            color: @navbar-inverse-link-color;
+            background-color: @navbar-inverse-link-active-bg;
+          }
+        }
+        > .active > a {
+          &,
+          &:hover,
+          &:focus {
+            color: @navbar-inverse-link-color;
+            background-color: @navbar-inverse-link-active-bg;
+          }
+        }
+        > .disabled > a {
+          &,
+          &:hover,
+          &:focus {
+            color: @navbar-inverse-link-disabled-color;
+            background-color: @navbar-inverse-link-disabled-bg;
+          }
+        }
+      }
+
+    /*@media (max-width: @grid-float-breakpoint-max) {
       // Dropdowns get custom display
       .open .dropdown-menu {
         > .dropdown-header {
@@ -660,7 +695,7 @@
           }
         }
       }
-    }
+    }*/
   }
 
   .navbar-link {
