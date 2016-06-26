@@ -40,9 +40,9 @@
     filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
   }
   .vertical-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
-    background-image: -webkit-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
-    background-image: -o-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
-    background-image: linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+    background: -webkit-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+    background: -o-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+    background: linear-gradient(@start-color, @mid-color @color-stop, @end-color);
     background-repeat: no-repeat;
     filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
   }
@@ -57,3 +57,19 @@
     background-image: linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
   }
 }
+
+/*Custom*/
+
+.gradient(@type; @colors; @dir: 0deg; @prefixes: webkit, moz, ms, o; @index: length(@prefixes)) when (@index > 0) {
+    .gradient(@type; @colors; @dir; @prefixes; (@index - 1));
+ 
+    @prefix  : extract(@prefixes, @index);
+    @dir-old : 90 - (@dir);
+ 
+    background: ~"-@{prefix}-@{type}-gradient(@{dir-old}, @{colors})";
+  & when ( @index = length(@prefixes) ) {
+        background: ~"@{type}-gradient(@{dir}, @{colors})";
+    }
+}
+
+/*Custom*/

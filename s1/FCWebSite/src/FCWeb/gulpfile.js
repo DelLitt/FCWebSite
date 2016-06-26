@@ -48,7 +48,8 @@ gulp.task("min", ["min:js", "min:css"]);
 
 gulp.task("less", function () {
     console.log(paths.webroot);
-    return gulp.src('wwwroot/lib/bootstrap/less/bootstrap.less')
+
+    return gulp.src(paths.webroot + '/lib/bootstrap/less/bootstrap.less')
             .pipe(less())
-            .pipe(gulp.dest(paths.webroot + '/lib/bootstrap/dist/css/'));
+            .pipe(gulp.dest(paths.webroot + '/css'));
 });

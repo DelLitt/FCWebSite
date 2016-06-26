@@ -1,44 +1,6 @@
-﻿ html { 
-     background-image: url('../../images/skin/sponsor.png');
-     background-repeat: repeat; 
- }
+﻿
 
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-    background-color: transparent;
-}
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-    /*background-color: #fff;*/
-}
-
-/* Set widths on the form inputs since otherwise they're 100% wide */
-input,
-select,
-textarea {
-    /*max-width: 280px;*/
-}
-
-/* Carousel */
-.carousel-caption {
-    z-index: 10 !important;
-}
-
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-@media (min-width: 768px) {
-    .carousel-caption {
-        z-index: 10 !important;
-    }
-}
 
 /* Customazing boostrap layout */
 
@@ -93,18 +55,6 @@ dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
   content: '\25bc';
 }
 
-.social-btns img {
-    max-height: 35px;
-}
-
-.fc-container {
-    background-color:#fff; 
-    border-radius: 5px; 
-    padding: 25px 15px;
-    box-shadow: 5px 5px 5px;
-    margin-bottom: 15px;
-}
-
 .fc-pad {
     padding-left: 30px;
     padding-right: 30px;
@@ -128,35 +78,6 @@ dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
 
 .no-padding {
     padding: 0 !important;
-}
-
-.main-brand {
-    color: #003366;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.main-brand > div{
-    vertical-align: top;
-    display: table-cell;
-}
-
-.main-brand-left-block span:last-child {
-    font-size: 11px;
-    color: #777777;
-}
-
-.main-brand-left-block, .main-brand-right-block {
-}
-
-.main-brand-logo {
-    max-width: 210px;
-}
-
-.main-brand-logo img {
-    width: 120px;
 }
 
 .main-results table {

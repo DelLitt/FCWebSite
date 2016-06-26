@@ -1,0 +1,85 @@
+﻿ html { 
+     background-image: url('../../images/skin/sponsor.png');
+     background-repeat: repeat; 
+ }
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: transparent;
+}
+
+.fc-container, .fc-container-inv {
+    background-color: @background-primary; 
+    border-radius: 5px; 
+    padding: 25px 15px;
+    box-shadow: 5px 5px 5px;
+    margin-bottom: 15px;
+}
+
+.fc-container-inv {
+  background-color: @brand-primary; 
+}
+
+.fc-grad {
+  .gradient(linear; @background-primary 80%, fade(@brand-primary, 80%); 180deg);
+}
+
+.fc-grad-inv {
+  #gradient > .vertical-three-colors(@start-color: fade(@brand-primary, 90%); @mid-color: fade(@brand-primary, 90%); @color-stop: 83%; @end-color: fade(@brand-primary, 80%));  
+
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    /*background-color: #fff;*/
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input,
+select,
+textarea {
+    /*max-width: 280px;*/
+}
+
+/* Carousel */
+.carousel-caption {
+    z-index: 10 !important;
+}
+
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+    .carousel-caption {
+        z-index: 10 !important;
+    }
+}
+
+.social-btns {
+  display: inline;
+
+  a {
+    display: table-cell;
+  }
+}
+
+.test-x {
+  .gradient(linear; #2BC0E4, #EAECC6 30%; 180deg);
+}
+
+
+/*typo*/
+.text-bg-color {
+  .text-emphasis-variant(@background-primary);
+}
+
+.text-primary-5 {
+  .text-emphasis-variant(@brand-primary5);
+}
+/*typo*/
