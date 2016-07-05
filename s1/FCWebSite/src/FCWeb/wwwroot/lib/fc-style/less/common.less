@@ -171,7 +171,7 @@ body {
   }
 
   .fc-pane-body {
-    padding: 15px;
+    padding: 0px 5px 15px 15px;
     background-color: fade(@background-primary, 90%);
     .box-shadow(@fc-shadow);
     color: @fc-type-color;
@@ -183,16 +183,17 @@ body {
 
     h1.header, h2.header, h3.header, h4.header, h5.header, h6.header, h7.header {
       color: @background-primary;
-      padding: 7px 15px;
-      margin-left: -10px;
-      margin-top: -10px;
+      padding: 10px 25px;
       #gradient > .fc-horizontal-four-colors(@one-color: fade(@brand-primary, 0%); @color-stop1: 0%; @two-color: fade(@brand-primary, 90%); @color-stop2: 3%; @three-color: fade(@brand-primary, 90%); @color-stop3: 25%; @four-color: fade(@brand-primary, 0%); @color-stop4: 80%;);
     }
 
-    @media (max-width: @screen-sm) {
-      h1.header, h2.header, h3.header, h4.header, h5.header, h6.header, h7.header {
-        margin-top: 0;
-      }
+    a.fc-pane-action-link,
+    a.fc-pane-action-link:hover,
+    a.fc-pane-action-link:active {
+      color: @background-primary;
+      background-color: fade(@brand-primary, 85%);
+      padding: 5px 10px 5px 10px;
+      border-radius: @fc-border-radius
     }
   }
 }
@@ -247,6 +248,11 @@ textarea {
   margin-left: 7px;
   padding: 0;
 
+  .hot-list-items {
+    position: relative;
+    top: 10px;
+  }
+
   .row.hot-list-item {
     margin: 0px;
     padding: 11px 5px;
@@ -281,7 +287,7 @@ textarea {
 }
 
 .main-results {
-  margin: 0 0 0 15px;
+  padding-left: 25px;
 
   ul li {
     list-style: none;

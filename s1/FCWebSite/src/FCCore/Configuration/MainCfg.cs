@@ -181,6 +181,14 @@
                     return CoreConfig.Current["Settings:Images:Store"];
                 }
             }
+
+            public string EmptyPreview
+            {
+                get
+                {
+                    return CoreConfig.Current["Settings:Images:EmptyPreview"];
+                }
+            }
         }
     }
 }

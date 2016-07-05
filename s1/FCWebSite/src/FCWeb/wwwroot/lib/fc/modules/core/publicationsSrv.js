@@ -19,6 +19,16 @@
             });
         }
 
+        this.loadPublicationsPack = function (count, offset, success, failure) {
+            apiSrv.get('/api/publications/latest/' + count + "/" + offset, null, success, function (response) {
+                if (failure != null) {
+                    failure(response);
+                }
+
+                publicationsLoadFailed(response);
+            });
+        }
+
         this.loadPublication = function (id, success, failure) {
             apiSrv.get('/api/publications/' + id,
                 null,

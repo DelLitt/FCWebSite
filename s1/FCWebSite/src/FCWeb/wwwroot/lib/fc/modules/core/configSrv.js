@@ -140,10 +140,16 @@
             staff: [3, 4, 5, 6]
         }
 
+        this.mainTableTourneyId = 10;
         this.mainTeamTourneyIds = [8, 10];
         this.reserveTeamTourneyIds = [6, 8, 10];
 
         this.teamPublicationsCount = 7;
+
+        this.mainPublicationsCount = 7;
+        this.mainPublicationsRowCount = 3;
+        this.mainPublicationsHotCount = 3;
+        this.mainPublicationsMoreCount = 3;        
 
         this.urlKeyRegexPattern = '^[a-zA-Z0-9_-]+$';
     }

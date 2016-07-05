@@ -12,13 +12,16 @@
         {
             if (Guard.IsEmptyIEnumerable(publications)) { return new PublicationShortViewModel[0]; }
 
+            // TODO: Cahce checking for existing
             return publications.Select(p => new PublicationShortViewModel()
             {
                 id = p.Id,
                 urlKey = p.URLKey,
                 title = p.Title,
                 header = p.Header,
-                img = p.Image,
+                img = System.IO.File.Exists(WebHelper.ToPhysicalPath(p.Image)) 
+                    ? p.Image
+                    : FCCore.Configuration.MainCfg.Images.EmptyPreview,
                 hasPhoto = p.imageGalleryId.HasValue,
                 hasVideo = p.videoId.HasValue
             });
