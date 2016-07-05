@@ -1,17 +1,20 @@
-﻿<div class="panel panel-primary">
-    <div class="panel-heading">
-        <span translate="RESULTS">Результаты</span>. {{model.name}}. {{model.tourney}}
-    </div>
-    <div class="panel-body row">
-        <div class="col-sm-4" ng-repeat="roundDay in model.dateGames">
-            <div class="label label-primary">{{roundDay.date.dateString}}.&nbsp;<span class="text-capitalize">{{roundDay.date.dayString}}</span></div>
-            <ul class="list-unstyled">
-                <li ng-repeat="game in roundDay.games"><span class="text-info">{{game.time}}.</span>&nbsp;<a href="javascript:void(0);">{{game.home}}</a>&nbsp;<a href="javascript:void(0);">{{game.homeScore}}:{{game.awayScore}}</a>&nbsp;<a href="javascript:void(0);">{{game.away}}</a></li>
-            </ul>
+﻿<div class="main-results col-sm-12">
+    <h5 class="header">
+        <a class="white" href="javascript:void(0);" ng-click="roundResults.previous()"><span class="glyphicon glyphicon-triangle-left"></span><!--&nbsp;Предыдущие--></a>
+        <a class="white" href="javascript:void(0);" ng-click="roundResults.next()"><!--Следующие&nbsp;--><span class="glyphicon glyphicon-triangle-right"></span></a>
+        <span translate="RESULTS">Результаты</span>. {{roundResults.name}}. {{roundResults.tourney}}
+    </h5>
+    <div class="row">
+        <div class="col-sm-3" ng-repeat="roundDay in roundResults.dateGames">
+            <div ng-show="roundDay.empty" style="text-align: center;"><img ng-src={{getAdvertImg($index);}} /></div>
+            <div ng-show="!roundDay.empty">
+                <div class="label label-primary">{{roundDay.date.dateString}}.&nbsp;<span class="text-capitalize">{{roundDay.date.dayString}}</span></div>
+                <ul class="list-unstyled">
+                    <li ng-repeat="game in roundDay.games" style="max-width: 270px;" class="ellipsis"><span class="text-info">{{game.time}}.</span>&nbsp;<a href="javascript:void(0);">{{game.home}}</a>&nbsp;<a class="white-link" href="javascript:void(0);">{{game.homeScore}}:{{game.awayScore}}</a>&nbsp;<a href="javascript:void(0);">{{game.away}}</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="panel-heading">
-        <a class="white" href="javascript:void(0);" ng-click="model.previous()"><span class="glyphicon glyphicon-menu-left"></span>&nbsp;Предыдущие</a>
-        <a class="white pull-right " href="javascript:void(0);" ng-click="model.next()">Следующие&nbsp;<span class="glyphicon glyphicon-menu-right"></span></a>
-    </div>   
+    <!--<div class="row">
+    </div>-->
 </div>

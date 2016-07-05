@@ -80,63 +80,8 @@ dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
     padding: 0 !important;
 }
 
-.main-results table {
-    color: #003366;
-}
-
-.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
-    border: none;
-}
-
-.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
-    /*padding: 2px 8px;*/
-}
-
 .table-borderless h5 {
     margin: 2px;
-}
-
-.main-results table td {
-    vertical-align: middle;
-}
-
-.main-results table td.home,
-.main-results table td.away {
-    width: 155px;
-    font-size: 14px;
-}
-
-.main-results table td.home {
-    text-align: right;
-}
-
-.main-results table td.away {
-    text-align: left;
-}
-
-.main-results table td.score {
-    width: 30px;
-    text-align: center;
-    font-size: 14px;
-}
-
-.main-results table td span {
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 115px;
-}
-
-.main-results ul li {
-    list-style: none;
-    padding-left: 4px;
-}
-
-@media (min-width: 768px) {
-    .main-results div[class*="col-"] {
-        padding: 0 8px;
-    }
 }
 
 .main-event img {
@@ -147,7 +92,6 @@ dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
     position: relative;
 }
 
-.news-default-item .caption, 
 .person-item .caption {
     width: 98%;
     bottom: 0rem;
@@ -167,20 +111,6 @@ dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
     left: 4px;
 }
 
-.news-item {
-    /*margin: 5px;*/
-}
-
-.news-default-item {
-    border: 0 none;
-    box-shadow: none;
-    margin: 0 0 20px 0;
-    padding:0;
-    position: relative;
-}
-
-.news-default-item .caption h4,
-.news-default-item .caption h5,
 .person-item .caption h4, 
 .person-item .caption h5 {
     color: #fff;
@@ -195,25 +125,13 @@ dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
     line-height: 1.3em;
 }
 
-.news-default-item .caption h5 {
-    padding: 10px 5px 17px 15px;
-}
-
-.news-default-item .caption a,
 .person-item .caption a {
     color: #fff;
 }
 
-.news-default-item .caption:hover,
 .person-item .caption:hover {
     -webkit-transition:0.2s;
     -webkit-transform:translate(5px,0);
-}
-
-.news-default-item .caption .glyphicon {
-    font-size: 1.4em;
-    padding-right: 10px;
-    top: 4px;
 }
 
 .main-event .news-default-item {

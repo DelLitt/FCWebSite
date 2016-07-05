@@ -1,0 +1,46 @@
+﻿.preview-item {
+  border: 1px solid @background-primary;
+  .box-shadow(@fc-shadow);
+  /*margin: 0 0 20px 0;*/
+  padding: 0;
+  position: relative;
+  border-radius: @fc-border-radius;
+
+  .caption {
+    width: 100%;
+    bottom: 0rem;
+    position: absolute;
+    background: @brand-primary;
+
+    #gradient > .vertical-three-colors(@start-color: fade(@brand-primary, 0%); @mid-color: fade(@brand-primary, 30%); @color-stop: 25%; @end-color: fade(@brand-primary, 80%));    
+  }
+
+  .caption h4,
+  .caption h5 {
+    color: #fff;
+    padding: 12px 5px 17px 15px;
+    line-height: 1.3em;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    background: transparent;
+  }
+
+  .caption h5 {
+    padding: 10px 5px 17px 15px;
+  }
+
+  .caption a {
+    color: #fff;
+  }
+
+  .caption a:hover {
+    /*-webkit-transition: 0.2s;
+    -webkit-transform: translate(5px,0);*/
+  }
+
+  .caption .glyphicon {
+    font-size: 1.4em;
+    padding-right: 10px;
+    top: 4px;
+  }
+}

@@ -1,13 +1,14 @@
-﻿<div class="news-default-item">
+﻿<div class="preview-item col-xs-12">
     <img class="img-responsive img-rounded" ng-src={{model.img}} />
-    <!--<span class="glyphicon glyphicon-facetime-video text-primary" style="border: 1px solid #fff; font-size: 2em; padding: 10px;"></span>-->
     <div class="caption">
-        <a ng-href="publication/{{model.urlKey}}">
-            <h5>
+        <h5>
+            <a ng-href="publication/{{model.urlKey}}">
+
                 <span class="glyphicon glyphicon-facetime-video" ng-show="model.hasVideo"></span>
                 <span class="glyphicon glyphicon-camera" ng-show="model.hasPhoto"></span>
                 {{model.title}}
-            </h5>
-        </a>
+            </a>
+            <small ng-show="showHeader"><br />{{model.header}}</small>
+        </h5>        
     </div>
 </div>

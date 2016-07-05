@@ -1,33 +1,48 @@
-﻿<div class="row fc-container">
-    <div class="col-sm-7">
-        <div class="panel panel-primary main-event">
-            <div class="panel-heading"><h5>{{publications.main.title}}<br />
-                <small>{{publications.main.header}}</small></h5></div>
-            <div class="panel-body">
-                <publication-item model="publications.main"></publication-item>
+﻿<div class="fc-pane">
+    <div class="fc-pane-body">
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h5 class="header"><em>Последние новости</em></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <hot-publications model="publications.rows[0].items" />
+                </div>
             </div>
-        </div>
-        <div class="panel panel-primary">
-            <div class="panel-body">
-                <a href="http://sugar.by">
-                    <img class="img-responsive center-block" src="images/skin/sponsors/main-sponsor.png" alt="Генеральный спонсор: ОАО 'Слуцкий сахарорафинадный комбинат'" title="Генеральный спонсор: ОАО 'Слуцкий сахарорафинадный комбинат'" />
-                </a>
+            <div class="col-sm-5 main-table" ng-if="ranking">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h5 class="header"><em>Турнирная таблица</em></h5>
+                    </div>
+                </div>
+                <main-table model="ranking" />
             </div>
         </div>
     </div>
-    <div class="col-sm-5 main-table" ng-if="ranking">
-        <main-table model="ranking"></main-table>
-    </div>
-    <div class="col-sm-12 main-results">
-        <round-results model="roundResults"></round-results>
+    <div class="bg-threads"></div>
+</div>
+<div class="fc-pane-dark">
+    <div class="fc-pane-body">
+        <div class="row">
+            <round-results model="roundResults"></round-results>
+        </div>
     </div>
 </div>
-<div class="row fc-container fc-pad">
-    <h3 style="margin-top:-10px;" class="text-primary"><span class="glyphicon glyphicon-globe">&nbsp;</span><span  translate="NEWS"></span>Новости</h3>
-    <hr />
-    <div class="row" ng-repeat="row in publications.rows">
-        <div class="col-sm-4" ng-repeat="publication in row.items">
-            <publication-item model="publication"></publication-item>
+<div class="fc-pane">
+    <div class="fc-pane-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <h5 class="header"><em translate="NEWS"></em></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row" ng-repeat="row in publications.rows">
+                <div class="col-sm-4" ng-repeat="publication in row.items">
+                    <publication-item model="publication"></publication-item>
+                </div>
+            </div>
         </div>
     </div>
 </div>

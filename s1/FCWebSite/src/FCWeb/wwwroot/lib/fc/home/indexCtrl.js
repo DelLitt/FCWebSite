@@ -17,17 +17,11 @@
             loading: true
         };
 
-        $scope.roundResults = {
-            previous: previousRound,
-            next: nextRound
-        };
-
         loadData();
 
         function loadData() {
             publicationsSrv.loadLatestPublications(7, latestPublicationsLoaded);
-            rankingsSrv.loadRankingTable(10, rankingLoaded);
-            gamesSrv.roundResultsManager.init(3, [10, 11], roundLoaded);
+            rankingsSrv.loadRankingTable(10, rankingLoaded);            
         }
 
         function latestPublicationsLoaded(response) {
@@ -42,23 +36,6 @@
 
             $scope.ranking.name = ranking.name;
             $scope.ranking.rows = ranking.rows;
-        }
-
-        function roundLoaded(data) {
-            if (angular.isObject(data)) {
-                $scope.roundResults.name = data.name,
-                $scope.roundResults.tourney = data.tourney,
-                $scope.roundResults.logo = data.logo,
-                $scope.roundResults.dateGames = data.dateGames
-            }
-        }
-
-        function previousRound() {
-            gamesSrv.roundResultsManager.previous(roundLoaded);
-        }
-
-        function nextRound() {
-            gamesSrv.roundResultsManager.next(roundLoaded);
         }
     }
 })();

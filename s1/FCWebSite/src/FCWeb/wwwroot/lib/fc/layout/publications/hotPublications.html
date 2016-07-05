@@ -1,0 +1,18 @@
+﻿<div class="col-xs-12 hot-publications fc-col">
+    <publication-item model="main" show-header="true"></publication-item>
+    <div class="row hot-list-item" ng-repeat="item in model">
+        <div class="col-xs-1 border-r">
+            <span ng-show="$index == selectedIndex" class="glyphicon glyphicon-ok"></span>
+            <span ng-show="$index != selectedIndex" class="glyphicon glyphicon-eye-open logic" ng-click="load($index);"></span>
+        </div> 
+        <div class="col-xs-10 ellipsis border-r">
+            <a ng-href="publication/{{item.urlKey}}">
+                    {{item.title}}
+            </a>
+        </div>
+        <div class="col-xs-1">
+            <span class="glyphicon glyphicon-facetime-video" ng-show="item.hasVideo"></span>
+            <span class="glyphicon glyphicon-camera" ng-show="item.hasPhoto"></span>
+        </div>
+    </div>
+</div>
