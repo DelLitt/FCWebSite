@@ -8,16 +8,17 @@
         <title translate="OFFICIAL_SITE">Официальный сайт</title>
 
         <environment names="Development">
-            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-            @*<link rel="stylesheet" href="~/css/bootstrap.css" />*@
+            <link rel="stylesheet" href="~/css/bootstrap.css" />
+            @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/css/site.css" />
-            <link href="~/lib/simple-angular-autocomplete-master/src/simple-autocomplete.css" rel="stylesheet" />
+            <link href="~/lib/simple-angular-autocomplete-master/src/simple-autocomplete.css" rel="stylesheet" />*@
         </environment>
         <environment names="Staging,Production">
-            <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
+            <link rel="stylesheet" href="~/css/bootstrap.css" />
+            @*<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
                   asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
                   asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-            <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+            <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />*@
         </environment>
     </head>
     <body ng-controller="rootCtrl" ng-click="click();">
@@ -42,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <a class="navbar-collapse collapse">
+                <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a asp-controller="Home" asp-action="Index"><span class="glyphicon glyphicon-home"></span></a></li>
                         <li class="dropdown">
@@ -66,35 +67,50 @@
             </div>
         </div>
         <div class="container body-content">
-            <div class="main-brand row fc-container">
-                <div class="main-brand-left-block hidden-sm hidden-xs col-md-5">
-                    <h4>
-                        <strong translate="OFFICIAL_NAME">Спортивный футбольный клуб «Слуцк»</strong><br />
-                        <small><em translate="OFFICIAL_SLOGAN">Футбол - этот не всё, но все без футбола - ничто!</em></small>
-                    </h4>
-                    <span class="text-uppercase" translate="OFFICIAL_SITE">ОФИЦИАЛЬНЫЙ САЙТ</span>
-                </div>
-                <div class="main-brand-logo col-md-2 col-sm-2 hidden-xs">
-                    <a href="/">
-                        <img src="~/images/skin/logo_002d72_800x800.png" />
-                    </a>
-                </div>
-                <div class="main-brand-right-block col-md-5 col-sm-10 col-xs-12">
-                    <div class="visible-sm">
-                        <h5>
-                            <strong translate="OFFICIAL_NAME">Спортивный футбольный клуб «Слуцк»</strong>
-                        </h5>
+            <div class="fc-container fc-grad main-brand">
+                <div class="row">
+                    <div class="main-brand-left-block hidden-sm hidden-xs col-md-5">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="text-bg-color">
+                                    <strong translate="OFFICIAL_NAME">Спортивный футбольный клуб «Слуцк»</strong><br />
+                                    <small><em translate="OFFICIAL_SLOGAN">Футбол - этот не всё, но все без футбола - ничто!</em></small>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <social-buttons />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <span class="text-uppercase text-prim5-color" translate="OFFICIAL_SITE">ОФИЦИАЛЬНЫЙ САЙТ</span>
+                            </div>
+                        </div>
                     </div>
-                    <table class="table table-borderless table-striped">
-                        <tr>
-                            <td class="text-right"><h5>18:00. 17 апреля.<br /><small>11 тур. Высшая лига</small></h5></td>
-                            <td class="text-left"><h5>Слуцк - Динамо-Минск. 4:2<br /><small class="text-center">Стадион: Городской (Слуцк)</small></h5></td>
-                        </tr>
-                        <tr>
-                            <td class="text-right"><h5>22 апреля.<br /><small>1/8 финала. Кубок Беларуси</small></h5></td>
-                            <td class="text-left"><h5>Торпедо-БелАЗ - Слуцк<br /><small class="text-center">Стадион: Торпедо (Жодино)</small></h5></td>
-                        </tr>
-                    </table>
+                    <div class="main-brand-logo col-md-2 col-sm-2 hidden-xs">
+                        <a href="/">
+                            <img src="~/images/skin/logo_002d72_800x800.png" />
+                        </a>
+                    </div>
+                    <div class="main-brand-right-block col-md-5 col-sm-10 col-xs-12">
+                        <div class="row visible-sm" style="margin-bottom: 8px;">
+                            <div class="col-xs-7"><h5 class="text-uppercase"><strong translate="OFFICIAL_NAME">Спортивный футбольный клуб «Слуцк»</strong></h5></div>
+                            <div class="col-xs-5"><social-buttons /></div>
+
+                        </div>
+                        <table class="table table-borderless" style="margin-bottom: 0;">
+                            <tr>
+                                <td class="text-bg-color text-right"><h5>18:00. 17 апреля.<br /><small>11 тур. Высшая лига</small></h5></td>
+                                <td class="text-bg-color text-left"><h5>Слуцк - Динамо-Минск. 4:2<br /><small class="text-center">Стадион: Городской (Слуцк)</small></h5></td>
+                            </tr>
+                            <tr>
+                                <td class="text-bg-color text-right"><h5>22 апреля.<br /><small>1/8 финала. Кубок Беларуси</small></h5></td>
+                                <td class="text-bg-color text-left"><h5>Торпедо-БелАЗ - Слуцк<br /><small class="text-center">Стадион: Торпедо (Жодино)</small></h5></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
             @RenderBody()
@@ -143,6 +159,7 @@
             <script src="~/lib/fc/layout/customonchange.directive.js"></script>
             <script src="~/lib/fc/layout/autocompletecustom.directive.js"></script>
             <script src="~/lib/fc/layout/office/videoedit.directive.js"></script>
+            <script src="~/lib/fc/layout/socialbuttons.directive.js"></script>
             <script src="~/lib/fc/layout/office/protocoledit/protocoledit.directive.js"></script>
             <script src="~/lib/fc/layout/office/protocoledit/protocolfakeedit.directive.js"></script>
             <script src="~/lib/fc/layout/office/protocoledit/controls/goalrecord.directive.js"></script>

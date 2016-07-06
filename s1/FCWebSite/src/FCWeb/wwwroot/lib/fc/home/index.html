@@ -65,16 +65,16 @@
         </div>
         <div class="row">
             <div class="col-sm-12" style="padding-right: 25px;">
-                <div class="row" ng-repeat="row in videos.rows">
-                    <div class="col-sm-4" style="margin-bottom: 15px;" ng-repeat="video in row.items">
-                        <publication-item model="video"></publication-item>
+                <div class="row" ng-repeat="row in galleries.rows">
+                    <div class="col-sm-4" style="margin-bottom: 15px;" ng-repeat="gallery in row.items">
+                        <gallery-item model="gallery"></gallery-item>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 text-right">
-                <a class="fc-pane-action-link" style="margin-right: 10px;" ng-click="videos.more();" href="javascript:void(0);">Больше видео&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></a>
+                <a class="fc-pane-action-link" style="margin-right: 10px;" ng-click="galleries.more();" href="javascript:void(0);">Больше фото&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></a>                
             </div>
         </div>
     </div>
@@ -88,16 +88,16 @@
         </div>
         <div class="row">
             <div class="col-sm-12" style="padding-right: 25px;">
-                <div class="row" ng-repeat="row in galleries.rows">
-                    <div class="col-sm-4" style="margin-bottom: 15px;" ng-repeat="gallery in row.items">
-                        <publication-item model="gallery"></publication-item>
+                <div class="row" ng-repeat="row in videos.rows">
+                    <div class="col-sm-4" style="margin-bottom: 15px;" ng-repeat="video in row.items">
+                        <video-item model="video"></video-item>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 text-right">
-                <a class="fc-pane-action-link" style="margin-right: 10px;" ng-click="galleries.more();" href="javascript:void(0);">Больше фото&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></a>
+                <a class="fc-pane-action-link" style="margin-right: 10px;" ng-click="videos.more();" href="javascript:void(0);">Больше видео&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></a>
             </div>
         </div>
     </div>

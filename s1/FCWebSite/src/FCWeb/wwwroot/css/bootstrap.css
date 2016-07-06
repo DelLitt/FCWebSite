@@ -6914,6 +6914,9 @@ body {
   background-image: none !important;
   background-repeat: no-repeat;
 }
+.fc-sheet {
+  background-color: rgba(255, 255, 255, 0.85);
+}
 .fc-pane-dark {
   background-color: #002B6E;
   border-radius: 5px;
@@ -7098,6 +7101,34 @@ textarea {
     padding: 0 8px;
   }
 }
+/*office*/
+/*filebrowser*/
+.glyphicon-folder-open,
+.glyphicon-folder-close,
+.glyphicon-level-up {
+  font-size: 80px;
+  height: 120px;
+}
+.office .image-edit {
+  display: block;
+}
+.io-item {
+  height: 150px;
+  width: 150px;
+  border: 1px solid #808080;
+  display: inline-block;
+  text-align: center;
+  margin: 5px 10px;
+  vertical-align: top;
+}
+.io-item:hover {
+  background-color: #f3e8e8;
+}
+.io-item img {
+  max-height: 120px;
+  max-width: 120px;
+}
+/*office*/
 .main-brand {
   color: #002B6E;
   text-align: center;
@@ -7190,11 +7221,23 @@ a.text-prim5-color:focus {
   bottom: 0rem;
   position: absolute;
   background: #002B6E;
-  background: -webkit-linear-gradient(rgba(0, 43, 110, 0), rgba(0, 43, 110, 0.3) 25%, rgba(0, 43, 110, 0.8));
-  background: -o-linear-gradient(rgba(0, 43, 110, 0), rgba(0, 43, 110, 0.3) 25%, rgba(0, 43, 110, 0.8));
-  background: linear-gradient(rgba(0, 43, 110, 0), rgba(0, 43, 110, 0.3) 25%, rgba(0, 43, 110, 0.8));
+  background: -webkit-linear-gradient(rgba(0, 43, 110, 0.5), rgba(0, 43, 110, 0.7) 40%, rgba(0, 43, 110, 0.85));
+  background: -o-linear-gradient(rgba(0, 43, 110, 0.5), rgba(0, 43, 110, 0.7) 40%, rgba(0, 43, 110, 0.85));
+  background: linear-gradient(rgba(0, 43, 110, 0.5), rgba(0, 43, 110, 0.7) 40%, rgba(0, 43, 110, 0.85));
   background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00002b6e', endColorstr='#cc002b6e', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80002b6e', endColorstr='#d9002b6e', GradientType=0);
+}
+.preview-item .caption-top {
+  width: 100%;
+  height: 13%;
+  top: 0rem;
+  position: absolute;
+  background: #002B6E;
+  background: -webkit-linear-gradient(#002b6e, rgba(0, 43, 110, 0.85) 25%, rgba(0, 43, 110, 0.4));
+  background: -o-linear-gradient(#002b6e, rgba(0, 43, 110, 0.85) 25%, rgba(0, 43, 110, 0.4));
+  background: linear-gradient(#002b6e, rgba(0, 43, 110, 0.85) 25%, rgba(0, 43, 110, 0.4));
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff002b6e', endColorstr='#66002b6e', GradientType=0);
 }
 .preview-item .caption h4,
 .preview-item .caption h5 {
