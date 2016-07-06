@@ -9,7 +9,7 @@
 
     function publicationsSrv(helper, apiSrv, notificationManager, configSrv) {
 
-        this.loadLatestPublications = function (count, success, failure) {
+        this.loadMainPublications = function (count, success, failure) {
             apiSrv.get('/api/publications/latest/' + count, null, success, function (response) {
                 if (failure != null) {
                     failure(response);

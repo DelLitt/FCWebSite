@@ -6,7 +6,7 @@
     public interface IVideoBll
     {
         Video GetVideo(int id);
-        IEnumerable<Video> GetLatestVideos(int count, int offset);
+        IEnumerable<Video> GetMainVideos(int count, int offset);
         IEnumerable<Video> SearchByTitle(string text);
         int SaveVideo(Video entity);
     }

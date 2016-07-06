@@ -1,7 +1,7 @@
 ﻿namespace FCCore.Abstractions.Dal
 {
-    using FCCore.Model;
     using System.Collections.Generic;
+    using Model;
 
     public interface IVideoDal : IDalBase
     {

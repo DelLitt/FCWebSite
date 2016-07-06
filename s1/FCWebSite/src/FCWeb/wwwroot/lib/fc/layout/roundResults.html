@@ -1,9 +1,13 @@
 ﻿<div class="main-results col-sm-12">
-    <h5 class="header">
-        <a class="white" href="javascript:void(0);" ng-click="roundResults.previous()"><span class="glyphicon glyphicon-triangle-left"></span><!--&nbsp;Предыдущие--></a>
-        <a class="white" href="javascript:void(0);" ng-click="roundResults.next()"><!--Следующие&nbsp;--><span class="glyphicon glyphicon-triangle-right"></span></a>
-        <span translate="RESULTS">Результаты</span>. {{roundResults.name}}. {{roundResults.tourney}}
-    </h5>
+    <div class="row">
+        <div class="col-xs-12">
+            <h5 class="header">
+                <a class="white" href="javascript:void(0);" ng-click="roundResults.previous()"><span class="glyphicon glyphicon-triangle-left"></span><!--&nbsp;Предыдущие--></a>
+                <a class="white" href="javascript:void(0);" ng-click="roundResults.next()"><!--Следующие&nbsp;--><span class="glyphicon glyphicon-triangle-right"></span></a>
+                <span translate="RESULTS">Результаты</span>. {{roundResults.name}}. {{roundResults.tourney}}
+            </h5>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-3" ng-repeat="roundDay in roundResults.dateGames">
             <div ng-show="roundDay.empty" style="text-align: center;"><img ng-src={{getAdvertImg($index);}} /></div>
@@ -15,6 +19,4 @@
             </div>
         </div>
     </div>
-    <!--<div class="row">
-    </div>-->
 </div>

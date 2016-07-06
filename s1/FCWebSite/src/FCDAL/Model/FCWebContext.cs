@@ -103,8 +103,6 @@ namespace FCDAL.Model
 
                 entity.Property(e => e.DateDisplayed).HasColumnType("datetime");
 
-                entity.Property(e => e.Description).HasMaxLength(1024);
-
                 entity.Property(e => e.Header)
                     .IsRequired()
                     .HasMaxLength(256);

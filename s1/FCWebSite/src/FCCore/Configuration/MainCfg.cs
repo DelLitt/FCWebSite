@@ -174,6 +174,14 @@
                 }
             }
 
+            public string Gallery
+            {
+                get
+                {
+                    return CoreConfig.Current["Settings:Images:Gallery"];
+                }
+            }
+
             public string Store
             {
                 get

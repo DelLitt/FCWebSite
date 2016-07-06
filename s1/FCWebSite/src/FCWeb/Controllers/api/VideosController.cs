@@ -38,12 +38,12 @@ namespace FCWeb.Controllers.Api
             return videoModels;
         }
 
-        //// GET: api/values/latest
-        //[HttpGet("latest/{count:range(0,20)}/{offset:int?}")]
-        //public IEnumerable<PublicationShortViewModel> Get(int count, int offset)
-        //{
-        //    return videoBll.GetMainPublications(count, offset).ToShortViewModel();
-        //}
+        // GET: api/values/latest
+        [HttpGet("latest/{count:range(0,20)}/{offset:int?}")]
+        public IEnumerable<VideoShortViewModel> Get(int count, int offset)
+        {
+            return videoBll.GetMainVideos(count, offset).ToShortViewModel();
+        }
 
         //// GET: api/values/latest
         //[HttpGet]

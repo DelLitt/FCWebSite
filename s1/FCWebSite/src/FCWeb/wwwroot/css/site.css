@@ -1,8 +1,4 @@
-﻿
-
-
-
-/* Customazing boostrap layout */
+﻿/* Customazing boostrap layout */
 
 .tab-pane {
     padding-top: 15px;
@@ -132,28 +128,6 @@ dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
 .person-item .caption:hover {
     -webkit-transition:0.2s;
     -webkit-transform:translate(5px,0);
-}
-
-.main-event .news-default-item {
-    margin: 0;
-}
-
-.main-event .news-default-item .caption {
-    width: 99%;
-    bottom: 0.5rem;
-}
-
-.main-event .panel-heading h5 {
-    margin-top: 6px;
-    margin-bottom: 5px;
-}
-
-.main-event .panel-body {
-    padding: 0;
-}
-
-.main-table .panel-body {
-    padding: 10px 10px 0 10px;
 }
 
 .office .image-edit {

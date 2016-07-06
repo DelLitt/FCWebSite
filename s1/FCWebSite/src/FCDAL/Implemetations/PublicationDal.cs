@@ -16,10 +16,10 @@
             }
 
             return Context.Publication
+                .Where(p => p.Visibility == visibility)
                 .OrderByDescending(p => p.DateDisplayed)
                 .Skip(offset)
-                .Take(count)
-                .Where(p => p.Visibility == visibility);
+                .Take(count);
         }
 
         public Publication GetPublication(int id)

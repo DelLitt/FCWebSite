@@ -146,10 +146,18 @@
 
         this.teamPublicationsCount = 7;
 
-        this.mainPublicationsCount = 7;
+        this.mainPublicationsCount = 10;
         this.mainPublicationsRowCount = 3;
         this.mainPublicationsHotCount = 3;
-        this.mainPublicationsMoreCount = 3;        
+        this.mainPublicationsMoreCount = 3;
+
+        this.mainVideosCount = 3;
+        this.mainVideosRowCount = 3;
+        this.mainVideosMoreCount = 3;
+
+        this.mainGalleriesCount = 3;
+        this.mainGalleriesRowCount = 3;
+        this.mainGalleriesMoreCount = 3;
 
         this.urlKeyRegexPattern = '^[a-zA-Z0-9_-]+$';
     }

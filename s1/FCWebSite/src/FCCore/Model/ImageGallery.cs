@@ -24,7 +24,7 @@ namespace FCCore.Model
         public string URLKey { get; set; }
         public Guid userChanged { get; set; }
         public Guid userCreated { get; set; }
-        public bool Visible { get; set; }
+        public int Visibility { get; set; }
 
         public virtual ICollection<Game> Game { get; set; }
         public virtual ICollection<Publication> Publication { get; set; }

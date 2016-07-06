@@ -29,6 +29,7 @@
             serviceCollection.AddTransient<IEventBll, EventBll>();
             serviceCollection.AddTransient<IEventGroupBll, EventGroupBll>();
             serviceCollection.AddTransient<IPersonStatisticsBll, PersonStatisticsBll>();
+            serviceCollection.AddTransient<IImageGalleryBll, ImageGalleryBll>();
             serviceCollection.AddTransient<ICountryBll, CountryBll>();
             serviceCollection.AddTransient<ITotalizatorBll, TotalizatorBll>();
             serviceCollection.AddTransient<IGameProtocolManagerFactory, GameProtocolManagerFactory>();
@@ -54,6 +55,7 @@
             serviceCollection.AddTransient<IEventDal, EventDal>();
             serviceCollection.AddTransient<IEventGroupDal, EventGroupDal>();
             serviceCollection.AddTransient<IPersonStatisticsDal, PersonStatisticsDal>();
+            serviceCollection.AddTransient<IImageGalleryDal, ImageGalleryDal>();
             serviceCollection.AddTransient<ICountryDal, CountryDal>();
             serviceCollection.AddTransient<ITotalizatorDal, TotalizatorDal>();
         }

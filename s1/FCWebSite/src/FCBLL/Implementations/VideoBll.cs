@@ -22,7 +22,7 @@
             }
         }
 
-        public IEnumerable<Video> GetLatestVideos(int count, int offset)
+        public IEnumerable<Video> GetMainVideos(int count, int offset)
         {
             short visibility = (short)(MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News);
             return DALVideo.GetLatestVideos(count, offset, visibility);

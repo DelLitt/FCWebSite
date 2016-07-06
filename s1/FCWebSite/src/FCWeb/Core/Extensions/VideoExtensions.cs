@@ -4,10 +4,25 @@
     using System.Linq;
     using FCCore.Common;
     using FCCore.Model;
+    using VideoServices;
     using ViewModels;
 
     public static class VideoExtensions
     {
+        public static IEnumerable<VideoShortViewModel> ToShortViewModel(this IEnumerable<Video> videos)
+        {
+            if (Guard.IsEmptyIEnumerable(videos)) { return new VideoShortViewModel[0]; }
+
+            return videos.Select(p => new VideoShortViewModel()
+            {
+                id = p.Id,
+                urlKey = p.URLKey,
+                title = p.Title,
+                header = p.Header,
+                img = VideoServicesFactory.Create(p).ImagePublicationItem
+            });
+        }
+
         public static VideoViewModel ToViewModel(this Video video)
         {
             if (video == null) { return null; }

@@ -7,7 +7,7 @@ namespace FCCore.Abstractions.Dal
 {
     public interface IDalBase
     {
-         void SetContext(Object context);
-         Object GetContext();
+        void SetContext(object context);
+        object GetContext();
     }
 }

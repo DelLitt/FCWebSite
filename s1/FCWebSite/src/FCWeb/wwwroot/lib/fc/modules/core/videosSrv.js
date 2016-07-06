@@ -9,15 +9,25 @@
 
     function videosSrv(helper, apiSrv, notificationManager, configSrv) {
 
-        //this.loadLatestPublications = function (count, success, failure) {
-        //    apiSrv.get('/api/publications/latest/' + count, null, success, function (response) {
-        //        if (failure != null) {
-        //            failure(response);
-        //        }
+        this.loadMainVideos = function (count, success, failure) {
+            apiSrv.get('/api/videos/latest/' + count, null, success, function (response) {
+                if (failure != null) {
+                    failure(response);
+                }
 
-        //        publicationsLoadFailed(response);
-        //    });
-        //}
+                videoLoadFailed(response);
+            });
+        }
+
+        this.loadVideosPack = function (count, offset, success, failure) {
+            apiSrv.get('/api/videos/latest/' + count + "/" + offset, null, success, function (response) {
+                if (failure != null) {
+                    failure(response);
+                }
+
+                videoLoadFailed(response);
+            });
+        }
 
         this.loadVideo = function (id, success, failure) {
             apiSrv.get('/api/videos/' + id,
