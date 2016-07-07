@@ -31,11 +31,13 @@
                         file: file,
                         data: { path: scope.model.path },
                     }).then(function (resp) {
-                        onUploadSuccess(resp.data)
+                        onUploadSuccess(resp.data);
                     }, function (resp) {
-                        onUploadFail(resp.data)
+                        onUploadFail(resp.data);
                     }, function (resp) {
-                        onUploadProgress(resp)
+                        onUploadProgress(resp);
+                        file.progress = Math.min(100, parseInt(100.0 *
+                         resp.loaded / resp.total));
                     });
                 };
 
@@ -68,7 +70,7 @@
                 function onUploadProgress(event) {
                     var progressPercentage = parseInt(100.0 * event.loaded / event.total);
 
-                    console.log(progressPercentage);
+                    //console.log(progressPercentage);
 
                     if (angular.isFunction(scope.model.onUploadProgress)) {
                         scope.model.onUploadProgress(progressPercentage);

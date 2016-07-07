@@ -52,7 +52,7 @@
 
         this.saveVideo = function (id, video, success, failure) {
             if (angular.isDefined(id) && parseInt(id) > 0) {
-                apiSrv.put('/api/videos/', id, video,
+                apiSrv.put('/api/videos/', id, video, null,
                                 success,
                                 function (response) {
                                     if (failure != null) {

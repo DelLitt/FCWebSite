@@ -137,6 +137,51 @@
             return folderView;
         }
 
+        public static bool RemoveFiles(IEnumerable<FileViewModel> files)
+        {
+            bool isAnyRemoved = false;
+
+            if (Guard.IsEmptyIEnumerable(files)) { return isAnyRemoved; }
+
+            foreach(FileViewModel file in files)
+            {
+                int lastSlashPos = file.path.LastIndexOf('/');
+
+                if(lastSlashPos < 0)
+                {
+                    // TODO: Log error
+                    continue;
+                }
+
+                string path = file.path.Substring(0, lastSlashPos);
+                string root = path;
+
+                string physicalDirPath = CheckPath(path, root, false);
+                string physicalFilePath = Path.Combine(physicalDirPath, file.name);
+
+                var realFile = new FileInfo(physicalFilePath);
+
+                if (!realFile.Exists)
+                {
+                    // TODO: Log error
+                    continue;
+                }
+
+                try
+                {
+                    realFile.Delete();
+                    isAnyRemoved = true;
+                }
+                catch
+                {
+                    // TODO: Log error
+                    continue;
+                }
+            }
+
+            return isAnyRemoved;
+        }
+
         private static string CheckPath(string path, string root, bool createNew)
         {
             Guard.CheckNull(path, "path");
@@ -172,7 +217,6 @@
             {
                 throw new KeyNotFoundException("UploadRoots doesn't set!");
             }
-
 
             bool allowed = false;
             foreach(var ar in availableRoots)

@@ -333,15 +333,20 @@ textarea {
     text-align: center;
     margin: 5px 10px;
     vertical-align: top;
+    cursor: pointer;
 }
 
 .io-item:hover {
-    background-color: #f3e8e8;
+    background-color: fade(@brand-primary5, 15%);
 }
 
 .io-item img {
-    max-height: 120px;
+    max-height: 90px;
     max-width: 120px;
+}
+
+.io-item.selected {
+  background-color: fade(@brand-primary4, 50%);
 }
 
 /*office*/

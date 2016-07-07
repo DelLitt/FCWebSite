@@ -1,14 +1,13 @@
-﻿
-<div class="panel panel-default">
+﻿<div class="panel panel-default">
 
-    <!--Documentation about ng-uplad: https://github.com/danialfarid/ng-file-upload/blob/master/README.md#usage-->
+    <!--Documentation about ng-uplad: https://github.com/danialfarid/ng-file-upload/blob/master/README.md#usage -->
 
     <style>
         .thumb {
             float: none;
             position: relative;
             top: 7px;
-            max-height: 100px;
+            max-height: 50px;
         }
 
         form .progress {
@@ -17,8 +16,8 @@
 
         .progress {
             display: inline-block;
-            width: 100px;
-            border: 3px groove #CCC;
+            width: 100%;
+            border: 3px groove #ACCCFF;
         }
 
             .progress div {
@@ -57,9 +56,9 @@
                                 {{mfile.size}}
                             </div>
                             <div class="col-sm-3">
-                                <div class="progress" ng-show="f.progress >= 0">
-                                    <div style="width:{{f.progress}}%"
-                                         ng-bind="f.progress + '%'"></div>
+                                <div class="progress" ng-show="mfile.progress >= 0">
+                                    <div style="width:{{mfile.progress}}%"
+                                         ng-bind="mfile.progress + '%'"></div>
                                 </div>
                             </div>
                         </div>

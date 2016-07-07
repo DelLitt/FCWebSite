@@ -38,7 +38,7 @@
         }
 
         this.saveProtocol = function (gameId, protocol, success, failure) {
-            apiSrv.post('/api/games/' + gameId + '/protocol/', protocol,
+            apiSrv.post('/api/games/' + gameId + '/protocol/', protocol, null,
                             success,
                             function (response) {
                                 if (angular.isFunction(failure)) {

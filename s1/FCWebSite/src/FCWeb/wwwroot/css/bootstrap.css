@@ -7120,13 +7120,17 @@ textarea {
   text-align: center;
   margin: 5px 10px;
   vertical-align: top;
+  cursor: pointer;
 }
 .io-item:hover {
-  background-color: #f3e8e8;
+  background-color: rgba(172, 204, 255, 0.15);
 }
 .io-item img {
-  max-height: 120px;
+  max-height: 90px;
   max-width: 120px;
+}
+.io-item.selected {
+  background-color: rgba(125, 175, 255, 0.5);
 }
 /*office*/
 .main-brand {

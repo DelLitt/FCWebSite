@@ -45,7 +45,7 @@
 
         this.saveGame = function (id, game, success, failure) {
             if (angular.isDefined(id) && parseInt(id) > 0) {
-                apiSrv.put('/api/games/', id, game,
+                apiSrv.put('/api/games/', id, game, null,
                                 success,
                                 function (response) {
                                     if (angular.isFunction(failure)) {

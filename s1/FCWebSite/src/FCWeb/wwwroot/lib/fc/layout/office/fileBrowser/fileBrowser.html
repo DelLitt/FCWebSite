@@ -4,7 +4,14 @@
             <content-upload model="contentUpload"></content-upload>
         </div>
         <div class="row">
-            <div ng-if="directoryView.parent" class="col-sm-3 io-item" ng-dblclick="openFolder(directoryView.parent)">
+            <div class="col-sm-10">
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-danger" ng-show="canRemove" ng-click="remove();">Удалить</button>
+            </div>
+        </div>
+        <div class="row">
+            <div ng-if="directoryView.parent" class="io-item" ng-dblclick="openFolder(directoryView.parent)">
                 <span class="glyphicon glyphicon-level-up"></span>
             </div>
             <div class="io-item">
@@ -15,9 +22,20 @@
                 <span class="glyphicon glyphicon-folder-close"></span><br />
                 {{folder.name}}
             </div>
-            <div class="io-item" ng-repeat="file in directoryView.files" ng-click="selectFile(file)">
-                <img ng-src="{{file.path}}" /><br />
-                {{file.name}}
+            <div class="io-item" ng-class="{'selected' : selectedFile == file}" ng-repeat="file in directoryView.files" ng-click="selectFile(file)">
+                <div class="row" ng-show="canSelect">
+                    <input type="checkbox" ng-model="file.isChecked" />
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="ellipsis-135" style="padding: 0 5px;">{{file.name}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <img ng-src="{{file.path}}" />
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">

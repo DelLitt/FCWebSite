@@ -57,7 +57,7 @@
                                     personSaveFailed(response);
                                 });
             } else {
-                apiSrv.post('/api/persons/', person,
+                apiSrv.post('/api/persons/', person, null,
                                 success,
                                 function (response) {
                                     if (failure != null) {

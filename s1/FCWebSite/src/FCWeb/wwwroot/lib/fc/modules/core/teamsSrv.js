@@ -37,7 +37,7 @@
                                     teamSaveFailed(response);
                                 });
             } else {
-                apiSrv.post('/api/teams/', team,
+                apiSrv.post('/api/teams/', team, null,
                                 success,
                                 function (response) {
                                     if (angular.isFunction(failure)) {

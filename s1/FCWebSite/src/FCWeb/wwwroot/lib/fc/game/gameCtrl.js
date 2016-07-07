@@ -29,7 +29,7 @@
                 return;
             }
 
-            apiSrv.post('/api/game/' + gameId + '/tote', value,
+            apiSrv.post('/api/game/' + gameId + '/tote', value, null,
                 function (response) {
                     $scope.toteResult = response.data;
                     setResults($scope.toteResult);

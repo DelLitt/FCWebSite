@@ -18,6 +18,8 @@
         $scope.fileBrowser = {
             path: 'images/store',
             root: 'images/store',
+            allowRemove: true,
+            multiple: true,
             onOk: function (selectedFile) {
 
                 if (angular.isDefined(window)

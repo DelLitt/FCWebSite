@@ -1,6 +1,6 @@
 ﻿// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace FCWeb.Controllers.Api
+namespace FCWeb.Controllers.Api.FileBrowser
 {
     using System.Linq;
     using Microsoft.AspNet.Mvc;
@@ -14,25 +14,13 @@ namespace FCWeb.Controllers.Api
     using System.Collections.Generic;
     using System.Net;
 
-    [Route("api/[controller]")]
+    [Route("api/filebrowser/[controller]")]
     [Authorize]
-    public class FileBrowserController : Controller
+    public class UploadController : Controller
     {
-        // GET: api/values
-        [HttpGet]
-        public FolderViewModel Get([FromQuery] string path, [FromQuery] string root, [FromQuery] bool createNew)
-        {
-            bool allowCreate = createNew
-                && User.Identity.IsAuthenticated
-                && (User.IsInRole("admin") || User.IsInRole("press"));
-
-            var folderView = StorageHelper.GetFolderView(path, root, allowCreate);
-
-            return folderView;
-        }
-
         // POST api/values
-        [HttpPost("upload")]
+        [HttpPost]
+        [Authorize(Roles = "admin,press")]
         public IActionResult Post()
         {
             if (Request.Form.ContainsKey("data"))
