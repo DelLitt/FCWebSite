@@ -1,9 +1,8 @@
-﻿namespace FCWeb.Core
+﻿namespace FCCore.Utils
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     public class EnumUtils
     {
@@ -14,7 +13,7 @@
 
         public static T FromString<T>(string value, T defaultValue = default(T)) where T : struct
         {
-            return PrivateFromString<T>(value, defaultValue);
+            return PrivateFromString(value, defaultValue);
         }
 
         private static T PrivateFromString<T>(string value, T defaultValue = default(T)) where T: struct
@@ -26,6 +25,18 @@
 
             T result;
             return Enum.TryParse(value, true, out result) ? result : defaultValue;
+        }
+
+        public static IEnumerable<T> GetValues<T>()
+        {
+            return Enum.GetValues(typeof(T)).Cast<T>();
+        }
+
+        public static IEnumerable<int> GetDigitValues<T>()
+        {
+            IEnumerable<T> values = Enum.GetValues(typeof(T)).Cast<T>();
+
+            return values.Select(v => Convert.ToInt32(v));
         }
     }
 }

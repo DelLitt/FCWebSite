@@ -10,17 +10,26 @@
     function publicationsSrv(helper, apiSrv, notificationManager, configSrv) {
 
         this.loadMainPublications = function (count, success, failure) {
-            apiSrv.get('/api/publications/latest/' + count, null, success, function (response) {
-                if (failure != null) {
-                    failure(response);
-                }
-
-                publicationsLoadFailed(response);
-            });
+            this.loadPublicationsPack(count, 0, ['main'], success, failure);
         }
 
-        this.loadPublicationsPack = function (count, offset, success, failure) {
-            apiSrv.get('/api/publications/latest/' + count + "/" + offset, null, success, function (response) {
+        this.loadNotFilteredPublications = function (count, skip, success, failure) {
+            this.loadPublicationsPack(count, skip, ['main', 'news', 'reserve', 'youth', 'authorized'], success, failure);
+        }
+
+        this.loadPublicationsPack = function (count, offset, groups, success, failure) {
+            var visibilityParams = '';
+
+            if(angular.isArray(groups) && groups.length > 0) {
+                var delim = '';
+
+                for(var i = 0; i < groups.length; i++) {
+                    delim = i == 0 ? '?' : '&';
+                    visibilityParams += delim + 'groups=' + groups[i];
+                }
+            }
+
+            apiSrv.get('/api/publications/' + count + "/" + offset + visibilityParams, null, success, function (response) {
                 if (failure != null) {
                     failure(response);
                 }
@@ -44,6 +53,21 @@
 
         this.loadPublicationByUrlKey = function (urlKey, success, failure) {
             apiSrv.get('/api/publications/' + urlKey,
+                null,
+                success,
+                function (response) {
+                    if (failure != null) {
+                        failure(response);
+                    }
+
+                    publicationsLoadFailed(response);
+                });
+        }
+
+        this.search = function (text, success, failure) {
+            var url = 'api/publications/search/default?txt=' + encodeURIComponent(text)
+
+            apiSrv.get(url,
                 null,
                 success,
                 function (response) {

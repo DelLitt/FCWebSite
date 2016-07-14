@@ -5,6 +5,7 @@
     using FCCore.Model;
     using FCCore.Abstractions.Dal;
     using System;
+    using FCCore.Common;
 
     public class PublicationDal : DalBase, IPublicationDal
     {
@@ -16,10 +17,28 @@
             }
 
             return Context.Publication
-                .Where(p => p.Visibility == visibility)
+                .Where(p => (p.Visibility & visibility) != 0)
                 .OrderByDescending(p => p.DateDisplayed)
                 .Skip(offset)
                 .Take(count);
+        }
+
+        public IEnumerable<Publication> GetLatestPublications(int count, int offset)
+        {
+            if (count <= 0)
+            {
+                return new Publication[0];
+            }
+
+            return Context.Publication
+                .OrderByDescending(p => p.DateDisplayed)
+                .Skip(offset)
+                .Take(count);
+        }
+
+        public IEnumerable<Publication> SearchByDefault(string text)
+        {
+            return Context.Publication.Where(e => e.Title.Contains(text));
         }
 
         public Publication GetPublication(int id)

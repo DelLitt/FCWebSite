@@ -13,8 +13,12 @@
                 templateUrl: "lib/fc/office/index.html",
                 controller: "indexCtrl"
             })
-            .when("/office/publication/edit/:id", {
-                templateUrl: "lib/fc/office/publication/publicationEdit.html",
+            .when("/office/publications/", {
+                templateUrl: "lib/fc/office/publications/publicationsList.html",
+                controller: "publicationsListCtrl"
+            })
+            .when("/office/publications/edit/:id", {
+                templateUrl: "lib/fc/office/publications/publicationEdit.html",
                 controller: "publicationEditCtrl"
             })
             .when("/office/video/edit/:id", {

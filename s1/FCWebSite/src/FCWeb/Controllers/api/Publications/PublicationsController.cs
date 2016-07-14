@@ -1,6 +1,6 @@
 ﻿// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace FCWeb.Controllers.Api
+namespace FCWeb.Controllers.Api.Publications
 {
     using System;
     using System.Collections.Generic;
@@ -26,24 +26,17 @@ namespace FCWeb.Controllers.Api
         }
 
         // GET: api/values/latest
-        [HttpGet("latest/{count:range(0,20)}/{offset:int?}")]
-        public IEnumerable<PublicationShortViewModel> Get(int count, int offset)
+        [HttpGet("{count:range(0,50)}/{offset:int}")]
+        public IEnumerable<PublicationShortViewModel> Get(int count, int offset, [FromQuery] string[] groups)
         {
-            return publicationBll.GetMainPublications(count, offset).ToShortViewModel();
+            return publicationBll.GetLatestPublications(count, offset, groups).ToShortViewModel();
         }
-
-        //// GET: api/values/latest
-        //[HttpGet]
-        //public IEnumerable<PublicationViewModel> Get()
-        //{
-        //    return publicationBLL.GetMainPublications(10, 0).ToViewModel();
-        //}
 
         // GET api/values/5
         [HttpGet("{id:int}")]
         public PublicationViewModel Get(int id)
         {
-            if (User.Identity.IsAuthenticated 
+            if (User.Identity.IsAuthenticated
                 && (User.IsInRole("admin") || User.IsInRole("press"))
                 && id == 0)
             {
@@ -67,6 +60,17 @@ namespace FCWeb.Controllers.Api
         public PublicationViewModel Get(string urlKey)
         {
             return publicationBll.GetPublication(urlKey).ToViewModel();
+        }
+
+        [HttpGet("search/{method}")]
+        public IEnumerable<PublicationViewModel> Get(string method, [FromQuery] string txt)
+        {
+            if (method.Equals("default", StringComparison.OrdinalIgnoreCase))
+            {
+                return publicationBll.SearchByDefault(txt).ToViewModel();
+            }
+
+            return publicationBll.SearchByDefault(txt).ToViewModel();
         }
 
         // POST api/values
