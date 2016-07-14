@@ -2,17 +2,18 @@
 
 namespace FCWeb.Controllers.Api
 {
-    using System.Collections.Generic;
-    using Microsoft.AspNet.Mvc;
-    using FCCore.Abstractions.Bll;
-    using Core.Extensions;
-    using ViewModels;
-    using System.Net;
     using System;
-    using FCCore.Configuration;
-    using Microsoft.AspNet.Authorization;
-    using FCCore.Model;
+    using System.Collections.Generic;
+    using System.Net;
     using System.Security.Claims;
+    using Core;
+    using Core.Extensions;
+    using FCCore.Abstractions.Bll;
+    using FCCore.Configuration;
+    using FCCore.Model;
+    using Microsoft.AspNet.Authorization;
+    using Microsoft.AspNet.Mvc;
+    using ViewModels;
 
     [Route("api/[controller]")]
     public class GalleriesController : Controller
@@ -45,86 +46,91 @@ namespace FCWeb.Controllers.Api
             return imageGalleryBll.GetMainImageGalleries(count, offset).ToShortViewModel();
         }
 
-        //// GET: api/values/latest
-        //[HttpGet]
-        //public IEnumerable<PublicationViewModel> Get()
-        //{
-        //    return publicationBLL.GetMainPublications(10, 0).ToViewModel();
-        //}
+        // GET api/values/5
+        [HttpGet("{id}")]
+        public ImageGalleryViewModel Get(int id)
+        {
+            if (User.Identity.IsAuthenticated
+                && (User.IsInRole("admin") || User.IsInRole("press"))
+                && id == 0)
+            {
+                DateTime utcNow = DateTime.UtcNow;
 
-        //// GET api/values/5
-        //[HttpGet("{id}")]
-        //public VideoViewModel Get(int id)
-        //{
-        //    if (User.Identity.IsAuthenticated
-        //        && (User.IsInRole("admin") || User.IsInRole("press"))
-        //        && id == 0)
-        //    {
-        //        DateTime utcNow = DateTime.UtcNow;
+                var imageGallery = new ImageGallery()
+                {                    
+                    DateDisplayed = utcNow,
+                    DateChanged = utcNow,
+                    DateCreated = utcNow,
+                    Author = MainCfg.DefaultAuthor,
+                    Enable = true,
+                    Visibility = MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News
+                };
 
-        //        return new VideoViewModel()
-        //        {
-        //            dateDisplayed = utcNow,
-        //            dateChanged = utcNow,
-        //            dateCreated = utcNow,
-        //            author = MainCfg.DefaultAuthor,
-        //            enable = true,
-        //            visibility = MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News
-        //        };
-        //    }
+                return imageGallery.ToViewModel();
+            }
 
-        //    return videoBll.GetVideo(id).ToViewModel();
-        //}
+            return imageGalleryBll.GetImageGallery(id).ToViewModel();
+        }
 
-        //// POST api/values
-        //[HttpPost]
-        //[Authorize(Roles = "admin,press")]
-        //public void Post([FromBody]VideoViewModel videoVideo)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        Response.StatusCode = (int)HttpStatusCode.BadRequest;
-        //        return;
-        //    }
+        // POST api/values
+        [HttpPost]
+        [Authorize(Roles = "admin,press")]
+        public void Post([FromBody]ImageGalleryViewModel imageGalleryView)
+        {
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return;
+            }
 
-        //    Video video = videoVideo.ToBaseModel();
+            ImageGallery imageGallery = imageGalleryView.ToBaseModel();
 
-        //    // TODO: Convert user Id from Guid to String in DB
-        //    Guid userCreated = new Guid(User.GetUserId());            
-        //    video.userCreated = userCreated;
-        //    video.userChanged = userCreated;
+            // TODO: Convert user Id from Guid to String in DB
+            Guid userCreated = new Guid(User.GetUserId());
+            imageGallery.userCreated = userCreated;
+            imageGallery.userChanged = userCreated;
 
-        //    DateTime utcNow = DateTime.UtcNow;
-        //    video.DateCreated = utcNow;
-        //    video.DateChanged = utcNow;
+            DateTime utcNow = DateTime.UtcNow;
+            imageGallery.DateCreated = utcNow;
+            imageGallery.DateChanged = utcNow;
 
-        //    videoBll.SaveVideo(video);
-        //}
+            int imageGalleryId = imageGalleryBll.SaveImageGallery(imageGallery);
 
-        //// PUT api/values/5
-        //[HttpPut("{id}")]
-        //[Authorize(Roles = "admin,press")]
-        //public void Put(int id, [FromBody]VideoViewModel videoView)
-        //{
-        //    if (id != videoView.id)
-        //    {
-        //        Response.StatusCode = (int)HttpStatusCode.BadRequest;
-        //        return;
-        //    }
+            // move images from temp folder
+            if (imageGalleryId > 0 && imageGalleryView.createNew)
+            {
+                string tempGuid = imageGalleryView.tempGuid.ToString();
+                string tempPath = imageGalleryView.path;
+                string storagePath = imageGallery.GetGalleryUniquePath();
 
-        //    if (!ModelState.IsValid)
-        //    {
-        //        Response.StatusCode = (int)HttpStatusCode.BadRequest;
-        //        return;
-        //    }
+                StorageHelper.MoveFromTempToStorage(storagePath, tempPath, tempGuid);
+            }
+        }
 
-        //    Video video = videoView.ToBaseModel();
+        // PUT api/values/5
+        [HttpPut("{id}")]
+        [Authorize(Roles = "admin,press")]
+        public void Put(int id, [FromBody]ImageGalleryViewModel imageGalleryView)
+        {
+            if (id != imageGalleryView.id)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return;
+            }
 
-        //    // TODO: Convert user Id from Guid to String in DB
-        //    video.userChanged = new Guid(User.GetUserId());
-        //    video.DateChanged = DateTime.UtcNow;
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return;
+            }
 
-        //    videoBll.SaveVideo(video);
-        //}
+            ImageGallery imageGallery = imageGalleryView.ToBaseModel();
+
+            // TODO: Convert user Id from Guid to String in DB
+            imageGallery.userChanged = new Guid(User.GetUserId());
+            imageGallery.DateChanged = DateTime.UtcNow;
+
+            imageGalleryBll.SaveImageGallery(imageGallery);
+        }
     }
 }

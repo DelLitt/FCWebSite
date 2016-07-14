@@ -7,11 +7,11 @@
   border-radius: @fc-border-radius;
   z-index: 2;
 
-  .caption {
+  .caption {    
     width: 100%;
     bottom: 0rem;
     position: absolute;
-    background: @brand-primary;
+    background: @brand-primary;    
     #gradient > .vertical-three-colors(@start-color: fade(@brand-primary, 50%); @mid-color: fade(@brand-primary, 70%); @color-stop: 40%; @end-color: fade(@brand-primary, 85%));
   }
 
@@ -26,12 +26,25 @@
 
   .caption h4,
   .caption h5 {
-    color: #fff;
+    color: @background-primary;
     padding: 12px 5px 17px 15px;
     line-height: 1.3em;
     -webkit-font-smoothing: antialiased;
     margin: 0;
     background: transparent;
+    text-shadow: none;
+    font-weight: normal;
+
+    a {
+      font-weight: normal;
+      color: @background-primary;
+      text-shadow: none;
+    }
+
+    small {
+      font-size: 85%;
+    }
+
   }
 
   .caption h5 {
@@ -39,7 +52,7 @@
   }
 
   .caption a {
-    color: #fff;
+    color: @background-primary;
   }
 
   .caption a:hover {

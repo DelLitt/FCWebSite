@@ -6917,95 +6917,6 @@ body {
 .fc-sheet {
   background-color: rgba(255, 255, 255, 0.85);
 }
-.fc-pane-dark {
-  background-color: #002B6E;
-  border-radius: 5px;
-  /*padding: 25px 15px;*/
-  margin-bottom: 15px;
-  -webkit-box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
-  box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
-  background: -webkit-linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
-  background: -o-linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
-  background: linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6002b6e', endColorstr='#cc002b6e', GradientType=0);
-}
-.fc-pane-dark .fc-pane-body {
-  padding: 5px;
-}
-.fc-pane-dark .fc-pane-body h1.header,
-.fc-pane-dark .fc-pane-body h2.header,
-.fc-pane-dark .fc-pane-body h3.header,
-.fc-pane-dark .fc-pane-body h4.header,
-.fc-pane-dark .fc-pane-body h5.header,
-.fc-pane-dark .fc-pane-body h6.header,
-.fc-pane-dark .fc-pane-body h7.header {
-  color: #fff;
-  padding: 7px 15px;
-}
-.fc-pane-dark .label-primary {
-  background-color: #fff;
-  color: #002B6E;
-  font-size: 90%;
-  padding-top: .1em;
-  padding-bottom: .1em;
-}
-.fc-pane-dark .text-info {
-  color: #7DAFFF;
-}
-.fc-pane-dark a {
-  color: #bdd6ff;
-}
-.fc-pane {
-  border-radius: 5px;
-  position: relative;
-  margin: 20px 0;
-  background-color: #fff;
-  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.7), 5%, rgba(255, 255, 255, 0.9) 13%, rgba(255, 255, 255, 0.1), 5%);
-  background: -o-linear-gradient(rgba(255, 255, 255, 0.7), 5%, rgba(255, 255, 255, 0.9) 13%, rgba(255, 255, 255, 0.1) 5%);
-  background: linear-gradient(rgba(255, 255, 255, 0.7), 5%, rgba(255, 255, 255, 0.9) 13%, rgba(255, 255, 255, 0.1) 5%);
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b3ffffff', endColorstr='#1affffff', GradientType=0);
-}
-.fc-pane .fc-pane-header {
-  padding: 10px;
-  background-color: #002B6E;
-}
-.fc-pane .fc-pane-body {
-  padding: 0px 5px 15px 15px;
-  background-color: rgba(255, 255, 255, 0.9);
-  -webkit-box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
-  box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
-  color: #4c7dcb;
-  background-image: url("../../images/skin/bg1.png");
-  background-repeat: repeat;
-  border: 1px solid #ACCCFF;
-  border-radius: 5px;
-  border-bottom: none;
-}
-.fc-pane .fc-pane-body h1.header,
-.fc-pane .fc-pane-body h2.header,
-.fc-pane .fc-pane-body h3.header,
-.fc-pane .fc-pane-body h4.header,
-.fc-pane .fc-pane-body h5.header,
-.fc-pane .fc-pane-body h6.header,
-.fc-pane .fc-pane-body h7.header {
-  color: #fff;
-  padding: 10px 25px;
-  background: -webkit-linear-gradient(left, rgba(0, 43, 110, 0) 0%, rgba(0, 43, 110, 0.9) 3%, rgba(0, 43, 110, 0.9), 25%, rgba(0, 43, 110, 0) 80%);
-  background: -o-linear-gradient(left, rgba(0, 43, 110, 0) 0%, rgba(0, 43, 110, 0.9) 3%, rgba(0, 43, 110, 0.9) 25%, rgba(0, 43, 110, 0) 80%);
-  background: linear-gradient(to right, rgba(0, 43, 110, 0) 0%, rgba(0, 43, 110, 0.9) 3%, rgba(0, 43, 110, 0.9) 25%, rgba(0, 43, 110, 0) 80%);
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00002b6e', endColorstr='#00002b6e', GradientType=0);
-}
-.fc-pane .fc-pane-body a.fc-pane-action-link,
-.fc-pane .fc-pane-body a.fc-pane-action-link:hover,
-.fc-pane .fc-pane-body a.fc-pane-action-link:active {
-  color: #fff;
-  background-color: rgba(0, 43, 110, 0.85);
-  padding: 5px 10px 5px 10px;
-  border-radius: 5px;
-}
 .bg-threads {
   background-image: url('../images/skin/threads.png');
   background-position: left bottom;
@@ -7020,11 +6931,11 @@ body {
   /*background-color: #fff;*/
 }
 /* Set widths on the form inputs since otherwise they're 100% wide */
-input,
+/*input,
 select,
 textarea {
-  /*max-width: 280px;*/
-}
+    max-width: 280px;
+}*/
 /* Carousel */
 .carousel-caption {
   z-index: 10 !important;
@@ -7060,19 +6971,24 @@ textarea {
   border-bottom: 1px dashed;
 }
 .hot-publications .row.hot-list-item a {
-  color: #3466b4 !important;
+  color: rgba(0, 68, 174, 0.75) !important;
+  font-weight: bold;
 }
 .hot-publications .row.hot-list-item .glyphicon {
   font-size: 1.3em;
-  color: #7DAFFF;
+  color: rgba(0, 68, 174, 0.75);
 }
 .hot-publications .row.hot-list-item .glyphicon.logic:hover,
 .hot-publications .row.hot-list-item .glyphicon.logic:focus {
-  color: #3466b4;
+  color: #7DAFFF;
   cursor: pointer;
 }
 .hot-publications .row.hot-list-item .border-r {
   border-right: 1px solid;
+}
+.hot-publications .preview-item .caption h4,
+.hot-publications .preview-item .caption h5 {
+  font-weight: bold;
 }
 @media (max-width: 768px) {
   .hot-publications {
@@ -7251,6 +7167,18 @@ a.text-prim5-color:focus {
   -webkit-font-smoothing: antialiased;
   margin: 0;
   background: transparent;
+  text-shadow: none;
+  font-weight: normal;
+}
+.preview-item .caption h4 a,
+.preview-item .caption h5 a {
+  font-weight: normal;
+  color: #fff;
+  text-shadow: none;
+}
+.preview-item .caption h4 small,
+.preview-item .caption h5 small {
+  font-size: 85%;
 }
 .preview-item .caption h5 {
   padding: 10px 5px 17px 15px;
@@ -7266,5 +7194,124 @@ a.text-prim5-color:focus {
   font-size: 1.4em;
   padding-right: 10px;
   top: 4px;
+}
+.fc-pane {
+  border-radius: 5px;
+  position: relative;
+  margin: 10px 0 35px 0;
+  -webkit-box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
+  box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
+}
+.fc-pane .fc-pane-header {
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  font-weight: bold;
+  margin: 0 !important;
+  padding: 15px 15px 15px 15px;
+  color: rgba(0, 43, 110, 0.75);
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.85), 5%, #ffffff 90%, rgba(255, 255, 255, 0.5), 100%);
+  background: -o-linear-gradient(rgba(255, 255, 255, 0.85), 5%, #ffffff 90%, rgba(255, 255, 255, 0.5) 100%);
+  background: linear-gradient(rgba(255, 255, 255, 0.85), 5%, #ffffff 90%, rgba(255, 255, 255, 0.5) 100%);
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d9ffffff', endColorstr='#80ffffff', GradientType=0);
+}
+.fc-pane .fc-pane-header:before {
+  /*content: "• ";
+    font-size: 115%;*/
+}
+.fc-pane .fc-pane-body {
+  background: rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  color: #4c7dcb;
+  border-bottom: none;
+  padding: 15px 15px 15px 15px;
+}
+.fc-pane .fc-pane-body .fc-pane-form {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 10px;
+  border: 1px solid rgba(0, 43, 110, 0.25);
+}
+.fc-pane .fc-pane-body h1,
+.fc-pane .fc-pane-body h2,
+.fc-pane .fc-pane-body h3,
+.fc-pane .fc-pane-body h4,
+.fc-pane .fc-pane-body h5,
+.fc-pane .fc-pane-body h6,
+.fc-pane .fc-pane-body h7 {
+  text-shadow: none;
+  font-weight: bold;
+  color: rgba(0, 43, 110, 0.75);
+}
+.fc-pane .fc-pane-body label {
+  color: rgba(0, 78, 199, 0.75);
+}
+.fc-pane .fc-pane-body h1.header,
+.fc-pane .fc-pane-body h2.header,
+.fc-pane .fc-pane-body h3.header,
+.fc-pane .fc-pane-body h4.header,
+.fc-pane .fc-pane-body h5.header,
+.fc-pane .fc-pane-body h6.header,
+.fc-pane .fc-pane-body h7.header {
+  text-shadow: none;
+  padding: 10px 25px;
+}
+.fc-pane .fc-pane-body a.fc-pane-action-link,
+.fc-pane .fc-pane-body a.fc-pane-action-link:hover,
+.fc-pane .fc-pane-body a.fc-pane-action-link:active {
+  color: #fff;
+  background-color: rgba(0, 43, 110, 0.85);
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+}
+.fc-pane .bg-threads {
+  bottom: -30px;
+  position: relative;
+}
+.fc-pane.fc-pane-dark {
+  background-color: #002B6E;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  -webkit-box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
+  box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
+  background: -webkit-linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
+  background: -o-linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
+  background: linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6002b6e', endColorstr='#cc002b6e', GradientType=0);
+}
+.fc-pane.fc-pane-dark .fc-pane-header {
+  color: #fff;
+  background: transparent;
+}
+.fc-pane.fc-pane-dark .fc-pane-body {
+  background: transparent;
+}
+.fc-pane.fc-pane-dark .fc-pane-body h1.header,
+.fc-pane.fc-pane-dark .fc-pane-body h2.header,
+.fc-pane.fc-pane-dark .fc-pane-body h3.header,
+.fc-pane.fc-pane-dark .fc-pane-body h4.header,
+.fc-pane.fc-pane-dark .fc-pane-body h5.header,
+.fc-pane.fc-pane-dark .fc-pane-body h6.header,
+.fc-pane.fc-pane-dark .fc-pane-body h7.header {
+  color: #fff;
+  padding: 7px 15px;
+}
+.fc-pane.fc-pane-dark .label-primary {
+  background-color: #fff;
+  color: #002B6E;
+  font-size: 90%;
+  padding-top: .1em;
+  padding-bottom: .1em;
+}
+.fc-pane.fc-pane-dark .text-info {
+  color: #7DAFFF;
+}
+.fc-pane.fc-pane-dark a {
+  color: #bdd6ff;
 }
 /*fc-style*/

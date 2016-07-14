@@ -34,16 +34,27 @@
                         <img class="img-responsive center-block" ngf-thumbnail="file || '/images/skin/thumb.png'">
                     </div>
                     <div class="col-xs-10">
-                        <a href="javascript:void(0);" class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
-                           ngf-accept="'image/*'" ngf-max-size="20MB">Выбрать файл для загрузки</a>
+                        <a href="javascript:void(0);" class="button" 
+                           ngf-select 
+                           ng-model="file" 
+                           name="file" 
+                           ngf-pattern="'image/*'"
+                           ngf-accept="'image/*'"
+                           ngf-max-size="20MB">Выбрать файл для загрузки</a>
                     </div>
                 </div>
                 <br />
                 <div ng-show="multiple">
                     <div class="col-sm-12">
                         <div class="row">
-                            <a href="javascript:void(0);" class="button" ngf-select ng-model="files" ngf-multiple="true" name="file" ngf-pattern="'image/*'"
-                               ngf-accept="'image/*'" ngf-max-size="20MB">Выбрать файлы для загрузки</a>
+                            <a href="javascript:void(0);" class="button" 
+                               ngf-select 
+                               ng-model="files" 
+                               ngf-multiple="true" 
+                               name="file" 
+                               ngf-pattern="'image/*'"
+                               ngf-accept="'image/*'"
+                               ngf-max-size="20MB">Выбрать файлы для загрузки</a>
                         </div>
                         <div class="row" ng-repeat="mfile in files">
                             <div class="col-sm-3">

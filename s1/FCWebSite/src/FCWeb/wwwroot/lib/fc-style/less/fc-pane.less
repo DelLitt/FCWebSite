@@ -1,0 +1,107 @@
+﻿.fc-pane {
+  border-radius: @fc-border-radius;
+  position: relative;
+  margin: 10px 0 35px 0;
+  .box-shadow(@fc-shadow);
+
+  .fc-pane-header {
+    font-size: @font-size-h5;
+    font-family: @headings-font-family;
+    font-weight: @headings-font-weight;
+    line-height: @headings-line-height;
+    font-weight: bold;
+    margin: 0 !important;
+    padding: 15px 15px 15px 15px;
+    color: @fc-type-dark-header-color;
+    #gradient > .fc-vertical-three-colors(@start-color: fade(@background-primary, 85%); @color-stop1: 5%; @mid-color: fade(@background-primary, 100%); @color-stop2: 90%; @end-color: fade(@background-primary, 50%); @color-stop3: 100%;);
+  }
+
+  .fc-pane-header:before {
+    /*content: "• ";
+    font-size: 115%;*/
+  }
+
+  .fc-pane-body {
+    background: fade(@background-primary, 40%);
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    color: @fc-type-color;
+    border-bottom: none;
+    padding: 15px 15px 15px 15px;
+
+    .fc-pane-form {
+      background-color: fade(@background-primary, 95%);
+      padding: 10px;
+      border: 1px solid fade(@brand-primary, 25%);
+    }
+
+    h1, h2, h3, h4, h5, h6, h7 {
+      text-shadow: none;
+      font-weight: bold;
+      color: @fc-type-dark-header-color;
+    }
+
+    label {
+      color: lighten(fade(@brand-primary, 75%), 17.5%);
+    }
+
+    h1.header, h2.header, h3.header, h4.header, h5.header, h6.header, h7.header {
+      text-shadow: none;
+      padding: 10px 25px;
+    }
+
+    a.fc-pane-action-link,
+    a.fc-pane-action-link:hover,
+    a.fc-pane-action-link:active {
+      color: @background-primary;
+      background-color: fade(@brand-primary, 85%);
+      padding: 5px 10px 5px 10px;
+      border-radius: @fc-border-radius;
+    }
+  }
+
+  .bg-threads {
+    bottom: -@fc-threads-height;
+    position: relative;
+  }
+}
+
+.fc-pane.fc-pane-dark {
+  background-color: @brand-primary;
+  border-radius: @fc-border-radius;
+  margin-bottom: 15px;
+  .box-shadow(@fc-shadow);
+  .fc-grad();
+
+  .fc-pane-header {
+    color: @background-primary;
+    background: transparent;
+  }
+
+  .fc-pane-body {
+    background: transparent;
+
+    h1.header, h2.header, h3.header, h4.header, h5.header, h6.header, h7.header {
+      color: @background-primary;
+      padding: 7px 15px;
+    }
+  }
+
+  .label-primary {
+    background-color: @background-primary;
+    color: @brand-primary;
+    font-size: 90%;
+    padding-top: .1em;
+    padding-bottom: .1em;
+  }
+
+  .text-info {
+    color: @brand-primary4;
+  }
+
+  a {
+    color: @fc-light-link-color;
+  }
+}

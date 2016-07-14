@@ -38,6 +38,13 @@
                         loadData(scope.directoryView.path, scope.model.root);
                     }
                 };
+                
+                scope.$watch(function (scope) {
+                    return scope.model.path;
+                },
+                function (newValue, oldValue) {
+                    scope.openFolder(newValue);
+                });
 
                 scope.selectedFile = scope.initialItem;
 
@@ -46,7 +53,7 @@
                 }
 
                 scope.openFolder = function openFolder(path) {
-                    loadData(path, scope.model.root);
+                    loadData(path, scope.model.root, scope.model.options);
                 }
 
                 // upload later on form submit or something similar

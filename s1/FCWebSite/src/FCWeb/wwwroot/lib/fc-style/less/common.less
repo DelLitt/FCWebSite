@@ -4,7 +4,8 @@
 @fc-border-radius: 5px;
 @fc-threads-height: 30px;
 @fc-type-color: lighten(@brand-type, 21.5%);
-@fc-dark-link-color: lighten(@brand-type, 12.5%);
+@fc-type-dark-header-color: fade(@brand-primary, 75%);
+@fc-dark-link-color: lighten(fade(@brand-primary, 75%), 12.5%);
 @fc-light-link-color: lighten(@brand-primary4, 12.5%);
 
 /*Variables*/
@@ -128,80 +129,6 @@ body {
   background-color: fade(@background-primary, 85%);
 }
 
-.fc-pane-dark {
-  background-color: @brand-primary;
-  border-radius: @fc-border-radius;
-  /*padding: 25px 15px;*/
-  margin-bottom: 15px;
-  .box-shadow(@fc-shadow);
-  .fc-grad();
-
-  .fc-pane-body {
-    padding: 5px;
-
-    h1.header, h2.header, h3.header, h4.header, h5.header, h6.header, h7.header {
-      color: @background-primary;
-      padding: 7px 15px;
-    }
-  }
-
-  .label-primary {
-    background-color: @background-primary;
-    color: @brand-primary;
-    font-size: 90%;
-    padding-top: .1em;
-    padding-bottom: .1em;
-  }
-
-  .text-info {
-    color: @brand-primary4;
-  }
-
-  a {
-    color: @fc-light-link-color;
-  }
-}
-
-.fc-pane {
-  border-radius: @fc-border-radius;
-  position: relative;
-  margin: 20px 0;
-  background-color: @background-primary;
-  #gradient > .fc-vertical-three-colors(@start-color: fade(@background-primary, 70%); @color-stop1: 5%; @mid-color: fade(@background-primary, 90%); @color-stop2: 13%; @end-color: fade(@background-primary, 10%); @color-stop3: 5%;);
-
-  .fc-pane-header {
-    padding: 10px;
-    background-color: @brand-primary;
-  }
-
-  .fc-pane-body {
-    padding: 0px 5px 15px 15px;
-    background-color: fade(@background-primary, 90%);
-    .box-shadow(@fc-shadow);
-    color: @fc-type-color;
-    background-image: url("../../images/skin/bg1.png");
-    background-repeat: repeat;
-    border: 1px solid @brand-primary5;
-    border-radius: @fc-border-radius;
-    border-bottom: none;
-
-    h1.header, h2.header, h3.header, h4.header, h5.header, h6.header, h7.header {
-      color: @background-primary;
-      padding: 10px 25px;
-      #gradient > .fc-horizontal-four-colors(@one-color: fade(@brand-primary, 0%); @color-stop1: 0%; @two-color: fade(@brand-primary, 90%); @color-stop2: 3%; @three-color: fade(@brand-primary, 90%); @color-stop3: 25%; @four-color: fade(@brand-primary, 0%); @color-stop4: 80%;);
-    }
-
-    a.fc-pane-action-link,
-    a.fc-pane-action-link:hover,
-    a.fc-pane-action-link:active {
-      color: @background-primary;
-      background-color: fade(@brand-primary, 85%);
-      padding: 5px 10px 5px 10px;
-      border-radius: @fc-border-radius
-    }
-  }
-}
-
 .bg-threads {
   background-image: url('../images/skin/threads.png');
   background-position: left bottom;
@@ -212,21 +139,21 @@ body {
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-    /*background-color: #fff;*/
+  padding-left: 15px;
+  padding-right: 15px;
+  /*background-color: #fff;*/
 }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
-input,
+/*input,
 select,
 textarea {
-    /*max-width: 280px;*/
-}
+    max-width: 280px;
+}*/
 
 /* Carousel */
 .carousel-caption {
-    z-index: 10 !important;
+  z-index: 10 !important;
 }
 
 .carousel-caption p {
@@ -266,20 +193,29 @@ textarea {
 
     a {
       color: @fc-dark-link-color !important;
+      font-weight: bold;
     }
 
     .glyphicon {
       font-size: 1.3em;
-      color: @brand-primary4;
+      color: @fc-dark-link-color;
     }
 
     .glyphicon.logic:hover, .glyphicon.logic:focus {
-      color: @fc-dark-link-color;
+      color: @brand-primary4;
       cursor: pointer;
     }
 
     .border-r {
       border-right: 1px solid;
+    }
+  }
+
+  .preview-item {
+    .caption {
+      h4, h5 {
+        font-weight: bold;
+      }
     }
   }
 }
