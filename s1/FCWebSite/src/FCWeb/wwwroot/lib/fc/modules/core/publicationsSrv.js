@@ -85,17 +85,7 @@
 
         this.savePublication = function (id, publication, success, failure) {
             if (angular.isDefined(id) && parseInt(id) > 0) {
-                apiSrv.put('/api/publications/', id, publication, null,
-                                success,
-                                function (response) {
-                                    if (failure != null) {
-                                        failure(response);
-                                    }
-
-                                    videoSaveFailed(response);
-                                });
-            } else {
-                apiSrv.post('/api/publications/', publication,
+                apiSrv.put('/api/publications/', id, publication,
                                 success,
                                 function (response) {
                                     if (failure != null) {
@@ -104,6 +94,18 @@
 
                                     publicationSaveFailed(response);
                                 });
+            } else {
+                apiSrv.post('/api/publications/',
+                            publication,
+                            null,
+                            success,
+                            function (response) {
+                                if (failure != null) {
+                                    failure(response);
+                                }
+
+                                publicationSaveFailed(response);
+                            });
 
             }
         }

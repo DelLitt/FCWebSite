@@ -7,7 +7,7 @@
                         <img ng-src="{{loadingImage}}" />
                     </div>
                     <div ng-show="!loading">
-                        <a href="office/person/edit/0" class="pull-right"><span class="glyphicon glyphicon-user">&nbsp;</span>Создать</a>
+                        <a href="office/persons/edit/0" class="pull-right"><span class="glyphicon glyphicon-user">&nbsp;</span>Создать</a>
                         <h2>Список персон</h2>
                         <div class="form-group">
                             <label for="nameFilter" class="control-label">Фильтр:</label>
@@ -15,7 +15,7 @@
                         </div>
                         <table>
                             <tr ng-repeat="person in persons | filter : {nameDefault : text} | orderBy: 'nameDefault'">
-                                <td><a ng-href="office/person/edit/{{person.id}}"><span class="glyphicon glyphicon-edit">&nbsp;</span>{{person.nameDefault}}</a></td>
+                                <td><a ng-href="office/persons/edit/{{person.id}}"><span class="glyphicon glyphicon-edit">&nbsp;</span>{{person.nameDefault}}</a></td>
                             </tr>
                         </table>
                     </div>

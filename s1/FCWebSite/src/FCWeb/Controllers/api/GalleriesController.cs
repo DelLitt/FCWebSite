@@ -26,28 +26,7 @@ namespace FCWeb.Controllers.Api
             this.imageGalleryBll = imageGalleryBll;
         }
 
-        //// GET: api/values/latest
-        //[HttpGet("search")]
-        //public IEnumerable<VideoViewModel> Get([FromQuery] string txt)
-        //{
-        //    var videoModels = new List<VideoViewModel>();
-
-        //    IEnumerable<VideoViewModel> searchedData = imageGalleryBll.SearchByTitle(txt).ToViewModel();
-
-        //    videoModels.AddRange(searchedData);
-
-        //    return videoModels;
-        //}
-
-        // GET: api/values/latest
-        [HttpGet("latest/{count:range(0,20)}/{offset:int?}")]
-        public IEnumerable<ImageGalleryShortViewModel> Get(int count, int offset)
-        {
-            return imageGalleryBll.GetMainImageGalleries(count, offset).ToShortViewModel();
-        }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public ImageGalleryViewModel Get(int id)
         {
             if (User.Identity.IsAuthenticated
@@ -56,20 +35,41 @@ namespace FCWeb.Controllers.Api
             {
                 DateTime utcNow = DateTime.UtcNow;
 
-                var imageGallery = new ImageGallery()
-                {                    
-                    DateDisplayed = utcNow,
-                    DateChanged = utcNow,
-                    DateCreated = utcNow,
-                    Author = MainCfg.DefaultAuthor,
-                    Enable = true,
-                    Visibility = MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News
+                return new ImageGalleryViewModel()
+                {
+                    dateDisplayed = utcNow,
+                    dateChanged = utcNow,
+                    dateCreated = utcNow,
+                    author = MainCfg.DefaultAuthor,
+                    enable = true,
+                    visibility = MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News
                 };
-
-                return imageGallery.ToViewModel();
             }
 
             return imageGalleryBll.GetImageGallery(id).ToViewModel();
+        }
+
+        [HttpGet("{urlKey}")]
+        public ImageGalleryViewModel Get(string urlKey)
+        {
+            return imageGalleryBll.GetImageGallery(urlKey).ToViewModel();
+        }
+
+        [HttpGet("{count:range(0,50)}/{offset:int}")]
+        public IEnumerable<ImageGalleryShortViewModel> Get(int count, int offset, [FromQuery] string[] groups)
+        {
+            return imageGalleryBll.GetLatestImageGalleries(count, offset, groups).ToShortViewModel();
+        }
+
+        [HttpGet("search/{method}")]
+        public IEnumerable<ImageGalleryShortViewModel> Get(string method, [FromQuery] string txt)
+        {
+            if (method.Equals("default", StringComparison.OrdinalIgnoreCase))
+            {
+                return imageGalleryBll.SearchByDefault(txt).ToShortViewModel();
+            }
+
+            return imageGalleryBll.SearchByDefault(txt).ToShortViewModel();
         }
 
         // POST api/values

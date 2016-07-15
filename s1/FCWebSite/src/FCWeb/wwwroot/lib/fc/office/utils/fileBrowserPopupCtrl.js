@@ -12,6 +12,9 @@
         $scope.fileBrowser = {
             path: fileBrowser.path,
             root: fileBrowser.root,
+            allowRemove: fileBrowser.allowRemove,
+            multiple: fileBrowser.multiple,
+            disableSubmit: fileBrowser.disableSubmit,
             onOk: function (selectedFile) {
                 $uibModalInstance.close(selectedFile);
             },

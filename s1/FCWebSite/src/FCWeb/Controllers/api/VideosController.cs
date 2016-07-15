@@ -25,35 +25,7 @@ namespace FCWeb.Controllers.Api
             this.videoBll = videoBll;
         }
 
-        // GET: api/values/latest
-        [HttpGet("search")]
-        public IEnumerable<VideoViewModel> Get([FromQuery] string txt)
-        {
-            var videoModels = new List<VideoViewModel>();
-
-            IEnumerable<VideoViewModel> searchedData = videoBll.SearchByTitle(txt).ToViewModel();
-
-            videoModels.AddRange(searchedData);
-
-            return videoModels;
-        }
-
-        // GET: api/values/latest
-        [HttpGet("latest/{count:range(0,20)}/{offset:int?}")]
-        public IEnumerable<VideoShortViewModel> Get(int count, int offset)
-        {
-            return videoBll.GetMainVideos(count, offset).ToShortViewModel();
-        }
-
-        //// GET: api/values/latest
-        //[HttpGet]
-        //public IEnumerable<PublicationViewModel> Get()
-        //{
-        //    return publicationBLL.GetMainPublications(10, 0).ToViewModel();
-        //}
-
-        // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public VideoViewModel Get(int id)
         {
             if (User.Identity.IsAuthenticated
@@ -74,6 +46,29 @@ namespace FCWeb.Controllers.Api
             }
 
             return videoBll.GetVideo(id).ToViewModel();
+        }
+
+        [HttpGet("{urlKey}")]
+        public VideoViewModel Get(string urlKey)
+        {
+            return videoBll.GetVideo(urlKey).ToViewModel();
+        }
+
+        [HttpGet("{count:range(0,50)}/{offset:int}")]
+        public IEnumerable<VideoShortViewModel> Get(int count, int offset, [FromQuery] string[] groups)
+        {
+            return videoBll.GetLatestVideos(count, offset, groups).ToShortViewModel();
+        }
+
+        [HttpGet("search/{method}")]
+        public IEnumerable<VideoShortViewModel> Get(string method, [FromQuery] string txt)
+        {
+            if (method.Equals("default", StringComparison.OrdinalIgnoreCase))
+            {
+                return videoBll.SearchByDefault(txt).ToShortViewModel();
+            }
+
+            return videoBll.SearchByDefault(txt).ToShortViewModel();
         }
 
         // POST api/values

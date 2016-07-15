@@ -42,13 +42,13 @@
                 Enable = publicationModel.enable,
                 Header = publicationModel.header,
                 Image = publicationModel.image,
-                imageGalleryId = null,
+                imageGalleryId = publicationModel.imageGalleryId.HasValue && publicationModel.imageGalleryId > 0 ? publicationModel.imageGalleryId : null,
                 Lead = publicationModel.lead,
                 Priority = publicationModel.priority,
                 ShowImageInContet = publicationModel.showImageInContent,
                 Title = publicationModel.title,
                 URLKey = publicationModel.urlKey,
-                videoId = publicationModel.videoId,
+                videoId = publicationModel.videoId.HasValue && publicationModel.videoId > 0 ? publicationModel.videoId : null,
                 Visibility = publicationModel.visibility
             };
         }

@@ -5,30 +5,19 @@
         .module('fc.admin')
         .controller('publicationEditCtrl', publicationEditCtrl);
 
-    publicationEditCtrl.$inject = ['$scope', '$routeParams', 'publicationsSrv', 'fileBrowserSrv', 'configSrv', 'helper'];
+    publicationEditCtrl.$inject = ['$scope', '$routeParams', '$location', 'publicationsSrv', 'fileBrowserSrv', 'configSrv', 'helper'];
 
-    function publicationEditCtrl($scope, $routeParams, publicationsSrv, fileBrowserSrv, configSrv, helper) {
+    function publicationEditCtrl($scope, $routeParams, $location, publicationsSrv, fileBrowserSrv, configSrv, helper) {
 
         if (!angular.isDefined($scope.forms)) {
             $scope.forms = {};
         }
 
-        var saveCallbackName = "saveCallback";
-
-        var videoId = -1;
-
-        $scope.video = { 
-            id: videoId,
-            callbackData: {
-                saveCallbackName: saveCallbackName
-            }
-        }
-
         $scope.loading = true;
-        $scope.videoId = videoId;
+        $scope.galleryId = -1;
+        $scope.videoId = -1;
         $scope.openFileBrowser = openFileBrowser;
         $scope.saveEdit = saveEdit;
-        $scope.videoMode = "0";
         $scope.titleChanged = titleChanged;
         $scope.urlKeyRegexPattern = configSrv.urlKeyRegexPattern;
         $scope.publication = {};
@@ -44,38 +33,13 @@
             fileBrowserSrv.open(
                 publicationsSrv.getImagesPath(),
                 publicationsSrv.getImagesPath(),
+                true,
+                true,
+                false,
                 function (selectedFile) {
                     $scope.publication.image = selectedFile.path;
                 });
         }
-
-        // handle video autocomplete
-        $scope.$watch(function (scope) {
-            return scope.videoId;
-        },
-        function (newValue, oldValue) {
-            $scope.video.id = newValue;
-        });
-
-        var tmpVideoId = $scope.videoId;
-
-        // handle related videoId changes
-        $scope.$watch(function (scope) {
-            return $scope.videoMode;
-        },
-        function (newValue, oldValue) {
-            if(oldValue === "2") {
-                tmpVideoId = $scope.videoId
-            }
-
-            if ($scope.videoMode === "0") {
-                $scope.videoId = -1;
-            } else if ($scope.videoMode === "1") {
-                $scope.videoId = 0;
-            } else {
-                $scope.videoId = tmpVideoId;
-            }
-        });
 
         loadData($routeParams.id);
 
@@ -103,9 +67,11 @@
                 authorized: (publication.visibility & configSrv.settingsVisibility.authorized) == configSrv.settingsVisibility.authorized
             }
 
+            $scope.galleryId = angular.isNumber(publication.imageGalleryId) ? publication.imageGalleryId : -1;
+            $scope.galleryInitUrl = '/api/galleries/' + $scope.imageGalleryId;
+
             $scope.videoId = angular.isNumber(publication.videoId) ? publication.videoId : -1;
             $scope.videoInitUrl = '/api/videos/' + $scope.videoId;
-            $scope.videoMode = $scope.videoId > 0 ? "2" : "0";
         }
 
         function saveEdit(form) {
@@ -113,32 +79,7 @@
             $scope.submitted = true;
 
             if (!form.$valid) {
-
-                $scope.customValidity = true;
-
-                // child forms aren't being checked, they will be checked in callback below
-                if (angular.isDefined($scope.video.callbackData)
-                    && angular.isDefined($scope.video.callbackData.formName)) {
-                        angular.forEach(form.$error.required, function (field) {
-                            if (field.$invalid 
-                                && field.$name.endsWith('.' + this.video.callbackData.formName)) {
-                                this.customValidity = this.customValidity && true;
-                            } else {
-                                this.customValidity = false;
-                            }
-                        }, $scope);
-                }
-
-                if (!$scope.customValidity) {
-                    return;
-                }                
-            }
-
-            if (angular.isDefined($scope.video.callbackData)
-                && angular.isFunction($scope.video.callbackData[saveCallbackName])) {
-                if (!$scope.video.callbackData[saveCallbackName]()) {
-                    return;
-                }
+                return;
             }
 
             var visibility = {
@@ -150,13 +91,15 @@
             }
 
             $scope.publication.visibility = visibility.main | visibility.news | visibility.reserve | visibility.youth | visibility.authorized;
+
+            $scope.publication.imageGalleryId = $scope.galleryId;
             $scope.publication.videoId = $scope.videoId;
 
             publicationsSrv.savePublication($scope.publication.id || 0, $scope.publication, publicationSaved);
         }
 
         function publicationSaved(response) {
-            alert(response.data);
+            $location.path('/office/publications');
         }
     }
 })();

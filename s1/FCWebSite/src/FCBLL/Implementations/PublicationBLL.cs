@@ -1,13 +1,12 @@
 ﻿namespace FCBLL.Implementations
 {
-    using FCCore.Abstractions.Bll;
     using System.Collections.Generic;
-    using FCCore.Model;
+    using FCCore.Abstractions.Bll;
     using FCCore.Abstractions.Dal;
     using FCCore.Configuration;
-    using System;
-    using FCCore.Common;
     using FCCore.Helpers;
+    using FCCore.Model;
+
     public sealed class PublicationBll : IPublicationBll
     {
         private IPublicationDal dalPublication;
@@ -37,6 +36,7 @@
         public IEnumerable<Publication> GetMainPublications(int count, int offset)
         {
             short visibility = (short)(MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News);
+
             return DALPublication.GetLatestPublications(count, offset, visibility);
         }
 

@@ -10,22 +10,31 @@
     function videosSrv(helper, apiSrv, notificationManager, configSrv) {
 
         this.loadMainVideos = function (count, success, failure) {
-            apiSrv.get('/api/videos/latest/' + count, null, success, function (response) {
-                if (failure != null) {
-                    failure(response);
-                }
-
-                videoLoadFailed(response);
-            });
+            this.loadVideosPack(count, 0, ['main'], success, failure);
         }
 
-        this.loadVideosPack = function (count, offset, success, failure) {
-            apiSrv.get('/api/videos/latest/' + count + "/" + offset, null, success, function (response) {
+        this.loadNotFilteredVideos = function (count, skip, success, failure) {
+            this.loadVideosPack(count, skip, ['main', 'news', 'reserve', 'youth', 'authorized'], success, failure);
+        }
+
+        this.loadVideosPack = function (count, offset, groups, success, failure) {
+            var visibilityParams = '';
+
+            if(angular.isArray(groups) && groups.length > 0) {
+                var delim = '';
+
+                for(var i = 0; i < groups.length; i++) {
+                    delim = i == 0 ? '?' : '&';
+                    visibilityParams += delim + 'groups=' + groups[i];
+                }
+            }
+
+            apiSrv.get('/api/videos/' + count + "/" + offset + visibilityParams, null, success, function (response) {
                 if (failure != null) {
                     failure(response);
                 }
 
-                videoLoadFailed(response);
+                videosLoadFailed(response);
             });
         }
 
@@ -38,17 +47,41 @@
                         failure(response);
                     }
 
-                    videoLoadFailed(response);
-            });
+                    videosLoadFailed(response);
+                });
         }
 
-        function videoLoadFailed(response) {
+        this.loadVideoByUrlKey = function (urlKey, success, failure) {
+            apiSrv.get('/api/videos/' + urlKey,
+                null,
+                success,
+                function (response) {
+                    if (failure != null) {
+                        failure(response);
+                    }
+
+                    videosLoadFailed(response);
+                });
+        }
+
+        this.search = function (text, success, failure) {
+            var url = 'api/videos/search/default?txt=' + encodeURIComponent(text)
+
+            apiSrv.get(url,
+                null,
+                success,
+                function (response) {
+                    if (failure != null) {
+                        failure(response);
+                    }
+
+                    videosLoadFailed(response);
+                });
+        }
+
+        function videosLoadFailed(response) {
             notificationManager.displayError(response.data);
         }
-
-        //this.getImagesPath = function () {
-        //    return configSrv.getImageStorePath();
-        //}
 
         this.saveVideo = function (id, video, success, failure) {
             if (angular.isDefined(id) && parseInt(id) > 0) {

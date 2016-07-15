@@ -21,15 +21,23 @@
                 templateUrl: "lib/fc/office/publications/publicationEdit.html",
                 controller: "publicationEditCtrl"
             })
-            .when("/office/video/edit/:id", {
+            .when("/office/videos/", {
+                templateUrl: "lib/fc/office/videos/videosList.html",
+                controller: "videosListCtrl"
+            })
+            .when("/office/videos/edit/:id", {
                 templateUrl: "lib/fc/office/videos/videoEdit.html",
                 controller: "videoEditCtrl"
             })
-            .when("/office/gallery/edit/:id", {
-                templateUrl: "lib/fc/office/images/imageGalleryEdit.html",
+            .when("/office/galleries/edit/:id", {
+                templateUrl: "lib/fc/office/galleries/imageGalleryEdit.html",
                 controller: "imageGalleryEditCtrl"
             })
-            .when("/office/person/edit/:id", {
+            .when("/office/galleries/", {
+                templateUrl: "lib/fc/office/galleries/imageGalleriesList.html",
+                controller: "imageGalleriesListCtrl"
+            })
+            .when("/office/persons/edit/:id", {
                 templateUrl: "lib/fc/office/persons/personEdit.html",
                 controller: "personEditCtrl"
             })

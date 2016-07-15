@@ -25,14 +25,6 @@ namespace FCWeb.Controllers.Api.Publications
             this.publicationBll = publicationBll;
         }
 
-        // GET: api/values/latest
-        [HttpGet("{count:range(0,50)}/{offset:int}")]
-        public IEnumerable<PublicationShortViewModel> Get(int count, int offset, [FromQuery] string[] groups)
-        {
-            return publicationBll.GetLatestPublications(count, offset, groups).ToShortViewModel();
-        }
-
-        // GET api/values/5
         [HttpGet("{id:int}")]
         public PublicationViewModel Get(int id)
         {
@@ -62,15 +54,21 @@ namespace FCWeb.Controllers.Api.Publications
             return publicationBll.GetPublication(urlKey).ToViewModel();
         }
 
+        [HttpGet("{count:range(0,50)}/{offset:int}")]
+        public IEnumerable<PublicationShortViewModel> Get(int count, int offset, [FromQuery] string[] groups)
+        {
+            return publicationBll.GetLatestPublications(count, offset, groups).ToShortViewModel();
+        }
+
         [HttpGet("search/{method}")]
-        public IEnumerable<PublicationViewModel> Get(string method, [FromQuery] string txt)
+        public IEnumerable<PublicationShortViewModel> Get(string method, [FromQuery] string txt)
         {
             if (method.Equals("default", StringComparison.OrdinalIgnoreCase))
             {
-                return publicationBll.SearchByDefault(txt).ToViewModel();
+                return publicationBll.SearchByDefault(txt).ToShortViewModel();
             }
 
-            return publicationBll.SearchByDefault(txt).ToViewModel();
+            return publicationBll.SearchByDefault(txt).ToShortViewModel();
         }
 
         // POST api/values

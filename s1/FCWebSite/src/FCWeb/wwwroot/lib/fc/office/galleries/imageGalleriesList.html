@@ -7,15 +7,15 @@
                         <img ng-src="{{loadingImage}}" />
                     </div>
                     <div ng-show="!loading">
-                        <a href="office/publications/edit/0" class="pull-right"><span class="glyphicon glyphicon-plus">&nbsp;</span>Создать</a>
-                        <h2>Список публикаций</h2>
+                        <a href="office/galleries/edit/0" class="pull-right"><span class="glyphicon glyphicon-plus">&nbsp;</span>Создать</a>
+                        <h2>Список фото галлерей</h2>
                         <div class="form-group">
                             <label for="titleFilter" class="control-label">Фильтр:</label>
                             <input class="form-control" id="titleFilter" name="titleFilter" type="text" ng-model="text" ng-keyup="search($event, text);">
                         </div>
                         <table>
-                            <tr ng-repeat="publication in publications">
-                                <td><a ng-href="office/publications/edit/{{publication.id}}"><span class="glyphicon glyphicon-edit">&nbsp;</span>{{publication.title}}</a></td>
+                            <tr ng-repeat="gallery in galleries">
+                                <td><a ng-href="office/galleries/edit/{{gallery.id}}"><span class="glyphicon glyphicon-edit">&nbsp;</span>{{gallery.title}}</a></td>
                             </tr>
                         </table>
                     </div>

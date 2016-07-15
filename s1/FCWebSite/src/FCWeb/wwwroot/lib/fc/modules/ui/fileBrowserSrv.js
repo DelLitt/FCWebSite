@@ -9,7 +9,7 @@
 
     function fileBrowserSrv($rootScope, $uibModal) {
 
-        this.open = function (path, root, onSelect, onCancel, options) {
+        this.open = function (path, root, allowRemove, multiple, disableSubmit, onSelect, onCancel, options) {
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'lib/fc/office/utils/fileBrowserPopup.html',
@@ -18,6 +18,9 @@
                     fileBrowser : {
                         path: path,
                         root: root,
+                        allowRemove: allowRemove,
+                        multiple: multiple,
+                        disableSubmit: disableSubmit,
                         options: options
                     }
                 }
