@@ -5,13 +5,13 @@
         .module('fc.admin')
         .controller('imageGalleryEditCtrl', imageGalleryEditCtrl);
 
-    imageGalleryEditCtrl.$inject = ['$scope', '$routeParams', 'imageGallerySrv', 'configSrv', 'helper'];
+    imageGalleryEditCtrl.$inject = ['$scope', '$routeParams', '$location', 'imageGallerySrv', 'configSrv', 'helper'];
 
-    function imageGalleryEditCtrl($scope, $routeParams, imageGallerySrv, configSrv, helper) {
+    function imageGalleryEditCtrl($scope, $routeParams, $location, imageGallerySrv, configSrv, helper) {
 
         $scope.fileBrowser = {
-            path: 'content/gallery',
-            root: 'content/gallery',
+            path: '',
+            root: '',
             allowRemove: true,
             multiple: true,
             disableSubmit: true,
@@ -82,6 +82,8 @@
                 return false;
             }
 
+            console.log("Save gallery process is started for: " + $scope.gallery.id);
+
             var visibility = {
                 main: $scope.currentVisibility.main ? configSrv.settingsVisibility.main : 0,
                 news: $scope.currentVisibility.news ? configSrv.settingsVisibility.news : 0,
@@ -98,7 +100,7 @@
         }
 
         function gallerySaved(response) {
-            alert(response.data);
+            $location.path('/office/galleries');
         }
     }
 })();

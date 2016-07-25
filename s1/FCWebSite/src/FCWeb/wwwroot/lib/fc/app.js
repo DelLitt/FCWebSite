@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('fc', ['fc.core', 'fc.ui', 'pascalprecht.translate', 'ngSanitize'])
+    angular.module('fc', ['fc.core', 'fc.ui', 'pascalprecht.translate', 'ngSanitize', 'thatisuday.ng-image-gallery'])
         .config(config);
 
     config.$inject = ['$routeProvider', '$locationProvider', '$translateProvider'];

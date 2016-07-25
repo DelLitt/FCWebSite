@@ -5,9 +5,9 @@
         .module('fc.admin')
         .controller('videoEditCtrl', videoEditCtrl);
 
-    videoEditCtrl.$inject = ['$scope', '$routeParams', 'videosSrv', 'configSrv', 'helper'];
+    videoEditCtrl.$inject = ['$scope', '$routeParams', '$location', 'videosSrv', 'configSrv', 'helper'];
 
-    function videoEditCtrl($scope, $routeParams, videosSrv, configSrv, helper) {
+    function videoEditCtrl($scope, $routeParams, $location, videosSrv, configSrv, helper) {
 
         var formName = 'videoEdit';
 
@@ -17,34 +17,13 @@
         $scope.loading = true;
         $scope.titleChanged = titleChanged;
         $scope.urlKeyRegexPattern = configSrv.urlKeyRegexPattern;
-        $scope.single = !isDirective();
         $scope.saveEdit = saveEdit;
 
-        if (isDirective()) {
-            $scope.videoId = $scope.videoid;
-            $scope.callbackdata[$scope.callbackdata.saveCallbackName] = saveCallback;
-            $scope.callbackdata.formName = formName;
-
-            // handle related videoId changes
-            $scope.$watch(function (scope) {
-                return $scope.videoid;
-            },
-            function (newValue, oldValue) {
-                loadData(newValue);
-            });
-        } else {
-            if (!angular.isDefined($scope.forms)) {
-                $scope.forms = {};
-            }
-
-            $scope.videoId = parseInt($routeParams.id);
+        if (!angular.isDefined($scope.forms)) {
+            $scope.forms = {};
         }
 
-        function isDirective() {
-            return angular.isDefined($scope.videoid)
-                && angular.isDefined($scope.forms)
-                && angular.isDefined($scope.callbackdata);
-        }
+        $scope.videoId = parseInt($routeParams.id);
 
         loadData($scope.videoId);
 
@@ -83,10 +62,6 @@
             $scope.video.urlKey = helper.createUrlKey(value);
         }
 
-        function saveCallback() {
-            return saveEdit($scope.forms[formName]);
-        }
-
         function saveEdit(form) {
 
             $scope.submitted = true;
@@ -115,7 +90,7 @@
         }
 
         function videoSaved(response) {
-            alert(response.data);
+            $location.path('/office/videos');
         }
     }
 })();

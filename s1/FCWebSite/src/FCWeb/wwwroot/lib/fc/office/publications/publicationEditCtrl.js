@@ -68,7 +68,7 @@
             }
 
             $scope.galleryId = angular.isNumber(publication.imageGalleryId) ? publication.imageGalleryId : -1;
-            $scope.galleryInitUrl = '/api/galleries/' + $scope.imageGalleryId;
+            $scope.galleryInitUrl = '/api/galleries/' + $scope.galleryId;
 
             $scope.videoId = angular.isNumber(publication.videoId) ? publication.videoId : -1;
             $scope.videoInitUrl = '/api/videos/' + $scope.videoId;

@@ -13,7 +13,7 @@
             loading: true,
             count: 0,
             more: function () {
-                publicationsSrv.loadPublicationsPack(configSrv.mainPublicationsMoreCount, this.count, morePublicationsLoaded);
+                publicationsSrv.loadMainPublicationsPack(configSrv.mainPublicationsMoreCount, this.count, morePublicationsLoaded);
             }
         };
 
@@ -21,7 +21,7 @@
             loading: true,
             count: 0,
             more: function () {
-                videosSrv.loadVideosPack(configSrv.mainVideosMoreCount, this.count, moreVideosLoaded);
+                videosSrv.loadMainVideosPack(configSrv.mainVideosMoreCount, this.count, moreVideosLoaded);
             }
         };
 
@@ -29,7 +29,7 @@
             loading: true,
             count: 0,
             more: function () {
-                imageGallerySrv.loadGalleriesPack(configSrv.mainGalleriesMoreCount, this.count, moreGalleriesLoaded);
+                imageGallerySrv.loadMainGalleriesPack(configSrv.mainGalleriesMoreCount, this.count, moreGalleriesLoaded);
             }
         };
 

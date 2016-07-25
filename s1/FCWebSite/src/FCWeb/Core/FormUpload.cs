@@ -7,7 +7,7 @@
     using System.IO;
     using System.Linq;
     using System.Security;
-    using ViewModels;
+    using FCCore.Model.Storage;
     public class FormUpload
     {
         private string uploadDestination { get; set; }
@@ -47,14 +47,14 @@
         }
 
 
-        public FileViewModel SaveFile(IFormFile file)
+        public StorageFile SaveFile(IFormFile file)
         {
             if (string.IsNullOrWhiteSpace(uploadDestination))
             {
                 throw new ArgumentNullException(uploadDestination, string.Format("{0} can not be null!", nameof(uploadDestination)));
             }
 
-            var savingFile = new FileViewModel();
+            var savingFile = new StorageFile();
 
             if (file.ContentDisposition != null)
             {

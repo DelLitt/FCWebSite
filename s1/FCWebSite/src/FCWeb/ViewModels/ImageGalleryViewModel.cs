@@ -1,6 +1,7 @@
 ﻿namespace FCWeb.ViewModels
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class ImageGalleryViewModel
@@ -27,5 +28,6 @@
         public int visibility { get; set; }
         public string path { get; set; }
         public bool createNew { get; set; }
+        public IEnumerable<ImageGalleryItemViewModel> images { get; set; }
     }
 }

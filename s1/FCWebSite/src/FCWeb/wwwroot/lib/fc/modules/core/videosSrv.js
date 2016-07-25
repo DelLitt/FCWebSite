@@ -13,6 +13,10 @@
             this.loadVideosPack(count, 0, ['main'], success, failure);
         }
 
+        this.loadMainVideosPack = function (count, skip, success, failure) {
+            this.loadVideosPack(count, skip, ['main'], success, failure);
+        }
+
         this.loadNotFilteredVideos = function (count, skip, success, failure) {
             this.loadVideosPack(count, skip, ['main', 'news', 'reserve', 'youth', 'authorized'], success, failure);
         }
@@ -85,7 +89,7 @@
 
         this.saveVideo = function (id, video, success, failure) {
             if (angular.isDefined(id) && parseInt(id) > 0) {
-                apiSrv.put('/api/videos/', id, video, null,
+                apiSrv.put('/api/videos/', id, video,
                                 success,
                                 function (response) {
                                     if (failure != null) {
@@ -95,7 +99,7 @@
                                     videoSaveFailed(response);
                                 });
             } else {
-                apiSrv.post('/api/videos/', video,
+                apiSrv.post('/api/videos/', video, null,
                                 success,
                                 function (response) {
                                     if (failure != null) {

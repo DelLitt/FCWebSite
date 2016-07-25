@@ -16,10 +16,7 @@
                 </div>
                 <div class="form-group">
                     <label for="header" class="control-label">Дополнительный заголовок:</label>
-                    <input class="form-control" id="header" name="header" type="text" ng-model="publication.header" required>
-                    <div class="alert alert-danger fade in" ng-show="(forms.editPublication.header.$dirty || submitted) && forms.editPublication.header.$error.required">
-                        <strong>Ошибка!</strong> Введите дополнительный заголовок!
-                    </div>
+                    <input class="form-control" id="header" name="header" type="text" ng-model="publication.header">
                 </div>
                 <div class="form-group">
                     <label for="urlKey" class="control-label">Идентификатор в адресной строке:</label>
@@ -81,7 +78,7 @@
                 </div>
                 <div class="form-group">
                     <label for="showImageInContet" class="checkbox-inline">
-                        <input type="checkbox" name="showImageInContet" id="showImageInContet" ng-model="publication.showImageInContet">Показывать изображение в публикации
+                        <input type="checkbox" name="showImageInContet" id="showImageInContet" ng-model="publication.showImageInContent">Показывать изображение в публикации
                     </label>
                 </div>
                 <div class="form-group">

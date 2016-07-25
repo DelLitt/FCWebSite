@@ -13,6 +13,7 @@ namespace FCWeb.Controllers.Api.FileBrowser
     using System;
     using System.Collections.Generic;
     using System.Net;
+    using FCCore.Model.Storage;
 
     [Route("api/filebrowser/[controller]")]
     [Authorize]
@@ -38,14 +39,14 @@ namespace FCWeb.Controllers.Api.FileBrowser
                         string.Format("Parameter '{0}' is not found in upload request body!", nameof(uploadData.path)));
                 }
 
-                var savedFiles = new List<FileViewModel>();
+                var savedFiles = new List<StorageFile>();
 
                 //get posted file from web form
                 foreach (IFormFile file in Request.Form.Files)
                 {
                     var formUpload = new FormUpload(uploadData.path, MainCfg.AllowedImageExtensions);
 
-                    FileViewModel savedFile = formUpload.SaveFile(file);
+                    StorageFile savedFile = formUpload.SaveFile(file);
                     savedFiles.Add(savedFile);
                 }
 

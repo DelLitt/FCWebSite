@@ -83,7 +83,7 @@ namespace FCWeb.Controllers.Api
                 string storagePath = MainCfg.Images.Persons.Replace("{id}", personId.ToString());
                 string tempPath = MainCfg.Images.Persons.Replace("{id}", tempGuid);
 
-                StorageHelper.MoveFromTempToStorage(storagePath, tempPath, tempGuid);
+                LocalStorageHelper.MoveFromTempToStorage(storagePath, tempPath, tempGuid);
             }
 
             SavePersonCareer(personView);

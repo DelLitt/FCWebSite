@@ -1,16 +1,15 @@
 ﻿namespace FCCore.Abstractions.Bll
 {
-    using Model;
     using System.Collections.Generic;
 
     public interface IImageGalleryBll
     {
-        ImageGallery GetImageGallery(int id);
-        ImageGallery GetImageGallery(string urlKey);
-        IEnumerable<ImageGallery> GetMainImageGalleries(int count, int offset);
-        IEnumerable<ImageGallery> GetLatestImageGalleries(int count, int offset);
-        IEnumerable<ImageGallery> GetLatestImageGalleries(int count, int offset, IEnumerable<string> groups);
-        IEnumerable<ImageGallery> SearchByDefault(string text);
-        int SaveImageGallery(ImageGallery entity);
+        Model.ImageGallery GetImageGallery(int id);
+        Model.ImageGallery GetImageGallery(string urlKey);
+        IEnumerable<Model.ImageGallery> GetMainImageGalleries(int count, int offset);
+        IEnumerable<Model.ImageGallery> GetLatestImageGalleries(int count, int offset);
+        IEnumerable<Model.ImageGallery> GetLatestImageGalleries(int count, int offset, IEnumerable<string> groups);
+        IEnumerable<Model.ImageGallery> SearchByDefault(string text);
+        int SaveImageGallery(Model.ImageGallery entity);
     }
 }

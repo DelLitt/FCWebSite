@@ -1,8 +1,10 @@
 ﻿namespace FCWeb.Core.Extensions
 {
     using FCBLL.Implementations;
+    using FCBLL.Implementations.ImageGallery;
     using FCBLL.Implementations.Protocol;
     using FCCore.Abstractions.Bll;
+    using FCCore.Abstractions.Bll.ImageGallery;
     using FCCore.Abstractions.Bll.Protocol;
     using FCCore.Abstractions.Dal;
     using FCDAL.Implementations;
@@ -33,6 +35,7 @@
             serviceCollection.AddTransient<ICountryBll, CountryBll>();
             serviceCollection.AddTransient<ITotalizatorBll, TotalizatorBll>();
             serviceCollection.AddTransient<IGameProtocolManagerFactory, GameProtocolManagerFactory>();
+            serviceCollection.AddTransient<IGalleryStorageFactory, GalleryStorageFactory>();
         }
 
         public static void AddDALServices(this IServiceCollection serviceCollection)

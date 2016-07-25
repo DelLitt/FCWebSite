@@ -13,8 +13,12 @@
             this.loadPublicationsPack(count, 0, ['main'], success, failure);
         }
 
+        this.loadMainPublicationsPack = function (count, skip, success, failure) {
+            this.loadPublicationsPack(count, skip, ['main'], success, failure);
+        }
+
         this.loadNotFilteredPublications = function (count, skip, success, failure) {
-            this.loadPublicationsPack(count, skip, ['main', 'news', 'reserve', 'youth', 'authorized'], success, failure);
+            this.loadPublicationsPack(count, skip, ['main', 'news', 'reserve', 'youth'], success, failure);
         }
 
         this.loadPublicationsPack = function (count, offset, groups, success, failure) {

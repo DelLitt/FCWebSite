@@ -6,10 +6,11 @@ namespace FCWeb.Controllers.Api
     using System.Collections.Generic;
     using System.Net;
     using System.Security.Claims;
-    using Core;
     using Core.Extensions;
     using FCCore.Abstractions.Bll;
+    using FCCore.Common;
     using FCCore.Configuration;
+    using FCCore.Extensions;
     using FCCore.Model;
     using Microsoft.AspNet.Authorization;
     using Microsoft.AspNet.Mvc;
@@ -35,15 +36,15 @@ namespace FCWeb.Controllers.Api
             {
                 DateTime utcNow = DateTime.UtcNow;
 
-                return new ImageGalleryViewModel()
+                return new ImageGallery()
                 {
-                    dateDisplayed = utcNow,
-                    dateChanged = utcNow,
-                    dateCreated = utcNow,
-                    author = MainCfg.DefaultAuthor,
-                    enable = true,
-                    visibility = MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News
-                };
+                    DateDisplayed = utcNow,
+                    DateChanged = utcNow,
+                    DateCreated = utcNow,
+                    Author = MainCfg.DefaultAuthor,
+                    Enable = true,
+                    Visibility = MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News
+                }.ToViewModel();
             }
 
             return imageGalleryBll.GetImageGallery(id).ToViewModel();
@@ -99,11 +100,11 @@ namespace FCWeb.Controllers.Api
             // move images from temp folder
             if (imageGalleryId > 0 && imageGalleryView.createNew)
             {
-                string tempGuid = imageGalleryView.tempGuid.ToString();
+                string tempFolderName = imageGallery.GetGalleryUniqueDir(imageGalleryView.tempGuid, true);
                 string tempPath = imageGalleryView.path;
                 string storagePath = imageGallery.GetGalleryUniquePath();
 
-                StorageHelper.MoveFromTempToStorage(storagePath, tempPath, tempGuid);
+                LocalStorageHelper.MoveFromTempToStorage(storagePath, tempPath, tempFolderName);
             }
         }
 

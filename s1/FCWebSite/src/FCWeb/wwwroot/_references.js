@@ -2,6 +2,7 @@
 /// <reference path="../gulpfile.js" />
 /// <reference path="js/site.js" />
 /// <reference path="lib/angular/angular.js" />
+/// <reference path="lib/angular-animate/angular-animate.js" />
 /// <reference path="lib/angular-bootstrap/ui-bootstrap-tpls.js" />
 /// <reference path="lib/angular-cookies/angular-cookies.js" />
 /// <reference path="lib/angular-loading-bar/build/loading-bar.js" />

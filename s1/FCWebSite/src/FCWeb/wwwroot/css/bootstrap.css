@@ -6797,8 +6797,9 @@ button.close {
 /*Variables*/
 /*Variables*/
 html {
-  background-image: url('../../images/skin/sponsor.png');
-  background-repeat: repeat;
+  background-image: url('../../images/skin/bg1_1920x1080.jpg');
+  /*background-repeat: fi=;*/
+  background-attachment: fixed;
 }
 body {
   padding-top: 50px;
@@ -6839,61 +6840,6 @@ body {
 }
 .ellipsis-135 {
   width: 135px;
-}
-.fc-table {
-  color: #fff;
-  border: 1px solid transparent;
-  border-radius: 0 0 5px 5px;
-}
-.fc-table caption {
-  background: -webkit-linear-gradient(rgba(0, 43, 110, 0.8), 35%, rgba(0, 43, 110, 0.95) 75%, rgba(0, 43, 110, 0.8), 100%);
-  background: -o-linear-gradient(rgba(0, 43, 110, 0.8), 35%, rgba(0, 43, 110, 0.95) 75%, rgba(0, 43, 110, 0.8) 100%);
-  background: linear-gradient(rgba(0, 43, 110, 0.8), 35%, rgba(0, 43, 110, 0.95) 75%, rgba(0, 43, 110, 0.8) 100%);
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc002b6e', endColorstr='#cc002b6e', GradientType=0);
-  color: #ACCCFF;
-  /*border: 1px solid @background-primary;*/
-  padding: 5px 15px;
-  border-radius: 5px 5px 0 0;
-  color: #fff;
-}
-.fc-table tbody tr,
-.fc-table tr {
-  /*#gradient > .fc-vertical-three-colors(@start-color: fade(@background-primary, 50%); @color-stop1: 35%; @mid-color: fade(@background-primary, 90%); @color-stop2: 75%; @end-color: fade(@background-primary, 50%); @color-stop3: 100%;);*/
-  background-color: rgba(0, 43, 110, 0.85);
-}
-.fc-table tbody tr th,
-.fc-table tr th,
-.fc-table tbody tr td,
-.fc-table tr td {
-  border-top: none;
-  padding: 5px;
-  text-align: center;
-}
-.fc-table tbody tr th,
-.fc-table tr th {
-  background-color: rgba(0, 43, 110, 0.35);
-  color: #7DAFFF;
-  font-weight: normal;
-  vertical-align: middle;
-}
-.fc-table tbody tr td,
-.fc-table tr td {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-}
-.fc-table tbody tr td .fc-table-team,
-.fc-table tr td .fc-table-team {
-  max-width: 140px;
-  display: table-cell;
-}
-.fc-table tbody tr a,
-.fc-table tr a {
-  color: #bdd6ff;
-}
-.fc-table.fc-table-striped > tbody > tr:nth-of-type(odd),
-.fc-table.fc-table-striped > tr:nth-of-type(odd) {
-  /*#gradient > .fc-vertical-three-colors(@start-color: fade(@brand-primary4, 10%); @color-stop1: 35%; @mid-color: fade(@brand-primary4, 25%); @color-stop2: 75%; @end-color: fade(@brand-primary4, 10%); @color-stop3: 100%;);*/
-  background-color: rgba(0, 43, 110, 0.75);
 }
 .fc-col {
   background: -webkit-linear-gradient(rgba(255, 255, 255, 0.7), 40%, rgba(255, 255, 255, 0.9) 80%, rgba(255, 255, 255, 0.7), 50%);
@@ -6956,7 +6902,6 @@ textarea {
   display: table-cell;
 }
 .hot-publications {
-  margin-left: 7px;
   padding: 0;
 }
 .hot-publications .hot-list-items {
@@ -6966,9 +6911,9 @@ textarea {
 .hot-publications .row.hot-list-item {
   margin: 0px;
   padding: 11px 5px;
-  background-color: rgba(255, 255, 255, 0.75);
-  /*color: @fc-type-color;*/
-  border-bottom: 1px dashed;
+  background-color: #fff;
+  color: #3c71c6;
+  border-top: 1px dashed;
   /*.glyphicon.glyphicon-facetime-video,
     .glyphicon.glyphicon-camera {
       font-size: 12px;
@@ -7052,6 +6997,140 @@ textarea {
 .io-item.selected {
   background-color: rgba(125, 175, 255, 0.5);
 }
+.fc-publication,
+.fc-pane-body .fc-publication,
+.fc-pane .fc-pane-body .fc-publication,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication {
+  color: #555555;
+  background-color: #fff;
+  font-size: 16px;
+}
+.fc-publication h1,
+.fc-pane-body .fc-publication h1,
+.fc-pane .fc-pane-body .fc-publication h1,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h1,
+.fc-publication h2,
+.fc-pane-body .fc-publication h2,
+.fc-pane .fc-pane-body .fc-publication h2,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h2,
+.fc-publication h3,
+.fc-pane-body .fc-publication h3,
+.fc-pane .fc-pane-body .fc-publication h3,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h3,
+.fc-publication h4,
+.fc-pane-body .fc-publication h4,
+.fc-pane .fc-pane-body .fc-publication h4,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h4,
+.fc-publication h5,
+.fc-pane-body .fc-publication h5,
+.fc-pane .fc-pane-body .fc-publication h5,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h5,
+.fc-publication h6,
+.fc-pane-body .fc-publication h6,
+.fc-pane .fc-pane-body .fc-publication h6,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h6,
+.fc-publication h7,
+.fc-pane-body .fc-publication h7,
+.fc-pane .fc-pane-body .fc-publication h7,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h7 {
+  margin-bottom: 20px;
+  /*small:after {
+      content: "\0020 |";
+    }*/
+}
+.fc-publication h1 small,
+.fc-pane-body .fc-publication h1 small,
+.fc-pane .fc-pane-body .fc-publication h1 small,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h1 small,
+.fc-publication h2 small,
+.fc-pane-body .fc-publication h2 small,
+.fc-pane .fc-pane-body .fc-publication h2 small,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h2 small,
+.fc-publication h3 small,
+.fc-pane-body .fc-publication h3 small,
+.fc-pane .fc-pane-body .fc-publication h3 small,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h3 small,
+.fc-publication h4 small,
+.fc-pane-body .fc-publication h4 small,
+.fc-pane .fc-pane-body .fc-publication h4 small,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h4 small,
+.fc-publication h5 small,
+.fc-pane-body .fc-publication h5 small,
+.fc-pane .fc-pane-body .fc-publication h5 small,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h5 small,
+.fc-publication h6 small,
+.fc-pane-body .fc-publication h6 small,
+.fc-pane .fc-pane-body .fc-publication h6 small,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h6 small,
+.fc-publication h7 small,
+.fc-pane-body .fc-publication h7 small,
+.fc-pane .fc-pane-body .fc-publication h7 small,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h7 small {
+  color: rgba(0, 43, 110, 0.75);
+  padding-left: 6px;
+  font-size: 70%;
+}
+.fc-publication h1 small:before,
+.fc-pane-body .fc-publication h1 small:before,
+.fc-pane .fc-pane-body .fc-publication h1 small:before,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h1 small:before,
+.fc-publication h2 small:before,
+.fc-pane-body .fc-publication h2 small:before,
+.fc-pane .fc-pane-body .fc-publication h2 small:before,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h2 small:before,
+.fc-publication h3 small:before,
+.fc-pane-body .fc-publication h3 small:before,
+.fc-pane .fc-pane-body .fc-publication h3 small:before,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h3 small:before,
+.fc-publication h4 small:before,
+.fc-pane-body .fc-publication h4 small:before,
+.fc-pane .fc-pane-body .fc-publication h4 small:before,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h4 small:before,
+.fc-publication h5 small:before,
+.fc-pane-body .fc-publication h5 small:before,
+.fc-pane .fc-pane-body .fc-publication h5 small:before,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h5 small:before,
+.fc-publication h6 small:before,
+.fc-pane-body .fc-publication h6 small:before,
+.fc-pane .fc-pane-body .fc-publication h6 small:before,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h6 small:before,
+.fc-publication h7 small:before,
+.fc-pane-body .fc-publication h7 small:before,
+.fc-pane .fc-pane-body .fc-publication h7 small:before,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication h7 small:before {
+  content: "| \0020";
+}
+.fc-publication .fc-publication-lead,
+.fc-pane-body .fc-publication .fc-publication-lead,
+.fc-pane .fc-pane-body .fc-publication .fc-publication-lead,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication .fc-publication-lead {
+  font-weight: bold;
+}
+.fc-publication .fc-publication-main-img,
+.fc-pane-body .fc-publication .fc-publication-main-img,
+.fc-pane .fc-pane-body .fc-publication .fc-publication-main-img,
+.fc-pane .fc-pane-body .fc-pane-form.fc-publication .fc-publication-main-img {
+  margin: 0 20px 15px 0;
+}
+.fc-publication a.fc-act-btn:focus,
+.fc-publication a.fc-act-btn:active,
+.fc-publication .fc-act-btn {
+  color: rgba(0, 68, 174, 0.75);
+  text-decoration: none;
+}
+.fc-publication .fc-act-btn:hover {
+  text-shadow: 1px 1px 1px rgba(0, 43, 110, 0.25);
+}
+.fc-publication a.fc-act-btn:hover {
+  color: #7DAFFF;
+  text-decoration: none;
+}
+.fc-publication a.fc-act-btn.active {
+  color: #7DAFFF;
+}
+.fc-publication table td .fc-act-btn {
+  /*width: 90%;*/
+}
 /*office*/
 .main-brand {
   color: #002B6E;
@@ -7114,7 +7193,102 @@ textarea {
 }
 .table-borderless tbody tr td,
 .table-borderless tbody tr th {
-  border: none;
+  border: none !important;
+}
+.fc-table {
+  border-radius: 0 0 5px 5px;
+}
+.fc-table caption {
+  padding: 5px 15px;
+  border-radius: 5px 5px 0 0;
+}
+.fc-table tbody tr th,
+.fc-table tr th,
+.fc-table tbody tr td,
+.fc-table tr td {
+  border-top: none;
+  padding: 5px;
+  text-align: center;
+}
+.fc-table tbody tr th,
+.fc-table tr th {
+  font-weight: normal;
+  vertical-align: middle;
+}
+.fc-table tbody tr td .fc-table-string,
+.fc-table tr td .fc-table-string {
+  max-width: 140px;
+  display: table-cell;
+}
+.fc-table-dark {
+  color: #fff;
+  border: 1px solid transparent;
+}
+.fc-table-dark caption {
+  background: -webkit-linear-gradient(rgba(0, 43, 110, 0.8), 35%, rgba(0, 43, 110, 0.95) 75%, rgba(0, 43, 110, 0.8), 100%);
+  background: -o-linear-gradient(rgba(0, 43, 110, 0.8), 35%, rgba(0, 43, 110, 0.95) 75%, rgba(0, 43, 110, 0.8) 100%);
+  background: linear-gradient(rgba(0, 43, 110, 0.8), 35%, rgba(0, 43, 110, 0.95) 75%, rgba(0, 43, 110, 0.8) 100%);
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc002b6e', endColorstr='#cc002b6e', GradientType=0);
+  color: #ACCCFF;
+  color: #fff;
+}
+.fc-table-dark tbody tr,
+.fc-table-dark tr {
+  background-color: rgba(0, 43, 110, 0.85);
+}
+.fc-table-dark tbody tr th,
+.fc-table-dark tr th {
+  background-color: rgba(0, 43, 110, 0.35);
+  color: #7DAFFF;
+}
+.fc-table-dark tbody tr td,
+.fc-table-dark tr td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+.fc-table-dark tbody tr a,
+.fc-table-dark tr a {
+  color: #bdd6ff;
+}
+.fc-table.fc-table-dark.fc-table-striped > tbody > tr:nth-of-type(odd),
+.fc-table.fc-table-dark.fc-table-striped > tr:nth-of-type(odd) {
+  background-color: rgba(0, 43, 110, 0.75);
+}
+.fc-table-light {
+  color: #00378F;
+  border: 1px solid transparent;
+}
+.fc-table-light caption {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #00378F;
+  margin: 0 0 -5px 0;
+  box-shadow: 0 0 5px;
+}
+.fc-table-light tbody tr:first-child,
+.fc-table-light tr:first-child {
+  background-color: transparent !important;
+}
+.fc-table-light tbody tr,
+.fc-table-light tr {
+  background-color: rgba(255, 255, 255, 0.95);
+  /*td {
+      border-bottom: 1px solid fade(@brand-primary, 25%);
+    }*/
+}
+.fc-table-light tbody tr th,
+.fc-table-light tr th {
+  background-color: rgba(0, 43, 110, 0.85);
+  color: #ACCCFF;
+  border-top: 11px solid rgba(255, 255, 255, 0.55);
+  border-bottom: 12px solid rgba(255, 255, 255, 0.35);
+}
+.fc-table-light tbody tr a,
+.fc-table-light tr a {
+  color: rgba(0, 68, 174, 0.75);
+}
+.fc-table.fc-table-striped > tbody > tr:nth-of-type(odd),
+.fc-table.fc-table-striped > tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.85);
 }
 .text-bg-color {
   color: #fff;
@@ -7231,9 +7405,10 @@ a.text-prim5-color:focus {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
-  color: #4c7dcb;
+  color: #3c71c6;
   border-bottom: none;
   padding: 15px 15px 15px 15px;
+  border-radius: 5px;
 }
 .fc-pane .fc-pane-body .fc-pane-form {
   background-color: rgba(255, 255, 255, 0.95);
@@ -7304,6 +7479,12 @@ a.text-prim5-color:focus {
 .fc-pane.fc-pane-dark .fc-pane-body h7.header {
   color: #fff;
   padding: 7px 15px;
+}
+.fc-pane.fc-pane-dark .fc-pane-body a.fc-pane-action-link,
+.fc-pane.fc-pane-dark .fc-pane-body a.fc-pane-action-link:hover,
+.fc-pane.fc-pane-dark .fc-pane-body a.fc-pane-action-link:active {
+  color: rgba(0, 43, 110, 0.75);
+  background-color: rgba(255, 255, 255, 0.91);
 }
 .fc-pane.fc-pane-dark .label-primary {
   background-color: #fff;

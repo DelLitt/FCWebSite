@@ -13,7 +13,8 @@ namespace FCWeb.Controllers.Api.FileBrowser
     using System;
     using System.Collections.Generic;
     using System.Net;
-
+    using FCCore.Model.Storage;
+    using FCCore.Common;
     [Route("api/filebrowser/[controller]")]
     [Authorize]
     public class RemoveController : Controller
@@ -21,17 +22,17 @@ namespace FCWeb.Controllers.Api.FileBrowser
         // POST api/values
         [HttpPost]
         [Authorize(Roles = "admin,press")]
-        public IActionResult Post([FromBody]IEnumerable<FileViewModel> data)
+        public IActionResult Post([FromBody]IEnumerable<StorageFile> data)
         {
             if (Request.Form.ContainsKey("data"))
             {
-                var filesData = JsonConvert.DeserializeObject<IEnumerable<FileViewModel>>(Request.Form["data"]);
+                var filesData = JsonConvert.DeserializeObject<IEnumerable<StorageFile>>(Request.Form["data"]);
                 if (filesData == null)
                 {
                     throw new ArgumentNullException(nameof(filesData), nameof(filesData) + " is not found in request body!");
                 }
 
-                var result = StorageHelper.RemoveFiles(filesData);
+                var result = LocalStorageHelper.RemoveFiles(filesData);
 
                 return Ok(result);
             }

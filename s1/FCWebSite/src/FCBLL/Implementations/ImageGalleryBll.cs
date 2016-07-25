@@ -5,7 +5,6 @@
     using FCCore.Abstractions.Dal;
     using FCCore.Configuration;
     using FCCore.Helpers;
-    using FCCore.Model;
 
     public class ImageGalleryBll : IImageGalleryBll
     {
@@ -23,43 +22,43 @@
             }
         }
 
-        public ImageGallery GetImageGallery(int id)
+        public FCCore.Model.ImageGallery GetImageGallery(int id)
         {
             return DalImageGallery.GetImageGallery(id);
         }
 
-        public ImageGallery GetImageGallery(string urlKey)
+        public FCCore.Model.ImageGallery GetImageGallery(string urlKey)
         {
             return DalImageGallery.GetImageGallery(urlKey);
         }
 
-        public IEnumerable<ImageGallery> GetLatestImageGalleries(int count, int offset)
+        public IEnumerable<FCCore.Model.ImageGallery> GetLatestImageGalleries(int count, int offset)
         {
             return DalImageGallery.GetLatestImageGalleries(count, offset);
         }
 
-        public IEnumerable<ImageGallery> GetLatestImageGalleries(int count, int offset, IEnumerable<string> groups)
+        public IEnumerable<FCCore.Model.ImageGallery> GetLatestImageGalleries(int count, int offset, IEnumerable<string> groups)
         {
             var visibility = (short)VisibilityHelper.VisibilityFromStrings(groups);
 
             return DalImageGallery.GetLatestImageGalleries(count, offset, visibility);
         }
 
-        public IEnumerable<ImageGallery> GetMainImageGalleries(int count, int offset)
+        public IEnumerable<FCCore.Model.ImageGallery> GetMainImageGalleries(int count, int offset)
         {
             short visibility = (short)(MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News);
 
             return DalImageGallery.GetLatestImageGalleries(count, offset, visibility);
         }
 
-        public int SaveImageGallery(ImageGallery entity)
+        public int SaveImageGallery(FCCore.Model.ImageGallery entity)
         {
             return DalImageGallery.SaveImageGallery(entity);
         }
 
-        public IEnumerable<ImageGallery> SearchByDefault(string text)
+        public IEnumerable<FCCore.Model.ImageGallery> SearchByDefault(string text)
         {
-            if(string.IsNullOrWhiteSpace(text)) { return new ImageGallery[0]; }
+            if(string.IsNullOrWhiteSpace(text)) { return new FCCore.Model.ImageGallery[0]; }
 
             return DalImageGallery.SearchByDefault(text);
         }

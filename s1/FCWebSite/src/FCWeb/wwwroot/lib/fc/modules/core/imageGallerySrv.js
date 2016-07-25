@@ -13,6 +13,10 @@
             this.loadGalleriesPack(count, 0, ['main'], success, failure);
         }
 
+        this.loadMainGalleriesPack = function (count, skip, success, failure) {
+            this.loadGalleriesPack(count, skip, ['main'], success, failure);
+        }
+
         this.loadNotFilteredGalleries = function (count, skip, success, failure) {
             this.loadGalleriesPack(count, skip, ['main', 'news', 'reserve', 'youth', 'authorized'], success, failure);
         }
@@ -39,7 +43,7 @@
         }
 
         this.loadGallery = function (id, success, failure) {
-            apiSrv.get('/api/publications/' + id,
+            apiSrv.get('/api/galleries/' + id,
                 null,
                 success,
                 function (response) {
@@ -52,7 +56,7 @@
         }
 
         this.loadGalleryByUrlKey = function (urlKey, success, failure) {
-            apiSrv.get('/api/publications/' + urlKey,
+            apiSrv.get('/api/galleries/' + urlKey,
                 null,
                 success,
                 function (response) {

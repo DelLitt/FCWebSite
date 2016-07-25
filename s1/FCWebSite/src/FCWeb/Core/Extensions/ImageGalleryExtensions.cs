@@ -4,24 +4,17 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using FCCore.Abstractions.Bll.ImageGallery;
+    using FCCore.Abstractions.Bll.Protocol;
     using FCCore.Common;
     using FCCore.Configuration;
+    using FCCore.Extensions;
     using FCCore.Model;
+    using Microsoft.Extensions.DependencyInjection;
     using ViewModels;
 
     public static class ImageGalleryExtensions
     {
-        public static string GetGalleryUniquePath(this ImageGallery item, Guid? temGuid = null)
-        {
-            if(item.Id == 0 && !temGuid.HasValue) { return string.Empty; }
-
-            string uniqueId = item.Id > 0 ? item.Id.ToString() : temGuid.Value.ToString();
-
-            string path = MainCfg.Images.Gallery + "/" + Path.Combine(item.DateCreated.ToString("yyyy") + "/", item.DateCreated.ToString("yyyymmdd") + "-_-" + uniqueId);
-
-            return path;
-        }
-
         public static string GetGalleryPublicationPreview(this ImageGallery item)
         {
             if (item.Id == 0) { return MainCfg.Images.EmptyPreview; }
@@ -63,6 +56,17 @@
 
             Guid? tempGuid = imageGallery.Id == 0 ? Guid.NewGuid() : (Guid?)null;
 
+            var galleryStorageFactory = MainCfg.ServiceProvider.GetService<IGalleryStorageFactory>();
+            IGalleryStorage galleryStorage = galleryStorageFactory.Create(imageGallery);
+
+            IEnumerable<string> images = galleryStorage.GetImagesList();
+            var imageItems = new List<ImageGalleryItemViewModel>();
+
+            if(!Guard.IsEmptyIEnumerable(images))
+            {
+                imageItems.AddRange(images.Select(i => new ImageGalleryItemViewModel() { url = i }));
+            }
+
             return new ImageGalleryViewModel()
             {
                 id = imageGallery.Id,
@@ -79,7 +83,8 @@
                 visibility = imageGallery.Visibility,
                 tempGuid = tempGuid,
                 path = imageGallery.GetGalleryUniquePath(tempGuid),
-                createNew = tempGuid.HasValue
+                createNew = tempGuid.HasValue,
+                images = imageItems
             };
         }
 

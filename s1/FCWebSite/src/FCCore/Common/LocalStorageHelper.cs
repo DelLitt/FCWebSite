@@ -1,15 +1,14 @@
-﻿namespace FCWeb.Core
+﻿namespace FCCore.Common
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Security;
-    using FCCore.Common;
-    using FCCore.Configuration;
-    using ViewModels;
+    using Configuration;
+    using Model.Storage;  
 
-    public static class StorageHelper
+    public static class LocalStorageHelper
     {
         public static bool MoveFromTempToStorage(string storagePath, string tempPath, string tempFolderName)
         {
@@ -89,7 +88,7 @@
             }
         }
 
-        public static FolderViewModel GetFolderView(string path, string root, bool createNew, bool recursive = false)
+        public static StorageFolder GetFolderView(string path, string root, bool createNew, bool recursive = false)
         {
             string physicalPath = CheckPath(path, root, createNew);
             string parent = string.Empty;
@@ -105,7 +104,7 @@
                 }
             }
 
-            var folderView = new FolderViewModel()
+            var folderView = new StorageFolder()
             {
                 path = path,
                 name = Path.GetFileNameWithoutExtension(path) ?? string.Empty,
@@ -115,7 +114,7 @@
             IEnumerable<string> folders = Directory.EnumerateDirectories(physicalPath);
             if(folders != null)
             {
-                folderView.folders = folders.Select(f => new FolderViewModel()
+                folderView.folders = folders.Select(f => new StorageFolder()
                 {
                     name = Path.GetFileNameWithoutExtension(f) ?? string.Empty,
                     path = WebHelper.ToVirtualPath(f)
@@ -125,7 +124,7 @@
             IEnumerable<string> files = Directory.EnumerateFiles(physicalPath);
             if (files != null)
             {
-                folderView.files = files.Select(f => new FileViewModel()
+                folderView.files = files.Select(f => new StorageFile()
                 {
                     name = Path.GetFileName(f) ?? string.Empty,
                     path = WebHelper.ToVirtualPath(f)
@@ -137,13 +136,13 @@
             return folderView;
         }
 
-        public static bool RemoveFiles(IEnumerable<FileViewModel> files)
+        public static bool RemoveFiles(IEnumerable<StorageFile> files)
         {
             bool isAnyRemoved = false;
 
             if (Guard.IsEmptyIEnumerable(files)) { return isAnyRemoved; }
 
-            foreach(FileViewModel file in files)
+            foreach(StorageFile file in files)
             {
                 int lastSlashPos = file.path.LastIndexOf('/');
 

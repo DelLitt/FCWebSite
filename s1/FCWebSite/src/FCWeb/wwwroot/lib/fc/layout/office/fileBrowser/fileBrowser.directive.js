@@ -43,7 +43,10 @@
                     return scope.model.path;
                 },
                 function (newValue, oldValue) {
-                    scope.openFolder(newValue);
+                    if (newValue !== oldValue) {
+                        console.log("Path was changed to: " + newValue);
+                        scope.openFolder(newValue);
+                    }
                 });
 
                 scope.selectedFile = scope.initialItem;
@@ -85,6 +88,9 @@
                     for (var i = 0; i < scope.directoryView.files.length; i++) {
                         if (scope.directoryView.files[i].isChecked) {
                             remFiles.push(scope.directoryView.files[i]);
+                            if (scope.selectedFile == scope.directoryView.files[i]) {
+                                scope.selectedFile = null;
+                            }
                         }
                     }
 
@@ -93,12 +99,20 @@
                     }
 
                     var postForms = $httpParamSerializer({ data: angular.toJson(remFiles) });
-                    var config = { headers: { "Content-Type": "application/x-www-form-urlencoded" }};
+                    var config = { headers: { "Content-Type": "application/x-www-form-urlencoded" } };
+
+                    console.log("Removing is started...");
 
                     apiSrv.post('/api/filebrowser/remove', postForms, config, removeSuccess, failure);
                 }
 
                 function loadData(path, root, options) {
+                    if (!(angular.isString(path) && angular.isString(root) && path.length > 0 && root.length > 0)) {
+                        return;
+                    }
+
+                    console.log("Loading data for: " + path);
+
                     var createNewParam = angular.isObject(options) && options.createNew === true
                         ? '&createNew=true'
                         : '';
@@ -107,11 +121,15 @@
                 }
 
                 function loadSuccess(response) {
+                    console.log("Data was loaded succesfully for: " + response.data.path);
+
                     scope.directoryView = response.data;
-                    scope.contentUpload.path = response.data.path;
+                    scope.contentUpload.path = response.data.path;                    
                 }
 
                 function removeSuccess(response) {
+                    console.log("Files was removed successfully...");
+
                     loadData(scope.model.path, scope.model.root, scope.model.options);
                 }
 

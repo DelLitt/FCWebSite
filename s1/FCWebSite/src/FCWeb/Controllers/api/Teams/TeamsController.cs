@@ -2,9 +2,9 @@
 {
     using System.Collections.Generic;
     using System.Net;
-    using Core;
     using Core.Extensions;
     using FCCore.Abstractions.Bll;
+    using FCCore.Common;
     using FCCore.Configuration;
     using Microsoft.AspNet.Authorization;
     using Microsoft.AspNet.Mvc;
@@ -71,7 +71,7 @@
                 string storagePath = MainCfg.Images.Teams.Replace("{id}", teamId.ToString());
                 string tempPath = MainCfg.Images.Teams.Replace("{id}", tempGuid);
 
-                StorageHelper.MoveFromTempToStorage(storagePath, tempPath, tempGuid);
+                LocalStorageHelper.MoveFromTempToStorage(storagePath, tempPath, tempGuid);
             }
         }
 

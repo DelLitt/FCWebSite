@@ -2,8 +2,114 @@
   tbody {
     tr {
       td, th {
-        border: none;
+        border: none !important;
       }
     }
+  }
+}
+
+.fc-table {
+  border-radius: 0 0 @fc-border-radius @fc-border-radius;
+
+  caption {
+    padding: 5px 15px;
+    border-radius: 5px 5px 0 0;
+  }
+
+  tbody tr, tr {
+
+    th, td {
+      border-top: none;
+      padding: 5px;
+      text-align: center;
+    }
+
+    th {
+      font-weight: normal;
+      vertical-align: middle;
+    }
+
+    td {
+      .fc-table-string {
+        max-width: 140px;        
+        display: table-cell;
+      }
+    }
+  }
+}
+
+.fc-table-dark {
+  color: @background-primary;
+  border: 1px solid transparent;
+
+  caption {
+    .fc-dark-bg();
+    color: @background-primary;
+  }
+
+  tbody tr, tr {
+    background-color: fade(@brand-primary, 85%);
+
+    th {
+      background-color: fade(@brand-primary, 35%);
+      color: @brand-primary4;
+    }
+
+    td {
+      border-bottom: 1px solid fade(@background-primary, 25%);
+    }
+
+    a {
+      color: @fc-light-link-color;
+    }
+  }
+}
+
+.fc-table.fc-table-dark.fc-table-striped {
+  > tbody > tr:nth-of-type(odd),
+  > tr:nth-of-type(odd) {
+    background-color: fade(@brand-primary, 75%);
+  }
+}
+
+.fc-table-light {
+  color: @brand-primary2;
+
+  caption {
+    background-color: fade(@background-primary, 90%);
+    color: @brand-primary2;
+    margin: 0 0 -5px 0;
+    box-shadow: 0 0 5px;
+
+  }
+
+  tbody tr:first-child, tr:first-child {
+    background-color: transparent !important;
+  }
+
+  tbody tr, tr {
+    background-color: fade(@background-primary, 95%);
+
+    th {
+      background-color: fade(@brand-primary, 85%);
+      color: @brand-primary5;
+      border-top: 11px solid fade(@background-primary, 55%);
+      border-bottom: 12px solid fade(@background-primary, 35%);      
+    }
+
+    /*td {
+      border-bottom: 1px solid fade(@brand-primary, 25%);
+    }*/
+
+    a {
+      color: @fc-dark-link-color;
+    }
+  }
+}
+
+.fc-table.fc-table-striped {
+  > tbody > tr:nth-of-type(odd),
+  > tr:nth-of-type(odd) {
+    background-color: fade(@background-primary, 85%);
   }
 }

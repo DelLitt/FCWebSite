@@ -30,6 +30,7 @@
     color: @fc-type-color;
     border-bottom: none;
     padding: 15px 15px 15px 15px;
+    border-radius: @fc-border-radius;
 
     .fc-pane-form {
       background-color: fade(@background-primary, 95%);
@@ -86,6 +87,13 @@
     h1.header, h2.header, h3.header, h4.header, h5.header, h6.header, h7.header {
       color: @background-primary;
       padding: 7px 15px;
+    }
+
+    a.fc-pane-action-link,
+    a.fc-pane-action-link:hover,
+    a.fc-pane-action-link:active {
+      color: @fc-type-dark-header-color;
+      background-color: fade(@background-primary, 91%);
     }
   }
 

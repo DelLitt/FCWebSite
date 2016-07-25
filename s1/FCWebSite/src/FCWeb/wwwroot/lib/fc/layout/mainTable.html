@@ -1,9 +1,6 @@
 ﻿<div>
-    <!--<div class="fc-col-header fc-grad">
-        {{model.name}}
-    </div>-->
     <div>        
-        <table class="fc-table fc-table-striped table">
+        <table class="fc-table fc-table-light fc-table-striped table">
             <caption>{{model.name}}</caption>
             <tr>
                 <th style="text-align: right !important">#</th>
@@ -17,7 +14,7 @@
             </tr>
             <tr ng-repeat="row in model.rows">
                 <td style="text-align: right !important;">{{row.position}}</td>
-                <td style="text-align: left !important;"><a href="javascript:void(0);"><span class="fc-table-team ellipsis">{{row.team}}</span></a></td>
+                <td style="text-align: left !important;"><span class="fc-table-string ellipsis">{{row.team}}</span></td>
                 <td>{{row.games}}</td>
                 <td>{{row.wins}}</td>
                 <td>{{row.draws}}</td>

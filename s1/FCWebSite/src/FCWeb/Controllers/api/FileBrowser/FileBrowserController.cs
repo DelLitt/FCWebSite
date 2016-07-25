@@ -3,9 +3,9 @@
 namespace FCWeb.Controllers.Api.FileBrowser
 {
     using Microsoft.AspNet.Mvc;
-    using ViewModels;
     using Microsoft.AspNet.Authorization;
-    using Core;
+    using FCCore.Model.Storage;
+    using FCCore.Common;
 
     [Route("api/[controller]")]
     [Authorize]
@@ -14,13 +14,13 @@ namespace FCWeb.Controllers.Api.FileBrowser
         // GET: api/values
         [HttpGet]
         [Authorize(Roles = "admin,press")]
-        public FolderViewModel Get([FromQuery] string path, [FromQuery] string root, [FromQuery] bool createNew)
+        public StorageFolder Get([FromQuery] string path, [FromQuery] string root, [FromQuery] bool createNew)
         {
             bool allowCreate = createNew
                 && User.Identity.IsAuthenticated
                 && (User.IsInRole("admin") || User.IsInRole("press"));
 
-            var folderView = StorageHelper.GetFolderView(path, root, allowCreate);
+            var folderView = LocalStorageHelper.GetFolderView(path, root, allowCreate);
 
             return folderView;
         }
