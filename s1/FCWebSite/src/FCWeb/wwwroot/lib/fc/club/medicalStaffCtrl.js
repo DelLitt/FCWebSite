@@ -9,7 +9,7 @@
 
     function medicalStaffCtrl($scope, configSrv, personsSrv) {
 
-        $scope.teamId = configSrv.getMainTeamId();
+        $scope.teamId = configSrv.Current.MainTeamId;
         $scope.publicationsCount = configSrv.teamPublicationsCount;
         $scope.title = 'MEDICAL_STAFF';
         $scope.persons = [];

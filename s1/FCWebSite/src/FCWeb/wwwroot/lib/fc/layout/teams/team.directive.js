@@ -58,10 +58,10 @@
                         item.flagSrc = helper.getFlagSrc(item.city.countryId);
                     });
 
-                    var goalkeepers = filterFilter(persons, { roleId: configSrv.positions.rrGoalkeeper });
-                    var defenders = filterFilter(persons, { roleId: configSrv.positions.rrDefender });
-                    var midfielders = filterFilter(persons, { roleId: configSrv.positions.rrMidfielder });
-                    var forwards = filterFilter(persons, { roleId: configSrv.positions.rrForward });
+                    var goalkeepers = filterFilter(persons, { roleId: configSrv.Current.PersonRoleIds.rrGoalkeeper });
+                    var defenders = filterFilter(persons, { roleId: configSrv.Current.PersonRoleIds.rrDefender });
+                    var midfielders = filterFilter(persons, { roleId: configSrv.Current.PersonRoleIds.rrMidfielder });
+                    var forwards = filterFilter(persons, { roleId: configSrv.Current.PersonRoleIds.rrForward });
 
                     scope.goalkeepers.rows = goalkeepers.length > 0 ? helper.formRows(goalkeepers, 3, 0) : [];
                     scope.defenders.rows = defenders.length > 0 ? helper.formRows(defenders, 3, 0) : [];

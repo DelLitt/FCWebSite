@@ -1,27 +1,14 @@
 ﻿<div class="fc-pane">
-    <!--<div class="fc-pane-body">-->
-        <div class="row">
-            <div class="col-sm-7">
-                <!--<div class="row">
-                    <div class="col-xs-12">
-                        <h5 class="header text-uppercase">Последние новости</h5>
-                    </div>
-                </div>-->
-                <div class="row">
-                    <hot-publications model="publications.hot" />
-                </div>
-            </div>
-            <div class="col-sm-5 main-table" ng-if="ranking">
-                <!--<div class="row">
-                    <div class="col-xs-12">
-                        <h5 class="header text-uppercase">Турнирная таблица</h5>
-                    </div>
-                </div>-->
-                <main-table model="ranking" />
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="row">
+                <hot-publications model="publications.hot" />
             </div>
         </div>
-    <!--</div>-->
-    <div class="bg-threads"></div>
+        <div class="col-sm-5 main-table" ng-if="ranking">
+            <main-table model="ranking" />
+        </div>
+    </div>
 </div>
 <div class="fc-pane fc-pane-dark">
     <div class="fc-pane-body">

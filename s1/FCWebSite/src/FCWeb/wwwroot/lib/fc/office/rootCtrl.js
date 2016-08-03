@@ -8,8 +8,6 @@
     rootCtrl.$inject = ['$scope', 'configSrv'];
 
     function rootCtrl($scope, configSrv) {
-        configSrv.loadConfigOffice();
-
         var clickListeners = [];
 
         $scope.click = function () {

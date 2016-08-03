@@ -86,7 +86,7 @@
                 createNew = true;
             }
 
-            var personPath = configSrv.getPersonImageUploadPath();            
+            var personPath = configSrv.Current.Images.Persons;
 
             return {
                 path: personPath.replace('{id}', uniqueKey),

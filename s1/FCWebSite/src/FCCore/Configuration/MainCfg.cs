@@ -8,7 +8,8 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Model;
-
+    using Model.Refs;
+    using Newtonsoft.Json;
     public static class MainCfg
     {
         private static IServiceCollection serviceCollection;
@@ -75,6 +76,148 @@
             get
             {
                 return Convert.ToInt32(CoreConfig.Current["Settings:MainTeamId"]);
+            }
+        }
+
+        public static int ReserveTeamId
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:ReserveTeamId"]);
+            }
+        }
+
+        public static int MainTableTourneyId
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MainTableTourneyId"]);
+            }
+        }
+
+        public static IEnumerable<int> mainTeamTourneyIds;
+        public static IEnumerable<int> MainTeamTourneyIds
+        {
+            get
+            {
+                if(mainTeamTourneyIds == null)
+                {
+                    string data = CoreConfig.Current["Settings:MainTeamTourneyIds"];
+                    JsonConvert.DeserializeObject<IEnumerable<int>>(data);
+                }
+
+                return mainTeamTourneyIds;
+            }
+        }
+
+        public static IEnumerable<int> reserveTeamTourneyIds;
+        public static IEnumerable<int> ReserveTeamTourneyIds
+        {
+            get
+            {
+                if (reserveTeamTourneyIds == null)
+                {
+                    string data = CoreConfig.Current["Settings:ReserveTeamTourneyIds"];
+                    JsonConvert.DeserializeObject<IEnumerable<int>>(data);
+                }
+
+                return reserveTeamTourneyIds;
+            }
+        }
+
+        public static int TeamPublicationsCount
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:TeamPublicationsCount"]);
+            }
+        }
+
+        public static int MainPublicationsCount
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MainPublicationsCount"]);
+            }
+        }
+
+        public static int MainPublicationsRowCount
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MainPublicationsRowCount"]);
+            }
+        }
+
+        public static int MainPublicationsHotCount
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MainPublicationsHotCount"]);
+            }
+        }
+
+        public static int MainPublicationsMoreCount
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MainPublicationsMoreCount"]);
+            }
+        }
+
+        public static int MainVideosCount
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MainVideosCount"]);
+            }
+        }
+
+        public static int MainVideosRowCount
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MainVideosRowCount"]);
+            }
+        }
+
+        public static int MainVideosMoreCount
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MainVideosMoreCount"]);
+            }
+        }
+
+        public static int MainGalleriesCount
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MainGalleriesCount"]);
+            }
+        }
+
+        public static int MainGalleriesRowCount
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MainGalleriesRowCount"]);
+            }
+        }
+
+        public static int MainGalleriesMoreCount
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MainGalleriesMoreCount"]);
+            }
+        }
+
+        public static string UrlKeyRegexPattern
+        {
+            get
+            {
+                return CoreConfig.Current["Settings:UrlKeyRegexPattern"];
             }
         }
 
@@ -155,6 +298,8 @@
                 return images;
             }
         }
+
+        // View model classes
 
         public class ImagesCfg
         {

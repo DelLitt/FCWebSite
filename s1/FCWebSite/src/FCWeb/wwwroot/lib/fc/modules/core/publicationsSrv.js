@@ -119,7 +119,7 @@
         }
 
         this.getImagesPath = function () {
-            return configSrv.getImageStorePath();
+            return configSrv.Current.Images.Store;
         }
     }
 })();

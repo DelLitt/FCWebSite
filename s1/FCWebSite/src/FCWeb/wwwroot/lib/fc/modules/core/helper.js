@@ -83,7 +83,7 @@ String.prototype.endsWith = function (suffix) {
 
             locLabels : {
                 position: function (roleId) {
-                    return configSrv.personGroups.player.indexOf(roleId) >= 0 ? "POSITION" : "POST";
+                    return configSrv.PersonGroups.Player.indexOf(roleId) >= 0 ? "POSITION" : "POST";
                 }
             },
 

@@ -124,7 +124,10 @@ textarea {
 }
 
 .hot-publications {
-  padding: 0;
+  padding: 15px;
+  .box-shadow(@fc-shadow);
+  border-radius: @fc-border-radius;
+  background-color: @background-primary;
 
   .hot-list-items {
     position: relative;
@@ -135,20 +138,21 @@ textarea {
     margin: 0px;
     padding: 11px 5px;
     background-color: @background-primary;
-    color: @fc-type-color;
+    color: @fc-dark-link-color;
     border-top: 1px dashed;
 
     a {
-      color: @fc-dark-link-color !important;
-      font-weight: bold;
+      color: @brand-primary2 !important;
+      /*font-weight: bold;*/
     }
 
     .glyphicon {
-      font-size: 1.3em;
-      color: @fc-dark-link-color;
+      font-size: 1.2em;
+      color: @brand-primary2;
     }
 
-    .glyphicon.logic:hover, .glyphicon.logic:focus {
+    .glyphicon.logic:hover, 
+    .glyphicon.logic:focus {
       color: @brand-primary4;
       cursor: pointer;
     }

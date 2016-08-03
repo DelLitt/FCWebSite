@@ -9,7 +9,7 @@
 
     function mainTeamCtrl($scope, configSrv) {
 
-        $scope.teamId = configSrv.getMainTeamId();
+        $scope.teamId = configSrv.Current.MainTeamId;
         $scope.tourneysIds = configSrv.mainTeamTourneyIds;
         $scope.publicationsCount = configSrv.teamPublicationsCount;
         $scope.teamTitle = 'Главаня команда';

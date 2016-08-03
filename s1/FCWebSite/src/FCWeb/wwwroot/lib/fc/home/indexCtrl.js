@@ -13,7 +13,7 @@
             loading: true,
             count: 0,
             more: function () {
-                publicationsSrv.loadMainPublicationsPack(configSrv.mainPublicationsMoreCount, this.count, morePublicationsLoaded);
+                publicationsSrv.loadMainPublicationsPack(configSrv.Current.MainPublicationsMoreCount, this.count, morePublicationsLoaded);
             }
         };
 
@@ -21,7 +21,7 @@
             loading: true,
             count: 0,
             more: function () {
-                videosSrv.loadMainVideosPack(configSrv.mainVideosMoreCount, this.count, moreVideosLoaded);
+                videosSrv.loadMainVideosPack(configSrv.Current.MainVideosMoreCount, this.count, moreVideosLoaded);
             }
         };
 
@@ -29,7 +29,7 @@
             loading: true,
             count: 0,
             more: function () {
-                imageGallerySrv.loadMainGalleriesPack(configSrv.mainGalleriesMoreCount, this.count, moreGalleriesLoaded);
+                imageGallerySrv.loadMainGalleriesPack(configSrv.Current.MainGalleriesMoreCount, this.count, moreGalleriesLoaded);
             }
         };
 
@@ -40,10 +40,10 @@
         loadData();
 
         function loadData() {
-            publicationsSrv.loadMainPublications(configSrv.mainPublicationsCount, mainPublicationsLoaded);
-            videosSrv.loadMainVideos(configSrv.mainVideosCount, mainVideosLoaded);
-            imageGallerySrv.loadMainGalleries(configSrv.mainGalleriesCount, mainGalleriesLoaded);
-            rankingsSrv.loadRankingTable(configSrv.mainTableTourneyId, rankingLoaded);
+            publicationsSrv.loadMainPublications(configSrv.Current.MainPublicationsCount, mainPublicationsLoaded);
+            videosSrv.loadMainVideos(configSrv.Current.MainVideosCount, mainVideosLoaded);
+            imageGallerySrv.loadMainGalleries(configSrv.Current.MainGalleriesCount, mainGalleriesLoaded);
+            rankingsSrv.loadRankingTable(configSrv.Current.MainTableTourneyId, rankingLoaded);
         }
 
         function mainPublicationsLoaded(response) {
@@ -51,7 +51,7 @@
             var hotCount = 1;
 
             if (angular.isArray(publications) && publications.length > 0) {
-                hotCount = Math.min(configSrv.mainPublicationsHotCount, publications.length);
+                hotCount = Math.min(configSrv.Current.MainPublicationsHotCount, publications.length);
             }
 
             $scope.publications.hot = publications.length > 0 
@@ -59,7 +59,7 @@
                 : [];
 
             $scope.publications.rows = publications.length > hotCount
-                ? helper.formRows(publications, configSrv.mainPublicationsRowCount, hotCount + 1)
+                ? helper.formRows(publications, configSrv.Current.MainPublicationsRowCount, hotCount + 1)
                 : [];
 
             $scope.publications.count += publications.length;
@@ -69,7 +69,7 @@
             var videos = response.data;
 
             $scope.videos.rows = videos.length > 0
-                ? helper.formRows(videos, configSrv.mainVideosRowCount)
+                ? helper.formRows(videos, configSrv.Current.MainVideosRowCount)
                 : [];
 
             $scope.videos.count += videos.length;
@@ -79,7 +79,7 @@
             var galleries = response.data;
 
             $scope.galleries.rows = galleries.length > 0
-                ? helper.formRows(galleries, configSrv.mainGalleriesRowCount)
+                ? helper.formRows(galleries, configSrv.Current.MainGalleriesRowCount)
                 : [];
 
             $scope.galleries.count += galleries.length;
@@ -92,7 +92,7 @@
                 return;
             }
             
-            var moreRows = helper.formRows(publications, configSrv.mainPublicationsMoreCount)
+            var moreRows = helper.formRows(publications, configSrv.Current.MainPublicationsMoreCount)
 
             for (var i = 0; i < moreRows.length; i++) {
                 $scope.publications.rows.push(moreRows[i]);
@@ -108,7 +108,7 @@
                 return;
             }
 
-            var moreRows = helper.formRows(videos, configSrv.mainVideosMoreCount)
+            var moreRows = helper.formRows(videos, configSrv.Current.MainVideosMoreCount)
 
             for (var i = 0; i < moreRows.length; i++) {
                 $scope.videos.rows.push(moreRows[i]);
@@ -124,7 +124,7 @@
                 return;
             }
 
-            var moreRows = helper.formRows(galleries, configSrv.mainGalleriesMoreCount)
+            var moreRows = helper.formRows(galleries, configSrv.Current.MainGalleriesMoreCount)
 
             for (var i = 0; i < moreRows.length; i++) {
                 $scope.galleries.rows.push(moreRows[i]);

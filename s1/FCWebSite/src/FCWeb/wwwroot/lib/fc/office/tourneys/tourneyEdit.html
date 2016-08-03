@@ -1,0 +1,19 @@
+﻿<div class="fc-pane">
+    <div class="fc-pane-body">
+        <div class="fc-pane-form">
+            <button ng-click="toggleStage()">Click</button>
+            <div class="my-directive-placeholder"></div>
+
+            <button ng-click="addRound()">Add round</button>
+            <div ng-repeat="r in rounds">
+                <p>{{r.round.name}}</p>
+                <ul>                    
+                    <li ng-repeat="g in r.games">
+                        <p>{{g.date}}</p>
+                        <p>{{g.homeName}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

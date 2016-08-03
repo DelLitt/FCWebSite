@@ -1,4 +1,6 @@
 ﻿@using FCCore.Model
+@using FCWeb.ViewComponents
+
 <!DOCTYPE html>
 <html ng-app="fc">
     <head>
@@ -14,6 +16,7 @@
             @*<link rel="stylesheet" href="~/css/site.css" />*@
         </environment>
         <environment names="Staging,Production">
+            @*<link href="https://fonts.googleapis.com/css?family=Noto+Serif&subset=cyrillic,cyrillic-ext" rel="stylesheet">*@
             <link rel="stylesheet" href="~/css/bootstrap.css" />
             @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
             @*<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
@@ -145,6 +148,10 @@
                 <div class="bg-threads"></div>
             </div>
         </footer>
+    </div>
+
+    <div id="config" style="display: none;">
+        @Component.Invoke("FrontConfig")
     </div>
 
     <environment names="Development">

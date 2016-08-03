@@ -8,9 +8,6 @@
     rootCtrl.$inject = ['$scope', '$translate', 'configSrv'];
 
     function rootCtrl($scope, $translate, configSrv) {
-
-        configSrv.loadConfig();
-
         $scope.changeLanguage = function (langKey) {
             $translate.use(langKey);
         };

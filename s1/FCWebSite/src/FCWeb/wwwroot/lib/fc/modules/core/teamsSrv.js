@@ -66,7 +66,7 @@
                 createNew = true;
             }
 
-            var teamPath = configSrv.getTeamImageUploadPath();
+            var teamPath = configSrv.Current.Images.Teams;
 
             return {
                 path: teamPath.replace('{id}', uniqueKey),

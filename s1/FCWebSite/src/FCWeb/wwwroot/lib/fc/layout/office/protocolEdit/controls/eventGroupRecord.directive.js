@@ -21,7 +21,7 @@
             },
 
             link: function link(scope, element, attrs) {
-                var friendlyNames = configSrv.getEventGroupFriendlyNames();
+                var friendlyNames = configSrv.Current.EventGroupFriendlyNames;
 
                 scope.eventGroupId = angular.isObject(scope.record.eventModel) ? scope.record.eventModel.eventGroupId : 0;
                 scope.eventGroupUrls.urlinit = '/api/eventgroups/' + scope.eventGroupId;

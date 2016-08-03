@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using FCCore.Abstractions.Bll;
-
-namespace FCWeb.Controllers
+﻿namespace FCWeb.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNet.Mvc;
+    using FCCore.Abstractions.Bll;
+
     public class HomeController : Controller
     {
         private IPublicationBll publicationBLL;

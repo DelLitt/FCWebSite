@@ -65,6 +65,10 @@
                 templateUrl: "lib/fc/office/utils/fileBrowserAdapter.html",
                 controller: "fileBrowserAdapterCtrl"
             })
+            .when("/office/tournaments/edit/:id", {
+                templateUrl: "lib/fc/office/tourneys/tourneyEdit.html",
+                controller: "tourneyEditCtrl"
+            })
             //.when("/login", {
             //    templateUrl: "scripts/spa/account/login.html",
             //    controller: "loginCtrl"

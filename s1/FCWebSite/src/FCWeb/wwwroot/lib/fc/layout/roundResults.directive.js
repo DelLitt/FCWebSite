@@ -22,7 +22,7 @@
                     return "../../../images/skin/adv-result-" + (index + 1) + ".png";
                 }
 
-                gamesSrv.roundResultsManager.init(configSrv.getMainTeamId(), configSrv.mainTeamTourneyIds, roundLoaded);
+                gamesSrv.roundResultsManager.init(configSrv.Current.MainTeamId, configSrv.mainTeamTourneyIds, roundLoaded);
 
                 function roundLoaded(data) {
                     if (angular.isObject(data)) {

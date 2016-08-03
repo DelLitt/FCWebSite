@@ -5,6 +5,26 @@
  */
 /*@gray-base:              #000;*/
 /*@brand-primary:         darken(#428bca, 6.5%); // #337ab7*/
+@font-face {
+  font-family: 'Noto Serif';
+  src: url('../fonts/NotoSerif-Regular.ttf');
+}
+@font-face {
+  font-family: 'Noto Serif';
+  src: url('../fonts/NotoSerif-Bold.ttf');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Noto Serif';
+  src: url('../fonts/NotoSerif-Italic.ttf');
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Noto Serif';
+  src: url('../fonts/NotoSerif-BoldItalic.ttf');
+  font-style: italic;
+  font-weight: bold;
+}
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif;
@@ -1073,7 +1093,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Noto Serif', serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333333;
@@ -6027,7 +6047,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Noto Serif', serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6145,7 +6165,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Noto Serif', serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6902,7 +6922,11 @@ textarea {
   display: table-cell;
 }
 .hot-publications {
-  padding: 0;
+  padding: 15px;
+  -webkit-box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
+  box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
+  border-radius: 5px;
+  background-color: #fff;
 }
 .hot-publications .hot-list-items {
   position: relative;
@@ -6912,7 +6936,7 @@ textarea {
   margin: 0px;
   padding: 11px 5px;
   background-color: #fff;
-  color: #3c71c6;
+  color: rgba(0, 68, 174, 0.75);
   border-top: 1px dashed;
   /*.glyphicon.glyphicon-facetime-video,
     .glyphicon.glyphicon-camera {
@@ -6920,12 +6944,12 @@ textarea {
     }*/
 }
 .hot-publications .row.hot-list-item a {
-  color: rgba(0, 68, 174, 0.75) !important;
-  font-weight: bold;
+  color: #00378F !important;
+  /*font-weight: bold;*/
 }
 .hot-publications .row.hot-list-item .glyphicon {
-  font-size: 1.3em;
-  color: rgba(0, 68, 174, 0.75);
+  font-size: 1.2em;
+  color: #00378F;
 }
 .hot-publications .row.hot-list-item .glyphicon.logic:hover,
 .hot-publications .row.hot-list-item .glyphicon.logic:focus {
@@ -7252,15 +7276,14 @@ textarea {
 }
 .fc-table.fc-table-dark.fc-table-striped > tbody > tr:nth-of-type(odd),
 .fc-table.fc-table-dark.fc-table-striped > tr:nth-of-type(odd) {
-  background-color: rgba(0, 43, 110, 0.75);
+  background-color: rgba(0, 43, 110, 0.85);
 }
 .fc-table-light {
   color: #00378F;
-  border: 1px solid transparent;
 }
 .fc-table-light caption {
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #00378F;
+  background-color: #ffffff;
+  color: #002B6E;
   margin: 0 0 -5px 0;
   box-shadow: 0 0 5px;
 }
@@ -7270,7 +7293,7 @@ textarea {
 }
 .fc-table-light tbody tr,
 .fc-table-light tr {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: #ffffff;
   /*td {
       border-bottom: 1px solid fade(@brand-primary, 25%);
     }*/

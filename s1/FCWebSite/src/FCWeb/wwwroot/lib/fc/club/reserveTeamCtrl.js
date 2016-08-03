@@ -9,7 +9,7 @@
 
     function reserveTeamCtrl($scope, configSrv) {
 
-        $scope.teamId = configSrv.getReserveTeamId();
+        $scope.teamId = configSrv.Current.ReserveTeamId;
         $scope.tourneysIds = configSrv.reserveTeamTourneyIds;
         $scope.publicationsCount = configSrv.teamPublicationsCount;
         $scope.teamTitle = 'Резервная команда';
