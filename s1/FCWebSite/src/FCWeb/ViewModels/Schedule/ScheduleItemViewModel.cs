@@ -10,10 +10,4 @@
         public EntityLinkViewModel tourney { get; set; }
         public IEnumerable<DayGamesViewModel> daysGames { get; set; }
     }
-
-    public class DayGamesViewModel
-    {
-        public string day { get; set; }
-        public IEnumerable<ScheduleGameViewModel> games { get; set; }
-    }
 }

@@ -4,8 +4,10 @@
     angular
         .module('fc.core')
         .factory('notificationManager', notificationManager);
+
+    notificationManager.$inject = ['$log'];
     
-    function notificationManager() {
+    function notificationManager($log) {
 
         //toastr.options = {
         //    "debug": false,
@@ -28,29 +30,29 @@
 
         function displaySuccess(message) {
             //toastr.success(message);
-            console.log(message);
+            $log.info(message);
         }
 
         function displayError(error) {
             if (Array.isArray(error)) {
                 error.forEach(function (error) {
                     //toastr.error(err);
-                    console.log(error);
+                    $log.info(error);
                 });
             } else {
                 //toastr.error(error);
-                console.log(error);
+                $log.info(error);
             }
         }
 
         function displayWarning(message) {
             //toastr.warning(message);
-            console.log(message);
+            $log.info(message);
         }
 
         function displayInfo(message) {
             //toastr.info(message);
-            console.log(message);
+            $log.info(message);
         }
     }
 })();

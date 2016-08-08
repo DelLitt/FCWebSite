@@ -1,10 +1,10 @@
 ﻿namespace FCBLL.Implementations
 {
-    using FCCore.Abstractions.Bll;
-    using System.Collections.Generic;
-    using FCCore.Model;
-    using FCCore.Abstractions.Dal;
     using System;
+    using System.Collections.Generic;
+    using FCCore.Abstractions.Bll;
+    using FCCore.Abstractions.Dal;
+    using FCCore.Model;
 
     public class RoundBll : IRoundBll
     {
@@ -18,6 +18,19 @@
             set
             {
                 DalRound.FillTourneys = value;
+            }
+        }
+
+        public bool FillGames
+        {
+            get
+            {
+                return DalRound.FillGames;
+            }
+
+            set
+            {
+                DalRound.FillGames = value;
             }
         }
 
@@ -63,6 +76,11 @@
         public IEnumerable<Round> SearchByNameFull(int tourneyId, string text)
         {
             return DalRound.SearchByNameFull(tourneyId, text);
+        }
+
+        public Round SaveRound(Round entity)
+        {
+            return DalRound.SaveRound(entity);
         }
     }
 }

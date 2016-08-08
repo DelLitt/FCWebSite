@@ -19,7 +19,8 @@
                 nameFull = round.NameFull,
                 roundFormatId = round.roundFormatId,
                 teamList = round.TeamList,
-                tourneyId = round.tourneyId
+                tourneyId = round.tourneyId,
+                games = round.Game.ToViewModel()
             };
         }
 
@@ -28,6 +29,28 @@
             if (Guard.IsEmptyIEnumerable(rounds)) { return new RoundViewModel[0]; }
 
             return rounds.Select(v => v.ToViewModel()).ToList();
+        }
+
+        public static Round ToBaseModel(this RoundViewModel roundModel)
+        {
+            if (roundModel == null) { return null; }
+
+            if(roundModel.editMode)
+            {
+                roundModel.teamList = !Guard.IsEmptyIEnumerable(roundModel.teams)
+                    ? "[" + string.Join(",", roundModel.teams.Select(t => t.id)) + "]"
+                    : "[]";
+            }
+
+            return new Round()
+            {
+                Id = roundModel.id,
+                Name = roundModel.name,
+                NameFull = roundModel.nameFull,
+                roundFormatId = roundModel.roundFormatId,
+                TeamList = roundModel.teamList,
+                tourneyId = roundModel.tourneyId
+            };
         }
     }
 }

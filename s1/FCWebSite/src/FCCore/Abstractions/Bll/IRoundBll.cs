@@ -6,6 +6,7 @@
     public interface IRoundBll
     {
         bool FillTourneys { get; set; }
+        bool FillGames { get; set; }
 
         Round GetRound(int id);
         IEnumerable<Round> GetRounds(IEnumerable<int> ids);
@@ -13,5 +14,6 @@
         IEnumerable<int> GetRoundIdsOfTourneys(IEnumerable<int> tourneyIds, int? sortByTeamId = null);
         IEnumerable<Round> GetRoundsOfTourneys(IEnumerable<int> tourneyIds);
         IEnumerable<Round> SearchByNameFull(int tourneyId, string text);
+        Round SaveRound(Round entity);
     }
 }

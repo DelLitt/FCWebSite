@@ -22,6 +22,32 @@
             }
         }
 
+        public bool FillRounds
+        {
+            get
+            {
+                return DalTourney.FillRounds;
+            }
+
+            set
+            {
+                DalTourney.FillRounds = value;
+            }
+        }
+
+        public bool FillGames
+        {
+            get
+            {
+                return DalTourney.FillGames;
+            }
+
+            set
+            {
+                DalTourney.FillGames = value;
+            }
+        }
+
         public Tourney GetTourney(int tourneyId)
         {
             return DalTourney.GetTourney(tourneyId);

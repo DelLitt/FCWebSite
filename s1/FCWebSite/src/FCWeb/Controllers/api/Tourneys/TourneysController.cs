@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Core.Extensions;
+    using Core.ViewModelHepers;
     using FCCore.Abstractions.Bll;
     using Microsoft.AspNet.Mvc;
     using ViewModels;
@@ -18,10 +19,24 @@
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public TourneyViewModel Get(int id)
+        [HttpGet("{id}/{mode?}")]
+        public TourneyViewModel Get(int id, string mode = null)
         {
-            return tourneyBll.GetTourney(id).ToViewModel();
+            if(!string.IsNullOrWhiteSpace(mode))
+            {
+                if(mode.Equals("content", System.StringComparison.OrdinalIgnoreCase))
+                {
+                    tourneyBll.FillRounds = true;
+                    tourneyBll.FillGames = true;
+                }
+            }
+
+            TourneyViewModel tourneyVM = tourneyBll.GetTourney(id).ToViewModel();
+
+            var tourneyVMHelper = new TourneyVMHelper(tourneyVM);
+            tourneyVMHelper.FillRoundsAvailableTeams();
+
+            return tourneyVM;
         }
 
         // GET api/values/5

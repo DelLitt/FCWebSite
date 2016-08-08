@@ -5762,14 +5762,14 @@ button.list-group-item-danger.active:focus {
 }
 .panel-primary > .panel-heading {
   color: #fff;
-  background-color: #002B6E;
+  background-color: rgba(0, 43, 110, 0.85);
   border-color: #002B6E;
 }
 .panel-primary > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: #002B6E;
 }
 .panel-primary > .panel-heading .badge {
-  color: #002B6E;
+  color: rgba(0, 43, 110, 0.85);
   background-color: #fff;
 }
 .panel-primary > .panel-footer + .panel-collapse > .panel-body {
@@ -6834,6 +6834,9 @@ body {
   -webkit-box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
   box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
 }
+.cursor-pointer {
+  cursor: pointer;
+}
 .white-link {
   color: #fff !important;
 }
@@ -7265,6 +7268,10 @@ textarea {
 .fc-table-dark tr th {
   background-color: rgba(0, 43, 110, 0.35);
   color: #7DAFFF;
+}
+.fc-table-dark tbody tr th label,
+.fc-table-dark tr th label {
+  color: #7DAFFF !important;
 }
 .fc-table-dark tbody tr td,
 .fc-table-dark tr td {

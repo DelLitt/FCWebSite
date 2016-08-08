@@ -1,64 +1,113 @@
-﻿(function () {
+﻿/// <reference path="../../layout/office/quickroundedit.html" />
+(function () {
     'use strict';
 
     angular
         .module('fc.admin')
         .controller('tourneyEditCtrl', tourneyEditCtrl);
 
-    tourneyEditCtrl.$inject = ['$scope', '$routeParams', '$compile'];
+    tourneyEditCtrl.$inject = ['$scope', '$routeParams', '$compile', 'configSrv', 'tourneysSrv', '$uibModal', 'notificationManager'];
 
-    function tourneyEditCtrl($scope, $routeParams, $compile) {
+    function tourneyEditCtrl($scope, $routeParams, $compile, configSrv, tourneysSrv, $uibModal, notificationManager) {
 
-        $scope.rounds = [
-            {
-                round: {
-                    id: 1,
-                    name: "Round 1"
-                },
-                games: [
-                    { 
-                        date: "21.02.2016",
-                        homeId: 3,
-                        awayId: 12,
-                        homeName: "Slutsk",
-                        awayName: "Minsk",
-                        scoreHome: 3,
-                        scoreAway: 1,
-                        scoreAddHome: null,
-                        scoreAddAway: null,
-                        scorePenaltyHome: null,
-                        scorePenaltyAway: null,
-                        stadiumId: 21,
-                        played: true
-                    },
-                    {
-                        date: "23.02.2016",
-                        homeId: 14,
-                        awayId: 22,
-                        homeName: "BATE",
-                        awayName: "Slaviya",
-                        scoreHome: 2,
-                        scoreAway: 2,
-                        scoreAddHome: null,
-                        scoreAddAway: null,
-                        scorePenaltyHome: null,
-                        scorePenaltyAway: null,
-                        stadiumId: 14,
-                        played: true
-                    }
-                ]
+        $scope.loading = true;
+
+        loadData($routeParams.id);
+
+        function loadData(tourneyId) {
+            if (tourneyId < 0) {
+                return;
             }
-        ];
 
-        $scope.addRound = function () {
-            $scope.rounds.push(
-            {
-                round: {
-                    id: 0,
-                    name: "Round " + $scope.rounds.length
-                },
-                games: []
+            tourneysSrv.loadTourney(tourneyId, tourneyLoaded);
+        }
+
+        function tourneyLoaded(response) {
+            var tourney = response.data;
+
+            $scope.tourney = tourney;
+        }
+
+        $scope.animationsEnabled = true;
+
+        $scope.editRound = function (round) {
+            var lScope = $scope;            
+
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'lib/fc/layout/office/quickRoundEdit.html',
+                controller: 'quickRoundEditCtrl',
+                //size: size,
+                resolve: {
+                    round: round,
+                    tourneyId: $scope.tourney.id
+                }
             });
+
+            modalInstance.result.then(function (savedRound) {
+                if (angular.isObject(round) && round.id > 0) {
+                    for (var i = 0; i < lScope.tourney.rounds.length; i++) {
+                        if (lScope.tourney.rounds[i].id == savedRound.id) {
+                            lScope.tourney.rounds[i] = savedRound;
+                        }
+                    }
+                } else {
+                    lScope.tourney.rounds.push(savedRound);
+                }
+
+                notificationManager.displayInfo(savedRound.name);
+            }, function () {
+                notificationManager.displayInfo('Modal dismissed at: ' + new Date());
+            });
+        }
+
+        $scope.editGame = function (game) {
+
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'lib/fc/layout/office/games/gameEdit.html',
+                controller: 'gameEditCtrl',
+                //size: size,
+                resolve: {
+                    items: function () {
+                        return {
+                            game: game
+                        };
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (round) {
+                //$scope.selected = selectedItem;
+                notificationManager.displayInfo(round.name);
+            }, function () {
+                notificationManager.displayInfo('Modal dismissed at: ' + new Date());
+            });
+        };
+
+        //$scope.editRound = function (round) {
+
+        //    if (!angular.isObject(round)) {
+        //        round = angular.copy(configSrv.Current.EmptyRound);
+        //    }
+
+        //    var roundScope = $scope.$new();
+        //    roundScope.round = round;
+        //    roundScope.onSave = function (roundScope) { console.log("Outer save click! " + roundScope.round.name); }
+        //    round.roundScope = roundScope;
+
+        //    var compiledDirective = $compile("<quick-round-edit></quick-round-edit>");
+        //    var directiveElement = compiledDirective(round.roundScope);
+        //    $('#new-round-place').append(directiveElement);
+        //}
+
+        function onSave(roundScope) {
+            if (!angular.isObject(roundScope)) {
+                return;
+            }
+
+            roundScope.$destroy();
+            $('.my-directive-placeholder').empty();
         }
 
         $scope.stage = 'Add';

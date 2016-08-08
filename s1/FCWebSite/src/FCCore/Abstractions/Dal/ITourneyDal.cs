@@ -5,6 +5,9 @@
 
     public interface ITourneyDal : IDalBase
     {
+        bool FillRounds { get; set; }
+        bool FillGames { get; set; }
+
         Tourney GetTourney(int tourneyId);
         Tourney GetTourneyByRoundId(int roundId);
         IEnumerable<Tourney> GetTourneys(IEnumerable<int> ids);

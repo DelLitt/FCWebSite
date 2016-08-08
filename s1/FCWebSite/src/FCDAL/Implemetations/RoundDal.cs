@@ -11,10 +11,15 @@
     public class RoundDal : DalBase, IRoundDal
     {
         public bool FillTourneys { get; set; } = false;
+        public bool FillGames { get; set; } = false;
 
         public Round GetRound(int id)
         {
-            return Context.Round.FirstOrDefault(p => p.Id == id);
+            Round round = Context.Round.FirstOrDefault(p => p.Id == id);
+
+            FillRelations(new Round[] { round });
+
+            return round;
         }
 
         public IEnumerable<Round> GetRounds(IEnumerable<int> ids)
@@ -31,7 +36,11 @@
 
         public IEnumerable<Round> GetRoundsByTourney(int tourneyId)
         {
-            return Context.Round.Where(r => r.tourneyId == tourneyId).ToList();
+            IEnumerable<Round> rounds = Context.Round.Where(r => r.tourneyId == tourneyId).ToList();
+
+            FillRelations(rounds);
+
+            return rounds;
         }
 
         public IEnumerable<int> GetRoundIdsOfTourneys(IEnumerable<int> tourneyIds, int? sortByTeamId = null)
@@ -80,11 +89,30 @@
             return Context.Round.Where(v => v.tourneyId == tourneyId && v.NameFull.Contains(text));
         }
 
+        public Round SaveRound(Round entity)
+        {
+            if (entity.Id > 0)
+            {
+                Context.Round.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+            }
+            else
+            {
+                Context.Round.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+            }
+
+            Context.SaveChanges();
+
+            return entity;
+        }
+
         private void FillRelations(IEnumerable<Round> rounds)
         {
-            IEnumerable<Tourney> tourneys = new Tourney[0];
+            if (Guard.IsEmptyIEnumerable(rounds)) { return; }
 
-            if(FillTourneys)
+            IEnumerable<Tourney> tourneys = new Tourney[0];
+            GameDal dalGames = null;
+
+            if (FillTourneys)
             {
                 var tourneyDal = new TourneyDal();
                 tourneyDal.SetContext(Context);
@@ -100,7 +128,13 @@
                 }
             }
 
-            if (tourneys.Any())
+            if(FillGames)
+            {
+                dalGames = new GameDal();
+                dalGames.SetContext(Context);
+            }
+
+            if (tourneys.Any() || dalGames != null)
             {
                 foreach (Round round in rounds)
                 {
@@ -112,6 +146,11 @@
                         {
                             throw new DalMappingException(nameof(round.tourney), typeof(Round));
                         }
+                    }
+
+                    if (dalGames != null)
+                    {
+                        round.Game = dalGames.GetRoundGames(round.Id).ToArray();
                     }
                 }
             }

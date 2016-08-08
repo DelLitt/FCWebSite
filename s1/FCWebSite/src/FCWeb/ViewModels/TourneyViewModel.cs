@@ -1,6 +1,7 @@
 ﻿namespace FCWeb.ViewModels
 {
     using System;
+    using System.Collections.Generic;
 
     public class TourneyViewModel
     {
@@ -12,5 +13,7 @@
         public string name { get; set; }
         public string nameFull { get; set; }
         public short? tourneyTypeId { get; set; }
+
+        public IEnumerable<RoundViewModel> rounds { get; set; }
     }
 }

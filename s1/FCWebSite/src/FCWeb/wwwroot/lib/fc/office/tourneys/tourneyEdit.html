@@ -1,6 +1,65 @@
 ﻿<div class="fc-pane">
     <div class="fc-pane-body">
         <div class="fc-pane-form">
+            <div class="row" style="margin: 0;">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 style="color: #fff !important;">{{tourney.name}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div id="new-round-place"></div>                        
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary" ng-click="editRound(null);">Добавить раунд</button>                        
+                    </div>                    
+                </div>
+            </div>
+            <div class="row" style="margin: 0;" ng-repeat="round in tourney.rounds">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <hr />
+                        <div class="col-sm-2">
+                            <h5><span ng-click="editRound(round);" class="glyphicon glyphicon-edit cursor-pointer"></span>&nbsp;{{round.name}}</h5>
+                        </div>
+                        <div class="col-sm-2 text-right">
+                            Команды ({{round.teams.length}}):
+                        </div>
+                        <div class="col-sm-8">
+                            <ul class="list-unstyled list-inline">
+                                <li ng-repeat="roundTeam in round.teams">
+                                    <span class="label label-primary">{{roundTeam.text}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table fc-table-light">
+                                <tr>
+                                    <th></th>
+                                    <th>Дата</th>
+                                    <th>Время</th>
+                                    <th>Хозяева</th>
+                                    <th colspan="2">Счет</th>
+                                    <th>Гости</th>
+                                    <th>Стадион</th>
+                                </tr>
+                                <tr ng-repeat="game in round.games">
+                                    <td><a href="javascript:void(0);" ng-click="editGame(game);"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                    <td>{{game.gameDate | date:'medium'}}</td>
+                                    <td>{{game.gameDate | date:'medium'}}</td>
+                                    <td>{{game.homeId}}</td>
+                                    <td>{{game.homeScore}}</td>
+                                    <td>{{game.awayScore}}</td>
+                                    <td>{{game.awayId}}</td>
+                                    <td>{{game.stadiumId}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <button ng-click="toggleStage()">Click</button>
             <div class="my-directive-placeholder"></div>
 

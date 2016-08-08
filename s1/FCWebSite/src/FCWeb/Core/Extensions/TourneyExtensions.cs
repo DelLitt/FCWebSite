@@ -21,7 +21,8 @@
                 id = tourney.Id,
                 name = tourney.Name,
                 nameFull = tourney.NameFull,
-                tourneyTypeId = tourney.tourneyTypeId
+                tourneyTypeId = tourney.tourneyTypeId,
+                rounds = tourney.Round.ToViewModel()
             };
         }
 

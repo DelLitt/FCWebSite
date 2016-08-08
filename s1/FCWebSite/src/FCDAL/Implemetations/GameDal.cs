@@ -140,33 +140,34 @@
                 }
             }
 
-            if (teams.Any() || rounds.Any())
+            foreach (Game game in games)
             {
-                foreach (Game game in games)
+                if (FillTeams && teams.Any())
                 {
-                    if (FillTeams && teams.Any())
+                    game.home = teams.FirstOrDefault(t => t.Id == game.homeId);
+                    if (game.home == null)
                     {
-                        game.home = teams.FirstOrDefault(t => t.Id == game.homeId);
-                        if (game.home == null)
-                        {
-                            throw new DalMappingException(nameof(game.home), typeof(Game));
-                        }
-
-                        game.away = teams.FirstOrDefault(t => t.Id == game.awayId);
-                        if (game.away == null)
-                        {
-                            throw new DalMappingException(nameof(game.away), typeof(Game));
-                        }
+                        throw new DalMappingException(nameof(game.home), typeof(Game));
                     }
 
-                    if(FillRounds && rounds.Any())
+                    game.away = teams.FirstOrDefault(t => t.Id == game.awayId);
+                    if (game.away == null)
                     {
-                        game.round = rounds.FirstOrDefault(r => r.Id == game.roundId);
-                        if (game.round == null)
-                        {
-                            throw new DalMappingException(nameof(game.round), typeof(Game));
-                        }
+                        throw new DalMappingException(nameof(game.away), typeof(Game));
                     }
+                }
+
+                if(FillRounds && rounds.Any())
+                {
+                    game.round = rounds.FirstOrDefault(r => r.Id == game.roundId);
+                    if (game.round == null)
+                    {
+                        throw new DalMappingException(nameof(game.round), typeof(Game));
+                    }
+                }
+                else
+                {
+                    game.round = null;
                 }
             }
         }

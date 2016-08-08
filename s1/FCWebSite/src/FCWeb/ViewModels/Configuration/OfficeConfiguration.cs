@@ -11,5 +11,36 @@
                 return EventHelper.FriendlyNames;
             }
         }
+        public TourneyViewModel EmptyTourey
+        {
+            get
+            {
+                return new TourneyViewModel();
+            }
+        }
+
+        public RoundViewModel EmptyRound
+        {
+            get
+            {
+                return new RoundViewModel();
+            }
+        }
+
+        public GameViewModel EmptyGame
+        {
+            get
+            {
+                return new GameViewModel();
+            }
+        }
+
+        public EntityLinkViewModel EmptyEntityLink
+        {
+            get
+            {
+                return new EntityLinkViewModel();
+            }
+        }
     }
 }
