@@ -39,6 +39,11 @@
             return DalStadium.GetStadium(id);
         }
 
+        public IEnumerable<Stadium> GetStadiums(IEnumerable<int> ids)
+        {
+            return DalStadium.GetStadiums(ids);
+        }
+
         public IEnumerable<Stadium> GetAll()
         {
             return DalStadium.GetAll();

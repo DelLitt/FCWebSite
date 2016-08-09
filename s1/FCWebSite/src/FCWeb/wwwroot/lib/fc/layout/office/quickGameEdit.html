@@ -1,1 +1,26 @@
-﻿<div><p>{{inc}}</p></div>
+﻿<div class="panel panel-primary" style="margin: 0;">
+    <div class="panel-heading">
+        Рдектирование игры
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label for="gameDate" class="control-label">
+                Дата:&nbsp;<label for="showTime" class="checkbox-inline">
+                    <input type="checkbox" name="showTime" id="showTime" ng-model="game.showTime">Показывать время
+                </label>
+            </label>
+            <datetimepicker ng-model="game.gameDate"
+                            id="gameDate"
+                            name="gameDate"
+                            date-format="dd-MMM-yyyy"
+                            date-options="dateOptions"
+                            date-disabled="isDisabledDate(date, mode)"
+                            show-spinners="true">
+            </datetimepicker>
+        </div>
+    </div>
+    <div class="panel-footer text-right">
+        <button type="button" ng-click="ok();">Сохранить</button>
+        <button type="button" ng-click="cancel();">Отмена</button>
+    </div>
+</div>

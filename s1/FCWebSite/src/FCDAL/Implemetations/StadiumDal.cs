@@ -4,6 +4,7 @@
     using System.Linq;
     using Exceptions;
     using FCCore.Abstractions.Dal;
+    using FCCore.Common;
     using FCCore.Model;
 
     public class StadiumDal : DalBase, IStadiumDal
@@ -20,6 +21,17 @@
             }
 
             return stadium;
+        }
+
+        public IEnumerable<Stadium> GetStadiums(IEnumerable<int> ids)
+        {
+            if (Guard.IsEmptyIEnumerable(ids)) { return new Stadium[0]; }
+
+            IEnumerable<Stadium> stadiums = Context.Stadium.Where(t => ids.Contains(t.Id));
+
+            FillRelations(stadiums);
+
+            return stadiums;
         }
 
         public IEnumerable<Stadium> GetAll()

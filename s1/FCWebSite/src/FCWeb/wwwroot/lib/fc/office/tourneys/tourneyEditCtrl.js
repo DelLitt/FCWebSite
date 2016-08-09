@@ -61,74 +61,25 @@
             });
         }
 
-        $scope.editGame = function (game) {
+        $scope.editGame = function (game, round) {
 
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
-                templateUrl: 'lib/fc/layout/office/games/gameEdit.html',
-                controller: 'gameEditCtrl',
+                templateUrl: 'lib/fc/layout/office/quickGameEdit.html',
+                controller: 'quickGameEditCtrl',
                 //size: size,
                 resolve: {
-                    items: function () {
-                        return {
-                            game: game
-                        };
-                    }
+                    game: game,
+                    roundId: round.id
                 }
             });
 
-            modalInstance.result.then(function (round) {
+            modalInstance.result.then(function (game) {
                 //$scope.selected = selectedItem;
-                notificationManager.displayInfo(round.name);
+                notificationManager.displayInfo(game.gameDate);
             }, function () {
                 notificationManager.displayInfo('Modal dismissed at: ' + new Date());
             });
         };
-
-        //$scope.editRound = function (round) {
-
-        //    if (!angular.isObject(round)) {
-        //        round = angular.copy(configSrv.Current.EmptyRound);
-        //    }
-
-        //    var roundScope = $scope.$new();
-        //    roundScope.round = round;
-        //    roundScope.onSave = function (roundScope) { console.log("Outer save click! " + roundScope.round.name); }
-        //    round.roundScope = roundScope;
-
-        //    var compiledDirective = $compile("<quick-round-edit></quick-round-edit>");
-        //    var directiveElement = compiledDirective(round.roundScope);
-        //    $('#new-round-place').append(directiveElement);
-        //}
-
-        function onSave(roundScope) {
-            if (!angular.isObject(roundScope)) {
-                return;
-            }
-
-            roundScope.$destroy();
-            $('.my-directive-placeholder').empty();
-        }
-
-        $scope.stage = 'Add';
-        var childScope;
-        $scope.incq = 0;
-
-        $scope.toggleStage = function () {
-            $scope.incq++;
-            if ($scope.stage === 'Add') {
-                $scope.stage = 'Remove';
-
-                childScope = $scope.$new();
-                childScope.inc = $scope.incq;
-                var compiledDirective = $compile("<quick-game-edit'></quick-game-edit>");
-                var directiveElement = compiledDirective(childScope);
-                $('.my-directive-placeholder').append(directiveElement);
-            } else {
-                childScope.$destroy();
-                $('.my-directive-placeholder').empty();
-                $scope.stage = 'Add';
-            }
-        }
     }
 })();

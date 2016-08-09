@@ -18,7 +18,7 @@
             this.tourney = tourney;
         }
 
-        public void FillRoundsAvailableTeams()
+        public void FillRoundsAvailableTeams(bool fillGamesEntityLinks = true)
         {
             var roundVMHelper = new RoundVMHelper(tourney.rounds);
             roundVMHelper.FillAvailableTeams();

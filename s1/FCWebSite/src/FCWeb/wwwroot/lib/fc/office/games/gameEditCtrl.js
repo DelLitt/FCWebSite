@@ -5,9 +5,9 @@
         .module('fc.admin')
         .controller('gameEditCtrl', gameEditCtrl);
 
-    gameEditCtrl.$inject = ['$scope', '$routeParams', '$location', 'gamesSrv', 'fileBrowserSrv', 'notificationManager', 'items'];
+    gameEditCtrl.$inject = ['$scope', '$routeParams', '$location', 'gamesSrv', 'fileBrowserSrv', 'notificationManager'];
 
-    function gameEditCtrl($scope, $routeParams, $location, gamesSrv, fileBrowserSrv, notificationManager, items) {
+    function gameEditCtrl($scope, $routeParams, $location, gamesSrv, fileBrowserSrv, notificationManager) {
 
         if (!angular.isDefined($scope.forms)) {
             $scope.forms = {};

@@ -33,10 +33,15 @@
                 teamTypeId = team.teamTypeId,
                 webSite = team.WebSite,
                 tempGuid = tempGuid,
-                searchDefault = team.city != null
-                    ? string.Format(CultureInfo.CurrentCulture, "{0} ({1})", team.Name, team.city.NameFull)
-                    : team.NameFull
+                searchDefault = team.NameExtended()
             };
+        }
+
+        public static string NameExtended(this Team team)
+        {
+            return team.city != null
+                    ? string.Format(CultureInfo.CurrentCulture, "{0} ({1})", team.Name, team.city.NameFull)
+                    : team.NameFull;
         }
 
         public static IEnumerable<TeamViewModel> ToViewModel(this IEnumerable<Team> teams)

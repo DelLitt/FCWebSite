@@ -1,10 +1,4 @@
 ﻿<div>
-    <!--<label for="singleSelect">Турнир:&nbsp;</label>
-    <select name="singleSelect" ng-model="tourneyId">
-        <option value="33">Высшая лига</option>
-        <option value="21">Кубок РБ</option>
-    </select>-->
-
     <label for="tourneySelect">Турнир: </label>
     <select name="tourneySelect" id="tourneySelect"
             ng-options="tourney.nameFull for tourney in tourneys track by tourney.id"

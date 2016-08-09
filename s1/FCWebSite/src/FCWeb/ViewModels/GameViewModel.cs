@@ -27,5 +27,6 @@
         public RoundViewModel round { get; set; }
         public TeamViewModel home { get; set; }
         public TeamViewModel away { get; set; }
+        public GameEntityLinkData dataEL { get; set; }
     }
 }

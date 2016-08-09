@@ -22,7 +22,7 @@
                 : new RoundViewModel[0];
         }
 
-        public void FillAvailableTeams()
+        public void FillAvailableTeams(bool fillGamesEntityLinks = true)
         {
             var teamIdsPack = new List<int>();
 
@@ -43,6 +43,8 @@
 
             if(Guard.IsEmptyIEnumerable(teams)) { return; }
 
+            var gameVMHelper = new GameVMHelper(teams.ToList());
+
             foreach(RoundViewModel round in rounds)
             {
                 var ids = !string.IsNullOrWhiteSpace(round.teamList)
@@ -61,6 +63,8 @@
                     : new EntityLinkViewModel[0];
 
                 round.editMode = true;
+
+                gameVMHelper.FillTeamsEntityLinks(round.games ?? new GameViewModel[0]);
             }
         }
     }

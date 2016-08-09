@@ -26,11 +26,17 @@
                 image = stadium.Image,
                 name = stadium.Name,
                 nameFull = stadium.NameFull,
-                nameAndCity = stadium.city != null 
-                    ? string.Format(CultureInfo.CurrentCulture, "{0} ({1})", stadium.NameFull, stadium.city.NameFull)
-                    : stadium.NameFull,
+                nameAndCity = stadium.NameExtended(),
                 tempGuid = tempGuid
             };
+        }
+
+
+        public static string NameExtended(this Stadium stadium)
+        {
+            return stadium.city != null
+                    ? string.Format(CultureInfo.CurrentCulture, "{0} ({1})", stadium.Name, stadium.city.NameFull)
+                    : stadium.NameFull;
         }
 
         public static IEnumerable<StadiumViewModel> ToViewModel(this IEnumerable<Stadium> stadiums)
