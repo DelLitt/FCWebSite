@@ -217,7 +217,7 @@ namespace FCDAL.Model
             {
                 entity.HasOne(d => d._event).WithMany(p => p.ProtocolRecord).HasForeignKey(d => d.eventId).OnDelete(DeleteBehavior.Restrict);
 
-                entity.HasOne(d => d.game).WithMany(p => p.ProtocolRecord).HasForeignKey(d => d.gameId).OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(d => d.game).WithMany(p => p.ProtocolRecord).HasForeignKey(d => d.gameId).OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(d => d.person).WithMany(p => p.ProtocolRecord).HasForeignKey(d => d.personId);
 

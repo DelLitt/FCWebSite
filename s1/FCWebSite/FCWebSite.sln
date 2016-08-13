@@ -50,6 +50,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{E5DB45BB-62F
 		SolutionItems\SQL\ConvertTeam.sql = SolutionItems\SQL\ConvertTeam.sql
 		SolutionItems\SQL\ConvertTourney.sql = SolutionItems\SQL\ConvertTourney.sql
 		SolutionItems\SQL\ConvertVideo.sql = SolutionItems\SQL\ConvertVideo.sql
+		SolutionItems\SQL\EXAMPLE_SetGameRoundToCascadeRemoving.sql = SolutionItems\SQL\EXAMPLE_SetGameRoundToCascadeRemoving.sql
+		SolutionItems\SQL\EXAMPLE_SetProtocolGameToCascadeRemoving.sql = SolutionItems\SQL\EXAMPLE_SetProtocolGameToCascadeRemoving.sql
+		SolutionItems\SQL\EXAMPLEDateConvert.sql = SolutionItems\SQL\EXAMPLEDateConvert.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{E41EB634-CEBF-4534-A0FF-68F43271A570}"
