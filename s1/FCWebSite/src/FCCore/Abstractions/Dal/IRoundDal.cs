@@ -15,5 +15,6 @@
         IEnumerable<Round> GetRoundsOfTourneys(IEnumerable<int> tourneyIds);
         IEnumerable<Round> SearchByNameFull(int tourneyId, string text);
         Round SaveRound(Round entity);
+        int RemoveRound(int roundId, bool removeGames = true);
     }
 }

@@ -82,5 +82,10 @@
         {
             return DalRound.SaveRound(entity);
         }
+
+        public int RemoveRound(int roundId, bool removeGames = true)
+        {
+            return DalRound.RemoveRound(roundId, removeGames);
+        }
     }
 }

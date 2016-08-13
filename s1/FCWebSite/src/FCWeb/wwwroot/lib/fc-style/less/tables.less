@@ -48,7 +48,7 @@
   }
 
   tbody tr, tr {
-    background-color: fade(@brand-primary, 85%);
+    background-color: @fc-soft-primary-color;
 
     th {
       background-color: fade(@brand-primary, 35%);
@@ -72,7 +72,7 @@
 .fc-table.fc-table-dark.fc-table-striped {
   > tbody > tr:nth-of-type(odd),
   > tr:nth-of-type(odd) {
-    background-color: fade(@brand-primary, 85%);
+    background-color: @fc-soft-primary-color;
   }
 }
 
@@ -84,7 +84,6 @@
     color: @brand-primary;
     margin: 0 0 -5px 0;
     box-shadow: 0 0 5px;
-
   }
 
   tbody tr:first-child, tr:first-child {
@@ -95,15 +94,31 @@
     background-color: fade(@background-primary, 100%);
 
     th {
-      background-color: fade(@brand-primary, 85%);
+      background-color: @fc-soft-primary-color;
       color: @brand-primary5;
       border-top: 11px solid fade(@background-primary, 55%);
-      border-bottom: 12px solid fade(@background-primary, 35%);      
+      border-bottom: 12px solid fade(@background-primary, 35%);
+
+      .fc-action {
+        color: @brand-primary4;
+      }
+
+      .fc-action:hover,
+      .fc-action:focus {
+        color: @background-primary;
+      }
     }
 
-    /*td {
-      border-bottom: 1px solid fade(@brand-primary, 25%);
-    }*/
+    td {
+      .fc-action {
+        color: @brand-primary4;
+      }
+
+      .fc-action:hover,
+      .fc-action:focus {
+        color: @brand-primary3;
+      }
+    }
 
     a {
       color: @fc-dark-link-color;

@@ -7,6 +7,8 @@
     using FCCore.Abstractions.Dal;
     using FCCore.Common;
     using FCCore.Model;
+    using Microsoft.Data.Entity;
+    using Microsoft.Data.Entity.ChangeTracking;
 
     public class RoundDal : DalBase, IRoundDal
     {
@@ -45,7 +47,7 @@
 
         public IEnumerable<int> GetRoundIdsOfTourneys(IEnumerable<int> tourneyIds, int? sortByTeamId = null)
         {
-            if(Guard.IsEmptyIEnumerable(tourneyIds)) { return new int[0]; }
+            if (Guard.IsEmptyIEnumerable(tourneyIds)) { return new int[0]; }
 
             IEnumerable<int> roundIds;
 
@@ -93,16 +95,57 @@
         {
             if (entity.Id > 0)
             {
-                Context.Round.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.Round.Update(entity, GraphBehavior.SingleObject);
             }
             else
             {
-                Context.Round.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.Round.Add(entity, GraphBehavior.SingleObject);
             }
 
             Context.SaveChanges();
 
             return entity;
+        }
+
+        public int RemoveRound(int roundId, bool removeGames = true)
+        {
+            try
+            {
+                Round round = null;
+                EntityEntry entry = null;
+
+                if (removeGames)
+                {
+                    round = Context.Round
+                                    .Where(r => r.Id == roundId)
+                                    .Include(r => r.Game)
+                                    .FirstOrDefault();
+
+                    if (round == null) { return 0; }
+
+                    entry = Context.Entry(round);
+                }
+                else
+                {
+                    round = new Round() { Id = (short)roundId };
+                    entry = Context.Attach(round);
+                }                
+
+                Context.Round.Remove(round);
+                Context.SaveChanges();
+
+                return entry.State == EntityState.Detached ? roundId : 0;
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                // TODO: Add logging
+                return 0;
+            }
+            catch
+            {
+                // TODO: Add logging
+                throw;
+            }
         }
 
         private void FillRelations(IEnumerable<Round> rounds)
@@ -128,7 +171,7 @@
                 }
             }
 
-            if(FillGames)
+            if (FillGames)
             {
                 dalGames = new GameDal();
                 dalGames.SetContext(Context);
@@ -147,10 +190,18 @@
                             throw new DalMappingException(nameof(round.tourney), typeof(Round));
                         }
                     }
+                    else
+                    {
+                        round.tourney = null;
+                    }
 
                     if (dalGames != null)
                     {
                         round.Game = dalGames.GetRoundGames(round.Id).ToArray();
+                    }
+                    else
+                    {
+                        round.Game = null;
                     }
                 }
             }

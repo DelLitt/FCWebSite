@@ -105,6 +105,14 @@ String.prototype.endsWith = function (suffix) {
                     : this.getPersonEmptyImage();
             },
 
+            remTZOffset: function (date) {
+                return new Date(date.getTime() + (new Date()).getTimezoneOffset() * 60000)
+            },
+
+            addTZOffset: function (date) {
+                return new Date(date.getTime() - (new Date()).getTimezoneOffset() * 60000)
+            },
+
             getPrivate: thisIsPrivate
         };
     }]);

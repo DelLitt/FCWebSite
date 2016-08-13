@@ -7,6 +7,8 @@
     using FCCore.Abstractions.Dal;
     using FCCore.Common;
     using FCCore.Model;
+    using Microsoft.Data.Entity;
+    using Microsoft.Data.Entity.ChangeTracking;
 
     public class GameDal : DalBase, IGameDal
     {
@@ -78,15 +80,79 @@
             return game;
         }
 
-        public int SaveGame(Game entity)
+        public int RemoveGame(int gameId, bool removeProtocol = true)
+        {
+            try
+            {
+                Game game = null;
+                EntityEntry entry = null;
+
+                if (removeProtocol)
+                {
+                    game = Context.Game
+                                    .Where(g => g.Id == gameId)
+                                    .Include(g => g.ProtocolRecord)
+                                    .FirstOrDefault();
+
+                    if (game == null) { return 0; }
+
+                    entry = Context.Entry(game);
+                }
+                else
+                {
+                    game = new Game() { Id = gameId };
+                    entry = Context.Attach(game);
+                }
+
+                Context.Game.Remove(game);
+                Context.SaveChanges();
+
+                return entry.State == EntityState.Detached ? gameId : 0;
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                // TODO: Add logging
+                return 0;
+            }
+            catch
+            {
+                // TODO: Add logging
+                throw;
+            }
+        }
+
+        //public IEnumerable<int> RemoveGamesByRound(int roundId)
+        //{
+        //    try
+        //    {
+        //        IEnumerable<Game> games = Context.Game.Where(g => g.roundId == roundId);
+
+        //        if (Guard.IsEmptyIEnumerable(games)) { return new int[0]; }
+
+        //        var entries = new List<EntityEntry>();
+        //        entries.AddRange(games.Select(g => Context.Entry(g)));
+
+        //        Context.Game.RemoveRange(games);
+        //        Context.SaveChanges();
+
+        //        return entries.Where(e => e.State == EntityState.Detached).Select(e => ((Game)e.Entity).Id);
+        //    }
+        //    catch
+        //    {
+        //        // TODO: Add logging
+        //        throw; 
+        //    }
+        //}
+
+        public Game SaveGame(Game entity)
         {
             if (entity.Id > 0)
             {
-                Context.Game.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.Game.Update(entity, GraphBehavior.SingleObject);
             }
             else
             {
-                Context.Game.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.Game.Add(entity, GraphBehavior.SingleObject);
             }
 
             try
@@ -95,10 +161,11 @@
             }
             catch(Exception ex)
             {
+                // TODO: Add logging here
                 throw;
             }
 
-            return entity.Id;
+            return entity;
         }
 
         private void FillRelations(IEnumerable<Game> games)
@@ -155,6 +222,11 @@
                     {
                         throw new DalMappingException(nameof(game.away), typeof(Game));
                     }
+                }
+                else
+                {
+                    game.home = null;
+                    game.away = null;
                 }
 
                 if(FillRounds && rounds.Any())

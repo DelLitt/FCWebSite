@@ -61,6 +61,14 @@
             return SaveRound(roundView);
         }
 
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "admin,press")]
+        public int Delete(int id)
+        {
+            return roundBll.RemoveRound(id);
+        }
+
         private RoundViewModel SaveRound(RoundViewModel roundView)
         {
             Round round = roundView.ToBaseModel();

@@ -6837,6 +6837,9 @@ body {
 .cursor-pointer {
   cursor: pointer;
 }
+.fc-action {
+  cursor: pointer;
+}
 .white-link {
   color: #fff !important;
 }
@@ -6863,6 +6866,13 @@ body {
 }
 .ellipsis-135 {
   width: 135px;
+}
+.header-line-inv {
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: rgba(0, 43, 110, 0.85);
+  margin-bottom: 15px;
 }
 .fc-col {
   background: -webkit-linear-gradient(rgba(255, 255, 255, 0.7), 40%, rgba(255, 255, 255, 0.9) 80%, rgba(255, 255, 255, 0.7), 50%);
@@ -7301,9 +7311,6 @@ textarea {
 .fc-table-light tbody tr,
 .fc-table-light tr {
   background-color: #ffffff;
-  /*td {
-      border-bottom: 1px solid fade(@brand-primary, 25%);
-    }*/
 }
 .fc-table-light tbody tr th,
 .fc-table-light tr th {
@@ -7311,6 +7318,26 @@ textarea {
   color: #ACCCFF;
   border-top: 11px solid rgba(255, 255, 255, 0.55);
   border-bottom: 12px solid rgba(255, 255, 255, 0.35);
+}
+.fc-table-light tbody tr th .fc-action,
+.fc-table-light tr th .fc-action {
+  color: #7DAFFF;
+}
+.fc-table-light tbody tr th .fc-action:hover,
+.fc-table-light tr th .fc-action:hover,
+.fc-table-light tbody tr th .fc-action:focus,
+.fc-table-light tr th .fc-action:focus {
+  color: #fff;
+}
+.fc-table-light tbody tr td .fc-action,
+.fc-table-light tr td .fc-action {
+  color: #7DAFFF;
+}
+.fc-table-light tbody tr td .fc-action:hover,
+.fc-table-light tr td .fc-action:hover,
+.fc-table-light tbody tr td .fc-action:focus,
+.fc-table-light tr td .fc-action:focus {
+  color: #1771FF;
 }
 .fc-table-light tbody tr a,
 .fc-table-light tr a {
@@ -7444,6 +7471,13 @@ a.text-prim5-color:focus {
   background-color: rgba(255, 255, 255, 0.95);
   padding: 10px;
   border: 1px solid rgba(0, 43, 110, 0.25);
+}
+.fc-pane .fc-pane-body .fc-pane-form .fc-action {
+  color: #7DAFFF;
+}
+.fc-pane .fc-pane-body .fc-pane-form .fc-action:hover,
+.fc-pane .fc-pane-body .fc-pane-form .fc-action:focus {
+  color: #1771FF;
 }
 .fc-pane .fc-pane-body h1,
 .fc-pane .fc-pane-body h2,

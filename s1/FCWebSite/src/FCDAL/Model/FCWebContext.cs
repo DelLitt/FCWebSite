@@ -75,7 +75,7 @@ namespace FCDAL.Model
 
                 entity.HasOne(d => d.imageGallery).WithMany(p => p.Game).HasForeignKey(d => d.imageGalleryId);
 
-                entity.HasOne(d => d.round).WithMany(p => p.Game).HasForeignKey(d => d.roundId).OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(d => d.round).WithMany(p => p.Game).HasForeignKey(d => d.roundId).OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(d => d.stadium).WithMany(p => p.Game).HasForeignKey(d => d.stadiumId);
 

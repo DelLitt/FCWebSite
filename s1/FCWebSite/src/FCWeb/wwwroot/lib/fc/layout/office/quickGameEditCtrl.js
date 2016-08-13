@@ -5,23 +5,43 @@
         .module('fc.admin')
         .controller('quickGameEditCtrl', quickGameEditCtrl);
 
-    quickGameEditCtrl.$inject = ['$scope', '$uibModalInstance', 'gamesSrv', 'configSrv', 'game', 'roundId'];
+    quickGameEditCtrl.$inject = ['$scope', '$uibModalInstance', 'gamesSrv', 'configSrv', 'helper', 'notificationManager', 'game', 'round'];
 
-    function quickGameEditCtrl($scope, $uibModalInstance, gamesSrv, configSrv, game, roundId) {
+    function quickGameEditCtrl($scope, $uibModalInstance, gamesSrv, configSrv, helper, notificationManager, game, round) {
+
+        if (!angular.isObject(round)) {
+            notificationManager.displayError("Unable to edit game dialog: round is not defined!");
+            $scope.cancel();
+        }
+
+        if (!angular.isArray(round.teams)) {
+            notificationManager.displayError("Unable to edit game dialog: teams available of the round is not defined!");
+            $scope.cancel();
+        }
+
+        $scope.round = round;
 
         $scope.dateOptions = {
             showWeeks: false
-        };
+        };        
 
-        $scope.game = angular.isObject(game)
-            ? angular.copy(game)
-            : angular.copy(configSrv.Current.EmptyGame);
+        if(angular.isObject(game)) {
+            $scope.game = angular.copy(game);
+            $scope.game.gameDate = angular.isDate(game.gameDate)
+                ? game.gameDate
+                : new Date(game.gameDate);
+        } else {
+            $scope.game = angular.copy(configSrv.Current.EmptyGame);
+            $scope.game.roundId = round.id;
+            $scope.game.gameDate = new Date();
+        }        
 
-        $scope.game.gameDate = new Date(game.gameDate);
-        $scope.game.roundId = roundId;
+        $scope.stadiumInitUrl = angular.isNumber($scope.game.stadiumId)
+            ? '/api/stadiums/' + $scope.game.stadiumId
+            : null;
 
         $scope.ok = function () {
-            $uibModalInstance.close($scope.game);
+            gamesSrv.saveGame($scope.game.id, $scope.game, gameSaved);
         };
 
         $scope.cancel = function () {
@@ -30,6 +50,7 @@
 
         function gameSaved(response) {
             game = response.data;
+            notificationManager.displayInfo('Game (ID: ' + game.id + ') was saved successfully!');
 
             $uibModalInstance.close(game);
         }

@@ -14,8 +14,9 @@
         IEnumerable<Game> GetGamesByRounds(IEnumerable<int> roundIds);
         IEnumerable<Game> GetGamesByTourneys(IEnumerable<int> tourneyIds);
         IEnumerable<Game> GetTeamActualRoundGamesOfTourneys(int teamId, IEnumerable<int> tourneyIds, DateTime date);
-        IEnumerable<Game> GetTeamActualRoundGames(int teamId, IEnumerable<int> roundIds, DateTime date);    
-        int SaveGame(Game entity);
+        IEnumerable<Game> GetTeamActualRoundGames(int teamId, IEnumerable<int> roundIds, DateTime date);
+        Game SaveGame(Game entity);
+        int RemoveGame(int gameId, bool removeProtocol = true);
         bool SaveGameNote(int gameId, string note);
     }
 }

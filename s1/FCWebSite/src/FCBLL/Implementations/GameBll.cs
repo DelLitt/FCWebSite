@@ -97,7 +97,7 @@
             return DalGames.GetGame(id);
         }
 
-        public int SaveGame(Game entity)
+        public Game SaveGame(Game entity)
         {
             return DalGames.SaveGame(entity);
         }
@@ -114,6 +114,11 @@
             return DalGames.GetGamesByRounds(roundIds);
         }
 
+        public int RemoveGame(int gameId, bool removeProtocol = true)
+        {
+            return DalGames.RemoveGame(gameId, removeProtocol);
+        }
+
         public bool SaveGameNote(int gameId, string note)
         {
             Game game = DalGames.GetGame(gameId);
@@ -122,7 +127,7 @@
 
             game.Note = note;
 
-            return DalGames.SaveGame(game) > 0;
+            return DalGames.SaveGame(game).Id > 0;
         }
     }
 }

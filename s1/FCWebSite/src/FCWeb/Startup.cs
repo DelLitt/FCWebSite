@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
     using Core;
     using Core.Extensions;
     using FCCore.Configuration;
@@ -10,6 +11,8 @@
     using Microsoft.AspNet.Hosting;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Localization;
+    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNet.Mvc.Formatters;
     using Microsoft.Data.Entity;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -53,8 +56,25 @@
 
             services.AddScoped<LanguageActionFilter>();
 
-            services.AddMvc();
-            services.AddCoreConfiguration(Configuration);
+            services.AddMvc(options =>
+            {
+                var curJsonOutputFormatter = options.OutputFormatters.FirstOrDefault(of => of.GetType() == typeof(JsonOutputFormatter)) as JsonOutputFormatter;
+
+                if (curJsonOutputFormatter != null)
+                {
+                    curJsonOutputFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
+                }
+
+                //var jsonOutputFormatter = new JsonOutputFormatter();
+                //jsonOutputFormatter.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+                //jsonOutputFormatter.SerializerSettings.DefaultValueHandling = Newtonsoft.Json.DefaultValueHandling.Ignore;
+                //jsonOutputFormatter.SerializerSettings.DateFormatHandling = Newtonsoft.Json.DateFormatHandling.MicrosoftDateFormat;
+
+                //options.OutputFormatters.RemoveType<JsonOutputFormatter>();
+                //options.OutputFormatters.Insert(0, jsonOutputFormatter);
+            });
+
+                services.AddCoreConfiguration(Configuration);
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();

@@ -13,7 +13,8 @@
         IEnumerable<Game> GetRoundGames(int roundId);
         IEnumerable<Game> GetGamesByRounds(IEnumerable<int> roundIds);
         IEnumerable<Game> GetGamesByTourneys(IEnumerable<int> tourneyIds);
-        Game GetTeamNearestGame(int teamId, IEnumerable<int> roundIds, DateTime date);                        
-        int SaveGame(Game entity);
+        Game GetTeamNearestGame(int teamId, IEnumerable<int> roundIds, DateTime date);
+        Game SaveGame(Game entity);
+        int RemoveGame(int gameId, bool removeProtocol = true);
     }
 }

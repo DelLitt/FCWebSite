@@ -3,8 +3,9 @@
     using System.Collections.Generic;
     using System.Net;
     using Core.Extensions;
+    using Core.ViewModelHepers;
     using FCCore.Abstractions.Bll;
-    using FCCore.Configuration;
+    using FCCore.Model;
     using Microsoft.AspNet.Authorization;
     using Microsoft.AspNet.Mvc;
     using ViewModels;
@@ -19,13 +20,6 @@
         {
             this.gameBll = gameBll;
         }
-
-        //// GET: api/games
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
 
         // GET api/games/5
         [HttpGet("{id}")]
@@ -53,35 +47,55 @@
         // POST api/values
         [HttpPost]
         [Authorize(Roles = "admin,press")]
-        public void Post([FromBody]GameViewModel gameView)
+        public GameViewModel Post([FromBody]GameViewModel gameView)
         {
             if (!ModelState.IsValid)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return;
+                return null;
             }
 
-            int gameId = gameBll.SaveGame(gameView.ToBaseModel());
+            return SaveGame(gameView);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
         [Authorize(Roles = "admin,press")]
-        public void Put(int id, [FromBody]GameViewModel gameView)
+        public GameViewModel Put(int id, [FromBody]GameViewModel gameView)
         {
             if (id != gameView.id)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return;
+                return null;
             }
 
             if (!ModelState.IsValid)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return;
+                return null;
             }
 
-            gameBll.SaveGame(gameView.ToBaseModel());
+            return SaveGame(gameView);
+        }
+
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "admin,press")]
+        public int Delete(int id)
+        {
+            return gameBll.RemoveGame(id);
+        }
+
+        private GameViewModel SaveGame(GameViewModel gameView)
+        {
+            Game game = gameBll.SaveGame(gameView.ToBaseModel());
+
+            gameView = game.ToViewModel();
+
+            var gameVMHelper = new GameVMHelper();
+            gameVMHelper.FillTeamsEntityLinks(new GameViewModel[] { gameView });
+
+            return gameView;
         }
     }
 }

@@ -7,6 +7,7 @@
 @fc-type-dark-header-color: fade(@brand-primary, 75%);
 @fc-dark-link-color: lighten(fade(@brand-primary, 75%), 12.5%);
 @fc-light-link-color: lighten(@brand-primary4, 12.5%);
+@fc-soft-primary-color: fade(@brand-primary, 85%);
 
 /*Variables*/
 
@@ -34,6 +35,10 @@ body {
   cursor: pointer;
 }
 
+.fc-action {
+  cursor: pointer;
+}
+
 .white-link {
   color: #fff !important;
 }
@@ -57,6 +62,14 @@ body {
 
 .ellipsis-135 {
   width: 135px;
+}
+
+.header-line-inv {
+    padding: 10px 15px;
+    border-radius: @fc-border-radius;
+    color: @background-primary;
+    background-color: @fc-soft-primary-color;
+    margin-bottom: 15px;
 }
 
 .fc-col {

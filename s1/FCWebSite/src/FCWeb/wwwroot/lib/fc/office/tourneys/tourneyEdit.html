@@ -2,58 +2,64 @@
     <div class="fc-pane-body">
         <div class="fc-pane-form">
             <div class="row" style="margin: 0;">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h4 style="color: #fff !important;">{{tourney.name}}</h4>
-                    </div>
-                    <div class="panel-body">
-                        <div id="new-round-place"></div>                        
-                    </div>
-                    <div class="panel-footer">
-                        <button class="btn btn-primary" ng-click="editRound(null);">Добавить раунд</button>                        
-                    </div>                    
+                <div class="header-line-inv">
+                    <h4 style="color: #fff !important;">{{tourney.name}}</h4>                    
                 </div>
+                <button class="btn btn-primary center-block" ng-click="editRound(null);">Добавить раунд</button>
             </div>
             <div class="row" style="margin: 0;" ng-repeat="round in tourney.rounds | orderBy : '-id'">
                 <div class="col-sm-12">
                     <div class="row">
                         <hr />
+                        <div class="col-sm-1">
+                            <span ng-click="editRound(round);" class="glyphicon glyphicon-edit fc-action" style="font-size: x-large;"></span>
+                        </div>
                         <div class="col-sm-2">
-                            <h5><span ng-click="editRound(round);" class="glyphicon glyphicon-edit cursor-pointer"></span>&nbsp;{{round.name}}</h5>
+                            <span style="font-size:large">{{round.name}}</span>
                         </div>
                         <div class="col-sm-2 text-right">
                             Команды ({{round.teams.length}}):
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-6">
                             <ul class="list-unstyled list-inline">
                                 <li ng-repeat="roundTeam in round.teams">
                                     <span class="label label-primary">{{roundTeam.text}}</span>
                                 </li>
                             </ul>
                         </div>
+                        <div class="col-sm-1 text-right">
+                            <span class="glyphicon glyphicon-minus fc-action" style="font-size: x-large;" ng-click="removeRound(round);"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">{{gameX.gameDate | date: 'medium'}}</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <table class="table fc-table-light">
                                 <tr>
-                                    <th></th>
+                                    <th><span ng-click="editGame(null, round);" class="glyphicon glyphicon-plus fc-action"></span></th>
                                     <th>Дата</th>
                                     <th>Время</th>
                                     <th class="text-right">Хозяева</th>
-                                    <th colspan="3">Счет</th>
+                                    <th class="text-center" colspan="3">Счет</th>
                                     <th>Гости</th>
                                     <th>Стадион</th>
+                                    <th title="Матч завершен"><span class="glyphicon glyphicon-ok"></span></th>
+                                    <th></th>
                                 </tr>
                                 <tr ng-repeat="game in round.games">
-                                    <td><a href="javascript:void(0);" ng-click="editGame(game, round);"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                    <td><span class="glyphicon glyphicon-edit fc-action" ng-click="editGame(game, round);"></span></td>
                                     <td>{{game.gameDate | date:'fullDate'}}</td>
-                                    <td>{{game.gameDate | date:'shortTime'}}</td>
+                                    <td><span ng-show="game.showTime">{{game.gameDate | date: 'HH:mm'}}</span></td>
                                     <td class="text-right">{{game.dataEL.home.text}}</td>
                                     <td class="text-right">{{game.homeScore}}</td>
                                     <td class="text-center">:</td>
                                     <td>{{game.awayScore}}</td>
                                     <td>{{game.dataEL.away.text}}</td>
                                     <td>{{game.dataEL.stadium.text}}</td>
+                                    <td><input type="checkbox" name="gamePlayed" disabled ng-model="game.played"></td>
+                                    <td><span class="glyphicon glyphicon-minus fc-action" ng-click="removeGame(game);"></span></td>
                                 </tr>
                             </table>
                         </div>

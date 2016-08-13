@@ -10,7 +10,8 @@
     function gamesSrv(helper, apiSrv, notificationManager) {
 
         this.loadGame = function (id, success, failure) {
-            apiSrv.get('/api/games/' + id, null,
+            apiSrv.get('/api/games/' + id, 
+                null,
                 success,
                 function (response) {
                     if (angular.isFunction(failure)) {
@@ -45,7 +46,9 @@
 
         this.saveGame = function (id, game, success, failure) {
             if (angular.isDefined(id) && parseInt(id) > 0) {
-                apiSrv.put('/api/games/', id, game, null,
+                apiSrv.put('/api/games/',
+                                id,
+                                game,
                                 success,
                                 function (response) {
                                     if (angular.isFunction(failure)) {
@@ -55,7 +58,9 @@
                                     gameSaveFailed(response);
                                 });
             } else {
-                apiSrv.post('/api/games/', game,
+                apiSrv.post('/api/games/',
+                                game,
+                                null,
                                 success,
                                 function (response) {
                                     if (angular.isFunction(failure)) {
@@ -71,6 +76,25 @@
         function gameSaveFailed(response) {
             notificationManager.displayError(response.data);
         }
+
+        this.removeGame = function (id, success, failure) {
+            apiSrv.delete('/api/games/' + id,
+                            null,
+                            success,
+                            function (response) {
+                                if (angular.isFunction(failure)) {
+                                    failure(response);
+                                }
+
+                                gameRemoveFailed(response);
+                            });
+
+        }
+
+        function gameRemoveFailed(response) {
+            notificationManager.displayError(response.data);
+        }
+
 
         this.getRoundGames = function (tourneyId, roundId) {
 
