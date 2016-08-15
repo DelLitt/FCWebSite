@@ -6,9 +6,9 @@
         .module('fc.admin')
         .controller('tourneyEditCtrl', tourneyEditCtrl);
 
-    tourneyEditCtrl.$inject = ['$scope', '$routeParams', '$compile', 'configSrv', 'helper', 'tourneysSrv', '$uibModal', 'notificationManager', 'gamesSrv', 'roundsSrv'];
+    tourneyEditCtrl.$inject = ['$scope', '$routeParams', 'configSrv', 'helper', 'tourneysSrv', '$uibModal', 'notificationManager', 'gamesSrv', 'roundsSrv'];
 
-    function tourneyEditCtrl($scope, $routeParams, $compile, configSrv, helper, tourneysSrv, $uibModal, notificationManager, gamesSrv, roundsSrv) {
+    function tourneyEditCtrl($scope, $routeParams, configSrv, helper, tourneysSrv, $uibModal, notificationManager, gamesSrv, roundsSrv) {
 
         $scope.loading = true;
 

@@ -1,0 +1,39 @@
+﻿<div class="fc-pane">
+    <div class="fc-pane-body">
+        <div class="fc-pane-form">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div ng-show="loading" class="row text-center">
+                        <img ng-src="{{loadingImage}}" />
+                    </div>
+                    <div ng-show="!loading" class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="text-uppercase"><a href="office/teams/edit/0"><span class="glyphicon glyphicon-plus fc-action"></span></a>&nbsp;|&nbsp;Список команд</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="titleFilter" class="control-label">Фильтр:</label>
+                                        <input class="form-control" id="titleFilter" name="titleFilter" type="text" ng-model="text" ng-keyup="search($event, text);">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table fc-table-light">
+                                        <tr ng-repeat="team in teams | orderBy: 'searchDefault'">
+                                            <td><a ng-href="office/teams/edit/{{team.id}}"><span class="glyphicon glyphicon-edit">&nbsp;</span>{{team.searchDefault}}</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

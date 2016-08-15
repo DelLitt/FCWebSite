@@ -21,6 +21,12 @@
             this.teamBll = teamBll;
         }
 
+        [Authorize(Roles = "admin,press")]
+        public IEnumerable<TeamViewModel> Get()
+        {
+            return teamBll.GetTeams().ToViewModel();
+        }
+
         // GET: api/values/latest
         [HttpGet("search")]
         public IEnumerable<TeamViewModel> Get([FromQuery] string txt)

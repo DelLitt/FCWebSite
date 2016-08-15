@@ -32,5 +32,22 @@
 
             return tourneys.Select(v => v.ToViewModel()).ToList();
         }
+
+        public static Tourney ToBaseModel(this TourneyViewModel tourneyModel)
+        {
+            if (tourneyModel == null) { return null; }
+
+            return new Tourney()
+            {
+                Id = tourneyModel.id,
+                cityId = tourneyModel.cityId,
+                DateEnd = tourneyModel.dateEnd,
+                DateStart = tourneyModel.dateStart,
+                Description = tourneyModel.description,
+                Name = tourneyModel.name,
+                NameFull = tourneyModel.nameFull,
+                tourneyTypeId = tourneyModel.tourneyTypeId
+            };
+        }
     }
 }

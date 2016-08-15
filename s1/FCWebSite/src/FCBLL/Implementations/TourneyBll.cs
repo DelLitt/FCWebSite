@@ -74,5 +74,10 @@
 
             return DalTourney.SearchByNameFull(text);
         }
+
+        public Tourney SaveTourney(Tourney entity)
+        {
+            return DalTourney.SaveTourney(entity);
+        }
     }
 }

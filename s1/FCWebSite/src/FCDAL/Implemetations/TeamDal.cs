@@ -34,9 +34,9 @@
             return teams;
         }
 
-        public IEnumerable<Team> GetAll()
+        public IEnumerable<Team> GetTeams()
         {
-            IEnumerable<Team> teams = Context.Team.ToList();
+            IEnumerable<Team> teams = Context.Team.Take(LimitEntitiesSelections).ToList();
 
             FillRelations(teams);
 

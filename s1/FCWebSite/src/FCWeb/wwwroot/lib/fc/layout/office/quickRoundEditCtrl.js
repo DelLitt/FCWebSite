@@ -5,9 +5,9 @@
         .module('fc.admin')
         .controller('quickRoundEditCtrl', quickRoundEditCtrl);
 
-    quickRoundEditCtrl.$inject = ['$scope', '$uibModalInstance', 'roundsSrv', 'configSrv', 'round', 'tourneyId'];
+    quickRoundEditCtrl.$inject = ['$scope', '$uibModalInstance', 'roundsSrv', 'configSrv', 'notificationManager', 'round', 'tourneyId'];
 
-    function quickRoundEditCtrl($scope, $uibModalInstance, roundsSrv, configSrv, round, tourneyId) {
+    function quickRoundEditCtrl($scope, $uibModalInstance, roundsSrv, configSrv, notificationManager, round, tourneyId) {
 
         $scope.round = angular.isObject(round)
             ? angular.copy(round)
@@ -66,9 +66,10 @@
         };
 
         function roundSaved(response) {
-            round = response.data;
+            var savedRound = response.data;
+            notificationManager.displayInfo('Round (ID: ' + savedRound.id + ') was saved successfully!');
 
-            $uibModalInstance.close(round);
+            $uibModalInstance.close(savedRound);
         }
     }
 })();

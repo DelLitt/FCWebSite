@@ -1,0 +1,60 @@
+﻿<div class="panel panel-primary" style="margin: 0;">
+    <div class="panel-heading">
+        Рдектирование турнира
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="scoreHome">ID</label>
+                    <input class="form-control" name="scoreHome" type="text" ng-model="tourney.name" placeholder="vishayaliga2017">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="scoreHome">Название турнира</label>
+                    <input class="form-control" name="scoreHome" type="text" ng-model="tourney.nameFull" placeholder="Высшая лига">
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="dateStart" class="control-label">Дата начала:</label>
+                <datetimepicker ng-model="tourney.dateStart"
+                                id="dateStart"
+                                name="dateStart"
+                                date-format="dd-MMM-yyyy"
+                                date-options="dateOptions"
+                                date-disabled="isDisabledDate(date, mode)"
+                                hidden-time="true">
+                </datetimepicker>
+            </div>
+            <div class="col-sm-4">
+                <label for="dateEnd" class="control-label">Дата окончания:</label>
+                <datetimepicker ng-model="tourney.dateEnd"
+                                id="dateEnd"
+                                name="dateEnd"
+                                date-format="dd-MMM-yyyy"
+                                date-options="dateOptions"
+                                date-disabled="isDisabledDate(date, mode)"
+                                hidden-time="true">
+                </datetimepicker>
+            </div>
+            <div class="col-sm-4">
+                <label for="weight" class="control-label">Город:</label>
+                <fc-autocomplete key="id" val="nameFull" min="3" id="tourney.cityId"
+                                    addglobalescapeevent="addRootClickListener"
+                                    urlsearch="/api/cities/search"
+                                    urlinit="cityInitUrl">
+                </fc-autocomplete>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer text-right">
+        <button type="button" ng-click="ok();">Сохранить</button>
+        <button type="button" ng-click="cancel();">Отмена</button>
+    </div>
+</div>

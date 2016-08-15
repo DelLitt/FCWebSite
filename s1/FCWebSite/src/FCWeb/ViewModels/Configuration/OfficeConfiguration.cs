@@ -11,7 +11,7 @@
                 return EventHelper.FriendlyNames;
             }
         }
-        public TourneyViewModel EmptyTourey
+        public TourneyViewModel EmptyTourney
         {
             get
             {

@@ -27,7 +27,7 @@ namespace FCWeb.Controllers.Api
             this.personCareerBll = personCareerBll;
         }
 
-        [HttpGet("all")]
+        //[HttpGet("all")]
         [Authorize(Roles = "admin,press")]
         public IEnumerable<PersonViewModel> Get()
         {

@@ -66,7 +66,7 @@
 
             if (string.IsNullOrWhiteSpace(round.TeamList))
             {
-                return DalTeam.GetAll();
+                return DalTeam.GetTeams();
             }
 
             var teamIds = JsonConvert.DeserializeObject<int[]>(round.TeamList);
@@ -78,7 +78,7 @@
 
             if (teamIds.Length == 0)
             {
-                return DalTeam.GetAll();
+                return DalTeam.GetTeams();
             }
 
             return DalTeam.GetTeams(teamIds);
@@ -87,6 +87,11 @@
         public IEnumerable<Team> GetTeams(IEnumerable<int> ids)
         {
             return DalTeam.GetTeams(ids);
+        }
+
+        public IEnumerable<Team> GetTeams()
+        {
+            return DalTeam.GetTeams();
         }
 
         public IEnumerable<Team> SearchByDefault(string text)

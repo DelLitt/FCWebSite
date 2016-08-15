@@ -1,9 +1,13 @@
 ﻿namespace FCWeb.Controllers.Api.Tourneys
 {
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
     using Core.Extensions;
     using Core.ViewModelHepers;
     using FCCore.Abstractions.Bll;
+    using FCCore.Model;
+    using Microsoft.AspNet.Authorization;
     using Microsoft.AspNet.Mvc;
     using ViewModels;
 
@@ -50,7 +54,7 @@
         [HttpGet]
         public IEnumerable<TourneyViewModel> Get()
         {
-            return tourneyBll.GetAll().ToViewModel();
+            return tourneyBll.GetAll().OrderByDescending(t => t.Id).ToViewModel();
         }
 
         // GET: api/values/latest
@@ -58,6 +62,48 @@
         public IEnumerable<TourneyViewModel> Get([FromQuery] string txt)
         {
             return tourneyBll.SearchByNameFull(txt).ToViewModel();
+        }
+
+        // POST api/values
+        [HttpPost]
+        [Authorize(Roles = "admin,press")]
+        public TourneyViewModel Post([FromBody]TourneyViewModel tourneyView)
+        {
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return null;
+            }
+
+            return SaveTourney(tourneyView);
+        }
+
+        // PUT api/values/5
+        [HttpPut("{id}")]
+        [Authorize(Roles = "admin,press")]
+        public TourneyViewModel Put(int id, [FromBody]TourneyViewModel tourneyView)
+        {
+            if (id != tourneyView.id)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return null;
+            }
+
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return null;
+            }
+
+            return SaveTourney(tourneyView);
+        }
+
+        private TourneyViewModel SaveTourney(TourneyViewModel tourneyView)
+        {
+            Tourney tourney = tourneyView.ToBaseModel();
+            Tourney savedTourney = tourneyBll.SaveTourney(tourney);
+
+            return savedTourney.ToViewModel();
         }
     }
 }

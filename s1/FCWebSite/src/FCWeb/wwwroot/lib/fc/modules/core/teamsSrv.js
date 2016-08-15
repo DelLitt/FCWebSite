@@ -21,6 +21,25 @@
                 });
         }
 
+        this.loadAllTeams = function (success, failure) {
+            apiSrv.get('/api/teams', null, success, teamsLoadFail);
+        }
+
+        this.search = function (text, success, failure) {
+            var url = 'api/teams/search?txt=' + encodeURIComponent(text)
+
+            apiSrv.get(url,
+                null,
+                success,
+                function (response) {
+                    if (failure != null) {
+                        failure(response);
+                    }
+
+                    teamsLoadFail(response);
+                });
+        }
+
         function teamsLoadFail(response) {
             notificationManager.displayError(response.data);
         }

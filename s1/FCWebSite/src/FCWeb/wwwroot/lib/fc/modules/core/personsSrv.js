@@ -34,7 +34,7 @@
         }
 
         this.loadAllPersons = function (success, failure) {
-            apiSrv.get('/api/persons/all', null, success, personsLoadFail);
+            apiSrv.get('/api/persons', null, success, personsLoadFail);
         }
 
         function personsLoadFail(response, customLoadFail) {

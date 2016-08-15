@@ -49,6 +49,10 @@
                 templateUrl: "lib/fc/office/teams/teamEdit.html",
                 controller: "teamEditCtrl"
             })
+            .when("/office/teams/", {
+                templateUrl: "lib/fc/office/teams/teamsList.html",
+                controller: "teamsListCtrl"
+            })
             .when("/office/game/edit/:id", {
                 templateUrl: "lib/fc/office/games/gameEdit.html",
                 controller: "gameEditCtrl"
@@ -64,6 +68,10 @@
             .when("/office/filebrowseradapter/", {
                 templateUrl: "lib/fc/office/utils/fileBrowserAdapter.html",
                 controller: "fileBrowserAdapterCtrl"
+            })
+            .when("/office/tournaments/", {
+                templateUrl: "lib/fc/office/tourneys/tourneysList.html",
+                controller: "tourneysListCtrl"
             })
             .when("/office/tournaments/edit/:id", {
                 templateUrl: "lib/fc/office/tourneys/tourneyEdit.html",

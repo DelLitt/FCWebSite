@@ -49,10 +49,10 @@
         };
 
         function gameSaved(response) {
-            game = response.data;
-            notificationManager.displayInfo('Game (ID: ' + game.id + ') was saved successfully!');
+            var savedGame = response.data;
+            notificationManager.displayInfo('Game (ID: ' + savedGame.id + ') was saved successfully!');
 
-            $uibModalInstance.close(game);
+            $uibModalInstance.close(savedGame);
         }
     }
 })();
