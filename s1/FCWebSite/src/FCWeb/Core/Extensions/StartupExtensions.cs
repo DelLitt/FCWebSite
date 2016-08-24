@@ -34,6 +34,7 @@
             serviceCollection.AddTransient<IImageGalleryBll, ImageGalleryBll>();
             serviceCollection.AddTransient<ICountryBll, CountryBll>();
             serviceCollection.AddTransient<ITotalizatorBll, TotalizatorBll>();
+            serviceCollection.AddTransient<ITeamTypeBll, TeamTypeBll>();
             serviceCollection.AddTransient<IGameProtocolManagerFactory, GameProtocolManagerFactory>();
             serviceCollection.AddTransient<IGalleryStorageFactory, GalleryStorageFactory>();
         }
@@ -61,6 +62,7 @@
             serviceCollection.AddTransient<IImageGalleryDal, ImageGalleryDal>();
             serviceCollection.AddTransient<ICountryDal, CountryDal>();
             serviceCollection.AddTransient<ITotalizatorDal, TotalizatorDal>();
+            serviceCollection.AddTransient<ITeamTypeDal, TeamTypeDal>();
         }
     }
 }

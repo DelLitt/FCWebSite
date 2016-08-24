@@ -1,6 +1,7 @@
-﻿namespace FCWeb.ViewModels
+﻿namespace FCWeb.ViewModels.Game
 {
     using System;
+    using Team;
 
     public class GameViewModel
     {

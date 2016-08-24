@@ -6,9 +6,10 @@
     using FCCore.Abstractions.Bll;
     using FCCore.Common;
     using FCCore.Configuration;
+    using FCCore.Model;
     using Microsoft.AspNet.Authorization;
     using Microsoft.AspNet.Mvc;
-    using ViewModels;
+    using ViewModels.Team;
 
     [Route("api/[controller]")]
     public class TeamsController : Controller
@@ -44,10 +45,11 @@
                 && (User.IsInRole("admin") || User.IsInRole("press"))
                 && id == 0)
             {
-                return new TeamViewModel()
+                return new Team()
                 {
                     teamTypeId = 1
-                };
+                }
+                .ToViewModel();
             }
 
             teamBll.FillCities = true;

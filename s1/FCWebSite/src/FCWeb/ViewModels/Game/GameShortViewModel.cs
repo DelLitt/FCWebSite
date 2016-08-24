@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace FCWeb.ViewModels
+﻿namespace FCWeb.ViewModels.Game
 {
+    using System;
+
     public class GameShortViewModel
     {
         public DateTime start { get; set; }

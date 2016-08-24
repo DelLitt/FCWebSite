@@ -1,4 +1,4 @@
-﻿namespace FCWeb.ViewModels
+﻿namespace FCWeb.ViewModels.Game
 {
     using Protocol;
 
@@ -6,10 +6,5 @@
     {
         public FakeProtocoGameViewModel fakeProtocol { get; set; } = new FakeProtocoGameViewModel();
         public GameNoteDataViewModel data { get; set; } = new GameNoteDataViewModel();
-    }
-
-    public class GameNoteDataViewModel
-    {
-        // for future extensions
     }
 }

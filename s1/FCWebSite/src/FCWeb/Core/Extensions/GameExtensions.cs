@@ -5,6 +5,7 @@
     using FCCore.Common;
     using FCCore.Model;
     using ViewModels;
+    using ViewModels.Game;
 
     public static class GameExtensions
     {

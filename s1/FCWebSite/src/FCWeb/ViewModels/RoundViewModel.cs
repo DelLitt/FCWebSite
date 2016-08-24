@@ -1,6 +1,7 @@
 ﻿namespace FCWeb.ViewModels
 {
     using System.Collections.Generic;
+    using Game;
 
     public class RoundViewModel
     {

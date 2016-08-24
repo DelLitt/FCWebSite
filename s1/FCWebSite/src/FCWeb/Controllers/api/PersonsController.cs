@@ -61,6 +61,12 @@ namespace FCWeb.Controllers.Api
             return person.ToViewModel(personCareers.ToViewModel());
         }
 
+        [HttpGet("search")]
+        public IEnumerable<PersonViewModel> Get([FromQuery] string txt)
+        {
+            return personBll.SearchByDefault(txt).ToViewModel();
+        }
+
         // POST api/values
         [HttpPost]
         [Authorize(Roles = "admin,press")]

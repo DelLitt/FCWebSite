@@ -45,7 +45,7 @@
                 templateUrl: "lib/fc/office/persons/personsList.html",
                 controller: "personsListCtrl"
             })
-            .when("/office/team/edit/:id", {
+            .when("/office/teams/edit/:id", {
                 templateUrl: "lib/fc/office/teams/teamEdit.html",
                 controller: "teamEditCtrl"
             })

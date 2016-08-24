@@ -1,10 +1,5 @@
-﻿namespace FCWeb.ViewModels
+﻿namespace FCWeb.ViewModels.Game
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
     public class GameEntityLinkData
     {
         public EntityLinkViewModel home { get; set; }

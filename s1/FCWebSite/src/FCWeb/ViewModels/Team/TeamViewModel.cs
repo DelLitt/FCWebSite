@@ -1,4 +1,4 @@
-﻿namespace FCWeb.ViewModels
+﻿namespace FCWeb.ViewModels.Team
 {
     using System;
 
@@ -20,5 +20,8 @@
         public string webSite { get; set; }
         public Guid? tempGuid { get; set; }
         public string searchDefault { get; set; }
+
+        public TeamDescriptionViewModel descriptionData { get; set; }
+        public TeamTypeViewModel teamType { get; set; }
     }
 }

@@ -3,7 +3,7 @@
     using System.Linq;
     using FCCore.Model;
     using Newtonsoft.Json;
-    using ViewModels;
+    using ViewModels.Game;
     using ViewModels.Protocol;
 
     public class GameNoteBuilder

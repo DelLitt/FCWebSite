@@ -9,7 +9,7 @@
     using Microsoft.AspNet.Authorization;
     using Microsoft.AspNet.Mvc;
     using ViewModels;
-
+    using ViewModels.Game;
     [Route("api/[controller]")]
     public class GamesController : Controller
     {

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Core;
+    using Game;
     public class OfficeConfiguration : WebConfiguration
     {
         public Dictionary<int, string> EventGroupFriendlyNames
@@ -32,6 +33,15 @@
             get
             {
                 return new GameViewModel();
+            }
+        }
+
+
+        public PersonViewModel EmptyPerson
+        {
+            get
+            {
+                return new PersonViewModel();
             }
         }
 

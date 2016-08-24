@@ -10,7 +10,7 @@
     using FCCore.Model;
     using Microsoft.Extensions.DependencyInjection;
     using ViewModels;
-
+    using ViewModels.Game;
     public class GameVMHelper
     {
         private List<Team> teams { get; set; }

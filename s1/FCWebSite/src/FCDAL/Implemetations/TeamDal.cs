@@ -2,10 +2,11 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using FCCore.Model;
+    using Exceptions;
     using FCCore.Abstractions.Dal;
     using FCCore.Common;
-    using Exceptions;
+    using FCCore.Model;
+    using Microsoft.Data.Entity;
 
     public class TeamDal : DalBase, ITeamDal
     {
@@ -13,7 +14,10 @@
 
         public Team GetTeam(int id)
         {
-            Team team = Context.Team.FirstOrDefault(p => p.Id == id);
+            Team team = Context.Team
+                                .Where(t => t.Id == id)
+                                .Include(t => t.teamType)
+                                .FirstOrDefault();
 
             if (team != null)
             {
@@ -27,7 +31,9 @@
         {
             if(Guard.IsEmptyIEnumerable(ids)) { return new Team[0]; }
 
-            IEnumerable<Team> teams = Context.Team.Where(t => ids.Contains(t.Id));
+            IEnumerable<Team> teams = Context.Team
+                                            .Where(t => ids.Contains(t.Id))
+                                            .Include(t => t.teamType);
 
             FillRelations(teams);
 
@@ -36,7 +42,10 @@
 
         public IEnumerable<Team> GetTeams()
         {
-            IEnumerable<Team> teams = Context.Team.Take(LimitEntitiesSelections).ToList();
+            IEnumerable<Team> teams = Context.Team
+                                            .Take(LimitEntitiesSelections)
+                                            .Include(t => t.teamType)
+                                            .ToList();
 
             FillRelations(teams);
 
@@ -45,7 +54,8 @@
 
         public IEnumerable<Team> SearchByDefault(string text)
         {
-            IEnumerable<Team> teams = Context.Team.Where(t => t.Name.Contains(text) || t.city.NameFull.Contains(text));
+            IEnumerable<Team> teams = Context.Team
+                                            .Where(t => t.Name.Contains(text) || t.city.NameFull.Contains(text));
 
             FillRelations(teams);
 
@@ -56,8 +66,11 @@
         {
             if(Guard.IsEmptyIEnumerable(teamIds)) { return new Team[0]; }
 
-            IEnumerable<Team> teams = Context.Team.Where(t => teamIds.Contains(t.Id) 
-                                        && (t.Name.Contains(text) || (t.city != null && t.city.NameFull.Contains(text))));
+            IEnumerable<Team> teams = Context.Team
+                                            .Where(t => teamIds.Contains(t.Id) 
+                                                        && (t.Name.Contains(text) 
+                                                            || (t.city != null 
+                                                                && t.city.NameFull.Contains(text))));
 
             FillRelations(teams);
 
@@ -68,11 +81,11 @@
         {
             if (entity.Id > 0)
             {
-                Context.Team.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.Team.Update(entity, GraphBehavior.SingleObject);
             }
             else
             {
-                Context.Team.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.Team.Add(entity, GraphBehavior.SingleObject);
             }
 
             Context.SaveChanges();

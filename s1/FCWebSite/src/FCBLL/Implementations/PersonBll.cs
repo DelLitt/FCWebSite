@@ -123,14 +123,19 @@
             return DalPerson.GetTeamPersons(teamId, date);
         }
 
+        public IEnumerable<Person> GetPersons(IEnumerable<int> personsIds)
+        {
+            return DalPerson.GetPersons(personsIds);
+        }
+
         public IEnumerable<Person> GetPersons()
         {
             return DalPerson.GetPersons();
         }
 
-        public IEnumerable<Person> GetPersons(IEnumerable<int> personsIds)
+        public IEnumerable<Person> SearchByDefault(string text)
         {
-            return DalPerson.GetPersons(personsIds);
+            return DalPerson.SearchByDefault(text);
         }
 
         public int SavePerson(Person entity)

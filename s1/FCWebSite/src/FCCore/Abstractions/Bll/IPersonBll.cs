@@ -14,8 +14,9 @@
         IEnumerable<Person> GetTeamPersons(int teamId);
         IEnumerable<Person> GetTeamPersons(int teamId, PersonGroup personGroup);
         IEnumerable<Person> GetTeamPersons(int teamId, DateTime date);
-        IEnumerable<Person> GetPersons();
         IEnumerable<Person> GetPersons(IEnumerable<int> personsIds);
+        IEnumerable<Person> GetPersons();
+        IEnumerable<Person> SearchByDefault(string text);
         int SavePerson(Person entity);
     }
 }

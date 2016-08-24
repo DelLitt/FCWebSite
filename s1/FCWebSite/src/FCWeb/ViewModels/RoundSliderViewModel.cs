@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-
+    using Game;
     public class RoundSliderViewModel
     {
         public int roundId { get; set; }

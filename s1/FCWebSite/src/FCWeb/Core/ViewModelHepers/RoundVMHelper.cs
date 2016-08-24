@@ -1,6 +1,5 @@
 ﻿namespace FCWeb.Core.ViewModelHepers
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using FCCore.Abstractions.Bll;
@@ -10,6 +9,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using Newtonsoft.Json;
     using ViewModels;
+    using ViewModels.Game;
 
     public class RoundVMHelper
     {

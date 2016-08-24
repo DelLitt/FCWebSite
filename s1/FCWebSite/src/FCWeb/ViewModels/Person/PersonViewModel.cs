@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Team;
 
     public class PersonViewModel
     {
@@ -24,6 +25,7 @@
         public int? teamId { get; set; }
         public byte? weight { get; set; }
         public Guid? tempGuid { get; set; }
+
         public PersonInfoView info { get; set; }
         public IEnumerable<PersonCareerViewModel> career { get; set; } = new PersonCareerViewModel[0];
         public PersonRoleViewModel role { get; set; }

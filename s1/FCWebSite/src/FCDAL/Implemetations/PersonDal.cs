@@ -6,6 +6,7 @@
     using Exceptions;
     using FCCore.Abstractions.Dal;
     using FCCore.Common;
+    using FCCore.Extensions;
     using FCCore.Model;
 
     public class PersonDal : DalBase, IPersonDal
@@ -59,18 +60,27 @@
             return persons;
         }
 
+        public IEnumerable<Person> GetPersons(IEnumerable<int> personsIds)
+        {
+            if (personsIds == null) { return new Person[0]; }
+
+            IEnumerable<Person> persons = Context.Person.Where(r => personsIds.Contains(r.Id))
+                                                        .AsEnumerable();
+
+            FillRelations(persons);
+
+            return persons;
+        }
+
         public IEnumerable<Person> GetPersons()
         {
             return Context.Person.Take(LimitEntitiesSelections);
         }
 
-        public IEnumerable<Person> GetPersons(IEnumerable<int> personsIds)
+        public IEnumerable<Person> SearchByDefault(string text)
         {
-            if (personsIds == null) { return new Person[0]; }
-
-            IEnumerable<Person> persons = Context.Person.Where(r => personsIds.Contains(r.Id)).ToList();
-
-            FillRelations(persons);
+            IEnumerable<Person> persons = Context.Person.Where(p => p.GetNameDefault().Contains(text))
+                                                        .AsEnumerable();
 
             return persons;
         }

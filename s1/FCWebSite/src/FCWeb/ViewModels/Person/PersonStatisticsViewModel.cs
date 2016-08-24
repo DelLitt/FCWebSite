@@ -1,5 +1,7 @@
 ﻿namespace FCWeb.ViewModels
 {
+    using Team;
+
     public class PersonStatisticsViewModel
     {
         public int id { get; set; }
