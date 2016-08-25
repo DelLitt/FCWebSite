@@ -47,7 +47,7 @@
 
             IQueryable<Team> teams = Context.Team
                                             .Where(t => t.teamTypeId == teamTypeId
-                                                     && t.WebSite == parentTeam);            
+                                                     && t.WebSite == parentTeam);
 
             IEnumerable<Team> result = ApplySettings(teams);
 
