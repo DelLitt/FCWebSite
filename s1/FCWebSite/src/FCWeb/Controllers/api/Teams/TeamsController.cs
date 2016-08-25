@@ -37,7 +37,6 @@
             return teamBll.SearchByDefault(txt).ToViewModel();
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public TeamViewModel Get(int id)
         {

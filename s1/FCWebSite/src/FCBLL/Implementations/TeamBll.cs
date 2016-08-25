@@ -9,6 +9,19 @@
 
     public class TeamBll : ITeamBll
     {
+        public bool? Active
+        {
+            get
+            {
+                return DalTeam.Active;
+            }
+
+            set
+            {
+                DalTeam.Active = value;
+            }
+        }
+
         public bool FillCities
         {
             get
@@ -82,6 +95,16 @@
             }
 
             return DalTeam.GetTeams(teamIds);
+        }
+
+        public IEnumerable<Team> GetTeamsByType(int teamTypeId)
+        {
+            return DalTeam.GetTeamsByType(teamTypeId);
+        }
+
+        public IEnumerable<Team> GetTeamsByTypeAndParent(int teamTypeId, int parentTeamId)
+        {
+            return DalTeam.GetTeamsByTypeAndParent(teamTypeId, parentTeamId);
         }
 
         public IEnumerable<Team> GetTeams(IEnumerable<int> ids)

@@ -22,7 +22,29 @@
         }
 
         this.loadAllTeams = function (success, failure) {
-            apiSrv.get('/api/teams', null, success, teamsLoadFail);
+            apiSrv.get('/api/teams',
+                null,
+                success,
+                function (response) {
+                    if (angular.isFunction(failure)) {
+                        failure(response);
+                    }
+
+                    teamsLoadFail(response);
+                });
+        }
+
+        this.loadYothTeams = function (parentTeamId, success, failure) {
+            apiSrv.get('/api/teams/type/youth/parent/' + parentTeamId,
+                null,
+                success,
+                function (response) {
+                    if (angular.isFunction(failure)) {
+                        failure(response);
+                    }
+
+                    teamsLoadFail(response);
+                });
         }
 
         this.search = function (text, success, failure) {

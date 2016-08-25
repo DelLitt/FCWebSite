@@ -5,10 +5,13 @@
 
     public interface ITeamBll
     {
+        bool? Active { get; set; }
         bool FillCities { get; set; }
 
         Team GetTeam(int id);
         IEnumerable<Team> GetTeamsByRound(int roundId);
+        IEnumerable<Team> GetTeamsByType(int teamTypeId);
+        IEnumerable<Team> GetTeamsByTypeAndParent(int teamTypeId, int parentTeamId);
         IEnumerable<Team> GetTeams(IEnumerable<int> ids);
         IEnumerable<Team> GetTeams();
         IEnumerable<Team> SearchByDefault(string text);

@@ -12,6 +12,7 @@
                 return EventHelper.FriendlyNames;
             }
         }
+
         public TourneyViewModel EmptyTourney
         {
             get

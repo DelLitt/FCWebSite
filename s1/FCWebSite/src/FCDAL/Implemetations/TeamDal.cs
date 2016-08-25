@@ -1,5 +1,6 @@
 ﻿namespace FCDAL.Implementations
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Exceptions;
@@ -10,71 +11,104 @@
 
     public class TeamDal : DalBase, ITeamDal
     {
+        public bool? Active { get; set; }
         public bool FillCities { get; set; } = false;
 
         public Team GetTeam(int id)
         {
-            Team team = Context.Team
-                                .Where(t => t.Id == id)
-                                .Include(t => t.teamType)
-                                .FirstOrDefault();
+            IQueryable<Team> teams = Context.Team
+                                            .Where(t => t.Id == id);
 
-            if (team != null)
-            {
-                FillRelations(new Team[] { team });
-            }
+            IEnumerable<Team> result = ApplySettings(teams);
+
+            FillRelations(result);
+
+            Team team = result.FirstOrDefault();
 
             return team;
+        }
+
+        public IEnumerable<Team> GetTeamsByType(int teamTypeId)
+        {
+            IQueryable<Team> teams = Context.Team
+                                            .Where(t => t.teamTypeId == teamTypeId);
+           
+            IEnumerable<Team> result = ApplySettings(teams);
+
+            FillRelations(result);
+
+            return result;
+        }
+
+        // TODO: Currently parentId is WebSite. Needs to be added new column!!!
+        public IEnumerable<Team> GetTeamsByTypeAndParent(int teamTypeId, int parentTeamId)
+        {
+            string parentTeam = parentTeamId.ToString();
+
+            IQueryable<Team> teams = Context.Team
+                                            .Where(t => t.teamTypeId == teamTypeId
+                                                     && t.WebSite == parentTeam);            
+
+            IEnumerable<Team> result = ApplySettings(teams);
+
+            FillRelations(result);
+
+            return result;
         }
 
         public IEnumerable<Team> GetTeams(IEnumerable<int> ids)
         {
             if(Guard.IsEmptyIEnumerable(ids)) { return new Team[0]; }
 
-            IEnumerable<Team> teams = Context.Team
-                                            .Where(t => ids.Contains(t.Id))
-                                            .Include(t => t.teamType);
+            IQueryable<Team> teams = Context.Team
+                                            .Where(t => ids.Contains(t.Id));
 
-            FillRelations(teams);
+            IEnumerable<Team> result = ApplySettings(teams);
 
-            return teams;
+            FillRelations(result);
+
+            return result;
         }
 
         public IEnumerable<Team> GetTeams()
         {
-            IEnumerable<Team> teams = Context.Team
-                                            .Take(LimitEntitiesSelections)
-                                            .Include(t => t.teamType)
-                                            .ToList();
+            IQueryable<Team> teams = Context.Team;
 
-            FillRelations(teams);
+            IEnumerable<Team> result = ApplySettings(teams);
 
-            return teams;
+            FillRelations(result);
+
+            return result;
         }
 
         public IEnumerable<Team> SearchByDefault(string text)
         {
-            IEnumerable<Team> teams = Context.Team
-                                            .Where(t => t.Name.Contains(text) || t.city.NameFull.Contains(text));
+            IQueryable<Team> teams = Context.Team
+                                            .Where(t => t.Name.Contains(text) 
+                                                     || t.city.NameFull.Contains(text));
 
-            FillRelations(teams);
+            IEnumerable<Team> result = ApplySettings(teams);
 
-            return teams;
+            FillRelations(result);
+
+            return result;
         }
 
         public IEnumerable<Team> SearchByDefault(string text, IEnumerable<int> teamIds)
         {
             if(Guard.IsEmptyIEnumerable(teamIds)) { return new Team[0]; }
 
-            IEnumerable<Team> teams = Context.Team
+            IQueryable<Team> teams = Context.Team
                                             .Where(t => teamIds.Contains(t.Id) 
                                                         && (t.Name.Contains(text) 
                                                             || (t.city != null 
                                                                 && t.city.NameFull.Contains(text))));
 
-            FillRelations(teams);
+            IEnumerable<Team> result = ApplySettings(teams);
 
-            return teams;
+            FillRelations(result);
+
+            return result;
         }
 
         public int SaveTeam(Team entity)
@@ -91,6 +125,19 @@
             Context.SaveChanges();
 
             return entity.Id;
+        }
+
+        private IEnumerable<Team> ApplySettings(IQueryable<Team> teams)
+        {
+            if (Active.HasValue)
+            {
+                teams = teams.Where(t => t.Active == Active.Value);
+            }
+
+            teams = teams.Take(LimitEntitiesSelections);
+            teams = teams.Include(t => t.teamType);
+
+            return teams.ToList();
         }
 
         private void FillRelations(IEnumerable<Team> teams)

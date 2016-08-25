@@ -1,6 +1,7 @@
 ﻿namespace FCWeb.ViewModels.Configuration
 {
     using System.Collections.Generic;
+    using Core;
     using FCCore.Common.Constants;
     using FCCore.Configuration;
     using FCCore.Model;
@@ -85,6 +86,14 @@
             get
             {
                 return MainCfg.UrlKeyRegexPattern;
+            }
+        }
+
+        public Dictionary<int, string> TeamTypeFriendlyNames
+        {
+            get
+            {
+                return TeamTypeHelper.FriendlyNames;
             }
         }
     }
