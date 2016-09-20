@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Abstractions.Dal;
+    using Common;
     using Exceptions;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -61,6 +62,12 @@
 
                 return settingsVisibility;
             }
+        }
+
+        private static string logPath = "Logs";
+        public static string LogPath
+        {
+            get { return WebHelper.ToPhysicalPath(logPath); }
         }
 
         public static int TimeShift

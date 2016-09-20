@@ -20,7 +20,7 @@
                     loses = p.Loses,
                     points = p.Points,
                     position = p.Position,
-                    team = p.Team.Name,
+                    team = p.Team?.Name ?? string.Empty,
                     wins = p.Wins
                 });
 

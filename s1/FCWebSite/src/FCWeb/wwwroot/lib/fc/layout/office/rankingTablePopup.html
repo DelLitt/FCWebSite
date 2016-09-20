@@ -1,0 +1,45 @@
+﻿<div class="panel panel-primary" style="margin: 0;">
+    <div class="panel-heading">
+        Турнирная таблица
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="header-line-inv">
+                        <h4 style="color: #fff !important;">{{ranking.name}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table fc-table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Команда</th>
+                            <th>И</th>
+                            <th>В</th>
+                            <th>Н</th>
+                            <th>П</th>
+                            <th>М</th>
+                            <th>О</th>
+                        </tr>
+                        <tr ng-repeat="row in ranking.rows">
+                            <td>{{row.position}}</td>
+                            <td>{{row.team}}</td>
+                            <td>{{row.games}}</td>
+                            <td>{{row.wins}}</td>
+                            <td>{{row.draws}}</td>
+                            <td>{{row.loses}}</td>
+                            <td>{{row.goalsFor}}-{{row.goalsAgainst}}</td>
+                            <td>{{row.points}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer text-right">
+        <button type="button" ng-click="ok();">Закрыть</button>
+    </div>
+</div>

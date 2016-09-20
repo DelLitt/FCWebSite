@@ -1,12 +1,15 @@
 ﻿namespace FCWeb.Core.Extensions
 {
     using FCBLL.Implementations;
+    using FCBLL.Implementations.Components;
     using FCBLL.Implementations.ImageGallery;
     using FCBLL.Implementations.Protocol;
     using FCCore.Abstractions.Bll;
+    using FCCore.Abstractions.Bll.Components;
     using FCCore.Abstractions.Bll.ImageGallery;
     using FCCore.Abstractions.Bll.Protocol;
     using FCCore.Abstractions.Dal;
+    using FCCore.Diagnostic.Logging.Simple;
     using FCDAL.Implementations;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -37,6 +40,8 @@
             serviceCollection.AddTransient<ITeamTypeBll, TeamTypeBll>();
             serviceCollection.AddTransient<IGameProtocolManagerFactory, GameProtocolManagerFactory>();
             serviceCollection.AddTransient<IGalleryStorageFactory, GalleryStorageFactory>();
+            serviceCollection.AddTransient<IAccumulativeLog, AccumulativeLog>();
+            serviceCollection.AddTransient<IRanking, Ranking>();
         }
 
         public static void AddDALServices(this IServiceCollection serviceCollection)

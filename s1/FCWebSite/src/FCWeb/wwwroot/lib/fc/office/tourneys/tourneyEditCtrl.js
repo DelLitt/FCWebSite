@@ -11,8 +11,10 @@
     function tourneyEditCtrl($scope, $routeParams, configSrv, helper, tourneysSrv, $uibModal, notificationManager, gamesSrv, roundsSrv) {
 
         $scope.loading = true;
+        $scope.change = false;
+        $scope.tourneyId = $routeParams.id;
 
-        loadData($routeParams.id);
+        loadData($scope.tourneyId);
 
         function loadData(tourneyId) {
             if (tourneyId < 0) {
@@ -80,6 +82,29 @@
             });
         }
 
+        $scope.showRanking = function () {
+            var lScope = $scope;
+
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'lib/fc/layout/office/rankingTablePopup.html',
+                controller: 'rankingTablePopupCtrl',
+                //size: size,
+                resolve: {
+                    rankingModel: {
+                        tourneyId: $scope.tourney.id,
+                        changed: $scope.change
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (response) {
+
+            }, function () {
+
+            });
+        }
+
         $scope.editGame = function (game, round) {
             var lRound = round;
 
@@ -105,6 +130,8 @@
                 } else {
                     lRound.games.push(savedGame);
                 }
+
+                $scope.change = true;
 
                 notificationManager.displayInfo(savedGame.gameDate);
             }, function () {
@@ -134,6 +161,8 @@
                     return;
                 }
             }
+
+            $scope.change = true;
         }
 
         $scope.removeGame = function (game) {
@@ -159,7 +188,9 @@
                         return;
                     }
                 }
-            }            
+            }
+
+            $scope.change = true;
         }
     }
 })();

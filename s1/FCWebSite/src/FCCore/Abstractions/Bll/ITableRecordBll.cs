@@ -7,6 +7,8 @@ namespace FCCore.Abstractions.Bll
     {
         bool FillTeams { get; set; }
         bool FillTourney { get; set; }
+
         IEnumerable<TableRecord> GetTourneyTable(int tourneyId);
+        void SaveTourneyTable(int tourneyId, IEnumerable<TableRecord> tableRecords);
     }
 }

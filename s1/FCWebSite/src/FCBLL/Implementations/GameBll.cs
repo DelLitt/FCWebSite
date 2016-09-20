@@ -102,11 +102,21 @@
             return DalGames.SaveGame(entity);
         }
 
+        public IEnumerable<Game> GetGamesByTourney(int tourneyId)
+        {
+            return DalGames.GetGamesByTourney(tourneyId);
+        }
+
         public IEnumerable<Game> GetGamesByTourneys(IEnumerable<int> tourneyIds)
         {
             IEnumerable<int> roundIds = DalRounds.GetRoundIdsOfTourneys(tourneyIds);
 
             return GetGamesByRounds(roundIds);
+        }
+
+        public IEnumerable<Game> GetGamesByTourneyBetweenTeams(int tourneyId, IEnumerable<int> teamIds)
+        {
+            return DalGames.GetGamesByTourneyBetweenTeams(tourneyId, teamIds);
         }
 
         public IEnumerable<Game> GetGamesByRounds(IEnumerable<int> roundIds)

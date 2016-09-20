@@ -10,16 +10,36 @@
     function rankingsSrv(helper, apiSrv, notificationManager) {
 
         this.loadRankingTable = function (tourneyId, success, failure) {
-            apiSrv.get('/api/rankings/' + tourneyId, null, success, function (response) {
-                if (failure != null) {
-                    failure(response);
-                }
+            apiSrv.get('/api/rankings/' + tourneyId,
+                        null,
+                        success,
+                        function (response) {
+                            if (failure != null) {
+                                failure(response);
+                            }
 
-                rankingTableLoadFailed(response);
-            });
+                            rankingTableLoadFailed(response);
+                        });
+        }
+
+        this.updateRankingTable = function (id, success, failure) {
+            apiSrv.put('/api/rankings/', id,
+                            null,
+                            success,
+                            function (response) {
+                                if (failure != null) {
+                                    failure(response);
+                                }
+
+                                rankingTableSaveFailed(response);
+                            });
         }
 
         function rankingTableLoadFailed(response) {
+            notificationManager.displayError(response.data);
+        }
+
+        function rankingTableSaveFailed(response) {
             notificationManager.displayError(response.data);
         }
     }

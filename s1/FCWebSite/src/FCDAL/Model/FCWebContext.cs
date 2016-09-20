@@ -307,9 +307,9 @@ namespace FCDAL.Model
 
             modelBuilder.Entity<TableRecord>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                // entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-                entity.HasOne(d => d.Team).WithOne(p => p.TableRecord).HasForeignKey<TableRecord>(d => d.Id).OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(d => d.Team).WithMany(p => p.TableRecord).HasForeignKey(d => d.teamId).OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(d => d.tourney).WithMany(p => p.TableRecord).HasForeignKey(d => d.tourneyId).OnDelete(DeleteBehavior.Restrict);
             });

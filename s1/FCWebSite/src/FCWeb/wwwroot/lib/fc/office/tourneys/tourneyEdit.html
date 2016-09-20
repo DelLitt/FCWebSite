@@ -5,7 +5,14 @@
                 <div class="header-line-inv">
                     <h4 style="color: #fff !important;">{{tourney.nameFull}}</h4>                    
                 </div>
-                <button class="btn btn-primary center-block" ng-click="editRound(null);">Добавить раунд</button>
+                <div class="col-sm-4">
+                    <button class="btn btn-primary pull-left" ng-click="editRound(null);">Добавить раунд</button>
+                </div>
+                <div class="col-sm-8 text-right">
+                    <button class="btn btn-info" ng-click="showRanking();">Показать таблицу</button>&nbsp;
+                    <button class="btn btn-default" ng-click="calculateRanking();">Пересчитать таблицу</button>
+                    <span ng-show="change" class="glyphicon glyphicon-check"></span>
+                </div>
             </div>
             <div class="row" style="margin: 0;" ng-repeat="round in tourney.rounds | orderBy : '-id'">
                 <div class="col-sm-12">

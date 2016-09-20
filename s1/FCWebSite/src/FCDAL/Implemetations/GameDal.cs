@@ -13,8 +13,9 @@
     public class GameDal : DalBase, IGameDal
     {
         public bool FillTeams { get; set; } = false;
-
         public bool FillRounds { get; set; } = false;
+
+        // TODO: Add option to select games where goals is not null
 
         public Game GetTeamNearestGame(int teamId, IEnumerable<int> roundIds, DateTime date)
         {
@@ -57,11 +58,34 @@
             return games;
         }
 
+        public IEnumerable<Game> GetGamesByTourney(int tourneyId)
+        {
+            IEnumerable<Game> games = Context.Game.Where(g => tourneyId == g.round.tourneyId).ToList();
+
+            FillRelations(games);
+
+            return games;
+        }
+
         public IEnumerable<Game> GetGamesByTourneys(IEnumerable<int> tourneyIds)
         {
             if(Guard.IsEmptyIEnumerable(tourneyIds)) { return new Game[0]; }
 
-            IEnumerable<Game> games = Context.Game.Where(g => tourneyIds.Contains(g.round.tourneyId));
+            IEnumerable<Game> games = Context.Game.Where(g => tourneyIds.Contains(g.round.tourneyId)).ToList();
+
+            FillRelations(games);
+
+            return games;
+        }
+
+        public IEnumerable<Game> GetGamesByTourneyBetweenTeams(int tourneyId, IEnumerable<int> teamIds)
+        {
+            if (Guard.IsEmptyIEnumerable(teamIds)) { return new Game[0]; }
+
+            IEnumerable<Game> games = Context.Game.Where(g => tourneyId == g.round.tourneyId
+                                                          && teamIds.Contains(g.homeId)
+                                                          && teamIds.Contains(g.awayId))
+                                                  .ToList();
 
             FillRelations(games);
 

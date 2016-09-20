@@ -36,7 +36,7 @@ namespace FCCore.Model
         public virtual ICollection<PersonCareer> PersonCareer { get; set; }
         public virtual ICollection<PersonStatistics> PersonStatistics { get; set; }
         public virtual ICollection<ProtocolRecord> ProtocolRecord { get; set; }
-        public virtual TableRecord TableRecord { get; set; }
+        public virtual ICollection<TableRecord> TableRecord { get; set; }
         public virtual City city { get; set; }
         public virtual Tourney mainTourney { get; set; }
         public virtual Stadium stadium { get; set; }

@@ -1,12 +1,12 @@
-﻿using FCCore.Abstractions.Bll;
-using FCCore.Abstractions.Dal;
-using System.Collections.Generic;
-using FCCore.Model;
-using System;
-using System.Linq;
-
-namespace FCBLL.Implementations
+﻿namespace FCBLL.Implementations
 {
+    using FCCore.Abstractions.Bll;
+    using FCCore.Abstractions.Dal;
+    using System.Collections.Generic;
+    using FCCore.Model;
+    using System;
+    using System.Linq;
+    using FCCore.Common;
     public class TableRecordBll : ITableRecordBll
     {
          public bool FillTeams
@@ -52,6 +52,11 @@ namespace FCBLL.Implementations
         public IEnumerable<TableRecord> GetTourneyTable(int tourneyId)
         {
             return DalTableRecord.GetTourneyTable(tourneyId).OrderBy(tr => tr.Position);
+        }
+
+        public void SaveTourneyTable(int tourneyId, IEnumerable<TableRecord> tableRecords)
+        {
+            DalTableRecord.SaveTourneyTable(tourneyId, tableRecords);
         }
     }
 }
