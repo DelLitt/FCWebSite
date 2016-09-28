@@ -78,6 +78,14 @@
             }
         }
 
+        public static int QuickGameInfoDaysShift
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:QuickGameInfoDaysShift"]);
+            }
+        }
+
         public static int MainTeamId
         {
             get
@@ -110,7 +118,7 @@
                 if(mainTeamTourneyIds == null)
                 {
                     string data = CoreConfig.Current["Settings:MainTeamTourneyIds"];
-                    JsonConvert.DeserializeObject<IEnumerable<int>>(data);
+                    mainTeamTourneyIds = JsonConvert.DeserializeObject<IEnumerable<int>>(data);
                 }
 
                 return mainTeamTourneyIds;
@@ -125,7 +133,7 @@
                 if (reserveTeamTourneyIds == null)
                 {
                     string data = CoreConfig.Current["Settings:ReserveTeamTourneyIds"];
-                    JsonConvert.DeserializeObject<IEnumerable<int>>(data);
+                    reserveTeamTourneyIds = JsonConvert.DeserializeObject<IEnumerable<int>>(data);
                 }
 
                 return reserveTeamTourneyIds;

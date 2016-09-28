@@ -123,33 +123,41 @@
 
                     scope.suggestedData = [];
 
-                    if (angular.isString(scope.urlsearch)) {
-                        //var url = scope.urlsearch.endsWith('/') ? scope.urlsearch : scope.urlsearch + '/';
-                        var url = scope.urlsearch + '?txt=' + encodeURIComponent(scope.text)
-
-                        apiSrv.get(url,
-                            null,
-                            function (response) {
-                                scope.suggestedData = response.data;
-                                scope.selItem = null;
-                                scope.aclass = 'form-group';
-                            },
-                            function (response) {
-                                console.log('Error autocomplete search!');
-                            });
+                    if (angular.isArray(scope.inputdata) && scope.inputdata.length > 0) {
+                        angular.forEach(scope.inputdata, function (value, key) {
+                            if (value[this.val].toLowerCase().indexOf(this.text.toLowerCase()) !== -1) {
+                                this.suggestedData.push(value);
+                            }
+                        }, scope);
                     } else {
-                        if (angular.isArray(scope.inputdata)) {
-                            angular.forEach(scope.inputdata, function (value, key) {
-                                if (value[this.val].toLowerCase().indexOf(this.text.toLowerCase()) !== -1) {
-                                    this.suggestedData.push(value);
-                                }
-                            }, scope);
+                        if (angular.isString(scope.urlsearch)) {
+                            //var url = scope.urlsearch.endsWith('/') ? scope.urlsearch : scope.urlsearch + '/';
+                            var url = scope.urlsearch + '?txt=' + encodeURIComponent(scope.text)
+
+                            apiSrv.get(url,
+                                null,
+                                function (response) {
+                                    scope.suggestedData = response.data;
+                                    scope.selItem = null;
+                                    scope.aclass = 'form-group';
+                                },
+                                function (response) {
+                                    console.log('Error autocomplete search!');
+                                });
                         }
                     }
                 }
 
-                var init = function (value) {
-                    if (angular.isString(value)) {
+                var init = function (value) {                    
+                    if (angular.isArray(scope.inputdata) && scope.inputdata.length > 0 && angular.isNumber(value)) {
+                        scope.selid = value;
+                        angular.forEach(scope.inputdata, function (item) {
+                            var id = angular.isNumber(this.selid) ? this.selid : parseInt(this.selid);
+                            if (item[this.key] == id) {
+                                this.select(item);
+                            }
+                        }, scope);
+                    } else if (angular.isString(value)) {
                         apiSrv.get(value,
                             null,
                             function (response) {
@@ -158,14 +166,6 @@
                             function (response) {
                                 console.log('Error init autocomlete!');
                             });
-                    } else if (angular.isArray(scope.inputdata) && angular.isNumber(value)) {
-                        scope.selid = value;
-                        angular.forEach(scope.inputdata, function (item) {
-                            var id = angular.isNumber(this.selid) ? this.selid : parseInt(this.selid);
-                            if (item[this.key] == id) {
-                                this.select(item);
-                            }
-                        }, scope);
                     }
                 }
 

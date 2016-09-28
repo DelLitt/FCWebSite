@@ -64,5 +64,8 @@
   "SATURDAY": "Суббота",
   "SUNDAY": "Воскресенье",
   "PHOTO": "Фото",
-  "VIDEO": "Видео"
+  "VIDEO": "Видео",
+  "STADIUM": "Стадион",
+  "SHOW_QUICK_GAMES_TEAM_0": "Матчи главной команды",
+  "SHOW_QUICK_GAMES_TEAM_1": "Матчи резервной команды"
 }

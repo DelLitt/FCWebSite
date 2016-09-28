@@ -25,11 +25,27 @@
             }
         }
 
+        public int QuickGameInfoDaysShift
+        {
+            get
+            {
+                return MainCfg.QuickGameInfoDaysShift;
+            }
+        }
+
         public int MainTeamId
         {
             get
             {
                 return MainCfg.MainTeamId;
+            }
+        }
+
+        public int ReserveTeamId
+        {
+            get
+            {
+                return MainCfg.ReserveTeamId;
             }
         }
 

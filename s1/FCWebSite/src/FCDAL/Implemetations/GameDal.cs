@@ -14,6 +14,21 @@
     {
         public bool FillTeams { get; set; } = false;
         public bool FillRounds { get; set; } = false;
+        public bool FillStadiums { get; set; } = false;
+        public bool FillTourneys { get; set; } = false;
+
+
+        public Game GetGame(int id)
+        {
+            Game game = Context.Game.FirstOrDefault(p => p.Id == id);
+
+            if (game != null)
+            {
+                FillRelations(new[] { game });
+            }
+
+            return game;
+        }
 
         // TODO: Add option to select games where goals is not null
 
@@ -91,17 +106,32 @@
 
             return games;
         }
+        
 
-        public Game GetGame(int id)
+        public IEnumerable<Game> GetTeamGames(int teamId, IEnumerable<int> tourneyIds, DateTime dateStart, DateTime dateEnd)
         {
-            Game game = Context.Game.FirstOrDefault(p => p.Id == id);
+            Guard.CheckNull(tourneyIds, nameof(tourneyIds));
 
-            if(game != null)
-            {
-                FillRelations(new[] { game });
-            }
+            //IEnumerable<Game> games = Context.Game.Where(g => tourneyIds.Contains(g.round.tourneyId)
+            //                                            && g.GameDate >= dateStart
+            //                                            && g.GameDate <= dateEnd
+            //                                            && (g.homeId == teamId || g.awayId == teamId))
+            //                                      .ToList();
 
-            return game;
+            IEnumerable<short> roundIds = Context.Round.Where(r => tourneyIds.Contains(r.tourneyId))
+                                                       .Select(r => r.Id);
+
+            if(!roundIds.Any()) { return new Game[] { }; }
+
+            IEnumerable<Game> games = Context.Game.Where(g => g.GameDate >= dateStart
+                                                        && g.GameDate <= dateEnd
+                                                        && roundIds.Contains(g.roundId)                                                        
+                                                        && (g.homeId == teamId || g.awayId == teamId))
+                                                  .ToList();
+
+            FillRelations(games);
+
+            return games;
         }
 
         public int RemoveGame(int gameId, bool removeProtocol = true)
@@ -194,8 +224,16 @@
 
         private void FillRelations(IEnumerable<Game> games)
         {
+            if(Guard.IsEmptyIEnumerable(games)) { return; }
+
             IEnumerable<Team> teams = new Team[0];
             IEnumerable<Round> rounds = new Round[0];
+            IEnumerable<Stadium> stadiums = new Stadium[0];
+
+            if(FillTourneys)
+            {
+                FillRounds = true;
+            }
 
             if (FillTeams)
             {
@@ -218,7 +256,7 @@
             {
                 var roundDal = new RoundDal();
                 roundDal.SetContext(Context);
-                roundDal.FillTourneys = true;
+                roundDal.FillTourneys = FillTourneys;
 
                 var roundIds = new List<int>();
                 roundIds.AddRange(games.Select(g => (int)g.roundId));
@@ -229,6 +267,18 @@
                 {
                     throw new DalMappingException(nameof(rounds), typeof(Game));
                 }
+            }
+
+            if (FillStadiums)
+            {
+                var stadiumDal = new StadiumDal();
+                stadiumDal.SetContext(Context);
+                stadiumDal.FillCities = true;
+
+                var stadiumIds = new List<int>();
+                stadiumIds.AddRange(games.Where(s => s.stadiumId.HasValue).Select(g => (int)g.stadiumId));
+
+                stadiums = stadiumDal.GetStadiums(stadiumIds.Distinct()).ToList();
             }
 
             foreach (Game game in games)
@@ -264,6 +314,15 @@
                 else
                 {
                     game.round = null;
+                }
+
+                if (FillStadiums && stadiums.Any())
+                {
+                    game.stadium = stadiums.FirstOrDefault(r => r.Id == game.stadiumId);
+                }
+                else
+                {
+                    game.stadium = null;
                 }
             }
         }

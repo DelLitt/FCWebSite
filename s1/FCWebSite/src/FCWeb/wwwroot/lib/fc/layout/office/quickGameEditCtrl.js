@@ -9,15 +9,19 @@
 
     function quickGameEditCtrl($scope, $uibModalInstance, gamesSrv, configSrv, helper, notificationManager, game, round) {
 
+        $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+        };
+
         if (!angular.isObject(round)) {
             notificationManager.displayError("Unable to edit game dialog: round is not defined!");
             $scope.cancel();
         }
 
-        if (!angular.isArray(round.teams)) {
-            notificationManager.displayError("Unable to edit game dialog: teams available of the round is not defined!");
-            $scope.cancel();
-        }
+        //if (!angular.isArray(round.teams)) {
+        //    notificationManager.displayError("Unable to edit game dialog: teams available of the round is not defined!");
+        //    $scope.cancel();
+        //}
 
         $scope.round = round;
 
@@ -42,10 +46,6 @@
 
         $scope.ok = function () {
             gamesSrv.saveGame($scope.game.id, $scope.game, gameSaved);
-        };
-
-        $scope.cancel = function () {
-            $uibModalInstance.dismiss('cancel');
         };
 
         function gameSaved(response) {

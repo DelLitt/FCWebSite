@@ -22,12 +22,6 @@
             }
 
             tourneysSrv.loadTourney(tourneyId, tourneyLoaded);
-
-            gamesSrv.loadGame(936, temGameLoaded)
-        }
-
-        function temGameLoaded(response) {
-            $scope.gameX = response.data;
         }
 
         function tourneyLoaded(response) {

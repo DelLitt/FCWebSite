@@ -7,10 +7,23 @@
 
     gamesSrv.$inject = ['helper', 'apiSrv', 'notificationManager'];
 
-    function gamesSrv(helper, apiSrv, notificationManager) {
+    function gamesSrv(helper, apiSrv, notificationManager) {      
 
         this.loadGame = function (id, success, failure) {
             apiSrv.get('/api/games/' + id, 
+                null,
+                success,
+                function (response) {
+                    if (angular.isFunction(failure)) {
+                        failure(response);
+                    }
+
+                    gamesLoadFail(response);
+                });
+        }
+
+        this.loadQuickGamesInfo = function (teamId, success, failure) {
+            apiSrv.get('/api/games/quickinfo/' + teamId,
                 null,
                 success,
                 function (response) {

@@ -64,5 +64,8 @@
   "SATURDAY": "Saturday",
   "SUNDAY": "Sunday",
   "PHOTO": "Photo",
-  "VIDEO": "Video"
+  "VIDEO": "Video",
+  "STADIUM": "Stadium",
+  "SHOW_QUICK_GAMES_TEAM_0": "Games of main team",
+  "SHOW_QUICK_GAMES_TEAM_1": "Games of reserve team"
 }

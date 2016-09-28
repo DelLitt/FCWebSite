@@ -36,7 +36,8 @@
                 tempGuid = tempGuid,
                 teamType = team.teamType.ToViewModel(),
                 searchDefault = team.NameExtended(),
-                descriptionData = SerializationHelper.FromJsonSafely<TeamDescriptionViewModel>(team.Description)
+                descriptionData = SerializationHelper.FromJsonSafely<TeamDescriptionViewModel>(team.Description),
+                title = team.NameExtended()
             };
         }
 

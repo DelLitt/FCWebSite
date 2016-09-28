@@ -28,6 +28,8 @@
                                          selid="{{game.homeId}}" showall="true"
                                          addglobalescapeevent="addRootClickListener"
                                          inputdata="round.teams"
+                                         urlsearch="/api/teams/search"
+                                         urlinit="'/api/teams/' + game.homeId"
                                          removeselected="true">
                         </fc-autocomplete>
                     </div>
@@ -37,6 +39,8 @@
                                          selid="{{game.awayId}}" showall="true"
                                          addglobalescapeevent="addRootClickListener"
                                          inputdata="round.teams"
+                                         urlsearch="/api/teams/search"
+                                         urlinit="'/api/teams/' + game.awayId"
                                          removeselected="true">
                         </fc-autocomplete>
                     </div>

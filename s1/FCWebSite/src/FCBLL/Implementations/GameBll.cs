@@ -36,6 +36,32 @@
             }
         }
 
+        public bool FillTourneys
+        {
+            get
+            {
+                return DalGames.FillTourneys;
+            }
+
+            set
+            {
+                DalGames.FillTourneys = value;
+            }
+        }
+
+        public bool FillStadiums
+        {
+            get
+            {
+                return DalGames.FillStadiums;
+            }
+
+            set
+            {
+                DalGames.FillStadiums = value;
+            }
+        }
+
         private IGameDal dalGames;
         private IGameDal DalGames
         {
@@ -122,6 +148,102 @@
         public IEnumerable<Game> GetGamesByRounds(IEnumerable<int> roundIds)
         {
             return DalGames.GetGamesByRounds(roundIds);
+        }
+
+        public IEnumerable<Game> GetTeamPrevNextGames(int teamId, IEnumerable<int> tourneyIds, DateTime date, int daysShift)
+        {
+            const int gamesCount = 2;
+            var games = new List<Game>();
+
+            DateTime dateStart = date.AddDays(-daysShift);
+            DateTime dateEnd = date.AddDays(daysShift);
+
+            Game game1;
+            Game game2;
+
+            List<Game> gamesPrevNext = DalGames.GetTeamGames(teamId, tourneyIds, dateStart, dateEnd)
+                                               .OrderByDescending(g => g.GameDate)
+                                               .ToList();
+            
+            // games in period
+            if(gamesPrevNext.Any())
+            {
+                game1 = gamesPrevNext.Where(g => g.Played).FirstOrDefault();
+
+                if (game1 != null)
+                {
+                    games.Add(game1);
+                }
+                else
+                {
+                    game1 = gamesPrevNext.Last();
+                    gamesPrevNext.RemoveAt(gamesPrevNext.Count - 1);
+                }
+
+                if (gamesPrevNext.Any())
+                {
+                    game2 = gamesPrevNext.Where(g => !g.Played && g.GameDate > game1.GameDate).LastOrDefault();
+
+                    if (game2 != null)
+                    {
+                        games.Add(game2);
+                    }
+                }
+
+                if (games.Count == gamesCount)
+                {
+                    return games;
+                }
+            }
+            // games after
+            else
+            {
+                dateEnd = DateTime.MaxValue;
+            }
+
+            gamesPrevNext = DalGames.GetTeamGames(teamId, tourneyIds, dateStart, dateEnd)
+                .OrderByDescending(g => g.GameDate)
+                .ToList();
+
+            if(gamesPrevNext.Any())
+            {
+                while(gamesPrevNext.Any() && games.Count < gamesCount)
+                {
+                    games.Add(gamesPrevNext.Last());
+                    gamesPrevNext.RemoveAt(gamesPrevNext.Count - 1);
+                }
+
+                if (games.Count == gamesCount)
+                {
+                    return games;
+                }
+            }
+
+            // games before
+            dateStart = DateTime.MinValue;
+            // no games before next was added earlier
+            if (!games.Any() && games.Count < gamesCount)
+            { 
+                gamesPrevNext = DalGames.GetTeamGames(teamId, tourneyIds, dateStart, dateEnd)
+                        .OrderByDescending(g => g.GameDate)
+                        .ToList();
+
+                if (gamesPrevNext.Any())
+                {
+                    while (gamesPrevNext.Any() && games.Count < gamesCount)
+                    {
+                        games.Insert(0, gamesPrevNext.First());
+                        gamesPrevNext.RemoveAt(0);
+                    }
+
+                    if (games.Count == gamesCount)
+                    {
+                        return games;
+                    }
+                }
+            }
+
+            return games;
         }
 
         public int RemoveGame(int gameId, bool removeProtocol = true)

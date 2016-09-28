@@ -20,6 +20,7 @@
         public string webSite { get; set; }
         public Guid? tempGuid { get; set; }
         public string searchDefault { get; set; }
+        public string title { get; set; }
 
         public TeamDescriptionViewModel descriptionData { get; set; }
         public TeamTypeViewModel teamType { get; set; }

@@ -118,20 +118,49 @@
             return roundViews;
         }
 
+        public static GameShortViewModel ToGameShortViewModel(this Game game)
+        {
+            return new GameShortViewModel()
+            {
+                home = game?.home?.Name ?? string.Empty,
+                away = game?.away?.Name ?? string.Empty,
+                homeScore = game.homeScore,
+                awayScore = game.awayScore,
+                extra = game.HomePenalties.HasValue ? "пен." : (game.HomeAddScore.HasValue ? "доп." : string.Empty),
+                start = game.GameDate,
+                time = game.GameDate.ToString("HH:mm")
+            };
+        }
+
         public static IEnumerable<GameShortViewModel> ToGameShortViewModel(this IEnumerable<Game> games)
         {
             if (Guard.IsEmptyIEnumerable(games)) { return new GameShortViewModel[0]; }
+            return games.Select(g => g.ToGameShortViewModel());
+        }
 
-            return games.Select(g => new GameShortViewModel()
+        public static GameQuickInfoViewModel ToGameQuickInfoViewModel(this Game game)
+        {
+            return new GameQuickInfoViewModel()
             {
-                home = g?.home?.Name ?? string.Empty,
-                away = g?.away?.Name ?? string.Empty,
-                homeScore = g.homeScore,
-                awayScore = g.awayScore,
-                extra = g.HomePenalties.HasValue ? "пен." : (g.HomeAddScore.HasValue ? "доп." : string.Empty),
-                start = g.GameDate,
-                time = g.GameDate.ToString("HH:mm")
-            });
+                home = game?.home?.Name ?? string.Empty,
+                away = game?.away?.Name ?? string.Empty,
+                homeScore = game.homeScore,
+                awayScore = game.awayScore,
+                extra = game.HomePenalties.HasValue ? "пен." : (game.HomeAddScore.HasValue ? "доп." : string.Empty),
+                start = game.GameDate,
+                time = game.GameDate.ToString("HH:mm"),
+                round = game?.round?.NameFull ?? string.Empty,
+                showTime = game.ShowTime,
+                stadium = game?.stadium.NameExtended() ?? string.Empty,
+                tourney = game?.round?.tourney?.NameFull ?? string.Empty
+            };
+        }
+
+        public static IEnumerable<GameQuickInfoViewModel> ToGameQuickInfoViewModel(this IEnumerable<Game> games)
+        {
+            if (Guard.IsEmptyIEnumerable(games)) { return new GameQuickInfoViewModel[0]; }
+
+            return games.Select(g => g.ToGameQuickInfoViewModel());
         }
     }
 }

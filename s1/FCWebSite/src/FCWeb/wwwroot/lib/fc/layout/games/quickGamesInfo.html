@@ -1,0 +1,39 @@
+﻿<div>
+    <!--<div ng-show="loadingQGI" class="row text-center">
+        <img ng-src="{{loadingImage}}" />{{loadingQGI}}
+    </div>-->
+    <div>
+        <table class="table table-borderless table-into-header" style="margin-bottom: 0;">
+            <tr ng-repeat="game in group.games">
+                <td class="text-bg-color text-right">
+                    <h5>
+                        <span ng-show="game.showTime">{{game.start | date: 'HH:mm'}}. </span>{{game.start | date: 'dd MMMM'}}.<br />
+                        <small class="ellipsis-135" style="display:inline-block; height: 1.1em;" title="{{game.round}}. {{game.tourney}}">{{game.round}}. {{game.tourney}}</small>
+                    </h5>
+                </td>
+                <td class="text-bg-color text-left">
+                    <h5>
+                        <span style="display: inline-flex;">
+                            <span class="ellipsis ellipsis-250" style="display:inline-block;" title="{{game.home}} - {{game.away}}">{{game.home}} - {{game.away}}</span>
+                            <span ng-show="game.homeScore">. {{game.homeScore}}:{{game.awayScore}}</span>
+                        </span><br />
+                        <small class="ellipsis ellipsis-250 text-center" style="display:inline-block; height: 1.1em;">
+                            <span translate="STADIUM">Стадион</span>: {{game.stadium}}
+                        </small>
+                    </h5>
+                </td>
+            </tr>
+            <tr style="font-size:smaller;">
+                <td></td>
+                <td class="text-left text-prim5-color" style="font-size:smaller;">
+                    <span style="cursor:pointer;">
+                        <span class="glyphicon glyphicon-collapse-down"></span>&nbsp;
+                        <span style="cursor:pointer; text-decoration:underline;" translate="{{actionTitle}}" ng-click="showNext(group.teamId);">
+                            {{group.actionTitle}}
+                        </span>
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

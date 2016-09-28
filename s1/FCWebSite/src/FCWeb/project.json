@@ -30,6 +30,7 @@
   "commands": {
     "web": "Microsoft.AspNet.Server.Kestrel",
     "ef": "EntityFramework.Commands"
+
   },
 
   "frameworks": {

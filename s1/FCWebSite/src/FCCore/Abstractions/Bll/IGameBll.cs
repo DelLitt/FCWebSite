@@ -8,6 +8,8 @@
     {
         bool FillTeams { get; set; }
         bool FillRounds { get; set; }
+        bool FillTourneys { get; set; }
+        bool FillStadiums { get; set; }
 
         Game GetGame(int id);
         IEnumerable<Game> GetRoundGames(int roundId);
@@ -17,6 +19,7 @@
         IEnumerable<Game> GetGamesByTourneyBetweenTeams(int tourneyId, IEnumerable<int> teamIds);
         IEnumerable<Game> GetTeamActualRoundGamesOfTourneys(int teamId, IEnumerable<int> tourneyIds, DateTime date);
         IEnumerable<Game> GetTeamActualRoundGames(int teamId, IEnumerable<int> roundIds, DateTime date);
+        IEnumerable<Game> GetTeamPrevNextGames(int teamId, IEnumerable<int> tourneyIds, DateTime date, int daysShift);
         Game SaveGame(Game entity);
         int RemoveGame(int gameId, bool removeProtocol = true);
         bool SaveGameNote(int gameId, string note);

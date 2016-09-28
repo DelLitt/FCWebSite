@@ -32,6 +32,11 @@
                     ? JsonConvert.DeserializeObject<IEnumerable<int>>(round.teamList)
                     : new int[0];
 
+                if(!ids.Any())
+                {
+                    ids = round.games.Select(r => r.homeId).Union(round.games.Select(r => r.awayId));
+                }
+
                 teamIdsPack.AddRange(ids);
             }
 
