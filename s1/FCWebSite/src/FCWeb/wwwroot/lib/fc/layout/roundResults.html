@@ -2,13 +2,24 @@
     <div class="row">
         <div class="col-xs-12">
             <h5 class="header">
-                <a class="white" href="javascript:void(0);" ng-click="roundResults.previous()"><span class="glyphicon glyphicon-triangle-left"></span><!--&nbsp;Предыдущие--></a>
-                <a class="white" href="javascript:void(0);" ng-click="roundResults.next()"><!--Следующие&nbsp;--><span class="glyphicon glyphicon-triangle-right"></span></a>
-                <span translate="RESULTS">Результаты</span>. {{roundResults.name}}. {{roundResults.tourney}}
+                <span ng-show="!loadingRR">
+                    <a class="white" href="javascript:void(0);" ng-click="roundResults.previous()">
+                        <span class="glyphicon glyphicon-circle-arrow-left"></span><!--&nbsp;Предыдущие-->
+                    </a>
+                    <a class="white" href="javascript:void(0);" ng-click="roundResults.next()"><!--Следующие&nbsp;-->
+                        <span class="glyphicon glyphicon-triangle-right"></span>
+                    </a>
+                </span>
+                <span translate="RESULTS">Результаты</span><span ng-show="!loadingRR">. {{roundResults.name}}. {{roundResults.tourney}}</span>
             </h5>
         </div>
     </div>
-    <div class="row">
+    <div class="row" ng-show="loadingRR">
+        <div class="col-xs-12 text-center">
+            <img ng-src="{{loadingImage}}" />
+        </div>
+    </div>
+    <div class="row" ng-show="!loadingRR">
         <div class="col-sm-3" ng-repeat="roundDay in roundResults.dateGames">
             <div ng-show="roundDay.empty" style="text-align: center;"><img ng-src={{getAdvertImg($index);}} /></div>
             <div ng-show="!roundDay.empty">

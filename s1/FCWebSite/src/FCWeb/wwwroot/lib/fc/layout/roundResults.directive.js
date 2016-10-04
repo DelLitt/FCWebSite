@@ -5,9 +5,9 @@
         .module('fc.ui')
         .directive('roundResults', roundResults);
 
-    roundResults.$inject = ['gamesSrv', 'configSrv'];
+    roundResults.$inject = ['gamesSrv', 'configSrv', 'helper'];
 
-    function roundResults(gamesSrv, configSrv) {
+    function roundResults(gamesSrv, configSrv, helper) {
         return {
             restrict: 'E',
             replace: true, 
@@ -17,6 +17,9 @@
                     previous: previousRound,
                     next: nextRound
                 };
+
+                scope.loadingRR = true;
+                scope.loadingImage = helper.getLoadingImg();
 
                 scope.getAdvertImg = function (index) {
                     return "../../../images/skin/adv-result-" + (index + 1) + ".png";
@@ -38,6 +41,8 @@
                         while (scope.roundResults.dateGames.length < 4) {
                             scope.roundResults.dateGames.push({empty: true});
                         }
+
+                        scope.loadingRR = false;
                     }
                 }
 

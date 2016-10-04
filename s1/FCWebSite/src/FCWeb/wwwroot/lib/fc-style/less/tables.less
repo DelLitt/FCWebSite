@@ -88,11 +88,11 @@ table.table-into-header {
 .fc-table-light {
   color: @brand-primary2;
 
-  caption {
+  caption, tfoot {
     background-color: fade(@background-primary, 100%);
     color: @brand-primary;
     margin: 0 0 -5px 0;
-    box-shadow: 0 0 5px;
+    /*box-shadow: 0 0 5px;*/
   }
 
   tbody tr:first-child, tr:first-child {
@@ -131,6 +131,34 @@ table.table-into-header {
 
     a {
       color: @fc-dark-link-color;
+    }
+  }
+}
+
+.fc-table-light.fc-transparent {
+
+  .fc-round-border();
+  .fc-middle-border();
+
+  caption, thead, tfoot {
+    /*background-color: transparent;*/
+    .fc-middle-border();
+    color: @background-primary;
+    .fc-grad();
+  }
+
+  tfoot tr td {
+
+  }
+
+  tbody tr, tr {
+    th {
+      /*background-color: transparent;*/
+      .fc-grad();
+      color: @brand-primary5;
+      line-height: 30px;
+      border-top: none;
+      border-bottom: none;
     }
   }
 }

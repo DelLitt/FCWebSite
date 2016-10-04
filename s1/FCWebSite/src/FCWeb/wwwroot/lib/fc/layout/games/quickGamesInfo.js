@@ -28,6 +28,7 @@
 
             function loadData() {
                 var teamId;
+                scope.loadingQGI = true;
 
                 if (scope.index == 1) {
                     teamId = configSrv.Current.ReserveTeamId;

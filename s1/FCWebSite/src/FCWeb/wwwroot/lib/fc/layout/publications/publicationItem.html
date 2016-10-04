@@ -1,9 +1,8 @@
 ﻿<div class="preview-item col-xs-12">
-    <img class="img-responsive img-rounded" ng-src={{model.img}} />
+    <img class="img-responsive" ng-src={{model.img}} />
     <div class="caption">
         <h5>
             <a ng-href="publication/{{model.urlKey}}">
-
                 <span class="glyphicon glyphicon-facetime-video" ng-show="model.hasVideo"></span>
                 <span class="glyphicon glyphicon-camera" ng-show="model.hasPhoto"></span>
                 {{model.title}}

@@ -34,7 +34,8 @@
         };
 
         $scope.ranking = {
-            loading: true
+            loading: true,
+            loadingImage: helper.getLoadingImg()
         };
 
         loadData();
@@ -138,6 +139,8 @@
 
             $scope.ranking.name = ranking.name;
             $scope.ranking.rows = ranking.rows;
+
+            $scope.ranking.loading = false;
         }
     }
 })();

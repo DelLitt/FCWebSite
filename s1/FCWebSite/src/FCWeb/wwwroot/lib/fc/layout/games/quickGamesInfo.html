@@ -1,8 +1,8 @@
 ﻿<div>
-    <!--<div ng-show="loadingQGI" class="row text-center">
-        <img ng-src="{{loadingImage}}" />{{loadingQGI}}
-    </div>-->
-    <div>
+    <div ng-show="loadingQGI" class="row text-center">
+        <img ng-src="{{loadingImage}}" />
+    </div>
+    <div ng-show="!loadingQGI">
         <table class="table table-borderless table-into-header" style="margin-bottom: 0;">
             <tr ng-repeat="game in group.games">
                 <td class="text-bg-color text-right">

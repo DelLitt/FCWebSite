@@ -1,7 +1,20 @@
 ﻿<div class="col-xs-12">
     <div class="hot-publications">
-        <publication-item model="main" show-header="true"></publication-item>
-        <div class="hot-list-items">
+        <div ng-show="loadingHP" class="row text-center">
+            <img ng-src="{{loadingImage}}" />
+        </div>
+        <div ng-show="!loadingHP" id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="500">
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="{{$index}}" ng-class="{active: $index === 0}" ng-repeat="item in model"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item" ng-class="{active: $index === 0}" ng-repeat="item in model">
+                    <publication-item model="item" show-header="true"></publication-item>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="hot-list-items">
             <div class="row hot-list-item" ng-repeat="item in model">
                 <div class="col-xs-1 border-r">
                     <span ng-show="$index == selectedIndex" class="glyphicon glyphicon-ok"></span>
@@ -17,6 +30,6 @@
                     <span class="glyphicon glyphicon-camera" ng-show="item.hasPhoto"></span>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
