@@ -22,6 +22,7 @@
                 img = System.IO.File.Exists(WebHelper.ToPhysicalPath(p.Image)) 
                     ? p.Image
                     : FCCore.Configuration.MainCfg.Images.EmptyPreview,
+                date = p.DateDisplayed,
                 hasPhoto = p.imageGalleryId.HasValue,
                 hasVideo = p.videoId.HasValue
             });

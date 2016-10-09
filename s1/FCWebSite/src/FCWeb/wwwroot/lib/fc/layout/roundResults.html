@@ -3,14 +3,10 @@
         <div class="col-xs-12">
             <h5 class="header">
                 <span ng-show="!loadingRR">
-                    <a class="white" href="javascript:void(0);" ng-click="roundResults.previous()">
-                        <span class="glyphicon glyphicon-circle-arrow-left"></span><!--&nbsp;Предыдущие-->
-                    </a>
-                    <a class="white" href="javascript:void(0);" ng-click="roundResults.next()"><!--Следующие&nbsp;-->
-                        <span class="glyphicon glyphicon-triangle-right"></span>
-                    </a>
+                    <span class="glyphicon glyphicon-circle-arrow-left fc-action" ng-click="roundResults.previous();"></span>
+                    <span class="glyphicon glyphicon-circle-arrow-right fc-action" ng-click="roundResults.next()"></span>
                 </span>
-                <span translate="RESULTS">Результаты</span><span ng-show="!loadingRR">. {{roundResults.name}}. {{roundResults.tourney}}</span>
+                <span class="text-uppercase" translate="RESULTS">Результаты</span><span ng-show="!loadingRR">. {{roundResults.name}}. {{roundResults.tourney}}</span>
             </h5>
         </div>
     </div>
@@ -21,10 +17,10 @@
     </div>
     <div class="row" ng-show="!loadingRR">
         <div class="col-sm-3" ng-repeat="roundDay in roundResults.dateGames">
-            <div ng-show="roundDay.empty" style="text-align: center;"><img ng-src={{getAdvertImg($index);}} /></div>
+            <div ng-show="roundDay.empty" style="text-align: center;"><img style="max-height:80px;" ng-src={{getAdvertImg($index);}} /></div>
             <div ng-show="!roundDay.empty">
                 <div class="label label-primary">{{roundDay.date.dateString}}.&nbsp;<span class="text-capitalize">{{roundDay.date.dayString}}</span></div>
-                <ul class="list-unstyled">
+                <ul class="list-unstyled match-day-list">
                     <li ng-repeat="game in roundDay.games" style="max-width: 270px;" class="ellipsis"><span class="text-info">{{game.time}}.</span>&nbsp;<a href="javascript:void(0);">{{game.home}}</a>&nbsp;<a class="white-link" href="javascript:void(0);">{{game.homeScore}}:{{game.awayScore}}</a>&nbsp;<a href="javascript:void(0);">{{game.away}}</a></li>
                 </ul>
             </div>

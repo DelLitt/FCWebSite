@@ -1,7 +1,7 @@
 ﻿.fc-pane {
-  border-radius: @fc-border-radius;
   position: relative;
-  margin: 10px 0 35px 0;
+  margin: 10px 0 45px 0;
+  background-color: @background-primary;  
   .box-shadow(@fc-shadow);
 
   .fc-pane-header {
@@ -13,38 +13,19 @@
     margin: 0 !important;
     padding: 15px 15px 15px 15px;
     color: @fc-type-dark-header-color;
-    #gradient > .fc-vertical-three-colors(@start-color: fade(@background-primary, 85%); @color-stop1: 5%; @mid-color: fade(@background-primary, 100%); @color-stop2: 90%; @end-color: fade(@background-primary, 50%); @color-stop3: 100%;);
-  }
-
-  .fc-pane-header:before {
-    /*content: "• ";
-    font-size: 115%;*/
+    background-color: @background-primary !important;
   }
 
   .fc-pane-body {
-    background: fade(@background-primary, 40%);
-    transition: all .3s ease-in-out;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
+    background-color: @background-primary;
     color: @fc-type-color;
-    border-bottom: none;
-    padding: 15px 15px 15px 15px;
-    border-radius: @fc-border-radius;
+    /*border-bottom: none;*/
+    padding: 15px 16px 15px 16px;
 
     .fc-pane-form {
-      background-color: fade(@background-primary, 95%);
+      background-color: @background-primary;
       padding: 10px;
       border: 1px solid fade(@brand-primary, 25%);
-
-      .fc-action {
-        color: @brand-primary4;
-      }
-
-      .fc-action:hover,
-      .fc-action:focus {
-        color: @brand-primary3;
-      }
     }
 
     h1, h2, h3, h4, h5, h6, h7 {
@@ -62,32 +43,52 @@
       padding: 10px 25px;
     }
 
+    .fc-action {
+      color: @brand-primary4;
+    }
+
+    .fc-action:hover,
+    .fc-action:focus {
+      color: @brand-primary3;
+    }
+  }
+
     a.fc-pane-action-link,
     a.fc-pane-action-link:hover,
     a.fc-pane-action-link:active {
       color: @background-primary;
       background-color: fade(@brand-primary, 85%);
       padding: 5px 10px 5px 10px;
-      border-radius: @fc-border-radius;
     }
+
+  .fc-pane-footer {
+    font-size: @font-size-h5;
+    font-family: @headings-font-family;
+    font-weight: @headings-font-weight;
+    line-height: @headings-line-height;
+    font-weight: bold;
+    margin: 0 !important;
+    padding: 9px 15px 9px 15px;
+    color: @fc-type-dark-header-color;
+    background-color: @background-primary !important;
   }
 
   .bg-threads {
-    bottom: -@fc-threads-height;
+    /*bottom: -@fc-threads-height;*/
     position: relative;
   }
 }
 
 .fc-pane.fc-pane-dark {
   background-color: @brand-primary;
-  border-radius: @fc-border-radius;
-  margin-bottom: 15px;
+  margin: 0 0 15px 0;
+  .fc-light-border();
   .box-shadow(@fc-shadow);
   .fc-grad();
 
   .fc-pane-header {
     color: @background-primary;
-    background: transparent;
+    background: transparent !important;
   }
 
   .fc-pane-body {

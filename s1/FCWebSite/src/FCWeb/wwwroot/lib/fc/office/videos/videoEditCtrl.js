@@ -16,7 +16,7 @@
         };
         $scope.loading = true;
         $scope.titleChanged = titleChanged;
-        $scope.urlKeyRegexPattern = configSrv.urlKeyRegexPattern;
+        $scope.urlKeyRegexPattern = configSrv.Current.urlKeyRegexPattern;
         $scope.saveEdit = saveEdit;
 
         if (!angular.isDefined($scope.forms)) {
@@ -48,13 +48,13 @@
             $scope.video.dateChanged = new Date(video.dateChanged);
             $scope.video.dateCreated = new Date(video.dateCreated);
             $scope.currentVisibility = {
-                main: (video.visibility & configSrv.settingsVisibility.main) == configSrv.settingsVisibility.main,
-                news: (video.visibility & configSrv.settingsVisibility.news) == configSrv.settingsVisibility.news,
-                reserve: (video.visibility & configSrv.settingsVisibility.reserve) == configSrv.settingsVisibility.reserve,
-                youth: (video.visibility & configSrv.settingsVisibility.youth) == configSrv.settingsVisibility.youth,
-                authorized: (video.visibility & configSrv.settingsVisibility.authorized) == configSrv.settingsVisibility.authorized
+                main: (video.visibility & configSrv.Current.SettingsVisibility.Main) == configSrv.Current.SettingsVisibility.Main,
+                news: (video.visibility & configSrv.Current.SettingsVisibility.News) == configSrv.Current.SettingsVisibility.News,
+                reserve: (video.visibility & configSrv.Current.SettingsVisibility.Reserve) == configSrv.Current.SettingsVisibility.Reserve,
+                youth: (video.visibility & configSrv.Current.SettingsVisibility.Youth) == configSrv.Current.SettingsVisibility.Youth,
+                authorized: (video.visibility & configSrv.Current.SettingsVisibility.Authorized) == configSrv.Current.SettingsVisibility.Authorized
             };
-            $scope.settingsVisibility = configSrv.settingsVisibility;
+            $scope.settingsVisibility = configSrv.Current.SettingsVisibility;
             $scope.expanded = angular.isNumber(video.id) && video.id >= 0;
         }
 
@@ -75,11 +75,11 @@
             }
 
             var visibility = {
-                main: $scope.currentVisibility.main ? configSrv.settingsVisibility.main : 0,
-                news: $scope.currentVisibility.news ? configSrv.settingsVisibility.news : 0,
-                reserve: $scope.currentVisibility.reserve ? configSrv.settingsVisibility.reserve : 0,
-                youth: $scope.currentVisibility.youth ? configSrv.settingsVisibility.youth : 0,
-                authorized: $scope.currentVisibility.authorized ? configSrv.settingsVisibility.authorized : 0,
+                main: $scope.currentVisibility.main ? configSrv.Current.SettingsVisibility.Main : 0,
+                news: $scope.currentVisibility.news ? configSrv.Current.SettingsVisibility.News : 0,
+                reserve: $scope.currentVisibility.reserve ? configSrv.Current.SettingsVisibility.Reserve : 0,
+                youth: $scope.currentVisibility.youth ? configSrv.Current.SettingsVisibility.Youth : 0,
+                authorized: $scope.currentVisibility.authorized ? configSrv.Current.SettingsVisibility.Authorized : 0,
             }
 
             $scope.video.visibility = visibility.main | visibility.news | visibility.reserve | visibility.youth | visibility.authorized;

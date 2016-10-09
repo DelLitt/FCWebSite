@@ -228,6 +228,22 @@
             }
         }
 
+        public static int TextPublicationsDefaultCount
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:TextPublicationsDefaultCount"]);
+            }
+        }
+
+        public static int TextPublicationsDefaultMoreCount
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:TextPublicationsDefaultMoreCount"]);
+            }
+        }
+
         public static string UrlKeyRegexPattern
         {
             get

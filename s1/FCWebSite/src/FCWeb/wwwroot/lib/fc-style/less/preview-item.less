@@ -1,10 +1,8 @@
 ﻿.preview-item {
   .fc-light-border();
   .box-shadow(@fc-shadow);
-  /*margin: 0 0 20px 0;*/
   padding: 0;
   position: relative;
-  border-radius: @fc-border-radius;
   z-index: 2;
 
   .caption {    
@@ -64,5 +62,34 @@
     font-size: 1.4em;
     padding-right: 10px;
     top: 4px;
+  }
+}
+
+.preview-item-classic {
+  .fc-light-border();
+  .box-shadow(@fc-shadow);
+  padding: 0;
+
+  .caption {
+    width: 100%;
+    font-size: @font-size-h4;
+    font-family: @headings-font-family;
+    font-weight: bold;
+    line-height: @headings-line-height;
+    font-weight: bold;
+    margin: 0 !important;
+    padding: 15px 15px 15px 15px;
+    color: @fc-type-dark-header-color;
+    background-color: @background-primary !important;
+
+    a {
+      color: @fc-type-dark-header-color;
+      text-shadow: none;
+    }
+
+    small {
+      font-weight: normal;
+      font-size: 85%;
+    }
   }
 }

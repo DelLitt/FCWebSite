@@ -25,7 +25,7 @@
                     return "../../../images/skin/adv-result-" + (index + 1) + ".png";
                 }
 
-                gamesSrv.roundResultsManager.init(configSrv.Current.MainTeamId, configSrv.mainTeamTourneyIds, roundLoaded);
+                gamesSrv.roundResultsManager.init(configSrv.Current.MainTeamId, configSrv.Current.MainTeamTourneyIds, roundLoaded);
 
                 function roundLoaded(data) {
                     if (angular.isObject(data)) {
@@ -47,10 +47,12 @@
                 }
 
                 function previousRound() {
+                    scope.loadingRR = true;
                     gamesSrv.roundResultsManager.previous(roundLoaded);
                 }
 
                 function nextRound() {
+                    scope.loadingRR = true;
                     gamesSrv.roundResultsManager.next(roundLoaded);
                 }
 

@@ -59,10 +59,7 @@
                 ? publications.slice(0, hotCount)
                 : [];
 
-            $scope.publications.rows = publications.length > hotCount
-                ? helper.formRows(publications, configSrv.Current.MainPublicationsRowCount, hotCount + 1)
-                : [];
-
+            $scope.publications.rows = helper.formRows(publications, configSrv.Current.MainPublicationsRowCount);
             $scope.publications.count += publications.length;
         }
 

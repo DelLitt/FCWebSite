@@ -91,5 +91,21 @@
                 return MainCfg.MainGalleriesMoreCount;
             }
         }
+
+        public int TextPublicationsDefaultCount
+        {
+            get
+            {
+                return MainCfg.TextPublicationsDefaultCount;
+            }
+        }
+
+        public int TextPublicationsDefaultMoreCount
+        {
+            get
+            {
+                return MainCfg.TextPublicationsDefaultMoreCount;
+            }
+        }
     }
 }

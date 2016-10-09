@@ -44,17 +44,18 @@ String.prototype.endsWith = function (suffix) {
                     return [];
                 }
 
-                var rows = [],
+                var firstIndex = 0,
+                    lastIndex = 0,
+                    row = [],
+                    rows = [],
                     rowsCount = Math.ceil((array.length) / elementsPerRow),
                     offset = angular.isNumber(skip) ? skip : 0;
 
                 for (var i = 0; i < rowsCount; i++) {
 
-                    var firstIndex = i * elementsPerRow + offset,
-                        lastIndex = Math.min(firstIndex + elementsPerRow, array.length),
-                        row = {
-                            items: array.slice(firstIndex, lastIndex)
-                        };
+                    firstIndex = i * elementsPerRow + offset;
+                    lastIndex = Math.min(firstIndex + elementsPerRow, array.length);
+                    row = array.slice(firstIndex, lastIndex);
 
                     rows.push(row);
                 }
@@ -87,6 +88,28 @@ String.prototype.endsWith = function (suffix) {
                 }
             },
 
+            getPersonImage: function (image, imageUploadData) {
+                return angular.isString(image) && image.length > 0
+                    ? imageUploadData.path + '/' + image
+                    : this.getPersonEmptyImage();
+            },
+
+            getTeamFakeInfoImage: function (team) {
+                if (angular.isObject(team.descriptionData)
+                        && angular.isObject(team.descriptionData.fakeInfo)
+                        && angular.isString(team.descriptionData.fakeInfo.image)
+                        && team.descriptionData.fakeInfo.image.length > 0) {
+
+                    return this.getTeamImageFolder(team.id) + "/" + team.descriptionData.fakeInfo.image;
+                } else {
+                    return this.getTeamFakeEmptyImage();
+                }
+            },
+
+            getTeamImageFolder: function(id) {
+                return configSrv.Current.Images.Teams.replace("{id}", id);
+            },
+
             getFlagSrc: function(countryId) {
                 return 'images/skin/flags/' + countryId + '.png';
             },
@@ -95,14 +118,12 @@ String.prototype.endsWith = function (suffix) {
                 return 'images/skin/empty/EmptyPersonImage.png';
             },
 
-            getLoadingImg: function () {
-                return 'images/skin/loading.gif';
+            getTeamFakeEmptyImage: function () {
+                return 'images/skin/empty/EmptyPreview.png';
             },
 
-            getPersonImage: function (image, imageUploadData) {
-                return angular.isString(image) && image.length > 0
-                    ? imageUploadData.path + '/' + image
-                    : this.getPersonEmptyImage();
+            getLoadingImg: function () {
+                return 'images/skin/loading.gif';
             },
 
             remTZOffset: function (date) {

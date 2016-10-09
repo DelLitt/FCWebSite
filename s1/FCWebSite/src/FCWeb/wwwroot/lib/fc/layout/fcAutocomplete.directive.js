@@ -21,9 +21,9 @@
                 showall: '@',
                 urlshowall: '@',
                 urlinit: '=',
-                inputdata: '=',
+                inputdata: '=?',
                 id: '=',
-                text: '=',
+                text: '=?',
                 addglobalescapeevent: '=',
                 itemselect: '='
             },

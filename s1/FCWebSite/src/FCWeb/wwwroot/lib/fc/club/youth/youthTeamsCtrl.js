@@ -10,8 +10,9 @@
     function youthTeamsCtrl($scope, teamsSrv, configSrv, helper) {
 
         $scope.loadingImage = helper.getLoadingImg();
-        $scope.loading = true;
-        $scope.teams = [];
+        $scope.loadingYT = true;
+        $scope.teamRows = [];
+        $scope.publicationsFilter = ['youth'];
         
         loadData();
 
@@ -20,7 +21,8 @@
         }
 
         function teamsLoaded(response) {
-            $scope.teams = response.data;           
+            $scope.teamRows = helper.formRows(response.data, 2, 0);
+            $scope.loadingYT = false;
         }
     }
 })();

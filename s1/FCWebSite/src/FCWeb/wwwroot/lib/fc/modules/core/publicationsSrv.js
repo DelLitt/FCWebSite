@@ -17,6 +17,10 @@
             this.loadPublicationsPack(count, skip, ['main'], success, failure);
         }
 
+        this.loadYouthPublications = function (count, skip, success, failure) {
+            this.loadPublicationsPack(count, skip, ['youth'], success, failure);
+        }
+
         this.loadNotFilteredPublications = function (count, skip, success, failure) {
             this.loadPublicationsPack(count, skip, ['main', 'news', 'reserve', 'youth'], success, failure);
         }
