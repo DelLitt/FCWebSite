@@ -94,32 +94,12 @@ String.prototype.endsWith = function (suffix) {
                     : this.getPersonEmptyImage();
             },
 
-            getTeamFakeInfoImage: function (team) {
-                if (angular.isObject(team.descriptionData)
-                        && angular.isObject(team.descriptionData.fakeInfo)
-                        && angular.isString(team.descriptionData.fakeInfo.image)
-                        && team.descriptionData.fakeInfo.image.length > 0) {
-
-                    return this.getTeamImageFolder(team.id) + "/" + team.descriptionData.fakeInfo.image;
-                } else {
-                    return this.getTeamFakeEmptyImage();
-                }
-            },
-
-            getTeamImageFolder: function(id) {
-                return configSrv.Current.Images.Teams.replace("{id}", id);
-            },
-
             getFlagSrc: function(countryId) {
                 return 'images/skin/flags/' + countryId + '.png';
             },
 
             getPersonEmptyImage: function() {
                 return 'images/skin/empty/EmptyPersonImage.png';
-            },
-
-            getTeamFakeEmptyImage: function () {
-                return 'images/skin/empty/EmptyPreview.png';
             },
 
             getLoadingImg: function () {
@@ -134,7 +114,54 @@ String.prototype.endsWith = function (suffix) {
                 return new Date(date.getTime() - (new Date()).getTimezoneOffset() * 60000)
             },
 
-            getPrivate: thisIsPrivate
+            getPrivate: thisIsPrivate,
+
+            // TEAM HELPER START
+            // TODO: Encapsulate to separate class helper
+
+            getTeamImage: function (team) {
+                if (angular.isString(team.image) && team.image.length > 0) {
+                    return this.getTeamImageFolder(team.id) + "/" + team.image;
+                } else {
+                    return this.getTeamEmptyImage();
+                }
+            },
+
+            getTeamFakeInfoImage: function (team) {
+                if (hasTeamExtendedInfo(team)
+                        && angular.isString(team.descriptionData.fakeInfo.image)
+                        && team.descriptionData.fakeInfo.image.length > 0) {
+                    return this.getTeamImageFolder(team.id) + "/" + team.descriptionData.fakeInfo.image;
+                } else {
+                    return this.getTeamFakeEmptyImage();
+                }
+            },
+
+            getTeamImageFolder: function (id) {
+                return configSrv.Current.Images.Teams.replace("{id}", id);
+            },
+
+            getTeamViewLink: function (team) {
+                return '/team/' + team.id;
+            },
+
+            getTeamDescription: function(team) {
+                return angular.isObject(team.descriptionData) ? team.descriptionData.description : "";
+            },
+
+            hasTeamExtendedInfo: function (team) {
+                return angular.isObject(team.descriptionData) && angular.isObject(team.descriptionData.fakeInfo);
+            },
+
+            getTeamEmptyImage: function () {
+                return 'images/skin/empty/EmptyLogoImage.png';
+            },
+
+            getTeamFakeEmptyImage: function () {
+                return 'images/skin/empty/EmptyPreview.png';
+            },
+
+            // TEAM HELPER END
         };
     }]);
 

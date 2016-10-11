@@ -1,0 +1,53 @@
+﻿<div class="row">
+    <div class="col-xs-12">
+        <div class="row" ng-show="loadingTeam">
+            <div class="col-xs-12 text-center">
+                <img ng-src="{{loadingImage}}" />
+            </div>
+        </div>
+        <div class="row" ng-show="!loadingTeam">
+            <div class="col-xs-12">
+                <div class="fc-pane">
+                    <div class="fc-pane-header">
+                        <h4 class="invert">{{team.name}}</h4>
+                    </div>
+                    <div class="fc-pane-body">
+                        <div class="fc-pane-form">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <img class="img-responsive" ng-src="{{imageLogo}}" />
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <dl class="fc-data-list dt-info">
+                                                <dt class="text-left">Полное название</dt>
+                                                <dd>{{team.nameFull}}</dd>
+                                            </dl>
+                                            <dl class="fc-data-list dt-info">
+                                                <dt class="text-left">Город</dt>
+                                                <dd>Загружать</dd>
+                                            </dl>
+                                            <dl class="fc-data-list dt-info">
+                                                <dt class="text-left">Адрес</dt>
+                                                <dd>{{team.address}}</dd>
+                                            </dl>
+                                            <dl class="fc-data-list dt-info">
+                                                <dt class="text-left">Веб-сайт</dt>
+                                                <dd>{{team.webSite}}</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 pretty-text" ng-bind-html="description"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fc-pane-footer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

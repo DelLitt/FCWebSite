@@ -1,14 +1,14 @@
 ﻿/*Variables*/ 
 
+@fc-type-color: #264a83;
+
 @fc-shadow: 5px 5px 15px fade(@brand-primary, 35%);
 @fc-border-radius: 5px;
 @fc-threads-height: 35px;
-@fc-type-color: lighten(@brand-type, 17.5%);
-@fc-type-dark-header-color: fade(@brand-primary, 75%);
+@fc-type-dark-header-color: fade(@brand-primary, 90%);
 @fc-dark-link-color: fade(@brand-primary, 90%);
-@fc-dark-link-2-color: lighten(@fc-dark-link-color, 25.5%);
 @fc-light-link-color: lighten(@brand-primary4, 12.5%);
-@fc-soft-primary-color: fade(@brand-primary, 85%);
+@fc-soft-primary-color: fade(@brand-primary, 80%);
 
 /*Variables*/
 
@@ -26,6 +26,10 @@ body {
 /*overrides*/
 .carousel-indicators {
   top: 20px !important;
+}
+
+.label-primary.soft {
+  background-color: @fc-soft-primary-color !important;
 }
 /*overrides*/
 
@@ -309,8 +313,9 @@ dl.fc-data-list {
     float: left;
     font-weight: normal;
     margin-right: 10px;
-    padding: 5px;
+    padding: 5px 5px 8px 7px;
     width: 120px;
+    text-align: left;
   }
 
   dd {
@@ -319,12 +324,29 @@ dl.fc-data-list {
     padding: 5px 0;
 
       a {
-        color: @fc-dark-link-color;
+        color: @brand-primary2;
       }
 
       a:hover {
-        color: @fc-dark-link-2-color;
+        color: @brand-primary;
       }
+  }
+}
+
+dl.fc-data-list.dt-info {
+  dt {
+    padding: 10px;
+    /*color: @background-primary;*/
+    background-color: fade(@brand-primary, 15%);
+    width: inherit;
+    /*display: table-cell;*/
+    float: none;
+    font-weight: bold;
+  }
+
+  dd {
+    /*display: table-cell;*/
+    padding: 10px 10px 10px 20px;
   }
 }
 

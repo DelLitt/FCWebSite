@@ -57,6 +57,10 @@
                 templateUrl: "lib/fc/game/game.html",
                 controller: "gameCtrl"
             })
+            .when("/team/:id", {
+                templateUrl: "lib/fc/team/team.html",
+                controller: "teamCtrl"
+            })
            .when("/info/tickets", {
                templateUrl: "lib/fc/info/tickets/tickets.html",
                controller: "ticketsCtrl"

@@ -6829,6 +6829,9 @@ body {
 .carousel-indicators {
   top: 20px !important;
 }
+.label-primary.soft {
+  background-color: rgba(0, 43, 110, 0.8) !important;
+}
 /*overrides*/
 .fc-wrapper {
   padding: 25px 15px;
@@ -6935,7 +6938,7 @@ body {
   padding: 10px 15px;
   border-radius: 5px;
   color: #fff;
-  background-color: rgba(0, 43, 110, 0.85);
+  background-color: rgba(0, 43, 110, 0.8);
   margin-bottom: 15px;
 }
 .fc-col {
@@ -7074,8 +7077,9 @@ dl.fc-data-list dt {
   float: left;
   font-weight: normal;
   margin-right: 10px;
-  padding: 5px;
+  padding: 5px 5px 8px 7px;
   width: 120px;
+  text-align: left;
 }
 dl.fc-data-list dd {
   font-weight: normal;
@@ -7083,10 +7087,23 @@ dl.fc-data-list dd {
   padding: 5px 0;
 }
 dl.fc-data-list dd a {
-  color: rgba(0, 43, 110, 0.9);
+  color: #00378F;
 }
 dl.fc-data-list dd a:hover {
-  color: rgba(0, 94, 240, 0.9);
+  color: #002B6E;
+}
+dl.fc-data-list.dt-info dt {
+  padding: 10px;
+  /*color: @background-primary;*/
+  background-color: rgba(0, 43, 110, 0.15);
+  width: inherit;
+  /*display: table-cell;*/
+  float: none;
+  font-weight: bold;
+}
+dl.fc-data-list.dt-info dd {
+  /*display: table-cell;*/
+  padding: 10px 10px 10px 20px;
 }
 /*office*/
 /*filebrowser*/
@@ -7188,7 +7205,7 @@ dl.fc-data-list dd a:hover {
 .fc-pane-body .fc-publication h7 small,
 .fc-pane .fc-pane-body .fc-publication h7 small,
 .fc-pane .fc-pane-body .fc-pane-form.fc-publication h7 small {
-  color: rgba(0, 43, 110, 0.75);
+  color: rgba(0, 43, 110, 0.9);
   padding-left: 6px;
   font-size: 70%;
 }
@@ -7363,7 +7380,7 @@ table.table-into-header tr td {
 }
 .fc-table-dark tbody tr,
 .fc-table-dark tr {
-  background-color: rgba(0, 43, 110, 0.85);
+  background-color: rgba(0, 43, 110, 0.8);
 }
 .fc-table-dark tbody tr th,
 .fc-table-dark tr th {
@@ -7384,7 +7401,7 @@ table.table-into-header tr td {
 }
 .fc-table.fc-table-dark.fc-table-striped > tbody > tr:nth-of-type(odd),
 .fc-table.fc-table-dark.fc-table-striped > tr:nth-of-type(odd) {
-  background-color: rgba(0, 43, 110, 0.85);
+  background-color: rgba(0, 43, 110, 0.8);
 }
 .fc-table-light {
   color: #00378F;
@@ -7406,7 +7423,7 @@ table.table-into-header tr td {
 }
 .fc-table-light tbody tr th,
 .fc-table-light tr th {
-  background-color: rgba(0, 43, 110, 0.85);
+  background-color: rgba(0, 43, 110, 0.8);
   color: #ACCCFF;
   border-top: 11px solid rgba(255, 255, 255, 0.55);
   border-bottom: 12px solid rgba(255, 255, 255, 0.35);
@@ -7563,11 +7580,11 @@ a.text-prim5-color:focus {
   font-weight: bold;
   margin: 0 !important;
   padding: 15px 15px 15px 15px;
-  color: rgba(0, 43, 110, 0.75);
+  color: rgba(0, 43, 110, 0.9);
   background-color: #fff !important;
 }
 .preview-item-classic .caption a {
-  color: rgba(0, 43, 110, 0.75);
+  color: rgba(0, 43, 110, 0.9);
   text-shadow: none;
 }
 .preview-item-classic .caption small {
@@ -7589,19 +7606,39 @@ a.text-prim5-color:focus {
   font-weight: bold;
   margin: 0 !important;
   padding: 15px 15px 15px 15px;
-  color: rgba(0, 43, 110, 0.75);
+  color: rgba(0, 43, 110, 0.9);
   background-color: #fff !important;
+}
+.fc-pane .fc-pane-header .invert {
+  padding: 10px 15px;
+  color: #fff;
+  background-color: rgba(0, 43, 110, 0.8) !important;
+}
+.fc-pane .fc-pane-header h1,
+.fc-pane .fc-pane-header h2,
+.fc-pane .fc-pane-header h3,
+.fc-pane .fc-pane-header h4,
+.fc-pane .fc-pane-header h5,
+.fc-pane .fc-pane-header h6,
+.fc-pane .fc-pane-header h7 {
+  text-shadow: none;
+  /*font-weight: bold;*/
+  margin: 0;
 }
 .fc-pane .fc-pane-body {
   background-color: #fff;
-  color: #3c71c6;
+  color: #264a83;
   /*border-bottom: none;*/
   padding: 15px 16px 15px 16px;
+}
+.fc-pane .fc-pane-body .pretty-text {
+  font-size: 1.2em;
 }
 .fc-pane .fc-pane-body .fc-pane-form {
   background-color: #fff;
   padding: 10px;
   border: 1px solid rgba(0, 43, 110, 0.25);
+  margin-top: -15px;
 }
 .fc-pane .fc-pane-body h1,
 .fc-pane .fc-pane-body h2,
@@ -7612,7 +7649,7 @@ a.text-prim5-color:focus {
 .fc-pane .fc-pane-body h7 {
   text-shadow: none;
   font-weight: bold;
-  color: rgba(0, 43, 110, 0.75);
+  color: rgba(0, 43, 110, 0.9);
 }
 .fc-pane .fc-pane-body label {
   color: rgba(0, 78, 199, 0.75);
@@ -7638,7 +7675,7 @@ a.text-prim5-color:focus {
 .fc-pane a.fc-pane-action-link:hover,
 .fc-pane a.fc-pane-action-link:active {
   color: #fff;
-  background-color: rgba(0, 43, 110, 0.85);
+  background-color: rgba(0, 43, 110, 0.8);
   padding: 5px 10px 5px 10px;
 }
 .fc-pane .fc-pane-footer {
@@ -7649,7 +7686,7 @@ a.text-prim5-color:focus {
   font-weight: bold;
   margin: 0 !important;
   padding: 9px 15px 9px 15px;
-  color: rgba(0, 43, 110, 0.75);
+  color: rgba(0, 43, 110, 0.9);
   background-color: #fff !important;
 }
 .fc-pane .bg-threads {
@@ -7688,7 +7725,7 @@ a.text-prim5-color:focus {
 .fc-pane.fc-pane-dark .fc-pane-body a.fc-pane-action-link,
 .fc-pane.fc-pane-dark .fc-pane-body a.fc-pane-action-link:hover,
 .fc-pane.fc-pane-dark .fc-pane-body a.fc-pane-action-link:active {
-  color: rgba(0, 43, 110, 0.75);
+  color: rgba(0, 43, 110, 0.9);
   background-color: rgba(255, 255, 255, 0.91);
 }
 .fc-pane.fc-pane-dark .label-primary {

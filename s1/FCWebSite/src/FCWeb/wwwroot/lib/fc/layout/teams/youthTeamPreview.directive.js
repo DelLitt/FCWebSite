@@ -19,6 +19,10 @@
                 scope.getImage = function () {
                     return helper.getTeamFakeInfoImage(scope.model);
                 }
+
+                scope.getViewLink = function () {
+                    return helper.getTeamViewLink(scope.model);
+                }
             },
             templateUrl: '/lib/fc/layout/teams/youthTeamPreview.html'
         }
