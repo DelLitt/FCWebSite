@@ -105,8 +105,8 @@ table.table-into-header {
     th {
       background-color: @fc-soft-primary-color;
       color: @brand-primary5;
-      border-top: 11px solid fade(@background-primary, 55%);
-      border-bottom: 12px solid fade(@background-primary, 35%);
+      border-top: @fc-line-fade;
+      border-bottom: 12px solid fade(@background-primary, 55%);
 
       .fc-action {
         color: @brand-primary4;
@@ -116,6 +116,14 @@ table.table-into-header {
       .fc-action:focus {
         color: @background-primary;
       }
+    }
+
+    th:first-child {
+      border-left: @fc-line-fade;
+    }
+
+    th:last-child {
+      border-right: @fc-line-fade;
     }
 
     td {

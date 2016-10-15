@@ -1,5 +1,6 @@
 ﻿{
   "TABLE": "Таблица",
+  "TOURNAMENT_TABLE": "Турнирная таблица",
   "OFFICIAL_SITE": "Официальный сайт",
   "OFFICIAL_NAME": "Спортивный футбольный клуб «Слуцк»",
   "OFFICIAL_SLOGAN": "Футбол - этот не всё, но все без футбола - ничто!",
@@ -19,6 +20,7 @@
   "INFORMATION": "Информация",
   "ATTRIBUTES": "Атрибутика",
   "HISTORY": "История",
+  "TEAM_STAFF": "Состав команды",
   "MAIN_STAFF": "Главная команда",
   "RESERVE_STAFF": "Резервная команда",
   "YOUTH_TEAMS": "Молодежные команды",
@@ -26,6 +28,7 @@
   "SENIOR_STAFF": "Руководящий состав",
   "MEDICAL_STAFF": "Медицинский состав",
   "SPECIALISTS_STAFF": "Специалисты",
+  "COACH": "Тренер",
   "SCHEDULE": "Календарь",
   "GAMES_SH": "И",
   "WINS_SH": "В",
@@ -53,6 +56,9 @@
   "rrClubDirector": "Заместитель председателя",
   "rrSpecialistSafety": "Cпециалист по безопасности",
   "rrPressOfficer": "Пресс-секретарь",
+  "TEAM_ttMain": "Первая команда",
+  "TEAM_ttReserve": "Резерваня команда",
+  "TEAM_ttYouth": "Молодежная команда",
   "POSITION": "Позиция",
   "POST": "Должность",
   "NEWS": "Новости",
@@ -67,5 +73,13 @@
   "VIDEO": "Видео",
   "STADIUM": "Стадион",
   "SHOW_QUICK_GAMES_TEAM_0": "Матчи главной команды",
-  "SHOW_QUICK_GAMES_TEAM_1": "Матчи резервной команды"
+  "SHOW_QUICK_GAMES_TEAM_1": "Матчи резервной команды",
+  "FULL_NAME_2": "Полное название",
+  "ADDRESS": "Адрес",
+  "WEB_SITE": "Веб-сайт",
+  "MAIN_TOURNAMENT": "Основной турнир",
+  "TEAM_TYPE": "Тип команды",
+  "SHOW_ALL_TEAM_GAMES": "Показать все игры команды",
+  "GAMES_RESULTS": "Результаты игр",
+  "NEAREST_GAMES": "Ближайшие игры"
 }

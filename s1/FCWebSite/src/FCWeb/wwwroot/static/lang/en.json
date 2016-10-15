@@ -1,5 +1,6 @@
 ﻿{
   "TABLE": "Table",
+  "TOURNAMENT_TABLE": "Tournament table",
   "OFFICIAL_SITE": "Official site",
   "OFFICIAL_NAME": "Sport football club «Slutsk»",
   "OFFICIAL_SLOGAN": "Football is not everything, but everything without football is nothing!",
@@ -19,6 +20,7 @@
   "INFORMATION": "Information",
   "ATTRIBUTES": "Attributes",
   "HISTORY": "History",
+  "TEAM_STAFF": "Team squad",
   "MAIN_STAFF": "Main team",
   "RESERVE_STAFF": "Reserve team",
   "YOUTH_TEAMS": "Youth teams",
@@ -26,6 +28,7 @@
   "SENIOR_STAFF": "Direction",
   "MEDICAL_STAFF": "Medical staff",
   "SPECIALISTS_STAFF": "Specialists",
+  "COACH": "Coach",
   "SCHEDULE": "Schedule",
   "GAMES_SH": "G",
   "WINS_SH": "W",
@@ -53,6 +56,9 @@
   "rrClubDirector": "Vice-chairman",
   "rrSpecialistSafety": "Safety specialist",
   "rrPressOfficer": "Press secretary",
+  "TEAM_ttMain": "First team",
+  "TEAM_ttReserve": "Reserve team",
+  "TEAM_ttYouth": "Youth team",
   "POSITION": "Position",
   "POST": "Position",
   "NEWS": "News",
@@ -67,5 +73,13 @@
   "VIDEO": "Video",
   "STADIUM": "Stadium",
   "SHOW_QUICK_GAMES_TEAM_0": "Games of main team",
-  "SHOW_QUICK_GAMES_TEAM_1": "Games of reserve team"
+  "SHOW_QUICK_GAMES_TEAM_1": "Games of reserve team",
+  "FULL_NAME_2": "Full name",
+  "ADDRESS": "Address",
+  "WEB_SITE": "Website",
+  "MAIN_TOURNAMENT": "Main tournament",
+  "TEAM_TYPE": "Team type",
+  "SHOW_ALL_TEAM_GAMES": "Show all games of the team",
+  "GAMES_RESULTS": "Games results",
+  "NEAREST_GAMES": "Nearest games"
 }

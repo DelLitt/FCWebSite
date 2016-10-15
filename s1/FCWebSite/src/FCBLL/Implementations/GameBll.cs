@@ -145,6 +145,17 @@
             return DalGames.GetGamesByTourneyBetweenTeams(tourneyId, teamIds);
         }
 
+        public IEnumerable<Game> GetTeamGames(int teamId, IEnumerable<int> tourneyIds, DateTime date, int daysShift)
+        {
+            DateTime dateStart = AddDaysSoft(date, -daysShift);
+            DateTime dateEnd = AddDaysSoft(date, daysShift);
+
+            IEnumerable<Game> games = DalGames.GetTeamGames(teamId, tourneyIds, dateStart, dateEnd)
+                                              .OrderByDescending(g => g.GameDate);
+
+            return games;
+        }
+
         public IEnumerable<Game> GetGamesByRounds(IEnumerable<int> roundIds)
         {
             return DalGames.GetGamesByRounds(roundIds);
@@ -155,18 +166,18 @@
             const int gamesCount = 2;
             var games = new List<Game>();
 
-            DateTime dateStart = date.AddDays(-daysShift);
-            DateTime dateEnd = date.AddDays(daysShift);
-
-            Game game1;
-            Game game2;
+            DateTime dateStart = AddDaysSoft(date, -daysShift);
+            DateTime dateEnd = AddDaysSoft(date, daysShift);
 
             List<Game> gamesPrevNext = DalGames.GetTeamGames(teamId, tourneyIds, dateStart, dateEnd)
                                                .OrderByDescending(g => g.GameDate)
                                                .ToList();
-            
+
+            Game game1;
+            Game game2;
+
             // games in period
-            if(gamesPrevNext.Any())
+            if (gamesPrevNext.Any())
             {
                 game1 = gamesPrevNext.Where(g => g.Played).FirstOrDefault();
 
@@ -261,5 +272,23 @@
 
             return DalGames.SaveGame(game).Id > 0;
         }
+
+        #region Private helpers
+        private DateTime AddDaysSoft(DateTime date, int daysCount)
+        {
+            DateTime result;
+
+            try
+            {
+                result = date.AddDays(daysCount);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                result = daysCount > 0 ? DateTime.MaxValue : DateTime.MinValue;
+            }
+
+            return result;
+        }
+        #endregion
     }
 }

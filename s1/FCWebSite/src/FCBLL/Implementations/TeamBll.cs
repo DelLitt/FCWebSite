@@ -22,18 +22,10 @@
             }
         }
 
-        public bool FillCities
-        {
-            get
-            {
-                return DalTeam.FillCities;
-            }
-
-            set
-            {
-                DalTeam.FillCities = value;
-            }
-        }
+        public bool FillCities { get { return DalTeam.FillCities; } set { DalTeam.FillCities = value; } }
+        public bool FillMainTourney { get { return DalTeam.FillMainTourney; } set { DalTeam.FillMainTourney = value; } }
+        public bool FillStadium { get { return DalTeam.FillStadium; } set { DalTeam.FillStadium = value; } }
+        public bool FillTeamType { get { return DalTeam.FillTeamType; } set { DalTeam.FillTeamType = value; } }
 
         private ITeamDal dalTeam;
         private ITeamDal DalTeam

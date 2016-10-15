@@ -23,7 +23,9 @@
         {
             int teamTypeId = TeamTypeHelper.GetIdByFiendlyName(typeName);
 
+            teamBll.FillTeamType = true;
             teamBll.Active = true;
+
             return teamBll.GetTeamsByType(teamTypeId).ToViewModel();
         }
 
@@ -32,7 +34,9 @@
         {
             int teamTypeId = TeamTypeHelper.GetIdByFiendlyName(typeName);
 
+            teamBll.FillTeamType = true;
             teamBll.Active = true;
+
             return teamBll.GetTeamsByTypeAndParent(teamTypeId, parentId).ToViewModel();
         }
     }

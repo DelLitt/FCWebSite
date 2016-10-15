@@ -108,7 +108,7 @@
                 teamId = personView.teamId,
                 Weight = personView.weight
             };
-        }
+        }   
 
         public static string NameDefault(this Person person)
         {

@@ -1,0 +1,40 @@
+﻿<section>
+    <div ng-show="loadingResults" class="row text-center">
+        <img ng-src="{{loadingImage}}" />
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table fc-table-light" style="margin-bottom: 0;">
+                <tbody>
+                    <tr>
+                        <th colspan="2" translate="{{header}}"></th>
+                    </tr>
+                    <tr ng-repeat="game in games">
+                        <td class="text-right">
+                            <span ng-show="game.showTime">{{game.start | date: 'HH:mm'}}. </span>{{game.start | date: 'dd MMMM'}}.<br />
+                            <small class="ellipsis-135" style="display:inline-block;" title="{{game.round}}. {{game.tourney}}">{{game.round}}. {{game.tourney}}</small>
+                        </td>
+                        <td class="text-left">
+                            <span style="display: inline-flex;">
+                                <span class="ellipsis ellipsis-250" style="display:inline-block;" title="{{game.home}} - {{game.away}}">{{game.home}} - {{game.away}}</span>
+                                <span ng-show="game.homeScore">. {{game.homeScore}}:{{game.awayScore}}</span>
+                            </span><br />
+                            <small class="ellipsis ellipsis-250 text-center" style="display:inline-block; height: 1.4em;">
+                                <span translate="STADIUM">Стадион</span>: {{game.stadium}}
+                            </small>
+                        </td>
+                    </tr>
+                    <tr ng-show="isShowAllEnabled">
+                        <td></td>
+                        <td class="text-left text-prim4-color" style="font-size:smaller;">
+                            <span style="cursor:pointer;">
+                                <span class="glyphicon glyphicon-collapse-down"></span>&nbsp;
+                                <span style="cursor:pointer; text-decoration:underline;" translate="SHOW_ALL_TEAM_GAMES" ng-click="showAll();"></span>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

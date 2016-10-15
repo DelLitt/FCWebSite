@@ -34,6 +34,8 @@
 
         public static string NameExtended(this Stadium stadium)
         {
+            if(stadium == null) { return string.Empty; }
+
             return stadium.city != null
                     ? string.Format(CultureInfo.CurrentCulture, "{0} ({1})", stadium.Name, stadium.city.NameFull)
                     : stadium.NameFull;

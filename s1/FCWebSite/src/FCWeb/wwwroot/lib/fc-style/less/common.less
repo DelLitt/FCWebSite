@@ -1,5 +1,32 @@
 ﻿/*Variables*/ 
 
+/*overrides*/
+/*@gray-base:              #000;*/
+@gray-base:              #000;
+@gray-darker:            lighten(@gray-base, 13.5%); // #222
+@gray-dark:              lighten(@gray-base, 20%);   // #333
+@gray:                   lighten(@gray-base, 33.5%); // #555
+@gray-light:             lighten(@gray-base, 46.7%); // #777
+@gray-lighter:           lighten(@gray-base, 93.5%); // #eee
+
+/*@brand-primary:         darken(#428bca, 6.5%); // #337ab7*/
+@brand-primary:         #002B6E; // #337ab7
+@brand-primary2:        #00378F;
+@brand-primary3:        #1771FF;
+@brand-primary4:        #7DAFFF;
+@brand-primary5:        #ACCCFF;
+
+@background-primary:          #fff;
+
+.carousel-indicators {
+  top: 20px !important;
+}
+
+.label-primary.soft {
+  background-color: @fc-soft-primary-color !important;
+}
+/*overrides end*/
+
 @fc-type-color: #264a83;
 
 @fc-shadow: 5px 5px 15px fade(@brand-primary, 35%);
@@ -8,7 +35,16 @@
 @fc-type-dark-header-color: fade(@brand-primary, 90%);
 @fc-dark-link-color: fade(@brand-primary, 90%);
 @fc-light-link-color: lighten(@brand-primary4, 12.5%);
-@fc-soft-primary-color: fade(@brand-primary, 80%);
+@fc-soft-primary-color: fade(@brand-primary, 90%);
+@fc-soft-primary4-color: fade(@brand-primary4, 90%);
+@fc-border-fade-color: fade(@background-primary, 80%);
+
+@fc-line-fade: 11px solid fade(@background-primary, 80%);
+
+@brand-success:         #5cb85c;
+@brand-info:            @fc-soft-primary4-color;
+@brand-warning:         #f0ad4e;
+@brand-danger:          #d9534f;  
 
 /*Variables*/
 
@@ -23,15 +59,67 @@ body {
     background-color: transparent;
 }
 
-/*overrides*/
-.carousel-indicators {
-  top: 20px !important;
+/*fc-label*/
+.fc-label {
+  padding: 5px;
+  display: inline-block;
+  font-size: 1.4em;
+  font-weight: bold;
+  margin: 10px 10px;
 }
 
-.label-primary.soft {
-  background-color: @fc-soft-primary-color !important;
+.fc-label.label-default {
+  background-color: @background-primary;
+  color: @fc-soft-primary-color;
+
+  .glyphicon {
+    background-color: @fc-soft-primary-color;    
+    color: @background-primary;
+    padding: 7px;
+  }
 }
-/*overrides*/
+
+.fc-label.lable-fc {
+  border: @fc-line-fade;
+  background-color: @fc-soft-primary-color;
+  color: @background-primary;
+}
+
+.fc-label.label-primary {
+  background-color: @fc-soft-primary-color;
+  color: @background-primary;
+}
+
+.fc-label.label-info {
+  background-color: @brand-info;
+  color: @background-primary;
+}
+
+/*cols-data-list*/
+.row.cols-data-list {
+  margin-bottom: 15px;
+  font-size: 1.3em;
+
+  div {
+    padding: 0 5px;
+  }
+
+  div:first-child {
+    color: @fc-soft-primary-color;
+    font-weight: bold;
+    padding: 0 5px 0 0;
+    text-transform: uppercase;
+    text-align: right;
+  }
+}
+
+@media (max-width: @screen-xs) {
+  .row.cols-data-list {
+    div:first-child {
+      text-align: left !important;
+    }
+  }
+}
 
 .fc-wrapper {
     padding: 25px 15px;

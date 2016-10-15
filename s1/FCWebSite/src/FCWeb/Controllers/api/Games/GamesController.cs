@@ -1,10 +1,12 @@
 ﻿namespace FCWeb.Controllers.Api.Games
 {
+    using System;
     using System.Collections.Generic;
     using System.Net;
     using Core.Extensions;
     using Core.ViewModelHepers;
     using FCCore.Abstractions.Bll;
+    using FCCore.Configuration;
     using FCCore.Model;
     using Microsoft.AspNet.Authorization;
     using Microsoft.AspNet.Mvc;
@@ -42,6 +44,22 @@
         public IEnumerable<GameViewModel> Get([FromQuery] int[] tourneyIds)
         {
             return gameBll.GetGamesByTourneys(tourneyIds).ToViewModel();
+        }
+
+        [HttpGet("{id:int}/{mode}")]
+        public IEnumerable<GameQuickInfoViewModel> Get(int id, string mode, [FromQuery] int[] tourneyIds)
+        {
+            gameBll.FillTeams = true;
+            gameBll.FillTourneys = true;
+            gameBll.FillRounds = true;
+            gameBll.FillStadiums = true;
+
+            int daysShift = mode.Equals("quick", StringComparison.OrdinalIgnoreCase) ? MainCfg.TeamGamesInfoDaysShift : int.MaxValue;
+
+            IEnumerable <GameQuickInfoViewModel> games = 
+                gameBll.GetTeamGames(id, tourneyIds, DateTime.UtcNow, daysShift).ToGameQuickInfoViewModel();
+
+            return games;
         }
 
         // POST api/values

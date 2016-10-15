@@ -33,11 +33,14 @@
                 stadiumId = team.stadiumId,
                 teamTypeId = team.teamTypeId,
                 webSite = team.WebSite,
-                tempGuid = tempGuid,
-                teamType = team.teamType.ToViewModel(),
+                tempGuid = tempGuid,                
                 searchDefault = team.NameExtended(),
                 descriptionData = SerializationHelper.FromJsonSafely<TeamDescriptionViewModel>(team.Description),
-                title = team.NameExtended()
+                title = team.NameExtended(),
+                city = team.city.ToViewModel(),
+                mainTourney = team.mainTourney.ToViewModel(),
+                stadium = team.stadium.ToViewModel(),
+                teamType = team.teamType.ToViewModel()
             };
         }
 

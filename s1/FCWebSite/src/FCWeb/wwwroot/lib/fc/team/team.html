@@ -1,5 +1,5 @@
 ﻿<div class="row">
-    <div class="col-xs-12">
+    <section class="col-xs-12">
         <div class="row" ng-show="loadingTeam">
             <div class="col-xs-12 text-center">
                 <img ng-src="{{loadingImage}}" />
@@ -9,39 +9,90 @@
             <div class="col-xs-12">
                 <div class="fc-pane">
                     <div class="fc-pane-header">
-                        <h4 class="invert">{{team.name}}</h4>
+                        <h3 class="invert">{{team.name}}</h3>
                     </div>
                     <div class="fc-pane-body">
                         <div class="fc-pane-form">
                             <div class="row">
-                                <div class="col-xs-12 col-sm-4">
+                                <div class="col-xs-12 col-sm-4" style="margin-bottom: 15px;">
                                     <img class="img-responsive" ng-src="{{imageLogo}}" />
                                 </div>
                                 <div class="col-xs-12 col-sm-8">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <dl class="fc-data-list dt-info">
-                                                <dt class="text-left">Полное название</dt>
-                                                <dd>{{team.nameFull}}</dd>
-                                            </dl>
-                                            <dl class="fc-data-list dt-info">
-                                                <dt class="text-left">Город</dt>
-                                                <dd>Загружать</dd>
-                                            </dl>
-                                            <dl class="fc-data-list dt-info">
-                                                <dt class="text-left">Адрес</dt>
-                                                <dd>{{team.address}}</dd>
-                                            </dl>
-                                            <dl class="fc-data-list dt-info">
-                                                <dt class="text-left">Веб-сайт</dt>
-                                                <dd>{{team.webSite}}</dd>
-                                            </dl>
+                                            <div class="row cols-data-list">
+                                                <div class="col-sm-3" translate="FULL_NAME_2"></div>
+                                                <div class="col-sm-9">{{team.nameFull}}</div>
+                                            </div>
+                                            <div class="row cols-data-list">
+                                                <div class="col-sm-3" translate="CITY"></div>
+                                                <div class="col-sm-9">{{city}}</div>
+                                            </div>
+                                            <div class="row cols-data-list">
+                                                <div class="col-sm-3" translate="ADDRESS"></div>
+                                                <div class="col-sm-9">{{team.address}}</div>
+                                            </div>
+                                            <div class="row cols-data-list">
+                                                <div class="col-sm-3" translate="STADIUM"></div>
+                                                <div class="col-sm-9">{{stadium}}</div>
+                                            </div>
+                                            <div class="row cols-data-list" ng-show="showWebsite">
+                                                <div class="col-sm-3" translate="WEB_SITE"></div>
+                                                <div class="col-sm-9">{{team.webSite}}</div>
+                                            </div>
+                                            <div class="row cols-data-list" ng-show="showTeamType">
+                                                <div class="col-sm-3" translate="TEAM_TYPE"></div>
+                                                <div class="col-sm-9" translate="TEAM_{{teamType}}"></div>
+                                            </div>
+                                            <div class="row cols-data-list" ng-show="showMainTourney">
+                                                <div class="col-sm-3" translate="MAIN_TOURNAMENT"></div>
+                                                <div class="col-sm-9">{{mainTourney}}</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row pretty-text" ng-show="showExtended">
+                                <hr />
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-12 text-center">
+                                            <img class="img-thumbnail" ng-src="{{imageTeam}}" />
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="showFakePalyes">
+                                        <div class="col-xs-12">
+                                            <p style="margin-top: 20px; line-height: 1.5em;"><span class="text-uppercase" style="font-weight: bold;" translate="TEAM_STAFF"></span>: {{fakePalyesText}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="showCoaches">
+                                        <div class="col-xs-12">
+                                            <p style="margin-top: 20px; line-height: 1.5em;">
+                                                <span class="text-uppercase" style="font-weight: bold;" translate="COACH"></span>: 
+                                                    <a ng-href="{{coachViewLink}}" title="{{customHeadCoach.title}}">{{customHeadCoach.text}}</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" ng-show="showDescription">
+                                <!--<hr />-->
+                                <div class="fc-label label-default text-uppercase"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;<span translate="INFORMATION"></span></div>
                                 <div class="col-xs-12 pretty-text" ng-bind-html="description"></div>
+                            </div>
+                            <div class="row" ng-show="hasTourneysData">
+                                <hr />
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="text-left">
+                                        <span class="fc-label label-default"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;<span translate="RESULTS"></span></span>
+                                    </div>
+                                    <latest-results team-id="teamId" tourneys-ids="tourneyIds" has-data="hasLatestResults"></latest-results>
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <div class="text-left">
+                                        <span class="fc-label label-default"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;<span translate="TOURNAMENT_TABLE"></span></span>
+                                    </div>
+                                    <ranking-table tourney-id="mainTourneyId" has-data="hasRankingTable"></ranking-table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -49,5 +100,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>

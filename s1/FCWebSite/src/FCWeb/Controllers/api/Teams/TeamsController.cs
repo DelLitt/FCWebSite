@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Net;
     using Core.Extensions;
+    using Core.Extensions.ViewModel;
     using FCCore.Abstractions.Bll;
     using FCCore.Common;
     using FCCore.Configuration;
@@ -25,6 +26,9 @@
         [Authorize(Roles = "admin,press")]
         public IEnumerable<TeamViewModel> Get()
         {
+            teamBll.FillTeamType = true;
+            teamBll.FillCities = true;
+
             return teamBll.GetTeams().ToViewModel();
         }
 
@@ -32,6 +36,7 @@
         [HttpGet("search")]
         public IEnumerable<TeamViewModel> Get([FromQuery] string txt)
         {
+            teamBll.FillTeamType = true;
             teamBll.FillCities = true;
 
             return teamBll.SearchByDefault(txt).ToViewModel();
@@ -50,10 +55,15 @@
                 }
                 .ToViewModel();
             }
-
+            
             teamBll.FillCities = true;
+            teamBll.FillMainTourney = true;
+            teamBll.FillStadium = true;
+            teamBll.FillTeamType = true;
 
-            return teamBll.GetTeam(id).ToViewModel();
+            return teamBll.GetTeam(id)
+                          .ToViewModel()
+                          .FillCustomCoaches();
         }
 
         // POST api/values

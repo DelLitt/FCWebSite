@@ -25,14 +25,6 @@
             }
         }
 
-        public int QuickGameInfoDaysShift
-        {
-            get
-            {
-                return MainCfg.QuickGameInfoDaysShift;
-            }
-        }
-
         public int MainTeamId
         {
             get
@@ -94,6 +86,22 @@
             get
             {
                 return MainCfg.ReserveTeamTourneyIds;
+            }
+        }
+
+        public int QuickGameInfoDaysShift
+        {
+            get
+            {
+                return MainCfg.QuickGameInfoDaysShift;
+            }
+        }
+
+        public int TeamGamesInfoDaysShift
+        {
+            get
+            {
+                return MainCfg.TeamGamesInfoDaysShift;
             }
         }
 

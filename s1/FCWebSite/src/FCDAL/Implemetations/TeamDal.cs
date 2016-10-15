@@ -13,6 +13,9 @@
     {
         public bool? Active { get; set; }
         public bool FillCities { get; set; } = false;
+        public bool FillMainTourney { get; set; } = false;
+        public bool FillStadium { get; set; } = false;
+        public bool FillTeamType { get; set; } = false;
 
         public Team GetTeam(int id)
         {
@@ -134,44 +137,63 @@
                 teams = teams.Where(t => t.Active == Active.Value);
             }
 
+            if (FillCities)
+            {
+                teams = teams.Include(t => t.city);
+            }
+
+            if (FillMainTourney)
+            {
+                teams = teams.Include(t => t.mainTourney);
+            }
+
+            if (FillStadium)
+            {
+                teams = teams.Include(t => t.stadium);
+            }
+
+            if (FillTeamType)
+            {
+                teams = teams.Include(t => t.teamType);
+            }
+
             teams = teams.Take(LimitEntitiesSelections);
-            teams = teams.Include(t => t.teamType);
 
             return teams.ToList();
         }
 
         private void FillRelations(IEnumerable<Team> teams)
         {
-            if (Guard.IsEmptyIEnumerable(teams)) { return; }
+            //if (Guard.IsEmptyIEnumerable(teams)) { return; }
 
-            IEnumerable<City> cities = new City[0];
+            //IEnumerable<City> cities = new City[0];
 
-            if (FillCities)
-            {
-                var citiesDal = new CityDal();
-                citiesDal.SetContext(Context);
+            //if (FillCities)
+            //{
+            //    var citiesDal = new CityDal();
+            //    citiesDal.SetContext(Context);
 
-                var citiesIds = new List<int>();
-                citiesIds.AddRange(teams.Select(r => (int)r.cityId));
+            //    var citiesIds = new List<int>();
+            //    citiesIds.AddRange(teams.Select(r => (int)r.cityId));
 
-                cities = citiesDal.GetCities(citiesIds.Distinct()).ToList();
-            }
+            //    cities = citiesDal.GetCities(citiesIds.Distinct()).ToList();
+            //}
 
-            if (cities.Any())
-            {
-                foreach (Team team in teams)
-                {
-                    if (FillCities && cities.Any())
-                    {
-                        team.city = cities.FirstOrDefault(t => t.Id == team.cityId);
+            //if (cities.Any())
+            //{
+            //    foreach (Team team in teams)
+            //    {
+            //        if (FillCities && cities.Any())
+            //        {
+            //            team.city = cities.FirstOrDefault(t => t.Id == team.cityId);
 
-                        if (team.cityId.HasValue && team.city == null)
-                        {
-                            throw new DalMappingException(nameof(team.city), typeof(Stadium));
-                        }
-                    }
-                }
-            }
+            //            if (team.cityId.HasValue && team.city == null)
+            //            {
+            //                throw new DalMappingException(nameof(team.city), typeof(Stadium));
+            //            }
+            //        }
+            //    }
+            //}
         }
     }
 }

@@ -7,6 +7,9 @@
     {
         bool? Active { get; set; }
         bool FillCities { get; set; }
+        bool FillMainTourney { get; set; }
+        bool FillStadium { get; set; }
+        bool FillTeamType { get; set; }
 
         Team GetTeam(int id);
         IEnumerable<Team> GetTeamsByRound(int roundId);

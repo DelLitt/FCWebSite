@@ -53,6 +53,29 @@
                 });
         }
 
+        this.loadTeamGames = function (teamId, tourneyIds, quickView, success, failure) {
+            if (!angular.isArray(tourneyIds) || tourneyIds.length == 0) {
+                return;
+            }
+
+            var mode = quickView ? "quick" : "full";
+            var url = "/api/games/" + teamId + "/" + mode + "?";
+
+            tourneyIds.forEach(function (element, index, array) {
+                url = url + "tourneyIds=" + element + (index < array.length - 1 ? "&" : "")
+            });
+
+            apiSrv.get(url, null,
+                success,
+                function (response) {
+                    if (angular.isFunction(failure)) {
+                        failure(response);
+                    }
+
+                    gamesLoadFail(response);
+                });
+        }
+
         function gamesLoadFail(response) {
             notificationManager.displayError(response.data);
         }

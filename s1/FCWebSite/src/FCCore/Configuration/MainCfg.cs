@@ -86,6 +86,14 @@
             }
         }
 
+        public static int TeamGamesInfoDaysShift
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:TeamGamesInfoDaysShift"]);
+            }
+        }
+
         public static int MainTeamId
         {
             get

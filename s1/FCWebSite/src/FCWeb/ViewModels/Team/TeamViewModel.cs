@@ -21,8 +21,11 @@
         public Guid? tempGuid { get; set; }
         public string searchDefault { get; set; }
         public string title { get; set; }
-
         public TeamDescriptionViewModel descriptionData { get; set; }
+
+        public CityViewModel city { get; set; }
+        public TourneyViewModel mainTourney { get; set; }
+        public StadiumViewModel stadium { get; set; }
         public TeamTypeViewModel teamType { get; set; }
     }
 }
