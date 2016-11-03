@@ -34,7 +34,7 @@
 
         function protocolSaved(response) {
             notificationManager.displayInfo("Protocol saved: " + response);
-            $location.path('/office')
+            $location.path('/office/tournaments')
         }
     }
 })();

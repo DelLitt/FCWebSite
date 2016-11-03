@@ -31,6 +31,8 @@ String.prototype.endsWith = function (suffix) {
 
     module.factory('helper', ['configSrv', function (configSrv) {
         var thisIsPrivate = "Private";
+        var availableGoalsInfo = ['eGoalPenalty', 'eGoalAuto'];
+        var availableEventsInfo = ['eYellowRoughing', 'eYellowDangerous', 'eYellowHanding', 'eYellowUnsport', 'eRedDoubleYellow', 'eRedRoughing', 'eRedLastResort', 'eRedUnsport', 'eRedKeeperHandOfSquad'];
 
         return {
 
@@ -207,6 +209,51 @@ String.prototype.endsWith = function (suffix) {
             },
 
             // TEAM HELPER END
+
+            // PROTOCOL HELPER START
+            hasProtocolExtraLink: function (item) {
+                return angular.isObject(item)
+                    && angular.isObject(item.extra)
+                    && angular.isObject(item.extra.main)
+                    && item.extra.main.text.length > 0;
+            },
+
+            hasProtocolInfo: function (item) {
+                return angular.isObject(item)
+                    && angular.isString(item.info)
+                    && item.info.length > 0;
+            },
+
+            hasProtocolData: function (item) {
+                return angular.isObject(item)
+                    && angular.isString(item.data)
+                    && item.data.length > 0;
+            },
+
+            filterGoalsInfo: function (info) {
+                if (angular.isString(info)) {
+                    for (var i = 0; i < availableGoalsInfo.length; i++) {
+                        if (info.toLowerCase() == availableGoalsInfo[i].toLowerCase()) {
+                            return info;
+                        }
+                    }
+                }
+
+                return "";
+            },
+
+            filterEventsInfo: function (info) {
+                if (angular.isString(info)) {
+                    for (var i = 0; i < availableEventsInfo.length; i++) {
+                        if (info.toLowerCase() == availableEventsInfo[i].toLowerCase()) {
+                            return info;
+                        }
+                    }
+                }
+
+                return "";
+            },
+            // PROTOCOL HELPER END
 
             strJoin: function (separator, strArray) {
                 var result = "";

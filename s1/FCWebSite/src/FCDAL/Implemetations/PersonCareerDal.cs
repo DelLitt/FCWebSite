@@ -25,6 +25,12 @@
             if(Guard.IsEmptyIEnumerable(entities)) { return new int[0]; }
 
             var result = new List<int>();
+            IEnumerable<int> saveIds = entities.Select(e => e.Id);
+
+            IEnumerable<PersonCareer> removeItems = 
+                Context.PersonCareer.Where(pc => pc.personId == entities.First().personId && !saveIds.Contains(pc.Id));
+
+            Context.PersonCareer.RemoveRange(removeItems);
 
             foreach (PersonCareer entity in entities)
             {

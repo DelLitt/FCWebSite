@@ -53,12 +53,16 @@
                                     <th></th>
                                 </tr>
                                 <tr ng-repeat="game in round.games">
-                                    <td><span class="glyphicon glyphicon-edit fc-action" ng-click="editGame(game, round);"></span></td>
+                                    <td>
+                                        <span class="glyphicon glyphicon-new-window fc-action" ng-click="editGame(game, round);" title="Быстрое редактирование"></span>
+                                        <a class="glyphicon glyphicon-edit fc-action" ng-href="office/game/edit/{{game.id}}" title="Редактиование игры"></a>
+                                        <a class="glyphicon glyphicon-stats fc-action" ng-href="office/protocol/edit/{{game.id}}" title="Протокол игры"></a>
+                                    </td>
                                     <td>{{game.gameDate | date:'fullDate'}}</td>
                                     <td><span ng-show="game.showTime">{{game.gameDate | date: 'HH:mm'}}</span></td>
                                     <td class="text-right">{{game.dataEL.home.text}}</td>
                                     <td class="text-right">{{game.homeScore}}</td>
-                                    <td class="text-center">:</td>
+                                    <td class="text-center"><a ng-href="office/game/edit/{{game.id}}"> : </a></td>
                                     <td>{{game.awayScore}}</td>
                                     <td>{{game.dataEL.away.text}}</td>
                                     <td>{{game.dataEL.stadium.text}}</td>

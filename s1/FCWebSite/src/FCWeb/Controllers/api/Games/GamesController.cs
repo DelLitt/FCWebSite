@@ -36,6 +36,8 @@
 
             gameBll.FillRounds = true;
             gameBll.FillTeams = true;
+            gameBll.FillStadiums = true;
+            gameBll.FillTourneys = true;
 
             return gameBll.GetGame(id).ToViewModel();
         }

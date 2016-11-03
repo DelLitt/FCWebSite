@@ -1,18 +1,28 @@
 ﻿namespace FCWeb.Core.Protocol
 {
     using System.Collections.Generic;
+    using System.Linq;
+    using FCCore.Abstractions.Bll;
+    using FCCore.Abstractions.Bll.Components;
     using FCCore.Common;
+    using FCCore.Configuration;
+    using FCCore.Model;
+    using Microsoft.Extensions.DependencyInjection;
     using ViewModels;
     using ViewModels.Protocol;
 
     public class TextProtocolBuilderFake : ITextProtocolBuilder
     {
         private GameNoteBuilder gameNoteBuilder;
+        private ProtocolModelUtils protocolModelUtils;
 
         public TextProtocolBuilderFake(GameNoteBuilder gameNoteBuilder)
         {
             Guard.CheckNull(gameNoteBuilder, nameof(gameNoteBuilder));
             this.gameNoteBuilder = gameNoteBuilder;
+
+            IGameFormatManager gameFormatManager = MainCfg.ServiceProvider.GetService<IGameFormatManager>(); ;
+            protocolModelUtils = new ProtocolModelUtils(gameFormatManager);
         }
 
         public bool IsAvailable
@@ -39,13 +49,30 @@
             }
         }
 
+        private bool isEventsLoaded = false;
+        private IEnumerable<Event> events = new Event[0];
+        protected IEnumerable<Event> Events
+        {
+            get
+            {
+                if (!events.Any() && !isEventsLoaded)
+                {
+                    IEventBll eventBll = MainCfg.ServiceProvider.GetService<IEventBll>();
+                    events = eventBll.GetAll();
+                    isEventsLoaded = true;
+                }
+
+                return events;
+            }
+        }
+
         public IEnumerable<EntityLinkProtocolViewModel> GetGoals(Side side)
         {          
             IEnumerable<FakeProtocolEventViewModel> goals = side == Side.Home
                 ? gameNoteBuilder?.FakeProtocol?.home?.goals ?? new FakeProtocolEventViewModel[0]
                 : gameNoteBuilder?.FakeProtocol?.away?.goals ?? new FakeProtocolEventViewModel[0];
 
-            return GetEntityLinkProtocol(goals);
+            return GetEntityLinkProtocol(goals, true);
         }
 
         public IEnumerable<EntityLinkProtocolViewModel> GetMainSquad(Side side)
@@ -118,13 +145,13 @@
             return GetEntityLinkProtocol(yellows);
         }
 
-        private IEnumerable<EntityLinkProtocolViewModel> GetEntityLinkProtocol(IEnumerable<FakeProtocolEventViewModel> fakeRecords)
+        private IEnumerable<EntityLinkProtocolViewModel> GetEntityLinkProtocol(IEnumerable<FakeProtocolEventViewModel> fakeRecords, bool infoFromEvent = false)
         {
             var protocolData = new List<EntityLinkProtocolViewModel>();
 
             foreach (FakeProtocolEventViewModel fr in fakeRecords)
             {
-                EntityLinkProtocolViewModel el = GetEntityLinkProtocol(fr);
+                EntityLinkProtocolViewModel el = GetEntityLinkProtocol(fr, infoFromEvent);
                 if (el != null)
                 {
                     protocolData.Add(el);
@@ -134,13 +161,12 @@
             return protocolData;
         }
 
-        private EntityLinkProtocolViewModel GetEntityLinkProtocol(FakeProtocolEventViewModel protocolRecord)
+        private EntityLinkProtocolViewModel GetEntityLinkProtocol(FakeProtocolEventViewModel protocolRecord, bool infoFromEvent = false)
         {
             EntityLinkProtocolViewModel entityLink = null;
 
             if (!string.IsNullOrWhiteSpace(protocolRecord.name))
             {
-
                 entityLink = new EntityLinkProtocolViewModel();
 
                 entityLink.main = new EntityLinkViewModel()
@@ -150,12 +176,19 @@
                     title = protocolRecord.name
                 };
 
-                entityLink.minute = protocolRecord.minute;
-                entityLink.extraTime = protocolRecord.extraTime;
-                entityLink.info = protocolRecord.info;
+                entityLink.info = infoFromEvent && protocolRecord.eventId > 0 ? GetEventName(protocolRecord.eventId) : protocolRecord.info;
+                entityLink.data = protocolRecord.data;
+
+                protocolModelUtils.CalculateMinutes(protocolRecord, entityLink);
             }
 
             return entityLink;
+        }
+
+        private string GetEventName(int eventId)
+        {
+            Event _event = Events.FirstOrDefault(e => e.Id == eventId);
+            return _event.Name;
         }
     }
 }

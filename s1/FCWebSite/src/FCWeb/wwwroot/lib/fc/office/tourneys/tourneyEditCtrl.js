@@ -1,5 +1,4 @@
-﻿/// <reference path="../../layout/office/quickroundedit.html" />
-(function () {
+﻿(function () {
     'use strict';
 
     angular

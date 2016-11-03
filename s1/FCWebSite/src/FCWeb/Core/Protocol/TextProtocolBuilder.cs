@@ -4,6 +4,7 @@
     using System.Linq;
     using Extensions;
     using FCCore.Abstractions.Bll;
+    using FCCore.Abstractions.Bll.Components;
     using FCCore.Abstractions.Bll.Protocol;
     using FCCore.Common;
     using FCCore.Configuration;
@@ -14,7 +15,8 @@
 
     public class TextProtocolBuilder : ITextProtocolBuilder
     {
-        private IGameProtocolManager protocolManager;        
+        private IGameProtocolManager protocolManager;
+        private ProtocolModelUtils protocolModelUtils;
 
         public bool IsAvailable
         {
@@ -79,6 +81,9 @@
             Guard.CheckNull(protocolManager, nameof(protocolManager));
 
             this.protocolManager = protocolManager;
+
+            IGameFormatManager gameFormatManager = MainCfg.ServiceProvider.GetService<IGameFormatManager>(); ;
+            protocolModelUtils = new ProtocolModelUtils(gameFormatManager);
         }
 
         public IEnumerable<EntityLinkProtocolViewModel> GetGoals(Side side)
@@ -119,21 +124,10 @@
                         title = GetPersonName(pr.personId.Value)
                     };
 
-                    el.minute = pr.Minute;
-                    el.extraTime = pr.ExtraTime;
+                    protocolModelUtils.CalculateMinutes(pr, el);
                     el.info = GetEventName(pr.eventId);
 
-                    ProtocolRecord sub = subs.FirstOrDefault(s => s.CustomIntValue == pr.personId);
-
-                    if (sub != null && sub.CustomIntValue.HasValue)
-                    {
-                        el.extra = new EntityLinkViewModel()
-                        {
-                            id = sub.personId.ToString(),
-                            text = GetPersonName(sub.personId.Value),
-                            title = GetPersonName(sub.personId.Value)
-                        };
-                    }
+                    AddSubstatution(el, subs);
 
                     protocolData.Add(el);
                 }
@@ -239,17 +233,19 @@
                     title = GetPersonName(protocolRecord.personId.Value)
                 };
 
-                entityLink.minute = protocolRecord.Minute;
-                entityLink.extraTime = protocolRecord.ExtraTime;
+                protocolModelUtils.CalculateMinutes(protocolRecord, entityLink);
                 entityLink.info = GetEventName(protocolRecord.eventId);
 
                 if (protocolRecord.CustomIntValue.HasValue)
                 {
-                    entityLink.extra = new EntityLinkViewModel()
+                    entityLink.extra = new EntityLinkProtocolViewModel()
                     {
-                        id = protocolRecord.CustomIntValue.ToString(),
-                        text = GetPersonName(protocolRecord.CustomIntValue.Value),
-                        title = GetPersonName(protocolRecord.CustomIntValue.Value)
+                        main = new EntityLinkViewModel()
+                        {
+                            id = protocolRecord.CustomIntValue.ToString(),
+                            text = GetPersonName(protocolRecord.CustomIntValue.Value),
+                            title = GetPersonName(protocolRecord.CustomIntValue.Value)
+                        }
                     };
                 }
             }
@@ -266,7 +262,31 @@
         private string GetEventName(int eventId)
         {
             Event _event = Events.FirstOrDefault(e => e.Id == eventId);
-            return _event.NameFull;
+            return _event.Name;
+        }
+
+        private void AddSubstatution(EntityLinkProtocolViewModel record, IEnumerable<ProtocolRecord> subs)
+        {
+            ProtocolRecord sub = subs.FirstOrDefault(s => s.CustomIntValue == int.Parse(record.main.id));
+
+            if (sub == null || !sub.CustomIntValue.HasValue)
+            {
+                return;
+            }
+
+            record.extra = new EntityLinkProtocolViewModel()
+            {
+                main = new EntityLinkViewModel()
+                {
+                    id = sub.personId.ToString(),
+                    text = GetPersonName(sub.personId.Value),
+                    title = GetPersonName(sub.personId.Value)
+                }
+            };
+
+            protocolModelUtils.CalculateMinutes(sub, record.extra);
+
+            AddSubstatution(record.extra, subs);
         }
     }
 }

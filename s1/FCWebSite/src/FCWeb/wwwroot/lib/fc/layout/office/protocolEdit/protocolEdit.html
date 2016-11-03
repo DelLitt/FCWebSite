@@ -1,5 +1,5 @@
-﻿<h2>Редактирование протокола игры #{{gameId}}</h2>
-<ul class="nav nav-tabs">
+﻿<div class="header-line-inv"><h3>Редактирование протокола игры #{{gameId}}</h3></div>
+<ul class="nav nav-tabs" style="background-color: #fff;">
     <li ng-class="{active: tab === 0}"><a data-toggle="tab" href="javascript:void(0);" ng-click="setTab(0)">Статистический протокол</a></li>
     <li ng-class="{active: tab === 1}"><a data-toggle="tab" href="javascript:void(0);" ng-click="setTab(1)">Информационный протокол</a></li>
 </ul>
@@ -77,7 +77,7 @@
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
                     </div>
-                    <goal-record record="goal" players="protocol.home.playersAll" />
+                    <goal-record record="goal" players="protocol.home.playersAll" players-opponent="protocol.away.playersAll"/>
                 </div>
                 <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="goals.addItem('home');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить гол</a></div></div>
                 <div class="row">
@@ -91,7 +91,7 @@
                             <span class="glyphicon glyphicon-remove"></span>
                         </a>
                     </div>
-                    <goal-record record="goal" players="protocol.away.playersAll" />
+                    <goal-record record="goal" players="protocol.away.playersAll" players-opponent="protocol.home.playersAll"/>
                 </div>
                 <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="goals.addItem('away');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить гол</a></div></div>
             </div>

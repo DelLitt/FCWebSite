@@ -13,6 +13,9 @@
         {
             if (game == null) { return null; }
 
+            // To avoid infinite recursion
+            if(game.round != null) { game.round.Game = null; }
+
             return new GameViewModel()
             {
                 audience = game.Audience,

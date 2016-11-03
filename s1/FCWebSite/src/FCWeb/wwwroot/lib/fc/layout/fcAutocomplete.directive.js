@@ -15,6 +15,7 @@
                 urlsearch: '@',                
                 key: '@',
                 val: '@',
+                reskey: '@',
                 min: '@',
                 selid: '@',
                 removeselected: '@',
@@ -24,6 +25,7 @@
                 inputdata: '=?',
                 id: '=',
                 text: '=?',
+                resource: '=?',
                 addglobalescapeevent: '=',
                 itemselect: '='
             },
@@ -33,6 +35,10 @@
 
                 if (min <= 0) {
                     min = 1;
+                }
+
+                if (!angular.isString(scope.reskey)) {
+                    scope.reskey = 'zz99';
                 }
 
                 scope.current = 0;
@@ -175,6 +181,7 @@
                     if (!angular.isObject(scope.selItem)) {
                         scope.id = -1;
                         scope.text = '';
+                        scope.resource = '';
                         scope.aclass = 'form-group';                        
                     }
 
@@ -185,6 +192,7 @@
                     scope.suggestedData = [];
                     scope.id = -1;
                     scope.text = '';
+                    scope.resource = '';
                     scope.aclass = 'form-group';
                     scope.backRemoved();
                     scope.selItem = null;
@@ -200,6 +208,7 @@
 
                     scope.id = item[scope.key];
                     scope.text = item[scope.val];
+                    scope.resource = item[scope.reskey];
                     scope.current = null;
                     scope.selected = true;
                     scope.selItem = item;

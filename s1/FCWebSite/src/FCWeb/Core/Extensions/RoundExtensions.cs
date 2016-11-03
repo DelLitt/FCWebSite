@@ -5,12 +5,16 @@
     using FCCore.Common;
     using FCCore.Model;
     using ViewModels;
+    using ViewModels.Game;
 
     public static class RoundExtensions
     {
         public static RoundViewModel ToViewModel(this Round round)
         {
             if (round == null) { return null; }
+
+            // To avoid infinite recursion
+            if (round.tourney != null) { round.tourney.Round = null; }
 
             return new RoundViewModel()
             {
@@ -20,6 +24,7 @@
                 roundFormatId = round.roundFormatId,
                 teamList = round.TeamList,
                 tourneyId = round.tourneyId,
+                tourney = round.tourney.ToViewModel(),
                 games = round.Game.ToViewModel()
             };
         }

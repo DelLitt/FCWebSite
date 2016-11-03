@@ -42,6 +42,7 @@
             serviceCollection.AddTransient<IGalleryStorageFactory, GalleryStorageFactory>();
             serviceCollection.AddTransient<IAccumulativeLog, AccumulativeLog>();
             serviceCollection.AddTransient<IRanking, Ranking>();
+            serviceCollection.AddTransient<IGameFormatManager, GameFormatManager>();            
         }
 
         public static void AddDALServices(this IServiceCollection serviceCollection)

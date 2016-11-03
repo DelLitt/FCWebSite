@@ -6,5 +6,7 @@
         public int? minute { get; set; }
         public bool extraTime { get; set; }
         public string info { get; set; }
+        public string data { get; set; }
+        public int eventId { get; set; }
     }
 }

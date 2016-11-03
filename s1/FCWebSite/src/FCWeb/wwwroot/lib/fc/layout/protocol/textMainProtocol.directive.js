@@ -5,9 +5,9 @@
         .module('fc.ui')
         .directive('textMainProtocol', textMainProtocol);
 
-    textMainProtocol.$inject = [];
+    textMainProtocol.$inject = ['helper'];
 
-    function textMainProtocol() {
+    function textMainProtocol(helper) {
         return {
             restrict: 'E',
             replace: true,
@@ -15,8 +15,13 @@
                 data: '='
             },
             link: function link(scope, element, attrs) {
-                scope.wasSubstituted = function (item) {
-                    return angular.isObject(item.extra) && item.extra.text.length > 0;
+                scope.hasSub = function (item) {
+
+                    if (angular.isString(item.main.id) && item.main.id.length > 0) {
+                        return helper.hasProtocolExtraLink(item);
+                    }
+
+                    return angular.isString(item.info) && item.info.length > 0;
                 }
             },
             templateUrl: '/lib/fc/layout/protocol/textMainProtocol.html'

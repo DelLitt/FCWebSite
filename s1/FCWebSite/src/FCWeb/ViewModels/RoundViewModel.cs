@@ -13,6 +13,7 @@
         public short tourneyId { get; set; }
         public bool editMode { get; set; }
 
+        public TourneyViewModel tourney { get; set; }
         public IEnumerable<GameViewModel> games { get; set; }
         public IEnumerable<EntityLinkViewModel> teams { get; set; }
     }

@@ -69,7 +69,7 @@
 
             FillRelations(persons);
 
-            return persons;
+            return persons.ToList();
         }
 
         public IEnumerable<Person> GetPersons()

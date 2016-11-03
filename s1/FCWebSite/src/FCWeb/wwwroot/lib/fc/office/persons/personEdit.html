@@ -1,225 +1,236 @@
-﻿<form class="form office fc-container row" role="form" novalidate angular-validator name="forms.editPerson" ng-submit="saveEdit(forms.editPerson);">
-    <h2>Редактирование персоны #{{person.id}}</h2>
-    <div class="form-group">
-        <label for="image" class="control-label">Изображение:</label>&nbsp;<button class="btn btn-default btn-xs pull-right" type="button" ng-click="openFileBrowser();">Изменить</button>
-        <img class="image-edit .img-thumbnail" id="image" ng-src="{{image}}" />
-    </div>
-    <div class="form-group">
-        <label for="nameFirst" class="control-label">Имя*:</label>
-        <input class="form-control" id="nameFirst" name="nameFirst" type="text" ng-model="person.nameFirst" required>
-        <div class="alert alert-danger fade in" ng-show="(forms.editPerson.nameFirst.$dirty || submitted) && forms.editPerson.nameFirst.$error.required">
-            <strong>Ошибка!</strong> Введите имя!
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="nameMiddle" class="control-label">Отчество:</label>
-        <input class="form-control" id="nameMiddle" name="nameMiddle" type="text" ng-model="person.nameMiddle">
-    </div>
-    <div class="form-group">
-        <label for="nameLast" class="control-label">Фамилия*:</label>
-        <input class="form-control" id="nameLast" name="nameLast" type="text" ng-model="person.nameLast" required>
-        <div class="alert alert-danger fade in" ng-show="(forms.editPerson.nameLast.$dirty || submitted) && forms.editPerson.nameLast.$error.required">
-            <strong>Ошибка!</strong> Введите имя!
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="birthDate" class="control-label">Дата рождения:</label>
-        <datetimepicker ng-model="person.birthDate"
-                        id="birthDate"
-                        name="birthDate"
-                        date-format="dd-MMM-yyyy"
-                        date-options="dateOptions"
-                        date-disabled="isDisabledDate(date, mode)"
-                        show-spinners="true">
-        </datetimepicker>
-    </div>
-    <div class="form-group">
-        <label for="number" class="control-label">Номер:</label>
-        <input class="form-control" id="number" name="number" type="text" ng-model="person.number">
-    </div>
-    <div class="form-group">
-        <label for="height" class="control-label">Рост:</label>
-        <input class="form-control" id="height" name="height" type="text" ng-model="person.height">
-    </div>
-    <div class="form-group">
-        <label for="weight" class="control-label">Вес:</label>
-        <input class="form-control" id="weight" name="weight" type="text" ng-model="person.weight">
-    </div>
-    <div class="form-group">
-        <label for="weight" class="control-label">Город:</label>
-        <fc-autocomplete key="id" val="nameFull" min="3" id="person.cityId"
-                         addglobalescapeevent="addRootClickListener"
-                         urlsearch="/api/cities/search"
-                         urlinit="cityInitUrl">
-        </fc-autocomplete>
-    </div>
-    <div class="form-group">
-        <label for="weight" class="control-label">Команда:</label>
-        <fc-autocomplete key="id" val="name" min="3" id="person.teamId"
-                         addglobalescapeevent="addRootClickListener"
-                         urlsearch="/api/teams/search"
-                         urlinit="teamInitUrl">
-        </fc-autocomplete>
-    </div>
-    <div class="form-group">
-        <label for="weight" class="control-label">Роль:</label>
-        <fc-autocomplete key="id" val="nameFull" min="1" id="person.roleId"
-                         addglobalescapeevent="addRootClickListener"
-                         urlsearch="/api/personroles/search"
-                         urlshowall="/api/personroles"
-                         urlinit="personRoleInitUrl">
-        </fc-autocomplete>
-    </div>
-    <div class="form-group">
-        <div class="panel panel-default">
-            <div class="panel-heading">Статус</div>
-            <div class="panel-body">
-                <fc-autocomplete key="id" val="nameFull" min="1" id="person.personStatusId"
-                                 addglobalescapeevent="addRootClickListener"
-                                 urlsearch="/api/personstatuses/search"
-                                 urlshowall="/api/personstatuses"
-                                 urlinit="personStatusInitUrl">
-                </fc-autocomplete>
-            </div>
-            <div class="panel-footer" ng-show="person.personStatusId == 5 || person.personStatusId == 6">
-                <label for="weight" class="control-label">Команда</label>
-                <fc-autocomplete key="id" val="name" min="3" id="person.customIntValue"
-                                 addglobalescapeevent="addRootClickListener"
-                                 urlsearch="/api/teams/search"
-                                 urlinit="customIntValueInitUrl">
-                </fc-autocomplete>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="panel panel-default">
-            <div class="panel-heading">Информация</div>
-            <div class="panel-body">
-                <textarea class="ck-editor" id="info" name="info" ng-model="person.info.description"></textarea>
-            </div>
-            <div class="panel-footer">
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Карьера (отображаемая)&nbsp;<a href="javascript:void(0);" ng-click="info.career.addItem()"><span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-            <div class="panel-body">
-                <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="car in person.info.career">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <input class="form-control" type="number" min="1900" max="2200" step="1" placeholder="Год начала" ng-model="car.yearStart">
-                            </div>
-                            <div class="col-xs-3">
-                                <input class="form-control" type="number" min="1900" max="2200" step="1" placeholder="Год окночания" ng-model="car.yearEnd">
-                            </div>
-                            <div class="col-xs-5">
-                                <input class="form-control" type="text" placeholder="Команда" ng-model="car.team">
-                            </div>
-                            <div class="col-xs-1">
-                                <a class="badge pull-right" href="javascript:void(0);" ng-click="info.career.removeItem($index)">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="panel-footer">
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Достижения&nbsp;<a href="javascript:void(0);" ng-click="info.achievements.addItem()"><span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-            <div class="panel-body">
-                <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="ach in person.info.achievements">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <input class="form-control" type="text" placeholder="Сезон" ng-model="ach.season">
-                            </div>
-                            <div class="col-xs-3">
-                                <input class="form-control" type="text" placeholder="Команда" ng-model="ach.team">
-                            </div>
-                            <div class="col-xs-5">
-                                <input class="form-control" type="text" placeholder="Достижение" ng-model="ach.achievement">
-                            </div>
-                            <div class="col-xs-1">
-                                <a class="badge pull-right" href="javascript:void(0);" ng-click="info.achievements.removeItem($index)">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="panel-footer">
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Карьера (расчетная)</div>
-            <div class="panel-body">
+﻿<div class="fc-pane">
+    <div class="fc-pane-body">
+        <div class="fc-pane-form">
+            <form class="form office" role="form" novalidate angular-validator name="forms.editPerson" ng-submit="saveEdit(forms.editPerson);">
                 <div class="row">
-                    <div class="col-xs-3">
-                        <input class="form-control" type="date" placeholder="Дата начала" ng-model="carItem.dateStart">
-                    </div>
-                    <div class="col-xs-3">
-                        <input class="form-control" type="date" placeholder="Дата окночания" ng-model="carItem.dateFinish">
-                    </div>
-                    <div class="col-xs-5">
-                        <fc-autocomplete key="id" val="name" min="3" id="carItem.teamId" text="carItem.teamName"
-                                         addglobalescapeevent="addRootClickListener"
-                                         urlsearch="/api/teams/search"
-                                         urlinit="carItem.urlinit">
-                        </fc-autocomplete>
-                    </div>
-                    <div class="col-xs-1">
-                        <a href="javascript:void(0);" ng-click="careerTools.addItem(carItem)"><span class="glyphicon glyphicon-plus"></span></a>
+                    <div class="col-sm-12">
+                        <h2>Редактирование персоны #{{person.id}}</h2>
+                        <div class="form-group">
+                            <label for="image" class="control-label">Изображение:</label>&nbsp;<button class="btn btn-default btn-xs pull-right" type="button" ng-click="openFileBrowser();">Изменить</button>
+                            <img class="image-edit .img-thumbnail" id="image" ng-src="{{image}}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="nameFirst" class="control-label">Имя*:</label>
+                            <input class="form-control" id="nameFirst" name="nameFirst" type="text" ng-model="person.nameFirst" required>
+                            <div class="alert alert-danger fade in" ng-show="(forms.editPerson.nameFirst.$dirty || submitted) && forms.editPerson.nameFirst.$error.required">
+                                <strong>Ошибка!</strong> Введите имя!
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nameMiddle" class="control-label">Отчество:</label>
+                            <input class="form-control" id="nameMiddle" name="nameMiddle" type="text" ng-model="person.nameMiddle">
+                        </div>
+                        <div class="form-group">
+                            <label for="nameLast" class="control-label">Фамилия*:</label>
+                            <input class="form-control" id="nameLast" name="nameLast" type="text" ng-model="person.nameLast" required>
+                            <div class="alert alert-danger fade in" ng-show="(forms.editPerson.nameLast.$dirty || submitted) && forms.editPerson.nameLast.$error.required">
+                                <strong>Ошибка!</strong> Введите имя!
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthDate" class="control-label">Дата рождения:</label>
+                            <datetimepicker ng-model="person.birthDate"
+                                            id="birthDate"
+                                            name="birthDate"
+                                            date-format="dd-MMM-yyyy"
+                                            date-options="dateOptions"
+                                            date-disabled="isDisabledDate(date, mode)"
+                                            show-spinners="true">
+                            </datetimepicker>
+                        </div>
+                        <div class="form-group">
+                            <label for="number" class="control-label">Номер:</label>
+                            <input class="form-control" id="number" name="number" type="text" ng-model="person.number">
+                        </div>
+                        <div class="form-group">
+                            <label for="height" class="control-label">Рост:</label>
+                            <input class="form-control" id="height" name="height" type="text" ng-model="person.height">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight" class="control-label">Вес:</label>
+                            <input class="form-control" id="weight" name="weight" type="text" ng-model="person.weight">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight" class="control-label">Город:</label>
+                            <fc-autocomplete key="id" val="nameFull" min="3" id="person.cityId"
+                                             addglobalescapeevent="addRootClickListener"
+                                             urlsearch="/api/cities/search"
+                                             urlinit="cityInitUrl">
+                            </fc-autocomplete>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight" class="control-label">Команда:</label>
+                            <fc-autocomplete key="id" val="name" min="3" id="person.teamId"
+                                             addglobalescapeevent="addRootClickListener"
+                                             urlsearch="/api/teams/search"
+                                             urlinit="teamInitUrl">
+                            </fc-autocomplete>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight" class="control-label">Роль:</label>
+                            <fc-autocomplete key="id" val="nameFull" min="1" id="person.roleId"
+                                             addglobalescapeevent="addRootClickListener"
+                                             urlsearch="/api/personroles/search"
+                                             urlshowall="/api/personroles"
+                                             urlinit="personRoleInitUrl">
+                            </fc-autocomplete>
+                        </div>
+                        <div class="form-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Статус</div>
+                                <div class="panel-body">
+                                    <fc-autocomplete key="id" val="nameFull" min="1" id="person.personStatusId"
+                                                     addglobalescapeevent="addRootClickListener"
+                                                     urlsearch="/api/personstatuses/search"
+                                                     urlshowall="/api/personstatuses"
+                                                     urlinit="personStatusInitUrl">
+                                    </fc-autocomplete>
+                                </div>
+                                <div class="panel-footer" ng-show="person.personStatusId == 5 || person.personStatusId == 6">
+                                    <label for="weight" class="control-label">Команда</label>
+                                    <fc-autocomplete key="id" val="name" min="3" id="person.customIntValue"
+                                                     addglobalescapeevent="addRootClickListener"
+                                                     urlsearch="/api/teams/search"
+                                                     urlinit="customIntValueInitUrl">
+                                    </fc-autocomplete>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Информация</div>
+                                <div class="panel-body">
+                                    <textarea class="ck-editor" id="info" name="info" ng-model="person.info.description"></textarea>
+                                </div>
+                                <div class="panel-footer">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Карьера (отображаемая)&nbsp;<a href="javascript:void(0);" ng-click="info.career.addItem()"><span class="glyphicon glyphicon-plus"></span></a>
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="list-group">
+                                        <li class="list-group-item" ng-repeat="car in person.info.career">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <input class="form-control" type="number" min="1900" max="2200" step="1" placeholder="Год начала" ng-model="car.yearStart">
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <input class="form-control" type="number" min="1900" max="2200" step="1" placeholder="Год окночания" ng-model="car.yearEnd">
+                                                </div>
+                                                <div class="col-xs-5">
+                                                    <input class="form-control" type="text" placeholder="Команда" ng-model="car.team">
+                                                </div>
+                                                <div class="col-xs-1">
+                                                    <a class="badge pull-right" href="javascript:void(0);" ng-click="info.career.removeItem($index)">
+                                                        <span class="glyphicon glyphicon-remove"></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="panel-footer">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Достижения&nbsp;<a href="javascript:void(0);" ng-click="info.achievements.addItem()"><span class="glyphicon glyphicon-plus"></span></a>
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="list-group">
+                                        <li class="list-group-item" ng-repeat="ach in person.info.achievements">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <input class="form-control" type="text" placeholder="Сезон" ng-model="ach.season">
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <input class="form-control" type="text" placeholder="Команда" ng-model="ach.team">
+                                                </div>
+                                                <div class="col-xs-5">
+                                                    <input class="form-control" type="text" placeholder="Достижение" ng-model="ach.achievement">
+                                                </div>
+                                                <div class="col-xs-1">
+                                                    <a class="badge pull-right" href="javascript:void(0);" ng-click="info.achievements.removeItem($index)">
+                                                        <span class="glyphicon glyphicon-remove"></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="panel-footer">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Карьера (расчетная)
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <input class="form-control" type="date" placeholder="Дата начала" ng-model="carItem.dateStart">
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <input class="form-control" type="date" placeholder="Дата окночания" ng-model="carItem.dateFinish">
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <fc-autocomplete key="id" val="name" min="3" id="carItem.teamId" text="carItem.teamName"
+                                                             addglobalescapeevent="addRootClickListener"
+                                                             urlsearch="/api/teams/search"
+                                                             urlinit="carItem.urlinit">
+                                            </fc-autocomplete>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <a href="javascript:void(0);" ng-click="careerTools.addItem(carItem)"><span class="glyphicon glyphicon-plus"></span></a>
+                                        </div>
+                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Дата начала</th>
+                                                <th>Дата окночания</th>
+                                                <th>Команда</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="car in person.career">
+                                                <td>{{car.dateStart.getDate() + '/' + (car.dateStart.getMonth() + 1) + '/' + car.dateStart.getFullYear()}}</td>
+                                                <td>{{car.dateFinish.getDate() + '/' + (car.dateFinish.getMonth() + 1) + '/' + car.dateFinish.getFullYear()}}</td>
+                                                <td>{{car.teamName}}</td>
+                                                <td>
+                                                    <a class="badge pull-right" href="javascript:void(0);" ng-click="careerTools.removeItem($index)">
+                                                        <span class="glyphicon glyphicon-remove"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="panel-footer">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="showImageInContet" class="checkbox-inline">
+                                <input type="checkbox" name="active" id="active" ng-model="person.active" value="option1">Активный
+                            </label>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" value="Сохранить" />
+                            <a class="btn btn-default" ng-href="office">Отмена</a>
+                        </div>
                     </div>
                 </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Дата начала</th>
-                            <th>Дата окночания</th>
-                            <th>Команда</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="car in person.career">
-                            <td>{{car.dateStart.getDate() + '/' + (car.dateStart.getMonth() + 1) + '/' + car.dateStart.getFullYear()}}</td>
-                            <td>{{car.dateFinish.getDate() + '/' + (car.dateFinish.getMonth() + 1) + '/' + car.dateFinish.getFullYear()}}</td>
-                            <td>{{car.teamName}}</td>
-                            <td>
-                                <a class="badge pull-right" href="javascript:void(0);" ng-click="careerTools.removeItem($index)">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="panel-footer">
-            </div>
+            </form>
         </div>
     </div>
-    <div class="form-group">
-        <label for="showImageInContet" class="checkbox-inline">
-            <input type="checkbox" name="active" id="active" ng-model="person.active" value="option1">Активный
-        </label>
-    </div>
-    <div>
-        <input type="submit" class="btn btn-primary" value="Сохранить" />
-        <a class="btn btn-default" ng-href="office">Отмена</a>
-    </div>
-</form>
+</div>

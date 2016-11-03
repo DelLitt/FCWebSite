@@ -10,7 +10,7 @@
     function protocolSrv(helper, apiSrv, notificationManager) {
 
         this.loadProtocol = function (id, success, failure) {
-            apiSrv.get('/api/games/' + id + '/protocol', null,
+            apiSrv.get('/api/games/' + id + '/protocol/default', null,
                 success,
                 function (response) {
                     if (angular.isFunction(failure)) {

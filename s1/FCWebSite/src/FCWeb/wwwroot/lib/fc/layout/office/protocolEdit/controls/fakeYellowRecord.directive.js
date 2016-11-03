@@ -3,11 +3,11 @@
 
     angular
         .module('fc.ui')
-        .directive('fakeEventRecord', fakeEventRecord);
+        .directive('fakeYellowRecord', fakeYellowRecord);
 
-    fakeEventRecord.$inject = [];
+    fakeYellowRecord.$inject = [];
     
-    function fakeEventRecord() {
+    function fakeYellowRecord() {
 
         return {
             restrict: 'E',
@@ -18,9 +18,6 @@
 
             link: function link(scope, element, attrs) {
                 scope.eventInitUrl = '/api/events/' + scope.record.eventId;
-                scope.eventSearchUrl = "/api/events/" + scope.friendlyType + "/search";
-                scope.eventShowAllUrl = "xs";
-                scope.eventShowAllUrl = "/api/events/" + scope.friendlyType;
             },
 
             templateUrl: '/lib/fc/layout/office/protocolEdit/controls/fakeEventRecord.html'

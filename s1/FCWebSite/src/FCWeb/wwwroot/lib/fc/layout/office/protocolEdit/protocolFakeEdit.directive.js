@@ -26,7 +26,8 @@
                             "name": "",
                             "minute": 0,
                             "extraTime": false,
-                            "info": ""
+                            "info": "",
+                            "data": ""
                         });
                     }
                 }
@@ -49,7 +50,8 @@
                             "name": "",
                             "minute": 0,
                             "extraTime": false,
-                            "info": ""
+                            "info": "",
+                            "data": ""
                         });
                     }
                 }

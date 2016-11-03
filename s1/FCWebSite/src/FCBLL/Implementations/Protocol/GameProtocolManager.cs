@@ -107,7 +107,14 @@
 
         public IEnumerable<ProtocolRecord> GetGoals(int teamId)
         {
-            return records.Where(r => r.ProtocolRecord.teamId == teamId && r.IsGoal).Select(r => r.ProtocolRecord);
+            try
+            {
+                return records.Where(r => r.ProtocolRecord.teamId == teamId && r.IsGoal).Select(r => r.ProtocolRecord);
+            }
+            catch
+            {
+                return new ProtocolRecord[] { };
+            }
         }
 
         public IEnumerable<ProtocolRecord> GetSubstitutions(int teamId)

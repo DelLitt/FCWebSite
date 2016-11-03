@@ -28,8 +28,8 @@
             this.gameBll = gameBll;
         }
 
-        [HttpGet]
-        public ProtocolGameViewModel Get(int id)
+        [HttpGet("{form}")]
+        public object Get(int id, string form)
         {
             if (User.Identity.IsAuthenticated
                 && (User.IsInRole("admin") || User.IsInRole("press"))
@@ -38,22 +38,6 @@
                 return new ProtocolGameViewModel();
             }
 
-            gameBll.FillTeams = true;
-
-            Game game = gameBll.GetGame(id);
-
-            if(game == null) { return null; }
-
-            IGameProtocolManager protocolManager = ProtocolGameManagerFactory.Create(game.Id);
-
-            var modelBuilder = new ProtocolViewModelBuilder(protocolManager);
-
-            return modelBuilder.ViewModel;
-        }
-
-        [HttpGet("{form}")]
-        public object Get(int id, string form)
-        {
             object result = null;
 
             gameBll.FillTeams = true;
@@ -61,39 +45,14 @@
             Game game = gameBll.GetGame(id);
 
             if (game == null) { return null; }
-
-            IGameProtocolManager protocolManager = ProtocolGameManagerFactory.Create(game.Id);
-
-            if (form.Equals("text", StringComparison.OrdinalIgnoreCase))
-            {                
-                ITextProtocolBuilder textProtocolBuilderReal = TextProtocolBuilderFactory.Create(protocolManager);
-                ITextProtocolBuilder textProtocolBuilderFake = TextProtocolBuilderFactory.Create(new GameNoteBuilder(game));
-
-                ITextProtocolBuilder textProtocolBuilderHome = textProtocolBuilderReal.IsAvailableHome
-                                                                ? textProtocolBuilderReal
-                                                                : textProtocolBuilderFake;
-
-                ITextProtocolBuilder textProtocolBuilderAway = textProtocolBuilderReal.IsAvailableAway
-                                                                ? textProtocolBuilderReal
-                                                                : textProtocolBuilderFake;
-
-                var textProtocol = new TextProtocolViewModel();
-
-                textProtocol.home.main = textProtocolBuilderHome.GetMainSquad(Side.Home);
-                textProtocol.home.reserve = textProtocolBuilderHome.GetReserve(Side.Home);
-                textProtocol.home.goals = textProtocolBuilderHome.GetGoals(Side.Home);
-                textProtocol.home.yellows = textProtocolBuilderHome.GetYellows(Side.Home);
-                textProtocol.home.reds = textProtocolBuilderHome.GetReds(Side.Home);
-                textProtocol.home.others = textProtocolBuilderHome.GetOthers(Side.Home);
-
-                textProtocol.away.main = textProtocolBuilderAway.GetMainSquad(Side.Away);
-                textProtocol.away.reserve = textProtocolBuilderAway.GetReserve(Side.Away);
-                textProtocol.away.goals = textProtocolBuilderAway.GetGoals(Side.Away);
-                textProtocol.away.yellows = textProtocolBuilderAway.GetYellows(Side.Away);
-                textProtocol.away.reds = textProtocolBuilderAway.GetReds(Side.Away);
-                textProtocol.away.others = textProtocolBuilderAway.GetOthers(Side.Away);
-
-                result = textProtocol;
+            
+            if(form.Equals("default", StringComparison.OrdinalIgnoreCase))
+            {
+                result = GetDefaultProtocol(game);
+            }
+            else if (form.Equals("text", StringComparison.OrdinalIgnoreCase))
+            {
+                result = GetTextProtocol(game);
             }
 
             return result;
@@ -121,6 +80,49 @@
             gameNoteBuilder.FakeProtocol = protocolView.fake;
 
             gameBll.SaveGame(gameNoteBuilder.Game);
+        }
+
+        private ProtocolGameViewModel GetDefaultProtocol(Game game)
+        {
+            IGameProtocolManager protocolManager = ProtocolGameManagerFactory.Create(game.Id);
+
+            var modelBuilder = new ProtocolViewModelBuilder(protocolManager);
+
+            return modelBuilder.ViewModel;
+        }
+
+        private TextProtocolViewModel GetTextProtocol(Game game)
+        {
+            IGameProtocolManager protocolManager = ProtocolGameManagerFactory.Create(game.Id);
+
+            ITextProtocolBuilder textProtocolBuilderReal = TextProtocolBuilderFactory.Create(protocolManager);
+            ITextProtocolBuilder textProtocolBuilderFake = TextProtocolBuilderFactory.Create(new GameNoteBuilder(game));
+
+            ITextProtocolBuilder textProtocolBuilderHome = textProtocolBuilderReal.IsAvailableHome
+                                                            ? textProtocolBuilderReal
+                                                            : textProtocolBuilderFake;
+
+            ITextProtocolBuilder textProtocolBuilderAway = textProtocolBuilderReal.IsAvailableAway
+                                                            ? textProtocolBuilderReal
+                                                            : textProtocolBuilderFake;
+
+            var textProtocol = new TextProtocolViewModel();
+
+            textProtocol.home.main = textProtocolBuilderHome.GetMainSquad(Side.Home);
+            textProtocol.home.reserve = textProtocolBuilderHome.GetReserve(Side.Home);
+            textProtocol.home.goals = textProtocolBuilderHome.GetGoals(Side.Home);
+            textProtocol.home.yellows = textProtocolBuilderHome.GetYellows(Side.Home);
+            textProtocol.home.reds = textProtocolBuilderHome.GetReds(Side.Home);
+            textProtocol.home.others = textProtocolBuilderHome.GetOthers(Side.Home);
+
+            textProtocol.away.main = textProtocolBuilderAway.GetMainSquad(Side.Away);
+            textProtocol.away.reserve = textProtocolBuilderAway.GetReserve(Side.Away);
+            textProtocol.away.goals = textProtocolBuilderAway.GetGoals(Side.Away);
+            textProtocol.away.yellows = textProtocolBuilderAway.GetYellows(Side.Away);
+            textProtocol.away.reds = textProtocolBuilderAway.GetReds(Side.Away);
+            textProtocol.away.others = textProtocolBuilderAway.GetOthers(Side.Away);
+
+            return textProtocol;
         }
     }
 }
