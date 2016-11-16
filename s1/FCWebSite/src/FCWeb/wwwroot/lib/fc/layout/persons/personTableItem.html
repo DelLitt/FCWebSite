@@ -1,66 +1,62 @@
 ﻿<div>
-    <label for="tourneySelect">Турнир: </label>
-    <select name="tourneySelect" id="tourneySelect"
-            ng-options="tourney.nameFull for tourney in tourneys track by tourney.id"
-            ng-model="selectedTourney"></select>
-
-    <table class="table table-striped">
+    <div class="text-right" style="margin: 10px;">
+        <label for="tourneySelect"><span translate="TOURNAMENT"></span></label>
+        <select name="tourneySelect" id="tourneySelect" style="width:100%;"
+                ng-options="tourney.nameFull for tourney in tourneys track by tourney.id"
+                ng-model="selectedTourney"></select>
+    </div>
+    <table class="table fc-table-light">
         <tr>
-            <th>
-            </th>
-            <th>
-                <a href="javascript:void(0);" ng-click="order('number')">#</a>
-                <span class="sortorder" ng-show="predicate === 'number'" ng-class="{reverse:reverse}"></span>
-            </th>
             <!--<th>
             </th>-->
+            <th class="text-center">
+                <span class="fc-action" ng-click="order('number')">#</span>
+                <span class="sortorder" ng-show="predicate === 'number'" ng-class="{reverse:reverse}"></span>
+            </th>
             <th>
-                <a href="javascript:void(0);" ng-click="order('nameDefault')">Игрок</a>
+                <span class="fc-action" ng-click="order('nameDefault')" translate="PLAYER"></span>
                 <span class="sortorder" ng-show="predicate === 'nameDefault'" ng-class="{reverse:reverse}"></span>
             </th>
-            <th>
-                <a href="javascript:void(0);" ng-click="order('age')">Возраст</a>
+            <th class="text-center visible-md visible-lg">
+                <span class="fc-action" ng-click="order('age')" translate="AGE"></span>
                 <span class="sortorder" ng-show="predicate === 'age'" ng-class="{reverse:reverse}"></span>
             </th>
-            <th>
-                <a href="javascript:void(0);" ng-click="order(getField(const.games))">И</a>
+            <th class="text-center">
+                <span class="fc-action" ng-click="order(getField(const.games))" translate="GAMES_SH" translate-attr-title="GAMES_PLAYED"></span>
                 <span class="sortorder" ng-show="predicate === getField(const.games)" ng-class="{reverse:reverse}"></span>
             </th>
-            <th>
-                <a href="javascript:void(0);" ng-click="order(getField(const.substitutes))">З</a>
+            <th class="text-center visible-sm visible-md visible-lg">
+                <span class="fc-action" ng-click="order(getField(const.substitutes))" translate="SUBS_SH" translate-attr-title="FROM_THE_BENCH"></span>
                 <span class="sortorder" ng-show="predicate === getField(const.substitutes)" ng-class="{reverse:reverse}"></span>
             </th>
-            <th>
-                <a href="javascript:void(0);" ng-click="order(getField(const.goals))">Г</a>
+            <th class="text-center">
+                <span class="fc-action" ng-click="order(getField(const.goals))" translate="GOALS_SH" translate-attr-title="GOALS_COUNT"></span>
                 <span class="sortorder" ng-show="predicate === getField(const.goals)" ng-class="{reverse:reverse}"></span>
             </th>
-            <th>
-                <a href="javascript:void(0);" ng-click="order(getField(const.assists))">ГП</a>
+            <th class="text-center">
+                <span class="fc-action" ng-click="order(getField(const.assists))" translate="ASSISTS_SH" translate-attr-title="ASSISTS_COUNT"></span>
                 <span class="sortorder" ng-show="predicate === getField(const.assists)" ng-class="{reverse:reverse}"></span>
             </th>
-            <th>
-                <a href="javascript:void(0);" ng-click="order(getField(const.yellows))">ЖК</a>
+            <th class="text-center visible-sm visible-md visible-lg">
+                <span class="fc-action" ng-click="order(getField(const.yellows))" translate="YELLOWS_SH" translate-attr-title="YELLOWS_COUNT"></span>
                 <span class="sortorder" ng-show="predicate === getField(const.yellows)" ng-class="{reverse:reverse}"></span>
             </th>
-            <th>
-                <a href="javascript:void(0);" ng-click="order(getField(const.reds))">КК</a>
+            <th class="text-center visible-sm visible-md visible-lg">
+                <span class="fc-action" ng-click="order(getField(const.reds))" translate="REDS_SH" translate-attr-title="REDS_COUNT"></span>
                 <span class="sortorder" ng-show="predicate === getField(const.reds)" ng-class="{reverse:reverse}"></span>
             </th>
         </tr>
         <tr ng-repeat="person in persons">
-            <td class="text-muted">{{$index + 1}}</td>
-            <td>{{person.number}}</td>
-            <!--<td>
-                <img class="img-responsive img-circle" ng-src={{person.src}} style="max-height: 100px;" />
-            </td>-->
-            <td><a ng-href="person/{{person.id}}"><h5>{{person.nameDefault}}</h5></a></td>
-            <td>{{person.age}}</td>
-            <td>{{person[getField(const.games)]}}</td>
-            <td>{{person[getField(const.substitutes)]}}</td>
-            <td>{{person[getField(const.goals)]}}</td>
-            <td>{{person[getField(const.assists)]}}</td>
-            <td>{{person[getField(const.yellows)]}}</td>
-            <td>{{person[getField(const.reds)]}}</td>
+            <!--<td class="text-muted">{{$index + 1}}</td>-->
+            <td class="text-center">{{person.number}}</td>
+            <td><a ng-href="person/{{person.id}}"><b>{{person.nameDefault}}</b></a></td>
+            <td class="text-center visible-md visible-lg">{{person.age}}</td>
+            <td class="text-center">{{person[getField(const.games)]}}</td>
+            <td class="text-center visible-sm visible-md visible-lg">{{person[getField(const.substitutes)]}}</td>
+            <td class="text-center">{{person[getField(const.goals)]}}</td>
+            <td class="text-center">{{person[getField(const.assists)]}}</td>
+            <td class="text-center visible-sm visible-md visible-lg">{{person[getField(const.yellows)]}}</td>
+            <td class="text-center visible-sm visible-md visible-lg">{{person[getField(const.reds)]}}</td>
         </tr>
     </table>
 </div>

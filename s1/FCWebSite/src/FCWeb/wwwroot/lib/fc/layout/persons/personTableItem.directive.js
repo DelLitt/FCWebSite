@@ -29,7 +29,7 @@
                     }
                 });
 
-                scope.tourneyId = 8;
+                scope.tourneyId = 100500;
                 scope.selectedTourney = {};
                 scope.tourneyStats = [];
 
@@ -53,9 +53,11 @@
                     }                    
                 });
 
-                scope.order = function (predicate) {
+                scope.order = function (predicate, reverse) {
                     scope.predicate = predicate;
-                    scope.reverse = (scope.predicate === predicate) ? !scope.reverse : false;
+                    scope.reverse = angular.isDefined(reverse) 
+                        ? reverse
+                        : ((scope.predicate === predicate) ? !scope.reverse : false);
                     scope.persons = orderBy(scope.persons, predicate, scope.reverse);
                 };
 
@@ -67,7 +69,7 @@
                         item.src = imageUploadData.path + '/' + item.image;
                     }, personsSrv);
 
-                    scope.order('number', true);
+                    scope.order('number', false);
                 }
 
                 function loadPersonStats(tourneyId) {

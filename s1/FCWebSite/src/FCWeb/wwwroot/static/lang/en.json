@@ -36,6 +36,10 @@
   "LOSES_SH": "L",
   "GOALS_SH": "G",
   "POINTS_SH": "P",
+  "SUBS_SH": "B",
+  "ASSISTS_SH": "A",
+  "YELLOWS_SH": "YC",
+  "REDS_SH": "RC",
   "rrUnknown": "Unknown",
   "rrGoalkeeper": "Goalkeeper",
   "rrDefender": "Defender",
@@ -106,5 +110,14 @@
   "GOALKEEPERS": "Goalkeepers",
   "DEFENDERS": "Defenders",
   "MIDFIELDERS": "Midfielders",
-  "FORWARDS": "Forwards"
+  "FORWARDS": "Forwards",
+  "TOURNAMENT": "Tournament",
+  "PLAYER": "Player",
+  "AGE": "Age",
+  "GAMES_PLAYED": "Games played",
+  "FROM_THE_BENCH": "From the bench",
+  "GOALS_COUNT": "Goals",
+  "ASSISTS_COUNT": "Assists",
+  "YELLOWS_COUNT": "Yellows",
+  "REDS_COUNT": "Reds"
 }

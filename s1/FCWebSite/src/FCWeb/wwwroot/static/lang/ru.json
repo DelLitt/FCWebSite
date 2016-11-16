@@ -36,6 +36,10 @@
   "LOSES_SH": "П",
   "GOALS_SH": "М",
   "POINTS_SH": "О",
+  "SUBS_SH": "З",
+  "ASSISTS_SH": "ГП",
+  "YELLOWS_SH": "ЖК",
+  "REDS_SH": "КК",
   "rrUnknown": "Неизвестно",
   "rrGoalkeeper": "Вратарь",
   "rrDefender": "Защитник",
@@ -106,5 +110,14 @@
   "GOALKEEPERS": "Вратари",
   "DEFENDERS": "Защитники",
   "MIDFIELDERS": "Полузащитники",
-  "FORWARDS": "Нападающе"
+  "FORWARDS": "Нападающе",
+  "TOURNAMENT": "Турнир",
+  "PLAYER": "Игрок",
+  "AGE": "Возраст",
+  "GAMES_PLAYED": "Сыгранных игр",
+  "FROM_THE_BENCH": "Выходов на замену",
+  "GOALS_COUNT": "Количество голов",
+  "ASSISTS_COUNT": "Количество голевых передач",
+  "YELLOWS_COUNT": "Количество желтых карточек",
+  "REDS_COUNT": "Количество красных карточек"
 }

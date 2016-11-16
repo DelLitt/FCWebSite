@@ -87,6 +87,8 @@ table.table-into-header {
 
 .fc-table-light {
   color: @brand-primary2;
+  font-size: 1.2em;
+  color: @fc-soft-primary-color;  
 
   caption, tfoot {
     background-color: fade(@background-primary, 100%);
@@ -102,6 +104,15 @@ table.table-into-header {
   tbody tr, tr {
     background-color: fade(@background-primary, 100%);
 
+    h4, h5 {
+      margin: 2px 0 0 0;
+    }
+
+    th, td {
+      padding: 2px 6px;
+      line-height: 2.6em;
+    }
+
     th {
       background-color: @fc-soft-primary-color;
       color: @brand-primary5;
@@ -114,7 +125,16 @@ table.table-into-header {
 
       .fc-action:hover,
       .fc-action:focus {
+        color: @background-primary !important;
+      }
+
+      a {
         color: @background-primary;
+      }
+
+      .a:hover,
+      .a:focus {
+        color: @brand-primary3;
       }
     }
 

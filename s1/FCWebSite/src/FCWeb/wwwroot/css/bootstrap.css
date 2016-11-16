@@ -6824,6 +6824,17 @@ button.close {
 .label-primary.soft {
   background-color: rgba(0, 43, 110, 0.9) !important;
 }
+label {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: rgba(0, 43, 110, 0.9);
+}
+select {
+  font-size: 1.1em;
+  color: #002B6E;
+  border: 1px solid #7DAFFF;
+  padding: 6px;
+}
 /*overrides end*/
 /*Variables*/
 .color-primary-5 {
@@ -7473,6 +7484,8 @@ table.table-into-header tr td {
 }
 .fc-table-light {
   color: #00378F;
+  font-size: 1.2em;
+  color: rgba(0, 43, 110, 0.9);
 }
 .fc-table-light caption,
 .fc-table-light tfoot {
@@ -7489,6 +7502,19 @@ table.table-into-header tr td {
 .fc-table-light tr {
   background-color: #ffffff;
 }
+.fc-table-light tbody tr h4,
+.fc-table-light tr h4,
+.fc-table-light tbody tr h5,
+.fc-table-light tr h5 {
+  margin: 2px 0 0 0;
+}
+.fc-table-light tbody tr th,
+.fc-table-light tr th,
+.fc-table-light tbody tr td,
+.fc-table-light tr td {
+  padding: 2px 6px;
+  line-height: 2.6em;
+}
 .fc-table-light tbody tr th,
 .fc-table-light tr th {
   background-color: rgba(0, 43, 110, 0.9);
@@ -7504,7 +7530,17 @@ table.table-into-header tr td {
 .fc-table-light tr th .fc-action:hover,
 .fc-table-light tbody tr th .fc-action:focus,
 .fc-table-light tr th .fc-action:focus {
+  color: #fff !important;
+}
+.fc-table-light tbody tr th a,
+.fc-table-light tr th a {
   color: #fff;
+}
+.fc-table-light tbody tr th .a:hover,
+.fc-table-light tr th .a:hover,
+.fc-table-light tbody tr th .a:focus,
+.fc-table-light tr th .a:focus {
+  color: #1771FF;
 }
 .fc-table-light tbody tr th:first-child,
 .fc-table-light tr th:first-child {
@@ -7706,6 +7742,9 @@ a.text-prim5-color:focus {
   color: #264a83;
   /*border-bottom: none;*/
   padding: 15px 16px 15px 16px;
+  /*label {
+      color: lighten(fade(@brand-primary, 75%), 17.5%);
+    }*/
 }
 .fc-pane .fc-pane-body .pretty-text {
   font-size: 1.3em;
@@ -7731,9 +7770,6 @@ a.text-prim5-color:focus {
   text-shadow: none;
   font-weight: bold;
   color: rgba(0, 43, 110, 0.9);
-}
-.fc-pane .fc-pane-body label {
-  color: rgba(0, 78, 199, 0.75);
 }
 .fc-pane .fc-pane-body h1.header,
 .fc-pane .fc-pane-body h2.header,
