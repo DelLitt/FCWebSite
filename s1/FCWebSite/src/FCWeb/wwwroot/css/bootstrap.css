@@ -6826,6 +6826,9 @@ button.close {
 }
 /*overrides end*/
 /*Variables*/
+.color-primary-5 {
+  color: #ACCCFF;
+}
 html {
   background-image: url('../../images/skin/bg1_1920x1080.jpg');
   background-attachment: fixed;
@@ -6907,6 +6910,13 @@ body {
 .fc-action {
   cursor: pointer;
 }
+a {
+  color: #002B6E;
+}
+a:hover,
+a:focus {
+  color: #1771FF;
+}
 .white-link {
   color: #fff !important;
 }
@@ -6947,9 +6957,15 @@ body {
   overflow: hidden;
 }
 .ellipsis-135 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   max-width: 135px;
 }
 .ellipsis-250 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   max-width: 250px;
 }
 /*Background image resp*/
@@ -7806,4 +7822,57 @@ a.text-prim5-color:focus {
 .fc-pane.fc-pane-dark a {
   color: #bdd6ff;
 }
+.person-item {
+  border: 1px solid #7DAFFF;
+  position: relative;
+  margin-bottom: 10px;
+}
+.person-item .person-body .caption {
+  text-align: center;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  padding: 5px 1px;
+  background-color: rgba(255, 255, 255, 0.8);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 245px;
+}
+.person-item .person-body .caption a,
+.person-item .person-body .caption a:hover,
+.person-item .person-body .caption a:focus {
+  text-decoration: none;
+}
+.person-item .person-body .caption a:hover,
+.person-item .person-body .caption a:focus {
+  color: #1771FF;
+}
+.person-item .person-info {
+  position: absolute;
+  right: 4px;
+  z-index: 2;
+}
+/*.person-item .caption h4, 
+.person-item .caption h5 {
+    color: #fff;
+    padding: 12px 5px 17px 15px;
+    line-height: 1.3em;
+    -webkit-font-smoothing: antialiased;
+}
+
+.person-item .caption h4, 
+.person-item .caption h5 {
+    padding: 7px 4px 7px 4px;
+    line-height: 1.3em;
+}
+
+.person-item .caption a {
+    color: #fff;
+}
+
+.person-item .caption:hover {
+    -webkit-transition:0.2s;
+    -webkit-transform:translate(5px,0);
+}*/
 /*fc-style*/

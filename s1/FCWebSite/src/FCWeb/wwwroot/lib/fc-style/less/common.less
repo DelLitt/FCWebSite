@@ -48,6 +48,10 @@
 
 /*Variables*/
 
+.color-primary-5 {
+  color: @brand-primary5;
+}
+
 html { 
      background-image: url('../../images/skin/bg1_1920x1080.jpg');
      background-attachment: fixed;
@@ -146,6 +150,14 @@ body {
   cursor: pointer;
 }
 
+a {
+  color: @brand-primary;
+}
+
+a:hover, a:focus {
+  color: @brand-primary3;
+}
+
 .white-link {
   color: #fff !important;
 }
@@ -188,11 +200,11 @@ body {
 }
 
 .ellipsis-135 {
-  max-width: 135px;
+  .ellipsis(135px);
 }
 
 .ellipsis-250 {
-  max-width: 250px;
+  .ellipsis(250px);
 }
 
 /*Background image resp*/

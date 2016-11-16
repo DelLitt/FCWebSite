@@ -1,0 +1,55 @@
+﻿.person-item {
+  border: 1px solid @brand-primary4;
+  position: relative;
+  margin-bottom: 10px;
+
+  .person-body {
+    .caption {
+      text-align: center;
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      padding: 5px 1px;
+      background-color: fade(@background-primary, 80%);
+
+      .ellipsis(245px);
+
+      a, a:hover, a:focus {
+        text-decoration: none;
+      }
+
+      a:hover, a:focus {
+        color: #1771FF;
+      }
+    }
+  }
+
+  .person-info {
+    position: absolute;
+    right: 4px;
+    z-index: 2;
+  }
+}
+
+/*.person-item .caption h4, 
+.person-item .caption h5 {
+    color: #fff;
+    padding: 12px 5px 17px 15px;
+    line-height: 1.3em;
+    -webkit-font-smoothing: antialiased;
+}
+
+.person-item .caption h4, 
+.person-item .caption h5 {
+    padding: 7px 4px 7px 4px;
+    line-height: 1.3em;
+}
+
+.person-item .caption a {
+    color: #fff;
+}
+
+.person-item .caption:hover {
+    -webkit-transition:0.2s;
+    -webkit-transform:translate(5px,0);
+}*/

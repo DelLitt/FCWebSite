@@ -80,52 +80,6 @@ dl.dl-pad-bot-1 dt, dl.dl-pad-bot-1 dd {
     width: 100%;
 }
 
-.person-item {
-    position: relative;
-}
-
-.person-item .caption {
-    width: 98%;
-    bottom: 0rem;
-    position: absolute;
-    background: #003366;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#003366+0,003366+50,003366+100&0+0,0.5+20,0.8+51,0.5+80,0+100 */
-    background: -moz-linear-gradient(top,  rgba(0,51,102,0) 0%, rgba(0,51,102,0.5) 20%, rgba(0,51,102,0.79) 50%, rgba(0,51,102,0.8) 51%, rgba(0,51,102,0.5) 80%, rgba(0,51,102,0) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top,  rgba(0,51,102,0) 0%,rgba(0,51,102,0.5) 20%,rgba(0,51,102,0.79) 50%,rgba(0,51,102,0.8) 51%,rgba(0,51,102,0.5) 80%,rgba(0,51,102,0) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  rgba(0,51,102,0) 0%,rgba(0,51,102,0.5) 20%,rgba(0,51,102,0.79) 50%,rgba(0,51,102,0.8) 51%,rgba(0,51,102,0.5) 80%,rgba(0,51,102,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00003366', endColorstr='#00003366',GradientType=0 ); /* IE6-9 */
-    border-radius: 15px;
-}
-
-.person-item .caption {
-    width: 96%;
-    bottom: .7rem;
-    left: 4px;
-}
-
-.person-item .caption h4, 
-.person-item .caption h5 {
-    color: #fff;
-    padding: 12px 5px 17px 15px;
-    line-height: 1.3em;
-    -webkit-font-smoothing: antialiased;
-}
-
-.person-item .caption h4, 
-.person-item .caption h5 {
-    padding: 7px 4px 7px 4px;
-    line-height: 1.3em;
-}
-
-.person-item .caption a {
-    color: #fff;
-}
-
-.person-item .caption:hover {
-    -webkit-transition:0.2s;
-    -webkit-transform:translate(5px,0);
-}
-
 /* Customazing boostrap layout end */
 
 /* Boostrap overrides */

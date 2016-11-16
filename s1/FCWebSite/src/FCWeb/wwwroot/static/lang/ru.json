@@ -99,5 +99,12 @@
   "GOALS": "Голы",
   "WARNINGS": "Предупреждения",
   "REMOVAL": "Удаления",
-  "ASSISTANT_SHORT": "асс."
+  "ASSISTANT_SHORT": "асс.",
+  "MAIN_TEAM": "Главная команда",
+  "ACTUAL_NEWS": "Актуальные новости",
+  "VIEW": "Вид",
+  "GOALKEEPERS": "Вратари",
+  "DEFENDERS": "Защитники",
+  "MIDFIELDERS": "Полузащитники",
+  "FORWARDS": "Нападающе"
 }

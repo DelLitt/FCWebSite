@@ -15,7 +15,7 @@
                 teamId: '=',
                 tourneysIds: '=',
                 publicationsCount: '=',
-                teamTitle: '='
+                teamTitle: '@'
             },
             link: function link(scope, element, attrs) {
 
@@ -33,12 +33,14 @@
                 scope.midfielders = {};
                 scope.forwards = {};
 
+                scope.setView = setView;
+
                 loadData();
 
                 function loadData() {                    
                     tourneysSrv.loadTourneys(scope.tourneysIds, tourneysLoaded);
                     personsSrv.loadTeamMainPlayers(scope.teamId, mainTeamLoaded);
-                    publicationsSrv.loadLatestPublications(scope.publicationsCount, publicationsLoaded);
+                    publicationsSrv.loadMainPublications(scope.publicationsCount, publicationsLoaded);
                 }
 
                 function tourneysLoaded(response) {
@@ -58,15 +60,15 @@
                         item.flagSrc = helper.getFlagSrc(item.city.countryId);
                     });
 
-                    var goalkeepers = filterFilter(persons, { roleId: configSrv.Current.PersonRoleIds.rrGoalkeeper });
-                    var defenders = filterFilter(persons, { roleId: configSrv.Current.PersonRoleIds.rrDefender });
-                    var midfielders = filterFilter(persons, { roleId: configSrv.Current.PersonRoleIds.rrMidfielder });
-                    var forwards = filterFilter(persons, { roleId: configSrv.Current.PersonRoleIds.rrForward });
+                    var goalkeepers = filterFilter(persons, { roleId: configSrv.Current.PersonRoleIds.PlayerGoalkeeper });
+                    var defenders = filterFilter(persons, { roleId: configSrv.Current.PersonRoleIds.PlayerDefender });
+                    var midfielders = filterFilter(persons, { roleId: configSrv.Current.PersonRoleIds.PlayerMidfielder });
+                    var forwards = filterFilter(persons, { roleId: configSrv.Current.PersonRoleIds.PlayerForward });
 
-                    scope.goalkeepers.rows = goalkeepers.length > 0 ? helper.formRows(goalkeepers, 3, 0) : [];
-                    scope.defenders.rows = defenders.length > 0 ? helper.formRows(defenders, 3, 0) : [];
-                    scope.midfielders.rows = midfielders.length > 0 ? helper.formRows(midfielders, 3, 0) : [];
-                    scope.forwards.rows = forwards.length > 0 ? helper.formRows(forwards, 3, 0) : [];
+                    scope.goalkeepers.rows = goalkeepers.length > 0 ? helper.formRows(goalkeepers, 4, 0) : [];
+                    scope.defenders.rows = defenders.length > 0 ? helper.formRows(defenders, 4, 0) : [];
+                    scope.midfielders.rows = midfielders.length > 0 ? helper.formRows(midfielders, 4, 0) : [];
+                    scope.forwards.rows = forwards.length > 0 ? helper.formRows(forwards, 4, 0) : [];
 
                     scope.personsLoaded = true;
                     scope.statsLoaded = scope.personsLoaded && scope.tourneysLoaded;
@@ -78,6 +80,10 @@
                     var publications = response.data;
                     scope.publications = publications;
                     scope.loadingNews = false;
+                }
+
+                function setView(index) {
+                    scope.listview = index > 0 ? true : false;
                 }
             },
             templateUrl: '/lib/fc/layout/teams/team.html'

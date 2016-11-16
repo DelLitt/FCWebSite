@@ -99,5 +99,12 @@
   "GOALS": "Goals",
   "WARNINGS": "Yellows",
   "REMOVAL": "Reds",
-  "ASSISTANT_SHORT": "ass."
+  "ASSISTANT_SHORT": "ass.",
+  "MAIN_TEAM": "Main team",
+  "ACTUAL_NEWS": "Actual news",
+  "VIEW": "View",
+  "GOALKEEPERS": "Goalkeepers",
+  "DEFENDERS": "Defenders",
+  "MIDFIELDERS": "Midfielders",
+  "FORWARDS": "Forwards"
 }

@@ -43,6 +43,15 @@
         public const int rrInspector = 74;
         public const int rrRefereeReserve = 75;
         public const int rrRefereeBehindGoal = 76;
+
+
+        public int Unknown { get { return rrUnknown; } }
+
+        public int PlayerGoalkeeper { get { return rrGoalkeeper; } }
+        public int PlayerDefender { get { return rrDefender; } }
+        public int PlayerMidfielder { get { return rrMidfielder; } }
+        public int PlayerForward { get { return rrForward; } }
+        public int PlayerPositionUnknown { get { return rrPositionUnknown; } }
     }
 
     public class PersonRoleGroupId
