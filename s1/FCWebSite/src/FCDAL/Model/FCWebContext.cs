@@ -193,7 +193,7 @@ namespace FCDAL.Model
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-                entity.HasOne(d => d.PersonStatisticsNavigation).WithOne(p => p.InversePersonStatisticsNavigation).HasForeignKey<PersonStatistics>(d => d.Id).OnDelete(DeleteBehavior.Restrict);
+                //entity.HasOne(d => d.PersonStatisticsNavigation).WithOne(p => p.InversePersonStatisticsNavigation).HasForeignKey<PersonStatistics>(d => d.Id).OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(d => d.person).WithMany(p => p.PersonStatistics).HasForeignKey(d => d.personId).OnDelete(DeleteBehavior.Restrict);
 

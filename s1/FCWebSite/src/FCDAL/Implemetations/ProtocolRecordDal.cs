@@ -13,9 +13,14 @@
             return Context.ProtocolRecord.Where(p => p.gameId == gameId);
         }
 
+        public IEnumerable<ProtocolRecord> GetProtocol(IEnumerable<int> gameIds)
+        {
+            return Context.ProtocolRecord.Where(p => gameIds.Contains(p.gameId));
+        }
+
         public int SaveProtocol(int gameId, IEnumerable<ProtocolRecord> protocolRecords)
         {
-            if(Guard.IsEmptyIEnumerable(protocolRecords)) { return 0; }
+            if(protocolRecords == null) { return 0; }
 
             List<ProtocolRecord> saveRecords = protocolRecords.ToList();
             IEnumerable<int> saveIds = saveRecords.Select(pr => pr.Id);

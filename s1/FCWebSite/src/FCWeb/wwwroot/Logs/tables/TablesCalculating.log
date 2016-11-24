@@ -3576,3 +3576,426 @@
 06:52:41 20.09.2016 | Groups count: 1
 06:52:41 20.09.2016 | Groups: [-9999]
 
+07:27:34 24.11.2016 | Table 'ClassicTable' initialized.
+07:27:34 24.11.2016 | Building table 'ClassicTable' of tourney [Id:20] from games is started.
+07:27:34 24.11.2016 | Games count is 3
+07:27:34 24.11.2016 | 4 different team ids are selected from the games.
+07:27:34 24.11.2016 | Here are team ids: [67,37,33,34]
+07:27:34 24.11.2016 | Table record builder is created.
+07:27:34 24.11.2016 | Points for win is set to 3.
+07:27:34 24.11.2016 | Points for draw is set to 1.
+07:27:34 24.11.2016 | Creating table records is started
+07:27:34 24.11.2016 | Initial state of table 'ClassicTable' built from games:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 0|67| 0| 0| 0| 0| 0| 0| 0| -8888|
+| 0|37| 1| 0| 0| 1| 1| 3| 0| -8888|
+| 0|33| 1| 1| 0| 0| 3| 1| 3| -8888|
+| 0|34| 0| 0| 0| 0| 0| 0| 0| -8888|
+
+
+07:27:34 24.11.2016 | Table 'TableByPoints' initialized.
+07:27:34 24.11.2016 | Sorting table 'TableByPoints'.
+07:27:34 24.11.2016 | Groups count: 1
+07:27:34 24.11.2016 | Groups: [-8888]
+07:27:34 24.11.2016 | Virtual point applied to group with Key -8888:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 1| 0| 0| 1| 1| 3| 0| 0|
+| 3|33| 1| 1| 0| 0| 3| 1| 3| 3|
+| 4|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:34 24.11.2016 | Groups after virtual point applied: [0, 3]
+07:27:34 24.11.2016 | Max position: 4
+07:27:34 24.11.2016 | Table after group with key -8888 changes applied:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 4|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|37| 1| 0| 0| 1| 1| 3| 0| 0|
+| 1|33| 1| 1| 0| 0| 3| 1| 3| -9999|
+| 2|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+
+07:27:34 24.11.2016 | Table 'TableByWins' initialized.
+07:27:34 24.11.2016 | Sorting table 'TableByWins'.
+07:27:34 24.11.2016 | Groups count: 2
+07:27:34 24.11.2016 | Groups: [0, -9999]
+07:27:34 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 4|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|37| 1| 0| 0| 1| 1| 3| 0| 0|
+| 2|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:34 24.11.2016 | Groups after virtual point applied: [0]
+07:27:34 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByWins'.
+
+07:27:34 24.11.2016 | Table 'ClassicTable' initialized.
+07:27:34 24.11.2016 | Building table 'ClassicTable' of tourney [Id:0] from games is started.
+07:27:34 24.11.2016 | Games count is 2
+07:27:34 24.11.2016 | 3 different team ids are selected from the games.
+07:27:34 24.11.2016 | Here are team ids: [67,37,34]
+07:27:34 24.11.2016 | Table record builder is created.
+07:27:34 24.11.2016 | Points for win is set to 3.
+07:27:34 24.11.2016 | Points for draw is set to 1.
+07:27:34 24.11.2016 | Creating table records is started
+07:27:34 24.11.2016 | Initial state of table 'ClassicTable' built from games:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 0|67| 0| 0| 0| 0| 0| 0| 0| -8888|
+| 0|37| 0| 0| 0| 0| 0| 0| 0| -8888|
+| 0|34| 0| 0| 0| 0| 0| 0| 0| -8888|
+
+
+07:27:34 24.11.2016 | Table 'TableByPoints' initialized.
+07:27:34 24.11.2016 | Sorting table 'TableByPoints'.
+07:27:34 24.11.2016 | Groups count: 1
+07:27:34 24.11.2016 | Groups: [-8888]
+07:27:34 24.11.2016 | Virtual point applied to group with Key -8888:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:34 24.11.2016 | Groups after virtual point applied: [0]
+07:27:34 24.11.2016 | Group with Key -8888 cannot be resolved by 'TableByPoints'.
+
+07:27:34 24.11.2016 | Table 'TableByWins' initialized.
+07:27:34 24.11.2016 | Sorting table 'TableByWins'.
+07:27:34 24.11.2016 | Groups count: 1
+07:27:34 24.11.2016 | Groups: [0]
+07:27:34 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:34 24.11.2016 | Groups after virtual point applied: [0]
+07:27:34 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByWins'.
+
+07:27:34 24.11.2016 | Table 'TableByPrivateMatches' initialized.
+07:27:34 24.11.2016 | Sorting table 'TableByPrivateMatches'.
+07:27:34 24.11.2016 | Groups count: 1
+07:27:34 24.11.2016 | Groups: [0]
+07:27:34 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:34 24.11.2016 | Groups after virtual point applied: [0]
+07:27:34 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByPrivateMatches'.
+
+07:27:34 24.11.2016 | Table 'TableByGoalsDifference' initialized.
+07:27:34 24.11.2016 | Sorting table 'TableByGoalsDifference'.
+07:27:34 24.11.2016 | Groups count: 1
+07:27:34 24.11.2016 | Groups: [0]
+07:27:34 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:34 24.11.2016 | Groups after virtual point applied: [0]
+07:27:34 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByGoalsDifference'.
+
+07:27:34 24.11.2016 | Table 'TableByGoalsFor' initialized.
+07:27:34 24.11.2016 | Sorting table 'TableByGoalsFor'.
+07:27:34 24.11.2016 | Groups count: 1
+07:27:34 24.11.2016 | Groups: [0]
+07:27:34 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:34 24.11.2016 | Groups after virtual point applied: [0]
+07:27:34 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByGoalsFor'.
+
+07:27:34 24.11.2016 | Table 'TableByGoalsAgainst' initialized.
+07:27:34 24.11.2016 | Sorting table 'TableByGoalsAgainst'.
+07:27:34 24.11.2016 | Groups count: 1
+07:27:34 24.11.2016 | Groups: [0]
+07:27:34 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:34 24.11.2016 | Groups after virtual point applied: [0]
+07:27:34 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByGoalsAgainst'.
+
+07:27:34 24.11.2016 | Table 'TableByDraws' initialized.
+07:27:34 24.11.2016 | Sorting table 'TableByDraws'.
+07:27:34 24.11.2016 | Groups count: 1
+07:27:34 24.11.2016 | Groups: [0]
+07:27:34 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:34 24.11.2016 | Groups after virtual point applied: [0]
+07:27:34 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByDraws'.
+
+07:27:34 24.11.2016 | Table 'TableByAlphabet' initialized.
+07:27:34 24.11.2016 | Sorting table 'TableByAlphabet'.
+07:27:34 24.11.2016 | Groups count: 1
+07:27:34 24.11.2016 | Groups: [0]
+07:27:34 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 1|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 2|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 3|
+
+07:27:34 24.11.2016 | Groups after virtual point applied: [1, 2, 3]
+07:27:34 24.11.2016 | Max position: 3
+07:27:34 24.11.2016 | Table after group with key 0 changes applied:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 3|67| 0| 0| 0| 0| 0| 0| 0| -9999|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| -9999|
+| 1|34| 0| 0| 0| 0| 0| 0| 0| -9999|
+
+
+07:27:34 24.11.2016 | Table 'ClassicTable' initialized.
+07:27:34 24.11.2016 | Building table 'ClassicTable' of tourney [Id:0] from games is started.
+07:27:34 24.11.2016 | Games count is 2
+07:27:34 24.11.2016 | 3 different team ids are selected from the games.
+07:27:34 24.11.2016 | Here are team ids: [67,37,34]
+07:27:34 24.11.2016 | Table record builder is created.
+07:27:34 24.11.2016 | Points for win is set to 3.
+07:27:34 24.11.2016 | Points for draw is set to 1.
+07:27:34 24.11.2016 | Creating table records is started
+07:27:34 24.11.2016 | Initial state of table 'ClassicTable' built from games:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 0|67| 0| 0| 0| 0| 0| 0| 0| -8888|
+| 0|37| 0| 0| 0| 0| 0| 0| 0| -8888|
+| 0|34| 0| 0| 0| 0| 0| 0| 0| -8888|
+
+
+07:27:34 24.11.2016 | Table 'TableByPoints' initialized.
+07:27:34 24.11.2016 | Sorting table 'TableByPoints'.
+07:27:34 24.11.2016 | Groups count: 1
+07:27:34 24.11.2016 | Groups: [-8888]
+07:27:34 24.11.2016 | Virtual point applied to group with Key -8888:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:34 24.11.2016 | Groups after virtual point applied: [0]
+07:27:34 24.11.2016 | Group with Key -8888 cannot be resolved by 'TableByPoints'.
+
+07:27:34 24.11.2016 | Table 'TableByWins' initialized.
+07:27:34 24.11.2016 | Sorting table 'TableByWins'.
+07:27:34 24.11.2016 | Groups count: 1
+07:27:34 24.11.2016 | Groups: [0]
+07:27:34 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:34 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:34 24.11.2016 | Groups after virtual point applied: [0]
+07:27:34 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByWins'.
+
+07:27:34 24.11.2016 | Table 'TableByPrivateMatches' initialized.
+07:27:35 24.11.2016 | Sorting table 'TableByPrivateMatches'.
+07:27:35 24.11.2016 | Groups count: 1
+07:27:35 24.11.2016 | Groups: [0]
+07:27:35 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:35 24.11.2016 | Groups after virtual point applied: [0]
+07:27:35 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByPrivateMatches'.
+
+07:27:34 24.11.2016 | Table 'TableByGoalsDifference' initialized.
+07:27:35 24.11.2016 | Sorting table 'TableByGoalsDifference'.
+07:27:35 24.11.2016 | Groups count: 1
+07:27:35 24.11.2016 | Groups: [0]
+07:27:35 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:35 24.11.2016 | Groups after virtual point applied: [0]
+07:27:35 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByGoalsDifference'.
+
+07:27:34 24.11.2016 | Table 'TableByGoalsFor' initialized.
+07:27:35 24.11.2016 | Sorting table 'TableByGoalsFor'.
+07:27:35 24.11.2016 | Groups count: 1
+07:27:35 24.11.2016 | Groups: [0]
+07:27:35 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:35 24.11.2016 | Groups after virtual point applied: [0]
+07:27:35 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByGoalsFor'.
+
+07:27:34 24.11.2016 | Table 'TableByGoalsAgainst' initialized.
+07:27:35 24.11.2016 | Sorting table 'TableByGoalsAgainst'.
+07:27:35 24.11.2016 | Groups count: 1
+07:27:35 24.11.2016 | Groups: [0]
+07:27:35 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:35 24.11.2016 | Groups after virtual point applied: [0]
+07:27:35 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByGoalsAgainst'.
+
+07:27:34 24.11.2016 | Table 'TableByDraws' initialized.
+07:27:35 24.11.2016 | Sorting table 'TableByDraws'.
+07:27:35 24.11.2016 | Groups count: 1
+07:27:35 24.11.2016 | Groups: [0]
+07:27:35 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:35 24.11.2016 | Groups after virtual point applied: [0]
+07:27:35 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByDraws'.
+
+07:27:34 24.11.2016 | Table 'TableByAlphabet' initialized.
+07:27:35 24.11.2016 | Sorting table 'TableByAlphabet'.
+07:27:35 24.11.2016 | Groups count: 1
+07:27:35 24.11.2016 | Groups: [0]
+07:27:35 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 1|67| 0| 0| 0| 0| 0| 0| 0| 1|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| 2|
+| 3|34| 0| 0| 0| 0| 0| 0| 0| 3|
+
+07:27:35 24.11.2016 | Groups after virtual point applied: [1, 2, 3]
+07:27:35 24.11.2016 | Max position: 3
+07:27:35 24.11.2016 | Table after group with key 0 changes applied:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 3|67| 0| 0| 0| 0| 0| 0| 0| -9999|
+| 2|37| 0| 0| 0| 0| 0| 0| 0| -9999|
+| 1|34| 0| 0| 0| 0| 0| 0| 0| -9999|
+
+
+07:27:34 24.11.2016 | Table 'TableByPrivateMatches' initialized.
+07:27:34 24.11.2016 | Sorting table 'TableByPrivateMatches'.
+07:27:34 24.11.2016 | Groups count: 2
+07:27:34 24.11.2016 | Groups: [0, -9999]
+07:27:35 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 4|67| 0| 0| 0| 0| 0| 0| 0| -9999|
+| 3|37| 1| 0| 0| 1| 1| 3| 0| -9999|
+| 2|34| 0| 0| 0| 0| 0| 0| 0| -9999|
+
+07:27:35 24.11.2016 | Groups after virtual point applied: [-9999]
+07:27:35 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByPrivateMatches'.
+
+07:27:34 24.11.2016 | Table 'TableByGoalsDifference' initialized.
+07:27:35 24.11.2016 | Sorting table 'TableByGoalsDifference'.
+07:27:35 24.11.2016 | Groups count: 2
+07:27:35 24.11.2016 | Groups: [0, -9999]
+07:27:35 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 4|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 3|37| 1| 0| 0| 1| 1| 3| 0| -2|
+| 2|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:35 24.11.2016 | Groups after virtual point applied: [0, -2]
+07:27:35 24.11.2016 | Max position: 4
+07:27:35 24.11.2016 | Table after group with key 0 changes applied:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 3|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 4|37| 1| 0| 0| 1| 1| 3| 0| -9999|
+| 1|33| 1| 1| 0| 0| 3| 1| 3| -9999|
+| 2|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+
+07:27:34 24.11.2016 | Table 'TableByGoalsFor' initialized.
+07:27:35 24.11.2016 | Sorting table 'TableByGoalsFor'.
+07:27:35 24.11.2016 | Groups count: 2
+07:27:35 24.11.2016 | Groups: [0, -9999]
+07:27:35 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 3|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:35 24.11.2016 | Groups after virtual point applied: [0]
+07:27:35 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByGoalsFor'.
+
+07:27:34 24.11.2016 | Table 'TableByGoalsAgainst' initialized.
+07:27:35 24.11.2016 | Sorting table 'TableByGoalsAgainst'.
+07:27:35 24.11.2016 | Groups count: 2
+07:27:35 24.11.2016 | Groups: [0, -9999]
+07:27:35 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 3|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:35 24.11.2016 | Groups after virtual point applied: [0]
+07:27:35 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByGoalsAgainst'.
+
+07:27:34 24.11.2016 | Table 'TableByDraws' initialized.
+07:27:35 24.11.2016 | Sorting table 'TableByDraws'.
+07:27:35 24.11.2016 | Groups count: 2
+07:27:35 24.11.2016 | Groups: [0, -9999]
+07:27:35 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 3|67| 0| 0| 0| 0| 0| 0| 0| 0|
+| 2|34| 0| 0| 0| 0| 0| 0| 0| 0|
+
+07:27:35 24.11.2016 | Groups after virtual point applied: [0]
+07:27:35 24.11.2016 | Group with Key 0 cannot be resolved by 'TableByDraws'.
+
+07:27:34 24.11.2016 | Table 'TableByAlphabet' initialized.
+07:27:35 24.11.2016 | Sorting table 'TableByAlphabet'.
+07:27:35 24.11.2016 | Groups count: 2
+07:27:35 24.11.2016 | Groups: [0, -9999]
+07:27:35 24.11.2016 | Virtual point applied to group with Key 0:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 3|67| 0| 0| 0| 0| 0| 0| 0| 1|
+| 2|34| 0| 0| 0| 0| 0| 0| 0| 2|
+
+07:27:35 24.11.2016 | Groups after virtual point applied: [1, 2]
+07:27:35 24.11.2016 | Max position: 3
+07:27:35 24.11.2016 | Table after group with key 0 changes applied:
+07:27:35 24.11.2016 | 
+|P.|T.|G.|W.|D.|L.|GF|GA|P.|VP|
+| 3|67| 0| 0| 0| 0| 0| 0| 0| -9999|
+| 4|37| 1| 0| 0| 1| 1| 3| 0| -9999|
+| 1|33| 1| 1| 0| 0| 3| 1| 3| -9999|
+| 2|34| 0| 0| 0| 0| 0| 0| 0| -9999|
+
+

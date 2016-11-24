@@ -124,7 +124,7 @@
             {
                 protocolRecords.AddRange(protocolTeamViewModel.others
                     .Select(pr => new ProtocolRecordInfo(pr.ToBaseModel()))
-                    .Where(pr => pr.IsOut || pr.IsMiss || pr.IsAfterGamePenalty)
+                    .Where(pr => pr.IsOut || pr.IsMissPenalty || pr.IsAfterGamePenalty)
                     .Select(pr => pr.ProtocolRecord));
             }
 

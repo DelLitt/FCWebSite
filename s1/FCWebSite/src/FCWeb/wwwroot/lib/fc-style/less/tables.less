@@ -1,35 +1,18 @@
-﻿.table-borderless {
-  tbody {
-    tr {
-      td, th {
-        border: none !important;
-      }
-    }
-  }
-}
-
-table.table-into-header {
-  tr {
-    td {
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
-    }
-  }
-}
-
+﻿/*FC-TABLE*/
 .fc-table {
-  border-radius: 0 0 @fc-border-radius @fc-border-radius;
+  /*border-radius: 0 0 @fc-border-radius @fc-border-radius;*/
 
   caption {
     padding: 5px 15px;
-    border-radius: 5px 5px 0 0;
+    /*border-radius: 5px 5px 0 0;*/
   }
 
   tbody tr, tr {
 
     th, td {
       border-top: none;
-      padding: 5px;
+      padding: 2px 6px;
+      line-height: 2em;
       text-align: center;
     }
 
@@ -38,63 +21,44 @@ table.table-into-header {
       vertical-align: middle;
     }
 
-    td {
-      .fc-table-string {
-        max-width: 140px;        
-        display: table-cell;
+    h4, h5 {
+      margin: 2px 0 0 0;
+    }
+  }
+}
+
+.fc-pane-dark {
+  .fc-table {
+    tbody tr, tr {
+      th {
+        color: @brand-primary5;
+        border-bottom: 1px solid @background-primary;
+      }
+
+      td {
+        color: @background-primary;
+
+        a {
+          color: @brand-primary4;
+        }
+
+        a:hover, a:focus {
+          color: @brand-primary3;
+        }
       }
     }
   }
 }
-
-.fc-table-dark {
-  color: @background-primary;
-  border: 1px solid transparent;
-
-  caption {
-    .fc-dark-bg();
-    color: @background-primary;
-  }
-
-  tbody tr, tr {
-    background-color: @fc-soft-primary-color;
-
-    th {
-      background-color: fade(@brand-primary, 35%);
-      color: @brand-primary4;
-
-      label {
-        color: @brand-primary4 !important;
-      }
-    }
-
-    td {
-      border-bottom: 1px solid fade(@background-primary, 25%);
-    }
-
-    a {
-      color: @fc-light-link-color;
-    }
-  }
-}
-
-.fc-table.fc-table-dark.fc-table-striped {
-  > tbody > tr:nth-of-type(odd),
-  > tr:nth-of-type(odd) {
-    background-color: @fc-soft-primary-color;
-  }
-}
-
-.fc-table-light {
-  color: @brand-primary2;
+  /*FC-TABLE END*/
+  /*FC-TABLE-LIGHT*/
+.fc-table.fc-table-light {
   font-size: 1.2em;
-  color: @fc-soft-primary-color;  
+  color: @fc-soft-primary-color2;
 
   caption, tfoot {
     background-color: fade(@background-primary, 100%);
     color: @brand-primary;
     margin: 0 0 -5px 0;
-    /*box-shadow: 0 0 5px;*/
   }
 
   tbody tr:first-child, tr:first-child {
@@ -104,19 +68,10 @@ table.table-into-header {
   tbody tr, tr {
     background-color: fade(@background-primary, 100%);
 
-    h4, h5 {
-      margin: 2px 0 0 0;
-    }
-
-    th, td {
-      padding: 2px 6px;
-      line-height: 2.6em;
-    }
-
     th {
-      background-color: @fc-soft-primary-color;
+      background-color: @fc-soft-primary-color1;
       color: @brand-primary5;
-      border-top: @fc-line-fade;
+      border-top: @fc-line-fade !important;
       border-bottom: 12px solid fade(@background-primary, 55%);
 
       .fc-action {
@@ -162,38 +117,40 @@ table.table-into-header {
     }
   }
 }
+  /*FC-TABLE-LIGHT END*/
 
-.fc-table-light.fc-transparent {
-
-  .fc-round-border();
-  .fc-middle-border();
-
-  caption, thead, tfoot {
-    /*background-color: transparent;*/
-    .fc-middle-border();
-    color: @background-primary;
-    .fc-grad();
-  }
-
-  tfoot tr td {
-
-  }
-
+  /*Extra*/
+.fc-table.fc-table-border-top {
   tbody tr, tr {
-    th {
-      /*background-color: transparent;*/
-      .fc-grad();
-      color: @brand-primary5;
-      line-height: 30px;
-      border-top: none;
-      border-bottom: none;
+
+    th, td {
+      border-top: 1px solid @gray-good;
     }
   }
 }
 
-.fc-table.fc-table-striped {
-  > tbody > tr:nth-of-type(odd),
-  > tr:nth-of-type(odd) {
-    background-color: fade(@background-primary, 85%);
+.fc-table.fc-table-text-size-base {
+  tbody tr, tr {
+
+    th, td {
+      line-height: 1.6em;
+    }
   }
 }
+
+.table-borderless {
+  tbody tr, tr {
+    td, th {
+      border: none !important;
+    }
+  }
+}
+
+table.table-into-header {
+  tr {
+    td {
+      padding: 0 8px !important;
+    }
+  }
+}
+  /*Extra end*/

@@ -14,6 +14,7 @@
     {
         public bool FillTourneys { get; set; } = false;
         public bool FillGames { get; set; } = false;
+        public bool FillProtocols { get; set; } = false;
 
         public Round GetRound(int id)
         {
@@ -171,9 +172,15 @@
                 }
             }
 
+            if(FillProtocols)
+            {
+                FillGames = true;
+            }
+
             if (FillGames)
             {
                 dalGames = new GameDal();
+                dalGames.FillProtocols = FillProtocols;
                 dalGames.SetContext(Context);
             }
 

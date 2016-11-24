@@ -5,58 +5,61 @@
                 ng-options="tourney.nameFull for tourney in tourneys track by tourney.id"
                 ng-model="selectedTourney"></select>
     </div>
-    <table class="table fc-table-light">
+    <table class="table fc-table fc-table-light">
         <tr>
             <!--<th>
             </th>-->
-            <th class="text-center">
+            <th>
                 <span class="fc-action" ng-click="order('number')">#</span>
-                <span class="sortorder" ng-show="predicate === 'number'" ng-class="{reverse:reverse}"></span>
+                <span class="glyphicon font-07" ng-show="predicate === 'number'" ng-class="{'glyphicon-arrow-down':reverse, 'glyphicon-arrow-up':!reverse}"></span>
+            </th>
+            <th class="fc-text-left">
+                <span class="fc-action" ng-click="order('nameDefault')" translate="PLAYER"></span>
+                <span class="glyphicon font-07" ng-show="predicate === 'nameDefault'" ng-class="{'glyphicon-arrow-down':reverse, 'glyphicon-arrow-up':!reverse}""></span>
+            </th>
+            <th class="visible-md visible-lg">
+                <span class="fc-action" ng-click="order('age')" translate="AGE"></span>
+                <span class="glyphicon font-07" ng-show="predicate === 'age'" ng-class="{'glyphicon-arrow-down':reverse, 'glyphicon-arrow-up':!reverse}""></span>
             </th>
             <th>
-                <span class="fc-action" ng-click="order('nameDefault')" translate="PLAYER"></span>
-                <span class="sortorder" ng-show="predicate === 'nameDefault'" ng-class="{reverse:reverse}"></span>
-            </th>
-            <th class="text-center visible-md visible-lg">
-                <span class="fc-action" ng-click="order('age')" translate="AGE"></span>
-                <span class="sortorder" ng-show="predicate === 'age'" ng-class="{reverse:reverse}"></span>
-            </th>
-            <th class="text-center">
                 <span class="fc-action" ng-click="order(getField(const.games))" translate="GAMES_SH" translate-attr-title="GAMES_PLAYED"></span>
-                <span class="sortorder" ng-show="predicate === getField(const.games)" ng-class="{reverse:reverse}"></span>
+                <span class="glyphicon font-07" ng-show="predicate === getField(const.games)" ng-class="{'glyphicon-arrow-down':reverse, 'glyphicon-arrow-up':!reverse}""></span>
             </th>
-            <th class="text-center visible-sm visible-md visible-lg">
+            <th class="visible-sm visible-md visible-lg">
                 <span class="fc-action" ng-click="order(getField(const.substitutes))" translate="SUBS_SH" translate-attr-title="FROM_THE_BENCH"></span>
-                <span class="sortorder" ng-show="predicate === getField(const.substitutes)" ng-class="{reverse:reverse}"></span>
+                <span class="glyphicon font-07" ng-show="predicate === getField(const.substitutes)" ng-class="{'glyphicon-arrow-down':reverse, 'glyphicon-arrow-up':!reverse}""></span>
             </th>
-            <th class="text-center">
+            <th>
                 <span class="fc-action" ng-click="order(getField(const.goals))" translate="GOALS_SH" translate-attr-title="GOALS_COUNT"></span>
-                <span class="sortorder" ng-show="predicate === getField(const.goals)" ng-class="{reverse:reverse}"></span>
+                <span class="glyphicon font-07" ng-show="predicate === getField(const.goals)" ng-class="{'glyphicon-arrow-down':reverse, 'glyphicon-arrow-up':!reverse}""></span>
             </th>
-            <th class="text-center">
+            <th>
                 <span class="fc-action" ng-click="order(getField(const.assists))" translate="ASSISTS_SH" translate-attr-title="ASSISTS_COUNT"></span>
-                <span class="sortorder" ng-show="predicate === getField(const.assists)" ng-class="{reverse:reverse}"></span>
+                <span class="glyphicon font-07" ng-show="predicate === getField(const.assists)" ng-class="{'glyphicon-arrow-down':reverse, 'glyphicon-arrow-up':!reverse}""></span>
             </th>
-            <th class="text-center visible-sm visible-md visible-lg">
+            <th class="visible-sm visible-md visible-lg">
                 <span class="fc-action" ng-click="order(getField(const.yellows))" translate="YELLOWS_SH" translate-attr-title="YELLOWS_COUNT"></span>
-                <span class="sortorder" ng-show="predicate === getField(const.yellows)" ng-class="{reverse:reverse}"></span>
+                <span class="glyphicon font-07" ng-show="predicate === getField(const.yellows)" ng-class="{'glyphicon-arrow-down':reverse, 'glyphicon-arrow-up':!reverse}""></span>
             </th>
-            <th class="text-center visible-sm visible-md visible-lg">
+            <th class="visible-sm visible-md visible-lg">
                 <span class="fc-action" ng-click="order(getField(const.reds))" translate="REDS_SH" translate-attr-title="REDS_COUNT"></span>
-                <span class="sortorder" ng-show="predicate === getField(const.reds)" ng-class="{reverse:reverse}"></span>
+                <span class="glyphicon font-07" ng-show="predicate === getField(const.reds)" ng-class="{'glyphicon-arrow-down':reverse, 'glyphicon-arrow-up':!reverse}""></span>
             </th>
         </tr>
         <tr ng-repeat="person in persons">
             <!--<td class="text-muted">{{$index + 1}}</td>-->
-            <td class="text-center">{{person.number}}</td>
-            <td><a ng-href="person/{{person.id}}"><b>{{person.nameDefault}}</b></a></td>
-            <td class="text-center visible-md visible-lg">{{person.age}}</td>
-            <td class="text-center">{{person[getField(const.games)]}}</td>
-            <td class="text-center visible-sm visible-md visible-lg">{{person[getField(const.substitutes)]}}</td>
-            <td class="text-center">{{person[getField(const.goals)]}}</td>
-            <td class="text-center">{{person[getField(const.assists)]}}</td>
-            <td class="text-center visible-sm visible-md visible-lg">{{person[getField(const.yellows)]}}</td>
-            <td class="text-center visible-sm visible-md visible-lg">{{person[getField(const.reds)]}}</td>
+            <td>{{person.number}}</td>
+            <td class="fc-text-left"><a ng-href="person/{{person.id}}"><b>{{person.nameDefault}}</b></a></td>
+            <td class="visible-md visible-lg">{{person.age}}</td>
+            <td>{{person[getField(const.games)]}}</td>
+            <td class="visible-sm visible-md visible-lg">{{person[getField(const.substitutes)]}}</td>
+            <td>
+                <span ng-if="!isGK(person);">{{person[getField(const.goals)]}}</span>
+                <span ng-if="isGK(person);">{{-person[getField(const.customIntValue)] || 0}}<span ng-if="person[getField(const.goals)] > 0">/{{person[getField(const.goals)]}}</span></span>            
+            </td>
+            <td>{{person[getField(const.assists)]}}</td>
+            <td class="visible-sm visible-md visible-lg">{{person[getField(const.yellows)]}}</td>
+            <td class="visible-sm visible-md visible-lg">{{person[getField(const.reds)]}}</td>
         </tr>
     </table>
 </div>

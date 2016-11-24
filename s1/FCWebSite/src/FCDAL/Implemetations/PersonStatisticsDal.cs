@@ -1,5 +1,6 @@
 ﻿namespace FCDAL.Implementations
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Exceptions;
@@ -20,29 +21,80 @@
             return personStatistics;
         }
 
-        public IEnumerable<PersonStatistics> GetPersonsStatistics(int temaId, int tourneyId)
+        public IEnumerable<PersonStatistics> GetPersonsStatistics(int teamId, int tourneyId)
         {            
-            IEnumerable<PersonStatistics> result = Context.PersonStatistics.Where(ps => ps.teamId == temaId && ps.tourneyId == tourneyId);
+            IEnumerable<PersonStatistics> result = Context.PersonStatistics.Where(ps => ps.teamId == teamId && ps.tourneyId == tourneyId);
 
             FillRelations(result);
 
             return result;
         }
 
-        public int SavePersonStatistics(PersonStatistics entity)
+        public IEnumerable<PersonStatistics> GetPersonsStatistics(int tourneyId, IEnumerable<int> personIds)
         {
-            if (entity.Id > 0)
+            IEnumerable<PersonStatistics> result = Context.PersonStatistics
+                .Where(ps => ps.tourneyId == tourneyId && ps.tourneyId == tourneyId && personIds.Contains(ps.personId)).ToList();
+
+            FillRelations(result);
+
+            return result;
+        }
+
+        public int SavePersonStatistics(int tourneyId, IEnumerable<PersonStatistics> personStatistics)
+        {
+            if (personStatistics == null) { return -1; }            
+
+            List<PersonStatistics> saveRecords = personStatistics.Where(r => r.tourneyId == tourneyId).ToList();
+            List<PersonStatistics> dbRecords = GetPersonsStatistics(tourneyId, saveRecords.Select(r => r.personId)).ToList();
+            var insertRecords = new List<PersonStatistics>();
+            IEnumerable<PersonStatistics> removeRecords = new PersonStatistics[] { };
+
+            int removeCount = dbRecords.Count - saveRecords.Count;
+            if (removeCount > 0)
             {
-                Context.PersonStatistics.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
-            }
-            else
-            {
-                Context.PersonStatistics.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                removeRecords = dbRecords.Skip(saveRecords.Count);
+                Context.RemoveRange(removeRecords);
             }
 
-            Context.SaveChanges();
+            for (int i = 0; i < saveRecords.Count; i++)
+            {
+                PersonStatistics dbRecord = dbRecords.ElementAtOrDefault(i);
 
-            return entity.Id;
+                if (dbRecord == null)
+                {
+                    dbRecord = new PersonStatistics();
+                    insertRecords.Add(dbRecord);
+                }
+
+                dbRecord.Assists = saveRecords[i].Assists;
+                dbRecord.CustomIntValue = saveRecords[i].CustomIntValue;
+                dbRecord.Games = saveRecords[i].Games;
+                dbRecord.Goals = saveRecords[i].Goals;
+                dbRecord.personId = saveRecords[i].personId;
+                dbRecord.Reds = saveRecords[i].Reds;
+                dbRecord.Substitutes = saveRecords[i].Substitutes;
+                dbRecord.teamId = saveRecords[i].teamId;
+                dbRecord.tourneyId = saveRecords[i].tourneyId;
+                dbRecord.Yellows = saveRecords[i].Yellows;
+            }
+
+            Context.PersonStatistics.AddRange(insertRecords, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+
+            try
+            {
+                //foreach (PersonStatistics ps in insertRecords)
+                //{
+                //    Context.PersonStatistics.AddRange(insertRecords, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                //    Context.SaveChanges();
+                //}
+
+                return Context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                //TODO: Add logging
+                throw;
+            }
         }
 
         private void FillRelations(IEnumerable<PersonStatistics> personStatistics)

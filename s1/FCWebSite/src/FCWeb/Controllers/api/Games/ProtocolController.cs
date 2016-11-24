@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net;
     using Core;
     using Core.Extensions;
@@ -12,6 +13,7 @@
     using FCCore.Model;
     using Microsoft.AspNet.Authorization;
     using Microsoft.AspNet.Mvc;
+    using ViewModels;
     using ViewModels.Protocol;
 
     [Route("api/games/{id}/[controller]")]
@@ -21,11 +23,17 @@
         private IProtocolRecordBll protocolBll { get; set; }
         //[FromServices]
         private IGameBll gameBll { get; set; }
+        //[FromServices]
+        private IPersonStatisticsBll personStatisticsBll { get; set; }
+        //[FromServices]
+        private IPersonBll personBll { get; set; }
 
-        public ProtocolController(IProtocolRecordBll protocolBll, IGameBll gameBll)
+        public ProtocolController(IProtocolRecordBll protocolBll, IGameBll gameBll, IPersonStatisticsBll personStatisticsBll, IPersonBll personBll)
         {
             this.protocolBll = protocolBll;
             this.gameBll = gameBll;
+            this.personStatisticsBll = personStatisticsBll;
+            this.personBll = personBll;
         }
 
         [HttpGet("{form}")]
@@ -58,28 +66,76 @@
             return result;
         }
 
-        [HttpPost]
-        [Authorize(Roles = "admin,press")]
-        public void Post(int id, [FromBody]ProtocolGameViewModel protocolView)
+        [HttpGet("temp/xxx")]
+        public IEnumerable<PersonStatistics> Get(int id)
         {
             if (!ModelState.IsValid)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return;
+                return null;
             }
+
+            gameBll.FillRounds = true;
+            Game game = gameBll.GetGame(id);           
+
+            if (game == null)
+            {
+                Response.StatusCode = (int)HttpStatusCode.NotFound;
+                return null;
+            }
+
+            ProtocolGameViewModel oldProtocolView = GetDefaultProtocol(game);
+
+            IEnumerable<int> personIds = GetAllPersonIdsFromBothProtocols(oldProtocolView, new ProtocolGameViewModel());
+
+            personBll.FillPersonCareer = true;
+            IEnumerable<Person> persons = personBll.GetPersons(personIds);
+
+            IEnumerable<PersonStatistics> personStatistics = personStatisticsBll.CalculateTourneyStatistics(game.round.tourneyId, persons);
+            personStatisticsBll.SavePersonStatistics(game.round.tourneyId, personStatistics);
+
+            return personStatistics;
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin,press")]
+        public IEnumerable<PersonStatistics> Post(int id, [FromBody]ProtocolGameViewModel protocolView)
+        {
+            if (!ModelState.IsValid)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return null;
+            }
+
+            gameBll.FillRounds = true;
+            Game game = gameBll.GetGame(id);
+
+            if (game == null)
+            {
+                Response.StatusCode = (int)HttpStatusCode.NotFound;
+                return null;
+            }
+
+            ProtocolGameViewModel oldProtocolView = GetDefaultProtocol(game);
 
             var records = protocolView.ToRecordsList();
 
             int count = protocolBll.SaveProtocol(id, records);
 
-            Game game = gameBll.GetGame(id);
-
-            if(game == null) { return; }
-
             var gameNoteBuilder = new GameNoteBuilder(game);
             gameNoteBuilder.FakeProtocol = protocolView.fake;
 
             gameBll.SaveGame(gameNoteBuilder.Game);
+
+            IEnumerable<int> personIds = GetAllPersonIdsFromBothProtocols(oldProtocolView, new ProtocolGameViewModel());
+
+            personBll.FillPersonCareer = true;
+            IEnumerable<Person> persons = personBll.GetPersons(personIds);
+
+            IEnumerable<PersonStatistics> personStatistics = personStatisticsBll.CalculateTourneyStatistics(game.round.tourneyId, persons);
+            personStatisticsBll.SavePersonStatistics(game.round.tourneyId, personStatistics);
+
+            return personStatistics;
         }
 
         private ProtocolGameViewModel GetDefaultProtocol(Game game)
@@ -123,6 +179,25 @@
             textProtocol.away.others = textProtocolBuilderAway.GetOthers(Side.Away);
 
             return textProtocol;
+        }
+
+        private IEnumerable<int> GetAllPersonIdsFromBothProtocols(ProtocolGameViewModel oldProtocol, ProtocolGameViewModel newProtocol)
+        {
+            List<int> allPersonIds = 
+                oldProtocol.home.playersAll != null 
+                ? oldProtocol.home.playersAll.Select(p => p.id).ToList()
+                : new List<int>();
+
+            IEnumerable<PersonViewModel> oldAwayPersonModels = oldProtocol.away.playersAll ?? new List<PersonViewModel>();
+            allPersonIds.AddRange(oldAwayPersonModels.Where(m => !allPersonIds.Contains(m.id)).Select(p => p.id));
+
+            IEnumerable<PersonViewModel> newHomePersonModels = newProtocol.home.playersAll ?? new List<PersonViewModel>();
+            allPersonIds.AddRange(newHomePersonModels.Where(m => !allPersonIds.Contains(m.id)).Select(p => p.id));
+
+            IEnumerable<PersonViewModel> newAwayPersonModels = newProtocol.away.playersAll ?? new List<PersonViewModel>();
+            allPersonIds.AddRange(newAwayPersonModels.Where(m => !allPersonIds.Contains(m.id)).Select(p => p.id));
+
+            return allPersonIds;
         }
     }
 }

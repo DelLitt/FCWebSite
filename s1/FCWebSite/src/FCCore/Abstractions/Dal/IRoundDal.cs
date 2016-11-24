@@ -7,6 +7,7 @@
     {
         bool FillTourneys { get; set; }
         bool FillGames { get; set; }
+        bool FillProtocols { get; set; }
 
         Round GetRound(int id);
         IEnumerable<Round> GetRounds(IEnumerable<int> ids);

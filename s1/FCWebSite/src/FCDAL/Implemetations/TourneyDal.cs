@@ -8,10 +8,12 @@
     using FCCore.Common;
     using FCCore.Model;
     using Microsoft.Data.Entity;
+
     public class TourneyDal : DalBase, ITourneyDal
     {
         public bool FillRounds { get; set; }
         public bool FillGames { get; set; }
+        public bool FillProtocols { get; set; }
 
         public Tourney GetTourney(int tourneyId)
         {
@@ -70,10 +72,21 @@
 
             RoundDal dalRounds = null;
 
+            if(FillProtocols)
+            {
+                FillGames = true;
+            }
+
+            if(FillGames)
+            {
+                FillRounds = true;
+            }
+
             if (FillRounds)
             {
                 dalRounds = new RoundDal();
                 dalRounds.FillGames = FillGames;
+                dalRounds.FillProtocols = FillProtocols;
                 dalRounds.SetContext(Context);
             }
 

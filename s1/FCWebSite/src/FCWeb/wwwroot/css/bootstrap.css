@@ -6814,20 +6814,25 @@ button.close {
 /*Custom*/
 /*i.g. .gradient(linear; @background-primary 80%, fade(@brand-primary, 80%); 180deg);*/
 /*Custom*/
-/*Variables*/
 /*overrides*/
+/*Variables*/
 /*@gray-base:              #000;*/
 /*@brand-primary:         darken(#428bca, 6.5%); // #337ab7*/
+/*Variables*/
 .carousel-indicators {
   top: 20px !important;
 }
 .label-primary.soft {
   background-color: rgba(0, 43, 110, 0.9) !important;
 }
+.label-info {
+  background-color: #7DAFFF;
+}
 label {
   font-weight: bold;
   font-size: 1.2em;
   color: rgba(0, 43, 110, 0.9);
+  width: 100%;
 }
 select {
   font-size: 1.1em;
@@ -6835,8 +6840,28 @@ select {
   border: 1px solid #7DAFFF;
   padding: 6px;
 }
+.nav li a:hover,
+.nav li a:focus {
+  background-color: #ACCCFF;
+  color: #fff;
+}
+.nav-tabs {
+  border-bottom-color: #ACCCFF;
+  color: #7DAFFF;
+}
+.nav-tabs li a:hover,
+.nav-tabs li a:focus {
+  border-color: #ACCCFF;
+  color: #fff;
+}
+.nav-tabs li.active a,
+.nav-tabs li.active a:hover,
+.nav-tabs li.active a:focus {
+  border-color: #ACCCFF;
+  color: #7DAFFF;
+  border-bottom-color: transparent;
+}
 /*overrides end*/
-/*Variables*/
 .color-primary-5 {
   color: #ACCCFF;
 }
@@ -6848,6 +6873,9 @@ body {
   padding-top: 60px;
   padding-bottom: 20px;
   background-color: transparent;
+}
+.fc-text {
+  color: #dddddd;
 }
 /*fc-label*/
 .fc-label {
@@ -6921,12 +6949,21 @@ body {
 .fc-action {
   cursor: pointer;
 }
+.fc-text-left {
+  text-align: left !important;
+}
+.fc-text-right {
+  text-align: right !important;
+}
 a {
-  color: #002B6E;
+  color: #1771FF;
 }
 a:hover,
 a:focus {
-  color: #1771FF;
+  color: #00378F;
+}
+.font-07 {
+  font-size: 0.7em;
 }
 .white-link {
   color: #fff !important;
@@ -6978,6 +7015,15 @@ a:focus {
   white-space: nowrap;
   overflow: hidden;
   max-width: 250px;
+}
+.ellipsis-300 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 300px;
+}
+a.ellipsis {
+  display: block;
 }
 /*Background image resp*/
 .resp-bg {
@@ -7184,6 +7230,31 @@ dl.fc-data-list.dt-info dd {
   /*display: table-cell;*/
   padding: 10px 10px 10px 20px;
 }
+.fc-dl {
+  margin: 10px 0;
+  font-size: 1.2em;
+  /*dt:after{
+    content: " | ";
+  }*/
+  /*dd:before {
+    content: "|&nbsp;";
+  }*/
+}
+.fc-dl dt {
+  float: left;
+  font-weight: normal;
+  padding: 4px 4px 5px 5px;
+  width: 160px;
+  text-align: left;
+  background-color: rgba(0, 43, 110, 0.81);
+  margin: 3px 0;
+  color: #fff;
+}
+.fc-dl dd {
+  font-weight: bold;
+  margin: -5px 0;
+  padding: 5px 0;
+}
 /*office*/
 /*filebrowser*/
 .glyphicon-folder-open,
@@ -7355,7 +7426,7 @@ dl.fc-data-list.dt-info dd {
   text-align: center;
   padding: 10px 0;
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: 1px solid #7DAFFF;
   /*.fc-light-shadow();*/
 }
@@ -7411,27 +7482,21 @@ dl.fc-data-list.dt-info dd {
   height: 47px;
   background-position: -351px 0px;
 }
-.table-borderless tbody tr td,
-.table-borderless tbody tr th {
-  border: none !important;
-}
-table.table-into-header tr td {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
+/*FC-TABLE*/
 .fc-table {
-  border-radius: 0 0 5px 5px;
+  /*border-radius: 0 0 @fc-border-radius @fc-border-radius;*/
 }
 .fc-table caption {
   padding: 5px 15px;
-  border-radius: 5px 5px 0 0;
+  /*border-radius: 5px 5px 0 0;*/
 }
 .fc-table tbody tr th,
 .fc-table tr th,
 .fc-table tbody tr td,
 .fc-table tr td {
   border-top: none;
-  padding: 5px;
+  padding: 2px 6px;
+  line-height: 2em;
   text-align: center;
 }
 .fc-table tbody tr th,
@@ -7439,164 +7504,124 @@ table.table-into-header tr td {
   font-weight: normal;
   vertical-align: middle;
 }
-.fc-table tbody tr td .fc-table-string,
-.fc-table tr td .fc-table-string {
-  max-width: 140px;
-  display: table-cell;
+.fc-table tbody tr h4,
+.fc-table tr h4,
+.fc-table tbody tr h5,
+.fc-table tr h5 {
+  margin: 2px 0 0 0;
 }
-.fc-table-dark {
-  color: #fff;
-  border: 1px solid transparent;
-}
-.fc-table-dark caption {
-  background: -webkit-linear-gradient(rgba(0, 43, 110, 0.8), 35%, rgba(0, 43, 110, 0.95) 75%, rgba(0, 43, 110, 0.8), 100%);
-  background: -o-linear-gradient(rgba(0, 43, 110, 0.8), 35%, rgba(0, 43, 110, 0.95) 75%, rgba(0, 43, 110, 0.8) 100%);
-  background: linear-gradient(rgba(0, 43, 110, 0.8), 35%, rgba(0, 43, 110, 0.95) 75%, rgba(0, 43, 110, 0.8) 100%);
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc002b6e', endColorstr='#cc002b6e', GradientType=0);
+.fc-pane-dark .fc-table tbody tr th,
+.fc-pane-dark .fc-table tr th {
   color: #ACCCFF;
+  border-bottom: 1px solid #fff;
+}
+.fc-pane-dark .fc-table tbody tr td,
+.fc-pane-dark .fc-table tr td {
   color: #fff;
 }
-.fc-table-dark tbody tr,
-.fc-table-dark tr {
-  background-color: rgba(0, 43, 110, 0.9);
-}
-.fc-table-dark tbody tr th,
-.fc-table-dark tr th {
-  background-color: rgba(0, 43, 110, 0.35);
+.fc-pane-dark .fc-table tbody tr td a,
+.fc-pane-dark .fc-table tr td a {
   color: #7DAFFF;
 }
-.fc-table-dark tbody tr th label,
-.fc-table-dark tr th label {
-  color: #7DAFFF !important;
+.fc-pane-dark .fc-table tbody tr td a:hover,
+.fc-pane-dark .fc-table tr td a:hover,
+.fc-pane-dark .fc-table tbody tr td a:focus,
+.fc-pane-dark .fc-table tr td a:focus {
+  color: #1771FF;
 }
-.fc-table-dark tbody tr td,
-.fc-table-dark tr td {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-}
-.fc-table-dark tbody tr a,
-.fc-table-dark tr a {
-  color: #bdd6ff;
-}
-.fc-table.fc-table-dark.fc-table-striped > tbody > tr:nth-of-type(odd),
-.fc-table.fc-table-dark.fc-table-striped > tr:nth-of-type(odd) {
-  background-color: rgba(0, 43, 110, 0.9);
-}
-.fc-table-light {
-  color: #00378F;
+/*FC-TABLE END*/
+/*FC-TABLE-LIGHT*/
+.fc-table.fc-table-light {
   font-size: 1.2em;
-  color: rgba(0, 43, 110, 0.9);
+  color: rgba(0, 43, 110, 0.81);
 }
-.fc-table-light caption,
-.fc-table-light tfoot {
+.fc-table.fc-table-light caption,
+.fc-table.fc-table-light tfoot {
   background-color: #ffffff;
   color: #002B6E;
   margin: 0 0 -5px 0;
-  /*box-shadow: 0 0 5px;*/
 }
-.fc-table-light tbody tr:first-child,
-.fc-table-light tr:first-child {
+.fc-table.fc-table-light tbody tr:first-child,
+.fc-table.fc-table-light tr:first-child {
   background-color: transparent !important;
 }
-.fc-table-light tbody tr,
-.fc-table-light tr {
+.fc-table.fc-table-light tbody tr,
+.fc-table.fc-table-light tr {
   background-color: #ffffff;
 }
-.fc-table-light tbody tr h4,
-.fc-table-light tr h4,
-.fc-table-light tbody tr h5,
-.fc-table-light tr h5 {
-  margin: 2px 0 0 0;
-}
-.fc-table-light tbody tr th,
-.fc-table-light tr th,
-.fc-table-light tbody tr td,
-.fc-table-light tr td {
-  padding: 2px 6px;
-  line-height: 2.6em;
-}
-.fc-table-light tbody tr th,
-.fc-table-light tr th {
+.fc-table.fc-table-light tbody tr th,
+.fc-table.fc-table-light tr th {
   background-color: rgba(0, 43, 110, 0.9);
   color: #ACCCFF;
-  border-top: 11px solid rgba(255, 255, 255, 0.8);
+  border-top: 11px solid rgba(255, 255, 255, 0.8) !important;
   border-bottom: 12px solid rgba(255, 255, 255, 0.55);
 }
-.fc-table-light tbody tr th .fc-action,
-.fc-table-light tr th .fc-action {
+.fc-table.fc-table-light tbody tr th .fc-action,
+.fc-table.fc-table-light tr th .fc-action {
   color: #7DAFFF;
 }
-.fc-table-light tbody tr th .fc-action:hover,
-.fc-table-light tr th .fc-action:hover,
-.fc-table-light tbody tr th .fc-action:focus,
-.fc-table-light tr th .fc-action:focus {
+.fc-table.fc-table-light tbody tr th .fc-action:hover,
+.fc-table.fc-table-light tr th .fc-action:hover,
+.fc-table.fc-table-light tbody tr th .fc-action:focus,
+.fc-table.fc-table-light tr th .fc-action:focus {
   color: #fff !important;
 }
-.fc-table-light tbody tr th a,
-.fc-table-light tr th a {
+.fc-table.fc-table-light tbody tr th a,
+.fc-table.fc-table-light tr th a {
   color: #fff;
 }
-.fc-table-light tbody tr th .a:hover,
-.fc-table-light tr th .a:hover,
-.fc-table-light tbody tr th .a:focus,
-.fc-table-light tr th .a:focus {
+.fc-table.fc-table-light tbody tr th .a:hover,
+.fc-table.fc-table-light tr th .a:hover,
+.fc-table.fc-table-light tbody tr th .a:focus,
+.fc-table.fc-table-light tr th .a:focus {
   color: #1771FF;
 }
-.fc-table-light tbody tr th:first-child,
-.fc-table-light tr th:first-child {
+.fc-table.fc-table-light tbody tr th:first-child,
+.fc-table.fc-table-light tr th:first-child {
   border-left: 11px solid rgba(255, 255, 255, 0.8);
 }
-.fc-table-light tbody tr th:last-child,
-.fc-table-light tr th:last-child {
+.fc-table.fc-table-light tbody tr th:last-child,
+.fc-table.fc-table-light tr th:last-child {
   border-right: 11px solid rgba(255, 255, 255, 0.8);
 }
-.fc-table-light tbody tr td .fc-action,
-.fc-table-light tr td .fc-action {
+.fc-table.fc-table-light tbody tr td .fc-action,
+.fc-table.fc-table-light tr td .fc-action {
   color: #7DAFFF;
 }
-.fc-table-light tbody tr td .fc-action:hover,
-.fc-table-light tr td .fc-action:hover,
-.fc-table-light tbody tr td .fc-action:focus,
-.fc-table-light tr td .fc-action:focus {
+.fc-table.fc-table-light tbody tr td .fc-action:hover,
+.fc-table.fc-table-light tr td .fc-action:hover,
+.fc-table.fc-table-light tbody tr td .fc-action:focus,
+.fc-table.fc-table-light tr td .fc-action:focus {
   color: #1771FF;
 }
-.fc-table-light tbody tr a,
-.fc-table-light tr a {
+.fc-table.fc-table-light tbody tr a,
+.fc-table.fc-table-light tr a {
   color: rgba(0, 43, 110, 0.9);
 }
-.fc-table-light.fc-transparent {
-  border-radius: 5px;
-  border: 1px solid #7DAFFF;
+/*FC-TABLE-LIGHT END*/
+/*Extra*/
+.fc-table.fc-table-border-top tbody tr th,
+.fc-table.fc-table-border-top tr th,
+.fc-table.fc-table-border-top tbody tr td,
+.fc-table.fc-table-border-top tr td {
+  border-top: 1px solid #dddddd;
 }
-.fc-table-light.fc-transparent caption,
-.fc-table-light.fc-transparent thead,
-.fc-table-light.fc-transparent tfoot {
-  /*background-color: transparent;*/
-  border: 1px solid #7DAFFF;
-  color: #fff;
-  background: -webkit-linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
-  background: -o-linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
-  background: linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6002b6e', endColorstr='#cc002b6e', GradientType=0);
+.fc-table.fc-table-text-size-base tbody tr th,
+.fc-table.fc-table-text-size-base tr th,
+.fc-table.fc-table-text-size-base tbody tr td,
+.fc-table.fc-table-text-size-base tr td {
+  line-height: 1.6em;
 }
-.fc-table-light.fc-transparent tbody tr th,
-.fc-table-light.fc-transparent tr th {
-  /*background-color: transparent;*/
-  background: -webkit-linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
-  background: -o-linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
-  background: linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6002b6e', endColorstr='#cc002b6e', GradientType=0);
-  color: #ACCCFF;
-  line-height: 30px;
-  border-top: none;
-  border-bottom: none;
+.table-borderless tbody tr td,
+.table-borderless tr td,
+.table-borderless tbody tr th,
+.table-borderless tr th {
+  border: none !important;
 }
-.fc-table.fc-table-striped > tbody > tr:nth-of-type(odd),
-.fc-table.fc-table-striped > tr:nth-of-type(odd) {
-  background-color: rgba(255, 255, 255, 0.85);
+table.table-into-header tr td {
+  padding: 0 8px !important;
 }
+/*Extra end*/
 .text-bg-color {
   color: #fff;
 }
@@ -7705,10 +7730,9 @@ a.text-prim5-color:focus {
 }
 .fc-pane {
   position: relative;
-  margin: 10px 0 45px 0;
-  background-color: #fff;
-  -webkit-box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
-  box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
+  margin: 10px 0 10px 0;
+  background-color: transparent;
+  /*.box-shadow(@fc-shadow);*/
 }
 .fc-pane .fc-pane-header {
   font-size: 14px;
@@ -7739,15 +7763,15 @@ a.text-prim5-color:focus {
 }
 .fc-pane .fc-pane-body {
   background-color: #fff;
-  color: #264a83;
+  color: rgba(0, 43, 110, 0.81);
   /*border-bottom: none;*/
-  padding: 15px 16px 15px 16px;
+  padding: 5px 16px 15px 16px;
   /*label {
       color: lighten(fade(@brand-primary, 75%), 17.5%);
     }*/
 }
 .fc-pane .fc-pane-body .pretty-text {
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 .fc-pane .fc-pane-body .fc-pane-form {
   background-color: #fff;

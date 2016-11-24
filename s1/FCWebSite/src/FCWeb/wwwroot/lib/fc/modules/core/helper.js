@@ -129,10 +129,18 @@ String.prototype.endsWith = function (suffix) {
                 return 'images/skin/loading.gif';
             },
 
+            isGK: function (person) {
+                return person.roleId == configSrv.Current.PersonRoleIds.PlayerGoalkeeper
+            },
+
             // PERSON HELPER END
 
             // TEAM HELPER START
             // TODO: Encapsulate into separate class helper
+
+            getTeamViewLinkById: function (teamId) {
+                return '/team/' + teamId;
+            },
 
             getTeamViewLink: function (team) {
                 return '/team/' + team.id;

@@ -5,9 +5,9 @@
         .module('fc.ui')
         .directive('personTableItem', personTableItem);
 
-    personTableItem.$inject = ['$filter', 'personsSrv', 'statsSrv', 'configSrv'];
+    personTableItem.$inject = ['$filter', 'personsSrv', 'statsSrv', 'configSrv', 'helper'];
 
-    function personTableItem($filter, personsSrv, statsSrv, configSrv) {
+    function personTableItem($filter, personsSrv, statsSrv, configSrv, helper) {
         return {
             restrict: 'E',
             replace: true,
@@ -33,13 +33,16 @@
                 scope.selectedTourney = {};
                 scope.tourneyStats = [];
 
+                scope.isGK = helper.isGK;
+
                 scope.const = {
                     assists: 'assists',
                     games: 'games',
                     goals: 'goals',
                     substitutes: 'substitutes',
                     yellows: 'yellows',
-                    reds: 'reds'
+                    reds: 'reds',
+                    customIntValue: 'customIntValue'
                 }
 
                 scope.$watch(function (scope) {
@@ -115,7 +118,8 @@
                                     goals: 0,
                                     substitutes: 0,
                                     yellows: 0,
-                                    reds: 0
+                                    reds: 0,
+                                    customIntValue: 0
                                 }
                         }
 
@@ -125,6 +129,7 @@
                         person[getFieldName(scope.const.substitutes)] = lStats.substitutes;
                         person[getFieldName(scope.const.yellows)] = lStats.yellows;
                         person[getFieldName(scope.const.reds)] = lStats.reds;
+                        person[getFieldName(scope.const.customIntValue)] = lStats.customIntValue;
                     }
 
                     scope.getField = getFieldName;

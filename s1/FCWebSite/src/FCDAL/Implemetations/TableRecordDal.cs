@@ -22,9 +22,9 @@
             return records;
         }
 
-        public void SaveTourneyTable(int tourneyId, IEnumerable<TableRecord> tableRecords)
+        public int SaveTourneyTable(int tourneyId, IEnumerable<TableRecord> tableRecords)
         {
-            if (Guard.IsEmptyIEnumerable(tableRecords)) { return; }
+            if (tableRecords == null) { return -1; }
 
             List<TableRecord> saveRecords = tableRecords.Where(r => r.tourneyId == tourneyId).ToList();
             List<TableRecord> dbRecords = GetTourneyTable(tourneyId).ToList();
@@ -66,11 +66,12 @@
 
             try
             {
-                Context.SaveChanges();
+                return Context.SaveChanges();
             }
             catch(Exception ex)
             {
                 //TODO: Add logging
+                throw;                
             }
         }
 

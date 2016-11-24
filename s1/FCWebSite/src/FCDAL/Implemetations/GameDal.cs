@@ -16,6 +16,7 @@
         public bool FillRounds { get; set; } = false;
         public bool FillStadiums { get; set; } = false;
         public bool FillTourneys { get; set; } = false;
+        public bool FillProtocols { get; set; } = false;
 
 
         public Game GetGame(int id)
@@ -229,8 +230,9 @@
             IEnumerable<Team> teams = new Team[0];
             IEnumerable<Round> rounds = new Round[0];
             IEnumerable<Stadium> stadiums = new Stadium[0];
+            IEnumerable<ProtocolRecord> protocols = new ProtocolRecord[0];
 
-            if(FillTourneys)
+            if (FillTourneys)
             {
                 FillRounds = true;
             }
@@ -281,6 +283,16 @@
                 stadiums = stadiumDal.GetStadiums(stadiumIds.Distinct()).ToList();
             }
 
+            if (FillProtocols)
+            {
+                var protocolRecordDal = new ProtocolRecordDal();                
+
+                var gameIds = new List<int>();
+                gameIds.AddRange(games.Select(g => g.Id).Distinct());
+
+                protocols = protocolRecordDal.GetProtocol(gameIds).ToList();
+            }
+
             foreach (Game game in games)
             {
                 if (FillTeams && teams.Any())
@@ -323,6 +335,15 @@
                 else
                 {
                     game.stadium = null;
+                }
+
+                if (FillProtocols && protocols.Any())
+                {
+                    game.ProtocolRecord = protocols.Where(p => p.gameId == game.Id).ToList();
+                }
+                else
+                {
+                    game.ProtocolRecord = null;
                 }
             }
         }

@@ -107,7 +107,7 @@
             }
         }
 
-        public bool IsMiss
+        public bool IsMissPenalty
         {
             get
             {
@@ -161,6 +161,6 @@
                 eventId = EventId.eInSubstitution,
                 Minute = 0
             };
-        }        
+        }
     }
 }

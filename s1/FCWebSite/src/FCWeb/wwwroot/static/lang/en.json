@@ -35,11 +35,13 @@
   "DRAWS_SH": "D",
   "LOSES_SH": "L",
   "GOALS_SH": "G",
+  "GOALS_SH2": "G",
   "POINTS_SH": "P",
   "SUBS_SH": "B",
   "ASSISTS_SH": "A",
   "YELLOWS_SH": "YC",
   "REDS_SH": "RC",
+  "GAMES_FROM_START_SH": "S",
   "rrUnknown": "Unknown",
   "rrGoalkeeper": "Goalkeeper",
   "rrDefender": "Defender",
@@ -119,5 +121,11 @@
   "GOALS_COUNT": "Goals",
   "ASSISTS_COUNT": "Assists",
   "YELLOWS_COUNT": "Yellows",
-  "REDS_COUNT": "Reds"
+  "REDS_COUNT": "Reds",
+  "PROFILE": "Profile",
+  "CAREER": "Career",
+  "ACHIEVEMENTS": "Achievments",
+  "SEASON": "Season",
+  "STATISTICS": "Statistics",
+  "PLAYER_STATS_TABLE_INFO": "G - games, S - from start, G - goals, A - assists, YC - yellow cards, RC - red cards"
 }

@@ -10,6 +10,7 @@
         bool FillRounds { get; set; }
         bool FillTourneys { get; set; }
         bool FillStadiums { get; set; }
+        bool FillProtocols { get; set; }
 
         Game GetGame(int id);
         IEnumerable<Game> GetRoundGames(int roundId);

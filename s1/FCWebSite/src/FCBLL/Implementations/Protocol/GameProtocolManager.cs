@@ -143,7 +143,7 @@
         public IEnumerable<ProtocolRecord> GetOthers(int teamId)
         {
             return records.Where(r => r.ProtocolRecord.teamId == teamId
-                                  && (r.IsOut || r.IsMiss || r.IsAfterGamePenalty))
+                                  && (r.IsOut || r.IsMissPenalty || r.IsAfterGamePenalty))
                           .Select(r => r.ProtocolRecord);
         }
 

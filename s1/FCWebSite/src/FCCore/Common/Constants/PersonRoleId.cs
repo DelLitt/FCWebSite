@@ -74,6 +74,11 @@
             PersonRoleId.rrGoalkeeper, PersonRoleId.rrDefender, PersonRoleId.rrMidfielder, PersonRoleId.rrForward, PersonRoleId.rrPositionUnknown
         };
 
+        public static IEnumerable<int> rgTeamPitchPlayer = new int[]
+        {
+            PersonRoleId.rrDefender, PersonRoleId.rrMidfielder, PersonRoleId.rrForward, PersonRoleId.rrPositionUnknown
+        };
+
         public static IEnumerable<int> rgCoachingStaff = new int[]
         {
             PersonRoleId.rrCoachHead, PersonRoleId.rrCoachAssistant, PersonRoleId.rrCoach, PersonRoleId.rrCoachPhysical, PersonRoleId.rrCoachGoalkeeper

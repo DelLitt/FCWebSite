@@ -14,6 +14,7 @@
         public bool FillTeams { get; set; } = false;
         public bool FillCities { get; set; } = false;
         public bool FillPersonRoles { get; set; } = false;
+        public bool FillPersonCareer { get; set; } = false;
 
         public Person GetPerson(int id)
         {
@@ -108,6 +109,7 @@
             IEnumerable<Team> teams = new Team[0];
             IEnumerable<City> cities = new City[0];
             IEnumerable<PersonRole> personRoles = new PersonRole[0];
+            IEnumerable<PersonCareer> personCareers = new PersonCareer[0];
 
             if (FillTeams)
             {
@@ -144,7 +146,18 @@
                 personRoles = personRoleDal.GetPersonRoles(personRoleIds).ToList();
             }
 
-            if (teams.Any() || cities.Any() || personRoles.Any())
+            if (FillPersonCareer)
+            {
+                var personCareerDal = new PersonCareerDal();
+                personCareerDal.SetContext(Context);
+
+                var personIds = new List<int>();
+                personIds.AddRange(persons.Select(p => p.Id).Distinct());
+
+                personCareers = personCareerDal.GetPersonCareer(personIds).ToList();
+            }
+
+            if (teams.Any() || cities.Any() || personRoles.Any() || personCareers.Any())
             {
                 foreach (Person person in persons)
                 {
@@ -173,6 +186,11 @@
                         {
                             throw new DalMappingException(nameof(person.role), typeof(Person));
                         }
+                    }
+
+                    if (FillPersonCareer && personCareers.Any())
+                    {
+                        person.PersonCareer = personCareers.Where(pc => pc.personId == person.Id).ToList();
                     }
                 }
             }

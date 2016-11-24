@@ -1,6 +1,7 @@
 ﻿namespace FCBLL.Implementations
 {
     using System.Collections.Generic;
+    using Core.Protocol;
     using FCCore.Abstractions.Bll;
     using FCCore.Abstractions.Dal;
     using FCCore.Model;
@@ -47,6 +48,20 @@
             }
         }
 
+        private ITourneyDal dalTourney;
+        private ITourneyDal DalTourney
+        {
+            get
+            {
+                if (dalTourney == null)
+                {
+                    dalTourney = DALFactory.Create<ITourneyDal>();
+                }
+
+                return dalTourney;
+            }
+        }
+
         public IEnumerable<PersonStatistics> GetPersonStatistics(int personId)
         {
             return DalPersonStatistics.GetPersonStatistics(personId);
@@ -57,9 +72,20 @@
             return DalPersonStatistics.GetPersonsStatistics(temaId, tourneyId);
         }
 
-        public int SavePersonStatistics(PersonStatistics entity)
+        public int SavePersonStatistics(int tourneyId, IEnumerable<PersonStatistics> personStatistics)
         {
-            return DalPersonStatistics.SavePersonStatistics(entity);
+            return DalPersonStatistics.SavePersonStatistics(tourneyId, personStatistics);
+        }
+
+        public IEnumerable<PersonStatistics> CalculateTourneyStatistics(int tourneyId, IEnumerable<Person> persons)
+        {
+            DalTourney.FillProtocols = true;
+
+            Tourney tourney = DalTourney.GetTourney(tourneyId);
+
+            var statsCalculator = new PersonTourneyStatsCalculator(tourney, persons);
+
+            return statsCalculator.PersonStatistics;
         }
     }
 }

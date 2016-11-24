@@ -9,6 +9,7 @@
         bool FillTeams { get; set; }
         bool FillCities { get; set; }
         bool FillPersonRoles { get; set; }
+        bool FillPersonCareer { get; set; }
 
         Person GetPerson(int id);
         IEnumerable<Person> GetTeamPersons(int teamId);

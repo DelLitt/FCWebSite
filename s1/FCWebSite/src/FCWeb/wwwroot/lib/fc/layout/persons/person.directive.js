@@ -18,6 +18,7 @@
                 scope.loadingPerson = true;
                 scope.loadingStats = true;
                 scope.loadingImage = helper.getLoadingImg();
+                scope.getTeamViewLink = helper.getTeamViewLinkById;
                 scope.persons = {};
                 scope.flagSrc = "";
                 scope.tab = 0;
@@ -31,6 +32,12 @@
                 scope.isValidYear = function (year) {
                     return angular.isNumber(year);
                 }
+
+                scope.hasPositiveCustomIntValue = function (value) {
+                    return angular.isNumber(value) && value > 0;
+                }
+
+                scope.isGK = helper.isGK;
 
                 loadData(scope.id);
 
@@ -72,7 +79,7 @@
                     scope.loadingPerson = false;
 
                     statsSrv.loadPersonStats(person.id, statsLoaded)
-                }
+                }                
 
                 function statsLoaded(response) {
                     var stats = response.data;

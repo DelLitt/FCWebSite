@@ -35,11 +35,13 @@
   "DRAWS_SH": "Н",
   "LOSES_SH": "П",
   "GOALS_SH": "М",
+  "GOALS_SH2": "Г",
   "POINTS_SH": "О",
   "SUBS_SH": "З",
   "ASSISTS_SH": "ГП",
   "YELLOWS_SH": "ЖК",
   "REDS_SH": "КК",
+  "GAMES_FROM_START_SH": "С",
   "rrUnknown": "Неизвестно",
   "rrGoalkeeper": "Вратарь",
   "rrDefender": "Защитник",
@@ -119,5 +121,11 @@
   "GOALS_COUNT": "Количество голов",
   "ASSISTS_COUNT": "Количество голевых передач",
   "YELLOWS_COUNT": "Количество желтых карточек",
-  "REDS_COUNT": "Количество красных карточек"
+  "REDS_COUNT": "Количество красных карточек",
+  "PROFILE": "Профиль",
+  "CAREER": "Карьера",
+  "ACHIEVEMENTS": "Достижения",
+  "SEASON": "Сезон",
+  "STATISTICS": "Статистика",
+  "PLAYER_STATS_TABLE_INFO": "И - игры, С - в стартовом составе, Г - голы, ГП - голевые передачи, ЖК - желтые карточки, КК - красные карточки"
 }

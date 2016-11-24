@@ -1,6 +1,6 @@
-﻿/*Variables*/ 
+﻿/*overrides*/
 
-/*overrides*/
+/*Variables*/ 
 /*@gray-base:              #000;*/
 @gray-base:              #000;
 @gray-darker:            lighten(@gray-base, 13.5%); // #222
@@ -8,6 +8,8 @@
 @gray:                   lighten(@gray-base, 33.5%); // #555
 @gray-light:             lighten(@gray-base, 46.7%); // #777
 @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
+
+@gray-good: #dddddd;
 
 /*@brand-primary:         darken(#428bca, 6.5%); // #337ab7*/
 @brand-primary:         #002B6E; // #337ab7
@@ -18,30 +20,6 @@
 
 @background-primary:          #fff;
 
-.carousel-indicators {
-  top: 20px !important;
-}
-
-.label-primary.soft {
-  background-color: @fc-soft-primary-color !important;
-}
-
-label {
-  font-weight:bold;
-  font-size: 1.2em;
-  color: @fc-soft-primary-color;
-  width: 100%;
-}
-
-select {
-  font-size: 1.1em;
-  color: @brand-primary;
-  border: 1px solid @brand-primary4;
-  padding: 6px;
-}
-
-/*overrides end*/
-
 @fc-type-color: #264a83;
 
 @fc-shadow: 5px 5px 15px fade(@brand-primary, 35%);
@@ -50,7 +28,8 @@ select {
 @fc-type-dark-header-color: fade(@brand-primary, 90%);
 @fc-dark-link-color: fade(@brand-primary, 90%);
 @fc-light-link-color: lighten(@brand-primary4, 12.5%);
-@fc-soft-primary-color: fade(@brand-primary, 90%);
+@fc-soft-primary-color1: fade(@brand-primary, 90%);
+@fc-soft-primary-color2: fade(@brand-primary, 81%);
 @fc-soft-primary4-color: fade(@brand-primary4, 90%);
 @fc-border-fade-color: fade(@background-primary, 80%);
 
@@ -62,6 +41,63 @@ select {
 @brand-danger:          #d9534f;  
 
 /*Variables*/
+
+.carousel-indicators {
+  top: 20px !important;
+}
+
+.label-primary.soft {
+  background-color: @fc-soft-primary-color1 !important;
+}
+
+.label-info {
+  background-color: @brand-primary4;
+}
+
+label {
+  font-weight:bold;
+  font-size: 1.2em;
+  color: @fc-soft-primary-color1;
+  width: 100%;
+}
+
+select {
+  font-size: 1.1em;
+  color: @brand-primary;
+  border: 1px solid @brand-primary4;
+  padding: 6px;
+}
+
+.nav {
+  li {
+    a:hover, a:focus {
+      background-color: @brand-primary5;
+      color: @background-primary;
+    }
+  }
+}
+
+.nav-tabs {
+  border-bottom-color: @brand-primary5;
+  color: @brand-primary4;
+
+  li {
+    a:hover, a:focus {
+      border-color: @brand-primary5;
+      color: @background-primary;
+    }
+  }
+
+  li.active {
+    a, a:hover, a:focus {
+      border-color: @brand-primary5;
+      color: @brand-primary4;
+      border-bottom-color: transparent;
+    }
+  }
+}
+
+/*overrides end*/
 
 .color-primary-5 {
   color: @brand-primary5;
@@ -78,6 +114,10 @@ body {
     background-color: transparent;
 }
 
+.fc-text {
+  color: @gray-good;
+}
+
 /*fc-label*/
 .fc-label {
   padding: 5px;
@@ -89,10 +129,10 @@ body {
 
 .fc-label.label-default {
   background-color: @background-primary;
-  color: @fc-soft-primary-color;
+  color: @fc-soft-primary-color1;
 
   .glyphicon {
-    background-color: @fc-soft-primary-color;    
+    background-color: @fc-soft-primary-color1;    
     color: @background-primary;
     padding: 7px;
   }
@@ -100,12 +140,12 @@ body {
 
 .fc-label.lable-fc {
   border: @fc-line-fade;
-  background-color: @fc-soft-primary-color;
+  background-color: @fc-soft-primary-color1;
   color: @background-primary;
 }
 
 .fc-label.label-primary {
-  background-color: @fc-soft-primary-color;
+  background-color: @fc-soft-primary-color1;
   color: @background-primary;
 }
 
@@ -124,7 +164,7 @@ body {
   }
 
   div:first-child {
-    color: @fc-soft-primary-color;
+    color: @fc-soft-primary-color1;
     font-weight: bold;
     padding: 0 5px 0 0;
     text-transform: uppercase;
@@ -165,12 +205,24 @@ body {
   cursor: pointer;
 }
 
+.fc-text-left {
+  text-align: left !important;
+}
+
+.fc-text-right {
+  text-align: right !important;
+}
+
 a {
-  color: @brand-primary;
+  color: @brand-primary3;
 }
 
 a:hover, a:focus {
-  color: @brand-primary3;
+  color: @brand-primary2;
+}
+
+.font-07 {
+  font-size: 0.7em;
 }
 
 .white-link {
@@ -222,6 +274,14 @@ a:hover, a:focus {
   .ellipsis(250px);
 }
 
+.ellipsis-300 {
+  .ellipsis(300px);
+}
+
+a.ellipsis {
+  display: block;
+}
+
 /*Background image resp*/
 
 .resp-bg {
@@ -269,7 +329,7 @@ a:hover, a:focus {
     padding: 10px 15px;
     border-radius: @fc-border-radius;
     color: @background-primary;
-    background-color: @fc-soft-primary-color;
+    background-color: @fc-soft-primary-color1;
     margin-bottom: 15px;
 }
 
@@ -463,6 +523,36 @@ dl.fc-data-list.dt-info {
     /*display: table-cell;*/
     padding: 10px 10px 10px 20px;
   }
+}
+
+.fc-dl {
+  margin: 10px 0;
+  font-size: 1.2em;
+
+  dt {
+    float: left;
+    font-weight: normal;
+    padding: 4px 4px 5px 5px;
+    width: 160px;
+    text-align: left;
+    background-color: @fc-soft-primary-color2;
+    margin: 3px 0;
+    color: #fff;
+  }
+
+  /*dt:after{
+    content: " | ";
+  }*/
+
+  dd {
+    font-weight: bold;
+    margin: -5px 0;
+    padding: 5px 0;
+  }
+
+  /*dd:before {
+    content: "|&nbsp;";
+  }*/
 }
 
 /*office*/

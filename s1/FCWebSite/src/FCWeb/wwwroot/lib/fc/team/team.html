@@ -20,34 +20,22 @@
                                 <div class="col-xs-12 col-sm-8">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <div class="row cols-data-list">
-                                                <div class="col-sm-3" translate="FULL_NAME_2"></div>
-                                                <div class="col-sm-9">{{team.nameFull}}</div>
-                                            </div>
-                                            <div class="row cols-data-list">
-                                                <div class="col-sm-3" translate="CITY"></div>
-                                                <div class="col-sm-9">{{city}}</div>
-                                            </div>
-                                            <div class="row cols-data-list">
-                                                <div class="col-sm-3" translate="ADDRESS"></div>
-                                                <div class="col-sm-9">{{team.address}}</div>
-                                            </div>
-                                            <div class="row cols-data-list">
-                                                <div class="col-sm-3" translate="STADIUM"></div>
-                                                <div class="col-sm-9">{{stadium}}</div>
-                                            </div>
-                                            <div class="row cols-data-list" ng-show="showWebsite">
-                                                <div class="col-sm-3" translate="WEB_SITE"></div>
-                                                <div class="col-sm-9">{{team.webSite}}</div>
-                                            </div>
-                                            <div class="row cols-data-list" ng-show="showTeamType">
-                                                <div class="col-sm-3" translate="TEAM_TYPE"></div>
-                                                <div class="col-sm-9" translate="TEAM_{{teamType}}"></div>
-                                            </div>
-                                            <div class="row cols-data-list" ng-show="showMainTourney">
-                                                <div class="col-sm-3" translate="MAIN_TOURNAMENT"></div>
-                                                <div class="col-sm-9">{{mainTourney}}</div>
-                                            </div>
+                                            <dl class="dl-horizontal fc-dl">
+                                                <dt translate="FULL_NAME_2"></dt>
+                                                <dd>| {{team.nameFull}}</dd>
+                                                <dt translate="CITY"></dt>
+                                                <dd>| {{city}}</dd>
+                                                <dt translate="ADDRESS"></dt>
+                                                <dd>| {{team.address}}</dd>
+                                                <dt translate="STADIUM"></dt>
+                                                <dd>| {{stadium}}</dd>
+                                                <dt ng-show="showWebsite" translate="WEB_SITE"></dt>
+                                                <dd ng-show="showWebsite">| {{team.webSite}}</dd>
+                                                <dt ng-show="showTeamType" translate="TEAM_TYPE"></dt>
+                                                <dd ng-show="showTeamType">| <span translate="TEAM_{{teamType}}"></span></dd>
+                                                <dt ng-show="showMainTourney" translate="MAIN_TOURNAMENT"></dt>
+                                                <dd ng-show="showMainTourney">| {{mainTourney}}</dd>
+                                            </dl>
                                         </div>
                                     </div>
                                 </div>

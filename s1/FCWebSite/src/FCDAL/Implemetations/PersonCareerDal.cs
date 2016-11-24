@@ -20,6 +20,15 @@
             return result;
         }
 
+        public IEnumerable<PersonCareer> GetPersonCareer(IEnumerable<int> personId)
+        {
+            IEnumerable<PersonCareer> result = Context.PersonCareer.Where(pc => personId.Contains(pc.personId));
+
+            FillRelations(result);
+
+            return result;
+        }
+
         public IEnumerable<int> SavePersonCareer(IEnumerable<PersonCareer> entities)
         {
             if(Guard.IsEmptyIEnumerable(entities)) { return new int[0]; }

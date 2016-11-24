@@ -108,7 +108,14 @@
                 teamId = personView.teamId,
                 Weight = personView.weight
             };
-        }   
+        }
+
+        public static IEnumerable<Person> ToBaseModel(this IEnumerable<PersonViewModel> persons)
+        {
+            if (Guard.IsEmptyIEnumerable(persons)) { return new Person[0]; }
+
+            return persons.Select(p => p.ToBaseModel()).ToList();
+        }
 
         public static string NameDefault(this Person person)
         {

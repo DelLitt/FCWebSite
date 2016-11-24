@@ -10,6 +10,7 @@
 
         IEnumerable<PersonStatistics> GetPersonStatistics(int personId);
         IEnumerable<PersonStatistics> GetPersonsStatistics(int temaId, int tourneyId);
-        int SavePersonStatistics(PersonStatistics entity);
+        IEnumerable<PersonStatistics> CalculateTourneyStatistics(int tourneyId, IEnumerable<Person> persons);
+        int SavePersonStatistics(int tourneyId, IEnumerable<PersonStatistics> personStatistics);
     }
 }

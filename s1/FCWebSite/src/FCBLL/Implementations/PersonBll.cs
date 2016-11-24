@@ -50,6 +50,19 @@
             }
         }
 
+        public bool FillPersonCareer
+        {
+            get
+            {
+                return DalPerson.FillPersonCareer;
+            }
+
+            set
+            {
+                DalPerson.FillPersonCareer = value;
+            }
+        }
+
         private IPersonDal dalPerson;
         private IPersonDal DalPerson
         {

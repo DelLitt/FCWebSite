@@ -1,8 +1,8 @@
 ﻿.fc-pane {
   position: relative;
-  margin: 10px 0 45px 0;
-  background-color: @background-primary;
-  .box-shadow(@fc-shadow);
+  margin: 10px 0 10px 0;
+  background-color: transparent;
+  /*.box-shadow(@fc-shadow);*/
 
   .fc-pane-header {
     font-size: @font-size-h5;
@@ -18,7 +18,7 @@
     .invert {
       padding: 10px 15px;
       color: @background-primary;
-      background-color: @fc-soft-primary-color !important;
+      background-color: @fc-soft-primary-color1 !important;
     }
 
     h1, h2, h3, h4, h5, h6, h7 {
@@ -31,12 +31,12 @@
 
   .fc-pane-body {
     background-color: @background-primary;
-    color: @fc-type-color;
+    color: @fc-soft-primary-color2;
     /*border-bottom: none;*/
-    padding: 15px 16px 15px 16px;
+    padding: 5px 16px 15px 16px;
 
     .pretty-text {
-      font-size: 1.3em;
+      font-size: 1.2em;
     }
 
     .fc-pane-form {
@@ -80,7 +80,7 @@
   a.fc-pane-action-link:hover,
   a.fc-pane-action-link:active {
     color: @background-primary;
-    background-color: @fc-soft-primary-color;
+    background-color: @fc-soft-primary-color1;
     padding: 5px 10px 5px 10px;
   }
 

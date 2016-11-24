@@ -17,8 +17,8 @@ namespace FCCore.Model
         public short tourneyId { get; set; }
         public short Yellows { get; set; }
 
-        public virtual PersonStatistics PersonStatisticsNavigation { get; set; }
-        public virtual PersonStatistics InversePersonStatisticsNavigation { get; set; }
+        //public virtual PersonStatistics PersonStatisticsNavigation { get; set; }
+        //public virtual PersonStatistics InversePersonStatisticsNavigation { get; set; }
         public virtual Person person { get; set; }
         public virtual Team team { get; set; }
         public virtual Tourney tourney { get; set; }

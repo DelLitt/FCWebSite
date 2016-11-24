@@ -7,6 +7,7 @@
     {
         bool FillRounds { get; set; }
         bool FillGames { get; set; }
+        bool FillProtocols { get; set; }
 
         Tourney GetTourney(int tourneyId);
         Tourney GetTourneyByRoundId(int roundId);
