@@ -1,40 +1,45 @@
-﻿<div class="fc-container row">
-    <div class="col-sm-9">
-        <div class="text-center" ng-show="loadingGames">
-            <img ng-src="{{loadingImage}}" />
-        </div>
-        <div class="panel panel-primary no-padding" ng-show="!loadingGames">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-12"><span class="glyphicon glyphicon-stats">&nbsp;</span><span translate="{{title}}"></span></div>
-                </div>
+﻿<div class="row">
+    <section class="col-xs-12">
+        <div class="row" ng-show="loadingGames">
+            <div class="col-xs-12 text-center" style="height: 30px;">
+                <img ng-src="{{loadingImage}}" />
             </div>
-            <div class="panel-body">
-                <div ng-repeat="roundPart in schedule">
-                    <div class="label label-primary" style="display:block; margin-bottom: 10px;">
-                        {{roundPart.round.text}}. {{roundPart.tourney.text}}
+        </div>
+        <div class="row" ng-show="!loadingGames">
+            <div class="col-xs-12">
+                <div class="fc-pane">
+                    <div class="fc-pane-header">
+                        <h3 class="invert"><span translate="{{title}}"></span></h3>
                     </div>
-                    <dl class="dl-horizontal" ng-repeat="gamesDay in roundPart.daysGames">
-                        <dt class="label label-info">{{gamesDay.games[0].date | date : 'fullDate'}}</dt>
-                        <dd ng-repeat="game in gamesDay.games">
-                            <a href="javascript:void(0);">{{game.home.text}}</a> - <a href="javascript:void(0);">{{game.away.text}}</a>. <a ng-href="game/{{game.id}}">{{game.homeScore}}:{{game.awayScore}}</a>
-                        </dd>
-                    </dl>
+                    <div class="fc-pane-body">
+                        <div class="fc-pane-form">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div ng-repeat="roundPart in schedule">
+                                        <table class="table fc-table fc-table-light">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="7">{{roundPart.round.text}}. {{roundPart.tourney.text}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody ng-repeat="gamesDay in roundPart.daysGames">
+                                                <tr ng-repeat="game in gamesDay.games">
+                                                    <td class="col-sm-3" ng-if="$index == 0" rowspan="{{gamesDay.games.length}}"><span class="label label-info">{{gamesDay.games[0].date | date : 'fullDate'}}</span></td>
+                                                    <td class="col-sm-1 fc-text-right"><span ng-if="game.showTime">{{game.date | date: 'HH:mm'}}</span><span ng-if="!game.showTime">--:--</span></td>
+                                                    <td class="col-sm-3 fc-text-right"><a ng-href="team/{{game.home.id}}">{{game.home.text}}</a>&nbsp;<img style="max-height: 30px;" id="image" ng-src="{{getLogo(game.home);}}" /></td>
+                                                    <td class="col-sm-1 text-center"><a ng-href="game/{{game.id}}">{{game.homeScore}} : {{game.awayScore}}</a></td>
+                                                    <td class="col-sm-3 fc-text-left"><img style="max-height: 30px;" id="image" ng-src="{{getLogo(game.away);}}" />&nbsp;<a ng-href="team/{{game.home.id}}">{{game.away.text}}</a></td>
+                                                    <td class="col-sm-1"><span class="glyphicon glyphicon-check"  translate translate-attr-title="FULL_TIME" ng-if="game.played"></span><span ng-if="hasExtra(game);"><span ng-if="game.played">&nbsp;</span><span class="glyphicon glyphicon-export"  translate translate-attr-title="EXTRA_INFO"></span></span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                     </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
         </div>
-    </div>
-    <div class="col-sm-3 text-center" ng-show="loadingNews">
-        <img ng-src="{{loadingImage}}" />
-    </div>
-    <div class="col-sm-3 panel panel-primary no-padding" ng-show="!loadingNews">
-        <div class="panel-heading"><span class="glyphicon glyphicon-globe">&nbsp;</span>Последние новости</div>
-        <div class="panel-body">
-            <div class="row" ng-repeat="publication in publications">
-                <div class="col-sm-12">
-                    <publication-item model="publication"></publication-item>
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 </div>

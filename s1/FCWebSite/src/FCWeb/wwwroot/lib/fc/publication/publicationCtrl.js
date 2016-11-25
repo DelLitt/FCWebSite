@@ -10,6 +10,7 @@
     function publicationCtrl($scope, $routeParams, $sce, publicationsSrv, imageGallerySrv, videosSrv, helper) {
 
         $scope.loadingImage = helper.getLoadingImg();
+        $scope.loadingPublication = true;
         $scope.loadingLatest = true;
         $scope.showGallery = false;
         $scope.showVideo = false;
@@ -34,6 +35,7 @@
             var publication = response.data;
 
             $scope.publication = publication;
+
             $scope.publication.dateDisplayed = new Date(publication.dateDisplayed);
             $scope.publication.dateChanged = new Date(publication.dateChanged);
             $scope.publication.dateCreated = new Date(publication.dateCreated);
@@ -42,7 +44,9 @@
 
             if ($scope.publication.videoId > 0) {
                 videosSrv.loadVideo($scope.publication.videoId, videoLoaded);
-            }            
+            }
+
+            $scope.loadingPublication = false;
         }
 
         function lastPublicationsLoaded(response) {

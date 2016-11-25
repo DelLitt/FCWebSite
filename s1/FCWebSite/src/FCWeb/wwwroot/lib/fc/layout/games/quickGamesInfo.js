@@ -18,6 +18,15 @@
             scope.index = 0;           
             scope.loadingQGI = true;
             scope.loadingImage = helper.getLoadingImg();
+            scope.getTeamViewLink = helper.getTeamViewLink;
+
+            scope.hasExtra = function (game) {
+                return angular.isString(game.extra) && game.extra.length > 0;
+            }
+
+            scope.getExtra = function (game) {
+                return game.extra === "1" ? "EX_TIME" : (game.extra === "2" ? "PENALTIES" : "");
+            }
 
             loadData();
 

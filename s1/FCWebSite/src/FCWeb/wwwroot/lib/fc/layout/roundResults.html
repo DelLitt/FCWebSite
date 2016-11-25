@@ -6,7 +6,7 @@
                     <span class="glyphicon glyphicon-circle-arrow-left fc-action" ng-click="roundResults.previous();"></span>
                     <span class="glyphicon glyphicon-circle-arrow-right fc-action" ng-click="roundResults.next()"></span>
                 </span>
-                <span class="text-uppercase" translate="RESULTS">Результаты</span><span ng-show="!loadingRR">. {{roundResults.name}}. {{roundResults.tourney}}</span>
+                <span class="text-uppercase" translate="RESULTS"></span><span ng-show="!loadingRR">. {{roundResults.name}}. {{roundResults.tourney}}</span>
             </h5>
         </div>
     </div>
@@ -19,9 +19,10 @@
         <div class="col-sm-3" ng-repeat="roundDay in roundResults.dateGames">
             <div ng-show="roundDay.empty" style="text-align: center;"><img style="max-height:80px;" ng-src={{getAdvertImg($index);}} /></div>
             <div ng-show="!roundDay.empty">
-                <div class="label label-primary">{{roundDay.date.dateString}}.&nbsp;<span class="text-capitalize">{{roundDay.date.dayString}}</span></div>
+                <!--<div class="label label-primary">{{roundDay.date.dateString}}.&nbsp;<span class="text-capitalize">{{roundDay.date.dayString}}</span></div>-->
+                <div class="label label-primary">{{roundDay.date.date | date : 'fullDate'}}</div>
                 <ul class="list-unstyled match-day-list">
-                    <li ng-repeat="game in roundDay.games" style="max-width: 270px;" class="ellipsis"><span class="text-info">{{game.time}}.</span>&nbsp;<a href="javascript:void(0);">{{game.home}}</a>&nbsp;<a class="white-link" href="javascript:void(0);">{{game.homeScore}}:{{game.awayScore}}</a>&nbsp;<a href="javascript:void(0);">{{game.away}}</a></li>
+                    <li ng-repeat="game in roundDay.games" style="max-width: 270px;" class="ellipsis" title="{{game.time + ' ' + game.home.text + ' ' + game.homeScore + ':' + game.awayScore + ' ' + game.away.text}}"><span class="text-info">{{game.time}}.</span>&nbsp;<a ng-href="{{getTeamViewLink(game.home);}}">{{game.home.text}}</a>&nbsp;<a class="white-link" ng-href="game/{{game.id}}">{{game.homeScore}}:{{game.awayScore}}<span ng-if="hasExtra(game);"><span translate translate-attr-title="{{getExtra(game);}}">*</span></span></a>&nbsp;<a ng-href="{{getTeamViewLink(game.away);}}">{{game.away.text}}</a></li>
                 </ul>
             </div>
         </div>

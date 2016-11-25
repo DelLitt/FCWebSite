@@ -20,7 +20,13 @@
                     loses = p.Loses,
                     points = p.Points,
                     position = p.Position,
-                    team = p.Team?.Name ?? string.Empty,
+                    team = new EntityLinkViewModel()
+                    {
+                        id = p.Team?.Id.ToString() ?? string.Empty,
+                        text = p.Team?.Name ?? string.Empty,
+                        title = p.Team?.Name ?? string.Empty,
+                        image = p.Team?.Image ?? string.Empty
+                    },
                     wins = p.Wins
                 });
 

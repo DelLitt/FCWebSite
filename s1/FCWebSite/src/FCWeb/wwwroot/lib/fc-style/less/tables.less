@@ -7,6 +7,10 @@
     /*border-radius: 5px 5px 0 0;*/
   }
 
+  tbody + tbody {
+    border-top: 1px solid @gray-good;
+  }
+
   tbody tr, tr {
 
     th, td {
@@ -50,6 +54,7 @@
   }
 }
   /*FC-TABLE END*/
+
   /*FC-TABLE-LIGHT*/
 .fc-table.fc-table-light {
   font-size: 1.2em;
@@ -83,14 +88,14 @@
         color: @background-primary !important;
       }
 
-      a {
+      /*a {
         color: @background-primary;
       }
 
       .a:hover,
       .a:focus {
         color: @brand-primary3;
-      }
+      }*/
     }
 
     th:first-child {
@@ -112,18 +117,58 @@
       }
     }
 
-    a {
+    /*a {
       color: @fc-dark-link-color;
-    }
+    }*/
   }
 }
   /*FC-TABLE-LIGHT END*/
+
+  /*FC-TABLE-STYLED-1*/
+
+.fc-table.fc-styled-table-1 {
+  font-size: 1em;
+  color: @gray-good3;
+  border: 1px solid @brand-primary4;
+  .box-shadow(@fc-shadow);
+
+  caption, tfoot {
+    background: @background-primary;
+    margin: 0 0 -5px 0;
+  }
+
+  tbody tr, tr {
+    background-color: @background-primary;
+
+    th {      
+      color: @brand-primary5;
+      border: none;
+    }
+  }
+
+  tbody tr:first-child, tr:first-child {
+    .fc-grad();
+  }
+
+  tfoot tr {
+    background: @background-primary !important;
+  }
+}
+
+.fc-styled-table-1.strip {  
+  tbody tr:nth-of-type(odd),
+  tr:nth-of-type(odd) {
+    background-color: @gray-good2;
+  }
+}
+
+  /*FC-TABLE-STYLED-1 END*/
 
   /*Extra*/
 .fc-table.fc-table-border-top {
   tbody tr, tr {
 
-    th, td {
+    td {
       border-top: 1px solid @gray-good;
     }
   }

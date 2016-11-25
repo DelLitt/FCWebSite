@@ -7,15 +7,15 @@
             <tr ng-repeat="game in group.games">
                 <td class="text-bg-color text-right">
                     <h5>
-                        <span ng-show="game.showTime">{{game.start | date: 'HH:mm'}}. </span>{{game.start | date: 'dd MMMM'}}.<br />
+                        <span ng-show="game.showTime">{{game.start | date: 'HH:mm'}}. </span>{{game.start | date: 'dd MMMM'}}<br />
                         <small class="ellipsis-135" style="display:inline-block; height: 1.1em;" title="{{game.round}}. {{game.tourney}}">{{game.round}}. {{game.tourney}}</small>
                     </h5>
                 </td>
                 <td class="text-bg-color text-left">
                     <h5>
                         <span style="display: inline-flex;">
-                            <span class="ellipsis ellipsis-250" style="display:inline-block;" title="{{game.home}} - {{game.away}}">{{game.home}} - {{game.away}}</span>
-                            <span ng-show="game.homeScore">. {{game.homeScore}}:{{game.awayScore}}</span>
+                            <span class="ellipsis ellipsis-250" style="display:inline-block;" title="{{game.home.text}} - {{game.away.text}}">{{game.home.text}} - {{game.away.text}}</span>
+                            <span ng-show="game.homeScore">. {{game.homeScore}}:{{game.awayScore}}<span ng-if="!hasExtra(game);"><span translate translate-attr-title="{{getExtra(game);}}">*</span></span></span>
                         </span><br />
                         <small class="ellipsis ellipsis-250 text-center" style="display:inline-block; height: 1.1em;">
                             <span translate="STADIUM"></span>: {{game.stadium}}

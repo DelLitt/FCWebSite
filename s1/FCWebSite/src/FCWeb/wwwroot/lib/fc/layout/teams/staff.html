@@ -3,7 +3,7 @@
         <div class="text-center" ng-show="loadingStaff">
             <img ng-src="{{loadingImage}}" />
         </div>
-        <div class="panel panel-primary no-padding" ng-show="!loadingStaff">
+        <div class="panel panel-primary" ng-show="!loadingStaff">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-12"><span class="glyphicon glyphicon-stats">&nbsp;</span><span translate="{{title}}"></span></div>
@@ -12,7 +12,7 @@
             <div class="panel-body">
                 <div class="row row-eq-height" ng-repeat="row in rows">
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3" ng-repeat="person in row.items">
-                        <div class="panel panel-primary no-padding">
+                        <div class="panel panel-primary">
                             <div class="panel-body">
                                 <img class="img-responsive img-rounded" ng-src="{{person.src}}" />
                             </div>

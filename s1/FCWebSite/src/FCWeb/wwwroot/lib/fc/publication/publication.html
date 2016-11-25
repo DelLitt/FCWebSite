@@ -1,63 +1,75 @@
-﻿<div class="fc-pane">
-    <div class="fc-pane-body">
-        <div class="row">
-            <div class="col-sm-9">
-                <div class="fc-pane-form fc-publication">
-                    <h3>
-                        {{publication.title}}<br />
-                        <small ng-show="publication.header.length">{{publication.header}}</small>
-                    </h3>
-                    <div class="clearfix">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <img class="img-responsive img-rounded pull-left fc-publication-main-img" ng-show="publication.showImageInContent" ng-src="{{publication.image}}" title="{{publication.title}}" alt="{{publication.title}}" />
-                                <div class="fc-publication-lead" ng-show="publication.lead.length" ng-bind-html="publication.lead"></div>
-                                <div ng-bind-html="publication.contentHTML"></div>
-                            </div>
-                        </div>
-                        <div class="row" ng-show="showVideo || showGallery">
-                            <div class="col-xs-12">
-                                <table class="text-center" style="width: 100%;">
-                                    <tr>
-                                        <td ng-show="showVideo">
-                                            <a href="javascript:void(0);" class="fc-act-btn" ng-class="{'active' : videoOpened }" type="button" ng-click="toggleVideo();"><span class="glyphicon glyphicon-facetime-video" style="top: 3px;"></span>&nbsp;|&nbsp;<span translate="VIDEO"></span></a>
-                                        </td>
-                                        <td ng-show="showGallery">
-                                            <a href="javascript:void(0);" class="fc-act-btn" ng-class="{ 'active' : galleryOpened }" type="button" ng-click="toggleGallery();"><span class="glyphicon glyphicon-camera" style="top: 3px;"></span>&nbsp;|&nbsp;<span translate="PHOTO"></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr ng-show="videoOpened || galleryOpened">
-                                        <td colspan="2">
-                                            <hr />
-                                            <div class="fc-publication-extra-content">
-                                                <div class="embed-responsive embed-responsive-16by9" ng-show="videoOpened">
-                                                    <div class="text-center" ng-bind-html="video.codeHTML"></div>
-                                                </div>
-                                                <div ng-show="galleryOpened" class="text-center"><image-gallery gallery-id="galleryId"></image-gallery></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <hr />
-                                <p><span class="text-info pull-left">{{publication.dateDisplayed | date:'medium'}}</span><span class="text-info pull-right">{{publication.author}}</span></p>
-                            </div>
-                        </div>                        
-                    </div>
-                </div>
+﻿<div class="row">
+    <section class="col-sm-9">
+        <div class="row" ng-show="loadingPublication" style="height: 30px;">
+            <div class="col-xs-12 text-center">
+                <img ng-src="{{loadingImage}}" />
             </div>
-            <div class="col-sm-3">
-                <div class="text-center" ng-show="loadingLatest">
-                    <img ng-src="{{loadingImage}}" />
-                </div>
-                <div ng-show="!loadingLatest">
-                    <publication-item style="margin-bottom: 15px;" model="last" ng-repeat="last in lastPublications"></publication-item>
+        </div>
+        <div class="row" ng-show="!loadingPublication">
+            <div class="col-xs-12">
+                <div class="fc-pane">
+                    <div class="fc-pane-header">
+                        <h4 class="invert">{{publication.title}}</h4>
+                    </div>
+                    <div class="fc-pane-body">
+                        <div class="fc-pane-form fc-publication">
+                            <h5 ng-show="publication.header.length">{{publication.header}}</h5>
+                            <div class="fc-publication-lead" ng-show="publication.lead.length" ng-bind-html="publication.lead"></div>
+                            <img class="img-responsive img-rounded pull-left fc-publication-main-img" ng-show="publication.showImageInContent" ng-src="{{publication.image}}" title="{{publication.title}}" alt="{{publication.title}}" />                            
+                            <div ng-bind-html="publication.contentHTML"></div>
+                            <div class="row" ng-show="showVideo || showGallery">
+                                <div class="col-xs-12">
+                                    <table class="text-center" style="width: 100%;">
+                                        <tr>
+                                            <td ng-show="showVideo">
+                                                <a href="javascript:void(0);" class="fc-act-btn" ng-class="{'active' : videoOpened }" type="button" ng-click="toggleVideo();"><span class="glyphicon glyphicon-facetime-video" style="top: 3px;"></span>&nbsp;|&nbsp;<span translate="VIDEO"></span></a>
+                                            </td>
+                                            <td ng-show="showGallery">
+                                                <a href="javascript:void(0);" class="fc-act-btn" ng-class="{ 'active' : galleryOpened }" type="button" ng-click="toggleGallery();"><span class="glyphicon glyphicon-camera" style="top: 3px;"></span>&nbsp;|&nbsp;<span translate="PHOTO"></span></a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-show="videoOpened || galleryOpened">
+                                            <td colspan="2">
+                                                <hr />
+                                                <div class="fc-publication-extra-content">
+                                                    <div class="embed-responsive embed-responsive-16by9" ng-show="videoOpened">
+                                                        <div class="text-center" ng-bind-html="video.codeHTML"></div>
+                                                    </div>
+                                                    <div ng-show="galleryOpened" class="text-center"><image-gallery gallery-id="galleryId"></image-gallery></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <hr />
+                                    <p><span class="text-info pull-left">{{publication.dateDisplayed | date:'medium'}}</span><span class="text-info pull-right">{{publication.author}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-threads"></div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="bg-threads"></div>
+    </section>
+    <section class="col-sm-3">
+        <div class="row" ng-show="loadingLatest" style="height: 30px;">
+            <div class="col-xs-12 text-center">
+                <img ng-src="{{loadingImage}}" />
+            </div>
+        </div>
+        <div class="row" ng-show="!loadingLatest">
+            <div class="col-xs-12">
+                <div class="fc-pane">
+                    <div class="fc-pane-header">
+                        <h4 class="invert" translate="NEWS"></h4>                        
+                    </div>
+                </div>
+                <publication-item style="margin-bottom: 15px;" model="last" ng-repeat="last in lastPublications"></publication-item>
+            </div>
+        </div>
+    </section>
 </div>

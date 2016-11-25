@@ -22,6 +22,22 @@
             allGoals: []
         }
 
+        $scope.hasMain = function (teamModel) {
+            return angular.isObject(teamModel) && angular.isArray(teamModel.main) && teamModel.main.length > 0;
+        }
+
+        $scope.hasGoals = function (protocol) {
+            return angular.isArray(protocol.allGoals) && protocol.allGoals.length > 0;
+        }
+
+        $scope.hasYellows = function (protocol) {
+            return angular.isArray(protocol.allYellows) && protocol.allYellows.length > 0;
+        }
+
+        $scope.hasReds = function (protocol) {
+            return angular.isArray(protocol.allReds) && protocol.allReds.length > 0;
+        }
+
         loadData();
 
         function loadData() {

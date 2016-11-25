@@ -10,6 +10,8 @@
 @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
 
 @gray-good: #dddddd;
+@gray-good2: #f5f5f5;
+@gray-good3: #345;
 
 /*@brand-primary:         darken(#428bca, 6.5%); // #337ab7*/
 @brand-primary:         #002B6E; // #337ab7
@@ -192,6 +194,19 @@ body {
   .box-shadow(@fc-shadow);
 }
 
+.fc-text-group {
+  padding: 16px 10px;
+
+}
+
+.fc-text-group.fc-text-group-1 {
+  background-color: @background-primary;
+}
+
+.fc-text-group.fc-text-group-2 {
+  background-color: @gray-good2;
+}
+
 .border-for-thread {
   border: 1px solid @background-primary;
   /*border-bottom: none !important;*/
@@ -214,11 +229,12 @@ body {
 }
 
 a {
-  color: @brand-primary3;
+  color: @brand-primary2;
 }
 
 a:hover, a:focus {
-  color: @brand-primary2;
+  color: @brand-primary3;
+  text-decoration: none;
 }
 
 .font-07 {
@@ -399,6 +415,14 @@ textarea {
   a {
     display: table-cell;
   }
+}
+
+.img-20 {
+  max-height: 20px;
+}
+
+.fc-box-shadow {
+  .box-shadow(@fc-shadow);
 }
 
 .hot-publications {
@@ -599,7 +623,8 @@ dl.fc-data-list.dt-info {
 .fc-pane .fc-pane-body .fc-pane-form.fc-publication {
   color: @gray;
   background-color: @background-primary;
-  font-size: 16px;  
+  font-size: 16px;
+  line-height: 1.5em;
 
   h1, h2, h3, h4, h5, h6, h7 {
     margin-bottom: 20px;

@@ -10,8 +10,8 @@
     function resultsMainTeamCtrl($scope, configSrv) {
 
         $scope.teamId = configSrv.Current.MainTeamId;
-        $scope.tourneysIds = configSrv.mainTeamTourneyIds;
-        $scope.publicationsCount = configSrv.teamPublicationsCount;
+        $scope.tourneysIds = configSrv.Current.MainTeamTourneyIds;
+        $scope.publicationsCount = configSrv.Current.TeamPublicationsCount;
         $scope.title = 'Результаты игр главной команды';
 
         // TODO: Change config to promise

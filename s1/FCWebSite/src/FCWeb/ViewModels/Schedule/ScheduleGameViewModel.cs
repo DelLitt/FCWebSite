@@ -16,5 +16,6 @@
         public byte? homePenalties { get; set; }
         public byte? homeScore { get; set; }
         public bool showTime { get; set; }
+        public bool played { get; set; }
     }
 }

@@ -20,15 +20,20 @@
             link: function link(scope, element, attrs) {
 
                 scope.loadingGames = true;
-                scope.loadingNews = true;
                 scope.loadingImage = helper.getLoadingImg();
+                scope.getLogo = function (team) {
+                    return helper.getTeamImage(team);
+                }
                 scope.personsLoaded = false;
+
+                scope.hasExtra = function (game) {
+                    return angular.isNumber(game.homeAddScore) || angular.isNumber(game.homePenalties);
+                }
 
                 loadData();
 
                 function loadData() {
                     gamesSrv.loadSchedule(scope.tourneysIds, scheduleLoaded);
-                    publicationsSrv.loadLatestPublications(scope.publicationsCount, publicationsLoaded);
                 }
 
                 function scheduleLoaded(response) {
@@ -36,11 +41,6 @@
                     scope.loadingGames = false;
                 }
 
-                function publicationsLoaded(response) {
-                    var publications = response.data;
-                    scope.publications = publications;
-                    scope.loadingNews = false;
-                }
             },
             templateUrl: '/lib/fc/layout/results/results.html'
         }

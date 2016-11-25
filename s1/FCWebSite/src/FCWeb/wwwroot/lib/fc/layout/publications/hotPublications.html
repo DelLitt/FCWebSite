@@ -1,14 +1,14 @@
 ﻿<div class="col-xs-12">
     <div class="hot-publications">
-        <div ng-show="loadingHP" class="row text-center">
+        <div ng-show="loadingHP" class="row text-center" style="height: 30px;">
             <img ng-src="{{loadingImage}}" />
         </div>
-        <div ng-show="!loadingHP" id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="500">
+        <div ng-show="!loadingHP" id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="1000">
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="{{$index}}" ng-class="{active: $index === 0}" ng-repeat="item in model"></li>
             </ol>
             <div class="carousel-inner" role="listbox">
-                <div class="item" ng-class="{active: $index === 0}" ng-repeat="item in model">
+                <div class="item" ng-class="{active: $index === 0}" ng-repeat="item in model" style="max-height: 368px;">
                     <publication-item model="item" show-header="true"></publication-item>
                 </div>
             </div>

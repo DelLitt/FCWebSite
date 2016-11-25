@@ -125,11 +125,24 @@
         {
             return new GameShortViewModel()
             {
-                home = game?.home?.Name ?? string.Empty,
-                away = game?.away?.Name ?? string.Empty,
+                id = game.Id,
+                home = new EntityLinkViewModel()
+                {
+                    id = game.home.Id.ToString(),
+                    image = game.home.Image,
+                    text = game.home.Name,
+                    title = game.home.Name
+                },
+                away = new EntityLinkViewModel()
+                {
+                    id = game.away.Id.ToString(),
+                    image = game.away.Image,
+                    text = game.away.Name,
+                    title = game.away.Name
+                },
                 homeScore = game.homeScore,
                 awayScore = game.awayScore,
-                extra = game.HomePenalties.HasValue ? "пен." : (game.HomeAddScore.HasValue ? "доп." : string.Empty),
+                extra = game.HomePenalties.HasValue ? "2" : (game.HomeAddScore.HasValue ? "1" : string.Empty),
                 start = game.GameDate,
                 time = game.GameDate.ToString("HH:mm")
             };

@@ -9,7 +9,7 @@
         public short loses { get; set; }
         public short points { get; set; }
         public short position { get; set; }
-        public string team { get; set; }
+        public EntityLinkViewModel team { get; set; }
         public short wins { get; set; }
     }
 }

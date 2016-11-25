@@ -100,7 +100,9 @@
   "GAMES_RESULTS": "Games results",
   "NEAREST_GAMES": "Nearest games",
   "EX_TIME": "Extra time",
+  "EX_TIME_SH": "ext",
   "PENALTIES": "Penalties",
+  "PENALTY_SH": "pen",
   "BENCH": "Bench",
   "GOALS": "Goals",
   "WARNINGS": "Yellows",
@@ -127,5 +129,13 @@
   "ACHIEVEMENTS": "Achievments",
   "SEASON": "Season",
   "STATISTICS": "Statistics",
-  "PLAYER_STATS_TABLE_INFO": "G - games, S - from start, G - goals, A - assists, YC - yellow cards, RC - red cards"
+  "PLAYER_STATS_TABLE_INFO": "G - games, S - from start, G - goals, A - assists, YC - yellow cards, RC - red cards",
+  "FULL_TIME": "Full time",
+  "EXTRA_INFO": "Extra info",
+  "SUGAR_REFINERY": "JSC 'Slutsk Sugar Refinery'",
+  "STADIUM_RULES": "Rules of conduct at the stadium",
+  "LOW_FC_N_S": "PC and S low - 2014",
+  "FC_AGAINST_RACISM": "SFK \"Slutsk\" against racism",
+  "CONTACTS": "Contacts",
+  "IMAGES": "Images"
 }

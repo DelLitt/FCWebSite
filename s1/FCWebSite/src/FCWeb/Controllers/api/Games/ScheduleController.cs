@@ -39,7 +39,7 @@
 
             if (!rounds.Any()) { return schedule; }
 
-            IEnumerable<Game> games = gameBll.GetGamesByRounds(rounds.Select(r => (int)r.Id)).OrderBy(d => d.GameDate);
+            IEnumerable<Game> games = gameBll.GetGamesByRounds(rounds.Select(r => (int)r.Id)).OrderByDescending(d => d.GameDate);
 
             if (!games.Any()) { return schedule; }
 
@@ -114,7 +114,8 @@
                         {
                             id = game.awayId.ToString(),
                             text = away.Name,
-                            title = away.Name
+                            title = away.Name,
+                            image = away.Image
                     },
                     awayAddScore = game.AwayAddScore,
                     awayPenalties = game.AwayPenalties,
@@ -124,13 +125,15 @@
                     {
                         id = game.homeId.ToString(),
                         text = home.Name,
-                        title = home.Name
+                        title = home.Name,
+                        image = home.Image
                     },
                     homeAddScore = game.HomeAddScore,
                     homePenalties = game.HomePenalties,
                     homeScore = game.homeScore,
                     roundId = game.roundId,
-                    showTime = game.ShowTime
+                    showTime = game.ShowTime,
+                    played = game.Played
                 });
             }
 
