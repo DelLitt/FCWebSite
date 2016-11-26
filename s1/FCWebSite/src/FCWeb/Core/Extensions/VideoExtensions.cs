@@ -19,7 +19,8 @@
                 urlKey = p.URLKey,
                 title = p.Title,
                 header = p.Header,
-                img = VideoServicesFactory.Create(p).ImagePublicationItem
+                img = VideoServicesFactory.Create(p).ImagePublicationItem,
+                date = p.DateDisplayed
             });
         }
 

@@ -3,28 +3,28 @@
 
 <!DOCTYPE html>
 <html ng-app="fc">
-    <head>
-        <base href="/">
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title translate="OFFICIAL_SITE"></title>
+<head>
+    <base href="/">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title translate="OFFICIAL_SITE"></title>
 
-        <environment names="Development">
-            <link rel="stylesheet" href="~/css/bootstrap.css" />
-            <link href="~/lib/ng-image-gallery/dist/ng-image-gallery.css" rel="stylesheet" />
-            @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@            
-            @*<link rel="stylesheet" href="~/css/site.css" />*@
-        </environment>
-        <environment names="Staging,Production">
-            @*<link href="https://fonts.googleapis.com/css?family=Noto+Serif&subset=cyrillic,cyrillic-ext" rel="stylesheet">*@
-            <link rel="stylesheet" href="~/css/bootstrap.css" />
-            @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
-            @*<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
-                  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-                  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />*@
-            @*<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />*@
-        </environment>
-    </head>
+    <environment names="Development">
+        <link rel="stylesheet" href="~/css/bootstrap.css" />
+        <link href="~/lib/ng-image-gallery/dist/ng-image-gallery.css" rel="stylesheet" />
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
+        @*<link rel="stylesheet" href="~/css/site.css" />*@
+    </environment>
+    <environment names="Staging,Production">
+        @*<link href="https://fonts.googleapis.com/css?family=Noto+Serif&subset=cyrillic,cyrillic-ext" rel="stylesheet">*@
+        <link rel="stylesheet" href="~/css/bootstrap.css" />
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
+        @*<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
+            asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+            asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />*@
+        @*<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />*@
+    </environment>
+</head>
 <body ng-controller="rootCtrl">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -84,8 +84,8 @@
                     <li><a asp-controller="Home" asp-action="Contact"><span translate="HISTORY"></span></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="javascript:void(0);" ng-click="changeLanguage('ru')" style="padding: 10px 5px 0 5px;"><img src="~/images/skin/flags/small/ru.png" class="img-20" translate translate-attr-title="SHORT_LANG_RU" alt="рус"/></a></li>
-                    <li><a href="javascript:void(0);" ng-click="changeLanguage('en')" style="padding: 10px 5px 0 5px;"><img src="~/images/skin/flags/small/gb.png" class="img-20" translate translate-attr-title="SHORT_LANG_EN" alt="en"/></a></li>
+                    <li><a href="javascript:void(0);" ng-click="changeLanguage('ru')" style="padding: 10px 5px 0 5px;"><img src="~/images/skin/flags/small/ru.png" class="img-20" translate translate-attr-title="SHORT_LANG_RU" alt="рус" /></a></li>
+                    <li><a href="javascript:void(0);" ng-click="changeLanguage('en')" style="padding: 10px 5px 0 5px;"><img src="~/images/skin/flags/small/gb.png" class="img-20" translate translate-attr-title="SHORT_LANG_EN" alt="en" /></a></li>
                 </ul>
                 @*@await Html.PartialAsync("_LoginPartial")*@
             </div>
@@ -236,6 +236,42 @@
             <div class="fc-pane">
                 <div class="fc-pane-body">
                     <div class="row">
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h5 translate="CLUB"></h5>
+                                    <ul>
+                                        <li><a href="/club/mainteam" translate="MAIN_STAFF"></a></li>
+                                        <li><a href="/club/reserveteam" translate="RESERVE_STAFF"></a></li>
+                                        <li><a href="/club/youthteams" translate="YOUTH_TEAMS"></a></li>
+                                        <li><a href="/club/direction" translate="SENIOR_STAFF"></a></li>
+                                        <li><a href="/club/coaches" translate="COACHES_STAFF"></a></li>
+                                        <li><a href="/club/medics" translate="MEDICAL_STAFF"></a></li>
+                                        <li><a href="/club/specialists" translate="SPECIALISTS_STAFF"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h5 translate="RESULTS"></h5>
+                                    <ul>
+                                        <li><a href="/results/mainteam" translate="MAIN_STAFF"></a></li>
+                                        <li><a href="/results/reserveteam" translate="RESERVE_STAFF"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h5 translate="INFORMATION"></h5>
+                                    <ul>
+                                        <li><a href="/info/stadium-rules" translate="STADIUM_RULES"></a></li>
+                                        <li><a href="#" translate="LOW_FC_N_S"></a></li>
+                                        <li><a href="#" translate="FC_AGAINST_RACISM"></a></li>
+                                        <li><a href="#" translate="CONTACTS"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h5><a href="#" translate="HISTORY"></a></h5>
+                                </div>
+                            </div>
+                            <p class="text-center">© 2009-2017 - <span translate="OFFICIAL_NAME_N_FORM"></span></p>
+                        </div>
                     </div>
                 </div>
                 <div class="bg-threads"></div>

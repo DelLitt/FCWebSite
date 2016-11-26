@@ -17,12 +17,11 @@
     </div>
     <div class="row" ng-show="!loadingRR">
         <div class="col-sm-3" ng-repeat="roundDay in roundResults.dateGames">
-            <div ng-show="roundDay.empty" style="text-align: center;"><img style="max-height:80px;" ng-src={{getAdvertImg($index);}} /></div>
-            <div ng-show="!roundDay.empty">
-                <!--<div class="label label-primary">{{roundDay.date.dateString}}.&nbsp;<span class="text-capitalize">{{roundDay.date.dayString}}</span></div>-->
+            <div ng-if="roundDay.empty" style="text-align: center;"><img style="max-height:80px;" ng-src={{getAdvertImg($index);}} /></div>
+            <div ng-if="!roundDay.empty">
                 <div class="label label-primary">{{roundDay.date.date | date : 'fullDate'}}</div>
                 <ul class="list-unstyled match-day-list">
-                    <li ng-repeat="game in roundDay.games" style="max-width: 270px;" class="ellipsis" title="{{game.time + ' ' + game.home.text + ' ' + game.homeScore + ':' + game.awayScore + ' ' + game.away.text}}"><span class="text-info">{{game.time}}.</span>&nbsp;<a ng-href="{{getTeamViewLink(game.home);}}">{{game.home.text}}</a>&nbsp;<a class="white-link" ng-href="game/{{game.id}}">{{game.homeScore}}:{{game.awayScore}}<span ng-if="hasExtra(game);"><span translate translate-attr-title="{{getExtra(game);}}">*</span></span></a>&nbsp;<a ng-href="{{getTeamViewLink(game.away);}}">{{game.away.text}}</a></li>
+                    <li ng-repeat="game in roundDay.games" style="max-width: 270px;" class="ellipsis" title="{{game.time + ' ' + game.home.text + ' ' + game.homeScore + ':' + game.awayScore + ' ' + game.away.text}}"><span class="text-info">{{game.time}}.</span>&nbsp;<a ng-href="team/{{game.home.id}}">{{game.home.text}}</a>&nbsp;<a class="white-link" ng-href="game/{{game.id}}">{{game.homeScore}}:{{game.awayScore}}<span ng-if="hasExtra(game);"><span translate translate-attr-title="{{getExtra(game);}}">*</span></span></a>&nbsp;<a ng-href="team/{{game.away.id}}">{{game.away.text}}</a></li>
                 </ul>
             </div>
         </div>

@@ -33,6 +33,7 @@
             {
                 gameBll.FillRounds = true;
                 gameBll.FillTeams = true;
+                gameBll.FillTourneys = true;
 
                 IEnumerable<RoundInfoViewModel> roundViews = gameBll.GetRoundGames(id).ToRoundInfoViewModel();
 
@@ -54,6 +55,7 @@
 
             if (Guard.IsEmptyIEnumerable(roundIds)) { return new RoundSliderViewModel[0]; }
 
+            gameBll.FillTourneys = true;
             gameBll.FillRounds = true;
             gameBll.FillTeams = true;
             IEnumerable<Game> roundGames = gameBll.GetTeamActualRoundGames(teamId, roundIds, actualDate);

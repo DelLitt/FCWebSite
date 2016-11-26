@@ -25,6 +25,7 @@
 @fc-type-color: #264a83;
 
 @fc-shadow: 5px 5px 15px fade(@brand-primary, 35%);
+@fc-shadow-text: 0 1px fade(#010101, 15%);
 @fc-border-radius: 5px;
 @fc-threads-height: 35px;
 @fc-type-dark-header-color: fade(@brand-primary, 90%);
@@ -138,6 +139,19 @@ body {
     color: @background-primary;
     padding: 7px;
   }
+}
+
+.fc-single-link {
+  .fc-action();
+  text-shadow: @fc-shadow-text;
+  color: @brand-primary5;
+  padding: 5px 10px;
+  text-decoration: underline;
+}
+
+.fc-single-link:hover, 
+.fc-single-link:focus {
+  color: @background-primary;  
 }
 
 .fc-label.lable-fc {

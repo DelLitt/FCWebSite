@@ -27,70 +27,54 @@
         </div>
     </div>
 </section>
-<section class="fc-pane fc-transparent">
-    <div class="fc-pane-header text-uppercase">
-        <span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;<span translate="NEWS"></span>
+<section>
+    <div class="fc-pane">
+        <div class="fc-pane-header text-uppercase">
+            <h5 class="invert"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;<span translate="NEWS"></span></h5>
+        </div>
     </div>
-    <div class="fc-pane-body border-for-thread" style="padding-top: 1px; padding-bottom:1px;">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="row" ng-repeat="row in publications.rows">
-                    <div class="col-sm-4" style="padding: 1px;" ng-repeat="publication in row">
-                        <publication-item model="publication"></publication-item>
-                    </div>
+    <div class="row"  style="padding:1px 28px;">
+        <div class="col-sm-12">
+            <div class="row" ng-repeat="row in publications.rows">
+                <div class="col-sm-4" style="padding: 2px;" ng-repeat="publication in row">
+                    <publication-item model="publication"></publication-item>
                 </div>
             </div>
-        </div>
+            <span class="fc-single-link pull-right" ng-click="publications.more();"><span translate="MORE"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></span>
+        </div>        
     </div>
-    <div class="fc-pane-footer">
-        <div class="row">
-            <div class="col-xs-12 text-right" style="margin:10px;">
-                <a class="fc-pane-action-link" style="margin-right: 10px;" ng-click="publications.more();" href="javascript:void(0);">Больше новостей&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></a>
-            </div>
-        </div>
-    </div>
-    <div class="bg-threads"></div>
 </section>
-<section class="fc-pane fc-pane-dark">
-    <div class="fc-pane-header text-uppercase">
-        <span class="glyphicon glyphicon-camera"></span>&nbsp;&nbsp;<span translate="PHOTO"></span>
+<section>
+    <div class="fc-pane">
+        <div class="fc-pane-header text-uppercase">
+            <h5 class="invert"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;<span translate="PHOTO"></span></h5>
+        </div>
     </div>
-    <div class="fc-pane-body">
-        <div class="row">
-            <div class="col-sm-12" style="padding-right: 25px;">
-                <div class="row" ng-repeat="row in galleries.rows">
-                    <div class="col-sm-4" style="margin-bottom: 15px;" ng-repeat="gallery in row">
-                        <gallery-item model="gallery"></gallery-item>
-                    </div>
+    <div class="row" style="padding:1px 28px;">
+        <div class="col-sm-12">
+            <div class="row" ng-repeat="row in galleries.rows">
+                <div class="col-sm-4" style="padding: 2px;" ng-repeat="gallery in row">
+                    <gallery-item model="gallery"></gallery-item>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 text-right">
-                <a class="fc-pane-action-link" style="margin-right: 10px;" ng-click="galleries.more();" href="javascript:void(0);">Больше фото&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></a>                
-            </div>
+            <span class="fc-single-link pull-right" ng-click="galleries.more();"><span translate="MORE"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></span>
         </div>
     </div>
 </section>
-<section class="fc-pane">
-    <div class="fc-pane-header text-uppercase">
-        <span class="glyphicon glyphicon-facetime-video"></span>&nbsp;&nbsp;<span translate="VIDEO"></span>
+<section>
+    <div class="fc-pane">
+        <div class="fc-pane-header text-uppercase">
+            <h5 class="invert"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;<span translate="VIDEO"></span></h5>
+        </div>
     </div>
-    <div class="fc-pane-body">
-        <div class="row">
-            <div class="col-sm-12" style="padding-right: 25px;">
-                <div class="row" ng-repeat="row in videos.rows">
-                    <div class="col-sm-4" style="margin-bottom: 15px;" ng-repeat="video in row">
-                        <video-item model="video"></video-item>
-                    </div>
+    <div class="row" style="padding:1px 28px;">
+        <div class="col-sm-12">
+            <div class="row" ng-repeat="row in videos.rows">
+                <div class="col-sm-4" style="padding: 2px;" ng-repeat="video in row">
+                    <video-item model="video"></video-item>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 text-right">
-                <a class="fc-pane-action-link" style="margin-right: 10px;" ng-click="videos.more();" href="javascript:void(0);">Больше видео&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></a>
-            </div>
+            <span class="fc-single-link pull-right" ng-click="videos.more();"><span translate="MORE"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></span>
         </div>
     </div>
-    <div class="bg-threads"></div>
 </section>

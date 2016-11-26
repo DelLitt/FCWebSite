@@ -46,7 +46,8 @@
                 urlKey = p.URLKey,
                 title = p.Title,
                 header = p.Header,
-                img = p.GetGalleryPublicationPreview()
+                img = p.GetGalleryPublicationPreview(),
+                date = p.DateDisplayed
             });
         }
 

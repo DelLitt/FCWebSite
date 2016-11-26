@@ -3,14 +3,60 @@
   .box-shadow(@fc-shadow);
   padding: 0;
   position: relative;
-  z-index: 2;
 
-  .caption {    
+  .info {
+    width: 100%;
+    top: 0rem;
+    position: absolute;
+    z-index: 3;
+    color: fade(@background-primary, 95%);
+    padding: 5px 10px;
+    text-shadow: @fc-shadow-text;
+
+    .glyphicon {
+      
+    }
+
+    .left {
+      float: left;
+    }
+
+    .right {      
+      float: right;
+    }
+  }
+
+  .caption {
+    z-index: 2;
     width: 100%;
     bottom: 0rem;
     position: absolute;
-    background: @brand-primary;    
+    background: @brand-primary;
     #gradient > .vertical-three-colors(@start-color: fade(@brand-primary, 50%); @mid-color: fade(@brand-primary, 70%); @color-stop: 40%; @end-color: fade(@brand-primary, 85%));
+
+    .glyphicon {
+      font-size: 1.4em;
+      padding-right: 10px;
+      top: 4px;
+    }
+
+    a {
+      color: @background-primary;
+      display: block;
+      padding: 8px 10px;
+      -webkit-font-smoothing: antialiased;
+
+      small {
+        font-size: 85%;
+        color: @brand-primary5;
+      }
+    }
+
+    a:hover {
+      -webkit-transition: 0.2s;
+      -webkit-transform: translate(5px,0);
+      /*background-color: @brand-primary;*/
+    }
   }
 
   .caption-top {
@@ -21,47 +67,23 @@
     background: @brand-primary;
     #gradient > .vertical-three-colors(@start-color: fade(@brand-primary, 100%); @mid-color: fade(@brand-primary, 85%); @color-stop: 25%; @end-color: fade(@brand-primary, 40%));
   }
+}
 
-  .caption h4,
-  .caption h5 {
-    color: @background-primary;
-    padding: 12px 5px 17px 15px;
-    line-height: 1.3em;
-    -webkit-font-smoothing: antialiased;
-    margin: 0;
-    background: transparent;
-    text-shadow: none;
-    font-weight: normal;
+.img-hover-scale {
+  overflow: hidden;
 
-    a {
-      font-weight: normal;
-      color: @background-primary;
-      text-shadow: none;
+  .preview-item {
+    /*img {
+      -moz-transition: all 1s ease-out;
+      -o-transition: all 1s ease-out;
+      -webkit-transition: all 1s ease-out;
     }
 
-    small {
-      font-size: 85%;
-    }
-
-  }
-
-  .caption h5 {
-    padding: 10px 5px 17px 15px;
-  }
-
-  .caption a {
-    color: @background-primary;
-  }
-
-  .caption a:hover {
-    /*-webkit-transition: 0.2s;
-    -webkit-transform: translate(5px,0);*/
-  }
-
-  .caption .glyphicon {
-    font-size: 1.4em;
-    padding-right: 10px;
-    top: 4px;
+    img:hover {
+      -webkit-transform: scale(1.1);
+      -moz-transform: scale(1.1);
+      -o-transform: scale(1.1);
+    }*/
   }
 }
 

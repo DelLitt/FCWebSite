@@ -143,6 +143,7 @@ String.prototype.endsWith = function (suffix) {
             },
 
             getTeamViewLink: function (team) {
+                console.log("Called!");
                 return '/team/' + team.id;
             },
 

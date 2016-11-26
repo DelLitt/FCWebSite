@@ -3,6 +3,7 @@
   "TOURNAMENT_TABLE": "Tournament table",
   "OFFICIAL_SITE": "Official site",
   "OFFICIAL_NAME": "Sport football club «Slutsk»",
+  "OFFICIAL_NAME_N_FORM": "Public association \"Sport football club «Slutsk»\"",
   "OFFICIAL_SLOGAN": "Football is not everything, but everything without football is nothing!",
   "SHORT_LANG_RU": "ru",
   "SHORT_LANG_EN": "en",
@@ -132,10 +133,11 @@
   "PLAYER_STATS_TABLE_INFO": "G - games, S - from start, G - goals, A - assists, YC - yellow cards, RC - red cards",
   "FULL_TIME": "Full time",
   "EXTRA_INFO": "Extra info",
-  "SUGAR_REFINERY": "JSC 'Slutsk Sugar Refinery'",
+  "SUGAR_REFINERY": "JSC \"Slutsk Sugar Refinery'",
   "STADIUM_RULES": "Rules of conduct at the stadium",
   "LOW_FC_N_S": "PC and S low - 2014",
   "FC_AGAINST_RACISM": "SFK \"Slutsk\" against racism",
   "CONTACTS": "Contacts",
-  "IMAGES": "Images"
+  "IMAGES": "Images",
+  "MORE": "More"
 }

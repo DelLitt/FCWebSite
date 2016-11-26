@@ -1,13 +1,13 @@
 ﻿<div class="preview-item col-xs-12">
+    <div class="info">
+        <div class="left">
+            <span class="glyphicon glyphicon-facetime-video" ng-show="model.hasVideo"></span>
+            <span class="glyphicon glyphicon-camera" ng-show="model.hasPhoto"></span>
+        </div>
+        <div class="right">{{model.date | date: 'shortDate'}}</div>
+    </div>
     <img class="img-responsive" ng-src={{model.img}} />
     <div class="caption">
-        <h5>
-            <a ng-href="publication/{{model.urlKey}}">
-                <span class="glyphicon glyphicon-facetime-video" ng-show="model.hasVideo"></span>
-                <span class="glyphicon glyphicon-camera" ng-show="model.hasPhoto"></span>
-                {{model.title}}
-            </a>
-            <small ng-show="showHeader"><br />{{model.header}}</small>
-        </h5>        
+        <a ng-href="publication/{{model.urlKey}}">{{model.title}}<small ng-show="showHeader"><br />{{model.header}}</small></a>
     </div>
 </div>
