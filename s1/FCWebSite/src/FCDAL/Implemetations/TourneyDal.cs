@@ -1,13 +1,10 @@
 ﻿namespace FCDAL.Implementations
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Exceptions;
     using FCCore.Abstractions.Dal;
     using FCCore.Common;
     using FCCore.Model;
-    using Microsoft.Data.Entity;
 
     public class TourneyDal : DalBase, ITourneyDal
     {
@@ -54,11 +51,11 @@
         {
             if (entity.Id > 0)
             {
-                Context.Tourney.Update(entity, GraphBehavior.SingleObject);
+                Context.Tourney.Update(entity);
             }
             else
             {
-                Context.Tourney.Add(entity, GraphBehavior.SingleObject);
+                Context.Tourney.Add(entity);
             }
 
             Context.SaveChanges();

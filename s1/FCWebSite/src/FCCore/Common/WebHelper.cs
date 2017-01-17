@@ -1,7 +1,8 @@
 ﻿namespace FCCore.Common
 {
+    using System.IO;
     using Configuration;
-    using Microsoft.AspNet.Hosting;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.DependencyInjection;
 
     public static class WebHelper
@@ -21,9 +22,26 @@
         {
             if (string.IsNullOrWhiteSpace(virtualPath)) { return string.Empty; }
 
+            if(virtualPath.StartsWith("/"))
+            {
+                virtualPath = virtualPath.Remove(0, 1);
+            }
+
+            virtualPath = virtualPath.Replace("/", @"\").Replace("~", string.Empty);       
+
             var hostingEnv = MainCfg.ServiceProvider.GetService<IHostingEnvironment>();
 
-            return hostingEnv.MapPath(virtualPath);
+            string physicalPath = Path.Combine(hostingEnv.WebRootPath, virtualPath);
+
+            return physicalPath;
+
+            //var pathToFile = hostingEnv.ContentRootPath
+            //                + Path.DirectorySeparatorChar.ToString()
+            //   + "yourfolder"
+            //   + Path.DirectorySeparatorChar.ToString()
+            //   + "yourfilename.txt";
+
+            //return hostingEnv.MapPath(virtualPath);
         }
     }
 }

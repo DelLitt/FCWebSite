@@ -3,8 +3,8 @@
     using System.Net;
     using FCCore.Abstractions.Dal;
     using FCCore.Model;
-    using Microsoft.AspNet.Http.Features;
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Http.Features;
+    using Microsoft.AspNetCore.Mvc;
     using ViewModels;
     [Route("api/game/{gameId}/[controller]")]
     public class ToteController : Controller

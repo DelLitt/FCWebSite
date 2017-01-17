@@ -56,11 +56,11 @@
         {
             if (entity.Id > 0)
             {
-                Context.Stadium.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.Stadium.Update(entity);
             }
             else
             {
-                Context.Stadium.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.Stadium.Add(entity);
             }
 
             Context.SaveChanges();

@@ -1,7 +1,7 @@
 ﻿namespace FCDAL.Model
 {
-    using Microsoft.Data.Entity;
     using FCCore.Configuration;
+    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     /// Using to save connection string from generation

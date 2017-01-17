@@ -90,11 +90,11 @@
         {
             if (entity.Id > 0)
             {
-                Context.Person.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.Person.Update(entity);
             }
             else
             {
-                Context.Person.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.Person.Add(entity);
             }
 
             Context.SaveChanges();

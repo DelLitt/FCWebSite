@@ -45,11 +45,11 @@
             {
                 if (entity.Id > 0)
                 {
-                    Context.PersonCareer.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                    Context.PersonCareer.Update(entity);
                 }
                 else
                 {
-                    Context.PersonCareer.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                    Context.PersonCareer.Add(entity);
                 }                
             }
 

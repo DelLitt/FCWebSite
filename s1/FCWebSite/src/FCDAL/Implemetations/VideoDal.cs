@@ -56,11 +56,11 @@
         {
             if(entity.Id > 0)
             {
-                Context.Video.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.Video.Update(entity);
             }
             else
             {
-                Context.Video.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.Video.Add(entity);
             }
 
             Context.SaveChanges();

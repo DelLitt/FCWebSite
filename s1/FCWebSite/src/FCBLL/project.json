@@ -1,17 +1,14 @@
-{
+﻿{
   "version": "1.0.0-*",
-  "description": "FCBLL Class Library",
-  "authors": [ "karul" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
-  "frameworks": {
-    "dnx451": { },
-    "dnxcore50": { }
-  },
+
   "dependencies": {
     "FCCore": "1.0.0-*",
-    "FCDAL": "1.0.0-*",
-    "Newtonsoft.Json": "8.0.3"
+    "NETStandard.Library": "1.6.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
   }
 }

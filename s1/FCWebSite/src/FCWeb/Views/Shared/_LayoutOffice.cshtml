@@ -133,7 +133,7 @@
         </div>
 
         <div id="config" style="display: none;">
-            @Component.Invoke("OfficeConfig")
+            @Component.InvokeAsync("OfficeConfig").Result
         </div>
 
         <environment names="Development">

@@ -2,19 +2,14 @@
 
 namespace FCWeb.Controllers.Api.FileBrowser
 {
-    using System.Linq;
-    using Microsoft.AspNet.Mvc;
-    using ViewModels;
-    using Microsoft.AspNet.Authorization;
-    using Core;
-    using FCCore.Configuration;
-    using Microsoft.AspNet.Http;
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    using System.Net;
-    using FCCore.Model.Storage;
     using FCCore.Common;
+    using FCCore.Model.Storage;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json;
+
     [Route("api/filebrowser/[controller]")]
     [Authorize]
     public class RemoveController : Controller
@@ -37,7 +32,8 @@ namespace FCWeb.Controllers.Api.FileBrowser
                 return Ok(result);
             }
 
-            return new HttpStatusCodeResult(Convert.ToInt32(HttpStatusCode.BadRequest));
+            return new BadRequestResult();
+            //return new StatusCodeResult(Convert.ToInt32(HttpStatusCode.BadRequest));
         }
     }   
 }

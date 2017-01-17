@@ -5,7 +5,7 @@
     using System.Linq;
     using FCCore.Abstractions.Bll;
     using FCCore.Model;
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Mvc;
     using ViewModels;
     using ViewModels.Schedule;
 

@@ -1,13 +1,14 @@
 ﻿namespace FCWeb.Core
 {
-    using FCCore.Common;
-    using Microsoft.AspNet.Http;
-    using Microsoft.Net.Http.Headers;
     using System;
     using System.IO;
     using System.Linq;
     using System.Security;
+    using FCCore.Common;
     using FCCore.Model.Storage;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.Net.Http.Headers;
+
     public class FormUpload
     {
         private string uploadDestination { get; set; }
@@ -83,7 +84,12 @@
                 string phPath = WebHelper.ToPhysicalPath(uploadPath);
 
                 //save the file to upload destination
-                file.SaveAs(phPath);
+                //file.SaveAs(phPath);
+
+                using(var fs = new FileStream(phPath, FileMode.Create))
+                {
+                    file.CopyTo(fs);
+                }                
             }
 
             return savingFile;

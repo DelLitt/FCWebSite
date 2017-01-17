@@ -6,7 +6,7 @@
     using Core.Extensions;
     using FCCore.Abstractions.Bll;
     using FCCore.Common;
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Mvc;
     using ViewModels;
 
     [Route("api/teams/{teamId}/[controller]")]

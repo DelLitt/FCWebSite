@@ -1,7 +1,7 @@
 ﻿namespace FCWeb.Controllers
 {
-    using Microsoft.AspNet.Authorization;
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
 
     [Authorize(Roles = "admin,press")]
     public class OfficeController : Controller

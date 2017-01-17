@@ -1,13 +1,11 @@
 ﻿namespace FCDAL.Implementations
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Exceptions;
     using FCCore.Abstractions.Dal;
     using FCCore.Common;
     using FCCore.Model;
-    using Microsoft.Data.Entity;
+    using Microsoft.EntityFrameworkCore;
 
     public class TeamDal : DalBase, ITeamDal
     {
@@ -118,11 +116,11 @@
         {
             if (entity.Id > 0)
             {
-                Context.Team.Update(entity, GraphBehavior.SingleObject);
+                Context.Team.Update(entity);
             }
             else
             {
-                Context.Team.Add(entity, GraphBehavior.SingleObject);
+                Context.Team.Add(entity);
             }
 
             Context.SaveChanges();

@@ -2,26 +2,29 @@
 
 namespace FCWeb.Controllers.Api
 {
-    using System.Collections.Generic;
-    using Microsoft.AspNet.Mvc;
-    using FCCore.Abstractions.Bll;
-    using Core.Extensions;
-    using ViewModels;
-    using System.Net;
     using System;
+    using System.Collections.Generic;
+    using System.Net;
+    using Core.Extensions;
+    using FCCore.Abstractions.Bll;
     using FCCore.Configuration;
-    using Microsoft.AspNet.Authorization;
     using FCCore.Model;
-    using System.Security.Claims;
+    using FCDAL.Model;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using ViewModels;
 
     [Route("api/[controller]")]
     public class VideosController : Controller
     {
+        private readonly UserManager<ApplicationUser> userManager;
         //[FromServices]
         private IVideoBll videoBll { get; set; }
 
-        public VideosController(IVideoBll videoBll)
+        public VideosController(UserManager<ApplicationUser> userManager, IVideoBll videoBll)
         {
+            this.userManager = userManager;
             this.videoBll = videoBll;
         }
 
@@ -85,7 +88,7 @@ namespace FCWeb.Controllers.Api
             Video video = videoVideo.ToBaseModel();
 
             // TODO: Convert user Id from Guid to String in DB
-            Guid userCreated = new Guid(User.GetUserId());            
+            Guid userCreated = new Guid(userManager.GetUserId(User));            
             video.userCreated = userCreated;
             video.userChanged = userCreated;
 
@@ -116,7 +119,7 @@ namespace FCWeb.Controllers.Api
             Video video = videoView.ToBaseModel();
 
             // TODO: Convert user Id from Guid to String in DB
-            video.userChanged = new Guid(User.GetUserId());
+            video.userChanged = new Guid(userManager.GetUserId(User));
             video.DateChanged = DateTime.UtcNow;
 
             videoBll.SaveVideo(video);

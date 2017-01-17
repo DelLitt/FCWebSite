@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Data.Entity;
-using FCCore.Configuration;
-using Microsoft.Data.Entity.Infrastructure;
-
-namespace FCDAL.Model
+﻿namespace FCDAL.Model
 {
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         protected override void OnModelCreating(ModelBuilder builder)

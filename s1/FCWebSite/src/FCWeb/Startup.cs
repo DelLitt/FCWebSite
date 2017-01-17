@@ -1,19 +1,23 @@
 ﻿namespace FCWeb
 {
+    using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.IO;
     using System.Linq;
     using Core;
     using Core.Extensions;
+    using Core.Extensions.Middleware;
     using FCCore.Configuration;
     using FCDAL.Model;
-    using Microsoft.AspNet.Builder;
-    using Microsoft.AspNet.Hosting;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Microsoft.AspNet.Localization;
-    using Microsoft.AspNet.Mvc;
-    using Microsoft.AspNet.Mvc.Formatters;
-    using Microsoft.Data.Entity;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.AspNetCore.Localization;
+    using Microsoft.AspNetCore.Mvc.Formatters;
+    // using Microsoft.AspNetCore.Hosting.Server.Features;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
@@ -23,9 +27,9 @@
     {
         public Startup(IHostingEnvironment env)
         {
-            // Set up configuration sources.
             var builder = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
@@ -35,6 +39,7 @@
             }
 
             builder.AddEnvironmentVariables();
+
             Configuration = builder.Build();
         }
 
@@ -43,12 +48,13 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLogging();
+
             // Add framework services.
             services.AddEntityFramework()
-                .AddSqlServer()
+                .AddEntityFrameworkSqlServer()
                 .AddDbContext<FCDBContext>(options =>
                     options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
-
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<FCDBContext>()
@@ -62,7 +68,7 @@
 
                 if (curJsonOutputFormatter != null)
                 {
-                    curJsonOutputFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
+                    //curJsonOutputFormatter .SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
                 }
 
                 //var jsonOutputFormatter = new JsonOutputFormatter();
@@ -72,9 +78,13 @@
 
                 //options.OutputFormatters.RemoveType<JsonOutputFormatter>();
                 //options.OutputFormatters.Insert(0, jsonOutputFormatter);
+            })
+            .AddJsonOptions(opt =>
+            {
+                opt.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
             });
 
-                services.AddCoreConfiguration(Configuration);
+            services.AddCoreConfiguration(Configuration);
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -89,6 +99,8 @@
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            loggerFactory.AddConsole();
+            loggerFactory.AddAzureWebAppDiagnostics();
 
             if (env.IsDevelopment())
             {
@@ -113,7 +125,9 @@
                 catch { }
             }
 
-            app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
+            //app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
+
+            app.UseImageProcessingMiddleware();
 
             app.UseStaticFiles();
 
@@ -133,10 +147,11 @@
                 {
                     new CultureInfo("en-US"),
                    new CultureInfo("ru-RU")
-                }
+                },
+                DefaultRequestCulture = new RequestCulture("ru-RU")
             };
 
-            app.UseRequestLocalization(requestLocalizationOptions, defaultRequestCulture: new RequestCulture("ru-RU"));
+            app.UseRequestLocalization(requestLocalizationOptions);
 
             app.UseMvc(routes =>
             {
@@ -156,7 +171,7 @@
             });
         }
 
-        // Entry point for the application.
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
+        //// Entry point for the application.
+        //public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

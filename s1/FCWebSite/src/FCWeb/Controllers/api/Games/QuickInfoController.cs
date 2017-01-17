@@ -8,8 +8,8 @@
     using FCCore.Abstractions.Bll;
     using FCCore.Configuration;
     using FCCore.Model;
-    using Microsoft.AspNet.Authorization;
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
     using ViewModels.Game;
 
     [Route("api/games/[controller]")]

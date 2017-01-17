@@ -5,8 +5,8 @@
     using Core.ViewModelHepers;
     using FCCore.Abstractions.Bll;
     using FCCore.Model;
-    using Microsoft.AspNet.Authorization;
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
     using ViewModels;
 
     [Route("api/[controller]")]

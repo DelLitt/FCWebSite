@@ -5,25 +5,28 @@ namespace FCWeb.Controllers.Api
     using System;
     using System.Collections.Generic;
     using System.Net;
-    using System.Security.Claims;
     using Core.Extensions;
     using FCCore.Abstractions.Bll;
     using FCCore.Common;
     using FCCore.Configuration;
     using FCCore.Extensions;
     using FCCore.Model;
-    using Microsoft.AspNet.Authorization;
-    using Microsoft.AspNet.Mvc;
+    using FCDAL.Model;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using ViewModels;
 
     [Route("api/[controller]")]
     public class GalleriesController : Controller
     {
+        private readonly UserManager<ApplicationUser> userManager;
         //[FromServices]
         private IImageGalleryBll imageGalleryBll { get; set; }
 
-        public GalleriesController(IImageGalleryBll imageGalleryBll)
+        public GalleriesController(UserManager<ApplicationUser> userManager, IImageGalleryBll imageGalleryBll)
         {
+            this.userManager = userManager;
             this.imageGalleryBll = imageGalleryBll;
         }
 
@@ -87,7 +90,7 @@ namespace FCWeb.Controllers.Api
             ImageGallery imageGallery = imageGalleryView.ToBaseModel();
 
             // TODO: Convert user Id from Guid to String in DB
-            Guid userCreated = new Guid(User.GetUserId());
+            Guid userCreated = new Guid(userManager.GetUserId(User));
             imageGallery.userCreated = userCreated;
             imageGallery.userChanged = userCreated;
 
@@ -128,7 +131,7 @@ namespace FCWeb.Controllers.Api
             ImageGallery imageGallery = imageGalleryView.ToBaseModel();
 
             // TODO: Convert user Id from Guid to String in DB
-            imageGallery.userChanged = new Guid(User.GetUserId());
+            imageGallery.userChanged = new Guid(userManager.GetUserId(User));
             imageGallery.DateChanged = DateTime.UtcNow;
 
             imageGalleryBll.SaveImageGallery(imageGallery);

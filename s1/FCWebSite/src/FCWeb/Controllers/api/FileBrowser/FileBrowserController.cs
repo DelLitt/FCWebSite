@@ -2,10 +2,10 @@
 
 namespace FCWeb.Controllers.Api.FileBrowser
 {
-    using Microsoft.AspNet.Mvc;
-    using Microsoft.AspNet.Authorization;
+    using Microsoft.AspNetCore.Mvc;
     using FCCore.Model.Storage;
     using FCCore.Common;
+    using Microsoft.AspNetCore.Authorization;
 
     [Route("api/[controller]")]
     [Authorize]

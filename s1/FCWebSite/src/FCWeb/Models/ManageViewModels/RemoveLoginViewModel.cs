@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FCWeb.ViewModels.Manage
+namespace FCWeb.Models.ManageViewModels
 {
     public class RemoveLoginViewModel
     {

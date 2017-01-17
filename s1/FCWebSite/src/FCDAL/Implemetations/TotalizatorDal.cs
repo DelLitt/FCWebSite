@@ -20,8 +20,7 @@
                 gameId = gameId,
                 voteType = voteType,
                 UserIP = userIP
-            }, 
-            Microsoft.Data.Entity.GraphBehavior.SingleObject);
+            });
 
             Context.SaveChanges();
 

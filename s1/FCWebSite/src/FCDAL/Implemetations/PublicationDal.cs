@@ -56,11 +56,11 @@
         {
             if (entity.Id > 0)
             {
-                Context.Publication.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.Publication.Update(entity);
             }
             else
             {
-                Context.Publication.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.Publication.Add(entity);
             }
 
             Context.SaveChanges();

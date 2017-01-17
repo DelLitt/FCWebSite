@@ -11,8 +11,8 @@
     using FCCore.Abstractions.Bll.Protocol;
     using FCCore.Common;
     using FCCore.Model;
-    using Microsoft.AspNet.Authorization;
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
     using ViewModels;
     using ViewModels.Protocol;
 

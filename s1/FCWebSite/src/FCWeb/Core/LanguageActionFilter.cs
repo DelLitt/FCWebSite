@@ -3,7 +3,7 @@
 namespace FCWeb.Core
 {
     using System.Globalization;
-    using Microsoft.AspNet.Mvc.Filters;
+    using Microsoft.AspNetCore.Mvc.Filters;
     using Microsoft.Extensions.Logging;
 
     public class LanguageActionFilter : ActionFilterAttribute

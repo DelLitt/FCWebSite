@@ -1,6 +1,7 @@
 ﻿namespace FCWeb.ViewComponents
 {
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json;
     using ViewModels.Configuration;
 
     [ViewComponent(Name = "OfficeConfig")]
@@ -8,7 +9,9 @@
     {
         public IViewComponentResult Invoke()
         {
-            return Json(new OfficeConfiguration());
+            
+            return Content(JsonConvert.SerializeObject(new OfficeConfiguration()));
+            //return Json(new OfficeConfiguration());
         }
     }
 }

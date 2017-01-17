@@ -4,9 +4,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Mvc;
     using FCCore.Abstractions.Bll;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.Extensions.Logging;
 
+    [Authorize(Roles = "admin,press")]
     public class HomeController : Controller
     {
         private IPublicationBll publicationBLL;

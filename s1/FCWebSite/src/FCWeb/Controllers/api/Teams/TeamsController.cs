@@ -8,8 +8,8 @@
     using FCCore.Common;
     using FCCore.Configuration;
     using FCCore.Model;
-    using Microsoft.AspNet.Authorization;
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
     using ViewModels.Team;
 
     [Route("api/[controller]")]

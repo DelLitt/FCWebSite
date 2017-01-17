@@ -1,10 +1,7 @@
 ﻿namespace FCBLL.Core.Protocol
 {
-    using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
-    using System.Threading.Tasks;
     using FCCore.Common;
     using FCCore.Common.Constants;
     using FCCore.Model;

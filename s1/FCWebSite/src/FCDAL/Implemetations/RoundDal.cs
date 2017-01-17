@@ -7,8 +7,8 @@
     using FCCore.Abstractions.Dal;
     using FCCore.Common;
     using FCCore.Model;
-    using Microsoft.Data.Entity;
-    using Microsoft.Data.Entity.ChangeTracking;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
 
     public class RoundDal : DalBase, IRoundDal
     {
@@ -96,11 +96,11 @@
         {
             if (entity.Id > 0)
             {
-                Context.Round.Update(entity, GraphBehavior.SingleObject);
+                Context.Round.Update(entity);
             }
             else
             {
-                Context.Round.Add(entity, GraphBehavior.SingleObject);
+                Context.Round.Add(entity);
             }
 
             Context.SaveChanges();

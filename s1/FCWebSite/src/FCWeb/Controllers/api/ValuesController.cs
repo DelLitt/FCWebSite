@@ -8,7 +8,7 @@ using FCCore.Abstractions.Bll;
 using FCCore.Model;
 using FCWeb.Core.Extensions;
 using FCWeb.ViewModels;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 

@@ -3,17 +3,16 @@
 namespace FCWeb.Controllers.Api.FileBrowser
 {
     using System.Linq;
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Mvc;
     using ViewModels;
-    using Microsoft.AspNet.Authorization;
+    using Microsoft.AspNetCore.Authorization;
     using Core;
     using FCCore.Configuration;
-    using Microsoft.AspNet.Http;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    using System.Net;
     using FCCore.Model.Storage;
+    using Microsoft.AspNetCore.Http;
 
     [Route("api/filebrowser/[controller]")]
     [Authorize]
@@ -56,7 +55,8 @@ namespace FCWeb.Controllers.Api.FileBrowser
                 }
             }
 
-            return new HttpStatusCodeResult(Convert.ToInt32(HttpStatusCode.BadRequest));
+            return new BadRequestResult();
+            //return new StatusCodeResult(Convert.ToInt32(HttpStatusCode.BadRequest));
         }
     }   
 }

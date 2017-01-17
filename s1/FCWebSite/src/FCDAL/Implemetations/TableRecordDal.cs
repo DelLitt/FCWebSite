@@ -7,7 +7,7 @@
     using FCCore.Abstractions.Dal;
     using FCCore.Common;
     using FCCore.Model;
-    using Microsoft.Data.Entity.ChangeTracking;
+
     public class TableRecordDal : DalBase, ITableRecordDal
     {
         public bool FillTeams { get; set; } = false;
@@ -62,7 +62,7 @@
                 dbRecord.tourneyId = (short)tourneyId;
             }
 
-            Context.TableRecord.AddRange(insertRecords, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+            Context.TableRecord.AddRange(insertRecords);
 
             try
             {

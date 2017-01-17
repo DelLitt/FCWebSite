@@ -56,11 +56,11 @@
         {
             if(entity.Id > 0)
             {
-                Context.ImageGallery.Update(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.ImageGallery.Update(entity);
             }
             else
             {
-                Context.ImageGallery.Add(entity, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+                Context.ImageGallery.Add(entity);
             }
 
             Context.SaveChanges();

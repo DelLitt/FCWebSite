@@ -280,7 +280,7 @@
     </div>
 
     <div id="config" style="display: none;">
-        @Component.Invoke("FrontConfig")
+        @Component.InvokeAsync("FrontConfig").Result
     </div>
 
     <environment names="Development">

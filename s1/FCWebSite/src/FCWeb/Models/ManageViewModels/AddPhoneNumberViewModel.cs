@@ -4,12 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FCWeb.ViewModels.Account
+namespace FCWeb.Models.ManageViewModels
 {
-    public class ExternalLoginConfirmationViewModel
+    public class AddPhoneNumberViewModel
     {
         [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Phone]
+        [Display(Name = "Phone number")]
+        public string PhoneNumber { get; set; }
     }
 }

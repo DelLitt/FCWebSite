@@ -26,6 +26,10 @@ String.prototype.endsWith = function (suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
 
+String.prototype.insertAt = function (index, string) {
+    return this.substr(0, index) + string + this.substr(index);
+};
+
 (function (module) {
     'use strict';
 
@@ -62,7 +66,7 @@ String.prototype.endsWith = function (suffix) {
                     rows.push(row);
                 }
 
-            return rows;
+                return rows;
             },
 
             createUrlKey: function (value) {
@@ -104,6 +108,25 @@ String.prototype.endsWith = function (suffix) {
 
             getPrivate: thisIsPrivate,
 
+            // IMAGE HELPER START
+            // TODO: Encapsulate into separate class helper
+
+            addFileVariant: function (path, variant) {
+                if (!angular.isString(path) || !angular.isString(variant)) {
+                    return path;
+                }
+
+                var dotIndex = path.lastIndexOf(".");
+
+                if (dotIndex < 1) {
+                    return path;
+                }
+
+                return path.insertAt(dotIndex, variant);
+            },
+
+            // IMAGE HELPER END
+
             // PERSON HELPER START
             // TODO: Encapsulate into separate class helper
 
@@ -143,7 +166,6 @@ String.prototype.endsWith = function (suffix) {
             },
 
             getTeamViewLink: function (team) {
-                console.log("Called!");
                 return '/team/' + team.id;
             },
 

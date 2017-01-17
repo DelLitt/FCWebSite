@@ -17,7 +17,7 @@
                 </tr>
                 <tr ng-repeat="row in ranking.rows">
                     <td style="text-align: right !important;">{{row.position}}</td>
-                    <td style="text-align: left !important;"><span class="fc-table-string ellipsis">{{row.team}}</span></td>
+                    <td style="text-align: left !important;"><a class="ellipsis ellipsis-135" ng-href="team/{{row.team.id}}" title="{{row.team.title}}">{{row.team.text}}</a></td>
                     <td>{{row.games}}</td>
                     <td>{{row.wins}}</td>
                     <td>{{row.draws}}</td>

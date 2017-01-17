@@ -4,8 +4,8 @@
     using System.Net;
     using Core.Extensions;
     using FCCore.Abstractions.Bll;
-    using Microsoft.AspNet.Authorization;
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
     using ViewModels;
 
     [Route("api/[controller]")]

@@ -3,7 +3,7 @@
     using Core;
     using Core.Extensions;
     using FCCore.Configuration;
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Mvc;
     using ViewModels;
 
     [Route("api/[controller]")]

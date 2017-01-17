@@ -5,23 +5,26 @@ namespace FCWeb.Controllers.Api.Publications
     using System;
     using System.Collections.Generic;
     using System.Net;
-    using System.Security.Claims;
     using Core.Extensions;
     using FCCore.Abstractions.Bll;
     using FCCore.Configuration;
     using FCCore.Model;
-    using Microsoft.AspNet.Authorization;
-    using Microsoft.AspNet.Mvc;
+    using FCDAL.Model;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using ViewModels;
 
     [Route("api/[controller]")]
     public class PublicationsController : Controller
     {
+        private readonly UserManager<ApplicationUser> userManager;
         //[FromServices]
         private IPublicationBll publicationBll { get; set; }
 
-        public PublicationsController(IPublicationBll publicationBll)
+        public PublicationsController(UserManager<ApplicationUser> userManager, IPublicationBll publicationBll)
         {
+            this.userManager = userManager;
             this.publicationBll = publicationBll;
         }
 
@@ -85,7 +88,7 @@ namespace FCWeb.Controllers.Api.Publications
             Publication publication = publicationView.ToBaseModel();
 
             // TODO: Convert user Id from Guid to String in DB
-            Guid userCreated = new Guid(User.GetUserId());
+            Guid userCreated = new Guid(userManager.GetUserId(User));
             publication.userCreated = userCreated;
             publication.userChanged = userCreated;
 
@@ -116,7 +119,7 @@ namespace FCWeb.Controllers.Api.Publications
             Publication publication = publicationView.ToBaseModel();
 
             // TODO: Convert user Id from Guid to String in DB
-            publication.userChanged = new Guid(User.GetUserId());
+            publication.userChanged = new Guid(userManager.GetUserId(User));
             publication.DateChanged = DateTime.UtcNow;
 
             publicationBll.SavePublication(publication);

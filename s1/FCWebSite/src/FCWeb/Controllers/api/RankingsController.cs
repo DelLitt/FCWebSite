@@ -6,11 +6,9 @@
     using Core.Extensions;
     using FCCore.Abstractions.Bll;
     using FCCore.Abstractions.Bll.Components;
-    using FCCore.Configuration;
     using FCCore.Model;
-    using Microsoft.AspNet.Authorization;
-    using Microsoft.AspNet.Mvc;
-    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
     using ViewModels;
 
     [Route("api/[controller]")]

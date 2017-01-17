@@ -60,7 +60,7 @@
                 }
             }
 
-            Context.AddRange(saveRecords, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+            Context.AddRange(saveRecords);
 
             return Context.SaveChanges();
         }

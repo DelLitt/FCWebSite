@@ -7,18 +7,13 @@
   "licenseUrl": "",
 
   "frameworks": {
-    "net451": { },
-    "dnxcore50": {
-      "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23516",
-        "System.Collections": "4.0.11-beta-23516",
-        "System.Linq": "4.0.1-beta-23516",
-        "System.Runtime": "4.0.21-beta-23516",
-        "System.Threading": "4.0.11-beta-23516"
-      }
+    "netstandard1.6": {
+      "imports": "dnxcore50"
     }
   },
   "dependencies": {
-    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
+    "NETStandard.Library": "1.6.0",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
+    "Newtonsoft.Json": "9.0.1"
   }
 }

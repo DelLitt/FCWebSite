@@ -7,8 +7,8 @@
     using FCCore.Abstractions.Dal;
     using FCCore.Common;
     using FCCore.Model;
-    using Microsoft.Data.Entity;
-    using Microsoft.Data.Entity.ChangeTracking;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
 
     public class GameDal : DalBase, IGameDal
     {
@@ -120,15 +120,27 @@
             //                                      .ToList();
 
             IEnumerable<short> roundIds = Context.Round.Where(r => tourneyIds.Contains(r.tourneyId))
-                                                       .Select(r => r.Id);
+                                                       .Select(r => r.Id)
+                                                       .ToList();
 
             if(!roundIds.Any()) { return new Game[] { }; }
 
-            IEnumerable<Game> games = Context.Game.Where(g => g.GameDate >= dateStart
-                                                        && g.GameDate <= dateEnd
-                                                        && roundIds.Contains(g.roundId)                                                        
-                                                        && (g.homeId == teamId || g.awayId == teamId))
-                                                  .ToList();
+            IEnumerable<Game> gamesOfRounnds = Context.Game.Where(g => roundIds.Contains(g.roundId))
+                                                          .ToList();
+
+            if(!gamesOfRounnds.Any())
+            {
+                return new Game[] { };
+            }
+
+            IEnumerable<Game> games = gamesOfRounnds.Where(g => g.GameDate >= dateStart && g.GameDate <= dateEnd
+                                                           && (g.homeId == teamId || g.awayId == teamId));
+
+            //IEnumerable <Game> games = Context.Game.Where(g => g.GameDate >= dateStart
+            //                                            && g.GameDate <= dateEnd
+            //                                            && roundIds.Contains(g.roundId)                                                        
+            //                                            && (g.homeId == teamId || g.awayId == teamId))
+            //                                      .ToList();
 
             FillRelations(games);
 
@@ -203,11 +215,11 @@
         {
             if (entity.Id > 0)
             {
-                Context.Game.Update(entity, GraphBehavior.SingleObject);
+                Context.Game.Update(entity);
             }
             else
             {
-                Context.Game.Add(entity, GraphBehavior.SingleObject);
+                Context.Game.Add(entity);
             }
 
             try

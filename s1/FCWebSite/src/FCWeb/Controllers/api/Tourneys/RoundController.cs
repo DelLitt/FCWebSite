@@ -2,7 +2,7 @@
 {
     using Core.Extensions;
     using FCCore.Abstractions.Bll;
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Mvc;
     using ViewModels;
 
     [Route("api/tourneys/[controller]")]

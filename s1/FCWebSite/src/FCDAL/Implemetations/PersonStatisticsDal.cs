@@ -78,16 +78,10 @@
                 dbRecord.Yellows = saveRecords[i].Yellows;
             }
 
-            Context.PersonStatistics.AddRange(insertRecords, Microsoft.Data.Entity.GraphBehavior.SingleObject);
+            Context.PersonStatistics.AddRange(insertRecords);
 
             try
             {
-                //foreach (PersonStatistics ps in insertRecords)
-                //{
-                //    Context.PersonStatistics.AddRange(insertRecords, Microsoft.Data.Entity.GraphBehavior.SingleObject);
-                //    Context.SaveChanges();
-                //}
-
                 return Context.SaveChanges();
             }
             catch (Exception ex)

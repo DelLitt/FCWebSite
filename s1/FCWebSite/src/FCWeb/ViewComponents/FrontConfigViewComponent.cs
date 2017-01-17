@@ -1,6 +1,7 @@
 ﻿namespace FCWeb.ViewComponents
 {
-    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json;
     using ViewModels.Configuration;
 
     [ViewComponent(Name = "FrontConfig")]
@@ -8,7 +9,14 @@
     {
         public IViewComponentResult Invoke()
         {
-            return Json(new FrontConfiguration());
+            return Content(JsonConvert.SerializeObject(new FrontConfiguration()));
+            //return Json(new FrontConfiguration());
         }
+
+        //public IViewComponentResult InvokeAsync()
+        //{
+        //    return Content(JsonConvert.SerializeObject(new FrontConfiguration()));
+        //    //return Json(new FrontConfiguration());
+        //}
     }
 }
