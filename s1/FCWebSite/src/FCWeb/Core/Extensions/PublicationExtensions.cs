@@ -19,9 +19,10 @@
                 urlKey = p.URLKey,
                 title = p.Title,
                 header = p.Header,
-                img = System.IO.File.Exists(WebHelper.ToPhysicalPath(p.Image)) 
-                    ? p.Image
-                    : FCCore.Configuration.MainCfg.Images.EmptyPreview,
+                img = p.Image,
+                //img = System.IO.File.Exists(WebHelper.ToPhysicalPath(p.Image)) 
+                //    ? p.Image
+                //    : FCCore.Configuration.MainCfg.Images.EmptyPreview,
                 date = p.DateDisplayed,
                 hasPhoto = p.imageGalleryId.HasValue,
                 hasVideo = p.videoId.HasValue

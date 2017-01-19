@@ -10,6 +10,7 @@
     using FCCore.Abstractions.Bll.Protocol;
     using FCCore.Abstractions.Dal;
     using FCCore.Diagnostic.Logging.Simple;
+    using FCCore.Media.Image.Sizing;
     using FCDAL.Implementations;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -69,6 +70,11 @@
             serviceCollection.AddTransient<ICountryDal, CountryDal>();
             serviceCollection.AddTransient<ITotalizatorDal, TotalizatorDal>();
             serviceCollection.AddTransient<ITeamTypeDal, TeamTypeDal>();
+        }
+
+        public static void AddFCCoreServices(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddTransient<IImageResizer, ImageProcessorCropImageResizer>();            
         }
     }
 }

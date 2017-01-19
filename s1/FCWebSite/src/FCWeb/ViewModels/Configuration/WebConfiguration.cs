@@ -9,6 +9,14 @@
 
     public class WebConfiguration
     {
+        public string ImageVariantsKeyword
+        {
+            get
+            {
+                return MainCfg.ImageVariantsKeyword;
+            }
+        }
+
         public SettingsVisibility SettingsVisibility
         {
             get

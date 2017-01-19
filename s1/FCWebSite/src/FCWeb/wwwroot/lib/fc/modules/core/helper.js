@@ -122,7 +122,9 @@ String.prototype.insertAt = function (index, string) {
                     return path;
                 }
 
-                return path.insertAt(dotIndex, variant);
+                var variantKey = "." + configSrv.Current.ImageVariantsKeyword + variant;
+
+                return path.insertAt(dotIndex, variantKey);
             },
 
             // IMAGE HELPER END

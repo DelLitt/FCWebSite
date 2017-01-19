@@ -14,13 +14,13 @@
             scope:
                 {
                     model: '=',
+                    imgVariant: '@',
                     showHeader: "@"
                 },
 
             link: function link(scope, element, attrs) {
                 scope.showHeader = false;
-                scope.addFileVariant = helper.addFileVariant;
-                scope.model.img = helper.addFileVariant(scope.model.img, "v225x45");
+                scope.img = helper.addFileVariant(scope.model.img, scope.imgVariant);
             },
             templateUrl: '/lib/fc/layout/publications/publicationItem.html'
         }

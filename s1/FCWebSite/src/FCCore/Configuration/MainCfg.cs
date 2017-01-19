@@ -8,7 +8,9 @@
     using Exceptions;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
     using Model;
+    using Model.Configuration;
     using Model.Refs;
     using Newtonsoft.Json;
 
@@ -23,6 +25,8 @@
                 return serviceCollection.BuildServiceProvider();
             }
         }
+
+        public const string ImageVariantsKeyword = "variants";
 
         static MainCfg()
         {
@@ -92,6 +96,22 @@
             get
             {
                 return Convert.ToInt32(CoreConfig.Current["Settings:TeamGamesInfoDaysShift"]);
+            }
+        }
+
+        public static int MaxImagesMiddlewareCacheSeconds
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MaxImagesMiddlewareCacheSeconds"]);
+            }
+        }
+
+        public static int MaxImagesMiddlewareCachedRequests
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MaxImagesMiddlewareCachedRequests"]);
             }
         }
 
@@ -261,6 +281,22 @@
             }
         }
 
+        private static EventId logEventId = default(EventId);
+        public static EventId LogEventId
+        {
+            get
+            {
+                if(logEventId.Equals(default(EventId)))
+                {
+                    logEventId = new EventId(
+                        Convert.ToInt32(CoreConfig.Current["Settings:LogEventId"]),
+                        CoreConfig.Current["Settings:LogEventName"]);
+                }
+
+                return logEventId;
+            }
+        }
+
         public static string DefaultAuthor
         {
             get
@@ -269,31 +305,35 @@
             }
         }
 
+        public static IList<string> uploadRoots;
         public static IEnumerable<string> UploadRoots
         {
             get
             {
-                bool emptyResult = false;
-                int i = 0;
-                var roots = new List<string>();
-
-                while(!emptyResult)
+                if (uploadRoots == null)
                 {
-                    string root = CoreConfig.Current["Settings:UploadRoots:" + i];
+                    bool emptyResult = false;
+                    int i = 0;
+                    uploadRoots = new List<string>();
 
-                    if(!string.IsNullOrWhiteSpace(root))
+                    while (!emptyResult)
                     {
-                        roots.Add(root.ToLower());
-                    }
-                    else
-                    {
-                        emptyResult = true;
-                    }
+                        string root = CoreConfig.Current["Settings:UploadRoots:" + i];
 
-                    i++;
+                        if (!string.IsNullOrWhiteSpace(root))
+                        {
+                            uploadRoots.Add(root.ToLower());
+                        }
+                        else
+                        {
+                            emptyResult = true;
+                        }
+
+                        i++;
+                    }
                 }
 
-                return roots;
+                return uploadRoots;
             }
         }
 
@@ -322,6 +362,54 @@
                 }
 
                 return roots.ToArray();
+            }
+        }
+
+        private static IList<ImageSizeSetting> imageSizesAvailble;
+        public static IEnumerable<ImageSizeSetting> ImageSizesAvailble
+        {
+            get
+            {
+                if (imageSizesAvailble == null)
+                {
+                    imageSizesAvailble = new List<ImageSizeSetting>();
+                    ILogger logger = ServiceProvider.GetService<ILogger>();
+                    bool emptyResult = false;
+                    int i = 0;
+
+                    while (!emptyResult)
+                    {
+                        string key = CoreConfig.Current["Settings:ImageSizesAvailble:" + i + ":Key"];
+
+                        if (!string.IsNullOrWhiteSpace(key))
+                        {
+                            try
+                            {
+                                imageSizesAvailble.Add(new ImageSizeSetting()
+                                {
+                                    Key = key,
+                                    Width = Convert.ToInt32(CoreConfig.Current["Settings:ImageSizesAvailble:" + i + ":Width"]),
+                                    Height = Convert.ToInt32(CoreConfig.Current["Settings:ImageSizesAvailble:" + i + ":Height"])
+                                });
+                            }
+                            catch (JsonException ex)
+                            {
+                                logger.LogError(
+                                    "Couldn't deserialize a config parameter of setting ImageSizesAvailble from file 'appsettings.json'. Exception message: "
+                                    + Environment.NewLine
+                                    + ex.ToString());
+                            }
+                        }
+                        else
+                        {
+                            emptyResult = true;
+                        }
+
+                        i++;
+                    }
+                }
+
+                return imageSizesAvailble;
             }
         }
 

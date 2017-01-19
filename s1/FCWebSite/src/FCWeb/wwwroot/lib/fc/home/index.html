@@ -37,7 +37,7 @@
         <div class="col-sm-12">
             <div class="row" ng-repeat="row in publications.rows">
                 <div class="col-sm-4" style="padding: 2px;" ng-repeat="publication in row">
-                    <publication-item model="publication"></publication-item>
+                    <publication-item model="publication" img-variant="375x211"></publication-item>
                 </div>
             </div>
             <span class="fc-single-link pull-right" ng-click="publications.more();"><span translate="MORE"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></span>
@@ -54,7 +54,7 @@
         <div class="col-sm-12">
             <div class="row" ng-repeat="row in galleries.rows">
                 <div class="col-sm-4" style="padding: 2px;" ng-repeat="gallery in row">
-                    <gallery-item model="gallery"></gallery-item>
+                    <gallery-item model="gallery" img-variant="375x211"></gallery-item>
                 </div>
             </div>
             <span class="fc-single-link pull-right" ng-click="galleries.more();"><span translate="MORE"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></span>

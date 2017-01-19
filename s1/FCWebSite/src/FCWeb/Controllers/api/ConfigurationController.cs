@@ -39,6 +39,13 @@
             return appConfig;
         }
 
+        // GET api/values/5
+        [HttpGet("reload/{setting}")]
+        public void Get(string setting)
+        {
+            MainCfg.CoreConfig.Current.Reload();
+        }
+
         // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)

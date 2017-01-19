@@ -208,7 +208,7 @@
             return physicalPath;
         }
 
-        private static bool CheckPathIsAllowed(string path, string root)
+        public static bool CheckPathIsAllowed(string path, string root)
         {
             IEnumerable<string> availableRoots = MainCfg.UploadRoots;
 
