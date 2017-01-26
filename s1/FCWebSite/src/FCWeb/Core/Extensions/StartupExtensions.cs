@@ -9,6 +9,7 @@
     using FCCore.Abstractions.Bll.ImageGallery;
     using FCCore.Abstractions.Bll.Protocol;
     using FCCore.Abstractions.Dal;
+    using FCCore.Caching;
     using FCCore.Diagnostic.Logging.Simple;
     using FCCore.Media.Image.Sizing;
     using FCDAL.Implementations;
@@ -74,7 +75,8 @@
 
         public static void AddFCCoreServices(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<IImageResizer, ImageProcessorCropImageResizer>();            
+            serviceCollection.AddTransient<IImageResizer, ImageProcessorCropImageResizer>();
+            serviceCollection.AddTransient<ICacheKeyGeneratorFactory, CacheKeyGeneratorFactory>();
         }
     }
 }

@@ -85,6 +85,8 @@
             });
 
             services.AddCoreConfiguration(Configuration);
+            // FCCache should be added after AddCoreConfiguration(...)
+            services.AddFCCache();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();

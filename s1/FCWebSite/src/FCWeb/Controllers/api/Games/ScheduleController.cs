@@ -27,6 +27,7 @@
         }
 
         [HttpGet]
+        [ResponseCache(Duration = 60)]
         public IEnumerable<ScheduleItemViewModel> Get([FromQuery] int[] tourneyIds)
         {
             IList<ScheduleItemViewModel> schedule = new List<ScheduleItemViewModel>();

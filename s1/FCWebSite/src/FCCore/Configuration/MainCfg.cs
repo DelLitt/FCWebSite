@@ -413,6 +413,30 @@
             }
         }
 
+        private static bool? cacheEnabled;
+        public static bool CacheEnabled
+        {
+            get
+            {
+                if(!cacheEnabled.HasValue)
+                {
+                    bool value = false;
+                    bool.TryParse(CoreConfig.Current["Settings:CacheEnabled"], out value);
+                    cacheEnabled = value;
+                }
+
+                return cacheEnabled.Value;
+            }
+        }
+
+        public static int CacheDefaultSeconds
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:CacheDefaultSeconds"]);
+            }
+        }
+
         private static ImagesCfg images;
         public static ImagesCfg Images
         {

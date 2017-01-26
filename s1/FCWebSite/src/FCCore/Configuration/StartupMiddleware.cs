@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FCCore.Caching;
 
 namespace FCCore.Configuration
 {
@@ -15,6 +16,17 @@ namespace FCCore.Configuration
 
             MainCfg.SetServiceCollection(serviceCollection);
             MainCfg.SetCoreConfiguration(configurationRoot);
+        }
+
+        /// <summary>
+        /// Adds singleton implementation of IFCCAche.
+        /// Should be added after AddCoreConfiguration(...)!
+        /// </summary>
+        /// <param name="serviceCollection">Service collection</param>
+        public static void AddFCCache(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddMemoryCache();
+            serviceCollection.AddSingleton<IFCCache, FCMemoryCache>();
         }
     }
 }
