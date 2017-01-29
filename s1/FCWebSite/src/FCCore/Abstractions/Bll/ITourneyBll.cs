@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Model;
 
-    public interface ITourneyBll
+    public interface ITourneyBll: IFCBll
     {
         bool FillRounds { get; set; }
         bool FillGames { get; set; }

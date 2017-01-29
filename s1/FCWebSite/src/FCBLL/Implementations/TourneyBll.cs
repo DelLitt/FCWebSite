@@ -4,9 +4,12 @@
     using System.Collections.Generic;
     using FCCore.Abstractions.Bll;
     using FCCore.Abstractions.Dal;
+    using FCCore.Caching;
+    using FCCore.Configuration;
     using FCCore.Model;
+    using Microsoft.Extensions.DependencyInjection;
 
-    public sealed class TourneyBll : ITourneyBll
+    public sealed class TourneyBll : FCBllBase, ITourneyBll
     {
         private ITourneyDal dalTourney;
         private ITourneyDal DalTourney
@@ -60,7 +63,11 @@
 
         public IEnumerable<Tourney> GetTourneys(IEnumerable<int> ids)
         {
-            return DalTourney.GetTourneys(ids);
+            string cacheKey = GetStringMethodKey(nameof(GetTourneys), ids);
+
+            IEnumerable<Tourney> result = Cache.GetOrCreate(cacheKey, () => { return DalTourney.GetTourneys(ids); });
+
+            return result;
         }
 
         public IEnumerable<Tourney> GetAll()

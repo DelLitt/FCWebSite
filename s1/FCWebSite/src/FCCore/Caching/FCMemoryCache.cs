@@ -12,7 +12,7 @@
     {
         private IMemoryCache cache = MainCfg.ServiceProvider.GetService<IMemoryCache>();
         private ILogger logger = MainCfg.ServiceProvider.GetService<ILogger>();
-        private ICacheKeyGeneratorFactory cacheKeyGeneratorFactory = MainCfg.ServiceProvider.GetService<ICacheKeyGeneratorFactory>();
+        private IObjectKeyGenerator objectKeyGenerator = MainCfg.ServiceProvider.GetService<IObjectKeyGenerator>();
 
         private bool enable = MainCfg.CacheEnabled;
         public bool Enable
@@ -86,13 +86,26 @@
         /// </summary>
         /// <typeparam name="TItem"></typeparam>
         /// <param name="key"></param>
+        /// <param name="getValue"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public TItem GetOrCreate<TItem>(object key, Func<TItem> getValue, params object[] parameters)
+        {
+            return GetOrCreate(key, MainCfg.CacheDefaultSeconds, () => { return getValue(); }, parameters);
+        }
+
+        /// <summary>
+        /// Gets item from cache or create if it not found. Creates cache combaining key and parameters!
+        /// </summary>
+        /// <typeparam name="TItem"></typeparam>
+        /// <param name="key"></param>
         /// <param name="seconds"></param>
         /// <param name="getValue"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
         public TItem GetOrCreate<TItem>(object key, int seconds, Func<TItem> getValue, params object[] parameters)
         {
-            string parametrizedKey = GetStringParametrizedKey(key, parameters);
+            string parametrizedKey = objectKeyGenerator.GetStringKey(key.ToString(), parameters);
             return GetOrCreate(parametrizedKey, () => { return getValue(); }, seconds);
         }
 
@@ -120,13 +133,26 @@
         /// </summary>
         /// <typeparam name="TItem"></typeparam>
         /// <param name="key"></param>
+        /// <param name="getValue"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public Task<TItem> GetOrCreateAsync<TItem>(object key, Func<TItem> getValue, params object[] parameters)
+        {
+            return GetOrCreateAsync(key, MainCfg.CacheDefaultSeconds, () => { return getValue(); }, parameters);
+        }
+
+        /// <summary>
+        /// Gets item from cache or create if it not found. Creates cache combaining key and parameters!
+        /// </summary>
+        /// <typeparam name="TItem"></typeparam>
+        /// <param name="key"></param>
         /// <param name="seconds"></param>
         /// <param name="getValue"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
         public Task<TItem> GetOrCreateAsync<TItem>(object key, int seconds, Func<TItem> getValue, params object[] parameters)
         {
-            string parametrizedKey = GetStringParametrizedKey(key, parameters);
+            string parametrizedKey = objectKeyGenerator.GetStringKey(key.ToString(), parameters);
             return GetOrCreateAsync(parametrizedKey, () => { return getValue(); }, seconds);
         }
 
@@ -147,12 +173,6 @@
         public void Remove(object key)
         {
             cache.Remove(key);
-        }
-
-        private string GetStringParametrizedKey(object key, params object[] parameters)
-        {
-            IObjectKeyGenerator objectKeyGenerator = cacheKeyGeneratorFactory.Create(key, parameters);
-            return objectKeyGenerator.StringKey;
         }
 
         private void PrepareNewCacheEntry<TItem>(object key, Func<TItem> getValue, int seconds, ref ICacheEntry entry)

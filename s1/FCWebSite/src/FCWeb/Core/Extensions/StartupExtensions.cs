@@ -4,6 +4,7 @@
     using FCBLL.Implementations.Components;
     using FCBLL.Implementations.ImageGallery;
     using FCBLL.Implementations.Protocol;
+    using FCCore.Abstractions;
     using FCCore.Abstractions.Bll;
     using FCCore.Abstractions.Bll.Components;
     using FCCore.Abstractions.Bll.ImageGallery;
@@ -76,7 +77,7 @@
         public static void AddFCCoreServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IImageResizer, ImageProcessorCropImageResizer>();
-            serviceCollection.AddTransient<ICacheKeyGeneratorFactory, CacheKeyGeneratorFactory>();
+            serviceCollection.AddSingleton<IObjectKeyGenerator, CacheKeyGenerator>();
         }
     }
 }
