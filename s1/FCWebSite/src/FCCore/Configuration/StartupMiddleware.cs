@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using FCCore.Caching;
 using FCCore.Abstractions;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.AspNetCore.Builder;
 
 namespace FCCore.Configuration
 {
@@ -19,14 +21,19 @@ namespace FCCore.Configuration
             MainCfg.SetCoreConfiguration(configurationRoot);
         }
 
+        public static void AddCoreConfiguration(this IApplicationBuilder app, IConfigurationRoot configurationRoot)
+        {
+            MainCfg.SetServiceProvider(app.ApplicationServices);
+            MainCfg.SetCoreConfiguration(configurationRoot);
+        }
+
         /// <summary>
         /// Adds singleton implementation of IFCCAche.
-        /// Should be added after AddCoreConfiguration(...)!
         /// </summary>
         /// <param name="serviceCollection">Service collection</param>
         public static void AddFCCache(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddMemoryCache();
+            serviceCollection.AddSingleton<IMemoryCache, MemoryCache>();
             serviceCollection.AddSingleton<IFCCache, FCMemoryCache>();
         }
     }

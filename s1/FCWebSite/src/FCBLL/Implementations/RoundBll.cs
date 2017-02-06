@@ -6,7 +6,7 @@
     using FCCore.Abstractions.Dal;
     using FCCore.Model;
 
-    public class RoundBll : IRoundBll
+    public class RoundBll : FCBllBase, IRoundBll
     {
         public bool FillTourneys
         {
@@ -70,7 +70,11 @@
 
         public IEnumerable<Round> GetRoundsOfTourneys(IEnumerable<int> tourneyIds)
         {
-            return DalRound.GetRoundsOfTourneys(tourneyIds);
+            string cacheKey = GetStringMethodKey(nameof(GetRoundsOfTourneys), tourneyIds);
+
+            IEnumerable<Round> result = Cache.GetOrCreate(cacheKey, () => { return DalRound.GetRoundsOfTourneys(tourneyIds); });
+
+            return result;
         }
 
         public IEnumerable<Round> SearchByNameFull(int tourneyId, string text)

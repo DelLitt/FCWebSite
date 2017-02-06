@@ -11,7 +11,7 @@
     public class FCMemoryCache : IFCCache
     {
         private IMemoryCache cache = MainCfg.ServiceProvider.GetService<IMemoryCache>();
-        private ILogger logger = MainCfg.ServiceProvider.GetService<ILogger>();
+        private ILogger logger = MainCfg.ServiceProvider.GetService<ILogger<FCMemoryCache>>();
         private IObjectKeyGenerator objectKeyGenerator = MainCfg.ServiceProvider.GetService<IObjectKeyGenerator>();
 
         private bool enable = MainCfg.CacheEnabled;

@@ -95,6 +95,7 @@
 
         private string GetIEnumerableValue(IEnumerable parameter)
         {
+            const char delimeter = '-';
             string parameterValue = string.Empty;
 
             int arrayLenght = 0;
@@ -107,13 +108,13 @@
 
                 if (parameterValue.Length + currentValue.Length > MaxParameterValueLenght) { break; }
 
-                parameterValue += currentValue;
+                parameterValue += currentValue + delimeter;
                 arrayLenght++;
 
                 if (arrayLenght > MaxArrayLenght) { break; }
             }
 
-            return parameterValue;
+            return parameterValue.Length > 1 ? parameterValue.Substring(0, parameterValue.Length - 1) : parameterValue;
         }
     }
 }

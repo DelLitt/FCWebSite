@@ -51,6 +51,13 @@
             }
         }
 
+        public System.DateTime Test(string key, DateTime value, int seconds)
+        {
+            DateTime dt = Cache.GetOrCreate(key, () => { return value; }, seconds);
+
+            return dt;
+        }
+
         public Tourney GetTourney(int tourneyId)
         {
             return DalTourney.GetTourney(tourneyId);

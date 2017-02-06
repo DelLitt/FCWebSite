@@ -7,7 +7,7 @@
     using FCCore.Model;
     using Newtonsoft.Json;
 
-    public class TeamBll : ITeamBll
+    public class TeamBll : FCBllBase, ITeamBll
     {
         public bool? Active
         {
@@ -62,6 +62,15 @@
 
         public IEnumerable<Team> GetTeamsByRound(int roundId)
         {
+            string cacheKey = GetStringMethodKey(nameof(GetTeamsByRound), roundId);
+
+            IEnumerable<Team> result = Cache.GetOrCreate(cacheKey, () => { return GetTeamsByRoundPrivate(roundId); });
+
+            return result;
+        }
+
+        private IEnumerable<Team> GetTeamsByRoundPrivate(int roundId)
+        {
             Round round = DalRound.GetRound(roundId);
 
             if (round == null)
@@ -101,7 +110,11 @@
 
         public IEnumerable<Team> GetTeams(IEnumerable<int> ids)
         {
-            return DalTeam.GetTeams(ids);
+            string cacheKey = GetStringKey("GetTeams", ids);
+
+            IEnumerable<Team> result = Cache.GetOrCreate(cacheKey, () => { return DalTeam.GetTeams(ids); });
+
+            return result;
         }
 
         public IEnumerable<Team> GetTeams()

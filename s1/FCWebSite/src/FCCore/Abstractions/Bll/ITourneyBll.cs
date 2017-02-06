@@ -8,6 +8,7 @@
         bool FillRounds { get; set; }
         bool FillGames { get; set; }
 
+        System.DateTime Test(string key, System.DateTime value, int seconds);
         Tourney GetTourney(int tourneyId);
         Tourney GetTourneyByRoundId(int roundId);
         IEnumerable<Tourney> GetTourneys(IEnumerable<int> ids);

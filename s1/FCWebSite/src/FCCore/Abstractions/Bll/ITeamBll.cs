@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Model;
 
-    public interface ITeamBll
+    public interface ITeamBll : IFCBll
     {
         bool? Active { get; set; }
         bool FillCities { get; set; }

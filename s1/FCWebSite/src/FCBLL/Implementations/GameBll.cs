@@ -8,7 +8,7 @@
     using FCCore.Abstractions.Dal;
     using FCCore.Common;
 
-    public class GameBll : IGameBll
+    public class GameBll : FCBllBase, IGameBll
     {
         public bool FillTeams
         {
@@ -158,7 +158,11 @@
 
         public IEnumerable<Game> GetGamesByRounds(IEnumerable<int> roundIds)
         {
-            return DalGames.GetGamesByRounds(roundIds);
+            string cacheKey = GetStringMethodKey(nameof(GetGamesByRounds), roundIds);
+
+            IEnumerable<Game> result = Cache.GetOrCreate(cacheKey, () => { return DalGames.GetGamesByRounds(roundIds); });
+
+            return result;
         }
 
         public IEnumerable<Game> GetTeamPrevNextGames(int teamId, IEnumerable<int> tourneyIds, DateTime date, int daysShift)

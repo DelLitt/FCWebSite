@@ -15,6 +15,7 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.AspNetCore.Localization;
     using Microsoft.AspNetCore.Mvc.Formatters;
+    using Microsoft.AspNetCore.ResponseCaching;
     // using Microsoft.AspNetCore.Hosting.Server.Features;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -62,6 +63,8 @@
 
             services.AddScoped<LanguageActionFilter>();
 
+            services.AddResponseCaching();
+
             services.AddMvc(options =>
             {
                 var curJsonOutputFormatter = options.OutputFormatters.FirstOrDefault(of => of.GetType() == typeof(JsonOutputFormatter)) as JsonOutputFormatter;
@@ -84,9 +87,9 @@
                 opt.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
             });
 
-            services.AddCoreConfiguration(Configuration);
-            // FCCache should be added after AddCoreConfiguration(...)
             services.AddFCCache();
+            services.AddCoreConfiguration(Configuration);
+            // FCCache should be added after AddCoreConfiguration(...)            
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -103,7 +106,7 @@
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
             loggerFactory.AddConsole();
-            loggerFactory.AddAzureWebAppDiagnostics();
+            //loggerFactory.AddAzureWebAppDiagnostics();
 
             if (env.IsDevelopment())
             {
@@ -131,10 +134,10 @@
             //app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
 
             app.UseImageProcessingMiddleware();
-
+            app.UseResponseCaching();
             app.UseStaticFiles();
-
             app.UseIdentity();
+            app.AddCoreConfiguration(Configuration);
 
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 
@@ -156,6 +159,15 @@
 
             app.UseRequestLocalization(requestLocalizationOptions);
 
+            app.Use((context, next) =>
+            {
+                if (context.Features.Get<IResponseCachingFeature>() == null)
+                {
+                    context.Features.Set<IResponseCachingFeature>(new FakeResponseCachingFeature());
+                }
+                return next();
+            });
+
             app.UseMvc(routes =>
             {
                 routes
@@ -173,8 +185,14 @@
                     defaults: new { controller = "Home", action = "Index" });
             });
         }
+    }
 
-        //// Entry point for the application.
-        //public static void Main(string[] args) => WebApplication.Run<Startup>(args);
+    public class FakeResponseCachingFeature : IResponseCachingFeature
+    {
+        public string[] VaryByQueryKeys
+        {
+            get;
+            set;
+        }
     }
 }

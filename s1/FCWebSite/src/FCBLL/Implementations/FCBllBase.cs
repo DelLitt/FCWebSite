@@ -54,7 +54,12 @@
                 throw new KeyNotFoundException($"Unable to get string method key! Couldn't find method '{methodName}' of the type '{typeInfo}'");
             }
 
-            return ObjectKeyGenerator.GetStringKey(methodName, parameters);
+            return ObjectKeyGenerator.GetStringKey(methodInfo, parameters);
+        }
+
+        public string GetStringKey(string keyGroup, params object[] parameters)
+        {
+            return ObjectKeyGenerator.GetStringKey(keyGroup, parameters);
         }
     }
 }

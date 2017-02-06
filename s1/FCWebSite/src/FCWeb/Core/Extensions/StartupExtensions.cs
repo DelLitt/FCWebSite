@@ -77,7 +77,7 @@
         public static void AddFCCoreServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IImageResizer, ImageProcessorCropImageResizer>();
-            serviceCollection.AddSingleton<IObjectKeyGenerator, CacheKeyGenerator>();
+            serviceCollection.AddTransient<IObjectKeyGenerator, CacheKeyGenerator>();
         }
     }
 }

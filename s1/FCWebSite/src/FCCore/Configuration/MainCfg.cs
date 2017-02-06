@@ -17,11 +17,17 @@
     public static class MainCfg
     {
         private static IServiceCollection serviceCollection;
+        private static IServiceProvider serviceProvider;
 
         public static IServiceProvider ServiceProvider
         {
             get
             {
+                if(serviceProvider != null)
+                {
+                    return serviceProvider;
+                }
+
                 return serviceCollection.BuildServiceProvider();
             }
         }
@@ -31,6 +37,11 @@
         static MainCfg()
         {
             serviceCollection = new ServiceCollection();
+        }
+
+        internal static void SetServiceProvider(IServiceProvider serviceProvider)
+        {
+            MainCfg.serviceProvider = serviceProvider;
         }
 
         internal static void SetServiceCollection(IServiceCollection serviceCollection)
@@ -373,7 +384,7 @@
                 if (imageSizesAvailble == null)
                 {
                     imageSizesAvailble = new List<ImageSizeSetting>();
-                    ILogger logger = ServiceProvider.GetService<ILogger>();
+                    ILogger logger = ServiceProvider.GetService<ILogger<ImageSizeSetting>>();
                     bool emptyResult = false;
                     int i = 0;
 

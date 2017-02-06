@@ -42,12 +42,12 @@
                                     .GetTypeInfo()
                                     .GetMethod(nameof(MethodKeyGeneratorTestsHelper.IEnumerableParametersMethod));
 
-            var arrayInt = new int[] { 1, 2, 3 };
+            var arrayInt = new int[] { 1, 23, 4 };
             IEnumerable<string> ienumerableString = new List<string>() { "a1", "b2", "c3" };
             IList<bool> listBool = new List<bool>() { true, false };
 
             string methodNameKeyExpected = MethodKeyGeneratorTestsHelper.GetMethodNameKey(methodKeyGenerator, methodInfo);
-            string parametersKeyExpected = "d=123_e=a1b2c3_f=truefalse";
+            string parametersKeyExpected = "d=1-23-4_e=a1-b2-c3_f=true-false";
 
             string expectedResult = MethodKeyGeneratorTestsHelper.GetMethodCacheKey(fcCacheKeyGenerator, methodNameKeyExpected, parametersKeyExpected);
 
