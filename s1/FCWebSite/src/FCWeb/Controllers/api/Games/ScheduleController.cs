@@ -33,7 +33,7 @@
         }
 
         [HttpGet]
-        [ResponseCache(VaryByQueryKeys = new string[] { "tourneyIds" }, Duration = 30)]
+        [ResponseCache(VaryByQueryKeys = new string[] { "tourneyIds" }, Duration = 900)]
         public IEnumerable<ScheduleItemViewModel> Get([FromQuery] int[] tourneyIds)
         {
             logger.LogTrace("Getting schedule. Tournaments count: {0}.", tourneyIds.Count());

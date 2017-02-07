@@ -8,8 +8,8 @@
 
     public class MethodKeyGenerator
     {
-        public int MaxArrayLenght { get; set; } = 10;
-        public int MaxParameterValueLenght { get; set; } = 100;
+        public int MaxArrayLenght { get; set; } = 50;
+        public int MaxParameterValueLenght { get; set; } = 500;
         public string MethodNameKeyTemplate { get; set; } = "{0}.{1}";
         public string ParameterTemplate { get; set; } = "{0}={1}";
         public string ParametersDelimeter { get; set; } = "_";
@@ -55,40 +55,46 @@
                     throw new InvalidCastException($"Passed type '{typeInfoPassed}' of the parameter '{parameterInfo.Name}' is not equal to '{typeInfo}'.");
                 }
 
-                parameterName = parameterInfo.Name;
-                var iEnumerable = parameterPassed as IEnumerable;
-
-                if (typeInfo.IsSimple())
-                {
-                    parameterValue = parameters[i].ToString();
-                }
-                else if (iEnumerable != null)
-                {
-                    parameterValue = GetIEnumerableValue(iEnumerable);
-                }
-                else
-                {
-                    parameterValue = typeInfo.Name;
-                }
-
-                parameterValue =
-                    parameterValue.Length < MaxParameterValueLenght
-                    ? parameterValue
-                    : parameterValue.Substring(0, MaxParameterValueLenght);
-
-                if (!string.IsNullOrWhiteSpace(parameterValue))
-                {
-                    parameterValue = parameterValue.Replace(" ", string.Empty);
-                }
-
-                parametersKey += string.Format(
-                    CultureInfo.InvariantCulture, 
-                    ParameterTemplate, 
-                    parameterName, 
-                    parameterValue);
-
+                parametersKey += GetParameterValue(parameterInfo.Name, parameterPassed, typeInfo);
                 parametersKey += (i == parameters.Length - 1 ? string.Empty : ParametersDelimeter);
             }
+
+            return parametersKey;
+        }
+
+        public string GetParameterValue(string parameterName, object parameterPassed, TypeInfo typeInfo)
+        {
+            string parameterValue = string.Empty;
+            var iEnumerable = parameterPassed as IEnumerable;
+
+            if (typeInfo.IsSimple())
+            {
+                parameterValue = parameterPassed.ToString();
+            }
+            else if (iEnumerable != null)
+            {
+                parameterValue = GetIEnumerableValue(iEnumerable);
+            }
+            else
+            {
+                parameterValue = typeInfo.Name;
+            }
+
+            parameterValue =
+                parameterValue.Length < MaxParameterValueLenght
+                ? parameterValue
+                : parameterValue.Substring(0, MaxParameterValueLenght);
+
+            if (!string.IsNullOrWhiteSpace(parameterValue))
+            {
+                parameterValue = parameterValue.Replace(" ", string.Empty);
+            }
+
+            string parametersKey = string.Format(
+                                            CultureInfo.InvariantCulture,
+                                            ParameterTemplate,
+                                            parameterName,
+                                            parameterValue);
 
             return parametersKey;
         }
@@ -105,14 +111,17 @@
             while (enumerator.MoveNext())
             {
                 currentValue = enumerator.Current.ToString();
-
-                if (parameterValue.Length + currentValue.Length > MaxParameterValueLenght) { break; }
-
-                parameterValue += currentValue + delimeter;
                 arrayLenght++;
 
-                if (arrayLenght > MaxArrayLenght) { break; }
+                if (parameterValue.Length + currentValue.Length > MaxParameterValueLenght || arrayLenght > MaxArrayLenght)
+                {                    
+                    continue;
+                }
+
+                parameterValue += currentValue + delimeter;                
             }
+
+            parameterValue = "cnt-" + arrayLenght + ":" + parameterValue;
 
             return parameterValue.Length > 1 ? parameterValue.Substring(0, parameterValue.Length - 1) : parameterValue;
         }

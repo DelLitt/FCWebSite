@@ -9,17 +9,19 @@
     {
         private MethodKeyGenerator methodKeyGenerator = new MethodKeyGenerator();
 
-        public int MaxStringKeyLenght { get; set; } = 150;
+        public int MaxStringKeyLenght { get; set; } = 500;
         public string StringParametrizedKeyTemplate { get; set; } = "_key_{0}_prms_{1}";
         public bool Lower { get; set; } = true;
 
         public string GetStringKey(string keyGroup, params object[] parameters)
         {
             string parametersKey = string.Empty;
+            string parameterValue = string.Empty;
 
             for(int i = 0; i < parameters.Length; i++)
             {
-                parametersKey += $"p{i}={parameters[i]}";
+                parameterValue = methodKeyGenerator.GetParameterValue($"p{i}", parameters[i], parameters[i].GetType().GetTypeInfo());
+                parametersKey += parameterValue;
                 parametersKey += (i == parameters.Length - 1 ? string.Empty : "_");
             }
 

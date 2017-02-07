@@ -22,16 +22,21 @@
                                     .GetTypeInfo()
                                     .GetMethod(nameof(MethodKeyGeneratorTestsHelper.PrimitiveParametersMethod));
 
-            string methodNameKeyExpected = MethodKeyGeneratorTestsHelper.GetMethodNameKey(methodKeyGenerator, methodInfo);
-            string parametersKeyExpected = "a=1_b=two_c=true";
+            string keyGroupNameExpected = "keygroup";
+            string methodNameKeyExpected = MethodKeyGeneratorTestsHelper.GetMethodNameKey(methodKeyGenerator, methodInfo);            
+            string parametersKeyExpected = "p0=1_p1=two_p2=true";
+            string parametersMethodExpected = "a=1_b=two_c=true";
 
-            string expectedResult = MethodKeyGeneratorTestsHelper.GetMethodCacheKey(fcCacheKeyGenerator, methodNameKeyExpected, parametersKeyExpected);
+            string expectedKeyGroupResult = MethodKeyGeneratorTestsHelper.GetMethodCacheKey(fcCacheKeyGenerator, keyGroupNameExpected, parametersKeyExpected);
+            string expectedMethodResult = MethodKeyGeneratorTestsHelper.GetMethodCacheKey(fcCacheKeyGenerator, methodNameKeyExpected, parametersMethodExpected);
 
             // Act
-            var actualResult = fcCacheKeyGenerator.GetStringKey(methodInfo, 1, "two", true);
+            string actualKeyGroupResult = fcCacheKeyGenerator.GetStringKey(keyGroupNameExpected, 1, "two", true);
+            string actualMethodResult = fcCacheKeyGenerator.GetStringKey(methodInfo, 1, "two", true);
 
             // Assert
-            Assert.Equal(expectedResult, actualResult);
+            Assert.Equal(expectedKeyGroupResult, actualKeyGroupResult);
+            Assert.Equal(expectedMethodResult, actualMethodResult);
         }
 
         [Fact]
@@ -46,18 +51,21 @@
             IEnumerable<string> ienumerableString = new List<string>() { "a1", "b2", "c3" };
             IList<bool> listBool = new List<bool>() { true, false };
 
-            string methodNameKeyExpected = MethodKeyGeneratorTestsHelper.GetMethodNameKey(methodKeyGenerator, methodInfo);
-            string parametersKeyExpected = "d=1-23-4_e=a1-b2-c3_f=true-false";
+            string keyGroupNameExpected = "keygroup";
+            string methodNameKeyExpected = MethodKeyGeneratorTestsHelper.GetMethodNameKey(methodKeyGenerator, methodInfo);            
+            string parametersKeyExpected = "p0=cnt-3:1-23-4_p1=cnt-3:a1-b2-c3_p2=cnt-2:true-false";
+            string parametersMethodExpected = "d=cnt-3:1-23-4_e=cnt-3:a1-b2-c3_f=cnt-2:true-false";
 
-            string expectedResult = MethodKeyGeneratorTestsHelper.GetMethodCacheKey(fcCacheKeyGenerator, methodNameKeyExpected, parametersKeyExpected);
+            string expectedKeyGroupResult = MethodKeyGeneratorTestsHelper.GetMethodCacheKey(fcCacheKeyGenerator, keyGroupNameExpected, parametersKeyExpected);
+            string expectedMethodResult = MethodKeyGeneratorTestsHelper.GetMethodCacheKey(fcCacheKeyGenerator, methodNameKeyExpected, parametersMethodExpected);
 
             // Act
-            var actualResult = fcCacheKeyGenerator.GetStringKey(methodInfo, arrayInt, ienumerableString, listBool);
+            string actualKeyGroupResult = fcCacheKeyGenerator.GetStringKey(keyGroupNameExpected, arrayInt, ienumerableString, listBool);
+            string actualMethodResult = fcCacheKeyGenerator.GetStringKey(methodInfo, arrayInt, ienumerableString, listBool);
 
             // Assert
-            Assert.Equal(expectedResult, actualResult);
+            Assert.Equal(expectedKeyGroupResult, actualKeyGroupResult);
+            Assert.Equal(expectedMethodResult, actualMethodResult);
         }
-
-
     }
 }

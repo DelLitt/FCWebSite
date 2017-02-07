@@ -52,9 +52,28 @@
             {
                 if (roundId != game.roundId && gameGroups.Any())
                 {
-                    // Will be guaranteed
-                    round = rounds.First(r => r.Id == game.roundId);
+                    round = rounds.FirstOrDefault(r => r.Id == game.roundId);
+
+                    if (round == null)
+                    {
+                        logger.LogWarning("Couldn't get round (Id: {0}) of the game (Id: {1}) for scheduler. Round is NOT found!",
+                            game.roundId,
+                            game.Id);
+
+                        continue;
+                    }
+
                     tourney = tourneys.First(t => t.Id == round.tourneyId);
+
+                    if (tourney == null)
+                    {
+                        logger.LogWarning("Couldn't get tournament (Id: {0}) of the round (Id: {1}) of the game (Id: {2}) for scheduler. Tournament is NOT found!",
+                            round.tourneyId,
+                            game.roundId,
+                            game.Id);
+
+                        continue;
+                    }
 
                     var dayGamseViews = new List<DayGamesViewModel>();
 

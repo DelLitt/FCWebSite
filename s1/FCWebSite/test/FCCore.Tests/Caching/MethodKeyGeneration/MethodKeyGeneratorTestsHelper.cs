@@ -36,11 +36,13 @@
 
         public static string GetMethodCacheKey(IObjectKeyGenerator objectKeyGenerator,  string methodNameKey, string parametersKey)
         {
-            return string.Format(CultureInfo.InvariantCulture, 
+            string key = string.Format(CultureInfo.InvariantCulture, 
                                  objectKeyGenerator.StringParametrizedKeyTemplate, 
                                  methodNameKey, 
                                  parametersKey)
                          .ToLowerInvariant();
+
+            return key.Length > objectKeyGenerator.MaxStringKeyLenght ? key.Substring(key.Length - objectKeyGenerator.MaxStringKeyLenght) : key;
         }
     }
 }
