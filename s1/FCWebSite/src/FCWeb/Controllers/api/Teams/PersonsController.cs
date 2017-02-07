@@ -12,7 +12,6 @@
     [Route("api/teams/{teamId}/[controller]")]
     public class PersonsController : Controller
     {
-        //[FromServices]
         private IPersonBll personBll { get; set; }
 
         public PersonsController(IPersonBll personBll)
@@ -21,6 +20,7 @@
         }
 
         [HttpGet("{group}")]
+        [ResponseCache(VaryByQueryKeys = new string[] { "teamId", "group" }, Duration = 900)]
         public IEnumerable<PersonViewModel> Get(int teamId, string group)
         {
             PersonGroup personGroup = PersonGroupHelper.FromString(group);

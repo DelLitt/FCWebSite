@@ -6,7 +6,7 @@
     using FCCore.Abstractions.Dal;
     using FCCore.Model;
 
-    public class PersonStatisticsBll : IPersonStatisticsBll
+    public class PersonStatisticsBll : FCBllBase, IPersonStatisticsBll
     {
         public bool FillTeams
         {
@@ -67,9 +67,13 @@
             return DalPersonStatistics.GetPersonStatistics(personId);
         }
 
-        public IEnumerable<PersonStatistics> GetPersonsStatistics(int temaId, int tourneyId)
+        public IEnumerable<PersonStatistics> GetPersonsStatistics(int teamId, int tourneyId)
         {
-            return DalPersonStatistics.GetPersonsStatistics(temaId, tourneyId);
+            string cacheKey = GetStringMethodKey(nameof(GetPersonsStatistics), teamId, tourneyId);
+
+            IEnumerable<PersonStatistics> result = Cache.GetOrCreate(cacheKey, () => { return DalPersonStatistics.GetPersonsStatistics(teamId, tourneyId); });
+
+            return result;
         }
 
         public int SavePersonStatistics(int tourneyId, IEnumerable<PersonStatistics> personStatistics)

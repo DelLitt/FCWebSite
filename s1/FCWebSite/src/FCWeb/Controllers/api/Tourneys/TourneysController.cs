@@ -45,6 +45,7 @@
 
         // GET api/values/5
         [HttpGet("list")]
+        [ResponseCache(VaryByQueryKeys = new string[] { "tourneyIds" }, Duration = 300)]
         public IEnumerable<TourneyViewModel> Get([FromQuery] int[] tourneyIds)
         {
             return tourneyBll.GetTourneys(tourneyIds).ToViewModel();

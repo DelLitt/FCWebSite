@@ -10,9 +10,7 @@
     function reserveTeamCtrl($scope, configSrv) {
 
         $scope.teamId = configSrv.Current.ReserveTeamId;
-        $scope.tourneysIds = configSrv.reserveTeamTourneyIds;
-        $scope.publicationsCount = configSrv.teamPublicationsCount;
-        $scope.teamTitle = 'Резервная команда';
+        $scope.tourneysIds = configSrv.Current.ReserveTeamTourneyIds;
 
         // TODO: Change config to promise
         //scope.mainTeamId = 

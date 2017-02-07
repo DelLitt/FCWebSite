@@ -9,7 +9,7 @@
     using FCCore.Common.Constants;
     using FCCore.Model;
 
-    public class PersonBll : IPersonBll
+    public class PersonBll : FCBllBase, IPersonBll
     {
         public bool FillTeams
         {
@@ -89,9 +89,18 @@
 
         public IEnumerable<Person> GetTeamPersons(int teamId, PersonGroup personGroup)
         {
+            string cacheKey = GetStringKey(nameof(GetTeamPersons), teamId, personGroup);
+
+            IEnumerable<Person> result = Cache.GetOrCreate(cacheKey, () => { return GetTeamPersonsForce(teamId, personGroup); });
+
+            return result;
+        }
+
+        public IEnumerable<Person> GetTeamPersonsForce(int teamId, PersonGroup personGroup)
+        {
             IEnumerable<int> personRoleIds = null;
 
-            switch(personGroup)
+            switch (personGroup)
             {
                 case PersonGroup.Coaches:
                     personRoleIds = new List<int>(PersonRoleGroupId.rgCoachingStaff)

@@ -9,7 +9,6 @@
     [Route("api/[controller]")]
     public class PersonsStatsController : Controller
     {
-        //[FromServices]
         private IPersonStatisticsBll personStatisticsBll { get; set; }
 
         public PersonsStatsController(IPersonStatisticsBll personStatisticsBll)
@@ -27,6 +26,7 @@
         }
 
         [HttpGet("team/{teamId}/tourney/{tourneyId}")]
+        [ResponseCache(VaryByQueryKeys = new string[] { "teamId", "tourneyId" }, Duration = 900)]
         public IEnumerable<PersonStatisticsViewModel> Get(int teamId, int tourneyId)
         {
             return personStatisticsBll.GetPersonsStatistics(teamId, tourneyId).ToViewModel();

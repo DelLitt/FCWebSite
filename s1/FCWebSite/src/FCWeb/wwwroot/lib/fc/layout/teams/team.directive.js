@@ -5,22 +5,20 @@
         .module('fc.ui')
         .directive('team', team);
 
-    team.$inject = ['personsSrv', 'configSrv', 'helper', 'filterFilter', 'publicationsSrv', 'tourneysSrv'];
+    team.$inject = ['personsSrv', 'configSrv', 'helper', 'filterFilter', 'tourneysSrv'];
 
-    function team(personsSrv, configSrv, helper, filterFilter, publicationsSrv, tourneysSrv) {
+    function team(personsSrv, configSrv, helper, filterFilter, tourneysSrv) {
         return {
             restrict: 'E',
             replace: true,
             scope: {
                 teamId: '=',
                 tourneysIds: '=',
-                publicationsCount: '=',
                 teamTitle: '@'
             },
             link: function link(scope, element, attrs) {
 
                 scope.loadingTeam = true;
-                scope.loadingNews = true;
                 scope.loadingImage = helper.getLoadingImg();
                 scope.listview = false;
                 scope.personsLoaded = false;
@@ -40,13 +38,11 @@
                 function loadData() {                    
                     tourneysSrv.loadTourneys(scope.tourneysIds, tourneysLoaded);
                     personsSrv.loadTeamMainPlayers(scope.teamId, mainTeamLoaded);
-                    publicationsSrv.loadMainPublications(scope.publicationsCount, publicationsLoaded);
                 }
 
                 function tourneysLoaded(response) {
                     var tourneys = response.data;
                     scope.tourneys = tourneys;
-
                     scope.tourneysLoaded = true;
                     scope.statsLoaded = scope.personsLoaded && scope.tourneysLoaded;
                 }
@@ -74,12 +70,6 @@
                     scope.statsLoaded = scope.personsLoaded && scope.tourneysLoaded;
 
                     scope.loadingTeam = false;
-                }
-
-                function publicationsLoaded(response) {
-                    var publications = response.data;
-                    scope.publications = publications;
-                    scope.loadingNews = false;
                 }
 
                 function setView(index) {

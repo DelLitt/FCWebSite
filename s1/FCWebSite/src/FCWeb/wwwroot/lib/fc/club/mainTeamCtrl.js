@@ -11,7 +11,6 @@
 
         $scope.teamId = configSrv.Current.MainTeamId;
         $scope.tourneysIds = configSrv.Current.MainTeamTourneyIds;
-        $scope.publicationsCount = configSrv.Current.TeamPublicationsCount;
 
         // TODO: Change config to promise
         //scope.mainTeamId = 

@@ -1,16 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FCCore.Caching;
-using FCCore.Abstractions;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.AspNetCore.Builder;
-
-namespace FCCore.Configuration
+﻿namespace FCCore.Configuration
 {
+    using Caching;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.Extensions.Caching.Memory;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+
     public static class StartupMiddleware
     {
         public static void AddCoreConfiguration(this IServiceCollection serviceCollection, IConfigurationRoot configurationRoot)
