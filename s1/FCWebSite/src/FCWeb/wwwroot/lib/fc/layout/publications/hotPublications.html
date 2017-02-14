@@ -1,9 +1,9 @@
 ﻿<div class="col-xs-12">
     <div class="hot-publications">
-        <div ng-show="loadingHP" class="row text-center" style="height: 30px;">
+        <div ng-show="loading" class="row text-center" style="height: 30px;">
             <img ng-src="{{loadingImage}}" />
         </div>
-        <div ng-show="!loadingHP" id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="1000">
+        <div ng-show="!loading" id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="1000">
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="{{$index}}" ng-class="{active: $index === 0}" ng-repeat="item in model"></li>
             </ol>

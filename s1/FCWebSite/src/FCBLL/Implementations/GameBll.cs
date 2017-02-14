@@ -115,7 +115,11 @@
 
         public IEnumerable<Game> GetRoundGames(int roundId)
         {
-            return DalGames.GetRoundGames(roundId);
+            string cacheKey = GetStringMethodKey(nameof(GetRoundGames), roundId);
+
+            IEnumerable<Game> result = Cache.GetOrCreate(cacheKey, () => { return DalGames.GetRoundGames(roundId); });
+
+            return result;
         }
 
         public Game GetGame(int id)
@@ -166,6 +170,15 @@
         }
 
         public IEnumerable<Game> GetTeamPrevNextGames(int teamId, IEnumerable<int> tourneyIds, DateTime date, int daysShift)
+        {
+            string cacheKey = GetStringMethodKey(nameof(GetTeamPrevNextGames), teamId, tourneyIds, date, daysShift);
+
+            IEnumerable<Game> result = Cache.GetOrCreate(cacheKey, () => { return GetTeamPrevNextGamesForce(teamId, tourneyIds, date, daysShift); });
+
+            return result;
+        }
+
+        public IEnumerable<Game> GetTeamPrevNextGamesForce(int teamId, IEnumerable<int> tourneyIds, DateTime date, int daysShift)
         {
             const int gamesCount = 2;
             var games = new List<Game>();

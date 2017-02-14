@@ -96,10 +96,15 @@
             );
         }
 
-        loadData($routeParams.id);
+        loadData($routeParams.id || 0);
 
         function loadData(personId) {
             if (personId < 0) {
+                return;
+            }
+
+            if (personId == 0) {
+                personsSrv.createPerson(personLoaded);
                 return;
             }
 

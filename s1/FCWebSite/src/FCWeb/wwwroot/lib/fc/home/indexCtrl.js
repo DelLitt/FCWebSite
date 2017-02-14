@@ -5,23 +5,17 @@
         .module('fc')
         .controller('indexCtrl', indexCtrl);
 
-    indexCtrl.$inject = ['$scope', 'rankingsSrv', 'publicationsSrv', 'gamesSrv', 'helper', 'configSrv', 'videosSrv', 'imageGallerySrv'];
+    indexCtrl.$inject = ['$scope', 'unionSrv', 'publicationsSrv', 'imageGallerySrv', 'videosSrv', 'helper', 'configSrv', 'notificationManager'];
 
-    function indexCtrl($scope, rankingsSrv, publicationsSrv, gamesSrv, helper, configSrv, videosSrv, imageGallerySrv) {
+    function indexCtrl($scope, unionSrv, publicationsSrv, imageGallerySrv, videosSrv, helper, configSrv, notificationManager) {
+
+        $scope.loadingImage = helper.getLoadingImg();
 
         $scope.publications = {
             loading: true,
             count: 0,
             more: function () {
                 publicationsSrv.loadMainPublicationsPack(configSrv.Current.MainPublicationsMoreCount, this.count, morePublicationsLoaded);
-            }
-        };
-
-        $scope.videos = {
-            loading: true,
-            count: 0,
-            more: function () {
-                videosSrv.loadMainVideosPack(configSrv.Current.MainVideosMoreCount, this.count, moreVideosLoaded);
             }
         };
 
@@ -33,54 +27,59 @@
             }
         };
 
-        $scope.ranking = {
+        $scope.videos = {
             loading: true,
-            loadingImage: helper.getLoadingImg()
+            count: 0,
+            more: function () {
+                videosSrv.loadMainVideosPack(configSrv.Current.MainVideosMoreCount, this.count, moreVideosLoaded);
+            }
+        };
+
+        $scope.ranking = {
+            loading: true,            
         };
 
         loadData();
 
         function loadData() {
-            publicationsSrv.loadMainPublications(configSrv.Current.MainPublicationsCount, mainPublicationsLoaded);
-            videosSrv.loadMainVideos(configSrv.Current.MainVideosCount, mainVideosLoaded);
-            imageGallerySrv.loadMainGalleries(configSrv.Current.MainGalleriesCount, mainGalleriesLoaded);
-            rankingsSrv.loadRankingTable(configSrv.Current.MainTableTourneyId, rankingLoaded);
+            unionSrv.loadMainPagePublications(mainPagePublicationsLoaded);
         }
 
-        function mainPublicationsLoaded(response) {
-            var publications = response.data;
-            var hotCount = 1;
+        function mainPagePublicationsLoaded(response) {
+            var publicationItems = response.data;
+            var publictionsContent = ['publications', 'imageGalleries', 'videos', 'rankingTable'];
 
-            if (angular.isArray(publications) && publications.length > 0) {
-                hotCount = Math.min(configSrv.Current.MainPublicationsHotCount, publications.length);
+            for (var i = 0; i < publictionsContent.length; i++) {
+                var contentName = publictionsContent[i];
+
+                if (!angular.isArray(publicationItems[contentName])) {
+                    alertContentLoadError(contentName);
+                    return;
+                }
+
+                if (publicationItems[contentName].length == 0) {
+                    alertContentLoadWarning(contentName)
+                }
             }
 
-            $scope.publications.hot = publications.length > 0 
-                ? publications.slice(0, hotCount)
-                : [];
+            var hotCount = Math.min(configSrv.Current.MainPublicationsHotCount, publicationItems.publications.length);
 
-            $scope.publications.rows = helper.formRows(publications, configSrv.Current.MainPublicationsRowCount);
-            $scope.publications.count += publications.length;
-        }
+            $scope.publications.hot = publicationItems.publications.slice(0, hotCount);                
+            $scope.publications.rows = helper.formRows(publicationItems.publications, configSrv.Current.MainPublicationsRowCount);
+            $scope.publications.count += publicationItems.publications.length;
+            $scope.publications.loading = false;
 
-        function mainVideosLoaded(response) {
-            var videos = response.data;
+            $scope.galleries.rows = helper.formRows(publicationItems.imageGalleries, configSrv.Current.MainGalleriesRowCount)
+            $scope.galleries.count += publicationItems.imageGalleries.length;
+            $scope.galleries.loading = false;
 
-            $scope.videos.rows = videos.length > 0
-                ? helper.formRows(videos, configSrv.Current.MainVideosRowCount)
-                : [];
+            $scope.videos.rows = helper.formRows(publicationItems.videos, configSrv.Current.MainVideosRowCount)
+            $scope.videos.count += publicationItems.videos.length;
+            $scope.videos.loading = false;
 
-            $scope.videos.count += videos.length;
-        }
-
-        function mainGalleriesLoaded(response) {
-            var galleries = response.data;
-
-            $scope.galleries.rows = galleries.length > 0
-                ? helper.formRows(galleries, configSrv.Current.MainGalleriesRowCount)
-                : [];
-
-            $scope.galleries.count += galleries.length;
+            $scope.ranking.name = publicationItems.rankingTable[0].name;
+            $scope.ranking.rows = publicationItems.rankingTable[0].rows;
+            $scope.ranking.loading = false;
         }
 
         function morePublicationsLoaded(response) {
@@ -131,13 +130,12 @@
             $scope.galleries.count += galleries.length;
         }
 
-        function rankingLoaded(response) {
-            var ranking = response.data;
+        function alertContentLoadWarning(contentName) {
+            notificationManager.displayError("There are no '" + contentName + "' of the main page.");
+        }
 
-            $scope.ranking.name = ranking.name;
-            $scope.ranking.rows = ranking.rows;
-
-            $scope.ranking.loading = false;
+        function alertContentLoadError(contentName) {
+            notificationManager.displayError("An error occured while loading of '" + contentName + "'");
         }
     }
 })();

@@ -2,7 +2,6 @@
   position: relative;
   margin: 10px 0 10px 0;
   background-color: transparent;
-  /*.box-shadow(@fc-shadow);*/
 
   .fc-pane-header {
     font-size: @font-size-h5;
@@ -11,29 +10,27 @@
     line-height: @headings-line-height;
     font-weight: bold;
     margin: 0 !important;
-    padding: 15px 15px 15px 15px;
-    color: @fc-type-dark-header-color;
-    background-color: @background-primary !important;
-
-    .invert {
-      padding: 10px 15px;
-      color: @background-primary;
-      background-color: @fc-soft-primary-color1 !important;
-    }
+    border: solid 1px @brand-primary5;
+    padding: 10px 15px;
+    color: @background-primary;
+    background-color: @fc-soft-primary-color1 !important;
+    border-bottom: none;
 
     h1, h2, h3, h4, h5, h6, h7 {
       text-shadow: none;
-      /*font-weight: bold;*/
       margin: 0;
     }
-
   }
+
+  .fc-pane-header.invert {
+      color: @fc-type-dark-header-color;
+      background-color: @background-primary !important;
+    }
 
   .fc-pane-body {
     background-color: @background-primary;
     color: @gray-good3;
-    /*border-bottom: none;*/
-    padding: 5px 16px 15px 16px;
+    border: solid 1px @brand-primary5;
 
     .pretty-text {
       font-size: 1.2em;
@@ -43,12 +40,10 @@
       background-color: @background-primary;
       padding: 10px;
       border: 1px solid fade(@brand-primary, 25%);
-      margin-top: -15px;
-      
+
       @media (max-width: @screen-xs) {
         padding: 17px;
       }
-
     }
 
     h1, h2, h3, h4, h5, h6, h7 {
@@ -56,11 +51,9 @@
       font-weight: bold;
       color: @fc-type-dark-header-color;
     }
-
     /*label {
       color: lighten(fade(@brand-primary, 75%), 17.5%);
     }*/
-
     h1.header, h2.header, h3.header, h4.header, h5.header, h6.header, h7.header {
       text-shadow: none;
       padding: 10px 25px;
@@ -74,6 +67,10 @@
     .fc-action:focus {
       color: @brand-primary3;
     }
+  }
+
+  .fc-pane-body.fc-pane-form-pad {
+    padding: 11px;
   }
 
   a.fc-pane-action-link,
@@ -102,20 +99,30 @@
   }
 }
 
+.fc-pane.fc-pane-thread-fix {
+  .fc-pane-body {
+    border-bottom: none;
+  }
+
+  .fc-pane-form {
+    border-bottom: none
+  }
+}
+
 .fc-pane.fc-pane-dark {
-  background-color: @brand-primary;
   margin: 0 0 15px 0;
-  .fc-light-border();
-  .box-shadow(@fc-shadow);
-  .fc-grad();
+  background: transparent;
+  /*.box-shadow(@fc-shadow);*/
 
   .fc-pane-header {
-    color: @background-primary;
-    background: transparent !important;
+    color: @fc-soft-primary-color1;
+    background-color: @background-primary !important;
   }
 
   .fc-pane-body {
-    background: transparent;
+    background-color: @brand-primary;
+    .fc-grad();
+    .fc-light-border();
 
     h1.header, h2.header, h3.header, h4.header, h5.header, h6.header, h7.header {
       color: @background-primary;

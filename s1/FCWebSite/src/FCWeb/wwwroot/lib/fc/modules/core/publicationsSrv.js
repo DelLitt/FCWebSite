@@ -59,6 +59,19 @@
             });
         }
 
+        this.createPublication = function (success, failure) {
+            apiSrv.get('/api/publications/create',
+                null,
+                success,
+                function (response) {
+                    if (failure != null) {
+                        failure(response);
+                    }
+
+                    publicationsLoadFailed(response);
+                });
+        }
+
         this.loadPublicationByUrlKey = function (urlKey, success, failure) {
             apiSrv.get('/api/publications/' + urlKey,
                 null,

@@ -37,17 +37,17 @@
             if (Array.isArray(error)) {
                 error.forEach(function (error) {
                     //toastr.error(err);
-                    $log.info(error);
+                    $log.error(error);
                 });
             } else {
                 //toastr.error(error);
-                $log.info(error);
+                $log.error(error);
             }
         }
 
         function displayWarning(message) {
             //toastr.warning(message);
-            $log.info(message);
+            $log.warning(message);
         }
 
         function displayInfo(message) {

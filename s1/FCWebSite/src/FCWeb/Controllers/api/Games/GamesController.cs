@@ -10,12 +10,11 @@
     using FCCore.Model;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using ViewModels;
     using ViewModels.Game;
+
     [Route("api/[controller]")]
     public class GamesController : Controller
     {
-        //[FromServices]
         private IGameBll gameBll { get; set; }
 
         public GamesController(IGameBll gameBll)
@@ -23,13 +22,24 @@
             this.gameBll = gameBll;
         }
 
-        // GET api/games/5
         [HttpGet("{id}")]
         public GameViewModel Get(int id)
         {
             if (User.Identity.IsAuthenticated
-                && (User.IsInRole("admin") || User.IsInRole("press"))
-                && id == 0)
+                && (User.IsInRole("admin") || User.IsInRole("press")))
+            {
+                return GetForce(id);
+            }
+
+            string cacheKey = gameBll.ObjectKeyGenerator.GetStringKey(this.GetType().FullName + nameof(Get), id);
+            GameViewModel result = gameBll.Cache.GetOrCreate(cacheKey, () => { return GetForce(id); });
+
+            return result;
+        }
+
+        private GameViewModel GetForce(int id)
+        {
+            if (id == 0)
             {
                 return new GameViewModel();
             }
@@ -49,6 +59,7 @@
         }
 
         [HttpGet("{id:int}/{mode}")]
+        [ResponseCache(VaryByQueryKeys = new string[] { "id", "mode", "tourneyIds" }, Duration = 600)]
         public IEnumerable<GameQuickInfoViewModel> Get(int id, string mode, [FromQuery] int[] tourneyIds)
         {
             gameBll.FillTeams = true;

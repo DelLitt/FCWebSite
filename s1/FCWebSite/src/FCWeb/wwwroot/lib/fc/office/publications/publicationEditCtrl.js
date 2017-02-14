@@ -41,10 +41,15 @@
                 });
         }
 
-        loadData($routeParams.id);
+        loadData($routeParams.id || 0);
 
         function loadData(publicationId) {
             if (publicationId < 0) {
+                return;
+            }
+
+            if (publicationId == 0) {
+                publicationsSrv.createPublication(publicationLoaded);
                 return;
             }
 

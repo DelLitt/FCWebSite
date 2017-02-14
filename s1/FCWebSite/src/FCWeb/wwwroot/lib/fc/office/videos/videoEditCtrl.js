@@ -25,7 +25,7 @@
 
         $scope.videoId = parseInt($routeParams.id);
 
-        loadData($scope.videoId);
+        loadData($scope.videoId || 0);
 
         function loadData(videoId) {
             if (!angular.isNumber(videoId) || videoId < 0) {
@@ -34,6 +34,11 @@
                 };
                 $scope.expanded = false;
 
+                return;
+            }
+
+            if (videoId == 0) {
+                videosSrv.createVideo(videoLoaded);
                 return;
             }
 

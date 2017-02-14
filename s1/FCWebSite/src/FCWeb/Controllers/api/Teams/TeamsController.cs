@@ -15,12 +15,28 @@
     [Route("api/[controller]")]
     public class TeamsController : Controller
     {
-        //[FromServices]
         private ITeamBll teamBll { get; set; }
 
         public TeamsController(ITeamBll teamBll)
         {
             this.teamBll = teamBll;
+        }
+
+        [HttpGet("create/{mode}")]
+        [Authorize(Roles = "admin,press")]
+        public TeamViewModel Get(bool mode)
+        {
+            if(!mode)
+            {
+                Response.StatusCode =  (int)HttpStatusCode.MethodNotAllowed;
+            }
+
+            //if (User.Identity.IsAuthenticated
+            //    && (User.IsInRole("admin") || User.IsInRole("press")))
+            //{
+            //}
+
+            return new Team() { teamTypeId = 1 }.ToViewModel();
         }
 
         [Authorize(Roles = "admin,press")]
@@ -32,30 +48,23 @@
             return teamBll.GetTeams().ToViewModel();
         }
 
-        // GET: api/values/latest
-        [HttpGet("search")]
-        public IEnumerable<TeamViewModel> Get([FromQuery] string txt)
-        {
-            teamBll.FillTeamType = true;
-            teamBll.FillCities = true;
-
-            return teamBll.SearchByDefault(txt).ToViewModel();
-        }
-
         [HttpGet("{id}")]
         public TeamViewModel Get(int id)
         {
             if (User.Identity.IsAuthenticated
-                && (User.IsInRole("admin") || User.IsInRole("press"))
-                && id == 0)
+                && (User.IsInRole("admin") || User.IsInRole("press")))
             {
-                return new Team()
-                {
-                    teamTypeId = 1
-                }
-                .ToViewModel();
+                return GetForce(id);
             }
-            
+
+            string cacheKey = teamBll.ObjectKeyGenerator.GetStringKey(this.GetType().FullName + nameof(Get), id);
+            TeamViewModel result = teamBll.Cache.GetOrCreate(cacheKey, () => { return GetForce(id); });
+
+            return result;
+        }
+
+        private TeamViewModel GetForce(int id)
+        {
             teamBll.FillCities = true;
             teamBll.FillMainTourney = true;
             teamBll.FillStadium = true;
@@ -66,7 +75,15 @@
                           .FillCustomCoaches();
         }
 
-        // POST api/values
+        [HttpGet("search")]
+        public IEnumerable<TeamViewModel> Get([FromQuery] string txt)
+        {
+            teamBll.FillTeamType = true;
+            teamBll.FillCities = true;
+
+            return teamBll.SearchByDefault(txt).ToViewModel();
+        }
+
         [HttpPost]
         [Authorize(Roles = "admin,press")]
         public void Post([FromBody]TeamViewModel teamView)
@@ -92,7 +109,6 @@
             }
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         [Authorize(Roles = "admin,press")]
         public void Put(int id, [FromBody]TeamViewModel teamView)

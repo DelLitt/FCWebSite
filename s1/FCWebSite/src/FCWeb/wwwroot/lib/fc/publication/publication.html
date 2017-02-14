@@ -7,15 +7,15 @@
         </div>
         <div class="row" ng-show="!loadingPublication">
             <div class="col-xs-12">
-                <div class="fc-pane">
+                <div class="fc-pane fc-pane-thread-fix">
                     <div class="fc-pane-header">
-                        <h4 class="invert">{{publication.title}}</h4>
+                        <h4>{{publication.title}}</h4>
                     </div>
-                    <div class="fc-pane-body">
+                    <div class="fc-pane-body fc-pane-form-pad">
                         <div class="fc-pane-form fc-publication">
-                            <h5 ng-show="publication.header.length">{{publication.header}}</h5>
-                            <div class="fc-publication-lead" ng-show="publication.lead.length" ng-bind-html="publication.lead"></div>
+                            <h5 ng-show="publication.header.length">{{publication.header}}</h5>                            
                             <img class="img-responsive img-rounded pull-left fc-publication-main-img" ng-show="publication.showImageInContent" ng-src="{{publication.image}}" title="{{publication.title}}" alt="{{publication.title}}" />                            
+                            <div class="fc-publication-lead" ng-show="publication.lead.length" ng-bind-html="publication.lead"></div>
                             <div ng-bind-html="publication.contentHTML"></div>
                             <div class="row" ng-show="showVideo || showGallery">
                                 <div class="col-xs-12">

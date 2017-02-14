@@ -10,7 +10,21 @@
     function teamsSrv($rootScope, helper, apiSrv, notificationManager, configSrv) {
 
         this.loadTeam = function (id, success, failure) {
-            apiSrv.get('/api/teams/' + id, null,
+            apiSrv.get('/api/teams/' + id,
+                null,
+                success,
+                function (response) {
+                    if (angular.isFunction(failure)) {
+                        failure(response);
+                    }
+
+                    teamsLoadFail(response);
+                });
+        }
+
+        this.createTeam = function (success, failure) {
+            apiSrv.get('/api/teams/create',
+                null,
                 success,
                 function (response) {
                     if (angular.isFunction(failure)) {

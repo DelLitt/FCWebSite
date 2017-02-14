@@ -1,6 +1,5 @@
 ﻿namespace FCBLL.Implementations
 {
-    using System;
     using System.Collections.Generic;
     using FCCore.Abstractions.Bll;
     using FCCore.Abstractions.Dal;
@@ -8,7 +7,7 @@
     using FCCore.Helpers;
     using FCCore.Model;
 
-    public class VideoBll : IVideoBll
+    public class VideoBll : FCBllBase, IVideoBll
     {
         private IVideoDal dalVideo;
         private IVideoDal DALVideo
@@ -31,13 +30,25 @@
 
         public Video GetVideo(string urlKey)
         {
-            throw new NotImplementedException();
+            string cacheKey = GetStringKey(nameof(GetVideo), urlKey);
+
+            Video result = Cache.GetOrCreate(cacheKey, () => { return DALVideo.GetVideo(urlKey); });
+
+            return result;
         }
 
         public IEnumerable<Video> GetMainVideos(int count, int offset)
         {
-            short visibility = (short)(MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News);
+            string cacheKey = GetStringMethodKey(nameof(GetMainVideos), count, offset);
 
+            IEnumerable<Video> result = Cache.GetOrCreate(cacheKey, () => { return GetMainVideosForce(count, offset); });
+
+            return result;
+        }
+
+        public IEnumerable<Video> GetMainVideosForce(int count, int offset)
+        {
+            short visibility = (short)(MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News);
             return DALVideo.GetLatestVideos(count, offset, visibility);
         }
 
@@ -48,8 +59,16 @@
 
         public IEnumerable<Video> GetLatestVideos(int count, int offset, IEnumerable<string> groups)
         {
-            var visibility = (short)VisibilityHelper.VisibilityFromStrings(groups);
+            string cacheKey = GetStringKey(nameof(GetLatestVideos), count, offset, groups);
 
+            IEnumerable<Video> result = Cache.GetOrCreate(cacheKey, () => { return GetLatestVideosForce(count, offset, groups); });
+
+            return result; ;
+        }
+
+        public IEnumerable<Video> GetLatestVideosForce(int count, int offset, IEnumerable<string> groups)
+        {
+            var visibility = (short)VisibilityHelper.VisibilityFromStrings(groups);
             return DALVideo.GetLatestVideos(count, offset, visibility);
         }
 

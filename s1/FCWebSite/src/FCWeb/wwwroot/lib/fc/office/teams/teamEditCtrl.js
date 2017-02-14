@@ -77,10 +77,15 @@
             );
         }
 
-        loadData($routeParams.id);
+        loadData($routeParams.id || 0);
 
         function loadData(teamId) {
             if (teamId < 0) {
+                return;
+            }
+
+            if (teamId == 0) {
+                teamsSrv.createTeam(teamLoaded);
                 return;
             }
 

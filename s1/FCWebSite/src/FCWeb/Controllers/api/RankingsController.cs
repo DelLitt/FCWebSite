@@ -14,11 +14,8 @@
     [Route("api/[controller]")]
     public class RankingsController : Controller
     {
-        //[FromServices]
         private ITableRecordBll tableRecordBll { get; set; }
-        //[FromServices]
         private ITourneyBll tourneyBll { get; set; }
-        //[FromServices]
         private IRanking ranking { get; set; }
 
         public RankingsController(ITableRecordBll tableRecordBll, ITourneyBll tourneyBll, IRanking ranking)
@@ -28,7 +25,6 @@
             this.ranking = ranking;
         }
 
-        // GET api/values/5
         [HttpGet("{id:int}")]
         public RankingTableViewModel Get(int id)
         {
@@ -46,7 +42,6 @@
             return tableRecordBll.GetTourneyTable(id).ToViewModel(tourneyName);
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         [Authorize(Roles = "admin,press")]
         public RankingTableViewModel Put(int id)
@@ -58,10 +53,6 @@
                 Response.StatusCode = (int)HttpStatusCode.NotFound;
                 return null;
             }
-
-            string tourneyName = tourney?.Name ?? string.Empty;
-
-            //ranking = MainCfg.ServiceProvider.GetService<IRanking>();
 
             IEnumerable<TableRecord> tableRecords = ranking.CalculateTable(id);
 

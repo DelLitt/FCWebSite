@@ -7701,8 +7701,7 @@ a.text-prim5-color:focus {
 }
 .preview-item {
   border: 1px solid #ACCCFF;
-  -webkit-box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
-  box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
+  /*.box-shadow(@fc-shadow);*/
   padding: 0;
   position: relative;
 }
@@ -7765,6 +7764,26 @@ a.text-prim5-color:focus {
   background-repeat: no-repeat;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff002b6e', endColorstr='#66002b6e', GradientType=0);
 }
+.fc-pane.fc-pane-dark .caption {
+  background: rgba(255, 255, 255, 0.93);
+  color: rgba(0, 43, 110, 0.9);
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.95) 40%, #ffffff);
+  background: -o-linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.95) 40%, #ffffff);
+  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.95) 40%, #ffffff);
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ccffffff', endColorstr='#NaNffffff', GradientType=0);
+}
+.fc-pane.fc-pane-dark .caption a {
+  color: rgba(0, 43, 110, 0.9);
+}
+.fc-pane.fc-pane-dark .caption a small {
+  color: #1771FF;
+}
+.fc-pane.fc-pane-dark .caption a:hover {
+  -webkit-transition: 0.2s;
+  -webkit-transform: translate(5px, 0);
+  /*background-color: @brand-primary;*/
+}
 .img-hover-scale {
   overflow: hidden;
 }
@@ -7810,7 +7829,6 @@ a.text-prim5-color:focus {
   position: relative;
   margin: 10px 0 10px 0;
   background-color: transparent;
-  /*.box-shadow(@fc-shadow);*/
 }
 .fc-pane .fc-pane-header {
   font-size: 14px;
@@ -7819,14 +7837,11 @@ a.text-prim5-color:focus {
   line-height: 1.1;
   font-weight: bold;
   margin: 0 !important;
-  padding: 15px 15px 15px 15px;
-  color: rgba(0, 43, 110, 0.9);
-  background-color: #fff !important;
-}
-.fc-pane .fc-pane-header .invert {
+  border: solid 1px #ACCCFF;
   padding: 10px 15px;
   color: #fff;
   background-color: rgba(0, 43, 110, 0.9) !important;
+  border-bottom: none;
 }
 .fc-pane .fc-pane-header h1,
 .fc-pane .fc-pane-header h2,
@@ -7836,14 +7851,16 @@ a.text-prim5-color:focus {
 .fc-pane .fc-pane-header h6,
 .fc-pane .fc-pane-header h7 {
   text-shadow: none;
-  /*font-weight: bold;*/
   margin: 0;
+}
+.fc-pane .fc-pane-header.invert {
+  color: rgba(0, 43, 110, 0.9);
+  background-color: #fff !important;
 }
 .fc-pane .fc-pane-body {
   background-color: #fff;
   color: #345;
-  /*border-bottom: none;*/
-  padding: 5px 16px 15px 16px;
+  border: solid 1px #ACCCFF;
   /*label {
       color: lighten(fade(@brand-primary, 75%), 17.5%);
     }*/
@@ -7855,7 +7872,6 @@ a.text-prim5-color:focus {
   background-color: #fff;
   padding: 10px;
   border: 1px solid rgba(0, 43, 110, 0.25);
-  margin-top: -15px;
 }
 @media (max-width: 480px) {
   .fc-pane .fc-pane-body .fc-pane-form {
@@ -7890,6 +7906,9 @@ a.text-prim5-color:focus {
 .fc-pane .fc-pane-body .fc-action:focus {
   color: #1771FF;
 }
+.fc-pane .fc-pane-body.fc-pane-form-pad {
+  padding: 11px;
+}
 .fc-pane a.fc-pane-action-link,
 .fc-pane a.fc-pane-action-link:hover,
 .fc-pane a.fc-pane-action-link:active {
@@ -7912,24 +7931,29 @@ a.text-prim5-color:focus {
   /*bottom: -@fc-threads-height;*/
   position: relative;
 }
+.fc-pane.fc-pane-thread-fix .fc-pane-body {
+  border-bottom: none;
+}
+.fc-pane.fc-pane-thread-fix .fc-pane-form {
+  border-bottom: none;
+}
 .fc-pane.fc-pane-dark {
-  background-color: #002B6E;
   margin: 0 0 15px 0;
-  border: 1px solid #ACCCFF;
-  -webkit-box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
-  box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
+  background: transparent;
+  /*.box-shadow(@fc-shadow);*/
+}
+.fc-pane.fc-pane-dark .fc-pane-header {
+  color: rgba(0, 43, 110, 0.9);
+  background-color: #fff !important;
+}
+.fc-pane.fc-pane-dark .fc-pane-body {
+  background-color: #002B6E;
   background: -webkit-linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
   background: -o-linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
   background: linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
   background-repeat: no-repeat;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6002b6e', endColorstr='#cc002b6e', GradientType=0);
-}
-.fc-pane.fc-pane-dark .fc-pane-header {
-  color: #fff;
-  background: transparent !important;
-}
-.fc-pane.fc-pane-dark .fc-pane-body {
-  background: transparent;
+  border: 1px solid #ACCCFF;
 }
 .fc-pane.fc-pane-dark .fc-pane-body h1.header,
 .fc-pane.fc-pane-dark .fc-pane-body h2.header,

@@ -15,7 +15,6 @@
     [Route("api/games/[controller]")]
     public class QuickInfoController : Controller
     {
-        //[FromServices]
         private IGameBll gameBll { get; set; }
 
         public QuickInfoController(IGameBll gameBll)
@@ -24,6 +23,7 @@
         }
 
         [HttpGet("{id}")]
+        [ResponseCache(VaryByQueryKeys = new string[] { "id" }, Duration = 300)]
         public GameQuickInfoGroupViewModel Get(int id)
         {
             IEnumerable<int> tourneyIds;
@@ -34,8 +34,8 @@
             gameBll.FillStadiums = true;
             gameBll.FillTourneys = true;
 
+            // TODO: Try to avoid hardcoding here
             // hardcoded only main and reserve team
-
             if (id == MainCfg.ReserveTeamId)
             {
                 tourneyIds = MainCfg.ReserveTeamTourneyIds;
@@ -43,7 +43,7 @@
             }
             else
             {
-                // if it is not reserve, then it is can be only main
+                // if it is not reserve, then it can be only main
                 tourneyIds = MainCfg.MainTeamTourneyIds;
                 actionTitle = "SHOW_QUICK_GAMES_TEAM_1";
             }
@@ -66,7 +66,6 @@
             return gameBll.GetGamesByTourneys(tourneyIds).ToViewModel();
         }
 
-        // POST api/values
         [HttpPost]
         [Authorize(Roles = "admin,press")]
         public GameViewModel Post([FromBody]GameViewModel gameView)
@@ -80,7 +79,6 @@
             return SaveGame(gameView);
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         [Authorize(Roles = "admin,press")]
         public GameViewModel Put(int id, [FromBody]GameViewModel gameView)
@@ -100,7 +98,6 @@
             return SaveGame(gameView);
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin,press")]
         public int Delete(int id)

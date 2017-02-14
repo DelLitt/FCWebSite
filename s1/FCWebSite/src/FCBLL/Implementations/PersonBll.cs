@@ -147,7 +147,11 @@
 
         public IEnumerable<Person> GetPersons(IEnumerable<int> personsIds)
         {
-            return DalPerson.GetPersons(personsIds);
+            string cacheKey = GetStringKey(nameof(GetPersons), personsIds);
+
+            IEnumerable<Person> result = Cache.GetOrCreate(cacheKey, () => { return DalPerson.GetPersons(personsIds); });
+
+            return result;
         }
 
         public IEnumerable<Person> GetPersons()

@@ -7,7 +7,7 @@
     using FCCore.Helpers;
     using FCCore.Model;
 
-    public sealed class PublicationBll : IPublicationBll
+    public sealed class PublicationBll : FCBllBase, IPublicationBll
     {
         private IPublicationDal dalPublication;
         private IPublicationDal DALPublication
@@ -30,13 +30,25 @@
 
         public Publication GetPublication(string urlKey)
         {
-            return DALPublication.GetPublication(urlKey);
+            string cacheKey = GetStringKey(nameof(GetPublication), urlKey);
+
+            Publication result = Cache.GetOrCreate(cacheKey, () => { return DALPublication.GetPublication(urlKey); });
+
+            return result;
         }
 
         public IEnumerable<Publication> GetMainPublications(int count, int offset)
         {
-            short visibility = (short)(MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News);
+            string cacheKey = GetStringMethodKey(nameof(GetMainPublications), count, offset);
 
+            IEnumerable<Publication> result = Cache.GetOrCreate(cacheKey, () => { return GetMainPublicationsForce(count, offset); });
+
+            return result;
+        }
+
+        public IEnumerable<Publication> GetMainPublicationsForce(int count, int offset)
+        {
+            short visibility = (short)(MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News);
             return DALPublication.GetLatestPublications(count, offset, visibility);
         }
 
@@ -46,6 +58,15 @@
         }
 
         public IEnumerable<Publication> GetLatestPublications(int count, int offset, IEnumerable<string> groups)
+        {
+            string cacheKey = GetStringKey(nameof(GetLatestPublications), count, offset, groups);
+
+            IEnumerable<Publication> result = Cache.GetOrCreate(cacheKey, () => { return GetLatestPublicationsForce(count, offset, groups); });
+
+            return result;
+        }
+
+        public IEnumerable<Publication> GetLatestPublicationsForce(int count, int offset, IEnumerable<string> groups)
         {
             var visibility = (short)VisibilityHelper.VisibilityFromStrings(groups);
 

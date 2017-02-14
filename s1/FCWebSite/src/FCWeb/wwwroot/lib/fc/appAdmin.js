@@ -17,6 +17,10 @@
                 templateUrl: "lib/fc/office/publications/publicationsList.html",
                 controller: "publicationsListCtrl"
             })
+            .when("/office/publications/create/", {
+                templateUrl: "lib/fc/office/publications/publicationEdit.html",
+                controller: "publicationEditCtrl"
+            })
             .when("/office/publications/edit/:id", {
                 templateUrl: "lib/fc/office/publications/publicationEdit.html",
                 controller: "publicationEditCtrl"
@@ -25,17 +29,25 @@
                 templateUrl: "lib/fc/office/videos/videosList.html",
                 controller: "videosListCtrl"
             })
+            .when("/office/videos/create/", {
+                templateUrl: "lib/fc/office/videos/videoEdit.html",
+                controller: "videoEditCtrl"
+            })
             .when("/office/videos/edit/:id", {
                 templateUrl: "lib/fc/office/videos/videoEdit.html",
                 controller: "videoEditCtrl"
             })
-            .when("/office/galleries/edit/:id", {
-                templateUrl: "lib/fc/office/galleries/imageGalleryEdit.html",
-                controller: "imageGalleryEditCtrl"
-            })
             .when("/office/galleries/", {
                 templateUrl: "lib/fc/office/galleries/imageGalleriesList.html",
                 controller: "imageGalleriesListCtrl"
+            })
+            .when("/office/galleries/create/", {
+                templateUrl: "lib/fc/office/galleries/imageGalleryEdit.html",
+                controller: "imageGalleryEditCtrl"
+            })
+            .when("/office/galleries/edit/:id", {
+                templateUrl: "lib/fc/office/galleries/imageGalleryEdit.html",
+                controller: "imageGalleryEditCtrl"
             })
             .when("/office/persons/edit/:id", {
                 templateUrl: "lib/fc/office/persons/personEdit.html",

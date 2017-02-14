@@ -55,6 +55,19 @@
                 });
         }
 
+        this.createVideo = function (success, failure) {
+            apiSrv.get('/api/videos/create',
+                null,
+                success,
+                function (response) {
+                    if (failure != null) {
+                        failure(response);
+                    }
+
+                    videosLoadFailed(response);
+                });
+        }
+
         this.loadVideoByUrlKey = function (urlKey, success, failure) {
             apiSrv.get('/api/videos/' + urlKey,
                 null,

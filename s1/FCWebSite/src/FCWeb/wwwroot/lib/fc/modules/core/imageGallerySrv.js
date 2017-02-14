@@ -55,6 +55,32 @@
                 });
         }
 
+        this.createGallery = function (success, failure) {
+            apiSrv.get('/api/galleries/create',
+                null,
+                success,
+                function (response) {
+                    if (failure != null) {
+                        failure(response);
+                    }
+
+                    galleriesLoadFailed(response);
+                });
+        }
+
+        this.createVideo = function (success, failure) {
+            apiSrv.get('/api/videos/create',
+                null,
+                success,
+                function (response) {
+                    if (failure != null) {
+                        failure(response);
+                    }
+
+                    videosLoadFailed(response);
+                });
+        }
+
         this.loadGalleryByUrlKey = function (urlKey, success, failure) {
             apiSrv.get('/api/galleries/' + urlKey,
                 null,

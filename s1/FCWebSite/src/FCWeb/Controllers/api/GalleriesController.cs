@@ -1,6 +1,4 @@
-﻿// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace FCWeb.Controllers.Api
+﻿namespace FCWeb.Controllers.Api
 {
     using System;
     using System.Collections.Generic;
@@ -21,7 +19,6 @@ namespace FCWeb.Controllers.Api
     public class GalleriesController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
-        //[FromServices]
         private IImageGalleryBll imageGalleryBll { get; set; }
 
         public GalleriesController(UserManager<ApplicationUser> userManager, IImageGalleryBll imageGalleryBll)
@@ -30,36 +27,45 @@ namespace FCWeb.Controllers.Api
             this.imageGalleryBll = imageGalleryBll;
         }
 
+        [HttpGet("create")]
+        [Authorize(Roles = "admin,press")]
+        public ImageGalleryViewModel Get()
+        {
+            //if (User.Identity.IsAuthenticated
+            //    && (User.IsInRole("admin") || User.IsInRole("press")))
+            //{
+            //}
+
+            DateTime utcNow = DateTime.UtcNow;
+
+            return new ImageGallery()
+            {
+                DateDisplayed = utcNow,
+                DateChanged = utcNow,
+                DateCreated = utcNow,
+                Author = MainCfg.DefaultAuthor,
+                Enable = true,
+                Visibility = MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News
+            }
+            .ToViewModel();
+        }
+
         [HttpGet("{id:int}")]
+        [Authorize(Roles = "admin,press")]
         public ImageGalleryViewModel Get(int id)
         {
-            if (User.Identity.IsAuthenticated
-                && (User.IsInRole("admin") || User.IsInRole("press"))
-                && id == 0)
-            {
-                DateTime utcNow = DateTime.UtcNow;
-
-                return new ImageGallery()
-                {
-                    DateDisplayed = utcNow,
-                    DateChanged = utcNow,
-                    DateCreated = utcNow,
-                    Author = MainCfg.DefaultAuthor,
-                    Enable = true,
-                    Visibility = MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News
-                }.ToViewModel();
-            }
-
             return imageGalleryBll.GetImageGallery(id).ToViewModel();
         }
 
         [HttpGet("{urlKey}")]
+        [ResponseCache(VaryByQueryKeys = new string[] { "urlKey" }, Duration = 300)]
         public ImageGalleryViewModel Get(string urlKey)
         {
             return imageGalleryBll.GetImageGallery(urlKey).ToViewModel();
         }
 
         [HttpGet("{count:range(0,50)}/{offset:int}")]
+        [ResponseCache(VaryByQueryKeys = new string[] { "count", "offset", "groups" }, Duration = 180)]
         public IEnumerable<ImageGalleryShortViewModel> Get(int count, int offset, [FromQuery] string[] groups)
         {
             return imageGalleryBll.GetLatestImageGalleries(count, offset, groups).ToShortViewModel();
@@ -76,7 +82,6 @@ namespace FCWeb.Controllers.Api
             return imageGalleryBll.SearchByDefault(txt).ToShortViewModel();
         }
 
-        // POST api/values
         [HttpPost]
         [Authorize(Roles = "admin,press")]
         public void Post([FromBody]ImageGalleryViewModel imageGalleryView)
@@ -111,7 +116,6 @@ namespace FCWeb.Controllers.Api
             }
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         [Authorize(Roles = "admin,press")]
         public void Put(int id, [FromBody]ImageGalleryViewModel imageGalleryView)

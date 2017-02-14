@@ -18,7 +18,7 @@
             link: function link(scope, element, attrs) {
                 
                 scope.load = load;
-                scope.loadingHP = true;
+                scope.loading = true;
                 scope.loadingImage = helper.getLoadingImg();
 
                 // watch initialId
@@ -34,7 +34,7 @@
                 function load(index) {
                     scope.selectedIndex = index;
                     scope.main = scope.model[index];
-                    scope.loadingHP = false;
+                    scope.loading = false;
                 }
             },
             templateUrl: '/lib/fc/layout/publications/hotPublications.html'

@@ -3,30 +3,34 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Net;
+    using System.Reflection;
+    using Core;
     using Core.Extensions;
     using FCCore.Abstractions.Bll;
     using FCCore.Common;
     using FCCore.Model;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
     using ViewModels;
 
     [Route("api/games/[controller]")]
     public class RoundController : Controller
     {
-        //[FromServices]
         private IGameBll gameBll { get; set; }
-        //[FromServices]
         private IRoundBll roundBll { get; set; }
+        private ILogger<RoundController> logger { get; set; }
 
-        public RoundController(IGameBll gameBll, IRoundBll roundBll)
+        public RoundController(IGameBll gameBll, IRoundBll roundBll, ILogger<RoundController> logger)
         {
             this.gameBll = gameBll;
             this.roundBll = roundBll;
+            this.logger = logger;
         }
 
-        // GET api/values/5
         // /api/games/round/32/mode/1
         [HttpGet("{id:int}/mode/{mode:int}")]
+        [ResponseCache(VaryByQueryKeys = new string[] { "id", "mode" }, Duration = 300)]
         public RoundInfoViewModel Get(int id, int mode)
         {
             if (mode == 1)
@@ -40,43 +44,32 @@
                 return roundViews.FirstOrDefault();
             }
 
+            Response.StatusCode = (int)HttpStatusCode.NotFound;
+            logger.LogWarning("Round info of the game does not support mode={0}!", mode);
             return null;
         }
 
-        // GET api/values/5
         // /api/games/round/team/3/slider?tourneyIds=8&tourneyIds=10
         [HttpGet("team/{teamId}/slider")]
+        [ResponseCache(VaryByQueryKeys = new string[] { "teamId", "tourneyIds" }, Duration = 600)]
         public IEnumerable<RoundSliderViewModel> Get(int teamId, [FromQuery] int[] tourneyIds)
         {
-            var actualDate = new DateTime(2015, 9, 10);
+            // TODO: Change to current date
+            var date = new DateTime(2015, 9, 10);
+            var actualDate = new DateTime(date.Year, date.Month, date.Day, date.Hour, 0, 0);
 
-            roundBll.FillTourneys = true;
-            IEnumerable<int> roundIds = roundBll.GetRoundIdsOfTourneys(tourneyIds, teamId);
+            logger.LogTrace("Getting schedule. Tournaments count: {0}.", tourneyIds.Count());
 
-            if (Guard.IsEmptyIEnumerable(roundIds)) { return new RoundSliderViewModel[0]; }
+            MethodInfo methodInfo = typeof(RoundsSliderHelper)
+                                    .GetTypeInfo()
+                                    .GetMethod(nameof(RoundsSliderHelper.GetRoundsSlider));
 
-            gameBll.FillTourneys = true;
-            gameBll.FillRounds = true;
-            gameBll.FillTeams = true;
-            IEnumerable<Game> roundGames = gameBll.GetTeamActualRoundGames(teamId, roundIds, actualDate);
+            string cacheKey = roundBll.ObjectKeyGenerator.GetStringKey(methodInfo, teamId, tourneyIds, actualDate);
 
-            if (Guard.IsEmptyIEnumerable(roundGames)) { return new RoundSliderViewModel[0]; }
+            IEnumerable<RoundSliderViewModel> result =
+                roundBll.Cache.GetOrCreate(cacheKey, () => { return RoundsSliderHelper.GetRoundsSlider(teamId, tourneyIds, actualDate); });
 
-            var roundsSlider = new List<RoundSliderViewModel>();
-
-            RoundInfoViewModel roundView = roundGames.ToRoundInfoViewModel().FirstOrDefault();
-
-            foreach (int roundId in roundIds)
-            {
-                roundsSlider.Add(new RoundSliderViewModel()
-                {
-                    roundId = roundId,
-                    current = roundView?.roundId == roundId,
-                    roundGames = roundView?.roundId == roundId ? roundView : null
-                });
-            }
-
-            return roundsSlider;
+            return result;
         }
     }
 }

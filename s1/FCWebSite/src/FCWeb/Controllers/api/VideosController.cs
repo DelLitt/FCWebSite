@@ -1,6 +1,4 @@
-﻿// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace FCWeb.Controllers.Api
+﻿namespace FCWeb.Controllers.Api
 {
     using System;
     using System.Collections.Generic;
@@ -19,7 +17,6 @@ namespace FCWeb.Controllers.Api
     public class VideosController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
-        //[FromServices]
         private IVideoBll videoBll { get; set; }
 
         public VideosController(UserManager<ApplicationUser> userManager, IVideoBll videoBll)
@@ -28,36 +25,44 @@ namespace FCWeb.Controllers.Api
             this.videoBll = videoBll;
         }
 
+        [HttpGet("create")]
+        [Authorize(Roles = "admin,press")]
+        public VideoViewModel Get()
+        {
+            //if (User.Identity.IsAuthenticated
+            //    && (User.IsInRole("admin") || User.IsInRole("press")))
+            //{
+            //}
+
+            DateTime utcNow = DateTime.UtcNow;
+
+            return new VideoViewModel()
+            {
+                dateDisplayed = utcNow,
+                dateChanged = utcNow,
+                dateCreated = utcNow,
+                author = MainCfg.DefaultAuthor,
+                enable = true,
+                visibility = MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News
+            };
+        }
+
         [HttpGet("{id:int}")]
+        [Authorize(Roles = "admin,press")]
         public VideoViewModel Get(int id)
         {
-            if (User.Identity.IsAuthenticated
-                && (User.IsInRole("admin") || User.IsInRole("press"))
-                && id == 0)
-            {
-                DateTime utcNow = DateTime.UtcNow;
-
-                return new VideoViewModel()
-                {
-                    dateDisplayed = utcNow,
-                    dateChanged = utcNow,
-                    dateCreated = utcNow,
-                    author = MainCfg.DefaultAuthor,
-                    enable = true,
-                    visibility = MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News
-                };
-            }
-
             return videoBll.GetVideo(id).ToViewModel();
         }
 
         [HttpGet("{urlKey}")]
+        [ResponseCache(VaryByQueryKeys = new string[] { "urlKey" }, Duration = 300)]
         public VideoViewModel Get(string urlKey)
         {
             return videoBll.GetVideo(urlKey).ToViewModel();
         }
 
         [HttpGet("{count:range(0,50)}/{offset:int}")]
+        [ResponseCache(VaryByQueryKeys = new string[] { "count", "offset", "groups" }, Duration = 180)]
         public IEnumerable<VideoShortViewModel> Get(int count, int offset, [FromQuery] string[] groups)
         {
             return videoBll.GetLatestVideos(count, offset, groups).ToShortViewModel();

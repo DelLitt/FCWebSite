@@ -1,6 +1,4 @@
-﻿// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace FCWeb.Controllers.Api
+﻿namespace FCWeb.Controllers.Api
 {
     using System.Collections.Generic;
     using System.Net;
@@ -17,7 +15,6 @@ namespace FCWeb.Controllers.Api
     [Route("api/[controller]")]
     public class PersonsController : Controller
     {
-        //[FromServices]
         private IPersonBll personBll { get; set; }
         private IPersonCareerBll personCareerBll { get; set; }
 
@@ -27,24 +24,46 @@ namespace FCWeb.Controllers.Api
             this.personCareerBll = personCareerBll;
         }
 
-        //[HttpGet("all")]
+        [HttpGet("create/{mode}")]
+        [Authorize(Roles = "admin,press")]
+        public PersonViewModel Get(bool mode)
+        {
+            if (!mode)
+            {
+                Response.StatusCode = (int)HttpStatusCode.MethodNotAllowed;
+            }
+
+            //if (User.Identity.IsAuthenticated
+            //    && (User.IsInRole("admin") || User.IsInRole("press")))
+            //{
+            //}
+
+            return new Person().ToViewModel();
+        }
+
         [Authorize(Roles = "admin,press")]
         public IEnumerable<PersonViewModel> Get()
         {
             return personBll.GetPersons().ToViewModel();
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public PersonViewModel Get(int id)
         {
             if (User.Identity.IsAuthenticated
-                && (User.IsInRole("admin") || User.IsInRole("press"))
-                && id == 0)
+                && (User.IsInRole("admin") || User.IsInRole("press")))
             {
-                return new Person().ToViewModel();
+                return GetForce(id);
             }
 
+            string cacheKey = personBll.ObjectKeyGenerator.GetStringKey(this.GetType().FullName + nameof(Get), id);
+            PersonViewModel result = personBll.Cache.GetOrCreate(cacheKey, () => { return GetForce(id); });
+
+            return result;
+        }
+
+        private PersonViewModel GetForce(int id)
+        {
             personBll.FillTeams = true;
             personBll.FillCities = true;
             personBll.FillPersonRoles = true;
@@ -67,7 +86,6 @@ namespace FCWeb.Controllers.Api
             return personBll.SearchByDefault(txt).ToViewModel();
         }
 
-        // POST api/values
         [HttpPost]
         [Authorize(Roles = "admin,press")]
         public void Post([FromBody]PersonViewModel personView)
@@ -95,7 +113,6 @@ namespace FCWeb.Controllers.Api
             SavePersonCareer(personView);
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         [Authorize(Roles = "admin,press")]
         public void Put(int id, [FromBody]PersonViewModel personView)

@@ -1,6 +1,4 @@
-﻿// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace FCWeb.Controllers.Api.Publications
+﻿namespace FCWeb.Controllers.Api.Publications
 {
     using System;
     using System.Collections.Generic;
@@ -19,7 +17,6 @@ namespace FCWeb.Controllers.Api.Publications
     public class PublicationsController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
-        //[FromServices]
         private IPublicationBll publicationBll { get; set; }
 
         public PublicationsController(UserManager<ApplicationUser> userManager, IPublicationBll publicationBll)
@@ -28,36 +25,44 @@ namespace FCWeb.Controllers.Api.Publications
             this.publicationBll = publicationBll;
         }
 
+        [HttpGet("create")]
+        [Authorize(Roles = "admin,press")]
+        public PublicationViewModel Get()
+        {
+            //if (User.Identity.IsAuthenticated
+            //    && (User.IsInRole("admin") || User.IsInRole("press")))
+            //{
+            //}
+
+            DateTime utcNow = DateTime.UtcNow;
+
+            return new PublicationViewModel()
+            {
+                dateDisplayed = utcNow,
+                dateChanged = utcNow,
+                dateCreated = utcNow,
+                author = MainCfg.DefaultAuthor,
+                enable = true,
+                visibility = MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News
+            };
+        }
+
         [HttpGet("{id:int}")]
+        [Authorize(Roles = "admin,press")]
         public PublicationViewModel Get(int id)
         {
-            if (User.Identity.IsAuthenticated
-                && (User.IsInRole("admin") || User.IsInRole("press"))
-                && id == 0)
-            {
-                DateTime utcNow = DateTime.UtcNow;
-
-                return new PublicationViewModel()
-                {
-                    dateDisplayed = utcNow,
-                    dateChanged = utcNow,
-                    dateCreated = utcNow,
-                    author = MainCfg.DefaultAuthor,
-                    enable = true,
-                    visibility = MainCfg.SettingsVisibility.Main | MainCfg.SettingsVisibility.News
-                };
-            }
-
             return publicationBll.GetPublication(id).ToViewModel();
         }
 
         [HttpGet("{urlKey}")]
+        [ResponseCache(VaryByQueryKeys = new string[] { "urlKey" }, Duration = 300)]
         public PublicationViewModel Get(string urlKey)
         {
             return publicationBll.GetPublication(urlKey).ToViewModel();
         }
 
         [HttpGet("{count:range(0,50)}/{offset:int}")]
+        [ResponseCache(VaryByQueryKeys = new string[] { "count", "offset", "groups" }, Duration = 180)]
         public IEnumerable<PublicationShortViewModel> Get(int count, int offset, [FromQuery] string[] groups)
         {
             return publicationBll.GetLatestPublications(count, offset, groups).ToShortViewModel();

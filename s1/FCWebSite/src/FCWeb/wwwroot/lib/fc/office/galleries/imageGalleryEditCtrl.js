@@ -37,11 +37,20 @@
         $scope.urlKeyRegexPattern = configSrv.urlKeyRegexPattern;
         $scope.saveEdit = saveEdit;
 
-        $scope.galleryId = parseInt($routeParams.id);
+        $scope.galleryId = parseInt($routeParams.id || 0);
 
         loadData($scope.galleryId);
 
         function loadData(galleryId) {
+            if (publicationId < 0) {
+                return;
+            }
+
+            if (galleryId == 0) {
+                imageGallerySrv.createGallery(galleryLoaded);
+                return;
+            }
+
             imageGallerySrv.loadGallery(galleryId, galleryLoaded);
         }
 
