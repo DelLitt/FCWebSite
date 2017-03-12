@@ -19,7 +19,8 @@
     "ngAutocomplete": "~1.0.0",
     "angular-sanitize": "1.4.6",
     "angular-animate": "1.5.7",
-    "ng-image-gallery": "2.0.1"
+    "ng-image-gallery": "2.0.1",
+    "ideal-image-slider": "1.5.1"
   },
   "resolutions": {
     "angular": "^1.5.7",

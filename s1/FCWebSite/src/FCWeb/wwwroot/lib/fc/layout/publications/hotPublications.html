@@ -1,35 +1,4 @@
 ﻿<div class="col-xs-12">
-    <div class="hot-publications">
-        <div ng-show="loading" class="row text-center" style="height: 30px;">
-            <img ng-src="{{loadingImage}}" />
-        </div>
-        <div ng-show="!loading" id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="1000">
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="{{$index}}" ng-class="{active: $index === 0}" ng-repeat="item in model"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="item" ng-class="{active: $index === 0}" ng-repeat="item in model" style="max-height: 368px;">
-                    <publication-item model="item" show-header="true" img-variant="652x367"></publication-item>
-                </div>
-            </div>
-        </div>
-
-        <!--<div class="hot-list-items">
-            <div class="row hot-list-item" ng-repeat="item in model">
-                <div class="col-xs-1 border-r">
-                    <span ng-show="$index == selectedIndex" class="glyphicon glyphicon-ok"></span>
-                    <span ng-show="$index != selectedIndex" class="glyphicon glyphicon-eye-open logic" ng-click="load($index);"></span>
-                </div>
-                <div class="col-xs-10 ellipsis border-r">
-                    <a ng-href="publication/{{item.urlKey}}">
-                        {{item.title}}
-                    </a>
-                </div>
-                <div class="col-xs-1" style="padding: 0 3px 0 8px;">
-                    <span class="glyphicon glyphicon-facetime-video" ng-show="item.hasVideo"></span>
-                    <span class="glyphicon glyphicon-camera" ng-show="item.hasPhoto"></span>
-                </div>
-            </div>
-        </div>-->
+    <div id="slider">
     </div>
 </div>

@@ -14,7 +14,7 @@
                     <div class="fc-pane-body fc-pane-form-pad">
                         <div class="fc-pane-form fc-publication">
                             <h5 ng-show="publication.header.length">{{publication.header}}</h5>                            
-                            <img class="img-responsive img-rounded pull-left fc-publication-main-img" ng-show="publication.showImageInContent" ng-src="{{publication.image}}" title="{{publication.title}}" alt="{{publication.title}}" />                            
+                            <img class="img-responsive pull-left fc-publication-main-img" ng-show="publication.showImageInContent" ng-src="{{publication.image}}" title="{{publication.title}}" alt="{{publication.title}}" />                            
                             <div class="fc-publication-lead" ng-show="publication.lead.length" ng-bind-html="publication.lead"></div>
                             <div ng-bind-html="publication.contentHTML"></div>
                             <div class="row" ng-show="showVideo || showGallery">

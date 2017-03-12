@@ -5,9 +5,9 @@
         .module('fc.ui')
         .directive('hotPublications', hotPublications);
 
-    hotPublications.$inject = ['helper'];
+    hotPublications.$inject = ['helper', '$interval'];
 
-    function hotPublications(helper) {
+    function hotPublications(helper, $interval) {
         return {
             restrict: 'E',
             replace: true,
@@ -15,26 +15,38 @@
                 {
                     model: '='
                 },
-            link: function link(scope, element, attrs) {
-                
-                scope.load = load;
+            link: function link(scope, element, attrs) {                
                 scope.loading = true;
                 scope.loadingImage = helper.getLoadingImg();
 
                 // watch initialId
-                scope.$watch(function (scope) {
-                    return scope.model;
-                },
-                function (newValue, oldValue) {
-                    if (newValue !== oldValue) {
-                        load(0);                        
-                    }
-                });                
+                scope.$watch("model",
+                    function (newValue) {
+                        if (angular.isArray(newValue)) {
+                            initJQ(newValue);
+                        }
+                });
 
-                function load(index) {
-                    scope.selectedIndex = index;
-                    scope.main = scope.model[index];
+                function initJQ(newValue) {
                     scope.loading = false;
+
+                    var sliderArea = element.find("#slider");
+
+                    sliderArea.append("<br/><p>hoook!!!</p>")
+
+                    for (var i = 0; i < newValue.length; i++) {
+                        var item = newValue[i];
+                        sliderArea.append("<img src='" + item.img + "' alt='" + item.title + "' data-caption='#caption-" + i + "'>");
+                        element.append("<div id='caption-" + i + "' style='display:none;'>" +
+                                        "<a href='publication/" + item.urlKey + "'>" + item.title + "<small><br />" +
+                                         item.header + "</small></a>" +
+                                       "</div>");
+                    }
+
+                    var slider = new IdealImageSlider.Slider('#slider');
+                    slider.addCaptions();
+                    slider.start();
+                    console.log('inited');
                 }
             },
             templateUrl: '/lib/fc/layout/publications/hotPublications.html'

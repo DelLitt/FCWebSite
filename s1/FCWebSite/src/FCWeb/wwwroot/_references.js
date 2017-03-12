@@ -16,6 +16,7 @@
 /// <reference path="lib/angular-translate-storage-local/angular-translate-storage-local.js" />
 /// <reference path="lib/angular-ui-bootstrap-datetimepicker/datetimepicker.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
+/// <reference path="lib/ideal-image-slider/ideal-image-slider.js" />
 /// <reference path="lib/jquery/dist/jquery.js" />
 /// <reference path="lib/jquery-ui/jquery-ui.js" />
 /// <reference path="lib/jquery-validation/dist/jquery.validate.js" />

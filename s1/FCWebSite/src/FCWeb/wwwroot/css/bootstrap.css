@@ -7684,6 +7684,13 @@ dl.fc-data-list.dt-info dd {
 table.table-into-header tr td {
   padding: 0 8px !important;
 }
+.main-table {
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+.main-table::-webkit-scrollbar {
+  display: none;
+}
 /*Extra end*/
 .text-bg-color {
   color: #fff;
