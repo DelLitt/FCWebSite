@@ -21,6 +21,8 @@
         $scope.toggleVideo = toggleVideo;
         $scope.toggleGallery = toggleGallery;
 
+        $scope.publicationsFilter = ['Main', 'News', 'Reserve', 'Youth', 'Authorized'];
+
         var urlKey = $routeParams.id;
         
         loadData(urlKey);

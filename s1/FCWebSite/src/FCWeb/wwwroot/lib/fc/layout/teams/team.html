@@ -21,25 +21,29 @@
                     <div class="fc-pane-body">
                         <div class="fc-pane-form">
                             <div ng-hide="listview">
-                                <h4 class="text-primary" translate="GOALKEEPERS"></h4>                                
+                                <h4 class="soft-primary text-uppercase" translate="GOALKEEPERS"></h4>
+                                <hr />
                                 <div class="row" ng-repeat="row in goalkeepers.rows">
                                     <div class="col-sm-3" ng-repeat="item in row">
                                         <person-card-item person="item"></person-card-item>
                                     </div>
-                                </div>
-                                <h4 class="text-primary" translate="DEFENDERS"></h4>                                
+                                </div>                                
+                                <h4 class="soft-primary text-uppercase"" translate="DEFENDERS"></h4>
+                                <hr />
                                 <div class="row" ng-repeat="row in defenders.rows">
                                     <div class="col-sm-3" ng-repeat="item in row">
                                         <person-card-item person="item"></person-card-item>
                                     </div>
                                 </div>
-                                <h4 class="text-primary" translate="MIDFIELDERS"></h4>                                
+                                <h4 class="soft-primary text-uppercase"" translate="MIDFIELDERS"></h4>
+                                <hr />
                                 <div class="row" ng-repeat="row in midfielders.rows">
                                     <div class="col-sm-3" ng-repeat="item in row">
                                         <person-card-item person="item"></person-card-item>
                                     </div>
                                 </div>
-                                <h4 class="text-primary" translate="FORWARDS"></h4>
+                                <h4 class="soft-primary text-uppercase"" translate="FORWARDS"></h4>
+                                <hr />
                                 <div class="row" ng-repeat="row in forwards.rows">
                                     <div class="col-sm-3" ng-repeat="item in row">
                                         <person-card-item person="item"></person-card-item>

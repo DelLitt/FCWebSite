@@ -1,13 +1,22 @@
 ﻿<div class="person-item">
-    <div class="person-info">
-        <img style="max-height: 15px;" ng-src="{{person.flagSrc}}" />
-    </div>
-    <div class="person-body">
-        <img class="img-responsive img-rounded" ng-src={{image}} />
-        <div class="caption">
-            <a ng-href="person/{{person.id}}" class="h5" title="{{person.nameDefault}}">
-                {{person.number}}.&nbsp;{{person.nameFirst}}&nbsp;<span class="text-uppercase" style="font-weight:bold;">{{person.nameLast}}</span>
-            </a>
+    <div class="middle-flag {{person.flagSrc}}">
+        <div class="opacity-wrap opacity-wrap-active">
+            <div class="person-info">
+
+            </div>
+            <div class="person-body">
+                <img class="img-responsive" ng-src={{image}} />
+                <div class="caption">
+                    <!--<div class="person-meta">
+                    <img style="max-height: 15px;" ng-src="{{person.flagSrc}}" />
+                </div>-->
+                    <div class="person-label">
+                        <a ng-href="person/{{person.id}}" class="h5" title="{{person.nameDefault}}">
+                            {{person.number}}.&nbsp;{{person.nameFirst}}&nbsp;<span class="text-uppercase" style="font-weight:bold;">{{person.nameLast}}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

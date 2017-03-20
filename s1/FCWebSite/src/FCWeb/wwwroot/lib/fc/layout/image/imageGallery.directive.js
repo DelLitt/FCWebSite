@@ -5,13 +5,15 @@
         .module('fc.ui')
         .directive('imageGallery', imageGallery);
 
-    imageGallery.$inject = ['imageGallerySrv', '$sce'];
+    imageGallery.$inject = ['imageGallerySrv', 'helper', '$sce'];
 
-    function imageGallery(imageGallerySrv, $sce) {
+    function imageGallery(imageGallerySrv, helper, $sce) {
         return {
             restrict: 'E',
             scope: {
-                galleryId: '='
+                galleryId: '=',
+                imgVariant: '@',
+                thmbVariant: '@'
             },
             link: function link(scope, element, attrs) {
 
@@ -44,7 +46,16 @@
                     scope.gallery.dateCreated = new Date(gallery.dateCreated);
                     scope.gallery.description = $sce.trustAsHtml(gallery.description);
 
-                    scope.images = scope.gallery.images;
+                    var images = [];
+
+                    for (var i = 0; i < scope.gallery.images.length; i++) {
+                        images.push({
+                            url: helper.addFileVariant(scope.gallery.images[i].url, scope.imgVariant),
+                            thumbUrl: helper.addFileVariant(scope.gallery.images[i].url, scope.thmbVariant)
+                        });
+                    }
+
+                    scope.images = images;
                 }
 
                 //// gallery methods

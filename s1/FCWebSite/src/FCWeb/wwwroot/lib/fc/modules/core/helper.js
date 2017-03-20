@@ -95,7 +95,19 @@ String.prototype.insertAt = function (index, string) {
             },
 
             getFlagSrc: function(countryId) {
-                return 'images/skin/flags/' + countryId + '.png';
+                //return 'images/skin/flags/' + countryId + '.png';
+
+                switch(countryId)
+                {
+                    case 2:
+                        return "by";
+                    case 9:
+                        return "ua";
+                    case 11:
+                        return "ci";
+                }
+
+                return "";
             },
 
             remTZOffset: function (date) {
