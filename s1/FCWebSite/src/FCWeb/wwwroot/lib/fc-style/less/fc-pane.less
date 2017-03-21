@@ -23,9 +23,9 @@
   }
 
   .fc-pane-header.invert {
-      color: @fc-type-dark-header-color;
-      background-color: @background-primary !important;
-    }
+    color: @fc-type-dark-header-color;
+    background-color: @background-primary !important;
+  }
 
   .fc-pane-body {
     background-color: @background-primary;
@@ -36,14 +36,29 @@
       font-size: 1.2em;
     }
 
+    .fc-pane-form,
+    .fc-pane-form-dark {
+      padding: 10px;
+
+      h1, h2, h3, h4, h5, h6, h7 {
+        text-shadow: none;
+        font-weight: bold;
+        color: @background-primary;
+      }
+    }
+
     .fc-pane-form {
       background-color: @background-primary;
-      padding: 10px;
       border: 1px solid fade(@brand-primary, 25%);
 
       @media (max-width: @screen-xs) {
         padding: 17px;
       }
+    }
+
+    .fc-pane-form-dark {
+      background-color: @brand-primary;
+      .fc-grad();
     }
 
     h1, h2, h3, h4, h5, h6, h7 {
@@ -67,6 +82,10 @@
     .fc-action:focus {
       color: @brand-primary3;
     }
+  }
+
+  .fc-pane-body.no-bg {
+    background-color: transparent !important;
   }
 
   .fc-pane-body.fc-pane-form-pad {

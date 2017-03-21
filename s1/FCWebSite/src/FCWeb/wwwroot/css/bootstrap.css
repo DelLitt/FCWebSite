@@ -7606,24 +7606,35 @@ dl.fc-data-list.dt-info dd {
 .fc-table tr h5 {
   margin: 2px 0 0 0;
 }
+.fc-pane-form-dark .fc-table tbody tr th,
 .fc-pane-dark .fc-table tbody tr th,
+.fc-pane-form-dark .fc-table tr th,
 .fc-pane-dark .fc-table tr th {
   color: #ACCCFF;
   border-bottom: 1px solid #fff;
 }
+.fc-pane-form-dark .fc-table tbody tr td,
 .fc-pane-dark .fc-table tbody tr td,
+.fc-pane-form-dark .fc-table tr td,
 .fc-pane-dark .fc-table tr td {
   color: #fff;
 }
+.fc-pane-form-dark .fc-table tbody tr td a,
 .fc-pane-dark .fc-table tbody tr td a,
+.fc-pane-form-dark .fc-table tr td a,
 .fc-pane-dark .fc-table tr td a {
   color: #7DAFFF;
 }
+.fc-pane-form-dark .fc-table tbody tr td a:hover,
 .fc-pane-dark .fc-table tbody tr td a:hover,
+.fc-pane-form-dark .fc-table tr td a:hover,
 .fc-pane-dark .fc-table tr td a:hover,
+.fc-pane-form-dark .fc-table tbody tr td a:focus,
 .fc-pane-dark .fc-table tbody tr td a:focus,
+.fc-pane-form-dark .fc-table tr td a:focus,
 .fc-pane-dark .fc-table tr td a:focus {
-  color: #1771FF;
+  /*color: @background-primary;*/
+  text-decoration: underline;
 }
 /*FC-TABLE END*/
 /*FC-TABLE-LIGHT*/
@@ -7941,15 +7952,44 @@ a.text-prim5-color:focus {
 .fc-pane .fc-pane-body .pretty-text {
   font-size: 1.2em;
 }
+.fc-pane .fc-pane-body .fc-pane-form,
+.fc-pane .fc-pane-body .fc-pane-form-dark {
+  padding: 10px;
+}
+.fc-pane .fc-pane-body .fc-pane-form h1,
+.fc-pane .fc-pane-body .fc-pane-form-dark h1,
+.fc-pane .fc-pane-body .fc-pane-form h2,
+.fc-pane .fc-pane-body .fc-pane-form-dark h2,
+.fc-pane .fc-pane-body .fc-pane-form h3,
+.fc-pane .fc-pane-body .fc-pane-form-dark h3,
+.fc-pane .fc-pane-body .fc-pane-form h4,
+.fc-pane .fc-pane-body .fc-pane-form-dark h4,
+.fc-pane .fc-pane-body .fc-pane-form h5,
+.fc-pane .fc-pane-body .fc-pane-form-dark h5,
+.fc-pane .fc-pane-body .fc-pane-form h6,
+.fc-pane .fc-pane-body .fc-pane-form-dark h6,
+.fc-pane .fc-pane-body .fc-pane-form h7,
+.fc-pane .fc-pane-body .fc-pane-form-dark h7 {
+  text-shadow: none;
+  font-weight: bold;
+  color: #fff;
+}
 .fc-pane .fc-pane-body .fc-pane-form {
   background-color: #fff;
-  padding: 10px;
   border: 1px solid rgba(0, 43, 110, 0.25);
 }
 @media (max-width: 480px) {
   .fc-pane .fc-pane-body .fc-pane-form {
     padding: 17px;
   }
+}
+.fc-pane .fc-pane-body .fc-pane-form-dark {
+  background-color: #002B6E;
+  background: -webkit-linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
+  background: -o-linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
+  background: linear-gradient(rgba(0, 43, 110, 0.9), rgba(0, 43, 110, 0.9) 83%, rgba(0, 43, 110, 0.8));
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6002b6e', endColorstr='#cc002b6e', GradientType=0);
 }
 .fc-pane .fc-pane-body h1,
 .fc-pane .fc-pane-body h2,
@@ -7978,6 +8018,9 @@ a.text-prim5-color:focus {
 .fc-pane .fc-pane-body .fc-action:hover,
 .fc-pane .fc-pane-body .fc-action:focus {
   color: #1771FF;
+}
+.fc-pane .fc-pane-body.no-bg {
+  background-color: transparent !important;
 }
 .fc-pane .fc-pane-body.fc-pane-form-pad {
   padding: 11px;
