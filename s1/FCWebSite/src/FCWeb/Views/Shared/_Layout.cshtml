@@ -87,8 +87,9 @@
                     <li><a asp-controller="Home" asp-action="Contact"><span translate="HISTORY"></span></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="javascript:void(0);" ng-click="changeLanguage('ru')" style="padding: 10px 5px 0 5px;"><img src="~/images/skin/flags/small/ru.png" class="img-20" translate translate-attr-title="SHORT_LANG_RU" alt="рус" /></a></li>
-                    <li><a href="javascript:void(0);" ng-click="changeLanguage('en')" style="padding: 10px 5px 0 5px;"><img src="~/images/skin/flags/small/gb.png" class="img-20" translate translate-attr-title="SHORT_LANG_EN" alt="en" /></a></li>
+                    <li><a href="javascript:void(0);" ng-click="changeLanguage('ru')" style="padding: 10px 5px 0 5px;"><div class="inline-flag ru" translate translate-attr-title="SHORT_LANG_RU"></div></a></li>
+                    <li><a href="javascript:void(0);" ng-click="changeLanguage('by')" style="padding: 10px 5px 0 5px;"><div class="inline-flag by" translate translate-attr-title="SHORT_LANG_BY"></div></a></li>
+                    <li><a href="javascript:void(0);" ng-click="changeLanguage('en')" style="padding: 10px 5px 0 5px;"><div class="inline-flag uk" translate translate-attr-title="SHORT_LANG_EN"></div></a></li>                    
                 </ul>
                 @*@await Html.PartialAsync("_LoginPartial")*@
             </div>

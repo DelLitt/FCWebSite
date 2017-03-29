@@ -191,13 +191,13 @@ String.prototype.insertAt = function (index, string) {
                 }
             },
 
-            getTeamFakeInfoImage: function (team) {
+            getTeamFakeInfoImage: function (team, useFake) {
                 if (this.hasTeamExtendedInfo(team)
                         && angular.isString(team.descriptionData.fakeInfo.image)
                         && team.descriptionData.fakeInfo.image.length > 0) {
                     return this.getTeamImageFolder(team.id) + "/" + team.descriptionData.fakeInfo.image;
                 } else {
-                    return this.getTeamFakeEmptyImage();
+                    return useFake ? this.getTeamFakeEmptyImage() : null;
                 }
             },
 
@@ -242,7 +242,23 @@ String.prototype.insertAt = function (index, string) {
             },
 
             hasTeamExtendedInfo: function (team) {
-                return angular.isObject(team.descriptionData) && angular.isObject(team.descriptionData.fakeInfo);
+                return angular.isObject(team.descriptionData)
+                    && angular.isObject(team.descriptionData.fakeInfo)
+                    && (this.hasExImage(team.descriptionData.fakeInfo)
+                        || this.hasExPersons(team.descriptionData.fakeInfo)
+                        || this.hasExCoaches(team.descriptionData.fakeInfo));
+            },
+
+            hasExImage: function(fakeInfo) {
+                return angular.isString(fakeInfo.image) && fakeInfo.image.length > 0;
+            },
+            
+            hasExPersons: function(fakeInfo) {
+                return angular.isArray(fakeInfo.persons) && fakeInfo.persons > 0;
+            },
+
+            hasExCoaches: function(fakeInfo) {
+                return angular.isArray(fakeInfo.coaches) && fakeInfo.coaches > 0;
             },
 
             getTeamEmptyImage: function () {

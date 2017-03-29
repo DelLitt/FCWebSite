@@ -12,7 +12,8 @@
             restrict: 'E',
             replace: true,
             scope: {
-                id: '='
+                entityId: '=',
+                imgVariant: '@'
             },
             link: function link(scope, element, attrs) {
                 scope.loadingPerson = true;
@@ -39,7 +40,7 @@
 
                 scope.isGK = helper.isGK;
 
-                loadData(scope.id);
+                loadData(scope.entityId);
 
                 function loadData(personId) {
                     if (personId < 0) {
@@ -70,7 +71,8 @@
                     scope.achievements = scope.showAchievements ? scope.person.info.achievements : [];
 
                     var imageUploadData = personsSrv.getImageUploadData(scope.person);
-                    scope.image = helper.getPersonImage(scope.person.image, imageUploadData);
+                    var image = helper.getPersonImage(scope.person.image, imageUploadData);
+                    scope.image = helper.addFileVariant(image, scope.imgVariant);
 
                     scope.flagSrc = helper.getFlagSrc(scope.person.city.countryId);
 

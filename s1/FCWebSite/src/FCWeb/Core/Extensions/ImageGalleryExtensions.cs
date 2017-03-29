@@ -21,7 +21,7 @@
 
             string uniquePath = item.GetGalleryUniquePath();
 
-            DirectoryInfo dir = new DirectoryInfo(uniquePath);
+            DirectoryInfo dir = new DirectoryInfo(WebHelper.ToPhysicalPath(uniquePath));
 
             if (dir.Exists)
             {

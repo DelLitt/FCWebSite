@@ -1,3 +1,10 @@
+--TRUNCATE TABLE [FCWeb].[dbo].[Game];
+
+-- for small data amout
+ALTER TABLE [FCWeb].[dbo].[Game] NOCHECK CONSTRAINT ALL
+
+DELETE FROM [FCWeb].[dbo].[Game];
+
 SET IDENTITY_INSERT [FCWeb].[dbo].[Game] ON;
 
 INSERT INTO [FCWeb].[dbo].[Game]
@@ -34,3 +41,5 @@ SELECT g.[gameId]
   FROM [SSDBLive].[dbo].[Games] g
 
 SET IDENTITY_INSERT [FCWeb].[dbo].[Game] OFF;
+
+ALTER TABLE [FCWeb].[dbo].[Game] CHECK CONSTRAINT ALL

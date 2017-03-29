@@ -764,13 +764,20 @@ dl.fc-data-list.dt-info {
 }
 
 .soft-primary {
-  color: @fc-soft-primary-color2;
+  color: @fc-soft-primary-color2 !important;
 }
 
 .opacity-wrap {
   background-color: rgba(255, 255, 255, 0.75);
 }
 
+.opacity-wrap-30 {
+  background-color: rgba(255, 255, 255, 0.30);
+}
+
+
+.opacity-wrap-30.opacity-wrap-active:hover,
+.opacity-wrap-30.opacity-wrap-active:active
 .opacity-wrap.opacity-wrap-active:hover,
 .opacity-wrap.opacity-wrap-active:active {
   background-color: rgba(255, 255, 255, 0.15);
@@ -783,6 +790,10 @@ dl.fc-data-list.dt-info {
   height: 16px;
   background-size: 16px 100%;
   opacity: 0.81;
+}
+
+.inline-flag {
+
 }
 
 /*office*/

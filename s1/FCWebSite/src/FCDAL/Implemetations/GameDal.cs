@@ -40,11 +40,11 @@
             IEnumerable<Game> teamGames = Context.Game.Where(g => roundIds.Contains(g.roundId)
                                                             && (g.homeId == teamId || g.awayId == teamId)
                                                             && date >= g.GameDate)
-                                                  .OrderByDescending(g => g.GameDate)
+                                                  .OrderBy(g => g.GameDate)
                                                   .Take(LimitEntitiesSelections)
                                                   .ToList();
 
-            Game game = teamGames.FirstOrDefault();
+            Game game = teamGames.LastOrDefault();
 
             if(game != null)
             {

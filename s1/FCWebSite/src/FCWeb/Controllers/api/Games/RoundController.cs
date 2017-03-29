@@ -8,8 +8,6 @@
     using Core;
     using Core.Extensions;
     using FCCore.Abstractions.Bll;
-    using FCCore.Common;
-    using FCCore.Model;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ViewModels;
@@ -55,7 +53,7 @@
         public IEnumerable<RoundSliderViewModel> Get(int teamId, [FromQuery] int[] tourneyIds)
         {
             // TODO: Change to current date
-            var date = new DateTime(2015, 9, 10);
+            var date = DateTime.UtcNow;
             var actualDate = new DateTime(date.Year, date.Month, date.Day, date.Hour, 0, 0);
 
             logger.LogTrace("Getting schedule. Tournaments count: {0}.", tourneyIds.Count());

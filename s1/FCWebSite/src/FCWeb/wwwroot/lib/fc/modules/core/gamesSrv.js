@@ -154,6 +154,8 @@
 
         var data = [];
 
+        var selectedIndex = null;
+
         this.getCurrent = function () {
             if (!current && angular.isArray(data)) {
                 data.forEach(function (element, index, array) {
@@ -204,13 +206,19 @@
         }
 
         function getRoundIndex(roundId) {
+            var result = 0;
+
             if (angular.isArray(data)) {
+                
                 data.forEach(function (element, index, array) {
                     if (element.roundId == roundId) {
-                        return index;
+                        result = index;
+                        return;
                     }
                 });
             }
+
+            return result;
         }
 
         function getRoundGames(roundId, success) {
@@ -226,7 +234,13 @@
 
         function loadSelectedRoundGames(success) {
 
+            selectedIndex = getSelectedIndex();
+
             var result = data[selectedIndex];
+
+            if (!result) {
+                return;
+            }
 
             if (!angular.isObject(result.roundGames)) {
                     
@@ -238,9 +252,7 @@
             else {
                 success(result.roundGames)
             }
-        }
-
-        var selectedIndex = getSelectedIndex();
+        }        
 
         this.next = function (success) {
             if (!angular.isArray(data) || !loaded) { return; }
