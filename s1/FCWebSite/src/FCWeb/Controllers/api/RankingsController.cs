@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
+    using System.Text;
     using Core.Extensions;
     using FCCore.Abstractions.Bll;
     using FCCore.Abstractions.Bll.Components;
@@ -63,6 +64,28 @@
             }
 
             tableRecordBll.SaveTourneyTable(tourney.Id, tableRecords);
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"DELETE FROM [dbo].[TableRecords] WHERE [tournamentId] = {tourney.Id};");
+            sb.AppendLine();
+            sb.AppendLine("INSERT INTO [dbo].[TableRecords]");
+            sb.AppendLine("([teamId],[tournamentId],[games],[wins],[draws],[loses],[goalsFor],[goalsAgainst],[points],[virtualPoints],[active],[position])");
+            sb.AppendLine("VALUES");
+
+            List<string> values = new List<string>();
+
+            foreach (TableRecord tr in tableRecords)
+            {
+                int active = tr.Active ? 1 : 0;
+
+                values.Add($"({tr.teamId},{tr.tourneyId},{tr.Games},{tr.Wins},{tr.Draws},{tr.Loses},{tr.GoalsFor},{tr.GoalsAgainst},{tr.Points}," +
+                    $"{tr.PointsVirtual},{active},{tr.Position})");
+            }
+
+            sb.AppendLine(string.Join(",", values));
+
+            System.IO.File.WriteAllText("D:\\updTable.sql", sb.ToString());
 
             return Get(tourney.Id);
         }

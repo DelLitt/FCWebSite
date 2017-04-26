@@ -17,25 +17,32 @@
         public const int rrCoach = 13;
         public const int rrCoachPhysical = 14;
         public const int rrCoachGoalkeeper = 15;
+        public const int rrTeamManager = 31;
+        public const int rrCoachVideographer = 55;
+        public const int rrCoachYouth = 78;
+        public const int rrCoachSenior = 80;
+        public const int rrCoachScientificAndMethodical = 82;
+        public const int rrCoachAdministrator = 35;
 
         public const int rrMedicalWorker = 21;
         public const int rrDoctor = 22;
         public const int rrMassagist = 23;
-
-        public const int rrTeamManager = 31;
+        
         public const int rrClubPresident = 32;
         public const int rrClubDirector = 33;
+        public const int rrViceDirector = 83;
         public const int rrClubChairman = 34;
-        public const int rrClubAdministrator = 35;
+        public const int rrViceChairman = 86;
 
         public const int rrClubSpecialist = 51;
         public const int rrAccountantChief = 52;
-        public const int rrAccountant = 53;
         public const int rrSpecialistSafety = 54;
-        public const int rrVideographer = 55;
+
+        public const int rrAccountant = 53;
         public const int rrSpecialistTechnical = 56;
         public const int rrPressOfficer = 57;
         public const int rrStaffSpecialist = 58;
+        public const int rrEconomist = 77;
 
         public const int rrReferee = 71;
         public const int rrRefereeChief = 72;
@@ -52,6 +59,15 @@
         public int PlayerMidfielder { get { return rrMidfielder; } }
         public int PlayerForward { get { return rrForward; } }
         public int PlayerPositionUnknown { get { return rrPositionUnknown; } }
+
+        public int CoachHead { get { return rrCoachHead; } }
+        public int CoachAssistant { get { return rrCoachAssistant; } }
+        public int Coach { get { return rrCoach; } }
+        public int CoachPhysical { get { return rrCoachPhysical; } }
+        public int CoachGoalkeeper { get { return rrCoachGoalkeeper; } }
+        public int CoachYouth { get { return rrCoachYouth; } }
+        public int CoachSenior { get { return rrCoachSenior; } }
+        public int CoachScientificAndMethodical { get { return rrCoachScientificAndMethodical; } }
     }
 
     public class PersonRoleGroupId
@@ -81,7 +97,9 @@
 
         public static IEnumerable<int> rgCoachingStaff = new int[]
         {
-            PersonRoleId.rrCoachHead, PersonRoleId.rrCoachAssistant, PersonRoleId.rrCoach, PersonRoleId.rrCoachPhysical, PersonRoleId.rrCoachGoalkeeper
+            PersonRoleId.rrCoachHead, PersonRoleId.rrCoachAssistant, PersonRoleId.rrCoach, PersonRoleId.rrCoachPhysical, PersonRoleId.rrCoachGoalkeeper,
+            PersonRoleId.rrCoachYouth, PersonRoleId.rrCoachSenior, PersonRoleId.rrCoachScientificAndMethodical, PersonRoleId.rrTeamManager,
+            PersonRoleId.rrCoachAdministrator, PersonRoleId.rrCoachVideographer
         };
 
         public static IEnumerable<int> rgMedicalStaff = new int[]
@@ -91,17 +109,20 @@
 
         public static IEnumerable<int> rgSeniorStaff = new int[]
         {
-            PersonRoleId.rrTeamManager, PersonRoleId.rrClubPresident, PersonRoleId.rrClubDirector, PersonRoleId.rrClubChairman, PersonRoleId.rrClubAdministrator
+            PersonRoleId.rrClubPresident, PersonRoleId.rrClubDirector, PersonRoleId.rrClubChairman, PersonRoleId.rrViceDirector, PersonRoleId.rrViceChairman,
+            PersonRoleId.rrAccountantChief
         };
 
         public static IEnumerable<int> rgSpecialistsStuff = new int[]
         {
-            PersonRoleId.rrClubSpecialist, PersonRoleId.rrAccountantChief, PersonRoleId.rrAccountant, PersonRoleId.rrSpecialistSafety, PersonRoleId.rrVideographer, PersonRoleId.rrSpecialistTechnical, PersonRoleId.rrPressOfficer, PersonRoleId.rrStaffSpecialist
+            PersonRoleId.rrClubSpecialist, PersonRoleId.rrAccountant, PersonRoleId.rrSpecialistSafety, PersonRoleId.rrSpecialistTechnical, PersonRoleId.rrPressOfficer,
+            PersonRoleId.rrStaffSpecialist, PersonRoleId.rrEconomist
         };
 
         public static IEnumerable<int> rgReferee = new int[]
         {
-            PersonRoleId.rrReferee, PersonRoleId.rrRefereeChief, PersonRoleId.rrRefereeAssistant, PersonRoleId.rrInspector, PersonRoleId.rrRefereeReserve, PersonRoleId.rrRefereeBehindGoal
+            PersonRoleId.rrReferee, PersonRoleId.rrRefereeChief, PersonRoleId.rrRefereeAssistant, PersonRoleId.rrInspector, PersonRoleId.rrRefereeReserve,
+            PersonRoleId.rrRefereeBehindGoal
         };
     }
 }

@@ -1,1 +1,27 @@
-﻿<staff team-id="teamId" publications-count="publicationsCount" title="title" persons="persons"></staff>
+﻿<div class="row">
+    <section class="col-xs-12">
+        <div class="row" ng-show="loadingStaff" style="height: 50px;">
+            <div class="col-xs-12 text-center">
+                <img ng-src="{{loadingImage}}" />
+            </div>
+        </div>
+        <div class="row" ng-show="!loadingStaff">
+            <div class="col-xs-12">
+                <div class="fc-pane">
+                    <div class="fc-pane-header">
+                        <h3 class="invert"><span translate="COACHES_STAFF"></span></h3>
+                    </div>
+                    <div class="fc-pane-body">
+                        <div class="fc-pane-form" style="padding: 20px;">
+                            <coaches persons="mainCoaches"></coaches>
+                            <br />
+                            <h5 class="soft-primary text-uppercase"><span translate="YOUTH_SECTOR"></span></h5>
+                            <hr />
+                            <coaches persons="youthCoaches"></coaches>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

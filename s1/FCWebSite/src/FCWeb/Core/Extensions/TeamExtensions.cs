@@ -44,11 +44,25 @@
             };
         }
 
-        public static string NameExtended(this Team team)
+        public static TeamShortViewModel ToShortViewModel(this Team team)
         {
-            return team.city != null
-                    ? string.Format(CultureInfo.CurrentCulture, "{0} ({1})", team.Name, team.city.NameFull)
-                    : team.NameFull;
+            if (team == null) { return null; }
+
+            Guid? tempGuid = team.Id == 0 ? Guid.NewGuid() : (Guid?)null;
+
+            return new TeamShortViewModel()
+            {
+                id = team.Id,
+                active = team.Active,
+                image = team.Image,
+                name = team.Name,
+                namePre = team.NamePre,
+                teamTypeId = team.teamTypeId,
+                searchDefault = team.NameExtended(),
+                title = team.NameExtended(),
+                city = team?.city?.Name ?? string.Empty,
+                stadium = team?.stadium?.NameExtended() ?? string.Empty                
+            };
         }
 
         public static IEnumerable<TeamViewModel> ToViewModel(this IEnumerable<Team> teams)
@@ -56,6 +70,13 @@
             if (Guard.IsEmptyIEnumerable(teams)) { return new TeamViewModel[0]; }
 
             return teams.Select(v => v.ToViewModel()).ToList();
+        }
+
+        public static IEnumerable<TeamShortViewModel> ToShortViewModel(this IEnumerable<Team> teams)
+        {
+            if (Guard.IsEmptyIEnumerable(teams)) { return new TeamShortViewModel[0]; }
+
+            return teams.Select(v => v.ToShortViewModel()).ToList();
         }
 
         public static Team ToBaseModel(this TeamViewModel teamView)
@@ -81,6 +102,13 @@
                 teamTypeId = teamView.teamTypeId,
                 WebSite = teamView.webSite
             };
+        }
+
+        public static string NameExtended(this Team team)
+        {
+            return team.city != null
+                    ? string.Format(CultureInfo.CurrentCulture, "{0} ({1})", team.Name, team.city.NameFull)
+                    : team.NameFull;
         }
     }
 }

@@ -1,10 +1,14 @@
-﻿namespace FCWeb
+﻿using Microsoft.Extensions.Configuration.UserSecrets;
+
+[assembly: UserSecretsId("aspnet5-FCWeb-3e22889e-4966-4f45-932d-512f859d2b06")]
+namespace FCWeb
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using Core;
     using Core.Extensions;
     using Core.Extensions.Middleware;
@@ -36,7 +40,7 @@
             if (env.IsDevelopment())
             {
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets();
+                builder.AddUserSecrets<Startup>();
             }
 
             builder.AddEnvironmentVariables();
@@ -55,7 +59,7 @@
             services.AddEntityFramework()
                 .AddEntityFrameworkSqlServer()
                 .AddDbContext<FCDBContext>(options =>
-                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"], ob => ob.UseRowNumberForPaging()));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<FCDBContext>()

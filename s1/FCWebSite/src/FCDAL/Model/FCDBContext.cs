@@ -10,7 +10,8 @@
     {
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer(MainCfg.CoreConfig.Current["Data:DefaultConnection:ConnectionString"]);
+            // TODO : Remove UseRowNumberForPaging() for SQL Server wich supports NEXT FETCH statements. 2008 does not support
+            options.UseSqlServer(MainCfg.CoreConfig.Current["Data:DefaultConnection:ConnectionString"], ob => ob.UseRowNumberForPaging());
         }
     }
 }

@@ -5,15 +5,14 @@
         .module('fc.ui')
         .directive('staff', staff);
 
-    staff.$inject = ['personsSrv', 'configSrv', 'helper', 'filterFilter', 'publicationsSrv'];
+    staff.$inject = ['personsSrv', 'configSrv', 'helper', 'filterFilter'];
 
-    function staff(personsSrv, configSrv, helper, filterFilter, publicationsSrv) {
+    function staff(personsSrv, configSrv, helper, filterFilter) {
         return {
             restrict: 'E',
             replace: true,
             scope: {
                 teamId: '=',
-                publicationsCount: '=',
                 title: '=',
                 persons: '='
             },
@@ -30,19 +29,13 @@
                     return scope.persons;
                 },
                 function (newValue, oldValue) {
-                    if (angular.isObject(scope.persons)) {
-                        staffLoaded();
+                    if (angular.isArray(newValue) && newValue.length > 0) {
+                        staffLoaded(newValue);
                     }
                 });
 
-                loadData();
-
-                function loadData() {                    
-                    publicationsSrv.loadLatestPublications(scope.publicationsCount, publicationsLoaded);
-                }
-
-                function staffLoaded() {
-                    angular.forEach(scope.persons, function (item) {
+                function staffLoaded(persons) {
+                    angular.forEach(persons, function (item) {
                         item.flagSrc = helper.getFlagSrc(item.city.countryId);
 
                         var imageUploadData = personsSrv.getImageUploadData(item);
@@ -51,14 +44,8 @@
                         item.showRole = angular.isObject(item.role);
                     });
 
-                    scope.rows = scope.persons.length > 0 ? helper.formRows(scope.persons, 4, 0) : [];
+                    scope.rows = persons.length > 0 ? helper.formRows(persons, 4, 0) : [];
                     scope.loadingStaff = false;
-                }
-
-                function publicationsLoaded(response) {
-                    var publications = response.data;
-                    scope.publications = publications;
-                    scope.loadingNews = false;
                 }
             },
             templateUrl: '/lib/fc/layout/teams/staff.html'

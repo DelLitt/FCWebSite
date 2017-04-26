@@ -242,13 +242,27 @@ body {
   text-align: right !important;
 }
 
-a {
+.fc-link {
   color: @brand-primary2;
+  cursor: pointer;
+}
+
+.fc-link-hovered {
+  color: @brand-primary3;
+  text-decoration: none;
+}
+
+.fc-link:hover, 
+.fc-link:focus {
+  .fc-link-hovered();
+}
+
+a {
+  .fc-link();
 }
 
 a:hover, a:focus {
-  color: @brand-primary3;
-  text-decoration: none;
+  .fc-link-hovered();
 }
 
 .font-07 {

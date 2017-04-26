@@ -39,8 +39,17 @@
             logger.LogTrace("Getting union content '{0}' of the main page!", content);
 
             if (content.Equals("base", StringComparison.OrdinalIgnoreCase))
-            {                
-                return GetMainPageContentBase();
+            {
+                try
+                {
+                    return GetMainPageContentBase();
+                }
+                catch (Exception ex)
+                {
+                    System.IO.File.AppendAllLines("logX.txt", new[] { ex.ToString() });
+                    Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    return null;
+                }
             }
 
             Response.StatusCode = (int)HttpStatusCode.NotFound;

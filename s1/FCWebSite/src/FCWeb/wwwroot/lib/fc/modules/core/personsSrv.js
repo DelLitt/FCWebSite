@@ -9,8 +9,8 @@
 
     function personsSrv($rootScope, helper, apiSrv, notificationManager, configSrv) {
 
-        this.loadPerson = function (success, failure) {
-            apiSrv.get('/api/persons/create/', null, success, personsLoadFail);
+        this.createPerson = function (success, failure) {
+            apiSrv.get('/api/persons/create/true', null, success, personsLoadFail);
         }
 
         this.loadPerson = function (id, success, failure) {

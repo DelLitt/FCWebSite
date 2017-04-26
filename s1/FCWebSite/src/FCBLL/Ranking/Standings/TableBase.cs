@@ -94,6 +94,16 @@
 
             Records = tableRecords.ToArray();
 
+            // TODO: Clear!!!
+            // TODO: Clear!!!
+            // TODO: Clear!!!
+            // TODO: Clear!!!
+            foreach (TableRecord tr in Records)
+            {
+                if (tr.teamId == 23) { tr.Points -= 5; }
+                if (tr.teamId == 32) { tr.Points -= 7; }
+            }
+
             log.Trace("Initial state of table '{0}' built from games:", Name);
             log.Trace(Records.ToTextTable());
         }

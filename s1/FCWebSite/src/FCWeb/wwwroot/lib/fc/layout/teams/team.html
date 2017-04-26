@@ -25,7 +25,7 @@
                                 <hr />
                                 <div class="row" ng-repeat="row in goalkeepers.rows">
                                     <div class="col-sm-3" ng-repeat="item in row">
-                                        <person-card-item person="item" img-variant="256x256"></person-card-item>
+                                        <player-card-item person="item" img-variant="256x256"></player-card-item>
                                     </div>
                                 </div>
                                 <br />
@@ -33,7 +33,7 @@
                                 <hr />
                                 <div class="row" ng-repeat="row in defenders.rows">
                                     <div class="col-sm-3" ng-repeat="item in row">
-                                        <person-card-item person="item" img-variant="256x256"></person-card-item>
+                                        <player-card-item person="item" img-variant="256x256"></player-card-item>
                                     </div>
                                 </div>
                                 <br />
@@ -41,7 +41,7 @@
                                 <hr />
                                 <div class="row" ng-repeat="row in midfielders.rows">
                                     <div class="col-sm-3" ng-repeat="item in row">
-                                        <person-card-item person="item" img-variant="256x256"></person-card-item>
+                                        <player-card-item person="item" img-variant="256x256"></player-card-item>
                                     </div>
                                 </div>
                                 <br />
@@ -49,7 +49,7 @@
                                 <hr />
                                 <div class="row" ng-repeat="row in forwards.rows">
                                     <div class="col-sm-3" ng-repeat="item in row">
-                                        <person-card-item person="item" img-variant="256x256"></person-card-item>
+                                        <player-card-item person="item" img-variant="256x256"></player-card-item>
                                     </div>
                                 </div>
                             </div>
@@ -65,19 +65,4 @@
             </div>
         </div>
     </section>
-    <!--<section class="col-sm-3">
-        <div class="text-center" ng-show="loadingNews">
-            <img ng-src="{{loadingImage}}" />
-        </div>
-        <div class="panel panel-primary no-padding" ng-show="!loadingNews">
-            <div class="panel-heading"><span class="glyphicon glyphicon-globe">&nbsp;</span><span translate="ACTUAL_NEWS"></span></div>
-            <div class="panel-body">
-                <div class="row" ng-repeat="publication in publications">
-                    <div class="col-sm-12">
-                        <publication-item model="publication"></publication-item>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>-->
 </div>

@@ -3,11 +3,11 @@
 
     angular
         .module('fc.ui')
-        .directive('personCardItem', personCardItem);
+        .directive('staffCardItem', staffCardItem);
 
-    personCardItem.$inject = ['personsSrv', 'helper'];
+    staffCardItem.$inject = ['personsSrv', 'helper'];
 
-    function personCardItem(personsSrv, helper) {
+    function staffCardItem(personsSrv, helper) {
         return {
             restrict: 'E',
             replace: true,
@@ -21,7 +21,7 @@
 
                 scope.image = helper.addFileVariant(image, scope.imgVariant);
             },
-            templateUrl: '/lib/fc/layout/persons/personCardItem.html'
+            templateUrl: '/lib/fc/layout/persons/staffCardItem.html'
         }
     }
 })();

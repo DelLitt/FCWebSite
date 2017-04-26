@@ -18,6 +18,8 @@
                 .UseStartup<Startup>()
                 .Build();
 
+            File.AppendAllLines("logX.txt", new[] { "Runinig!" });
+
             host.Run();
         }
     }

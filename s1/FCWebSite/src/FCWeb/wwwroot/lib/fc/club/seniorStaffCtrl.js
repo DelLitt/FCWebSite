@@ -10,7 +10,6 @@
     function seniorStaffCtrl($scope, configSrv, personsSrv) {
 
         $scope.teamId = configSrv.Current.MainTeamId;
-        $scope.publicationsCount = configSrv.teamPublicationsCount;
         $scope.title = 'SENIOR_STAFF';
         $scope.persons = [];
 

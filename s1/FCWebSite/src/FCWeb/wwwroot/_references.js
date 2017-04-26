@@ -1,6 +1,5 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="../gulpfile.js" />
-/// <reference path="js/personctrl.js" />
 /// <reference path="js/site.js" />
 /// <reference path="js/site.office.min.js" />
 /// <reference path="lib/angular/angular.js" />

@@ -49,6 +49,10 @@
                 templateUrl: "lib/fc/office/galleries/imageGalleryEdit.html",
                 controller: "imageGalleryEditCtrl"
             })
+            .when("/office/persons/create/", {
+                templateUrl: "lib/fc/office/persons/personEdit.html",
+                controller: "personEditCtrl"
+            })
             .when("/office/persons/edit/:id", {
                 templateUrl: "lib/fc/office/persons/personEdit.html",
                 controller: "personEditCtrl"
@@ -57,12 +61,16 @@
                 templateUrl: "lib/fc/office/persons/personsList.html",
                 controller: "personsListCtrl"
             })
+            .when("/office/teams/create/", {
+                templateUrl: "lib/fc/office/teams/teamEdit.html",
+                controller: "teamEditCtrl"
+            })
             .when("/office/teams/edit/:id", {
                 templateUrl: "lib/fc/office/teams/teamEdit.html",
                 controller: "teamEditCtrl"
             })
             .when("/office/teams/", {
-                templateUrl: "lib/fc/office/teams/teamsList.html",
+                templateUrl: "lib/fc/office/teams/teamsList.html",                
                 controller: "teamsListCtrl"
             })
             .when("/office/game/edit/:id", {

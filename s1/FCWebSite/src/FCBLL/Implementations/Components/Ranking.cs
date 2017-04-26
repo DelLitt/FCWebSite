@@ -81,6 +81,7 @@
         {
             Guard.CheckNull(table, nameof(table));
 
+
             var tableByPoints = new TableByPoints(table);
             var tableByWins = new TableByWins(tableByPoints);
             var tableByPrivateMatches = new TableByPrivateMatches(tableByWins);

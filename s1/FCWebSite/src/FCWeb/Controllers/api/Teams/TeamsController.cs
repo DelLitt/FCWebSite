@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Net;
+    using Core;
     using Core.Extensions;
     using Core.Extensions.ViewModel;
     using FCCore.Abstractions.Bll;
@@ -82,6 +83,17 @@
             teamBll.FillCities = true;
 
             return teamBll.SearchByDefault(txt).ToViewModel();
+        }
+
+        [HttpGet("search/{type}")]
+        public IEnumerable<TeamViewModel> Get(string type, [FromQuery] string txt)
+        {
+            teamBll.FillTeamType = true;
+            teamBll.FillCities = true;
+
+            int teamTypeId = TeamTypeHelper.GetIdByFiendlyName(type);
+
+            return teamBll.SearchByTypeDefault(txt, teamTypeId).ToViewModel();
         }
 
         [HttpPost]

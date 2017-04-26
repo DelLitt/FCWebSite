@@ -15,7 +15,7 @@
 
         $scope.teamId = configSrv.Current.MainTeamId;
         $scope.tourneysIds = configSrv.Current.ReserveTeamTourneyIds;
-        $scope.title = 'Результаты';
+        //$scope.title = 'Результаты';
 
         // TODO: Change config to promise
         //scope.mainTeamId = 

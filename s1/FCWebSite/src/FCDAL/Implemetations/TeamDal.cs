@@ -95,6 +95,19 @@
             return result;
         }
 
+        public IEnumerable<Team> SearchByTypeDefault(string text, int typeId)
+        {
+            IQueryable<Team> teams = Context.Team
+                                            .Where(t => t.teamTypeId == typeId
+                                                    && (t.Name + ' ' + t.city.NameFull).Contains(text));
+
+            IEnumerable<Team> result = ApplySettings(teams);
+
+            FillRelations(result);
+
+            return result;
+        }
+
         public IEnumerable<Team> SearchByDefault(string text, IEnumerable<int> teamIds)
         {
             if(Guard.IsEmptyIEnumerable(teamIds)) { return new Team[0]; }

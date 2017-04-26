@@ -35,7 +35,7 @@
 
                 loadData();
 
-                function loadData() {                    
+                function loadData() {
                     tourneysSrv.loadTourneys(scope.tourneysIds, tourneysLoaded);
                     personsSrv.loadTeamMainPlayers(scope.teamId, mainTeamLoaded);
                 }

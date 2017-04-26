@@ -18,6 +18,7 @@
         IEnumerable<Team> GetTeams(IEnumerable<int> ids);
         IEnumerable<Team> GetTeams();
         IEnumerable<Team> SearchByDefault(string text);
+        IEnumerable<Team> SearchByTypeDefault(string text, int typeId);
         IEnumerable<Team> SearchByDefault(string text, int roundId);
         int SaveTeam(Team entity);
     }

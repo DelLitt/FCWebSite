@@ -129,6 +129,13 @@
             return DalTeam.SearchByDefault(text);
         }
 
+        public IEnumerable<Team> SearchByTypeDefault(string text, int typeId)
+        {
+            if (string.IsNullOrWhiteSpace(text)) { return new Team[0]; }
+
+            return DalTeam.SearchByTypeDefault(text, typeId);
+        }
+
         public IEnumerable<Team> SearchByDefault(string text, int roundId)
         {
             Round round = DalRound.GetRound(roundId);

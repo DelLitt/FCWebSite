@@ -35,6 +35,8 @@ paths.fc = {
             paths.webroot + "lib/angular-sanitize/angular-sanitize.js",
             paths.webroot + "lib/angular-animate/angular-animate.js",
             paths.webroot + "lib/ng-image-gallery/dist/ng-image-gallery.js",
+            paths.webroot + "lib/ideal-image-slider/ideal-image-slider.js",
+            paths.webroot + "lib/ideal-image-slider/extensions/captions/iis-captions.js",
 
             paths.fclib + "modules/fc.ui.js",
             paths.fclib + "modules/fc.core.js",
@@ -90,7 +92,7 @@ gulp.task("clean", ["clean:js", "clean:css"]);
 gulp.task("min:jsfront", function () {
     return gulp.src(paths.fc.js.front, { base: "." })
         .pipe(concat(paths.concatJsDest))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest("."));
 });
 

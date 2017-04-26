@@ -1,44 +1,27 @@
-﻿<div class="fc-container row publication">
-    <div class="col-sm-9">
-        <div class="text-center" ng-show="loadingStaff">
-            <img ng-src="{{loadingImage}}" />
-        </div>
-        <div class="panel panel-primary" ng-show="!loadingStaff">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-12"><span class="glyphicon glyphicon-stats">&nbsp;</span><span translate="{{title}}"></span></div>
-                </div>
+﻿<div class="row">
+    <section class="col-xs-12">
+        <div class="row" ng-show="loadingStaff" style="height: 50px;">
+            <div class="col-xs-12 text-center">
+                <img ng-src="{{loadingImage}}" />
             </div>
-            <div class="panel-body">
-                <div class="row row-eq-height" ng-repeat="row in rows">
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3" ng-repeat="person in row.items">
-                        <div class="panel panel-primary">
-                            <div class="panel-body">
-                                <img class="img-responsive img-rounded" ng-src="{{person.src}}" />
-                            </div>
-                            <div class="panel-heading">
-                                <h5>{{person.nameDefault}}</h5>
-                            </div>
-                            <div class="panel-footer">
-                                <span ng-show="person.showRole" translate="{{person.role.name}}">{{person.role.nameFull}}</span>
+        </div>
+        <div class="row" ng-show="!loadingStaff">
+            <div class="col-xs-12">
+                <div class="fc-pane">
+                    <div class="fc-pane-header">
+                        <h3 class="invert"><span translate="{{title}}"></span></h3>
+                    </div>
+                    <div class="fc-pane-body">
+                        <div class="fc-pane-form" style="padding: 20px;">
+                            <div class="row" ng-repeat="row in rows">
+                                <div class="col-sm-3" ng-repeat="item in row">
+                                    <staff-card-item person="item" img-variant="256x256"></staff-card-item>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-sm-3 text-center" ng-show="loadingNews">
-        <img ng-src="{{loadingImage}}" />
-    </div>
-    <div class="col-sm-3 panel panel-primary no-padding" ng-show="!loadingNews">
-        <div class="panel-heading"><span class="glyphicon glyphicon-globe">&nbsp;</span>Последние новости</div>
-        <div class="panel-body">
-            <div class="row" ng-repeat="publication in publications">
-                <div class="col-sm-12">
-                    <publication-item model="publication"></publication-item>
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 </div>

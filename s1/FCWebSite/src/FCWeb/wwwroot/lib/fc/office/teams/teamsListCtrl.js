@@ -13,21 +13,47 @@
         $scope.loadingImage = helper.getLoadingImg();
         $scope.teams = [];
         $scope.text = '';
+        $scope.teamType = '';
         $scope.search = search;
+        $scope.load = load;
 
-        init();
+        var lastLength = 0;
+        var length = 0;
+
+        //init();
+
+        $scope.$watch(function (scope) {
+            return $scope.teamType;
+        },
+        function (newValue, oldValue) {
+            if (newValue !== oldValue) {
+                load();
+            }
+
+            if ($scope.teamType.length == 0) {
+                $scope.teamType = 'main';
+            }
+        });      
+
+        function load() {
+            length = angular.isNumber($scope.text.length) ? $scope.text.length : 0;
+
+            if (length >= 3) {
+                teamsSrv.searchByType($scope.teamType, $scope.text, teamsLoaded);
+            }
+            else if ($scope.text.length == 0 || lastLength > $scope.text.length) {
+                init();
+            }
+        }
 
         function init() {
-            teamsSrv.loadAllTeams(teamsLoaded);
+            teamsSrv.loadTeamsList($scope.teamType, teamsLoaded);
         }
 
         function teamsLoaded(response) {
             $scope.teams = response.data;
             $scope.loading = false;
         }
-
-        var lastLength = 0;
-        var length = 0;
 
         function search(event) {
 
@@ -38,15 +64,7 @@
                 return;
             }
 
-            length = angular.isNumber($scope.text.length) ? $scope.text.length : 0;
-
-            if (length >= 3) {
-                teamsSrv.search($scope.text, teamsLoaded);
-            }
-            else if (lastLength > $scope.text.length) {
-                init();
-            }
-
+            $scope.load();
             lastLength = length;
         }
     }

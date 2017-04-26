@@ -26,16 +26,18 @@
             {
                 throw new ArgumentException("Temporary folder name is not defined!");
             }
+            string physicalTempPath = WebHelper.ToPhysicalPath(tempPath);
+            string physicalStoragePath = WebHelper.ToPhysicalPath(storagePath);
 
-            if(!Directory.Exists(storagePath))
+            if (!Directory.Exists(physicalStoragePath))
             {
-                Directory.CreateDirectory(storagePath);
+                Directory.CreateDirectory(physicalStoragePath);
             }
 
-            DirectoryCopy(tempPath, storagePath, true);
+            DirectoryCopy(physicalTempPath, physicalStoragePath, true);
 
             // delete temp folder
-            var currentTempDir = new DirectoryInfo(tempPath);
+            var currentTempDir = new DirectoryInfo(physicalTempPath);
             while(currentTempDir != null)
             {
                 if (currentTempDir.Name.Equals(tempFolderName, StringComparison.OrdinalIgnoreCase))

@@ -23,7 +23,7 @@
         }
 
         this.createTeam = function (success, failure) {
-            apiSrv.get('/api/teams/create',
+            apiSrv.get('/api/teams/create/true',
                 null,
                 success,
                 function (response) {
@@ -37,6 +37,19 @@
 
         this.loadAllTeams = function (success, failure) {
             apiSrv.get('/api/teams',
+                null,
+                success,
+                function (response) {
+                    if (angular.isFunction(failure)) {
+                        failure(response);
+                    }
+
+                    teamsLoadFail(response);
+                });
+        }
+
+        this.loadTeamsList = function (type, success, failure) {
+            apiSrv.get('/api/teams/type/' + type + '/list',
                 null,
                 success,
                 function (response) {
@@ -63,17 +76,25 @@
 
         this.search = function (text, success, failure) {
             var url = 'api/teams/search?txt=' + encodeURIComponent(text)
+            sendGet(url, success, failure);
+        }
 
+        this.searchByType = function (type, text, success, failure) {
+            var url = 'api/teams/search/' + type + '?txt=' + encodeURIComponent(text)
+            sendGet(url, success, failure);
+        }
+
+        function sendGet(url, success, failure) {
             apiSrv.get(url,
-                null,
-                success,
-                function (response) {
-                    if (failure != null) {
-                        failure(response);
-                    }
+                       null,
+                       success,
+                       function (response) {
+                           if (failure != null) {
+                               failure(response);
+                           }
 
-                    teamsLoadFail(response);
-                });
+                           teamsLoadFail(response);
+                       });
         }
 
         function teamsLoadFail(response) {

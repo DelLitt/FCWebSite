@@ -6,7 +6,7 @@
     <WebStackScaffolding_ControllerDialogWidth>600</WebStackScaffolding_ControllerDialogWidth>
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
     <WebStackScaffolding_LayoutPageFile>~/_LayoutOffice.cshtml</WebStackScaffolding_LayoutPageFile>
-    <NameOfLastUsedPublishProfile>sfc-slutsk - Web Deploy</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>TestWin7Runtime</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>

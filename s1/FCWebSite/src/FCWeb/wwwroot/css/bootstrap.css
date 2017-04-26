@@ -6975,8 +6975,22 @@ body {
 .fc-text-right {
   text-align: right !important;
 }
+.fc-link {
+  color: #00378F;
+  cursor: pointer;
+}
+.fc-link-hovered {
+  color: #1771FF;
+  text-decoration: none;
+}
+.fc-link:hover,
+.fc-link:focus {
+  color: #1771FF;
+  text-decoration: none;
+}
 a {
   color: #00378F;
+  cursor: pointer;
 }
 a:hover,
 a:focus {
@@ -8029,13 +8043,6 @@ a.text-prim5-color:focus {
 .fc-pane .fc-pane-body.fc-pane-form-pad {
   padding: 11px;
 }
-.fc-pane a.fc-pane-action-link,
-.fc-pane a.fc-pane-action-link:hover,
-.fc-pane a.fc-pane-action-link:active {
-  color: #fff;
-  background-color: rgba(0, 43, 110, 0.9);
-  padding: 5px 10px 5px 10px;
-}
 .fc-pane .fc-pane-footer {
   font-size: 14px;
   font-family: inherit;
@@ -8046,6 +8053,9 @@ a.text-prim5-color:focus {
   padding: 9px 15px 9px 15px;
   color: rgba(0, 43, 110, 0.9);
   background-color: #fff !important;
+  border: solid 1px #ACCCFF;
+  border-top: none;
+  border-bottom: none;
 }
 .fc-pane .bg-threads {
   /*bottom: -@fc-threads-height;*/
@@ -8120,7 +8130,7 @@ a.text-prim5-color:focus {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 245px;
+  max-width: 252px;
 }
 .person-item .person-body .caption .person-meta {
   display: inline-block;
