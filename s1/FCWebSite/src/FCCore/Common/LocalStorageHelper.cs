@@ -6,7 +6,10 @@
     using System.Linq;
     using System.Security;
     using Configuration;
-    using Model.Storage;  
+    using Model.Storage;
+    using FCCore.Diagnostic.Logging;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
 
     public static class LocalStorageHelper
     {
@@ -95,6 +98,10 @@
             string physicalPath = CheckPath(path, root, createNew);
             string parent = string.Empty;
 
+            ILogger logger = MainCfg.ServiceProvider.GetService<ILogger<StorageFolder>>();
+
+            logger.LogInformationHook($"Getting folder content: '{physicalPath}'.");
+
             DirectoryInfo parentDir = Directory.GetParent(physicalPath);
 
             if(parentDir.Exists)
@@ -105,6 +112,8 @@
                     parent = parentVirtual;
                 }
             }
+
+            logger.LogInformationHook($"Parent folder: '{parentDir.Name}'. Exists: {parentDir.Name}.");
 
             var folderView = new StorageFolder()
             {
@@ -123,6 +132,8 @@
                 });
             }
 
+            logger.LogInformationHook($"Inner folders count: {folders.Count()}");
+
             IEnumerable<string> files = Directory.EnumerateFiles(physicalPath);
             if (files != null)
             {
@@ -132,6 +143,8 @@
                     path = WebHelper.ToVirtualPath(f)
                 });
             }
+
+            logger.LogInformationHook($"Inner files count: {files.Count()}");
 
             //if (recursive) { };
 

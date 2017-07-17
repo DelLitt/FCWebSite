@@ -23,7 +23,7 @@
         }
 
         [HttpGet("{id}")]
-        [ResponseCache(VaryByQueryKeys = new string[] { "id" }, Duration = 300)]
+        [ResponseCache(VaryByQueryKeys = new string[] { "id" }, Duration = Constants.Cache_MiddleVaryByParamDurationSeconds)]
         public GameQuickInfoGroupViewModel Get(int id)
         {
             IEnumerable<int> tourneyIds;

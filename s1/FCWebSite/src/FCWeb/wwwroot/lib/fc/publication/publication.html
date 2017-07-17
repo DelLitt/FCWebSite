@@ -1,7 +1,7 @@
 ﻿<div class="row">
     <section class="col-sm-12">
-        <div class="row" ng-show="loadingPublication" style="height: 30px;">
-            <div class="col-xs-12 text-center">
+        <div class="row" ng-show="loadingPublication">
+            <div class="col-xs-12 fc-loading-wrapper">
                 <img ng-src="{{loadingImage}}" />
             </div>
         </div>
@@ -61,7 +61,7 @@
         </div>
     </section>
     <!--<section class="col-sm-3">
-        <div class="row" ng-show="loadingLatest" style="height: 30px;">
+        <div class="row fc-loading-wrapper" ng-show="loadingLatest">
             <div class="col-xs-12 text-center">
                 <img ng-src="{{loadingImage}}" />
             </div>

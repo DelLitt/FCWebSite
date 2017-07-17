@@ -5,9 +5,9 @@
         .module('fc.admin')
         .controller('rootCtrl', rootCtrl);
 
-    rootCtrl.$inject = ['$scope', 'configSrv'];
+    rootCtrl.$inject = ['$scope', 'configSrv', 'helper'];
 
-    function rootCtrl($scope, configSrv) {
+    function rootCtrl($scope, configSrv, helper) {
         var clickListeners = [];
 
         $scope.click = function () {
@@ -29,6 +29,10 @@
                     clickListeners.splice(index, 1);
                 }
             }
+        }
+
+        $scope.logout = function () {
+            helper.logout();
         }
     }
 })();

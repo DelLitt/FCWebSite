@@ -86,6 +86,9 @@
             fileBrowserSrv.open(
                 $scope.fileBrowser.path,
                 $scope.fileBrowser.root,
+                true,
+                false,
+                false,
                 function (selectedFile) {
                     setPersonImage(selectedFile.name);
                 },

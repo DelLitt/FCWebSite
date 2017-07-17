@@ -52,7 +52,7 @@
             $scope.stadium = angular.isObject($scope.team.stadium) ? $scope.team.stadium.name : "-";
             $scope.teamType = angular.isObject($scope.team.teamType) ? $scope.team.teamType.name : "-";
 
-            $scope.showWebsite = angular.isString($scope.team.webSite) && $scope.team.webSite.length > 0;
+            $scope.showWebsite = !(parseInt($scope.team.webSite) > 0) && angular.isString($scope.team.webSite) && $scope.team.webSite.length > 0;
             $scope.showTeamType = angular.isObject($scope.team.teamType);
             $scope.showMainTourney = angular.isObject($scope.team.mainTourney);
 

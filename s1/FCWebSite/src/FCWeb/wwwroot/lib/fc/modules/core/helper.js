@@ -33,7 +33,7 @@ String.prototype.insertAt = function (index, string) {
 (function (module) {
     'use strict';
 
-    module.factory('helper', ['configSrv', function (configSrv) {
+    module.factory('helper', ['configSrv', 'apiSrv', function (configSrv, apiSrv) {
         var thisIsPrivate = "Private";
         var availableGoalsInfo = ['eGoalPenalty', 'eGoalAuto'];
         var availableEventsInfo = ['eYellowRoughing', 'eYellowDangerous', 'eYellowHanding', 'eYellowUnsport', 'eRedDoubleYellow', 'eRedRoughing', 'eRedLastResort', 'eRedUnsport', 'eRedKeeperHandOfSquad'];
@@ -210,7 +210,7 @@ String.prototype.insertAt = function (index, string) {
                         var plr = team.descriptionData.fakeInfo.persons[i];
                         var num = angular.isNumber(plr.number) ? plr.number + ". " : "";
                         var date = angular.isString(plr.dateOfBirth) ? new Date(plr.dateOfBirth) : null;
-                        var birthDate = angular.isDate(date) ? " (" + date.getDay() + "." + date.getMonth() + 1 + "." + date.getFullYear() + ")" : "";
+                        var birthDate = angular.isDate(date) ? " <small>(" + date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear() + ")</small>" : "";
 
                         players.push(num + plr.name + birthDate)
                     }
@@ -314,7 +314,11 @@ String.prototype.insertAt = function (index, string) {
 
                 return "";
             },
-            // PROTOCOL HELPER END
+            // PROTOCOL HELPER END          
+
+            logout: function () {
+                apiSrv.post("/Account/LogOff");
+            },
 
             strJoin: function (separator, strArray) {
                 var result = "";

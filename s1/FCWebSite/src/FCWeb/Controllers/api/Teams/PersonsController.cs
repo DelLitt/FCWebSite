@@ -6,6 +6,7 @@
     using Core.Extensions;
     using FCCore.Abstractions.Bll;
     using FCCore.Common;
+    using FCCore.Configuration;
     using Microsoft.AspNetCore.Mvc;
     using ViewModels;
 
@@ -20,7 +21,7 @@
         }
 
         [HttpGet("{group}")]
-        [ResponseCache(VaryByQueryKeys = new string[] { "teamId", "group" }, Duration = 900)]
+        [ResponseCache(VaryByQueryKeys = new string[] { "teamId", "group" }, Duration = Constants.Cache_LongVaryByParamDurationSeconds)]
         public IEnumerable<PersonViewModel> Get(int teamId, string group)
         {
             PersonGroup personGroup = PersonGroupHelper.FromString(group);

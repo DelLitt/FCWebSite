@@ -154,13 +154,13 @@
             ITextProtocolBuilder textProtocolBuilderReal = TextProtocolBuilderFactory.Create(protocolManager);
             ITextProtocolBuilder textProtocolBuilderFake = TextProtocolBuilderFactory.Create(new GameNoteBuilder(game));
 
-            ITextProtocolBuilder textProtocolBuilderHome = textProtocolBuilderReal.IsAvailableHome
-                                                            ? textProtocolBuilderReal
-                                                            : textProtocolBuilderFake;
+            ITextProtocolBuilder textProtocolBuilderHome = textProtocolBuilderFake.IsAvailableHome
+                                                            ? textProtocolBuilderFake
+                                                            : textProtocolBuilderReal;
 
-            ITextProtocolBuilder textProtocolBuilderAway = textProtocolBuilderReal.IsAvailableAway
-                                                            ? textProtocolBuilderReal
-                                                            : textProtocolBuilderFake;
+            ITextProtocolBuilder textProtocolBuilderAway = textProtocolBuilderFake.IsAvailableAway
+                                                            ? textProtocolBuilderFake
+                                                            : textProtocolBuilderReal;
 
             var textProtocol = new TextProtocolViewModel();
 

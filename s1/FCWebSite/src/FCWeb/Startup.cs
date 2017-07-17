@@ -13,6 +13,7 @@ namespace FCWeb
     using Core.Extensions;
     using Core.Extensions.Middleware;
     using FCCore.Configuration;
+    using FCCore.Diagnostic.Logging.File;
     using FCDAL.Model;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -110,6 +111,7 @@ namespace FCWeb
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
             loggerFactory.AddConsole();
+            loggerFactory.AddTextFile(Path.Combine(Directory.GetCurrentDirectory(), "HookLog.txt"));
             //loggerFactory.AddAzureWebAppDiagnostics();
 
             if (env.IsDevelopment())
@@ -176,8 +178,12 @@ namespace FCWeb
             {
                 routes
                 .MapRoute(
+                    name: "logoff",
+                    template: "account/logoff",
+                    defaults: new { controller = "account", action = "logoff" })
+                .MapRoute(
                     name: "account",
-                    template: "account/{*.}",
+                    template: "account/login",
                     defaults: new { controller = "account", action = "login" })
                 .MapRoute(
                     name: "office",

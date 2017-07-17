@@ -104,7 +104,7 @@
   },
 
   "scripts": {
-    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp less", "gulp min" ],
+    "prepublish": [ ],
     "postpublish": [ "dotnet publish --output %publish:OutputPath% --framework %publish:FullTargetFramework% --runtime %publish:Runtime% --configuration %publish:Configuration% --build-base-path ../../../PublishTemp" ]
   }
 }

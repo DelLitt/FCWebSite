@@ -6,6 +6,7 @@
     using Core.Extensions;
     using Core.ViewModelHepers;
     using FCCore.Abstractions.Bll;
+    using FCCore.Configuration;
     using FCCore.Model;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -45,7 +46,7 @@
 
         // GET api/values/5
         [HttpGet("list")]
-        [ResponseCache(VaryByQueryKeys = new string[] { "tourneyIds" }, Duration = 300)]
+        [ResponseCache(VaryByQueryKeys = new string[] { "tourneyIds" }, Duration = Constants.Cache_LongVaryByParamDurationSeconds)]
         public IEnumerable<TourneyViewModel> Get([FromQuery] int[] tourneyIds)
         {
             return tourneyBll.GetTourneys(tourneyIds).ToViewModel();

@@ -1,6 +1,6 @@
 ﻿<div class="row">
     <section class="col-xs-12">
-        <div class="row" ng-show="loadingTeam">
+        <div class="row fc-loading-wrapper">
             <div class="col-xs-12 text-center">
                 <img ng-src="{{loadingImage}}" />
             </div>
@@ -41,7 +41,7 @@
                                     <hr />
                                     <div class="row" ng-show="showFakePalyes">
                                         <div class="col-xs-12">
-                                            <p style="line-height: 1.5em;"><span class="text-uppercase" style="font-weight: bold;" translate="TEAM_STAFF"></span>: {{fakePalyesText}}</p>
+                                            <p style="line-height: 1.5em;"><span class="text-uppercase" style="font-weight: bold;" translate="TEAM_STAFF"></span>: <p ng-bind-html="fakePalyesText"></p></p>
                                         </div>
                                     </div>
                                     <div class="col-xs-12" ng-if="imageTeam.length">

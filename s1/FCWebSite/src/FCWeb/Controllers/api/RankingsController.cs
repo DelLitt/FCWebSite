@@ -85,9 +85,20 @@
 
             sb.AppendLine(string.Join(",", values));
 
-            System.IO.File.WriteAllText("D:\\updTable.sql", sb.ToString());
+            RankingTableViewModel result = Get(tourney.Id);
 
-            return Get(tourney.Id);
+            //try
+            //{
+            //    System.IO.File.WriteAllText("D:\\updTable.sql", sb.ToString());
+            //}
+            //finally
+            //{
+            //    result.data = sb.ToString();
+            //}
+
+            result.data = sb.ToString();
+
+            return result;
         }
     }
 }

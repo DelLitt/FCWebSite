@@ -11,7 +11,7 @@
 
 	angular
 	.module('thatisuday.ng-image-gallery', ['ngAnimate'])
-	.directive('ngImageGallery', ['$timeout', '$document', '$q', 'helper', function ($timeout, $document, $q) {
+	.directive('ngImageGallery', ['$timeout', '$document', '$q', function($timeout, $document, $q){
 		return {
 			replace : true,
 			transclude : false,

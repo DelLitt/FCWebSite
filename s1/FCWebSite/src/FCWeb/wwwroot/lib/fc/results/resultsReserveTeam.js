@@ -13,7 +13,7 @@
             $scope.title = translation;
         });
 
-        $scope.teamId = configSrv.Current.MainTeamId;
+        $scope.teamId = configSrv.Current.ReserveTeamId;
         $scope.tourneysIds = configSrv.Current.ReserveTeamTourneyIds;
         //$scope.title = 'Результаты';
 

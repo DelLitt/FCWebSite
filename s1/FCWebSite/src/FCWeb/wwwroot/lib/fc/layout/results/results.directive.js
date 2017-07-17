@@ -7,13 +7,12 @@
 
     results.$inject = ['gamesSrv', 'configSrv', 'helper', 'filterFilter', 'publicationsSrv'];
 
-    function results(gamesSrv, configSrv, helper, filterFilter, publicationsSrv) {
+    function results(gamesSrv, configSrv, helper, filterFilter) {
         return {
             restrict: 'E',
             replace: true,
             scope: {
                 teamId: '=',
-                publicationsCount: '=',
                 title: '=',
                 tourneysIds: '='
             },

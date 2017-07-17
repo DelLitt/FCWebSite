@@ -5,6 +5,7 @@
     using FCCore.Abstractions.Bll;
     using Core.Extensions;
     using ViewModels;
+    using FCCore.Configuration;
 
     [Route("api/[controller]")]
     public class PersonsStatsController : Controller
@@ -26,7 +27,7 @@
         }
 
         [HttpGet("team/{teamId}/tourney/{tourneyId}")]
-        [ResponseCache(VaryByQueryKeys = new string[] { "teamId", "tourneyId" }, Duration = 900)]
+        [ResponseCache(VaryByQueryKeys = new string[] { "teamId", "tourneyId" }, Duration = Constants.Cache_LongVaryByParamDurationSeconds)]
         public IEnumerable<PersonStatisticsViewModel> Get(int teamId, int tourneyId)
         {
             return personStatisticsBll.GetPersonsStatistics(teamId, tourneyId).ToViewModel();

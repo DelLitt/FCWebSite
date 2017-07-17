@@ -33,7 +33,7 @@
         }
         
         [HttpGet("{content}")]
-        [ResponseCache(VaryByQueryKeys = new string[] { "content" }, Duration = 180)]
+        [ResponseCache(VaryByQueryKeys = new string[] { "content" }, Duration = Constants.Cache_DefaultVaryByParamDurationSeconds)]
         public object Get(string content)
         {
             logger.LogTrace("Getting union content '{0}' of the main page!", content);
@@ -46,8 +46,8 @@
                 }
                 catch (Exception ex)
                 {
-                    System.IO.File.AppendAllLines("logX.txt", new[] { ex.ToString() });
                     Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    logger.LogError($"Exception occures while loading union info of main page:{Environment.NewLine}{ex.ToString()}");
                     return null;
                 }
             }

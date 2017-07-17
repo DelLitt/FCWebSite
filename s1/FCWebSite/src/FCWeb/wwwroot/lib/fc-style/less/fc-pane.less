@@ -117,6 +117,28 @@
   }
 }
 
+.fc-pane.transparent-bg-dark {
+
+  .fc-pane-header {
+    border: solid 1px @brand-primary5;
+  }
+
+  .fc-pane-body {
+    background-color: fade(@brand-primary, 51%);
+    border: none;
+    color: @background-primary;
+
+    .fc-link {
+      color: @fc-light-link-color;
+    }
+
+    .fc-link:hover,
+    .fc-link:active {
+      color: @background-primary;
+    }
+  }
+}
+
 .fc-pane.fc-pane-thread-fix {
   .fc-pane-body {
     border-bottom: none;

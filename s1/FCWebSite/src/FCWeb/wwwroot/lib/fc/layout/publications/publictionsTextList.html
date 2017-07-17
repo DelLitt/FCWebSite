@@ -1,5 +1,5 @@
 ﻿<section>
-    <div ng-show="loadingTL" class="row text-center"><img ng-href="{{loadingImage}}" /></div>
+    <div ng-show="loadingTL" class="row fc-loading-wrapper"><img ng-href="{{loadingImage}}" /></div>
     <dl ng-show="!loadingTL" class="row fc-data-list" ng-repeat="item in publications.items">
         <dt class="label label-primary soft text-left">{{item.date | date: 'short'}}</dt>
         <dd><a ng-href="publication/{{item.urlKey}}">{{item.title}}</a></dd>

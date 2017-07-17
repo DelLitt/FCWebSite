@@ -6,11 +6,21 @@ namespace FCWeb.Controllers.Api.FileBrowser
     using FCCore.Model.Storage;
     using FCCore.Common;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.Extensions.Logging;
+    using System;
+    using FCCore.Diagnostic.Logging;
 
     [Route("api/[controller]")]
     [Authorize]
     public class FileBrowserController : Controller
     {
+        private ILogger<FileBrowserController> logger { get; set; }
+
+        public FileBrowserController(ILogger<FileBrowserController> logger)
+        {
+            this.logger = logger;
+        }
+
         // GET: api/values
         [HttpGet]
         [Authorize(Roles = "admin,press")]
@@ -20,7 +30,18 @@ namespace FCWeb.Controllers.Api.FileBrowser
                 && User.Identity.IsAuthenticated
                 && (User.IsInRole("admin") || User.IsInRole("press"));
 
-            var folderView = LocalStorageHelper.GetFolderView(path, root, allowCreate);
+            StorageFolder folderView = null;
+
+            logger.LogInformationHook($"Get files for file browser. Path: {path}. Root: {root}. Create new: {createNew}.");
+
+            try
+            {
+                folderView = LocalStorageHelper.GetFolderView(path, root, allowCreate);
+            }
+            catch(Exception ex)
+            {
+                logger.LogErrorHook(ex.ToString());
+            }
 
             return folderView;
         }

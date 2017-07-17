@@ -58,14 +58,14 @@
         }
 
         [HttpGet("{urlKey}")]
-        [ResponseCache(VaryByQueryKeys = new string[] { "urlKey" }, Duration = 300)]
+        [ResponseCache(VaryByQueryKeys = new string[] { "urlKey" }, Duration = Constants.Cache_MiddleVaryByParamDurationSeconds)]
         public ImageGalleryViewModel Get(string urlKey)
         {
             return imageGalleryBll.GetImageGallery(urlKey).ToViewModel();
         }
 
         [HttpGet("{count:range(0,50)}/{offset:int}")]
-        [ResponseCache(VaryByQueryKeys = new string[] { "count", "offset", "groups" }, Duration = 180)]
+        [ResponseCache(VaryByQueryKeys = new string[] { "count", "offset", "groups" }, Duration = Constants.Cache_LongVaryByParamDurationSeconds)]
         public IEnumerable<ImageGalleryShortViewModel> Get(int count, int offset, [FromQuery] string[] groups)
         {
             return imageGalleryBll.GetLatestImageGalleries(count, offset, groups).ToShortViewModel();

@@ -8,6 +8,7 @@
     using Core;
     using Core.Extensions;
     using FCCore.Abstractions.Bll;
+    using FCCore.Configuration;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using ViewModels;
@@ -28,7 +29,7 @@
 
         // /api/games/round/32/mode/1
         [HttpGet("{id:int}/mode/{mode:int}")]
-        [ResponseCache(VaryByQueryKeys = new string[] { "id", "mode" }, Duration = 300)]
+        [ResponseCache(VaryByQueryKeys = new string[] { "id", "mode" }, Duration = Constants.Cache_DefaultVaryByParamDurationSeconds)]
         public RoundInfoViewModel Get(int id, int mode)
         {
             if (mode == 1)
@@ -49,10 +50,9 @@
 
         // /api/games/round/team/3/slider?tourneyIds=8&tourneyIds=10
         [HttpGet("team/{teamId}/slider")]
-        [ResponseCache(VaryByQueryKeys = new string[] { "teamId", "tourneyIds" }, Duration = 600)]
+        [ResponseCache(VaryByQueryKeys = new string[] { "teamId", "tourneyIds" }, Duration = Constants.Cache_DefaultVaryByParamDurationSeconds)]
         public IEnumerable<RoundSliderViewModel> Get(int teamId, [FromQuery] int[] tourneyIds)
         {
-            // TODO: Change to current date
             var date = DateTime.UtcNow;
             var actualDate = new DateTime(date.Year, date.Month, date.Day, date.Hour, 0, 0);
 

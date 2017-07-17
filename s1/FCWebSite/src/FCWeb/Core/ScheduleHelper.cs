@@ -42,14 +42,20 @@
             IEnumerable<Team> teams = teamBll.GetTeams(allTeamIds.Distinct());
             if (!teams.Any()) { return schedule; }
 
-            int roundId = 0;
+            int prevRoundId = 0;
+            int nextRoundId = 0;
             Round round = null;
             Tourney tourney = null;
             IList<ScheduleGameViewModel> gameGroups = new List<ScheduleGameViewModel>();
 
-            foreach (Game game in games)
+            for(int i = 0; i < games.Count(); i++)
             {
-                if (roundId != game.roundId && gameGroups.Any())
+                Game game = games.ElementAt(i);
+
+                prevRoundId = games.ElementAtOrDefault(i - 1)?.roundId ?? 0;
+                nextRoundId = games.ElementAtOrDefault(i + 1)?.roundId ?? 0;
+
+                if (prevRoundId != game.roundId)
                 {
                     round = rounds.FirstOrDefault(r => r.Id == game.roundId);
 
@@ -73,44 +79,7 @@
 
                         continue;
                     }
-
-                    var dayGamseViews = new List<DayGamesViewModel>();
-
-                    IEnumerable<IGrouping<DayOfWeek, ScheduleGameViewModel>> grouppedGamesByDay =
-                        gameGroups.GroupBy(g => g.date.DayOfWeek);
-
-                    foreach (var dayGames in grouppedGamesByDay)
-                    {
-                        var dayGameInfo = dayGames.First();
-                        dayGamseViews.Add(new DayGamesViewModel()
-                        {
-                            day = dayGames.Key.ToString().ToUpper(),
-                            games = dayGames
-                        });
-                    }
-
-                    schedule.Add(new ScheduleItemViewModel()
-                    {
-                        date = game.GameDate,
-                        round = new EntityLinkViewModel()
-                        {
-                            id = round.Id.ToString(),
-                            text = round.Name,
-                            title = round.NameFull
-                        },
-                        tourney = new EntityLinkViewModel()
-                        {
-                            id = tourney.Id.ToString(),
-                            text = tourney.Name,
-                            title = tourney.NameFull
-                        },
-                        daysGames = dayGamseViews
-                    });
-
-                    gameGroups = new List<ScheduleGameViewModel>();
                 }
-
-                roundId = game.roundId;
 
                 Team home = teams.FirstOrDefault(t => t.Id == game.homeId);
                 Team away = teams.FirstOrDefault(t => t.Id == game.awayId);
@@ -156,38 +125,44 @@
                     showTime = game.ShowTime,
                     played = game.Played
                 });
-            }
 
-            if (round != null && gameGroups.Any())
-            {
-                ScheduleGameViewModel game = gameGroups.Last();
-
-                var dayGamseViews = new List<DayGamesViewModel>();
-
-                IEnumerable<IGrouping<DayOfWeek, ScheduleGameViewModel>> grouppedGamesByDay =
-                    gameGroups.GroupBy(g => g.date.DayOfWeek);
-
-                foreach (var dayGames in grouppedGamesByDay)
+                if(nextRoundId != game.roundId)
                 {
-                    var dayGameInfo = dayGames.First();
-                    dayGamseViews.Add(new DayGamesViewModel()
+                    var dayGamseViews = new List<DayGamesViewModel>();
+
+                    IEnumerable<IGrouping<DayOfWeek, ScheduleGameViewModel>> grouppedGamesByDay =
+                        gameGroups.GroupBy(g => g.date.DayOfWeek);
+
+                    foreach (var dayGames in grouppedGamesByDay)
                     {
-                        day = dayGames.Key.ToString().ToUpper(),
-                        games = dayGames
+                        var dayGameInfo = dayGames.First();
+                        dayGamseViews.Add(new DayGamesViewModel()
+                        {
+                            day = dayGames.Key.ToString().ToUpper(),
+                            games = dayGames
+                        });
+                    }
+
+                    schedule.Add(new ScheduleItemViewModel()
+                    {
+                        date = game.GameDate,
+                        round = new EntityLinkViewModel()
+                        {
+                            id = round.Id.ToString(),
+                            text = round.Name,
+                            title = round.NameFull
+                        },
+                        tourney = new EntityLinkViewModel()
+                        {
+                            id = tourney.Id.ToString(),
+                            text = tourney.Name,
+                            title = tourney.NameFull
+                        },
+                        daysGames = dayGamseViews
                     });
-                }
 
-                schedule.Add(new ScheduleItemViewModel()
-                {
-                    date = game.date,
-                    round = new EntityLinkViewModel()
-                    {
-                        id = round.Id.ToString(),
-                        text = round.Name,
-                        title = round.NameFull
-                    },
-                    daysGames = dayGamseViews
-                });
+                    gameGroups = new List<ScheduleGameViewModel>();
+                }
             }
 
             return schedule;

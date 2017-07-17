@@ -3,7 +3,7 @@
         <img src="../../../images/skin/sponsors/main-banner-slot-2.png" class="img-responsive" />
     </div>
 </div>-->
-<section class="row" style="margin-bottom: 15px;">
+<section class="row">
     <div class="col-sm-7">
         <div class="row">
             <div class="col-xs-12">
@@ -16,7 +16,7 @@
             <hot-publications model="publications.hot" />
         </div>
     </div>
-    <div class="col-sm-5 main-table" style="padding-left: 0; max-height:461px; overflow-y:scroll;" ng-if="ranking">
+    <div class="col-sm-5 main-table scroll-460" ng-if="ranking">
         <main-table model="ranking" />
     </div>
 </section>
@@ -29,8 +29,7 @@
 </section>
 <section class="row">
     <div class="col-xs-12">
-        <div class="fc-pane fc-pane-thread-fix">
-
+        <div class="fc-pane transparent-bg-dark">
             <div class="fc-pane-header text-uppercase">
                 <h5><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;<span translate="NEWS"></span></h5>
             </div>
@@ -44,18 +43,19 @@
                             <publication-item model="publication" img-variant="375x211"></publication-item>
                         </div>
                     </div>
+                    <div class="row text-right">
+                        <div class="col-xs-12">
+                            <span class="fc-link" ng-click="publications.more();"><span translate="MORE"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></span>
+                        </div>                        
+                    </div>
                 </div>
             </div>
-            <div class="fc-pane-footer text-right">
-                <span class="fc-link" ng-click="publications.more();"><span translate="MORE"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></span>               
-            </div>
-            <div class="bg-threads"></div>
         </div>
     </div>
 </section>
 <section class="row">
     <div class="col-xs-12">
-        <div class="fc-pane fc-pane-thread-fix">
+        <div class="fc-pane transparent-bg-dark">
             <div class="fc-pane-header text-uppercase">
                 <h5><span class="glyphicon glyphicon-camera"></span>&nbsp;&nbsp;<span translate="PHOTO"></span></h5>
             </div>
@@ -69,18 +69,19 @@
                             <gallery-item model="gallery" img-variant="375x211"></gallery-item>
                         </div>
                     </div>
+                    <div class="row text-right">
+                        <div class="col-xs-12">
+                            <span class="fc-link" ng-click="galleries.more();"><span translate="MORE"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="fc-pane-footer text-right">
-                <span class="fc-link" ng-click="galleries.more();"><span translate="MORE"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></span>
-            </div>
-            <div class="bg-threads"></div>
         </div>
     </div>
 </section>
 <section class="row">
     <div class="col-xs-12">
-        <div class="fc-pane fc-pane-thread-fix">
+        <div class="fc-pane transparent-bg-dark">
             <div class="fc-pane-header text-uppercase">
                 <h5 class="invert"><span class="glyphicon glyphicon-facetime-video"></span>&nbsp;&nbsp;<span translate="VIDEO"></span></h5>
             </div>
@@ -94,12 +95,13 @@
                             <video-item model="video"></video-item>
                         </div>
                     </div>
+                    <div class="row text-right">
+                        <div class="col-xs-12">
+                            <span class="fc-link" ng-click="videos.more();"><span translate="MORE"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></span>                                 
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="fc-pane-footer text-right">
-                <span class="fc-link" ng-click="videos.more();"><span translate="MORE"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></span>                                 
-            </div>
-            <div class="bg-threads"></div>
         </div>
     </div>
 </section>

@@ -28,7 +28,9 @@
         this.post = function (url, data, config, success, failure) {
             return $http.post(url, data, config)
                     .then(function (result) {
-                        success(result);
+                        if (angular.isFunction(success)) {
+                            success(result);
+                        }
                     }, function (error) {
                         if (error.status == '401') {
                             notificationManager.displayError('Authentication required.');

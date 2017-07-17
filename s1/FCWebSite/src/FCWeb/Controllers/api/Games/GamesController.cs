@@ -59,7 +59,7 @@
         }
 
         [HttpGet("{id:int}/{mode}")]
-        [ResponseCache(VaryByQueryKeys = new string[] { "id", "mode", "tourneyIds" }, Duration = 600)]
+        [ResponseCache(VaryByQueryKeys = new string[] { "id", "mode", "tourneyIds" }, Duration = Constants.Cache_MiddleVaryByParamDurationSeconds)]
         public IEnumerable<GameQuickInfoViewModel> Get(int id, string mode, [FromQuery] int[] tourneyIds)
         {
             gameBll.FillTeams = true;

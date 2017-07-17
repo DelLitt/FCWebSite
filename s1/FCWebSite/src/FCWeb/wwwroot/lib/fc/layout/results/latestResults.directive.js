@@ -48,7 +48,7 @@
                     scope.header = scope.quickMode ? "NEAREST_GAMES" : "SCHEDULE";
                     scope.isShowAllEnabled = scope.quickMode;
                     scope.quickMode = false;
-                    scope.hasData = angular.isArray(scope.games) && scope.games.length > 0;
+                    scope.hasData = angular.isArray(scope.games);
                 }
             },
             templateUrl: '/lib/fc/layout/results/latestResults.html'
