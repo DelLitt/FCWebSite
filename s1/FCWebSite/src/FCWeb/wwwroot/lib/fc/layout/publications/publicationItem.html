@@ -4,7 +4,7 @@
             <span class="glyphicon glyphicon-facetime-video" ng-show="model.hasVideo"></span>
             <span class="glyphicon glyphicon-camera" ng-show="model.hasPhoto"></span>
         </div>
-        <div class="right">{{model.date | date: 'shortDate'}}</div>
+        <div class="right">{{model.date  | date: 'mediumDate'}}</div>
     </div>
     <img class="img-responsive" ng-src={{img}} />
     <div class="caption">

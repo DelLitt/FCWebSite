@@ -12,5 +12,6 @@
         public byte? homeScore { get; set; }
         public byte? awayScore { get; set; }
         public string extra { get; set; }
+        public bool showTime { get; set; }
     }
 }

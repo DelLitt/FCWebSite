@@ -14,10 +14,10 @@
                 <td class="text-bg-color text-left">
                     <h5>
                         <span style="display: inline-flex;">
-                            <span style="display:inline-block;" title="{{game.home.text}} - {{game.away.text}}"><a class="ellipsis ellipsis-75 white-link" ng-href="team/{{game.home.id}}">{{game.home.text}}</a> - <a class="ellipsis ellipsis-75 white-link" ng-href="team/{{game.away.id}}">{{game.away.text}}</a></span>
-                            <span ng-show="game.homeScore">. <a ng-href="game/{{game.id}}" class="white-link">{{game.homeScore}}:{{game.awayScore}}</a><span ng-if="hasExtra(game);"><span translate translate-attr-title="{{getExtra(game);}}">*</span></span></span>
+                            <span style="display:inline-block;" title="{{game.home.text}} - {{game.away.text}}"><a class="ellipsis-110 white-link" ng-href="team/{{game.home.id}}">{{game.home.text}}</a> - <a class="ellipsis-110 white-link" ng-href="team/{{game.away.id}}">{{game.away.text}}</a></span>
+                            <span ng-show="game.homeScore >= 0">. <a ng-href="game/{{game.id}}" class="white-link">{{game.homeScore}}:{{game.awayScore}}</a><span ng-if="hasExtra(game);"><span translate translate-attr-title="{{getExtra(game);}}">*</span></span></span>
                         </span><br />
-                        <small class="ellipsis ellipsis-250 text-center" style="display:inline-block; height: 1.1em;">
+                        <small class="ellipsis-250 text-center" style="display:inline-block; height: 1.1em;">
                             <span translate="STADIUM"></span>: {{game.stadium}}
                         </small>
                     </h5>

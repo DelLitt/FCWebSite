@@ -1,6 +1,6 @@
 ﻿.fc-pane {
   position: relative;
-  margin: 10px 0 10px 0;
+  margin: 10px 0 5px 0;
   background-color: transparent;
 
   .fc-pane-header {
@@ -150,7 +150,6 @@
 }
 
 .fc-pane.fc-pane-dark {
-  margin: 0 0 15px 0;
   background: transparent;
   /*.box-shadow(@fc-shadow);*/
 
@@ -191,5 +190,9 @@
 
   a {
     color: @fc-light-link-color;
+  }
+
+  @media (max-width: @screen-xs) {
+    margin: 0 0 5px 0;
   }
 }

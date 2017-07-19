@@ -48,6 +48,7 @@
 @panel-primary-heading-bg:    fade(@brand-primary, 85%);
 
 @min-container-width-xs: 356px;
+@max-container-width-xs: 402px;
 
 /*Variables*/
 
@@ -142,6 +143,7 @@ select {
     padding-left: 1px;
     padding-right: 1px;
     min-width: @min-container-width-xs;
+    max-width: @min-container-width-xs;
   }
 
   .container > .navbar-header,
@@ -310,6 +312,24 @@ body {
   .box-shadow(@fc-shadow);
 }
 
+.fc-partners-bottom {
+  .fc-partners-logo {
+    text-align: center;
+
+    a {
+      display: inline-block;
+
+      img {
+        margin: 0 auto;
+      }
+
+      @media (max-width: @screen-xs) {
+        border-top: 1px solid;
+      }      
+    }
+  }
+}
+
 .fc-text-group {
   padding: 16px 10px;
 
@@ -405,15 +425,15 @@ a:hover, a:focus {
   color: @brand-primary5;
 }
 
-.ellipsis,
-.ellipsis-135  {
+.ellipsis(@width: 250px)  {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  max-width: @width;
 }
 
-.ellipsis-90 {
-  .ellipsis(90px);
+.ellipsis-110 {
+  .ellipsis(110px);
 }
 
 .ellipsis-135 {
@@ -432,11 +452,19 @@ a:hover, a:focus {
   .ellipsis(300px);
 }
 
-a.ellipsis {
+a.ellipsis-110,
+a.ellipsis-135,
+a.ellipsis-250,
+a.ellipsis-270,
+a.ellipsis-300 {
   display: inline-block;
 }
 
 @media (max-width: @screen-xs) {
+  .ellipsis-110 {
+    max-width: 95px;
+  }
+  
   .ellipsis-135 {
     max-width: 110px;
   }

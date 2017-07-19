@@ -144,7 +144,8 @@
                 awayScore = game.awayScore,
                 extra = game.HomePenalties.HasValue ? "2" : (game.HomeAddScore.HasValue ? "1" : string.Empty),
                 start = game.GameDate,
-                time = game.GameDate.ToString("HH:mm")
+                time = game.GameDate.ToString("HH:mm"),
+                showTime = game.ShowTime
             };
         }
 
