@@ -216,14 +216,28 @@ table.table-into-header {
     display: none;
 }
 
-.main-table.scroll-460 {
-    padding-left: 0;
-    max-height: 461px;
-    overflow-y: scroll;
-}
+/*.main-table.scroll-460 {
+  max-height: none;
+  overflow: auto;
+  margin-top: 10px;
+  padding-left: 15px;
+  margin-bottom: -10px;
+}*/
 
-@media (max-width: @screen-xs) {
-  .main-table.scroll-460 {
+.main-table.scroll-460 {
+  padding-left: 0;
+  max-height: 461px;
+  overflow-y: scroll;
+
+  @media (max-width: @screen-xs) {
+    max-height: none;
+    overflow: auto;
+    margin-top: 10px;
+    padding-left: 15px;
+    margin-bottom: -10px;
+  }
+
+  @media (max-width: @screen-sm-min) {
     max-height: none;
     overflow: auto;
     margin-top: 10px;

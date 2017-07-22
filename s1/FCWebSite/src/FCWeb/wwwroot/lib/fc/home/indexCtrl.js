@@ -9,6 +9,8 @@
 
     function indexCtrl($scope, unionSrv, publicationsSrv, imageGallerySrv, videosSrv, helper, configSrv, notificationManager) {
 
+        alert("Screen W: " + window.screen.availWidth + ", H: " + window.screen.availHeight);
+
         $scope.loadingImage = helper.getLoadingImg();
 
         $scope.publications = {
@@ -69,11 +71,11 @@
             $scope.publications.count += publicationItems.publications.length;
             $scope.publications.loading = false;
 
-            $scope.galleries.rows = helper.formRows(publicationItems.imageGalleries, configSrv.Current.MainGalleriesRowCount)
+            $scope.galleries.rows = helper.formRows(publicationItems.imageGalleries, configSrv.Current.MainGalleriesRowCount);
             $scope.galleries.count += publicationItems.imageGalleries.length;
             $scope.galleries.loading = false;
 
-            $scope.videos.rows = helper.formRows(publicationItems.videos, configSrv.Current.MainVideosRowCount)
+            $scope.videos.rows = helper.formRows(publicationItems.videos, configSrv.Current.MainVideosRowCount);
             $scope.videos.count += publicationItems.videos.length;
             $scope.videos.loading = false;
 
