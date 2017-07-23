@@ -61,10 +61,10 @@
                     var midfielders = filterFilter(persons, { roleId: configSrv.Current.PersonRoleIds.PlayerMidfielder });
                     var forwards = filterFilter(persons, { roleId: configSrv.Current.PersonRoleIds.PlayerForward });
 
-                    scope.goalkeepers.rows = goalkeepers.length > 0 ? helper.formRows(goalkeepers, 4, 0) : [];
-                    scope.defenders.rows = defenders.length > 0 ? helper.formRows(defenders, 4, 0) : [];
+                    scope.goalkeepers.rows = goalkeepers.length > 0 ? helper.formRows(goalkeepers, 1000, 0) : [];
+                    scope.defenders.rows = defenders.length > 0 ? helper.formRows(defenders, 1000, 0) : [];
                     scope.midfielders.rows = midfielders.length > 0 ? helper.formRows(midfielders, 4, 0) : [];
-                    scope.forwards.rows = forwards.length > 0 ? helper.formRows(forwards, 4, 0) : [];
+                    scope.forwards.rows = forwards.length > 0 ? helper.formRows(forwards, 1000, 0) : [];
 
                     scope.personsLoaded = true;
                     scope.statsLoaded = scope.personsLoaded && scope.tourneysLoaded;

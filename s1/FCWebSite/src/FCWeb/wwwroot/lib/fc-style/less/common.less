@@ -66,81 +66,122 @@
 //** Point at which the navbar begins collapsing.
 @grid-float-breakpoint-max: (@grid-float-breakpoint - 1);
 
+@font-size-base-over:          1em;
+
+@font-size-large:         1.25em;
+@font-size-small:         0.85em;
+
+@font-size-h1:            unit(@font-size-base-over * 2.6, em);
+@font-size-h2:            unit(@font-size-base-over * 2.15, em);
+@font-size-h3:            unit(@font-size-base-over * 1.7, em);
+@font-size-h4:            unit(@font-size-base-over * 1.25, em);
+@font-size-h5:            unit(@font-size-base-over * 1.15, em);
+@font-size-h6:            unit(@font-size-base-over * 0.85, em);
+
+@line-height-computed:    unit(@font-size-base-over * @line-height-base, em);
+
+@jumbotron-font-size:            unit(@font-size-base-over * 1.5, em);
+@jumbotron-heading-font-size:    unit(@font-size-base-over * 4.5, em);
+
+@blockquote-font-size:        unit(@font-size-base-over * 1.25, em);
+
 /*Variables*/
 
-.vertical-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
-  background: -webkit-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
-  background: -o-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
-  background: linear-gradient(@start-color, @mid-color @color-stop, @end-color);
-  /*background-repeat: no-repeat;*/
-  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
+body {
+  font-size: 14px;
 }
 
-.carousel-indicators {
-  top: 20px !important;
-}
-
-.label-primary.soft {
-  background-color: @fc-soft-primary-color1 !important;
-}
-
-.label-info {
-  background-color: @brand-primary4;
-}
-
-label {
-  font-weight:bold;
-  font-size: 1.2em;
-  color: @fc-soft-primary-color1;
-  width: 100%;
-}
-
-select {
-  font-size: 1.1em;
-  color: @brand-primary;
-  border: 1px solid @brand-primary4;
-  padding: 6px;
-}
-
-.nav {
-  li {
-    a:hover, a:focus {
-      background-color: @brand-primary5;
-      color: @background-primary;
-    }
+@media (max-width: @screen-md-max) {
+  body {
+    font-size: 13px;
   }
 }
 
-.nav-tabs {
-  border-bottom-color: @brand-primary5;
-  color: @brand-primary4;
-
-  li {
-    a:hover, a:focus {
-      border-color: @brand-primary5;
-      color: @background-primary;
-    }
-  }
-
-  li.active {
-    a, a:hover, a:focus {
-      border-color: @brand-primary5;
-      color: @brand-primary4;
-      border-bottom-color: transparent;
-    }
+@media (max-width: @screen-sm-max) {
+  body {
+    font-size: 12px;
   }
 }
 
-.container {
-  min-width: @min-container-width-xs;
+@media (max-width: @screen-xs-max) {
+  body {
+    font-size: 10px;
+  }
 }
 
-.container #slider {
-  border: solid 1px #fff;
-}
+  .vertical-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
+    background: -webkit-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+    background: -o-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+    background: linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+    /*background-repeat: no-repeat;*/
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
+  }
 
-@media (max-width: @screen-md-max2) {
-  h1,
+  .carousel-indicators {
+    top: 20px !important;
+  }
+
+  .label-primary.soft {
+    background-color: @fc-soft-primary-color1 !important;
+  }
+
+  .label-info {
+    background-color: @brand-primary4;
+  }
+
+  label {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: @fc-soft-primary-color1;
+    width: 100%;
+  }
+
+  select {
+    font-size: 1.1em;
+    color: @brand-primary;
+    border: 1px solid @brand-primary4;
+    padding: 6px;
+  }
+
+  .nav {
+    li {
+      a:hover, a:focus {
+        background-color: @brand-primary5;
+        color: @background-primary;
+      }
+    }
+  }
+
+  .nav-tabs {
+    border-bottom-color: @brand-primary5;
+    color: @brand-primary4;
+
+    li {
+      a:hover, a:focus {
+        border-color: @brand-primary5;
+        color: @background-primary;
+      }
+    }
+
+    li.active {
+      a, a:hover, a:focus {
+        border-color: @brand-primary5;
+        color: @brand-primary4;
+        border-bottom-color: transparent;
+      }
+    }
+  }
+
+  .container {
+    min-width: @min-container-width-xs;
+  }
+
+  .container #slider {
+    border: solid 1px #fff;
+  }
+
+  @media (max-width: @screen-md-max2) {
+    /*h1,
   h2,
   h3,
   h4,
@@ -153,11 +194,11 @@ select {
   .h5,
   .h6 {
     font-size: 88%;
+  }*/
   }
-}
 
-@media (max-width: @screen-xs) {
-  h1,
+  @media (max-width: @screen-xs) {
+    /*h1,
   h2,
   h3,
   h4,
@@ -170,52 +211,51 @@ select {
   .h5,
   .h6 {
     font-size: 84%;
-  }
+  }*/
+    .container {
+      padding-left: 1px;
+      padding-right: 1px;
+      min-width: @min-container-width-xs;
+      max-width: @min-container-width-xs;
+    }
 
-  .container {
-    padding-left: 1px;
-    padding-right: 1px;
-    min-width: @min-container-width-xs;
-    max-width: @min-container-width-xs;
-  }
+    .container > .navbar-header,
+    .container-fluid > .navbar-header,
+    .container > .navbar-collapse,
+    .container-fluid > .navbar-collapse {
+      margin-right: 0;
+      margin-left: 0;
+    }
 
-  .container > .navbar-header,
-  .container-fluid > .navbar-header,
-  .container > .navbar-collapse,
-  .container-fluid > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
+    .iis-caption {
+      .iis-caption-content {
+        font-size: 13px;
 
-  .iis-caption {
-    .iis-caption-content {
-          font-size: 13px;
-      small {
-        font-size: 85%;
+        small {
+          font-size: 85%;
+        }
       }
     }
   }
-}
 
-.navbar-header {
-  .navbar-brand {
-    @media (max-width: @screen-sm-min) {
-      .navbar-brand-label {
+  .navbar-header {
+    .navbar-brand {
+      @media (max-width: @screen-sm-min) {
+        .navbar-brand-label {
+          display: none;
+        }
+      }
+
+      @media (min-width: @screen-md-min) {
         display: none;
       }
-    }
 
-    @media (min-width: @screen-md-min) {
-      display: none;
-    }
-
-    @media (max-width: (@screen-md-min - 1)) {
-      display: inherit !important;
+      @media (max-width: (@screen-md-min - 1)) {
+        display: inherit !important;
+      }
     }
   }
-}
-
-/*.navbar {
+  /*.navbar {
   @media (max-width: (@screen-md-min - 1)) {
     .navbar-collapse.collapse {
       display: none !important;
@@ -223,20 +263,31 @@ select {
   }
 }*/
   /*overrides end*/
-  .color-primary-5 {
-    color: @brand-primary5;
-  }
+.color-primary-5 {
+  color: @brand-primary5;
+}
 
-  html {
-    background-image: url('../../images/skin/bg1_1920x1080.jpg');
-    background-attachment: fixed;
-  }
+html {
+  background-image: url('../../images/skin/bg1_1920x1080.jpg');
+  background-attachment: fixed;
+}
 
-  body {
-    padding-top: 60px;
-    padding-bottom: 20px;
-    background-color: transparent;
+body {
+  padding-top: 60px;
+  padding-bottom: 20px;
+  background-color: transparent;
+}
+
+.fc-quick-game-info {
+  margin-left: -13px;
+  margin-right: -13px;
+
+  @media (min-width: @screen-sm) and (max-width: @screen-md-max) {
+    h5 {
+      font-size: @font-size-base-over;
+    }
   }
+}
 
   .fc-text {
     color: @gray-good;
@@ -505,21 +556,37 @@ select {
     display: inline-block;
   }
 
-  @media (max-width: @screen-xs) {
-    .ellipsis-110 {
-      max-width: 95px;
-    }
+@media (max-width: @screen-sm-min) {
+  .ellipsis-110 {
+    max-width: 95px;
+  }
 
-    .ellipsis-135 {
-      max-width: 110px;
-    }
+  .ellipsis-135 {
+    max-width: 110px;
+  }
 
-    .main-results {
-      .ellipsis-270 {
-        max-width: 350px;
-      }
+  .main-results {
+    .ellipsis-270 {
+      max-width: 350px;
     }
   }
+}
+
+@media (min-width: @screen-sm) and (max-width: @screen-lg-min){
+  .ellipsis-110 {
+    max-width: 97px;
+  }
+
+  .ellipsis-135 {
+    max-width: 115px;
+  }
+
+  .main-results {
+    .ellipsis-270 {
+      max-width: 250px;
+    }
+  }
+}
   /*Background image resp*/
   .resp-bg {
     background-repeat: no-repeat;

@@ -19,12 +19,12 @@
                         </h3>
                     </div>
                     <div class="fc-pane-body">
-                        <div class="fc-pane-form" style="padding: 20px;">
-                            <div ng-hide="listview">
+                        <div class="fc-pane-form">
+                            <div ng-hide="listview" style="padding: 20px;">
                                 <h4 class="soft-primary text-uppercase" translate="GOALKEEPERS"></h4>
                                 <hr />
                                 <div class="row" ng-repeat="row in goalkeepers.rows">
-                                    <div class="col-sm-3" ng-repeat="item in row">
+                                    <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="item in row">
                                         <player-card-item person="item" img-variant="256x256"></player-card-item>
                                     </div>
                                 </div>
@@ -32,7 +32,7 @@
                                 <h4 class="soft-primary text-uppercase" translate="DEFENDERS"></h4>
                                 <hr />
                                 <div class="row" ng-repeat="row in defenders.rows">
-                                    <div class="col-sm-3" ng-repeat="item in row">
+                                    <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="item in row">
                                         <player-card-item person="item" img-variant="256x256"></player-card-item>
                                     </div>
                                 </div>
@@ -40,7 +40,7 @@
                                 <h4 class="soft-primary text-uppercase" translate="MIDFIELDERS"></h4>
                                 <hr />
                                 <div class="row" ng-repeat="row in midfielders.rows">
-                                    <div class="col-sm-3" ng-repeat="item in row">
+                                    <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="item in row">
                                         <player-card-item person="item" img-variant="256x256"></player-card-item>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                                 <h4 class="soft-primary text-uppercase" translate="FORWARDS"></h4>
                                 <hr />
                                 <div class="row" ng-repeat="row in forwards.rows">
-                                    <div class="col-sm-3" ng-repeat="item in row">
+                                    <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="item in row">
                                         <player-card-item person="item" img-variant="256x256"></player-card-item>
                                     </div>
                                 </div>

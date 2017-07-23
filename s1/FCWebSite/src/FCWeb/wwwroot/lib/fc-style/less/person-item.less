@@ -1,17 +1,23 @@
 ﻿.person-item {
   /*border: 1px solid @brand-primary4;*/
   position: relative;
-  margin-bottom: 10px;  
+  margin-bottom: 10px;
 
   .person-body {
+    text-align: center;
+
+    @media (max-width: @screen-md-min) {
+      .img-responsive {
+        display: inline-block;
+        max-width: none;
+      }
+    }
+
     .caption {
       position: absolute;
       bottom: 0px;
       width: 100%;
       background-color: fade(@background-primary, 80%);
-
-
-      .ellipsis(252px);
 
       .person-meta {
         display: inline-block;
@@ -19,9 +25,13 @@
 
       .person-label {
         text-align: center;
-        padding: 5px 1px;        
+        padding: 5px 1px;
         width: 100%;
         display: inline-block;
+      }
+
+      a {
+        .ellipsis(252px);
       }
 
       a, a:hover, a:focus {
@@ -49,7 +59,6 @@
     background-repeat: no-repeat;
     background-position-y: 50%;
   }
-
 }
 
 /*.person-item img:hover {
