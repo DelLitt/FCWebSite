@@ -9,8 +9,6 @@
 
     function indexCtrl($scope, unionSrv, publicationsSrv, imageGallerySrv, videosSrv, helper, configSrv, notificationManager) {
 
-        alert("Screen W: " + window.screen.availWidth + ", H: " + window.screen.availHeight);
-
         $scope.loadingImage = helper.getLoadingImg();
 
         $scope.publications = {

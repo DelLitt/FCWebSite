@@ -58,6 +58,13 @@
 @screen-xs-max:              @screen-sm-min;
 @screen-sm-max:              @screen-md-min;
 @screen-md-max:              @screen-lg-min;
+@screen-md-max2:             (@screen-lg - 1);
+
+// Navbar collapse
+//** Point at which the navbar becomes uncollapsed.
+@grid-float-breakpoint:     @screen-md-min;
+//** Point at which the navbar begins collapsing.
+@grid-float-breakpoint-max: (@grid-float-breakpoint - 1);
 
 /*Variables*/
 
@@ -132,6 +139,23 @@ select {
   border: solid 1px #fff;
 }
 
+@media (max-width: @screen-md-max2) {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
+    font-size: 88%;
+  }
+}
+
 @media (max-width: @screen-xs) {
   h1,
   h2,
@@ -191,13 +215,13 @@ select {
   }
 }
 
-.navbar {
+/*.navbar {
   @media (max-width: (@screen-md-min - 1)) {
     .navbar-collapse.collapse {
       display: none !important;
     }
   }
-}
+}*/
   /*overrides end*/
   .color-primary-5 {
     color: @brand-primary5;
