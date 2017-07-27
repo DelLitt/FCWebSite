@@ -35,6 +35,10 @@
                 loadData();
             }
 
+            scope.hasScore = function (game) {
+                return angular.isDefined(game) && angular.isNumber(game.homeScore);
+            }
+
             function loadData() {
                 var teamId;
                 scope.loadingQGI = true;

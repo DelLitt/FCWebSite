@@ -13,25 +13,32 @@
             replace: true,
             scope: {
                 teamId: '=',
-                title: '=',
                 tourneysIds: '='
             },
             link: function link(scope, element, attrs) {
 
                 scope.loadingGames = true;
                 scope.loadingImage = helper.getLoadingImg();
+
                 scope.getLogo = function (team) {
                     return helper.getTeamImage(team);
                 }
-                scope.personsLoaded = false;
 
                 scope.hasExtra = function (game) {
                     return angular.isNumber(game.homeAddScore) || angular.isNumber(game.homePenalties);
                 }
 
-                loadData();
+                scope.$watch(function (scope) {
+                    return scope.tourneysIds;
+                },
+                function (newValue, oldValue) {
+                    if (angular.isArray(newValue)) {
+                        loadData();
+                    }
+                });
 
                 function loadData() {
+                    scope.loadingGames = true;
                     gamesSrv.loadSchedule(scope.tourneysIds, scheduleLoaded);
                 }
 

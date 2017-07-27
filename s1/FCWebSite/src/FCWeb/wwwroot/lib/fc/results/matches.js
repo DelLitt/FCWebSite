@@ -3,19 +3,23 @@
 
     angular
         .module('fc')
-        .controller('resultsMainTeamCtrl', resultsMainTeamCtrl);
+        .controller('matchesCtrl', matchesCtrl);
 
-    resultsMainTeamCtrl.$inject = ['$scope', '$translate', 'configSrv'];
+    matchesCtrl.$inject = ['$scope', '$translate', 'configSrv'];
 
-    function resultsMainTeamCtrl($scope, $translate, configSrv) {
+    function matchesCtrl($scope, $translate, configSrv) {
 
         $translate('MAIN_TEAM_RESULTS').then(function (translation) {
             $scope.title = translation;
         });
 
+        $scope.teamOptions = [
+            { index: 0, team: "MAIN_TEAM", tourneysIds: configSrv.Current.MainTeamTourneyIds },
+            { index: 1, team: "RESERVE_TEAM", tourneysIds: configSrv.Current.ReserveTeamTourneyIds }
+        ]
+
         $scope.teamId = configSrv.Current.MainTeamId;
         $scope.tourneysIds = configSrv.Current.MainTeamTourneyIds;
-        //$scope.title = 'Результаты';
 
         // TODO: Change config to promise
         //scope.mainTeamId = 

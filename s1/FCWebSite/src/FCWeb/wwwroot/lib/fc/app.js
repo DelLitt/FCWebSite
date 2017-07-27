@@ -45,9 +45,9 @@
                templateUrl: "lib/fc/club/specialistsstaff.html",
                controller: "specialistsStaffCtrl"
            })
-           .when("/results/mainteam", {
-               templateUrl: "lib/fc/results/resultsmainteam.html",
-               controller: "resultsMainTeamCtrl"
+           .when("/results/matches", {
+               templateUrl: "lib/fc/results/matches.html",
+               controller: "matchesCtrl"
            })
            .when("/results/reserveteam", {
                templateUrl: "lib/fc/results/resultsreserveteam.html",
