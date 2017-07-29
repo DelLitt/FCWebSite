@@ -1,10 +1,10 @@
 ﻿<section>
-    <div ng-show="loadingRT fc-loading-wrapper" class="row text-center">
+    <div ng-show="loadingRT" class="row text-center fc-loading-wrapper">
         <img ng-src="{{loadingImage}}" />
     </div>
     <div ng-show="!loadingRT" class="row">
         <div class="col-sm-12">                        
-            <table class="table fc-table-light">
+            <table class="table fc-table fc-table-light">
                 <tr>
                     <th style="text-align: right !important">#</th>
                     <th translate="TEAM" style="text-align: left !important"></th>
@@ -12,17 +12,17 @@
                     <th translate="WINS_SH"></th>
                     <th translate="DRAWS_SH"></th>
                     <th translate="LOSES_SH"></th>
-                    <th class="hidden-xs hidden-sm" translate="GOALS_SH"></th>
+                    <th translate="GOALS_SH"></th>
                     <th translate="POINTS_SH"></th>
                 </tr>
                 <tr ng-repeat="row in ranking.rows">
                     <td style="text-align: right !important;">{{row.position}}</td>
-                    <td style="text-align: left !important;"><a class="ellipsis ellipsis-135" ng-href="team/{{row.team.id}}" title="{{row.team.title}}">{{row.team.text}}</a></td>
+                    <td style="text-align: left !important;"><a class="ellipsis-150" ng-href="team/{{row.team.id}}" title="{{row.team.title}}"><b>{{row.team.text}}</b></a></td>
                     <td>{{row.games}}</td>
                     <td>{{row.wins}}</td>
                     <td>{{row.draws}}</td>
                     <td>{{row.loses}}</td>
-                    <td class="hidden-xs hidden-sm">{{row.goalsFor}}-{{row.goalsAgainst}}</td>
+                    <td>{{row.goalsFor}}-{{row.goalsAgainst}}</td>
                     <td>{{row.points}}</td>
                 </tr>
             </table>

@@ -1,0 +1,18 @@
+﻿<div class="fc-pane">
+    <div class="fc-pane-header">
+        <h3 class="invert" translate="STANDINGS"></h3>
+    </div>
+    <div class="fc-pane-body">
+        <div class="fc-pane-form">
+            <div class="row">
+                <div class="col-xs-12">
+                    <select style="width: 100%;" ng-model="tourneyOpt" ng-init="tourneyOpt = tourneyOptions[0]" ng-options="tourneyOption.team | translate for tourneyOption in tourneyOptions"></select>
+                </div>
+            </div>
+            <section>
+                <ranking-table tourney-id="tourneyOpt.tourneyId" has-data="hasData"></ranking-table>
+            </section>
+        </div>
+    </div>
+</div>
+

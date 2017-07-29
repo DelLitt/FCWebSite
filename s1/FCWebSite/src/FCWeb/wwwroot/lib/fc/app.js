@@ -49,6 +49,10 @@
                templateUrl: "lib/fc/results/matches.html",
                controller: "matchesCtrl"
            })
+           .when("/results/standings", {
+               templateUrl: "lib/fc/results/standings.html",
+               controller: "standingsCtrl"
+           })
            .when("/results/reserveteam", {
                templateUrl: "lib/fc/results/resultsreserveteam.html",
                controller: "resultsReserveTeamCtrl"

@@ -19,7 +19,6 @@
         ]
 
         $scope.teamId = configSrv.Current.MainTeamId;
-        $scope.tourneysIds = configSrv.Current.MainTeamTourneyIds;
 
         // TODO: Change config to promise
         //scope.mainTeamId = 

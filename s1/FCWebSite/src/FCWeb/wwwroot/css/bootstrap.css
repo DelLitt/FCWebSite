@@ -3520,6 +3520,9 @@ tbody.collapse.in {
 .dropdown {
   position: relative;
 }
+.nav li {
+    font-size: 14px;
+}
 .dropdown-toggle:focus {
   outline: 0;
 }
@@ -3534,7 +3537,7 @@ tbody.collapse.in {
   padding: 5px 0;
   margin: 2px 0 0;
   list-style: none;
-  font-size: 14px;
+  font-size: 14px !important;
   text-align: left;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -3543,6 +3546,9 @@ tbody.collapse.in {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
+}
+.dropdown-menu.a{
+  font-size: 14px !important;
 }
 .dropdown-menu.pull-right {
   right: 0;
