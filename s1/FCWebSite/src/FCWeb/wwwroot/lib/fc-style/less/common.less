@@ -10,7 +10,7 @@
 @gray-light:             lighten(@gray-base, 46.7%); // #777
 @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
 
-@gray-good: #dddddd;
+@gray-good: #dddddd; //#010f42
 @gray-good2: #f5f5f5;
 @gray-good3: #345;
 
@@ -74,31 +74,54 @@
 @font-size-h1:            unit(@font-size-base-over * 2.6, em);
 @font-size-h2:            unit(@font-size-base-over * 2.15, em);
 @font-size-h3:            unit(@font-size-base-over * 1.7, em);
-@font-size-h4:            unit(@font-size-base-over * 1.25, em);
-@font-size-h5:            unit(@font-size-base-over * 1.15, em);
+@font-size-h4:            unit(@font-size-base-over * 1.4, em);
+@font-size-h5:            unit(@font-size-base-over * 1.25, em);
 @font-size-h6:            unit(@font-size-base-over * 0.85, em);
+
+@font-face {
+  font-family: 'Future New';
+  src: url('../fonts/FuturaNewLight.otf');
+}
+@font-face {
+  font-family: 'Future New';
+  src: url('../fonts/FuturaNewMedium.otf');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Future New';
+  src: url('../fonts/FuturaNewLightOblique.otf');
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Future New';
+  src: url('../fonts/FuturaNewMediumOblique.otf');
+  font-style: italic;
+  font-weight: bold;
+}
+
+@font-family-serif: 'Future New', serif;
 
 /*Variables*/
 
 body {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 @media (max-width: @screen-md-max) {
   body {
-    font-size: 13px;
+    font-size: 16px;
   }
 }
 
 @media (max-width: @screen-sm-max) {
   body {
-    font-size: 12px;
+    font-size: 18px;
   }
 }
 
 @media (max-width: @screen-xs-max) {
   body {
-    font-size: 10px;
+    font-size: 14px;
   }
 }
 
@@ -173,63 +196,66 @@ body {
     border: solid 1px #fff;
   }
 
-  @media (max-width: @screen-md-max2) {
-    /*h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  .h1,
-  .h2,
-  .h3,
-  .h4,
-  .h5,
-  .h6 {
+@media (min-width: @screen-sm) and (max-width: @screen-lg-min) {
+  h5, .h5 {
+    font-size: unit(@font-size-base-over * 1.15, em);
+  }
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3 {
+  small,
+  .small {
+    font-size: 80%;
+  }
+}
+
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  small,
+  .small {
     font-size: 88%;
-  }*/
+  }
+}
+
+.iis-caption {
+  .iis-caption-content {
+    font-size: @font-size-h4;
+      
+    small {
+        font-size: 88%;
+      }
+  }
+}
+
+@media (max-width: @screen-sm-min) {
+  .container {
+    padding-left: 1px;
+    padding-right: 1px;
+    min-width: @min-container-width-xs;
+    max-width: @min-container-width-xs;
   }
 
-  @media (max-width: @screen-xs) {
-    /*h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  .h1,
-  .h2,
-  .h3,
-  .h4,
-  .h5,
-  .h6 {
-    font-size: 84%;
-  }*/
-    .container {
-      padding-left: 1px;
-      padding-right: 1px;
-      min-width: @min-container-width-xs;
-      max-width: @min-container-width-xs;
-    }
+  .container > .navbar-header,
+  .container-fluid > .navbar-header,
+  .container > .navbar-collapse,
+  .container-fluid > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
 
-    .container > .navbar-header,
-    .container-fluid > .navbar-header,
-    .container > .navbar-collapse,
-    .container-fluid > .navbar-collapse {
-      margin-right: 0;
-      margin-left: 0;
-    }
+  .iis-caption {
+    .iis-caption-content {
+      font-size: 1.05em;
 
-    .iis-caption {
-      .iis-caption-content {
-        font-size: 13px;
-
-        small {
-          font-size: 85%;
-        }
+      small {
+        font-size: 85%;
       }
     }
   }
+}
 
   .navbar-header {
     .navbar-brand {
@@ -256,31 +282,20 @@ body {
   }
 }*/
   /*overrides end*/
-.color-primary-5 {
-  color: @brand-primary5;
-}
-
-html {
-  background-image: url('../../images/skin/bg1_1920x1080.jpg');
-  background-attachment: fixed;
-}
-
-body {
-  padding-top: 60px;
-  padding-bottom: 20px;
-  background-color: transparent;
-}
-
-.fc-quick-game-info {
-  margin-left: -13px;
-  margin-right: -13px;
-
-  @media (min-width: @screen-sm) and (max-width: @screen-md-max) {
-    h5 {
-      font-size: @font-size-base-over;
-    }
+  .color-primary-5 {
+    color: @brand-primary5;
   }
-}
+
+  html {
+    background-image: url('../../images/skin/bg1_1920x1080.jpg');
+    background-attachment: fixed;
+  }
+
+  body {
+    padding-top: 60px;
+    padding-bottom: 20px;
+    background-color: transparent;
+  }
 
   .fc-text {
     color: @gray-good;
@@ -514,49 +529,49 @@ body {
     color: @brand-primary5;
   }
 
-  .ellipsis(@width: 250px) {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    max-width: @width;
-  }
+.ellipsis(@width: 250px) {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: @width;
+}
 
-  .ellipsis-110 {
-    .ellipsis(110px);
-  }
+.ellipsis-110 {
+  .ellipsis(112px);
+}
 
-  .ellipsis-135 {
-    .ellipsis(135px);
-  }
+.ellipsis-135 {
+  .ellipsis(135px);
+}
 
-  .ellipsis-150 {
-    .ellipsis(150px);
-  }
+.ellipsis-150 {
+  .ellipsis(150px);
+}
 
-  .ellipsis-250 {
-    .ellipsis(250px);
-  }
+.ellipsis-250 {
+  .ellipsis(250px);
+}
 
-  .ellipsis-270 {
-    .ellipsis(270px);
-  }
+.ellipsis-270 {
+  .ellipsis(270px);
+}
 
-  .ellipsis-300 {
-    .ellipsis(300px);
-  }
+.ellipsis-300 {
+  .ellipsis(300px);
+}
 
-  a.ellipsis-110,
-  a.ellipsis-135,
-  a.ellipsis-150,
-  a.ellipsis-250,
-  a.ellipsis-270,
-  a.ellipsis-300 {
-    display: inline-block;
-  }
+a.ellipsis-110,
+a.ellipsis-135,
+a.ellipsis-150,
+a.ellipsis-250,
+a.ellipsis-270,
+a.ellipsis-300 {
+  display: inline-block;
+}
 
 @media (max-width: @screen-sm-min) {
   .ellipsis-110 {
-    max-width: 95px;
+    max-width: 90px;
   }
 
   .ellipsis-135 {
@@ -574,9 +589,9 @@ body {
   }
 }
 
-@media (min-width: @screen-sm) and (max-width: @screen-lg-min){
+@media (min-width: @screen-sm) and (max-width: @screen-lg-min) {
   .ellipsis-110 {
-    max-width: 97px;
+    max-width: 92px;
   }
 
   .ellipsis-135 {
@@ -593,6 +608,22 @@ body {
     }
   }
 }
+
+.fc-quick-game-info {
+  margin-left: -13px;
+  margin-right: -13px;
+
+  @media (min-width: @screen-xs) and (max-width: @screen-md-min) {
+    h5 {
+      font-size: @font-size-h3;
+
+      .ellipsis-110 {
+        max-width: 180px;
+      }
+    }
+  }
+}
+
   /*Background image resp*/
   .resp-bg {
     background-repeat: no-repeat;
@@ -766,32 +797,43 @@ textarea {
     }
   }
 
-  .main-results {
-    padding-left: 25px;
-    /*.fc-grad();*/
-    .header {
-      line-height: 1.4em;
+.main-results {
+  padding-left: 25px;
+  /*.fc-grad();*/
+  .header {
+    line-height: 1.4em;
+  }
+
+  ul li {
+    list-style: none;
+    padding-left: 4px;
+
+    @media (min-width: @screen-xs) {
+      font-size: 85%;
     }
 
-    ul li {
-      list-style: none;
-      padding-left: 4px;
-      font-size: 96%;
+    @media (min-width: @screen-sm) {
+      font-size: 80%;
     }
-
-    h1.header, h2.header, h3.header, h4.header, h5.header, h6.header, h7.header {
-      padding: 7px 2px !important;
-      margin-top: 0;
-    }
-
-    .empty-block {
-      text-align: center;
-
-      @media (max-width: @screen-sm) {
-        display: none;
-      }
+    
+    @media (min-width: @screen-md) {
+      font-size: 85%;
     }
   }
+
+  h1.header, h2.header, h3.header, h4.header, h5.header, h6.header, h7.header {
+    padding: 7px 2px !important;
+    margin-top: 0;
+  }
+
+  .empty-block {
+    text-align: center;
+
+    @media (max-width: @screen-sm) {
+      display: none;
+    }
+  }
+}
 
   @media (min-width: 768px) {
     .main-results div[class*="col-"] {
@@ -960,9 +1002,9 @@ textarea {
   .fc-pane-body .fc-publication,
   .fc-pane .fc-pane-body .fc-publication,
   .fc-pane .fc-pane-body .fc-pane-form.fc-publication {
-    color: @gray;
+    color: @gray-good3;
     background-color: @background-primary;
-    font-size: 16px;
+    font-size: 1.15em;
     line-height: 1.5em;
     padding: 0 20px;
 
@@ -972,7 +1014,7 @@ textarea {
       small {
         color: @fc-type-dark-header-color;
         padding-left: 6px;
-        font-size: 70%;
+        font-size: 80%;
       }
 
       small:before {

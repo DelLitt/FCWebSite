@@ -1091,7 +1091,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: 'Noto Serif', serif;
+  font-family: 'Future New', serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333333;
@@ -1286,11 +1286,11 @@ h3,
 }
 h4,
 .h4 {
-  font-size: 1.25em;
+  font-size: 1.4em;
 }
 h5,
 .h5 {
-  font-size: 1.15em;
+  font-size: 1.25em;
 }
 h6,
 .h6 {
@@ -3520,9 +3520,6 @@ tbody.collapse.in {
 .dropdown {
   position: relative;
 }
-.nav li {
-    font-size: 14px;
-}
 .dropdown-toggle:focus {
   outline: 0;
 }
@@ -3537,7 +3534,7 @@ tbody.collapse.in {
   padding: 5px 0;
   margin: 2px 0 0;
   list-style: none;
-  font-size: 14px !important;
+  font-size: 14px;
   text-align: left;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -3546,9 +3543,6 @@ tbody.collapse.in {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
-}
-.dropdown-menu.a{
-  font-size: 14px !important;
 }
 .dropdown-menu.pull-right {
   right: 0;
@@ -6013,7 +6007,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: 'Noto Serif', serif;
+  font-family: 'Future New', serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6131,7 +6125,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: 'Noto Serif', serif;
+  font-family: 'Future New', serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6782,29 +6776,43 @@ button.close {
 /*Custom*/
 /*overrides*/
 /*Variables*/
-/*@line-height-computed:    unit(@font-size-base-over * @line-height-base, em);
-
-@jumbotron-font-size:            unit(@font-size-base-over * 1.5, em);
-@jumbotron-heading-font-size:    unit(@font-size-base-over * 4.5, em);
-
-@blockquote-font-size:        unit(@font-size-base-over * 1.25, em);*/
+@font-face {
+  font-family: 'Future New';
+  src: url('../fonts/FuturaNewLight.otf');
+}
+@font-face {
+  font-family: 'Future New';
+  src: url('../fonts/FuturaNewMedium.otf');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Future New';
+  src: url('../fonts/FuturaNewLightOblique.otf');
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Future New';
+  src: url('../fonts/FuturaNewMediumOblique.otf');
+  font-style: italic;
+  font-weight: bold;
+}
 /*Variables*/
 body {
-  font-size: 14px;
+  font-size: 18px;
 }
 @media (max-width: 991px) {
   body {
-    font-size: 13px;
+    font-size: 16px;
   }
 }
 @media (max-width: 767px) {
   body {
-    font-size: 12px;
+    font-size: 18px;
   }
 }
 @media (max-width: 479px) {
   body {
-    font-size: 10px;
+    font-size: 14px;
   }
 }
 .carousel-indicators {
@@ -6855,37 +6863,47 @@ select {
 .container #slider {
   border: solid 1px #fff;
 }
-@media (max-width: 1199px) {
-  /*h1,
-  h2,
-  h3,
-  h4,
+@media (min-width: 768px) and (max-width: 991px) {
   h5,
-  h6,
-  .h1,
-  .h2,
-  .h3,
-  .h4,
-  .h5,
-  .h6 {
-    font-size: 88%;
-  }*/
+  .h5 {
+    font-size: 1.15em;
+  }
 }
-@media (max-width: 480px) {
-  /*h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  .h1,
-  .h2,
-  .h3,
-  .h4,
-  .h5,
-  .h6 {
-    font-size: 84%;
-  }*/
+h1 small,
+.h1 small,
+h2 small,
+.h2 small,
+h3 small,
+.h3 small,
+h1 .small,
+.h1 .small,
+h2 .small,
+.h2 .small,
+h3 .small,
+.h3 .small {
+  font-size: 80%;
+}
+h4 small,
+.h4 small,
+h5 small,
+.h5 small,
+h6 small,
+.h6 small,
+h4 .small,
+.h4 .small,
+h5 .small,
+.h5 .small,
+h6 .small,
+.h6 .small {
+  font-size: 88%;
+}
+.iis-caption .iis-caption-content {
+  font-size: 1.4em;
+}
+.iis-caption .iis-caption-content small {
+  font-size: 88%;
+}
+@media (max-width: 479px) {
   .container {
     padding-left: 1px;
     padding-right: 1px;
@@ -6900,7 +6918,7 @@ select {
     margin-left: 0;
   }
   .iis-caption .iis-caption-content {
-    font-size: 13px;
+    font-size: 1.05em;
   }
   .iis-caption .iis-caption-content small {
     font-size: 85%;
@@ -6940,15 +6958,6 @@ body {
   padding-top: 60px;
   padding-bottom: 20px;
   background-color: transparent;
-}
-.fc-quick-game-info {
-  margin-left: -13px;
-  margin-right: -13px;
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .fc-quick-game-info h5 {
-    font-size: 1em;
-  }
 }
 .fc-text {
   color: #dddddd;
@@ -7152,13 +7161,19 @@ a:focus {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 110px;
+  max-width: 112px;
 }
 .ellipsis-135 {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   max-width: 135px;
+}
+.ellipsis-150 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 150px;
 }
 .ellipsis-250 {
   text-overflow: ellipsis;
@@ -7180,6 +7195,7 @@ a:focus {
 }
 a.ellipsis-110,
 a.ellipsis-135,
+a.ellipsis-150,
 a.ellipsis-250,
 a.ellipsis-270,
 a.ellipsis-300 {
@@ -7187,9 +7203,12 @@ a.ellipsis-300 {
 }
 @media (max-width: 479px) {
   .ellipsis-110 {
-    max-width: 95px;
+    max-width: 90px;
   }
   .ellipsis-135 {
+    max-width: 110px;
+  }
+  .ellipsis-150 {
     max-width: 110px;
   }
   .main-results .ellipsis-270 {
@@ -7198,13 +7217,28 @@ a.ellipsis-300 {
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .ellipsis-110 {
-    max-width: 97px;
+    max-width: 92px;
   }
   .ellipsis-135 {
     max-width: 115px;
   }
+  .ellipsis-150 {
+    max-width: 120px;
+  }
   .main-results .ellipsis-270 {
     max-width: 250px;
+  }
+}
+.fc-quick-game-info {
+  margin-left: -13px;
+  margin-right: -13px;
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  .fc-quick-game-info h5 {
+    font-size: 1.7em;
+  }
+  .fc-quick-game-info h5 .ellipsis-110 {
+    max-width: 180px;
   }
 }
 /*Background image resp*/
@@ -7369,7 +7403,21 @@ textarea {
 .main-results ul li {
   list-style: none;
   padding-left: 4px;
-  font-size: 96%;
+}
+@media (min-width: 480px) {
+  .main-results ul li {
+    font-size: 85%;
+  }
+}
+@media (min-width: 768px) {
+  .main-results ul li {
+    font-size: 80%;
+  }
+}
+@media (min-width: 992px) {
+  .main-results ul li {
+    font-size: 85%;
+  }
 }
 .main-results h1.header,
 .main-results h2.header,
@@ -7525,9 +7573,9 @@ dl.fc-data-list.dt-info dd {
 .fc-pane-body .fc-publication,
 .fc-pane .fc-pane-body .fc-publication,
 .fc-pane .fc-pane-body .fc-pane-form.fc-publication {
-  color: #555555;
+  color: #345;
   background-color: #fff;
-  font-size: 16px;
+  font-size: 1.15em;
   line-height: 1.5em;
   padding: 0 20px;
 }
@@ -7594,7 +7642,7 @@ dl.fc-data-list.dt-info dd {
 .fc-pane .fc-pane-body .fc-pane-form.fc-publication h7 small {
   color: rgba(0, 43, 110, 0.9);
   padding-left: 6px;
-  font-size: 70%;
+  font-size: 80%;
 }
 .fc-publication h1 small:before,
 .fc-pane-body .fc-publication h1 small:before,
@@ -7801,7 +7849,7 @@ dl.fc-data-list.dt-info dd {
 .fc-table tr td {
   border-top: none;
   padding: 2px 6px;
-  line-height: 2em;
+  /*line-height: 2em;*/
   text-align: center;
 }
 @media (max-width: 480px) {
@@ -7979,6 +8027,7 @@ dl.fc-data-list.dt-info dd {
 }
 table.table-into-header tr td {
   padding: 0 8px !important;
+  font-size: 0.8em;
 }
 .main-table {
   -ms-overflow-style: none;
@@ -8137,7 +8186,7 @@ a.text-prim5-color:focus {
 }
 .preview-item-classic .caption {
   width: 100%;
-  font-size: 1.25em;
+  font-size: 1.4em;
   font-family: inherit;
   line-height: 1.1;
   font-weight: bold;
@@ -8160,7 +8209,7 @@ a.text-prim5-color:focus {
   background-color: transparent;
 }
 .fc-pane .fc-pane-header {
-  font-size: 1.15em;
+  font-size: 1.25em;
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
@@ -8216,7 +8265,7 @@ a.text-prim5-color:focus {
 .fc-pane .fc-pane-body .fc-pane-form h7,
 .fc-pane .fc-pane-body .fc-pane-form-dark h7 {
   text-shadow: none;
-  font-weight: bold;
+  /*font-weight: bold;*/
   color: #fff;
 }
 .fc-pane .fc-pane-body .fc-pane-form {
@@ -8244,7 +8293,7 @@ a.text-prim5-color:focus {
 .fc-pane .fc-pane-body h6,
 .fc-pane .fc-pane-body h7 {
   text-shadow: none;
-  font-weight: bold;
+  /*font-weight: bold;*/
   color: rgba(0, 43, 110, 0.9);
 }
 .fc-pane .fc-pane-body h1.header,
@@ -8271,7 +8320,7 @@ a.text-prim5-color:focus {
   padding: 11px;
 }
 .fc-pane .fc-pane-footer {
-  font-size: 1.15em;
+  font-size: 1.25em;
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;

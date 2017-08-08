@@ -1,0 +1,10 @@
+2017.08.01 19:45:23 - [Information]: Get files for file browser. Path: images/store. Root: images/store. Create new: False.
+2017.08.01 19:45:24 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\images\store'.
+2017.08.01 19:45:24 - [Information]: Parent folder: 'images'. Exists: images.
+2017.08.01 19:45:24 - [Information]: Inner folders count: 4
+2017.08.01 19:45:24 - [Information]: Inner files count: 7
+2017.08.01 19:46:13 - [Information]: Get files for file browser. Path: images/store. Root: images/store. Create new: False.
+2017.08.01 19:46:13 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\images\store'.
+2017.08.01 19:46:13 - [Information]: Parent folder: 'images'. Exists: images.
+2017.08.01 19:46:13 - [Information]: Inner folders count: 4
+2017.08.01 19:46:13 - [Information]: Inner files count: 7
