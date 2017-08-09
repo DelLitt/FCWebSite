@@ -4,10 +4,7 @@
     using System.Collections.Generic;
     using FCCore.Abstractions.Bll;
     using FCCore.Abstractions.Dal;
-    using FCCore.Caching;
-    using FCCore.Configuration;
     using FCCore.Model;
-    using Microsoft.Extensions.DependencyInjection;
 
     public sealed class TourneyBll : FCBllBase, ITourneyBll
     {

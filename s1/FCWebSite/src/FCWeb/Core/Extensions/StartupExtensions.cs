@@ -23,6 +23,7 @@
             serviceCollection.AddTransient<IPublicationBll, PublicationBll>();
             serviceCollection.AddTransient<ITableRecordBll, TableRecordBll>();
             serviceCollection.AddTransient<ITourneyBll, TourneyBll>();
+            serviceCollection.AddTransient<ITourneyTypeBll, TourneyTypeBll>();
             serviceCollection.AddTransient<IGameBll, GameBll>();
             serviceCollection.AddTransient<IRoundBll, RoundBll>();
             serviceCollection.AddTransient<ITeamBll, TeamBll>();
@@ -54,6 +55,7 @@
             serviceCollection.AddTransient<IPublicationDal, PublicationDal>();
             serviceCollection.AddTransient<ITableRecordDal, TableRecordDal>();
             serviceCollection.AddTransient<ITourneyDal , TourneyDal>();
+            serviceCollection.AddTransient<ITourneyTypeDal, TourneyTypeDal>();
             serviceCollection.AddTransient<IGameDal, GameDal>();
             serviceCollection.AddTransient<IRoundDal, RoundDal>();
             serviceCollection.AddTransient<ITeamDal, TeamDal>();

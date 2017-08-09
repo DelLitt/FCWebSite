@@ -50,14 +50,6 @@
 
             $scope.loadingPublication = false;
             $scope.image = location.host + "/" + publication.image;
-
-            //document.getElementById('vk_share_button').innerHTML =
-            //    VK.Share.button({
-            //        url: $location.absUrl(),
-            //        title: publication.title,
-            //        image: location.host + "/" + publication.image
-            //    },
-            //    { type: "custom", text: "<img src=\"https://vk.com/images/share_32.png\" width=\"32\" height=\"32\" />" });
         }
 
         function lastPublicationsLoaded(response) {
