@@ -94,6 +94,7 @@
                     logo = string.Empty,
                     roundId = firstGame.roundId,
                     name = firstGame?.round?.Name ?? string.Empty,
+                    nameFull = firstGame?.round?.NameFull ?? string.Empty,
                     dateGames = new List<DayGamesShortViewModel>()
                 };
 
@@ -179,10 +180,11 @@
                 extra = game.HomePenalties.HasValue ? "2" : (game.HomeAddScore.HasValue ? "1" : string.Empty),
                 start = game.GameDate,
                 time = game.GameDate.ToString("HH:mm"),
-                round = game?.round?.NameFull ?? string.Empty,
+                round = game?.round?.Name ?? string.Empty,
+                roundTitle = game?.round?.NameFull ?? string.Empty,
                 showTime = game.ShowTime,
                 stadium = game?.stadium.NameExtended() ?? string.Empty,
-                tourney = game?.round?.tourney?.NameFull ?? string.Empty
+                tourney = game?.round?.tourney?.Name ?? string.Empty
             };
         }
 

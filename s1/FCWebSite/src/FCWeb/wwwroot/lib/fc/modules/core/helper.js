@@ -101,6 +101,8 @@ String.prototype.insertAt = function (index, string) {
                 {
                     case 2:
                         return "by";
+                    case 3:
+                        return "ru";
                     case 9:
                         return "ua";
                     case 11:

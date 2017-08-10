@@ -15,6 +15,7 @@
         public int roundId { get; set; }
         public string tourney { get; set; }
         public string name { get; set; }
+        public string nameFull { get; set; }
         public string logo { get; set; }
         public IList<DayGamesShortViewModel> dateGames { get; set; }
     }

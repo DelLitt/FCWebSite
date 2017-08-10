@@ -8,3 +8,43 @@
 2017.08.01 19:46:13 - [Information]: Parent folder: 'images'. Exists: images.
 2017.08.01 19:46:13 - [Information]: Inner folders count: 4
 2017.08.01 19:46:13 - [Information]: Inner files count: 7
+2017.08.10 18:35:06 - [Information]: Get files for file browser. Path: content/persons/203. Root: content/persons/203. Create new: True.
+2017.08.10 18:35:06 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\persons\203'.
+2017.08.10 18:35:06 - [Information]: Parent folder: 'persons'. Exists: persons.
+2017.08.10 18:35:06 - [Information]: Inner folders count: 0
+2017.08.10 18:35:06 - [Information]: Inner files count: 0
+2017.08.10 18:35:16 - [Information]: Get files for file browser. Path: content/persons/203. Root: content/persons/203. Create new: False.
+2017.08.10 18:35:16 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\persons\203'.
+2017.08.10 18:35:16 - [Information]: Parent folder: 'persons'. Exists: persons.
+2017.08.10 18:35:16 - [Information]: Inner folders count: 0
+2017.08.10 18:35:16 - [Information]: Inner files count: 1
+2017.08.10 18:39:19 - [Information]: Get files for file browser. Path: content/persons/215. Root: content/persons/215. Create new: True.
+2017.08.10 18:39:19 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\persons\215'.
+2017.08.10 18:39:19 - [Information]: Parent folder: 'persons'. Exists: persons.
+2017.08.10 18:39:19 - [Information]: Inner folders count: 0
+2017.08.10 18:39:19 - [Information]: Inner files count: 0
+2017.08.10 18:39:26 - [Information]: Get files for file browser. Path: content/persons/215. Root: content/persons/215. Create new: False.
+2017.08.10 18:39:26 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\persons\215'.
+2017.08.10 18:39:26 - [Information]: Parent folder: 'persons'. Exists: persons.
+2017.08.10 18:39:26 - [Information]: Inner folders count: 0
+2017.08.10 18:39:26 - [Information]: Inner files count: 1
+2017.08.10 18:52:07 - [Information]: Get files for file browser. Path: content/persons/204. Root: content/persons/204. Create new: True.
+2017.08.10 18:52:07 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\persons\204'.
+2017.08.10 18:52:07 - [Information]: Parent folder: 'persons'. Exists: persons.
+2017.08.10 18:52:07 - [Information]: Inner folders count: 0
+2017.08.10 18:52:07 - [Information]: Inner files count: 0
+2017.08.10 18:52:14 - [Information]: Get files for file browser. Path: content/persons/204. Root: content/persons/204. Create new: False.
+2017.08.10 18:52:14 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\persons\204'.
+2017.08.10 18:52:14 - [Information]: Parent folder: 'persons'. Exists: persons.
+2017.08.10 18:52:14 - [Information]: Inner folders count: 0
+2017.08.10 18:52:14 - [Information]: Inner files count: 1
+2017.08.10 20:05:50 - [Information]: Get files for file browser. Path: content/persons/212. Root: content/persons/212. Create new: True.
+2017.08.10 20:05:50 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\persons\212'.
+2017.08.10 20:05:51 - [Information]: Parent folder: 'persons'. Exists: persons.
+2017.08.10 20:05:51 - [Information]: Inner folders count: 0
+2017.08.10 20:05:51 - [Information]: Inner files count: 0
+2017.08.10 20:05:58 - [Information]: Get files for file browser. Path: content/persons/212. Root: content/persons/212. Create new: False.
+2017.08.10 20:05:58 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\persons\212'.
+2017.08.10 20:05:58 - [Information]: Parent folder: 'persons'. Exists: persons.
+2017.08.10 20:05:58 - [Information]: Inner folders count: 0
+2017.08.10 20:05:58 - [Information]: Inner files count: 1

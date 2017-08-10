@@ -800,8 +800,11 @@ textarea {
 .main-results {
   padding-left: 25px;
   /*.fc-grad();*/
+
   .header {
-    line-height: 1.4em;
+    padding: 5px 0;
+    color: @background-primary;
+    font-size: 1.15em;
   }
 
   ul li {
@@ -815,7 +818,7 @@ textarea {
     @media (min-width: @screen-sm) {
       font-size: 80%;
     }
-    
+
     @media (min-width: @screen-md) {
       font-size: 85%;
     }
@@ -835,11 +838,11 @@ textarea {
   }
 }
 
-  @media (min-width: 768px) {
-    .main-results div[class*="col-"] {
-      padding: 0 8px;
-    }
+@media (min-width: 768px) {
+  .main-results div[class*="col-"] {
+    padding: 0 8px;
   }
+}
 
   dl.fc-data-list {
     margin: 0 0 5px 0;

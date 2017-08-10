@@ -37,7 +37,8 @@
 
                 function roundLoaded(data) {
                     if (angular.isObject(data)) {
-                        scope.roundResults.name = data.name;
+                        scope.roundResults.roundIndex = data.name;
+                        scope.roundResults.roundName = data.nameFull;
                         scope.roundResults.tourney = data.tourney;
                         scope.roundResults.logo = data.logo;
                         scope.roundResults.dateGames = data.dateGames;
