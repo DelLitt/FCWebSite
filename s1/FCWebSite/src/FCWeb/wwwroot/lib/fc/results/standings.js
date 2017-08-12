@@ -14,7 +14,7 @@
         });
 
         $scope.tourneyOptions = [
-            { index: 0, team: "MAIN_TEAM", tourneyId: configSrv.Current.MainTeamTourneyIds[1] },
+            { index: 0, team: "MAIN_TEAM", tourneyId: configSrv.Current.MainTeamTourneyIds[2] },
             { index: 1, team: "RESERVE_TEAM", tourneyId: configSrv.Current.ReserveTeamTourneyIds[0] }
         ]
 

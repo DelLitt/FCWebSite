@@ -25,10 +25,6 @@
                 templateUrl: "lib/fc/club/reserveteam.html",
                 controller: "reserveTeamCtrl"
             })
-            .when("/club/youthteams", {
-                templateUrl: "lib/fc/club/youth/youthteams.html",
-                controller: "youthTeamsCtrl"
-            })
             .when("/club/direction", {
                 templateUrl: "lib/fc/club/seniorstaff.html",
                 controller: "seniorStaffCtrl"
@@ -45,6 +41,14 @@
                templateUrl: "lib/fc/club/specialistsstaff.html",
                controller: "specialistsStaffCtrl"
            })
+           .when("/youth/about", {
+               templateUrl: "lib/fc/youth/aboutYouth.html",
+               controller: "aboutYouthCtrl"
+           })
+           .when("/youth/coaches", {
+               templateUrl: "lib/fc/youth/coachesYouthStaff.html",
+               controller: "coachesYouthStaffCtrl"
+           })
            .when("/results/matches", {
                templateUrl: "lib/fc/results/matches.html",
                controller: "matchesCtrl"
@@ -53,9 +57,9 @@
                templateUrl: "lib/fc/results/standings.html",
                controller: "standingsCtrl"
            })
-           .when("/results/reserveteam", {
-               templateUrl: "lib/fc/results/resultsreserveteam.html",
-               controller: "resultsReserveTeamCtrl"
+           .when("/results/stats", {
+               templateUrl: "lib/fc/results/statistics.html",
+               controller: "statisticsCtrl"
            })
             .when("/person/:id", {
                 templateUrl: "lib/fc/person/person.html",

@@ -9,7 +9,6 @@
 
     function coachesStaffCtrl($scope, configSrv, personsSrv) {        
         $scope.mainCoaches = [];
-        $scope.youthCoaches = [];
 
         personsSrv.loadCoachesStaff(configSrv.Current.MainTeamId, staffLoaded);
 
@@ -20,23 +19,15 @@
                 return;
             }
 
-            var main = [],
-                youth = [];
-
+            var main = [];
             for (var i = 0; i < persons.length; i++) {
-                if (persons[i].roleId == configSrv.Current.PersonRoleIds.CoachYouth) {
-                    youth.push(persons[i]);
-                } else {
+                if (persons[i].roleId != configSrv.Current.PersonRoleIds.CoachYouth) {
                     main.push(persons[i]);
                 }
             }
 
             if (main.length > 0) {
                 $scope.mainCoaches = main;
-            }
-
-            if (youth.length > 0) {
-                $scope.youthCoaches = youth;
             }
         }
     }

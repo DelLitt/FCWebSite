@@ -41,7 +41,7 @@
                         item.showRole = angular.isObject(item.role);
                     });
 
-                    scope.rows = persons.length > 0 ? helper.formRows(persons, 4, 0) : [];
+                    scope.rows = persons.length > 0 ? helper.formRows(persons, 1000, 0) : [];
                     scope.loadingStaff = false;
                 }
             },
