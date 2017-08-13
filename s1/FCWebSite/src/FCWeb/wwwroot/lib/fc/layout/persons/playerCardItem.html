@@ -9,7 +9,7 @@
                 <div class="caption">
                     <div class="person-label">
                         <a ng-href="person/{{person.id}}" class="h5" title="{{person.nameDefault}}">
-                            {{person.number}}.&nbsp;{{person.nameFirst}}&nbsp;<span class="text-uppercase" style="font-weight:bold;">{{person.nameLast}}</span>
+                            <span ng-if="person.number">{{person.number}}.&nbsp;</span>{{person.nameFirst}}&nbsp;<span class="text-uppercase" style="font-weight:bold;">{{person.nameLast}}</span>
                         </a>
                     </div>
                 </div>

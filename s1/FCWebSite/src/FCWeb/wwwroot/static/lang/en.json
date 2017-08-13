@@ -23,6 +23,8 @@
   "INFORMATION": "Information",
   "ATTRIBUTES": "Attributes",
   "HISTORY": "History",
+  "HISTORY_SHORT": "Brief history",
+  "HISTORY_FULL": "Detailed History",
   "TEAM_STAFF": "Team squad",
   "MAIN_STAFF": "Main team",
   "RESERVE_STAFF": "Reserve team",

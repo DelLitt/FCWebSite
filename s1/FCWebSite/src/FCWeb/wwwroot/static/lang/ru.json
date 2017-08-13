@@ -23,6 +23,8 @@
   "INFORMATION": "Информация",
   "ATTRIBUTES": "Атрибутика",
   "HISTORY": "История",
+  "HISTORY_SHORT": "Краткая история",
+  "HISTORY_FULL": "Подробная история",
   "TEAM_STAFF": "Состав команды",
   "MAIN_STAFF": "Главная команда",
   "RESERVE_STAFF": "Дублирующая команда",

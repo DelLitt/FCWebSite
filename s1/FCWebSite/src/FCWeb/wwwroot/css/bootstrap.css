@@ -6897,6 +6897,10 @@ h6 .small,
 .h6 .small {
   font-size: 88%;
 }
+small,
+.small {
+  font-size: 85% !important;
+}
 .iis-caption .iis-caption-content {
   font-size: 1.4em;
 }
@@ -7579,7 +7583,7 @@ dl.fc-data-list.dt-info dd {
   background-color: #fff;
   font-size: 1.15em;
   line-height: 1.5em;
-  padding: 0 20px;
+  padding: 25px;
 }
 .fc-publication h1,
 .fc-pane-body .fc-publication h1,
@@ -7790,6 +7794,10 @@ dl.fc-data-list.dt-info dd {
   font-size: 11px;
   color: #ACCCFF;
   letter-spacing: 5px;
+}
+.main-brand .main-brand-left-block small,
+.main-brand .main-brand-left-block .small {
+  font-size: 75% !important;
 }
 .main-brand .main-brand-logo {
   max-width: 210px;

@@ -81,7 +81,15 @@
                templateUrl: "lib/fc/info/stadiumrules/stadiumrules.html",
                controller: "stadiumRulesCtrl"
            })
-            .otherwise({ redirectTo: "/" });
+           .when("/history", {
+               templateUrl: "lib//fc/history/historyFull.html",
+               controller: "historyFullCtrl"
+           })
+           .when("/history/short", {
+               templateUrl: "lib//fc/history/historyShort.html",
+               controller: "historyShortCtrl"
+           })
+           .otherwise({ redirectTo: "/" });
 
         $locationProvider.html5Mode(true);
 
