@@ -13,7 +13,7 @@
 
     public class ScheduleHelper
     {
-        public static IEnumerable<ScheduleItemViewModel> GetTourneysShcedule(IEnumerable<int> tourneyIds)
+        public static IEnumerable<ScheduleItemViewModel> GetTourneysShcedule(DateTime startDate, DateTime endDate, IEnumerable<int> tourneyIds)
         {         
             ILogger<ScheduleHelper> logger = MainCfg.ServiceProvider.GetService<ILogger<ScheduleHelper>>();
             logger.LogTrace("Getting schedule. Tournaments count: {0}.", tourneyIds.Count());
@@ -31,7 +31,8 @@
             if (!rounds.Any()) { return schedule; }
 
             IGameBll gameBll = MainCfg.ServiceProvider.GetService<IGameBll>();
-            IEnumerable<Game> games = gameBll.GetGamesByRounds(rounds.Select(r => (int)r.Id)).OrderByDescending(d => d.GameDate);
+            IEnumerable<Game> games = 
+                gameBll.GetGamesByRoundsForPeriod(startDate, endDate, rounds.Select(r => (int)r.Id)).OrderByDescending(d => d.GameDate);
             if (!games.Any()) { return schedule; }
 
             var allTeamIds = new List<int>();

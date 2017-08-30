@@ -2,7 +2,7 @@
     <section class="col-xs-12">
         <div ng-show="loadingTeam" class="row fc-loading-wrapper">
             <div class="col-xs-12 text-center">
-                <img ng-src="{{loadingImage}}" />
+                <img img-variant-logo="400x400" ng-src="{{loadingImage}}" />
             </div>
         </div>
         <div class="row" ng-show="!loadingTeam">
@@ -18,34 +18,24 @@
                                     <img class="img-responsive" ng-src="{{imageLogo}}" />
                                 </div>                             
                                 <div class="col-xs-12 col-sm-8">
-                                    <dl class="dl-horizontal fc-dl">
-                                        <dt translate="FULL_NAME_2"></dt>
-                                        <dd>{{team.nameFull}}</dd>
-                                        <dt translate="CITY"></dt>
-                                        <dd>{{city}}</dd>
-                                        <dt translate="ADDRESS"></dt>
-                                        <dd>{{team.address}}</dd>
-                                        <dt translate="STADIUM"></dt>
-                                        <dd>{{stadium}}</dd>
-                                        <dt ng-show="showWebsite" translate="WEB_SITE"></dt>
-                                        <dd ng-show="showWebsite">{{team.webSite}}</dd>
-                                        <dt ng-show="showTeamType" translate="TEAM_TYPE"></dt>
-                                        <dd ng-show="showTeamType"><span translate="TEAM_{{teamType}}"></span></dd>
-                                        <dt ng-show="showMainTourney" translate="MAIN_TOURNAMENT"></dt>
-                                        <dd ng-show="showMainTourney">{{mainTourney}}</dd>
-                                    </dl>
+                                    <div class="fc-border-bottom"><b><span translate="FULL_NAME_2"></span>:</b> {{team.nameFull}}</div>
+                                    <div class="fc-border-bottom"><b><span translate="CITY"></span>:</b> {{city}}</div>
+                                    <div class="fc-border-bottom"><b><span translate="ADDRESS"></span>:</b> {{team.address}}</div>
+                                    <div class="fc-border-bottom"><b><span translate="STADIUM"></span>:</b> {{stadium}}</div>
+                                    <div class="fc-border-bottom" ng-if="showWebsite"><b><span translate="WEB_SITE"></span>:</b> {{team.webSite}}</div>
+                                    <div class="fc-border-bottom" ng-if="showTeamType"><b><span translate="TEAM_TYPE"></span>:</b> <span translate="TEAM_{{teamType}}"></span></div>
+                                    <div class="fc-border-bottom" ng-if="showMainTourney"><b><span translate="MAIN_TOURNAMENT"></span>:</b> {{mainTourney}}</div>
                                 </div>
                             </div>
                             <div class="row pretty-text" ng-if="showExtended">                                
                                 <div class="col-xs-12">
-                                    <hr />
                                     <div class="row" ng-show="showFakePalyes">
                                         <div class="col-xs-12">
                                             <p style="line-height: 1.5em;"><span class="text-uppercase" style="font-weight: bold;" translate="TEAM_STAFF"></span>: <p ng-bind-html="fakePalyesText"></p></p>
                                         </div>
                                     </div>
                                     <div class="col-xs-12" ng-if="imageTeam.length">
-                                        <img class="img-thumbnail" ng-src="{{imageTeam}}" />
+                                        <img class="img-thumbnail img-responsive"  img-variant-team="1280x720" ng-src="{{imageTeam}}" />
                                     </div> 
                                     <div class="row" ng-show="showCoaches">
                                         <div class="col-xs-12">

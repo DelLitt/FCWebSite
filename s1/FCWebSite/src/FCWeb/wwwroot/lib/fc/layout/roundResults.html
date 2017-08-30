@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xs-12">
             <p class="header">
-                <span class="text-uppercase" translate="RESULTS"></span><span ng-show="!loadingRR">. {{roundResults.roundIndex}} <span translate="{{roundResults.roundName}}"></span>. <span translate="TRN_FULL_{{roundResults.tourney}}"></span></span>
+                <span class="text-uppercase" translate="RESULTS"></span><span ng-show="!loadingRR">. <span ng-if="roundResults.roundName.length">{{roundResults.roundIndex}} <span translate="{{roundResults.roundName}}"></span>. </span><span translate="TRN_FULL_{{roundResults.tourney}}"></span></span>
             </p>
         </div>
     </div>

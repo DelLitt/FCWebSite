@@ -58,3 +58,168 @@
 2017.08.13 07:38:08 - [Information]: Parent folder: 'persons'. Exists: persons.
 2017.08.13 07:38:08 - [Information]: Inner folders count: 0
 2017.08.13 07:38:08 - [Information]: Inner files count: 1
+2017.08.16 17:55:52 - [Information]: Get files for file browser. Path: content/teams/2088. Root: content/teams/2088. Create new: True.
+2017.08.16 17:55:52 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\2088'.
+2017.08.16 17:55:52 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.16 17:55:52 - [Information]: Inner folders count: 0
+2017.08.16 17:55:52 - [Information]: Inner files count: 0
+2017.08.16 17:57:52 - [Information]: Get files for file browser. Path: content/teams/2088. Root: content/teams/2088. Create new: False.
+2017.08.16 17:57:52 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\2088'.
+2017.08.16 17:57:52 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.16 17:57:52 - [Information]: Inner folders count: 0
+2017.08.16 17:57:52 - [Information]: Inner files count: 1
+2017.08.27 11:07:39 - [Information]: Get files for file browser. Path: content/teams/2086. Root: content/teams/2086. Create new: True.
+2017.08.27 11:07:39 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\2086'.
+2017.08.27 11:07:39 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 11:07:39 - [Information]: Inner folders count: 1
+2017.08.27 11:07:39 - [Information]: Inner files count: 3
+2017.08.27 11:25:57 - [Information]: Get files for file browser. Path: content/teams/2086. Root: content/teams/2086. Create new: True.
+2017.08.27 11:25:57 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\2086'.
+2017.08.27 11:25:57 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 11:25:57 - [Information]: Inner folders count: 2
+2017.08.27 11:25:57 - [Information]: Inner files count: 2
+2017.08.27 11:37:11 - [Information]: Get files for file browser. Path: content/teams/3. Root: content/teams/3. Create new: True.
+2017.08.27 11:37:11 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\3'.
+2017.08.27 11:37:11 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 11:37:11 - [Information]: Inner folders count: 0
+2017.08.27 11:37:11 - [Information]: Inner files count: 2
+2017.08.27 11:40:27 - [Information]: Get files for file browser. Path: content/teams/3. Root: content/teams/3. Create new: True.
+2017.08.27 11:40:27 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\3'.
+2017.08.27 11:40:27 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 11:40:27 - [Information]: Inner folders count: 1
+2017.08.27 11:40:27 - [Information]: Inner files count: 2
+2017.08.27 11:43:37 - [Information]: Get files for file browser. Path: content/teams/3. Root: content/teams/3. Create new: True.
+2017.08.27 11:43:38 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\3'.
+2017.08.27 11:43:38 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 11:43:38 - [Information]: Inner folders count: 1
+2017.08.27 11:43:38 - [Information]: Inner files count: 2
+2017.08.27 11:47:18 - [Information]: Get files for file browser. Path: content/teams/10. Root: content/teams/10. Create new: True.
+2017.08.27 11:47:18 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\10'.
+2017.08.27 11:47:18 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 11:47:18 - [Information]: Inner folders count: 1
+2017.08.27 11:47:18 - [Information]: Inner files count: 1
+2017.08.27 11:47:42 - [Information]: Get files for file browser. Path: content/teams/10. Root: content/teams/10. Create new: False.
+2017.08.27 11:47:42 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\10'.
+2017.08.27 11:47:42 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 11:47:42 - [Information]: Inner folders count: 1
+2017.08.27 11:47:42 - [Information]: Inner files count: 2
+2017.08.27 11:53:44 - [Information]: Get files for file browser. Path: content/teams/21. Root: content/teams/21. Create new: True.
+2017.08.27 11:53:44 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\21'.
+2017.08.27 11:53:44 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 11:53:44 - [Information]: Inner folders count: 2
+2017.08.27 11:53:44 - [Information]: Inner files count: 1
+2017.08.27 11:54:10 - [Information]: Get files for file browser. Path: content/teams/21. Root: content/teams/21. Create new: False.
+2017.08.27 11:54:10 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\21'.
+2017.08.27 11:54:10 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 11:54:10 - [Information]: Inner folders count: 2
+2017.08.27 11:54:10 - [Information]: Inner files count: 2
+2017.08.27 12:00:00 - [Information]: Get files for file browser. Path: content/teams/23. Root: content/teams/23. Create new: True.
+2017.08.27 12:00:00 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\23'.
+2017.08.27 12:00:00 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 12:00:00 - [Information]: Inner folders count: 2
+2017.08.27 12:00:00 - [Information]: Inner files count: 1
+2017.08.27 12:00:07 - [Information]: Get files for file browser. Path: content/teams/23. Root: content/teams/23. Create new: False.
+2017.08.27 12:00:07 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\23'.
+2017.08.27 12:00:07 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 12:00:07 - [Information]: Inner folders count: 2
+2017.08.27 12:00:07 - [Information]: Inner files count: 2
+2017.08.27 12:04:39 - [Information]: Get files for file browser. Path: content/teams/32. Root: content/teams/32. Create new: True.
+2017.08.27 12:04:39 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\32'.
+2017.08.27 12:04:39 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 12:04:39 - [Information]: Inner folders count: 0
+2017.08.27 12:04:39 - [Information]: Inner files count: 0
+2017.08.27 12:04:44 - [Information]: Get files for file browser. Path: content/teams/32. Root: content/teams/32. Create new: False.
+2017.08.27 12:04:44 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\32'.
+2017.08.27 12:04:44 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 12:04:45 - [Information]: Inner folders count: 0
+2017.08.27 12:04:45 - [Information]: Inner files count: 1
+2017.08.27 12:04:48 - [Information]: Get files for file browser. Path: content/teams/32. Root: content/teams/32. Create new: True.
+2017.08.27 12:04:48 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\32'.
+2017.08.27 12:04:48 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 12:04:48 - [Information]: Inner folders count: 0
+2017.08.27 12:04:48 - [Information]: Inner files count: 1
+2017.08.27 12:17:40 - [Information]: Get files for file browser. Path: content/teams/8. Root: content/teams/8. Create new: True.
+2017.08.27 12:17:40 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\8'.
+2017.08.27 12:17:40 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 12:17:40 - [Information]: Inner folders count: 2
+2017.08.27 12:17:40 - [Information]: Inner files count: 1
+2017.08.27 12:17:48 - [Information]: Get files for file browser. Path: content/teams/8. Root: content/teams/8. Create new: False.
+2017.08.27 12:17:48 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\8'.
+2017.08.27 12:17:48 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 12:17:48 - [Information]: Inner folders count: 2
+2017.08.27 12:17:48 - [Information]: Inner files count: 2
+2017.08.27 12:36:47 - [Information]: Get files for file browser. Path: content/teams/24. Root: content/teams/24. Create new: True.
+2017.08.27 12:36:47 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\24'.
+2017.08.27 12:36:47 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 12:36:47 - [Information]: Inner folders count: 1
+2017.08.27 12:36:48 - [Information]: Inner files count: 1
+2017.08.27 12:41:59 - [Information]: Get files for file browser. Path: content/teams/27. Root: content/teams/27. Create new: True.
+2017.08.27 12:42:00 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\27'.
+2017.08.27 12:42:00 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 12:42:00 - [Information]: Inner folders count: 0
+2017.08.27 12:42:00 - [Information]: Inner files count: 1
+2017.08.27 12:44:05 - [Information]: Get files for file browser. Path: content/teams/25. Root: content/teams/25. Create new: True.
+2017.08.27 12:44:05 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\25'.
+2017.08.27 12:44:05 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 12:44:05 - [Information]: Inner folders count: 1
+2017.08.27 12:44:05 - [Information]: Inner files count: 2
+2017.08.27 12:52:27 - [Information]: Get files for file browser. Path: content/teams/19. Root: content/teams/19. Create new: True.
+2017.08.27 12:52:27 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\19'.
+2017.08.27 12:52:28 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.27 12:52:28 - [Information]: Inner folders count: 0
+2017.08.27 12:52:28 - [Information]: Inner files count: 1
+2017.08.29 12:05:39 - [Information]: Get files for file browser. Path: content/teams/29. Root: content/teams/29. Create new: True.
+2017.08.29 12:05:39 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\29'.
+2017.08.29 12:05:39 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.29 12:05:39 - [Information]: Inner folders count: 1
+2017.08.29 12:05:39 - [Information]: Inner files count: 1
+2017.08.29 12:08:26 - [Information]: Get files for file browser. Path: content/teams/29. Root: content/teams/29. Create new: True.
+2017.08.29 12:08:26 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\29'.
+2017.08.29 12:08:26 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.29 12:08:26 - [Information]: Inner folders count: 2
+2017.08.29 12:08:26 - [Information]: Inner files count: 1
+2017.08.29 12:08:35 - [Information]: Get files for file browser. Path: content/teams/29. Root: content/teams/29. Create new: False.
+2017.08.29 12:08:35 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\29'.
+2017.08.29 12:08:35 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.29 12:08:35 - [Information]: Inner folders count: 2
+2017.08.29 12:08:35 - [Information]: Inner files count: 2
+2017.08.29 12:24:46 - [Information]: Get files for file browser. Path: content/teams/6. Root: content/teams/6. Create new: True.
+2017.08.29 12:24:46 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\6'.
+2017.08.29 12:24:46 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.29 12:24:46 - [Information]: Inner folders count: 1
+2017.08.29 12:24:47 - [Information]: Inner files count: 2
+2017.08.29 12:24:55 - [Information]: Get files for file browser. Path: content/teams/6. Root: content/teams/6. Create new: False.
+2017.08.29 12:24:55 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\6'.
+2017.08.29 12:24:55 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.29 12:24:55 - [Information]: Inner folders count: 1
+2017.08.29 12:24:55 - [Information]: Inner files count: 3
+2017.08.29 12:29:34 - [Information]: Get files for file browser. Path: content/teams/20. Root: content/teams/20. Create new: True.
+2017.08.29 12:29:34 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\20'.
+2017.08.29 12:29:34 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.29 12:29:34 - [Information]: Inner folders count: 1
+2017.08.29 12:29:34 - [Information]: Inner files count: 1
+2017.08.29 12:29:41 - [Information]: Get files for file browser. Path: content/teams/20. Root: content/teams/20. Create new: False.
+2017.08.29 12:29:41 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\20'.
+2017.08.29 12:29:42 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.29 12:29:42 - [Information]: Inner folders count: 1
+2017.08.29 12:29:42 - [Information]: Inner files count: 2
+2017.08.29 12:32:43 - [Information]: Get files for file browser. Path: content/teams/28. Root: content/teams/28. Create new: True.
+2017.08.29 12:32:43 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\28'.
+2017.08.29 12:32:43 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.29 12:32:43 - [Information]: Inner folders count: 0
+2017.08.29 12:32:44 - [Information]: Inner files count: 0
+2017.08.29 12:32:55 - [Information]: Get files for file browser. Path: content/teams/28. Root: content/teams/28. Create new: False.
+2017.08.29 12:32:55 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\28'.
+2017.08.29 12:32:55 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.29 12:32:55 - [Information]: Inner folders count: 0
+2017.08.29 12:32:55 - [Information]: Inner files count: 1
+2017.08.29 12:42:14 - [Information]: Get files for file browser. Path: content/teams/22. Root: content/teams/22. Create new: True.
+2017.08.29 12:42:14 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\22'.
+2017.08.29 12:42:14 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.29 12:42:14 - [Information]: Inner folders count: 0
+2017.08.29 12:42:14 - [Information]: Inner files count: 0
+2017.08.29 12:42:21 - [Information]: Get files for file browser. Path: content/teams/22. Root: content/teams/22. Create new: False.
+2017.08.29 12:42:21 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\teams\22'.
+2017.08.29 12:42:21 - [Information]: Parent folder: 'teams'. Exists: teams.
+2017.08.29 12:42:21 - [Information]: Inner folders count: 0
+2017.08.29 12:42:21 - [Information]: Inner files count: 1

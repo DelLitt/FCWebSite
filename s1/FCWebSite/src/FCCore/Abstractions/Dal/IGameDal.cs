@@ -15,6 +15,7 @@
         Game GetGame(int id);
         IEnumerable<Game> GetRoundGames(int roundId);
         IEnumerable<Game> GetGamesByRounds(IEnumerable<int> roundIds);
+        IEnumerable<Game> GetGamesByRoundsForPeriod(DateTime startDate, DateTime endDate, IEnumerable<int> roundIds);
         IEnumerable<Game> GetGamesByTourney(int tourneyId);
         IEnumerable<Game> GetGamesByTourneys(IEnumerable<int> tourneyIds);
         IEnumerable<Game> GetGamesByTourneyBetweenTeams(int tourneyId, IEnumerable<int> teamIds);

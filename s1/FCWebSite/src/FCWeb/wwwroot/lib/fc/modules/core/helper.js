@@ -256,7 +256,7 @@ String.prototype.insertAt = function (index, string) {
             },
             
             hasExPersons: function(fakeInfo) {
-                return angular.isArray(fakeInfo.persons) && fakeInfo.persons > 0;
+                return angular.isArray(fakeInfo.persons) && fakeInfo.persons.length > 0;
             },
 
             hasExCoaches: function(fakeInfo) {

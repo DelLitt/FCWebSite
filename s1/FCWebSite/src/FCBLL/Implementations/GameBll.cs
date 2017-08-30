@@ -169,6 +169,15 @@
             return result;
         }
 
+        public IEnumerable<Game> GetGamesByRoundsForPeriod(DateTime startDate, DateTime endDate, IEnumerable<int> roundIds)
+        {
+            string cacheKey = GetStringMethodKey(nameof(GetGamesByRoundsForPeriod), startDate, endDate, roundIds);
+
+            IEnumerable<Game> result = Cache.GetOrCreate(cacheKey, () => { return DalGames.GetGamesByRoundsForPeriod(startDate, endDate, roundIds); });
+
+            return result;
+        }
+
         public IEnumerable<Game> GetTeamPrevNextGames(int teamId, IEnumerable<int> tourneyIds, DateTime date, int daysShift)
         {
             string cacheKey = GetStringMethodKey(nameof(GetTeamPrevNextGames), teamId, tourneyIds, date, daysShift);

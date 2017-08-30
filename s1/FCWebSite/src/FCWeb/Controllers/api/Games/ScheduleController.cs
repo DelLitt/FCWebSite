@@ -27,19 +27,19 @@
         }
 
         [HttpGet]
-        [ResponseCache(VaryByQueryKeys = new string[] { "tourneyIds" }, Duration = Constants.Cache_DefaultVaryByParamDurationSeconds)]
-        public IEnumerable<ScheduleItemViewModel> Get([FromQuery] int[] tourneyIds)
+        [ResponseCache(VaryByQueryKeys = new string[] { "tourneyIds", "start", "end" }, Duration = Constants.Cache_DefaultVaryByParamDurationSeconds)]
+        public IEnumerable<ScheduleItemViewModel> Get([FromQuery] DateTime start, [FromQuery] DateTime end, [FromQuery] int[] tourneyIds)
         {
-            logger.LogTrace("Getting schedule. Tournaments count: {0}.", tourneyIds.Count());
+            logger.LogTrace("Getting schedule. Start: {0}. End: {1}. Tournaments count: {2}.", start, end, tourneyIds.Count());
 
             MethodInfo methodInfo = typeof(ScheduleHelper)
                                     .GetTypeInfo()
                                     .GetMethod(nameof(ScheduleHelper.GetTourneysShcedule));
 
-            string cacheKey = cacheKeyGenerator.GetStringKey(methodInfo, tourneyIds);
+            string cacheKey = cacheKeyGenerator.GetStringKey(methodInfo, start, end, tourneyIds);
 
             IEnumerable<ScheduleItemViewModel> result = 
-                cache.GetOrCreate(cacheKey, () => { return ScheduleHelper.GetTourneysShcedule(tourneyIds); });
+                cache.GetOrCreate(cacheKey, () => { return ScheduleHelper.GetTourneysShcedule(start, end, tourneyIds); });
 
             return result;
         }

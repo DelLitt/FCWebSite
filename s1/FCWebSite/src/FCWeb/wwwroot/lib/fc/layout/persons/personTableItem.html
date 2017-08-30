@@ -7,8 +7,6 @@
     </div>
     <table class="table fc-table fc-table-light">
         <tr>
-            <!--<th>
-            </th>-->
             <th>
                 <span class="fc-action" ng-click="order('number')">#</span>
                 <span class="glyphicon font-07" ng-show="predicate === 'number'" ng-class="{'glyphicon-arrow-down':reverse, 'glyphicon-arrow-up':!reverse}"></span>
@@ -47,7 +45,6 @@
             </th>
         </tr>
         <tr ng-repeat="person in persons">
-            <!--<td class="text-muted">{{$index + 1}}</td>-->
             <td>{{person.number}}</td>
             <td class="fc-text-left"><a ng-href="person/{{person.id}}"><b>{{person.nameDefault}}</b></a></td>
             <td class="visible-sm visible-md visible-lg">{{person.age}}</td>

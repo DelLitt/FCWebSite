@@ -65,6 +65,21 @@
             return games;
         }
 
+        public IEnumerable<Game> GetGamesByRoundsForPeriod(DateTime startDate, DateTime endDate, IEnumerable<int> roundIds)
+        {
+            if (Guard.IsEmptyIEnumerable(roundIds)) { return new Game[0]; }
+
+            IEnumerable<Game> games = Context.Game
+                                             .Where(g => g.GameDate >= startDate 
+                                                        && g.GameDate <= endDate
+                                                        && roundIds.Contains(g.roundId))
+                                             .ToList();
+
+            FillRelations(games);
+
+            return games;
+        }
+
         public IEnumerable<Game> GetRoundGames(int roundId)
         {
             IEnumerable<Game> games = Context.Game.Where(g => g.roundId == roundId);
@@ -113,12 +128,6 @@
         {
             Guard.CheckNull(tourneyIds, nameof(tourneyIds));
 
-            //IEnumerable<Game> games = Context.Game.Where(g => tourneyIds.Contains(g.round.tourneyId)
-            //                                            && g.GameDate >= dateStart
-            //                                            && g.GameDate <= dateEnd
-            //                                            && (g.homeId == teamId || g.awayId == teamId))
-            //                                      .ToList();
-
             IEnumerable<short> roundIds = Context.Round.Where(r => tourneyIds.Contains(r.tourneyId))
                                                        .Select(r => r.Id)
                                                        .ToList();
@@ -135,12 +144,6 @@
 
             IEnumerable<Game> games = gamesOfRounnds.Where(g => g.GameDate >= dateStart && g.GameDate <= dateEnd
                                                            && (g.homeId == teamId || g.awayId == teamId));
-
-            //IEnumerable <Game> games = Context.Game.Where(g => g.GameDate >= dateStart
-            //                                            && g.GameDate <= dateEnd
-            //                                            && roundIds.Contains(g.roundId)                                                        
-            //                                            && (g.homeId == teamId || g.awayId == teamId))
-            //                                      .ToList();
 
             FillRelations(games);
 

@@ -11,16 +11,22 @@
                     <table class="table fc-table fc-table-light">
                         <thead>
                             <tr>
-                                <th colspan="5">{{roundPart.round.text}}. {{roundPart.tourney.text}}</th>
+                                <th colspan="5"><span ng-if="roundPart.round.title.length">{{roundPart.round.text}} <span translate="{{roundPart.round.title}}"></span>. </span><span translate="TRN_FULL_{{roundPart.tourney.text}}"></span></th>
                             </tr>
                         </thead>
                         <tbody ng-repeat="gamesDay in roundPart.daysGames">
                             <tr><td style="text-align: left !important;" colspan="5"><span class="label label-info">{{gamesDay.games[0].date | date : 'fullDate'}}</span></td></tr>
-                            <tr ng-repeat="game in gamesDay.games">
+                            <tr class="fc-schedule" ng-repeat="game in gamesDay.games">
                                 <td class="col-xs-2 col-sm-1 fc-text-right"><span ng-if="game.showTime">{{game.date | date: 'HH:mm'}}</span><span ng-if="!game.showTime">--:--</span></td>
-                                <td class="col-xs-4 col-sm-4 fc-text-right"><a ng-href="team/{{game.home.id}}">{{game.home.text}}</a>&nbsp;<img class="hidden-xs" style="max-height: 30px;" id="image" ng-src="{{getLogo(game.home);}}" /></td>
-                                <td class="col-xs-2 col-sm-2 text-center"><a ng-href="game/{{game.id}}">{{game.homeScore}} : {{game.awayScore}}</a><span ng-if="hasExtra(game);"><span ng-if="game.played">&nbsp;</span><span class="glyphicon glyphicon-asterisk" translate translate-attr-title="EXTRA_INFO"></span></span></td>
-                                <td class="col-xs-4 col-sm-4 fc-text-left"><img class="hidden-xs" style="max-height: 30px;" id="image" ng-src="{{getLogo(game.away);}}" />&nbsp;<a ng-href="team/{{game.home.id}}">{{game.away.text}}</a></td>
+                                <td class="col-xs-4 col-sm-4 fc-text-right"><a ng-href="team/{{game.home.id}}">{{game.home.text}}</a>&nbsp;<img class="hidden-xs" id="image" ng-src="{{getLogo(game.home);}}" /></td>
+                                <td class="col-xs-2 col-sm-2 text-center">
+                                    <a ng-href="game/{{game.id}}">
+                                        <span>{{game.homeScore}}&nbsp;:&nbsp;{{game.awayScore}}</span>
+                                        <span ng-if="hasAddScore(game)" class="fc-small-row-info"><span translate="EX_TIME_SH"></span>.&nbsp;<i>{{game.homeAddScore}}&nbsp;:&nbsp;{{game.awayAddScore}}</i></span>
+                                        <span ng-if="hasPenalties(game)" class="fc-small-row-info"><span translate="PENALTY_SH"></span>.&nbsp;<i>{{game.homePenalties}}&nbsp;:&nbsp;{{game.awayPenalties}}</i></span>
+                                    </a>
+                                </td>
+                                <td class="col-xs-4 col-sm-4 fc-text-left"><img class="hidden-sm" id="image" ng-src="{{getLogo(game.away);}}" />&nbsp;<a ng-href="team/{{game.away.id}}">{{game.away.text}}</a></td>
                                 <td class="hidden-xs col-sm-1"><span class="glyphicon glyphicon-check" translate translate-attr-title="FULL_TIME" ng-if="game.played"></span></td>
                             </tr>
                         </tbody>

@@ -35,11 +35,14 @@
                 });
         }
 
-        this.loadSchedule = function (tourneyIds, success, failure) {
-            var url = "/api/games/schedule?";
+        this.loadSchedule = function (tourneyIds, dateStart, dateEnd, success, failure) {
+            var start = jQuery.param({ start: dateStart.toISOString() });
+            var end = jQuery.param({ end: dateEnd.toISOString() });
+
+            var url = "/api/games/schedule?" + start + "&" + end;
 
             tourneyIds.forEach(function (element, index, array) {
-                url = url + "tourneyIds=" + element + (index < array.length - 1 ? "&" : "")
+                url = url + "&tourneyIds=" + element + (index < array.length - 1 ? "&" : "")
             });
 
             apiSrv.get(url, null,

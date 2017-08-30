@@ -8,7 +8,7 @@
                 <td class="text-bg-color text-right">
                     <h5>
                         <span ng-show="game.showTime">{{game.start | date: 'HH:mm'}}. </span>{{game.start | date: 'dd MMMM'}}<br />
-                        <small class="ellipsis-135" style="display:inline-block; height: 1.1em;">{{game.round}} <span translate="{{game.roundTitle}}"></span>. <span translate="TRN_SHORT_{{game.tourney}}" translate-attr-title="TRN_SHORT_{{game.tourney}}"></span></small>
+                        <small class="ellipsis-135" style="display:inline-block; height: 1.1em;"><span ng-if="game.roundTitle.length">{{game.round}} <span translate="{{game.roundTitle}}"></span>. </span><span translate="TRN_SHORT_{{game.tourney}}" translate-attr-title="TRN_SHORT_{{game.tourney}}"></span></small>
                     </h5>
                 </td>
                 <td class="text-bg-color text-left">

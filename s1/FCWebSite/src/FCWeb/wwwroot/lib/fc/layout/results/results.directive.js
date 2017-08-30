@@ -13,7 +13,9 @@
             replace: true,
             scope: {
                 teamId: '=',
-                tourneysIds: '='
+                season: '=',
+                tourneysIds: '=',
+                imgVariant: '@'
             },
             link: function link(scope, element, attrs) {
 
@@ -21,11 +23,20 @@
                 scope.loadingImage = helper.getLoadingImg();
 
                 scope.getLogo = function (team) {
-                    return helper.getTeamImage(team);
+                    var image = helper.getTeamImage(team);
+                    return helper.addFileVariant(image, scope.imgVariant);
                 }
 
                 scope.hasExtra = function (game) {
                     return angular.isNumber(game.homeAddScore) || angular.isNumber(game.homePenalties);
+                }
+
+                scope.hasAddScore = function (game) {
+                    return angular.isNumber(game.homeAddScore) && angular.isNumber(game.awayAddScore);
+                }
+
+                scope.hasPenalties = function (game) {
+                    return angular.isNumber(game.homePenalties) && angular.isNumber(game.awayPenalties);
                 }
 
                 scope.$watch(function (scope) {
@@ -39,7 +50,7 @@
 
                 function loadData() {
                     scope.loadingGames = true;
-                    gamesSrv.loadSchedule(scope.tourneysIds, scheduleLoaded);
+                    gamesSrv.loadSchedule(scope.tourneysIds, scope.season.dateStart, scope.season.dateEnd, scheduleLoaded);
                 }
 
                 function scheduleLoaded(response) {
