@@ -1,7 +1,6 @@
 ﻿/*FC-TABLE*/
 .fc-table {
   /*border-radius: 0 0 @fc-border-radius @fc-border-radius;*/
-
   caption {
     padding: 5px 15px;
     /*border-radius: 5px 5px 0 0;*/
@@ -13,20 +12,14 @@
 
   tbody tr, tr {
 
-    .fc-schedule {
-      img{
-        max-height: 40px;        
-      }
-    }
-
     th, td {
       border-top: none;
       padding: 2px 6px;
-      line-height: 2em;
+      line-height: 1.6em;
       text-align: center;
 
       @media (max-width: @screen-xs) {
-        padding: 2px 4px;
+        padding: 2px 2px;
         font-size: 93%;
       }
     }
@@ -66,9 +59,9 @@
     }
   }
 }
-  /*FC-TABLE END*/
+/*FC-TABLE END*/
 
-  /*FC-TABLE-LIGHT*/
+/*FC-TABLE-LIGHT*/
 .fc-table.fc-table-light {
   font-size: 1.2em;
   color: @fc-soft-primary-color2;
@@ -100,7 +93,6 @@
       .fc-action:focus {
         color: @background-primary !important;
       }
-
       /*a {
         color: @background-primary;
       }
@@ -129,15 +121,14 @@
         color: @brand-primary3;
       }
     }
-
     /*a {
       color: @fc-dark-link-color;
     }*/
   }
 }
-  /*FC-TABLE-LIGHT END*/
+/*FC-TABLE-LIGHT END*/
 
-  /*FC-TABLE-STYLED-1*/
+/*FC-TABLE-STYLED-1*/
 
 .fc-table.fc-styled-table-1 {
   font-size: 1em;
@@ -153,7 +144,7 @@
   tbody tr, tr {
     background-color: @background-primary;
 
-    th {      
+    th {
       color: @brand-primary5;
       border: none;
     }
@@ -161,7 +152,7 @@
 
   tbody tr:first-child, tr:first-child {
     .fc-grad();
-    background-repeat:inherit;
+    background-repeat: inherit;
   }
 
   tfoot tr {
@@ -169,16 +160,27 @@
   }
 }
 
-.fc-styled-table-1.strip {  
+.fc-styled-table-1.strip {
   tbody tr:nth-of-type(odd),
   tr:nth-of-type(odd) {
     background-color: @gray-good2;
   }
 }
 
-  /*FC-TABLE-STYLED-1 END*/
+/*FC-TABLE-STYLED-1 END*/
 
-  /*Extra*/
+.fc-table.fc-schedule {
+  tbody tr, tr {
+    th, td {
+        line-height: 2em;
+      img {
+        max-height: 40px;
+      }
+    }
+  }
+}
+
+/*Extra*/
 .fc-table.fc-table-border-top {
   tbody tr, tr {
 
@@ -220,9 +222,8 @@ table.table-into-header {
 }
 
 .main-table::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
-
 /*.main-table.scroll-460 {
   max-height: none;
   overflow: auto;
@@ -230,7 +231,6 @@ table.table-into-header {
   padding-left: 15px;
   margin-bottom: -10px;
 }*/
-
 .main-table.scroll-460 {
   padding-left: 0;
   max-height: 461px;
@@ -248,5 +248,4 @@ table.table-into-header {
     margin-bottom: -10px;
   }
 }
-
 /*Extra end*/

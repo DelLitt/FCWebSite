@@ -42,7 +42,12 @@
 
       h1, h2, h3, h4, h5, h6, h7 {
         text-shadow: none;
-        /*font-weight: bold;*/
+        color: @fc-type-dark-header-color;
+      }
+    }
+
+    .fc-pane-form-dark {
+      h1, h2, h3, h4, h5, h6, h7 {
         color: @background-primary;
       }
     }
@@ -145,14 +150,13 @@
   }
 
   .fc-pane-form {
-    border-bottom: none
+    border-bottom: none;
   }
 }
 
 .fc-pane.fc-pane-dark {
   background: transparent;
   /*.box-shadow(@fc-shadow);*/
-
   .fc-pane-header {
     color: @fc-soft-primary-color1;
     background-color: @background-primary !important;

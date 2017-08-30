@@ -7205,6 +7205,24 @@ a.ellipsis-270,
 a.ellipsis-300 {
   display: inline-block;
 }
+.fc-stading-team {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 300px;
+  display: inline-block;
+  font-weight: bold;
+}
+@media (max-width: 767px) {
+  .fc-stading-team {
+    max-width: 250px;
+  }
+}
+@media (max-width: 479px) {
+  .fc-stading-team {
+    max-width: 115px;
+  }
+}
 @media (max-width: 479px) {
   .ellipsis-110 {
     max-width: 90px;
@@ -7867,17 +7885,13 @@ dl.fc-data-list.dt-info dd {
 .fc-table tbody + tbody {
   border-top: 1px solid #dddddd;
 }
-.fc-table tbody tr .fc-schedule img,
-.fc-table tr .fc-schedule img {
-  max-height: 40px;
-}
 .fc-table tbody tr th,
 .fc-table tr th,
 .fc-table tbody tr td,
 .fc-table tr td {
   border-top: none;
   padding: 2px 6px;
-  line-height: 2em;
+  line-height: 1.6em;
   text-align: center;
 }
 @media (max-width: 480px) {
@@ -7885,7 +7899,7 @@ dl.fc-data-list.dt-info dd {
   .fc-table tr th,
   .fc-table tbody tr td,
   .fc-table tr td {
-    padding: 2px 4px;
+    padding: 2px 2px;
     font-size: 93%;
   }
 }
@@ -8036,6 +8050,18 @@ dl.fc-data-list.dt-info dd {
   background-color: #f5f5f5;
 }
 /*FC-TABLE-STYLED-1 END*/
+.fc-table.fc-schedule tbody tr th,
+.fc-table.fc-schedule tr th,
+.fc-table.fc-schedule tbody tr td,
+.fc-table.fc-schedule tr td {
+  line-height: 2em;
+}
+.fc-table.fc-schedule tbody tr th img,
+.fc-table.fc-schedule tr th img,
+.fc-table.fc-schedule tbody tr td img,
+.fc-table.fc-schedule tr td img {
+  max-height: 40px;
+}
 /*Extra*/
 .fc-table.fc-table-border-top tbody tr td,
 .fc-table.fc-table-border-top tr td {
@@ -8293,7 +8319,15 @@ a.text-prim5-color:focus {
 .fc-pane .fc-pane-body .fc-pane-form h7,
 .fc-pane .fc-pane-body .fc-pane-form-dark h7 {
   text-shadow: none;
-  /*font-weight: bold;*/
+  color: rgba(0, 43, 110, 0.9);
+}
+.fc-pane .fc-pane-body .fc-pane-form-dark h1,
+.fc-pane .fc-pane-body .fc-pane-form-dark h2,
+.fc-pane .fc-pane-body .fc-pane-form-dark h3,
+.fc-pane .fc-pane-body .fc-pane-form-dark h4,
+.fc-pane .fc-pane-body .fc-pane-form-dark h5,
+.fc-pane .fc-pane-body .fc-pane-form-dark h6,
+.fc-pane .fc-pane-body .fc-pane-form-dark h7 {
   color: #fff;
 }
 .fc-pane .fc-pane-body .fc-pane-form {

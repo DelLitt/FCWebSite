@@ -575,6 +575,20 @@ a.ellipsis-300 {
   display: inline-block;
 }
 
+.fc-stading-team {
+  .ellipsis(300px);
+  display: inline-block;
+  font-weight: bold;
+
+  @media (max-width: @screen-md-min) {
+    max-width: 250px;
+  }
+
+  @media (max-width: @screen-sm-min) {
+    max-width: 115px;
+  }
+}
+
 @media (max-width: @screen-sm-min) {
   .ellipsis-110 {
     max-width: 90px;
