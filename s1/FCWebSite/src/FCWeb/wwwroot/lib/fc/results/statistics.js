@@ -5,52 +5,57 @@
         .module('fc')
         .controller('statisticsCtrl', statisticsCtrl);
 
-    statisticsCtrl.$inject = ['$scope', '$translate', 'configSrv', 'personsSrv', 'tourneysSrv'];
+    statisticsCtrl.$inject = ['$scope', '$translate', 'helper', 'personsSrv', 'tourneysSrv'];
 
-    function statisticsCtrl($scope, $translate, configSrv, personsSrv, tourneysSrv) {
-        $scope.teamId = configSrv.Current.MainTeamId;
-        $scope.tourneysIds = configSrv.Current.MainTeamTourneyIds;
+    function statisticsCtrl($scope, $translate, helper, personsSrv, tourneysSrv) {
+        var teamId, 
+            persons = [], 
+            tourneys = [], 
+            tourneysIds = [];
 
-        $scope.statsLoaded = false;
-        $scope.personsLoaded = false;
-        $scope.tourneysLoaded = false;
-        
-        //$translate('MAIN_TEAM_RESULTS').then(function (translation) {
-        //    $scope.title = translation;
-        //});
+        $scope.selectedData = {};
+        $scope.loadingImage = helper.getLoadingImg();
+        $scope.loadingTourneys = true;
 
-        //$scope.tourneyOptions = [
-        //    { index: 0, team: "MAIN_TEAM", tourneyId: configSrv.Current.MainTeamTourneyIds[2] },
-        //    { index: 1, team: "RESERVE_TEAM", tourneyId: configSrv.Current.ReserveTeamTourneyIds[0] }
-        //]
+        $scope.teamOptions = [
+            { index: 0, team: "MAIN_TEAM", teamId: 3, tourneysIds: [13, 14, 129] },
+            { index: 1, team: "RESERVE_TEAM", teamId: 2072, tourneysIds: [118] }
+        ];
 
-        loadData();
+        $scope.$watch(function (scope) {
+            return $scope.teamOpt;
+        },
+        function (newValue, oldValue) {
+            if (angular.isObject(newValue)) {
+                teamId = newValue.teamId;
+                tourneysIds = newValue.tourneysIds;
+
+                loadData();
+            }
+        });
 
         function loadData() {
-            tourneysSrv.loadTourneys($scope.tourneysIds, tourneysLoaded);
-            personsSrv.loadTeamMainPlayers($scope.teamId, mainTeamLoaded);
-        }
-
-        function tourneysLoaded(response) {
-            var tourneys = response.data;
-            $scope.tourneys = tourneys;
-            $scope.tourneysLoaded = true;
-            $scope.statsLoaded = $scope.personsLoaded && $scope.tourneysLoaded;
+            $scope.loadingTourneys = true;
+            personsSrv.loadTeamMainPlayers(teamId, mainTeamLoaded);
         }
 
         function mainTeamLoaded(response) {
-            var persons = response.data;
+            persons = response.data;
 
-            $scope.persons = persons;
+            // tournaments needed to display names in the dropdown
+            tourneysSrv.loadTourneys(tourneysIds, tourneysLoaded);
+        }
 
-            //angular.forEach($scope.persons, function (item) {
-            //    item.flagSrc = helper.getFlagSrc(item.city.countryId);
-            //});
+        function tourneysLoaded(response) {
+            tourneys = response.data;
 
-            $scope.personsLoaded = true;
-            $scope.statsLoaded = $scope.personsLoaded && $scope.tourneysLoaded;
+            $scope.selectedData = {
+                teamId: teamId,
+                persons: persons,
+                tourneys: tourneys
+            }
 
-            $scope.loadingTeam = false;
+            $scope.loadingTourneys = false;
         }
     }
 })();

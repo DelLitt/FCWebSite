@@ -9,10 +9,6 @@
 
     function standingsCtrl($scope, $translate, configSrv) {
 
-        $translate('MAIN_TEAM_RESULTS').then(function (translation) {
-            $scope.title = translation;
-        });
-
         $scope.seasonOptions = [
             {
                 index: 0,

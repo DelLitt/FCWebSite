@@ -12,27 +12,16 @@
             restrict: 'E',
             replace: true,
             scope: {
-                persons: '=',
-                loaded: '=',
-                tourneys: '=',
-                teamid: '='
+                model: '='
             },
             link: function link(scope, element, attrs) {
                 var orderBy = $filter('orderBy');
 
-                scope.$watch(function (scope) {
-                    return scope.loaded;
-                },
-                function (newValue, oldValue) {
-                    if (angular.isDefined(newValue) && newValue === true) {
-                        initPersons();
-                    }
-                });
-
                 scope.tourneyId = 100500;
                 scope.selectedTourney = {};
                 scope.tourneyStats = [];
-
+                scope.loadingImage = helper.getLoadingImg();
+                scope.loadingStats = true;
                 scope.isGK = helper.isGK;
 
                 scope.const = {
@@ -43,6 +32,20 @@
                     yellows: 'yellows',
                     reds: 'reds',
                     customIntValue: 'customIntValue'
+                }
+
+                scope.$watch(function (scope) {
+                    return scope.model;
+                },
+                function (newValue, oldValue) {
+                    if (angular.isObject(newValue)) {
+                        initTourneyStats();
+                    }
+                });
+
+                function initTourneyStats() {
+                    scope.selectedTourney = angular.isArray(scope.model.tourneys) ? scope.model.tourneys[scope.model.tourneys.length - 1] : {};
+                    scope.order('number', false);
                 }
 
                 scope.$watch(function (scope) {
@@ -61,36 +64,26 @@
                     scope.reverse = angular.isDefined(reverse) 
                         ? reverse
                         : ((scope.predicate === predicate) ? !scope.reverse : false);
-                    scope.persons = orderBy(scope.persons, predicate, scope.reverse);
+                    scope.model.persons = orderBy(scope.model.persons, predicate, scope.reverse);
                 };
 
-                function initPersons() {
-                    scope.selectedTourney = angular.isArray(scope.tourneys) ? scope.tourneys[scope.tourneys.length - 1] : {};
-
-                    angular.forEach(scope.persons, function (item) {
-                        var imageUploadData = this.getImageUploadData(item);
-                        item.src = imageUploadData.path + '/' + item.image;
-                    }, personsSrv);
-
-                    scope.order('number', false);
-                }
-
                 function loadPersonStats(tourneyId) {
-                    if (scope.tourneyStats.indexOf(tourneyId) > -1) {
-                        return;
-                    }
+                    //if (scope.tourneyStats.indexOf(tourneyId) > -1) {
+                    //    return;
+                    //}
 
-                    statsSrv.loadTeamTourneyStats(scope.teamid, tourneyId, personStatsLoaded);
+                    scope.loadingStats = true;
+                    statsSrv.loadTeamTourneyStats(scope.model.teamId, tourneyId, teamTourneyLoaded);
                 }
 
-                function personStatsLoaded(response) {
+                function teamTourneyLoaded(response) {
                     var stats = response.data;
 
-                    if (!angular.isArray(scope.persons)) {
+                    if (!angular.isArray(scope.model.persons)) {
                         return;
                     }
 
-                    angular.forEach(scope.persons, function (item) {
+                    angular.forEach(scope.model.persons, function (item) {
                         var hasStats = false;
 
                         for (var i = 0; i < this.length; i++) {
@@ -104,7 +97,7 @@
                             setStats(item, scope.tourneyId, null);
                         }                        
 
-                        scope.tourneyStats.push(scope.selectedTourney.id);
+                        //scope.tourneyStats.push(scope.selectedTourney.id);
 
                     }, stats);
 
@@ -135,8 +128,14 @@
                     scope.getField = getFieldName;
 
                     function getFieldName(name) {
+                        if (!angular.isObject(scope.selectedTourney)) {
+                            return "";
+                        }
+
                         return name + scope.selectedTourney.id.toString()
                     }
+
+                    scope.loadingStats = false;
                 }
             },
             templateUrl: '/lib/fc/layout/persons/personTableItem.html'

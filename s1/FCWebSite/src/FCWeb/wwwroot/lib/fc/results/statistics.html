@@ -1,12 +1,23 @@
 ﻿<div class="fc-pane">
     <div class="fc-pane-header">
-        <h3 class="invert" translate="STANDINGS"></h3>
+        <h4 class="invert" translate="STANDINGS"></h4>
     </div>
     <div class="fc-pane-body">
         <div class="fc-pane-form">
             <div class="row">
+                <div class="col-xs-12 fc-input-group">
+                    <label for="tourneySelect"><span translate="TEAM"></span></label>
+                    <select style="width: 100%;" ng-model="teamOpt" ng-init="teamOpt = teamOptions[0]" ng-options="teamOption.team | translate for teamOption in teamOptions"></select>
+                </div>
+            </div>
+            <div class="row" ng-show="loadingTourneys">
+                <div class="col-xs-12 fc-loading-wrapper">
+                    <img ng-src="{{loadingImage}}" />
+                </div>
+            </div>
+            <div class="row" ng-show="!loadingTourneys">
                 <div class="col-xs-12">
-                    <person-table-item persons="persons" loaded="statsLoaded" tourneys="tourneys" teamid="teamId" />
+                    <person-table-item model="selectedData" />
                 </div>
             </div>
         </div>
