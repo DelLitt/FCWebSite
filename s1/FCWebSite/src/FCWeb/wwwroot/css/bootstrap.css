@@ -7799,7 +7799,8 @@ dl.fc-data-list.dt-info dd {
   background-color: rgba(255, 255, 255, 0.3);
 }
 .opacity-wrap-30.opacity-wrap-active:hover,
-.opacity-wrap-30.opacity-wrap-active:active .opacity-wrap.opacity-wrap-active:hover,
+.opacity-wrap-30.opacity-wrap-active:active,
+.opacity-wrap.opacity-wrap-active:hover,
 .opacity-wrap.opacity-wrap-active:active {
   background-color: rgba(255, 255, 255, 0.15);
   transition: all 900ms ease;
@@ -8508,6 +8509,9 @@ a.text-prim5-color:focus {
   white-space: nowrap;
   overflow: hidden;
   max-width: 252px;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
 }
 .person-item .person-body .caption a,
 .person-item .person-body .caption a:hover,
@@ -8526,10 +8530,14 @@ a.text-prim5-color:focus {
   right: 4px;
   z-index: 2;
 }
-.person-item .middle-flag {
+.person-item .middle-flag,
+.person-item .person-card-flag {
   background-size: 100% 50%;
   background-repeat: no-repeat;
   background-position-y: 50%;
+}
+.person-item .person-card-flag {
+  background-position-y: 70%;
 }
 /*.person-item img:hover {
   transform: scale(1.02);

@@ -20,10 +20,6 @@
 
                 scope.loadingTeam = true;
                 scope.loadingImage = helper.getLoadingImg();
-                scope.listview = false;
-                scope.personsLoaded = false;
-                scope.tourneysLoaded = false;
-                scope.statsLoaded = false;
 
                 scope.persons = {};
                 scope.goalkeepers = {};
@@ -31,21 +27,12 @@
                 scope.midfielders = {};
                 scope.forwards = {};
 
-                scope.setView = setView;
-
                 loadData();
 
                 function loadData() {
-                    tourneysSrv.loadTourneys(scope.tourneysIds, tourneysLoaded);
                     personsSrv.loadTeamMainPlayers(scope.teamId, mainTeamLoaded);
                 }
 
-                function tourneysLoaded(response) {
-                    var tourneys = response.data;
-                    scope.tourneys = tourneys;
-                    scope.tourneysLoaded = true;
-                    scope.statsLoaded = scope.personsLoaded && scope.tourneysLoaded;
-                }
 
                 function mainTeamLoaded(response) {
                     var persons = response.data;
@@ -63,17 +50,10 @@
 
                     scope.goalkeepers.rows = goalkeepers.length > 0 ? helper.formRows(goalkeepers, 1000, 0) : [];
                     scope.defenders.rows = defenders.length > 0 ? helper.formRows(defenders, 1000, 0) : [];
-                    scope.midfielders.rows = midfielders.length > 0 ? helper.formRows(midfielders, 4, 0) : [];
+                    scope.midfielders.rows = midfielders.length > 0 ? helper.formRows(midfielders, 1000, 0) : [];
                     scope.forwards.rows = forwards.length > 0 ? helper.formRows(forwards, 1000, 0) : [];
 
-                    scope.personsLoaded = true;
-                    scope.statsLoaded = scope.personsLoaded && scope.tourneysLoaded;
-
                     scope.loadingTeam = false;
-                }
-
-                function setView(index) {
-                    scope.listview = index > 0 ? true : false;
                 }
             },
             templateUrl: '/lib/fc/layout/teams/team.html'

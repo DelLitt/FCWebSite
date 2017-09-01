@@ -223,3 +223,28 @@
 2017.08.29 12:42:21 - [Information]: Parent folder: 'teams'. Exists: teams.
 2017.08.29 12:42:21 - [Information]: Inner folders count: 0
 2017.08.29 12:42:21 - [Information]: Inner files count: 1
+2017.09.01 10:52:20 - [Information]: Get files for file browser. Path: content/persons/213. Root: content/persons/213. Create new: True.
+2017.09.01 10:52:20 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\persons\213'.
+2017.09.01 10:52:20 - [Information]: Parent folder: 'persons'. Exists: persons.
+2017.09.01 10:52:20 - [Information]: Inner folders count: 0
+2017.09.01 10:52:20 - [Information]: Inner files count: 1
+2017.09.01 10:54:49 - [Information]: Get files for file browser. Path: content/persons/213. Root: content/persons/213. Create new: True.
+2017.09.01 10:54:49 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\persons\213'.
+2017.09.01 10:54:49 - [Information]: Parent folder: 'persons'. Exists: persons.
+2017.09.01 10:54:49 - [Information]: Inner folders count: 0
+2017.09.01 10:54:49 - [Information]: Inner files count: 1
+2017.09.01 11:40:22 - [Information]: Get files for file browser. Path: content/persons/d8046915-2455-4398-ad2f-fb0776b2d2d4. Root: content/persons/d8046915-2455-4398-ad2f-fb0776b2d2d4. Create new: True.
+2017.09.01 11:40:23 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\persons\d8046915-2455-4398-ad2f-fb0776b2d2d4'.
+2017.09.01 11:40:23 - [Information]: Parent folder: 'persons'. Exists: persons.
+2017.09.01 11:40:23 - [Information]: Inner folders count: 0
+2017.09.01 11:40:23 - [Information]: Inner files count: 0
+2017.09.01 11:44:24 - [Information]: Get files for file browser. Path: content/persons/216. Root: content/persons/216. Create new: True.
+2017.09.01 11:44:24 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\persons\216'.
+2017.09.01 11:44:24 - [Information]: Parent folder: 'persons'. Exists: persons.
+2017.09.01 11:44:24 - [Information]: Inner folders count: 0
+2017.09.01 11:44:24 - [Information]: Inner files count: 0
+2017.09.01 11:44:42 - [Information]: Get files for file browser. Path: content/persons/216. Root: content/persons/216. Create new: False.
+2017.09.01 11:44:42 - [Information]: Getting folder content: 'C:\tfs\s1\FCWebSite\src\FCWeb\wwwroot\content\persons\216'.
+2017.09.01 11:44:42 - [Information]: Parent folder: 'persons'. Exists: persons.
+2017.09.01 11:44:42 - [Information]: Inner folders count: 0
+2017.09.01 11:44:42 - [Information]: Inner files count: 1

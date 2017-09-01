@@ -32,6 +32,9 @@
 
       a {
         .ellipsis(252px);
+        display: inline-block;
+        padding: 0;
+        margin: 0;
       }
 
       a, a:hover, a:focus {
@@ -54,10 +57,15 @@
     z-index: 2;
   }
 
-  .middle-flag {
+  .middle-flag,
+  .person-card-flag {
     background-size: 100% 50%;
     background-repeat: no-repeat;
     background-position-y: 50%;
+  }
+
+  .person-card-flag {
+    background-position-y: 70%;
   }
 }
 
