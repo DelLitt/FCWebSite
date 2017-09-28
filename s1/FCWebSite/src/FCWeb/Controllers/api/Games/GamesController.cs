@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net;
     using Core.Extensions;
     using Core.ViewModelHepers;
@@ -67,10 +68,12 @@
             gameBll.FillRounds = true;
             gameBll.FillStadiums = true;
 
-            int daysShift = mode.Equals("quick", StringComparison.OrdinalIgnoreCase) ? MainCfg.TeamGamesInfoDaysShift : int.MaxValue;
+            int daysShift = mode.Equals("quick", StringComparison.OrdinalIgnoreCase) ? MainCfg.TeamGamesInfoDaysShift : MainCfg.MaxGamesInfoDaysShift;
 
             IEnumerable <GameQuickInfoViewModel> games = 
-                gameBll.GetTeamGames(id, tourneyIds, DateTime.UtcNow, daysShift).ToGameQuickInfoViewModel();
+                gameBll.GetTeamGames(id, tourneyIds, DateTime.UtcNow, daysShift)
+                       .OrderByDescending(g => g.GameDate)
+                       .ToGameQuickInfoViewModel();
 
             return games;
         }

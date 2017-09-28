@@ -79,6 +79,29 @@
                 });
         }
 
+        this.loadTourneySchedule = function (tourneyId, teamIds, quickView, success, failure) {
+            var tids = "";
+            var mode = quickView ? "quick" : "full";
+            var url = "/api/games/schedule/tournament/" + tourneyId + "/" + mode;
+
+            if (angular.isArray(teamIds) && teamIds.length > 0) {
+                url += "?";
+                teamIds.forEach(function (element, index, array) {
+                    url = url + "teamIds=" + element + (index < array.length - 1 ? "&" : "")
+                });
+            }
+
+            apiSrv.get(url, null,
+                success,
+                function (response) {
+                    if (angular.isFunction(failure)) {
+                        failure(response);
+                    }
+
+                    gamesLoadFail(response);
+                });
+        }
+
         function gamesLoadFail(response) {
             notificationManager.displayError(response.data);
         }

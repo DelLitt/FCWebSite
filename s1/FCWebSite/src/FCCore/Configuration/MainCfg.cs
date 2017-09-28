@@ -110,6 +110,14 @@
             }
         }
 
+        public static int MaxGamesInfoDaysShift
+        {
+            get
+            {
+                return Convert.ToInt32(CoreConfig.Current["Settings:MaxGamesInfoDaysShift"]);
+            }
+        }
+        
         public static int MaxImagesMiddlewareCacheSeconds
         {
             get

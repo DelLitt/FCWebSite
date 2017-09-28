@@ -1,20 +1,21 @@
-﻿<section>
+﻿<section class="fc-latest-results">
     <div ng-show="loadingResults" class="row fc-loading-wrapper">
         <img ng-src="{{loadingImage}}" />
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <table class="table fc-table-light" style="margin-bottom: 0;">
+            <table class="table fc-table" style="margin-bottom: 0;">
                 <tbody>
                     <tr>
-                        <th colspan="2" translate="{{header}}"></th>
+                        <th class="h5" colspan="2"><b translate="{{header}}"></b></th>
                     </tr>
                     <tr ng-repeat="game in games">
-                        <td class="text-right">
+                        <td class="text-right col-xs-2">
                             <span ng-show="game.showTime">{{game.start | date: 'HH:mm'}}. </span>{{game.start | date: 'dd MMMM'}}.<br />
-                            <small class="ellipsis-135" style="display:inline-block;" title="{{game.round}}. {{game.tourney}}">{{game.round}}. {{game.tourney}}</small>
+                            <small class="ellipsis-135" style="display:inline-block;"><span ng-if="game.roundTitle.length">{{game.round}} <span translate="{{game.roundTitle}}"></span>. </span><span translate="TRN_SHORT_{{game.tourney}}" translate-attr-title="TRN_SHORT_{{game.tourney}}"></span></small>
+                            <!--<small class="ellipsis-135" style="display:inline-block;" title="{{game.round}}. {{game.tourney}}">{{game.round}}. {{game.tourney}}</small>-->
                         </td>
-                        <td class="text-left">
+                        <td class="text-left col-xs-10">
                             <span style="display: inline-flex;">
                                 <span class="ellipsis ellipsis-250" style="display:inline-block;" title="{{game.home.text}} - {{game.away.text}}">
                                     <a ng-href="team/{{game.home.id}}">{{game.home.text}}</a> - <a ng-href="team/{{game.away.id}}">{{game.away.text}}</a>

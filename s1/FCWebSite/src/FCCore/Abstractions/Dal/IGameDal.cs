@@ -20,6 +20,7 @@
         IEnumerable<Game> GetGamesByTourneys(IEnumerable<int> tourneyIds);
         IEnumerable<Game> GetGamesByTourneyBetweenTeams(int tourneyId, IEnumerable<int> teamIds);
         IEnumerable<Game> GetTeamGames(int teamId, IEnumerable<int> tourneyIds, DateTime dateStart, DateTime dateEnd);
+        IEnumerable<Game> GetTourneyGames(int tourneyId, IEnumerable<int> teamIds, DateTime dateStart, DateTime dateEnd);
         Game GetTeamNearestGame(int teamId, IEnumerable<int> roundIds, DateTime date);
         Game SaveGame(Game entity);
         int RemoveGame(int gameId, bool removeProtocol = true);

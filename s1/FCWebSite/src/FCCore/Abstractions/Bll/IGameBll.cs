@@ -19,6 +19,7 @@
         IEnumerable<Game> GetGamesByTourneys(IEnumerable<int> tourneyIds);
         IEnumerable<Game> GetGamesByTourneyBetweenTeams(int tourneyId, IEnumerable<int> teamIds);
         IEnumerable<Game> GetTeamGames(int teamId, IEnumerable<int> tourneyIds, DateTime date, int daysShift);
+        IEnumerable<Game> GetTourneyGames(int tourneyId, IEnumerable<int> teamIds, DateTime date, int daysShift);
         IEnumerable<Game> GetTeamActualRoundGamesOfTourneys(int teamId, IEnumerable<int> tourneyIds, DateTime date);
         IEnumerable<Game> GetTeamActualRoundGames(int teamId, IEnumerable<int> roundIds, DateTime date);
         IEnumerable<Game> GetTeamPrevNextGames(int teamId, IEnumerable<int> tourneyIds, DateTime date, int daysShift);

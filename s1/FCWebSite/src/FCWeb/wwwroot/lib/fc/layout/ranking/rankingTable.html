@@ -3,7 +3,7 @@
         <img ng-src="{{loadingImage}}" />
     </div>
     <div ng-show="!loadingRT" class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12" ng-hide="hideTourneyTitle">
             <h5 translate="TRN_FULL_{{ranking.name}}" style="padding-left: 10px; font-weight: bold;"></h5>
         </div>
         <div class="col-xs-12">             

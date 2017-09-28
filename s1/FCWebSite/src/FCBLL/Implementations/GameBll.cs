@@ -154,10 +154,24 @@
             DateTime dateStart = AddDaysSoft(date, -daysShift);
             DateTime dateEnd = AddDaysSoft(date, daysShift);
 
-            IEnumerable<Game> games = DalGames.GetTeamGames(teamId, tourneyIds, dateStart, dateEnd)
-                                              .OrderByDescending(g => g.GameDate);
+            string cacheKey = GetStringMethodKey(nameof(GetTeamGames), teamId, tourneyIds, date, daysShift);
 
-            return games;
+            IEnumerable<Game> result = Cache.GetOrCreate(cacheKey, () => { return DalGames.GetTeamGames(teamId, tourneyIds, dateStart, dateEnd); });
+
+            return result;
+        }
+
+        public IEnumerable<Game> GetTourneyGames(int tourneyId, IEnumerable<int> teamIds, DateTime date, int daysShift)
+        {
+            DateTime dateStart = AddDaysSoft(date, -daysShift);
+            DateTime dateEnd = AddDaysSoft(date, daysShift);
+
+            string cacheKey = GetStringMethodKey(nameof(GetTeamGames), tourneyId, teamIds, date, daysShift);
+
+            IEnumerable<Game> result = Cache.GetOrCreate(cacheKey, () => { return DalGames.GetTourneyGames(tourneyId, teamIds, dateStart, dateEnd); });
+
+
+            return result;
         }
 
         public IEnumerable<Game> GetGamesByRounds(IEnumerable<int> roundIds)

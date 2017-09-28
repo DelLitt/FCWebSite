@@ -150,6 +150,22 @@
             return games;
         }
 
+        public IEnumerable<Game> GetTourneyGames(int tourneyId, IEnumerable<int> teamIds, DateTime dateStart, DateTime dateEnd)
+        {
+            IQueryable<Game> gamesQuery = Context.Game.Where(g => g.round.tourneyId == tourneyId
+                                                        && g.GameDate >= dateStart 
+                                                        && g.GameDate <= dateEnd);
+
+            if(!Guard.IsEmptyIEnumerable(teamIds))
+            {
+                gamesQuery = gamesQuery.Where(g => teamIds.Contains(g.homeId) || teamIds.Contains(g.awayId));
+            }
+
+            IEnumerable<Game> games = ApplySettings(gamesQuery);
+
+            return games;
+        }
+
         public int RemoveGame(int gameId, bool removeProtocol = true)
         {
             try
@@ -191,29 +207,6 @@
             }
         }
 
-        //public IEnumerable<int> RemoveGamesByRound(int roundId)
-        //{
-        //    try
-        //    {
-        //        IEnumerable<Game> games = Context.Game.Where(g => g.roundId == roundId);
-
-        //        if (Guard.IsEmptyIEnumerable(games)) { return new int[0]; }
-
-        //        var entries = new List<EntityEntry>();
-        //        entries.AddRange(games.Select(g => Context.Entry(g)));
-
-        //        Context.Game.RemoveRange(games);
-        //        Context.SaveChanges();
-
-        //        return entries.Where(e => e.State == EntityState.Detached).Select(e => ((Game)e.Entity).Id);
-        //    }
-        //    catch
-        //    {
-        //        // TODO: Add logging
-        //        throw; 
-        //    }
-        //}
-
         public Game SaveGame(Game entity)
         {
             if (entity.Id > 0)
@@ -238,6 +231,67 @@
             return entity;
         }
 
+        private IEnumerable<Game> ApplySettings(IQueryable<Game> gamesQuery)
+        {
+            if (FillRounds)
+            {
+                gamesQuery = gamesQuery.Include(g => g.round);
+
+                if (FillTourneys)
+                {
+                    gamesQuery = gamesQuery.Include(g => g.round.tourney);
+                }
+            }
+
+            if (FillTeams)
+            {
+                gamesQuery = gamesQuery.Include(g => g.home).Include(g => g.away);
+            }
+
+            if (FillStadiums)
+            {
+                gamesQuery = gamesQuery.Include(g => g.stadium);
+            }
+
+            // TODO: Check for one to multiple
+            if (FillProtocols)
+            {
+                gamesQuery = gamesQuery.Include(t => t.ProtocolRecord);
+            }
+
+            IEnumerable<ProtocolRecord> protocols = new ProtocolRecord[0];
+
+
+            gamesQuery = gamesQuery.Take(LimitEntitiesSelections);
+
+            IEnumerable<Game> games = gamesQuery.ToList();
+
+            //if (FillProtocols)
+            //{
+            //    var protocolRecordDal = new ProtocolRecordDal();
+
+            //    var gameIds = new List<int>();
+            //    gameIds.AddRange(games.Select(g => g.Id).Distinct());
+
+            //    protocols = protocolRecordDal.GetProtocol(gameIds).ToList();
+
+            //    foreach (Game game in games)
+            //    {
+            //        if (FillProtocols && protocols.Any())
+            //        {
+            //            game.ProtocolRecord = protocols.Where(p => p.gameId == game.Id).ToList();
+            //        }
+            //        else
+            //        {
+            //            game.ProtocolRecord = null;
+            //        }
+            //    }
+            //}
+
+            return games;
+        }
+
+        [Obsolete("Should be removed. Use 'ApplySettings' method if it possible instead.")]
         private void FillRelations(IEnumerable<Game> games)
         {
             if(Guard.IsEmptyIEnumerable(games)) { return; }

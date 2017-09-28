@@ -14,7 +14,8 @@
             restrict: 'E',
             scope: {
                 tourneyId: '=',
-                hasData: '='
+                hasData: '=',
+                hideTourneyTitle: '='
             },
             templateUrl: '/lib/fc/layout/ranking/rankingTable.html'
         };
@@ -41,6 +42,10 @@
                 scope.ranking = response.data;
                 scope.loadingRT = false;
                 scope.hasData = angular.isObject(scope.ranking);
+
+                if (!angular.isDefined(scope.hideTourneyTitle)) {
+                    scope.hideTourneyTitle = false;
+                }
             }
         }
     }

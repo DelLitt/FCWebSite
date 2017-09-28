@@ -5,23 +5,25 @@
         .module('fc')
         .controller('teamCtrl', teamCtrl);
 
-    teamCtrl.$inject = ['$scope', '$routeParams', '$sce', 'teamsSrv', 'configSrv', 'helper'];
+    teamCtrl.$inject = ['$scope', '$routeParams', '$sce', 'teamsSrv', 'tourneysSrv', 'configSrv', 'helper'];
 
-    function teamCtrl($scope, $routeParams, $sce, teamsSrv, configSrv, helper) {
+    function teamCtrl($scope, $routeParams, $sce, teamsSrv, tourneysSrv, configSrv, helper) {
 
         $scope.teamId = $routeParams.id;
         $scope.tourneyIds = [];
+        $scope.teamIds = [];
         $scope.loadingTeam = true;
         $scope.loadingImage = helper.getLoadingImg();
         $scope.showExtended = false;
-        $scope.hasLatestResults = true;
+        $scope.hasGameSchedule = true;
         $scope.hasRankingTable = true;
         $scope.hasTourneysData = true;        
         $scope.imgVariantLogo = "400x400";
         $scope.imgVariantTeam = "1280x720";
+        $scope.tourney = null;
 
         $scope.$watch(function ($scope) {
-            return $scope.hasLatestResults;
+            return $scope.hasGameSchedule;
         },
         function (newValue, oldValue) {
             setTourneyDataVisibility();
@@ -35,7 +37,7 @@
         });
 
         function setTourneyDataVisibility() {
-            $scope.hasTourneysData = $scope.hasRankingTable && $scope.hasLatestResults;
+            $scope.hasTourneysData = $scope.hasRankingTable && $scope.hasGameSchedule;
         }
 
         loadData();
@@ -50,7 +52,6 @@
 
             var imageLogo = helper.getTeamImage($scope.team);
             $scope.imageLogo = helper.addFileVariant(imageLogo, $scope.imgVariantLogo);
-            //$scope.imageLogo = helper.getTeamImage($scope.team);
             $scope.city = angular.isObject($scope.team.city) ? $scope.team.city.name : "-";
             $scope.mainTourney = angular.isObject($scope.team.mainTourney) ? $scope.team.mainTourney.nameFull : "-";
             $scope.stadium = angular.isObject($scope.team.stadium) ? $scope.team.stadium.name : "-";
@@ -68,7 +69,6 @@
             if ($scope.showExtended) {
                 var imageTeam = helper.getTeamFakeInfoImage($scope.team);
                 $scope.imageTeam = helper.addFileVariant(imageTeam, $scope.imgVariantTeam);
-                //$scope.imageTeam = helper.getTeamFakeInfoImage($scope.team);
                 $scope.fakePalyesText = helper.getFakePlayersText($scope.team);
                 $scope.showFakePalyes = $scope.fakePalyesText.length > 0;
                 $scope.customHeadCoach = helper.getCustomHeadCoach($scope.team);
@@ -76,8 +76,15 @@
                 $scope.coachViewLink = helper.getPersonViewLink($scope.customHeadCoach);
             }
 
-            $scope.mainTourneyId = angular.isNumber($scope.team.mainTourneyId) ? $scope.team.mainTourneyId : configSrv.Current.MainTableTourneyId;
-            $scope.tourneyIds = [$scope.mainTourneyId];
+            $scope.mainTourneyId = angular.isNumber($scope.team.mainTourneyId) ? $scope.team.mainTourneyId : 0;
+            $scope.tourneyId = $scope.mainTourneyId;
+            $scope.teamIds = [$scope.teamId];
+
+            tourneysSrv.loadTourneys([$scope.tourneyId], tourneysLoaded);
+        }
+
+        function tourneysLoaded(response) {
+            $scope.tourney = angular.isArray(response.data) ? response.data[0] : null;
         }
     }
 })();

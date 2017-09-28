@@ -210,11 +210,12 @@ String.prototype.insertAt = function (index, string) {
                     for (var i = 0; i < team.descriptionData.fakeInfo.persons.length; i++) {
 
                         var plr = team.descriptionData.fakeInfo.persons[i];
-                        var num = angular.isNumber(plr.number) ? plr.number + ". " : "";
+                        var num = angular.isNumber(plr.number) ? plr.number + ".&nbsp;" : "";
+                        var name = plr.name.replace(" ", "&nbsp;");
                         var date = angular.isString(plr.dateOfBirth) ? new Date(plr.dateOfBirth) : null;
-                        var birthDate = angular.isDate(date) ? " <small>(" + date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear() + ")</small>" : "";
+                        var birthDate = angular.isDate(date) ? "&nbsp;<small>(" + date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear() + ")</small>" : "";
 
-                        players.push(num + plr.name + birthDate)
+                        players.push(num + name + birthDate);
                     }
 
                     var result = this.strJoin(", ", players);

@@ -38,7 +38,7 @@
 
             return stadium.city != null
                     ? string.Format(CultureInfo.CurrentCulture, "{0} ({1})", stadium.Name, stadium.city.NameFull)
-                    : stadium.NameFull;
+                    : stadium.Name;
         }
 
         public static IEnumerable<StadiumViewModel> ToViewModel(this IEnumerable<Stadium> stadiums)
