@@ -6,16 +6,16 @@
         <div class="col-xs-12"><h5><b translate="{{header}}"></b></h5></div>
         <div class="col-xs-12 content-rows strip">
             <div class="row" ng-repeat="game in games">
-                <div class="col-xs-12 col-md-3">
+                <div class="col-xs-12 col-sm-3">
                     <span ng-if="game.roundTitle.length">{{game.round}} <span translate="{{game.roundTitle}}"></span>.&nbsp;</span><span class="small">{{game.start | date: 'dd MMMM'}}<span ng-show="game.showTime">.&nbsp;{{game.start | date: 'HH:mm'}}</span></span>
                 </div>
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12 col-sm-6">
                     <span style="display:inline-block;" title="{{game.home.text}} - {{game.away.text}}">
                         <a ng-href="team/{{game.home.id}}">{{game.home.text}}</a> - <a ng-href="team/{{game.away.id}}">{{game.away.text}}</a>
                     </span>
                     <span ng-show="hasScore(game)">. <a style="text-decoration: underline;" ng-href="game/{{game.id}}">{{game.homeScore}}:{{game.awayScore}}</a><span ng-if="hasExtra(game);"><span translate translate-attr-title="{{getExtra(game);}}">*</span></span></span>
                 </div>
-                <div class="col-xs-12 col-md-3 text-right">
+                <div class="col-xs-12 col-sm-3 text-right">
                     <small class="ellipsis ellipsis-3000 text-center" style="display:inline-block; height: 1.4em;">
                         <span translate="STADIUM"></span>: {{game.stadium}}
                     </small>

@@ -7066,6 +7066,18 @@ body {
   -webkit-box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
   box-shadow: 5px 5px 15px rgba(0, 43, 110, 0.35);
 }
+.fc-caption-btm {
+  /* background-color: rgba(0, 55, 143, 0.95); */
+  background-color: #ACCCFF;
+  padding: 0;
+  margin: 5px 5px 10px 7px;
+  border-top: 1px #7DAFFF solid;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  /* border-radius: 10px; */
+  border-bottom: 1px #7DAFFF solid;
+}
 .fc-partners-bottom .fc-partners-logo {
   text-align: center;
 }
@@ -8618,8 +8630,10 @@ a.text-prim5-color:focus {
   background-repeat: no-repeat;
   background-position-y: 50%;
 }
-.person-item .person-card-flag {
-  background-position-y: 70%;
+.person-item .person-card-flag.small-flag {
+  background-size: 15% 10%;
+  background-repeat: no-repeat;
+  background-position: 90% 10%;
 }
 /*.person-item img:hover {
   transform: scale(1.02);

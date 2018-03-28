@@ -19,7 +19,8 @@
                                             <div class="col-xs-12">
                                                 <img class="img-responsive center-block" ng-src={{image}} title="person.nameDefault" alt="person.nameDefault" />
                                             </div>
-                                        </div>                              
+                                            <div class="col-xs-12 fc-caption-btm"><span ng-show="showNumber">{{person.number}}. </span>{{person.nameDefault}}</div>
+                                        </div>
                                     </div>
                                     <div class="col-sm-9">
                                         <ul class="nav nav-tabs pretty-text">
@@ -32,32 +33,20 @@
                                             <div class="tab-pane fade" ng-class="{'in active' : tab === 0}">
                                                 <div class="row">
                                                     <div class="col-sm-8 col-xs-12">
-                                                        <dl class="dl-horizontal fc-dl">
-                                                            <dt ng-show="showBirthPlace" translate="COUNTRY"></dt>
-                                                            <dd ng-show="showBirthPlace">{{person.city.country.nameFull}}&nbsp;<div class="inline-flag {{flagSrc}}"></div></dd>
-                                                            <dt ng-show="showBirthPlace" translate="CITY"></dt>
-                                                            <dd ng-show="showBirthPlace">{{person.city.nameFull}}</dd>
-                                                            <dt ng-show="showBirthDate" translate="BIRTHDATE"></dt>
-                                                            <dd ng-show="showBirthDate">{{person.birthDate | date:'longDate'}}&nbsp;<span class="label label-info">{{person.age}}</span></dd>
-                                                            <dt ng-show="showTeam" translate="TEAM"></dt>
-                                                            <dd ng-show="showTeam"><a ng-href="{{getTeamViewLink(person.team.id);}}"><b><span ng-show="person.team.namePre.length">{{person.team.namePre}}&nbsp;</span>{{person.team.name}}</b></a></dd>
-                                                            <dt ng-show="showRole" translate="{{labels.position}}"></dt>
-                                                            <dd ng-show="showRole"><span translate="{{person.role.name}}"></span></dd>
-                                                            <dt ng-show="showNumber" translate="NUMBER"></dt>
-                                                            <dd ng-show="showNumber">{{person.number}}</dd>
-                                                        </dl>
+                                                        <div class="fc-border-bottom" ng-show="showBirthPlace"><b><span translate="COUNTRY"></span>:</b> {{person.city.country.nameFull}}&nbsp;<div class="inline-flag {{flagSrc}}"></div></div>
+                                                        <div class="fc-border-bottom" ng-show="showBirthPlace"><b><span translate="CITY"></span>:</b> {{person.city.nameFull}}</div>
+                                                        <div class="fc-border-bottom"ng-show="showBirthDate"><b><span translate="BIRTHDATE"></span>:</b> {{person.birthDate | date:'longDate'}}&nbsp;<span class="label label-info">{{person.age}}</span></div>
+                                                        <div class="fc-border-bottom" ng-show="showTeam"><b><span translate="TEAM"></span>:</b> <a ng-href="{{getTeamViewLink(person.team.id);}}"><b><span ng-show="person.team.namePre.length">{{person.team.namePre}}&nbsp;</span>{{person.team.name}}</b></a></div>
+                                                        <div class="fc-border-bottom" ng-show="showRole"><b><span translate="{{labels.position}}"></span>:</b> <span translate="{{person.role.name}}"></span></div>
+                                                        <div class="fc-border-bottom" ng-show="showNumber"><b><span translate="NUMBER"></span>:</b> {{person.number}}</div>
                                                     </div>
                                                     <div class="col-sm-4 col-xs-12">
-                                                        <dl class="dl-horizontal fc-dl">
-                                                            <dt ng-show="showHeight" translate="HEIGHT"></dt>
-                                                            <dd ng-show="showHeight">{{person.height}}&nbsp;<span translate="CM"></span></dd>
-                                                            <dt ng-show="showWeight" translate="WEIGHT"></dt>
-                                                            <dd ng-show="showWeight">{{person.weight}}&nbsp;<span translate="KG"></span></dd>
-                                                        </dl>
+                                                        <div class="fc-border-bottom" ng-show="showHeight"><b><span translate="HEIGHT"></span>:</b> {{person.height}}&nbsp;<span translate="CM"></span></div>
+                                                        <div class="fc-border-bottom" ng-show="showWeight"><b><span translate="WEIGHT"></span>:</b> {{person.weight}}&nbsp;<span translate="KG"></span></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade pretty-text" style="padding: 6px;" ng-class="{'in active' : tab === 1}" ng-show="showInfo">
+                                            <div class="tab-pane fade" style="padding: 6px;" ng-class="{'in active' : tab === 1}" ng-show="showInfo">
                                                 <p ng-bind-html="info"></p>
                                             </div>
                                             <div class="tab-pane fade" ng-class="{'in active' : tab === 2}" ng-show="showCareer">
