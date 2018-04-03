@@ -1,0 +1,77 @@
+﻿<div class="panel panel-primary" style="margin: 0;">
+    <div class="panel-heading">
+        Рдектирование игры
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-5">
+                    <label for="gameDate" class="control-label">
+                        Дата:&nbsp;<label for="showTime" class="checkbox-inline">
+                            <input type="checkbox" name="showTime" id="showTime" ng-model="game.showTime">Показывать время
+                        </label>
+                    </label>
+                    <datetimepicker ng-model="game.gameDate"
+                                    id="gameDate"
+                                    name="gameDate"
+                                    show-meridian="false"
+                                    date-format="dd-MMM-yyyy"
+                                    date-options="dateOptions"
+                                    date-disabled="isDisabledDate(date, mode)"
+                                    show-spinners="true">
+                    </datetimepicker>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <label for="homeTeam">Хозяева:</label>
+                        <fc-autocomplete key="id" val="title" min="3" id="game.homeId" name="homeTeam"
+                                         selid="{{game.homeId}}" showall="true"
+                                         addglobalescapeevent="addRootClickListener"
+                                         inputdata="round.teams"
+                                         urlsearch="/api/teams/search"
+                                         urlinit="'/api/teams/' + game.homeId"
+                                         removeselected="true">
+                        </fc-autocomplete>
+                    </div>
+                    <div class="form-group">
+                        <label for="awayTeam">Гости:</label>
+                        <fc-autocomplete key="id" val="title" min="3" id="game.awayId" name="awayTeam"
+                                         selid="{{game.awayId}}" showall="true"
+                                         addglobalescapeevent="addRootClickListener"
+                                         inputdata="round.teams"
+                                         urlsearch="/api/teams/search"
+                                         urlinit="'/api/teams/' + game.awayId"
+                                         removeselected="true">
+                        </fc-autocomplete>
+                    </div>
+                    <div class="form-group">
+                        <label for="roundTeams">Стадион:</label>
+                        <fc-autocomplete key="id" val="nameAndCity" min="3" id="game.stadiumId"
+                                         addglobalescapeevent="addRootClickListener"
+                                         urlsearch="/api/stadiums/search"
+                                         urlinit="stadiumInitUrl">
+                        </fc-autocomplete>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="scoreHome">Голы</label>
+                        <input class="form-control" name="scoreHome" type="text" ng-model="game.homeScore" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="scoreAway">Голы</label>
+                        <input class="form-control" name="scoreAway" type="text" ng-model="game.awayScore" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="gamePlayed">Окончена</label>
+                        <input type="checkbox" name="gamePlayed" ng-model="game.played">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer text-right">
+        <button type="button" ng-click="ok();">Сохранить</button>
+        <button type="button" ng-click="cancel();">Отмена</button>
+    </div>
+</div>

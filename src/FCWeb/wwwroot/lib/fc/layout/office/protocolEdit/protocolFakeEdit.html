@@ -1,0 +1,308 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">Основной состав</div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr><td>Хозяева:</td><td>Гости:</td></tr>
+            <tr>
+                <td class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">Игрок в старте</div>
+                        <!--<div class="col-md-3">Минута (доб.)</div>-->
+                        <div class="col-md-6">Заменивший игрок</div>
+                    </div>
+                    <div class="row" ng-repeat="record in fake.home.main">
+                        <div class="col-md-1">
+                            <a class="badge pull-left" href="javascript:void(0);" ng-click="main.removeItem($index, 'home')">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                        <fake-start-record record="record" />
+                    </div>
+                    <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="main.addItem('home');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить</a></div></div>
+                </td>
+                <td class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">Игрок в старте</div>
+                        <!--<div class="col-md-3">Минута (доб.)</div>-->
+                        <div class="col-md-6">Информация о замене</div>
+                    </div>
+                    <div class="row" ng-repeat="record in fake.away.main">
+                        <div class="col-md-1">
+                            <a class="badge pull-left" href="javascript:void(0);" ng-click="main.removeItem($index, 'away')">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                        <fake-start-record record="record" />
+                    </div>
+                    <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="main.addItem('away');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить</a></div></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Запасные игроки</div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr><td>Хозяева:</td><td>Гости:</td></tr>
+            <tr>
+                <td class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">Игрок</div>
+                    </div>
+                    <div class="row" ng-repeat="record in fake.home.reserve">
+                        <div class="col-md-1">
+                            <a class="badge pull-left" href="javascript:void(0);" ng-click="reserve.removeItem($index, 'home')">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                        <div class="form-group col-md-11">
+                            <input class="form-control" id="name" name="name" type="text" ng-model="record.name">
+                        </div>
+                    </div>
+                    <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="reserve.addItem('home');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить</a></div></div>
+                </td>
+                <td class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">Игрок</div>
+                    </div>
+                    <div class="row" ng-repeat="record in fake.away.reserve">
+                        <div class="col-md-1">
+                            <a class="badge pull-left" href="javascript:void(0);" ng-click="reserve.removeItem($index, 'away')">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                        <div class="form-group col-md-11">
+                            <input class="form-control" id="name" name="name" type="text" ng-model="record.name">
+                        </div>
+                    </div>
+                    <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="reserve.addItem('away');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить</a></div></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Голы</div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr><td>Хозяева:</td><td>Гости:</td></tr>
+            <tr>
+                <td class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <div class="row">
+                                <div class="col-md-4">Минута</div>
+                                <div class="col-md-8">Игрок</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">Тип гола</div>
+                                <div class="col-md-7">Ассистент</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="record in fake.home.goals">
+                        <hr />
+                        <div class="col-md-1">
+                            <a class="badge pull-left" href="javascript:void(0);" ng-click="event.removeItem($index, 'home', 'goals')">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                        <fake-goal-record record="record" />
+                    </div>
+                    <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="event.addItem('home', 'goals');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить</a></div></div>
+                </td>
+                <td class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <div class="row">
+                                <div class="col-md-4">Минута</div>
+                                <div class="col-md-8">Игрок</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">Тип гола</div>
+                                <div class="col-md-7">Ассистент</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="record in fake.away.goals">
+                        <hr />
+                        <div class="col-md-1">
+                            <a class="badge pull-left" href="javascript:void(0);" ng-click="event.removeItem($index, 'away', 'goals')">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                        <fake-goal-record record="record" />
+                    </div>
+                    <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="event.addItem('away', 'goals');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить</a></div></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Желтые карточки</div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr><td>Хозяева:</td><td>Гости:</td></tr>
+            <tr>
+                <td class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <div class="row">
+                                <div class="col-md-4">Минута</div>
+                                <div class="col-md-8">Игрок</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">Информация</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="record in fake.home.yellows">
+                        <hr />
+                        <div class="col-md-1">
+                            <a class="badge pull-left" href="javascript:void(0);" ng-click="event.removeItem($index, 'home', 'yellows')">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                        <fake-yellow-record record="record"/>
+                    </div>
+                    <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="event.addItem('home', 'yellows');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить</a></div></div>
+                </td>
+                <td class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <div class="row">
+                                <div class="col-md-4">Минута</div>
+                                <div class="col-md-8">Игрок</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">Информация</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="record in fake.away.yellows">
+                        <hr />
+                        <div class="col-md-1">
+                            <a class="badge pull-left" href="javascript:void(0);" ng-click="event.removeItem($index, 'away', 'yellows')">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                        <fake-yellow-record record="record" />
+                    </div>
+                    <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="event.addItem('away', 'yellows');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить</a></div></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Красные карточки</div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr><td>Хозяева:</td><td>Гости:</td></tr>
+            <tr>
+                <td class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <div class="row">
+                                <div class="col-md-4">Минута</div>
+                                <div class="col-md-8">Игрок</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">Информация</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="record in fake.home.reds">
+                        <hr />
+                        <div class="col-md-1">
+                            <a class="badge pull-left" href="javascript:void(0);" ng-click="event.removeItem($index, 'home', 'reds')">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                        <fake-red-record record="record" />
+                    </div>
+                    <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="event.addItem('home', 'reds');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить</a></div></div>
+                </td>
+                <td class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <div class="row">
+                                <div class="col-md-4">Минута</div>
+                                <div class="col-md-8">Игрок</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">Информация</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="record in fake.away.reds">
+                        <hr />
+                        <div class="col-md-1">
+                            <a class="badge pull-left" href="javascript:void(0);" ng-click="event.removeItem($index, 'away', 'reds')">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                        <fake-red-record record="record" />
+                    </div>
+                    <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="event.addItem('away', 'reds');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить</a></div></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Другие события</div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr><td>Хозяева:</td><td>Гости:</td></tr>
+            <tr>
+                <td class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">Минута</div>
+                        <div class="col-md-4">Игрок</div>
+                        <div class="col-md-4">Информация</div>
+                    </div>
+                    <div class="row" ng-repeat="record in fake.home.others">
+                        <div class="col-md-1">
+                            <a class="badge pull-left" href="javascript:void(0);" ng-click="event.removeItem($index, 'home', 'others')">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                        <fake-event-record record="record" />
+                    </div>
+                    <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="event.addItem('home', 'others');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить</a></div></div>
+                </td>
+                <td class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">Минута</div>
+                        <div class="col-md-4">Игрок</div>
+                        <div class="col-md-4">Информация</div>
+                    </div>
+                    <div class="row" ng-repeat="record in fake.away.others">
+                        <div class="col-md-1">
+                            <a class="badge pull-left" href="javascript:void(0);" ng-click="event.removeItem($index, 'away', 'others')">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </div>
+                        <fake-event-record record="record" />
+                    </div>
+                    <div class="row"><div class="col-md-12"><a class="badge pull-right" href="javascript:void(0);" ng-click="event.addItem('away', 'others');"><span class="glyphicon glyphicon-plus"></span>&nbsp;Добавить</a></div></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

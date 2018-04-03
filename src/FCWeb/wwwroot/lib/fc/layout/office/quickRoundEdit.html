@@ -1,0 +1,50 @@
+﻿<div class="panel panel-primary" style="margin: 0;">
+    <div class="panel-heading">
+        Рдектирование раунда
+    </div>
+    <div class="panel-body">
+    <div class="form-group">
+            <div class="col-sm-6">
+                <label for="roundName">Сокращенное название</label>
+                <input class="form-control" name="roundName" type="text" ng-model="round.name" placeholder="1/8">
+            </div>
+            <div class="col-sm-6">
+                <label for="roundNameFull">Полное название</label>
+                <input class="form-control" name="roundNameFull" type="text" ng-model="round.nameFull" placeholder="1/8 финала">
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            <table>
+                <tr>
+                    <td class="col-sm-10">
+                        <label for="roundTeams">Команда</label>
+                        <fc-autocomplete key="id" val="searchDefault" min="3" id="teamId" name="roundTeams"
+                                         itemselect="onTeamSelect"
+                                         addglobalescapeevent="addRootClickListener"
+                                         urlsearch="/api/teams/search">
+                        </fc-autocomplete>
+                    </td>
+                    <td class="col-sm-2 text-right">
+                        <button type="button" ng-click="addRoundTeam();">Добавить</button>
+                        <!--<span class="glyphicon glyphicon-plus cursor-pointer" ng-click="addRoundTeam()"></span>-->
+                    </td>
+                </tr>
+            </table>
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="list-unstyled list-inline">
+                        <li ng-repeat="roundTeam in round.teams">
+                            <span class="label label-primary">{{roundTeam.text}}&nbsp;<span class="glyphicon glyphicon-minus-sign cursor-pointer" ng-click="removeRoundTeam($index)"></span>&nbsp;</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr />
+        </div>
+    </div>
+    <div class="panel-footer text-right">
+        <button type="button" ng-click="ok();">Сохранить</button>
+        <button type="button" ng-click="cancel();">Отмена</button>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿/*Overrides*/
+
+#gradient {
+
+  .fc-vertical-three-colors(@start-color: #00b3ee; @color-stop1: 50%; @mid-color: #7a43b6; @color-stop2: 50%; @end-color: #c3325f; @color-stop3: 50%;) {
+    background: -webkit-linear-gradient(@start-color, @color-stop1, @mid-color @color-stop2, @end-color, @color-stop3);
+    background: -o-linear-gradient(@start-color, @color-stop1, @mid-color @color-stop2, @end-color @color-stop3);
+    background: linear-gradient(@start-color, @color-stop1, @mid-color @color-stop2, @end-color @color-stop3);
+    background-repeat: no-repeat;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
+  }
+
+  .fc-horizontal-four-colors(@one-color: #00b3ee; @color-stop1: 50%; @two-color: #7a43b6; @color-stop2: 50%; @three-color: #c3325f; @color-stop3: 50%; @four-color: #c3325f; @color-stop4: 50%;) {
+    background: -webkit-linear-gradient(left, @one-color @color-stop1, @two-color @color-stop2, @three-color, @color-stop3, @four-color @color-stop4);
+    background: -o-linear-gradient(left, @one-color @color-stop1, @two-color @color-stop2, @three-color @color-stop3, @four-color @color-stop4);
+    background: linear-gradient(to right, @one-color @color-stop1, @two-color @color-stop2, @three-color @color-stop3, @four-color @color-stop4);
+    background-repeat: no-repeat;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@one-color),argb(@four-color))); // IE9 and down, gets no color-stop at all for proper fallback
+  }
+
+}
+
+/*Overrides*/
+
+
+/*Custom*/
+
+.gradient(@type; @colors; @dir: 0deg; @prefixes: webkit, moz, ms, o; @index: length(@prefixes)) when (@index > 0) {
+    .gradient(@type; @colors; @dir; @prefixes; (@index - 1));
+ 
+    @prefix  : extract(@prefixes, @index);
+    @dir-old : 90 - (@dir);
+ 
+    background: ~"-@{prefix}-@{type}-gradient(@{dir-old}, @{colors})";
+  & when ( @index = length(@prefixes) ) {
+        background: ~"@{type}-gradient(@{dir}, @{colors})";
+    }
+}
+
+/*i.g. .gradient(linear; @background-primary 80%, fade(@brand-primary, 80%); 180deg);*/
+
+/*Custom*/

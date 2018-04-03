@@ -1,0 +1,37 @@
+Install EF
+
+- Install-Package EntityFramework.MicrosoftSqlServer –Pre
+
+
+Install packages to generate model from DB
+
+- Install-Package EntityFramework.Commands –Pre
+- Install-Package EntityFramework.MicrosoftSqlServer.Design –Pre
+
+Add commands
+
+	Open project.json
+	Locate the commands section and add the ef command as shown below
+	
+	  "commands": {
+	    "ef": "EntityFramework.Commands"
+	  },
+
+Open a command prompt (Windows Key + R, type cmd, click OK)
+
+- Use the cd command to navigate to the project directory
+- Run dnvm use 1.0.0-rc1-update1
+- Run the following command to create a model from the existing database
+	dnx ef dbcontext scaffold "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" EntityFramework.MicrosoftSqlServer --outputDir Models
+
+dnx ef dbcontext scaffold "Data Source=.\sqlexpress;Initial Catalog=FCWeb;Integrated Security=True" EntityFramework.MicrosoftSqlServer --outputDir Model
+
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+	base.OnModelCreating(modelBuilder);
+...
+}
+
+dnx ef migrations add MigrationName-c FCWebContext
+dnx ef database update -c FCWebContext

@@ -1,0 +1,36 @@
+﻿<div>
+    <div ng-show="model.loading" class="text-center">
+        <img ng-src="{{model.loadingImage}}" />
+    </div>
+    <div ng-show="!model.loading">
+        <table class="table fc-table fc-styled-table-1 strip">
+            <tbody>
+                <tr>
+                    <th style="text-align: right !important">#</th>
+                    <th translate="TEAM" style="text-align: left !important"></th>
+                    <th translate="GAMES_SH"></th>
+                    <th translate="WINS_SH"></th>
+                    <th translate="DRAWS_SH"></th>
+                    <th translate="LOSES_SH"></th>
+                    <th translate="GOALS_SH"></th>
+                    <th translate="POINTS_SH"></th>
+                </tr>
+                <tr ng-repeat="row in model.rows">
+                    <td style="text-align: right !important;">{{row.position}}</td>
+                    <td style="text-align: left !important;"><a class="ellipsis ellipsis-135" ng-href="team/{{row.team.id}}" title="{{row.team.title}}">{{row.team.text}}</a></td>
+                    <td>{{row.games}}</td>
+                    <td>{{row.wins}}</td>
+                    <td>{{row.draws}}</td>
+                    <td>{{row.loses}}</td>
+                    <td>{{row.goalsFor}}-{{row.goalsAgainst}}</td>
+                    <td>{{row.points}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="8" translate="TRN_FULL_{{model.name}}"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

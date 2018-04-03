@@ -1,0 +1,14 @@
+﻿<section>
+    <div ng-show="loadingTL" class="row fc-loading-wrapper"><img ng-href="{{loadingImage}}" /></div>
+    <dl ng-show="!loadingTL" class="row fc-data-list" ng-repeat="item in publications.items">
+        <dt class="label label-primary soft text-left">{{item.date | date: 'short'}}</dt>
+        <dd><a ng-href="publication/{{item.urlKey}}">{{item.title}}</a></dd>
+    </dl>
+    <dl>
+        <dt>
+        </dt>
+        <dd class="text-right">
+            <a class="fc-pane-action-link" style="margin: 15px 10px 0 0;" ng-click="publications.more();" href="javascript:void(0);">Больше новостей&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></a>
+        </dd>
+    </dl>
+</section>

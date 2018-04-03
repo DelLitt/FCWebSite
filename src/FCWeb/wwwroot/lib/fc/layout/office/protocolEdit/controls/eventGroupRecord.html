@@ -1,0 +1,36 @@
+﻿<div class="col-md-2">
+    <div class="form-group">
+        <label for="minute" class="control-label">
+            Мин:&nbsp;<label for="extraTime" class="checkbox-inline">
+                <input type="checkbox" name="extraTime" id="extraTime" ng-model="record.extraTime">Доб. время
+            </label>
+        </label>
+        <input class="form-control" id="minute" type="number" min="0" max="999" step="1" placeholder="0" ng-model="record.minute">
+    </div>
+</div>
+<div class="col-md-3">
+    <label class="control-label">{{eventgrouptitle}}</label>
+    <fc-autocomplete key="id" val="nameFull" min="3" id="eventGroupId"
+                        addglobalescapeevent="addRootClickListener"
+                        urlsearch="/api/eventgroups/search"
+                        urlinit="eventGroupUrls.urlinit"
+                        urlshowall="{{eventGroupUrls.urlshowall}}">
+    </fc-autocomplete>
+</div>
+<div class="col-md-3">
+    <label class="control-label">{{eventtitle}}</label>
+    <fc-autocomplete key="id" val="nameFull" min="3" id="record.eventId"
+                     addglobalescapeevent="addRootClickListener"
+                     urlsearch="{{eventUrls.urlsearch}}"
+                     urlinit="eventUrls.urlinit"
+                     urlshowall="{{eventUrls.urlshowall}}">
+    </fc-autocomplete>
+</div>
+<div class="col-md-3">
+    <label class="control-label">{{persontitle}}</label>
+    <fc-autocomplete key="id" val="nameDefault" min="3" id="record.personId"
+                     selid="{{record.personId}}" showall="true"
+                     addglobalescapeevent="addRootClickListener"
+                     inputdata="players">
+    </fc-autocomplete>
+</div>

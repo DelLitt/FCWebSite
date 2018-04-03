@@ -1,0 +1,12 @@
+﻿<div style="display: inline;">
+    <span ng-repeat="item in data">
+        <span ng-if="item.main.id.length">
+            <entity-link path="person"
+                         entity-id="{{item.main.id}}"
+                         text="{{item.main.text.replace(' ', '&nbsp;')}}"
+                         title="{{item.main.title}}">
+            </entity-link><span ng-if="hasSub(item)"> (<text-subs-recursive-info data="item.extra"></text-subs-recursive-info>)</span></span><span ng-if="!item.main.id.length">
+            {{item.main.text}}<span ng-show="hasSub(item);"> ({{item.info}})</span></span>{{$last ? '' : ', '}}
+    </span>
+</div>
+    

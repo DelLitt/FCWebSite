@@ -1,0 +1,169 @@
+﻿<div class="row">
+    <section class="col-xs-12">
+        <div class="row fc-loading-wrapper" ng-show="loadingGame">
+            <div class="col-xs-12 text-center" style="height: 30px;">
+                <img ng-src="{{loadingImage}}" />
+            </div>
+        </div>
+        <div class="row" ng-show="!loadingGame">
+            <div class="col-xs-12">
+                <div class="fc-pane">
+                    <div class="fc-pane-header">
+                        <h3 class="invert">{{game.round.nameFull}}. {{game.round.tourney.nameFull}}</h3>
+                    </div>
+                    <div class="fc-pane-body">
+                        <div class="fc-pane-form">
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    {{game.gameDate | date:'medium'}}
+                                </div>
+                            </div>
+                            <section class="row" style="margin-bottom: 20px;">
+                                <div class="col-xs-5 text-right">
+                                    <div class="row">
+                                        <div class="col-xs-9"><h3><a ng-href="{{homeLink}}">{{game.home.name}}</a></h3></div>
+                                        <div class="col-xs-3"><img class="img-responsive img-thumbnail" id="image" ng-src="{{logoHome}}" /></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-2 text-center">
+                                    <div class="row">
+                                        <div class="h3">{{game.homeScore}}&nbsp;:&nbsp;{{game.awayScore}}</div>
+                                    </div>
+                                    <div class="row" ng-show="showAddScore">
+                                        <div><span translate="EX_TIME"></span>: {{game.homeAddScore}}&nbsp;:&nbsp;{{game.awayAddScore}}</div>
+                                    </div>
+                                    <div class="row" ng-show="showAddScore">
+                                        <div><span translate="PENALTIES"></span>: {{game.homePenalties}}&nbsp;:&nbsp;{{game.awayPenalties}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-5 text-left">
+                                    <div class="row">
+                                        <div class="col-xs-3"><img class="img-responsive img-thumbnail" id="image" ng-src="{{logoAway}}" /></div>
+                                        <div class="col-xs-9"><h3><a ng-href="{{awayLink}}">{{game.away.name}}</a></h3></div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section ng-if="hasMain(protocol.home);" class="fc-text-group fc-text-group-2">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <a ng-href="{{homeLink}}">
+                                                    <b class="text-uppercase">"{{game.home.name}}"</b>
+                                                </a>:&nbsp;
+                                                <text-main-protocol data="protocol.home.main" />
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <b translate="BENCH"></b>:&nbsp;
+                                                <text-reserve-protocol data="protocol.home.reserve" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section ng-if="hasMain(protocol.away);" class="fc-text-group fc-text-group-1">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <a ng-href="{{awayLink}}">
+                                                    <b class="text-uppercase">"{{game.away.name}}"</b>
+                                                </a>:&nbsp;
+                                                <text-main-protocol data="protocol.away.main" />
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <b translate="BENCH"></b>:&nbsp;
+                                                <text-reserve-protocol data="protocol.away.reserve" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section section ng-if="hasGoals(protocol);" class="fc-text-group fc-text-group-2">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <b translate="GOALS"></b>:&nbsp;
+                                        <text-goal-protocol data="protocol.allGoals" />
+                                    </div>
+                                </div>
+                            </section>
+                            <section section ng-if="hasYellows(protocol);" class="fc-text-group fc-text-group-1">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <b translate="WARNINGS"></b>:&nbsp;
+                                        <text-event-protocol data="protocol.allYellows" />
+                                    </div>
+                                </div>
+                            </section>
+                            <section section ng-if="hasReds(protocol);" class="fc-text-group fc-text-group-2">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <b translate="REMOVAL"></b>:&nbsp;
+                                        <text-event-protocol data="protocol.allReds" />
+                                    </div>
+                                </div>
+                            </section>
+                            <!--<div class="row">
+                                <div class="col-xs-12">
+                                    <div class="panel panel-primary no-padding">
+                                        <div class="panel-heading text-center">Результаты тотолизатора</div>
+                                        <div class="panel-body">
+                                            <div class="col-xs-4 text-center">
+                                                <div ng-show="showToteResult">
+                                                    <span class="label label-success">Победа хозяев</span>
+                                                    <div class="progress">
+                                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{homeWin}}"
+                                                             aria-valuemin="0" aria-valuemax="100" style="width:{{homeWin}}%">
+                                                            {{homeWin}}%
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="!showToteResult">
+                                                    <button type="button" class="btn btn-success" ng-click="vote(0);">Победа хозяев</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <div ng-show="showToteResult">
+                                                    <span class="label label-warning">Ничья</span>
+                                                    <div class="progress">
+                                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{draw}}"
+                                                             aria-valuemin="0" aria-valuemax="100" style="width:{{draw}}%">
+                                                            {{draw}}%
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="!showToteResult">
+                                                    <button type="button" class="btn btn-warning" ng-click="vote(1);">Ничья</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <div ng-show="showToteResult">
+                                                    <span class="label label-danger">Победа гостей</span>
+                                                    <div class="progress">
+                                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{awayWin}}"
+                                                             aria-valuemin="0" aria-valuemax="100" style="width:{{awayWin}}%">
+                                                            {{awayWin}}%
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="!showToteResult">
+                                                    <button type="button" class="btn btn-danger" ng-click="vote(2);">Победа гостей</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

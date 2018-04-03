@@ -1,0 +1,1 @@
+﻿<span><entity-link path="person" entity-id="{{data.main.id}}" text="{{data.main.text.replace(' ', '&nbsp;')}}" title="{{data.main.title}}"></entity-link>&nbsp;{{data.minute}}<span ng-if="hasExtMin">+{{data.extraMinute}}</span>'<span ng-if="hasSub(data)">, <text-subs-recursive-info data="data.extra"></text-subs-recursive-info></span></span>

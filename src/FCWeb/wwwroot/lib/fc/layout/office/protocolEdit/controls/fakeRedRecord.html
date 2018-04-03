@@ -1,0 +1,25 @@
+﻿<div class="col-md-11">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group form-inline">
+                <input class="form-control" id="minute" type="number" min="0" max="999" step="1" placeholder="0" ng-model="record.minute">
+                <input type="checkbox" name="extraTime" id="extraTime" ng-model="record.extraTime" title="Добавленное время">
+            </div>
+        </div>
+        <div class="col-md-8">
+            <fc-autocomplete key="id" val="nameFull" min="3" id="record.eventId"
+                             addglobalescapeevent="addRootClickListener"
+                             urlsearch="/api/events/red/search"
+                             urlinit="eventInitUrl"
+                             urlshowall="/api/events/red">
+            </fc-autocomplete>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input class="form-control" id="name" name="name" type="text" ng-model="record.name">
+            </div>
+        </div>
+    </div>
+</div>

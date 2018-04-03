@@ -1,0 +1,11 @@
+﻿<span ng-repeat="item in data">
+    <entity-link ng-show="item.main.id.length" path="person"
+                 entity-id="{{item.main.id}}"
+                 text="{{item.main.text}}"
+                 title="{{item.main.title}}">
+    </entity-link>
+    <span ng-show="!item.main.id.length">
+        {{item.main.text}}
+    </span>
+    {{$last ? '' : ', '}}
+</span>

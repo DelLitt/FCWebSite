@@ -1,0 +1,19 @@
+﻿<div style="display: inline;">
+    <span ng-repeat="item in data | orderBy : 'minute'">
+        <span ng-if="item.main.id.length">
+            <entity-link path="person"
+                         entity-id="{{item.main.id}}"
+                         text="{{item.main.text.replace(' ', '&nbsp;')}}"
+                         title="{{item.main.title}}">
+            </entity-link> <span>(<span ng-if="hasGoalInfo(item.info);"><span translate="{{filterGoalInfo(item.info)}}"></span> - </span><span ng-if="hasAssistant(item);"><span translate="ASSISTANT_SHORT"></span>
+            <entity-link path="person"
+                     entity-id="{{item.extra.main.id}}"
+                     text="{{item.extra.main.text.replace(' ', '&nbsp;')}}"
+                     title="{{item.extra.main.title}}">
+        </entity-link>&nbsp;</span>{{item.minute}}<span ng-if="hasExtMin(item);">+{{item.extraMinute}}</span>')</span>
+        </span>
+        <span ng-if="!item.main.id.length">{{item.main.text}} (<span ng-if="hasGoalInfo(item.info);"><span translate="{{filterGoalInfo(item.info)}}"></span> - </span><span ng-if="hasData(item);">
+    <span translate="ASSISTANT_SHORT"></span> {{item.data}}&nbsp;
+</span>{{item.minute}}<span ng-if="hasExtMin(item);">+{{item.extraMinute}}</span>')</span>{{$last ? '' : ', '}}
+    </span>
+</div>

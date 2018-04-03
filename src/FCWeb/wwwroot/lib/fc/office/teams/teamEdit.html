@@ -1,0 +1,170 @@
+﻿<div class="fc-pane">
+    <div class="fc-pane-body">
+        <div class="fc-pane-form">
+            <form class="form office" role="form" novalidate angular-validator name="forms.editTeam" ng-submit="saveEdit(forms.editTeam);">
+                <h2>Редактирование команды #{{team.id}}</h2>
+                <hr />
+                <div class="form-group">
+                    <label for="image" class="control-label">Логотип:</label>&nbsp;<button class="btn btn-default btn-xs pull-right" type="button" ng-click="openFileBrowser();">Изменить</button>
+                    <img class="image-edit .img-thumbnail" id="image" ng-src="{{image}}" />
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label for="name" class="control-label">Название*:</label>
+                    <input class="form-control" id="name" name="name" type="text" ng-model="team.name" placeholder='Метеор' required>
+                    <div class="alert alert-danger fade in" ng-show="(forms.editTeam.name.$dirty || submitted) && forms.editTeam.name.$error.required">
+                        <strong>Ошибка!</strong> Введите название!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nameFull" class="control-label">Полное название*:</label>
+                    <input class="form-control" id="nameFull" name="nameFull" type="text" ng-model="team.nameFull" placeholder='"ОО" Метеор' required>
+                    <div class="alert alert-danger fade in" ng-show="(forms.editTeam.nameFull.$dirty || submitted) && forms.editTeam.nameFull.$error.required">
+                        <strong>Ошибка!</strong> Введите полное название!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="namePre" class="control-label">Префикс*:</label>
+                    <input class="form-control" id="namePre" name="namePre" type="text" ng-model="team.namePre" placeholder='ФК' required>
+                    <div class="alert alert-danger fade in" ng-show="(forms.editTeam.namePre.$dirty || submitted) && forms.editTeam.namePre.$error.required">
+                        <strong>Ошибка!</strong> Введите префикс!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Информация</div>
+                        <div class="panel-body">
+                            <textarea class="ck-editor" id="description" name="description" ng-model="description"></textarea>
+                        </div>
+                        <div class="panel-footer">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="control-label">Адрес:</label>
+                    <input class="form-control" id="address" name="address" type="text" ng-model="team.address">
+                </div>
+                <div class="form-group">
+                    <label for="email" class="control-label">Электронная почта:</label>
+                    <input class="form-control" id="email" name="email" type="text" ng-model="team.email">
+                </div>
+                <div class="form-group">
+                    <label for="webSite" class="control-label">Веб-сайт:</label>
+                    <input class="form-control" id="webSite" name="webSite" type="text" ng-model="team.webSite">
+                </div>
+                <div class="form-group">
+                    <label for="weight" class="control-label">Город*:</label>
+                    <fc-autocomplete key="id" val="nameFull" min="3" id="team.cityId"
+                                     addglobalescapeevent="addRootClickListener"
+                                     urlsearch="/api/cities/search"
+                                     urlinit="cityInitUrl">
+                    </fc-autocomplete>
+                </div>
+                <div class="form-group">
+                    <label for="weight" class="control-label">Стадион*:</label>
+                    <fc-autocomplete key="id" val="nameAndCity" min="3" id="team.stadiumId"
+                                     addglobalescapeevent="addRootClickListener"
+                                     urlsearch="/api/stadiums/search"
+                                     urlinit="stadiumInitUrl"
+                                     urlshowall="/api/stadiums">
+                    </fc-autocomplete>
+                </div>
+                <div class="form-group">
+                    <label for="weight" class="control-label">Основной турнир*:</label>
+                    <fc-autocomplete key="id" val="nameFull" min="3" id="team.mainTourneyId"
+                                     addglobalescapeevent="addRootClickListener"
+                                     urlsearch="/api/tourneys/search"
+                                     urlinit="mainTourneyInitUrl"
+                                     urlshowall="/api/tourneys">
+                    </fc-autocomplete>
+                </div>
+                <!-- HACK: Waiting for loading via ng-repeat -->
+                <div class="form-group" ng-repeat="tt in [teamTypes[0]]">
+                    <label for="teamType" class="control-label">Тип команды*:</label>
+                    <fc-autocomplete key="id" val="nameFull" min="3" 
+                                     id="team.teamTypeId" 
+                                     selid="{{team.teamTypeId}}" 
+                                     showall="true"
+                                     inputdata="teamTypes">
+                    </fc-autocomplete>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Дополнительная информация
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="image" class="control-label">Фото:</label>&nbsp;<button class="btn btn-default btn-xs pull-right" type="button" ng-click="openFileBrowserDescr();">Изменить</button>
+                                    <img class="image-edit .img-thumbnail" id="photo" ng-src="{{fake.image}}" />
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="persons" class="control-label">Игроки</label>
+                                    <table class="table fc-table-light" name="persons">
+                                        <tr>
+                                            <th class="col-sm-2">Номер</th>
+                                            <th class="col-sm-6">ФИО</th>
+                                            <th class="col-sm-3">Дата рождениия</th>
+                                            <th class="col-sm-1">Удалить</th>
+                                        </tr>
+                                        <tr ng-repeat="person in fake.persons">
+                                            <td><input type="number" placeholder="10" ng-model="person.number" /></td>
+                                            <td><input type="text" placeholder="Иван Иванов" ng-model="person.name" /></td>
+                                            <td><input type="date" placeholder="10/11/2000" ng-model="person.dateOfBirth" /></td>
+                                            <td><span class="glyphicon glyphicon-minus fc-action" ng-click="fake.removePerson($index);"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4"><span class="glyphicon glyphicon-plus fc-action" ng-click="fake.addPerson();">Добавить</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="coaches" class="control-label">Тренеры</label>
+                                    <table class="table fc-table-light" name="coaches">
+                                        <tr>
+                                            <th class="col-sm-11">Тренер</th>
+                                            <th class="col-sm-1">Удалить</th>
+                                        </tr>
+                                        <tr ng-repeat="coach in fake.coaches">
+                                            <td>
+                                                <fc-autocomplete key="id" val="nameDefault" min="3" id="coach.id"
+                                                                 addglobalescapeevent="addRootClickListener"
+                                                                 urlsearch="/api/persons/search"
+                                                                 urlinit="'/api/persons/' + coach.id">
+                                                </fc-autocomplete>
+                                            </td>
+                                            <td><span class="glyphicon glyphicon-minus fc-action" ng-click="fake.removeCoach($index);"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4"><span class="glyphicon glyphicon-plus fc-action" ng-click="fake.addCoach();">Добавить</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="enable" class="checkbox-inline">
+                        <input type="checkbox" name="enable" id="enable" ng-model="team.active">Включена
+                    </label>
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-primary" value="Сохранить" />
+                    <a class="btn btn-default" ng-href="office">Отмена</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

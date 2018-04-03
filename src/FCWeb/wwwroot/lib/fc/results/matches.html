@@ -1,0 +1,25 @@
+﻿<div class="fc-pane">
+    <div class="fc-pane-header">
+        <h4 class="invert" translate="MATCHES"></h4>
+    </div>
+    <div class="fc-pane-body">
+        <div class="fc-pane-form">
+            <div class="row">
+                <div class="col-xs-12 fc-input-group">
+                    <label for="tourneySelect"><span translate="SEASON"></span></label>
+                    <select style="width: 100%;" ng-model="seasonOpt" ng-init="seasonOpt = seasonOptions[0]" ng-options="seasonOption.season | translate for seasonOption in seasonOptions"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 fc-input-group">
+                    <label for="tourneySelect"><span translate="TEAM"></span></label>
+                    <select style="width: 100%;" ng-model="teamOpt" ng-init="teamOpt = teamOptions[0]" ng-options="teamOption.team | translate for teamOption in teamOptions"></select>
+                </div>
+            </div>
+            <section>
+                <results team-id="teamId" season="seasonOpt" tourneys-ids="teamOpt.tourneysIds" img-variant="40x40"></results>
+            </section>
+        </div>
+    </div>
+</div>
+

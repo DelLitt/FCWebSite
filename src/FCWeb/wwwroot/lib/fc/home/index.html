@@ -1,0 +1,107 @@
+﻿<!--<div class="row">
+    <div class="col-sm-12 text-center">
+        <img src="../../../images/skin/sponsors/main-banner-slot-2.png" class="img-responsive" />
+    </div>
+</div>-->
+<section class="row" style="margin-bottom: 15px;">
+    <div class="col-md-7">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="text-center fc-middle-border" style="margin: 0 0 10px 0;">
+                    <a href="http://sugar.by"><img src="../../../images/skin/sponsors/hot-pulication-banner.png" class="img-responsive" translate translate-attr-title="SUGAR_REFINERY" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <hot-publications model="publications.hot" />
+        </div>
+    </div>
+    <div class="col-md-5 main-table scroll-460" ng-if="ranking">
+        <main-table model="ranking" />
+    </div>
+</section>
+<section class="fc-pane fc-pane-dark">
+    <div class="fc-pane-body" style="padding: 0 4px;">
+        <div class="row">
+            <round-results model="roundResults"></round-results>
+        </div>
+    </div>
+</section>
+<section class="row">
+    <div class="col-xs-12">
+        <div class="fc-pane transparent-bg-dark">
+            <div class="fc-pane-header text-uppercase">
+                <h6><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;<span translate="NEWS"></span></h6>
+            </div>
+            <div class="fc-pane-body" style="padding: 5px 20px;">
+                <div ng-show="publications.loading" class="text-center" style="height:30px;">
+                    <img ng-src="{{loadingImage}}" />
+                </div>
+                <div ng-show="!publications.loading">
+                    <div class="row" ng-repeat="row in publications.rows">
+                        <div class="col-sm-6 col-md-4" style="padding: 7px;" ng-repeat="publication in row">
+                            <publication-item model="publication" img-variant="375x211"></publication-item>
+                        </div>
+                    </div>
+                    <div class="row text-right">
+                        <div class="col-xs-12">
+                            <span class="fc-link" ng-click="publications.more();"><span translate="MORE"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></span>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="row">
+    <div class="col-xs-12">
+        <div class="fc-pane transparent-bg-dark">
+            <div class="fc-pane-header text-uppercase">
+                <h6><span class="glyphicon glyphicon-camera"></span>&nbsp;&nbsp;<span translate="PHOTO"></span></h6>
+            </div>
+            <div class="fc-pane-body" style="padding: 5px 20px;">
+                <div ng-show="galleries.loading" class="text-center" style="height:30px;">
+                    <img ng-src="{{loadingImage}}" />
+                </div>
+                <div ng-show="!galleries.loading">
+                    <div class="row" ng-repeat="row in galleries.rows">
+                        <div class="col-sm-6 col-md-4" style="padding: 7px;" ng-repeat="gallery in row">
+                            <gallery-item model="gallery" img-variant="375x211"></gallery-item>
+                        </div>
+                    </div>
+                    <div class="row text-right">
+                        <div class="col-xs-12">
+                            <span class="fc-link" ng-click="galleries.more();"><span translate="MORE"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="row">
+    <div class="col-xs-12">
+        <div class="fc-pane transparent-bg-dark">
+            <div class="fc-pane-header text-uppercase">
+                <h6 class="invert"><span class="glyphicon glyphicon-facetime-video"></span>&nbsp;&nbsp;<span translate="VIDEO"></span></h6>
+            </div>
+            <div class="fc-pane-body" style="padding: 5px 20px;">
+                <div ng-show="videos.loading" class="text-center" style="height:30px;">
+                    <img ng-src="{{loadingImage}}" />
+                </div>
+                <div ng-show="!videos.loading">
+                    <div class="row" ng-repeat="row in videos.rows">
+                        <div class="col-sm-6 col-md-4" style="padding: 7px;" ng-repeat="video in row">
+                            <video-item model="video"></video-item>
+                        </div>
+                    </div>
+                    <div class="row text-right">
+                        <div class="col-xs-12">
+                            <span class="fc-link" ng-click="videos.more();"><span translate="MORE"></span>&nbsp;&nbsp;<span class="glyphicon glyphicon-transfer"></span></span>                                 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

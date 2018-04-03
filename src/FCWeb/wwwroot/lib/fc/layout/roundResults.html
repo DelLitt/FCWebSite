@@ -1,0 +1,33 @@
+﻿<div class="main-results col-sm-12">
+    <div class="row">
+        <div class="col-xs-12">
+            <p class="header">
+                <span class="text-uppercase" translate="RESULTS"></span><span ng-show="!loadingRR">. <span ng-if="roundResults.roundName.length">{{roundResults.roundIndex}} <span translate="{{roundResults.roundName}}"></span>. </span><span translate="TRN_FULL_{{roundResults.tourney}}"></span></span>
+            </p>
+        </div>
+    </div>
+    <div class="row" ng-show="loadingRR">
+        <div class="col-xs-12 fc-loading-wrapper">
+            <img ng-src="{{loadingImage}}" />
+        </div>
+    </div>
+    <div class="row" ng-show="!loadingRR">
+        <div class="col-sm-6 col-md-3" ng-repeat="roundDay in roundResults.dateGames">
+            <div ng-if="roundDay.empty" class="empty-block"><img style="max-height:80px;" ng-src={{getAdvertImg($index);}} /></div>
+            <div ng-if="!roundDay.empty">
+                <div class="label label-primary">{{roundDay.date.date | date : 'fullDate'}}</div>
+                <ul class="list-unstyled match-day-list">
+                    <li ng-repeat="game in roundDay.games" class="ellipsis-270" title="{{game.home.text + ' ' + game.homeScore + ':' + game.awayScore + ' ' + game.away.text}}"><span ng-if="game.showTime" class="text-info">{{game.start | date: 'HH:mm'}}</span><span ng-if="!game.showTime" class="text-info">--:--</span>.&nbsp;<a ng-href="team/{{game.home.id}}">{{game.home.text}}</a>&nbsp;<a class="white-link" ng-href="game/{{game.id}}">{{game.homeScore}}:{{game.awayScore}}<span ng-if="hasExtra(game);"><span translate translate-attr-title="{{getExtra(game);}}">*</span></span></a>&nbsp;<a ng-href="team/{{game.away.id}}">{{game.away.text}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row fc-round-result-arrows" ng-show="!loadingRR">
+        <div class="col-xs-6">
+            <span class="glyphicon glyphicon-circle-arrow-left fc-action" ng-click="roundResults.previous();"></span>
+        </div>
+        <div class="col-xs-6">
+            <span class="glyphicon glyphicon-circle-arrow-right fc-action" ng-click="roundResults.next()"></span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+﻿<div class="fc-pane">
+    <div class="fc-pane-body">
+        <div class="fc-pane-form">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="fc-sheet">
+                        <div ng-show="loading" class="fc-loading-wrapper">
+                            <img ng-src="{{loadingImage}}" />
+                        </div>
+                        <div ng-show="!loading">
+                            <a href="office/publications/create" class="pull-right"><span class="glyphicon glyphicon-plus">&nbsp;</span>Создать</a>
+                            <h2>Список публикаций</h2>
+                            <div class="form-group">
+                                <label for="titleFilter" class="control-label">Фильтр:</label>
+                                <input class="form-control" id="titleFilter" name="titleFilter" type="text" ng-model="text" ng-keyup="search($event, text);">
+                            </div>
+                            <table>
+                                <tr ng-repeat="publication in publications">
+                                    <td><a ng-href="office/publications/edit/{{publication.id}}"><span class="glyphicon glyphicon-edit">&nbsp;</span>{{publication.title}}</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

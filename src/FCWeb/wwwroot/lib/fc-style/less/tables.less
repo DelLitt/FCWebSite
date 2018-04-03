@@ -1,0 +1,251 @@
+﻿/*FC-TABLE*/
+.fc-table {
+  /*border-radius: 0 0 @fc-border-radius @fc-border-radius;*/
+  caption {
+    padding: 5px 15px;
+    /*border-radius: 5px 5px 0 0;*/
+  }
+
+  tbody + tbody {
+    border-top: 1px solid @gray-good;
+  }
+
+  tbody tr, tr {
+
+    th, td {
+      border-top: none;
+      padding: 2px 6px;
+      line-height: 1.6em;
+      text-align: center;
+
+      @media (max-width: @screen-xs) {
+        padding: 2px 2px;
+        font-size: 93%;
+      }
+    }
+
+    th {
+      font-weight: normal;
+      vertical-align: middle;
+    }
+
+    h4, h5 {
+      margin: 2px 0 0 0;
+    }
+  }
+}
+
+.fc-pane-form-dark,
+.fc-pane-dark {
+  .fc-table {
+    tbody tr, tr {
+      th {
+        color: @brand-primary5;
+        border-bottom: 1px solid @background-primary;
+      }
+
+      td {
+        color: @background-primary;
+
+        a {
+          color: @brand-primary4;
+        }
+
+        a:hover, a:focus {
+          /*color: @background-primary;*/
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+/*FC-TABLE END*/
+
+/*FC-TABLE-LIGHT*/
+.fc-table.fc-table-light {
+  font-size: 1.2em;
+  color: @fc-soft-primary-color2;
+
+  caption, tfoot {
+    background-color: fade(@background-primary, 100%);
+    color: @brand-primary;
+    margin: 0 0 -5px 0;
+  }
+
+  tbody tr:first-child, tr:first-child {
+    background-color: transparent !important;
+  }
+
+  tbody tr, tr {
+    background-color: fade(@background-primary, 100%);
+
+    th {
+      background-color: @fc-soft-primary-color1;
+      color: @brand-primary5;
+      border-top: @fc-line-fade !important;
+      border-bottom: 12px solid fade(@background-primary, 55%);
+
+      .fc-action {
+        color: @brand-primary4;
+      }
+
+      .fc-action:hover,
+      .fc-action:focus {
+        color: @background-primary !important;
+      }
+      /*a {
+        color: @background-primary;
+      }
+
+      .a:hover,
+      .a:focus {
+        color: @brand-primary3;
+      }*/
+    }
+
+    th:first-child {
+      border-left: @fc-line-fade;
+    }
+
+    th:last-child {
+      border-right: @fc-line-fade;
+    }
+
+    td {
+      .fc-action {
+        color: @brand-primary4;
+      }
+
+      .fc-action:hover,
+      .fc-action:focus {
+        color: @brand-primary3;
+      }
+    }
+    /*a {
+      color: @fc-dark-link-color;
+    }*/
+  }
+}
+/*FC-TABLE-LIGHT END*/
+
+/*FC-TABLE-STYLED-1*/
+
+.fc-table.fc-styled-table-1 {
+  font-size: 1em;
+  color: @gray-good3;
+  border: 1px solid @brand-primary4;
+  .box-shadow(@fc-shadow);
+
+  caption, tfoot {
+    background: @background-primary;
+    margin: 0 0 -5px 0;
+  }
+
+  tbody tr, tr {
+    background-color: @background-primary;
+
+    th {
+      color: @brand-primary5;
+      border: none;
+    }
+  }
+
+  tbody tr:first-child, tr:first-child {
+    .fc-grad();
+    background-repeat: inherit;
+  }
+
+  tfoot tr {
+    background: @background-primary !important;
+  }
+}
+
+.fc-styled-table-1.strip {
+  tbody tr:nth-of-type(odd),
+  tr:nth-of-type(odd) {
+    background-color: @gray-good2;
+  }
+}
+
+/*FC-TABLE-STYLED-1 END*/
+
+.fc-table.fc-schedule {
+  tbody tr, tr {
+    th, td {
+        line-height: 2em;
+      img {
+        max-height: 40px;
+      }
+    }
+  }
+}
+
+/*Extra*/
+.fc-table.fc-table-border-top {
+  tbody tr, tr {
+
+    td {
+      border-top: 1px solid @gray-good;
+    }
+  }
+}
+
+.fc-table.fc-table-text-size-base {
+  tbody tr, tr {
+
+    th, td {
+      line-height: 1.6em;
+    }
+  }
+}
+
+.table-borderless {
+  tbody tr, tr {
+    td, th {
+      border: none !important;
+    }
+  }
+}
+
+table.table-into-header {
+  tr {
+    td {
+      padding: 0 8px !important;
+      font-size: 0.8em;
+    }
+  }
+}
+
+.main-table {
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+
+.main-table::-webkit-scrollbar {
+  display: none;
+}
+/*.main-table.scroll-460 {
+  max-height: none;
+  overflow: auto;
+  margin-top: 10px;
+  padding-left: 15px;
+  margin-bottom: -10px;
+}*/
+.main-table.scroll-460 {
+  padding-left: 0;
+  max-height: 461px;
+  overflow-y: scroll;
+
+  @media (min-width: @screen-sm) and (max-width: @screen-md-max) {
+    max-height: 381px;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    max-height: none;
+    overflow: auto;
+    margin-top: 10px;
+    padding-left: 15px;
+    margin-bottom: -10px;
+  }
+}
+/*Extra end*/

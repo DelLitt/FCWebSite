@@ -1,0 +1,199 @@
+﻿.fc-pane {
+  position: relative;
+  margin: 0 0 15px 0;
+  background-color: transparent;
+
+  .fc-pane-header {
+    font-size: @font-size-h5;
+    font-family: @headings-font-family;
+    font-weight: @headings-font-weight;
+    line-height: @headings-line-height;
+    font-weight: bold;
+    margin: 0 !important;
+    border: solid 1px @brand-primary5;
+    padding: 10px 15px;
+    color: @background-primary;
+    background-color: @fc-soft-primary-color1 !important;
+    border-bottom: none;
+
+    h1, h2, h3, h4, h5, h6, h7 {
+      text-shadow: none;
+      margin: 0;
+    }
+  }
+
+  .fc-pane-header.invert {
+    color: @fc-type-dark-header-color;
+    background-color: @background-primary !important;
+  }
+
+  .fc-pane-body {
+    background-color: @background-primary;
+    color: @gray-good3;
+    border: solid 1px @brand-primary5;
+
+    .pretty-text {
+      font-size: 1.2em;
+    }
+
+    .fc-pane-form,
+    .fc-pane-form-dark {
+      padding: 10px;
+
+      h1, h2, h3, h4, h5, h6, h7 {
+        text-shadow: none;
+        color: @fc-type-dark-header-color;
+      }
+    }
+
+    .fc-pane-form-dark {
+      h1, h2, h3, h4, h5, h6, h7 {
+        color: @background-primary;
+      }
+    }
+
+    .fc-pane-form {
+      background-color: @background-primary;
+      border: 1px solid fade(@brand-primary, 25%);
+
+      @media (max-width: @screen-xs) {
+        padding: 17px;
+      }
+    }
+
+    .fc-pane-form-dark {
+      background-color: @brand-primary;
+      .fc-grad();
+    }
+
+    h1, h2, h3, h4, h5, h6, h7 {
+      text-shadow: none;
+      color: @fc-type-dark-header-color;
+    }
+
+    h1.header, h2.header, h3.header, h4.header, h5.header, h6.header, h7.header {
+      text-shadow: none;
+      padding: 10px 25px;
+    }
+
+    .fc-action {
+      color: @brand-primary4;
+    }
+
+    .fc-action:hover,
+    .fc-action:focus {
+      color: @brand-primary3;
+    }
+  }
+
+  .fc-pane-body.no-bg {
+    background-color: transparent !important;
+  }
+
+  .fc-pane-body.fc-pane-form-pad {
+    padding: 11px;
+  }
+
+  .fc-pane-footer {
+    font-size: @font-size-h5;
+    font-family: @headings-font-family;
+    font-weight: @headings-font-weight;
+    line-height: @headings-line-height;
+    font-weight: bold;
+    margin: 0 !important;
+    padding: 9px 15px 9px 15px;
+    color: @fc-type-dark-header-color;
+    background-color: @background-primary !important;
+    border: solid 1px @brand-primary5;
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .bg-threads {
+    /*bottom: -@fc-threads-height;*/
+    position: relative;
+  }
+
+  .inline-flag {
+    height: 16px;
+  }
+}
+
+.fc-pane.transparent-bg-dark {
+
+  .fc-pane-header {
+    border: solid 1px @brand-primary5;
+  }
+
+  .fc-pane-body {
+    background-color: fade(@brand-primary, 51%);
+    border: none;
+    color: @background-primary;
+
+    .fc-link {
+      color: @fc-light-link-color;
+    }
+
+    .fc-link:hover,
+    .fc-link:active {
+      color: @background-primary;
+    }
+  }
+}
+
+.fc-pane.fc-pane-thread-fix {
+  .fc-pane-body {
+    border-bottom: none;
+  }
+
+  .fc-pane-form {
+    border-bottom: none;
+  }
+}
+
+.fc-pane.fc-pane-dark {
+  background: transparent;
+  /*.box-shadow(@fc-shadow);*/
+  .fc-pane-header {
+    color: @fc-soft-primary-color1;
+    background-color: @background-primary !important;
+  }
+
+  .fc-pane-body {
+    background-color: @brand-primary;
+    .fc-grad();
+    .fc-light-border();
+
+    h1.header, h2.header, h3.header, h4.header, h5.header, h6.header, h7.header {
+      color: @background-primary;
+      padding: 7px 15px;
+    }
+
+    a.fc-pane-action-link,
+    a.fc-pane-action-link:hover,
+    a.fc-pane-action-link:active {
+      color: @fc-type-dark-header-color;
+      background-color: fade(@background-primary, 91%);
+    }
+  }
+
+  .label-primary {
+    background-color: @background-primary;
+    color: @brand-primary;
+    font-size: 90%;
+    padding-top: .1em;
+    padding-bottom: .1em;
+  }
+
+  .text-info {
+    color: @brand-primary4;
+  }
+
+  a {
+    color: @fc-light-link-color;
+  }
+
+  @media (max-width: @screen-xs) {
+    margin: 0 0 5px 0;
+  }
+}

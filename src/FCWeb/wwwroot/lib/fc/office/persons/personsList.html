@@ -1,0 +1,28 @@
+﻿<div class="fc-pane">
+    <div class="fc-pane-body">
+        <div class="fc-pane-form">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="fc-sheet">
+                        <div ng-show="loading" class="fc-loading-wrapper">
+                            <img ng-src="{{loadingImage}}" />
+                        </div>
+                        <div ng-show="!loading">
+                            <a href="office/persons/create/" class="pull-right"><span class="glyphicon glyphicon-user">&nbsp;</span>Создать</a>
+                            <h2>Список персон</h2>
+                            <div class="form-group">
+                                <label for="nameFilter" class="control-label">Фильтр:</label>
+                                <input class="form-control" id="nameFilter" name="nameFilter" type="text" ng-model="text">
+                            </div>
+                            <table>
+                                <tr ng-repeat="person in persons | filter : {nameDefault : text} | orderBy: 'nameDefault'">
+                                    <td><a ng-href="office/persons/edit/{{person.id}}"><span class="glyphicon glyphicon-edit">&nbsp;</span>{{person.nameDefault}}</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
