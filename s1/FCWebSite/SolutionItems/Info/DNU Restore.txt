@@ -1,3 +1,0 @@
-1. Run CMD as admin (no PowerShell)
-2. Go to dnx enviroment (C:\Users\karul\.dnx\runtimes\dnx-clr-win-x64.1.0.0-rc1-update1\bin)
-3. Run dnu restore against project.json (dnu restore C:\tfs\s1\FCWebSite\src\FCWeb)
